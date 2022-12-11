@@ -40,6 +40,12 @@ dependencies:
   # UI and Navigation
   get: ^4.6.5
 
+  # State Management
+  flutter_bloc: ^8.1.1
+
+  # Logging
+  fimber: ^0.6.6
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
