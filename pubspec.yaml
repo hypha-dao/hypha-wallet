@@ -49,9 +49,29 @@ dependencies:
   # Helper Collections
   collection: ^1.16.0
 
+  # Generated Code
+  freezed: ^2.3.2
+  build_runner: ^2.3.2
+
+  # equality
+  equatable: ^2.0.5
+
+  # Shared Pref
+  shared_preferences: ^2.0.15
+
+  # RX-ify Shared Preferences
+  rx_shared_preferences: ^3.0.0
+
+  # DI
+  get_it: ^7.2.0
+
+  # Json Serial
+  json_serializable: ^6.5.4
+
   # Firebase
   firebase_core: ^2.4.0
   firebase_crashlytics: ^3.0.7
+  firebase_remote_config: ^3.0.7
 
 dev_dependencies:
   flutter_test:

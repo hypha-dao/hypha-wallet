@@ -24,6 +24,10 @@ linter:
   rules:
     # avoid_print: false  # Uncomment to disable the `avoid_print` rule
     prefer_single_quotes: true
+    prefer_final_fields: true
+    always_use_package_imports: true
+    avoid_relative_lib_imports: true
+    implementation_imports: true
 
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options
