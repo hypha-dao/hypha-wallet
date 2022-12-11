@@ -29,6 +29,13 @@
             {
               "client_id": "126164867804-76quir8l0h8lpurubl99sj1499ihjcv3.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "126164867804-3p032sqv8ri6r63482kt38pfun5kb460.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "earth.hypha.wallet.hyphaWallet"
+              }
             }
           ]
         }
