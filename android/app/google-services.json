@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "126164867804",
+    "project_id": "hypha-wallet",
+    "storage_bucket": "hypha-wallet.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:126164867804:android:adb47790cb9c5e5e8cb219",
+        "android_client_info": {
+          "package_name": "earth.hypha.wallet.hypha_wallet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "126164867804-76quir8l0h8lpurubl99sj1499ihjcv3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBI-0GhFAg43uzTSjHeqHu_MwhMiVZlYFQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "126164867804-76quir8l0h8lpurubl99sj1499ihjcv3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
