@@ -5,7 +5,6 @@ import 'package:get_it/get_it.dart';
 import 'package:hypha_wallet/core/logging/log_helper.dart';
 import 'package:hypha_wallet/core/repository/auth_repository.dart';
 import 'package:hypha_wallet/design/hypha_theme.dart';
-import 'package:hypha_wallet/main.dart';
 import 'package:hypha_wallet/ui/authentication/authentication_page.dart';
 import 'package:hypha_wallet/ui/blocs/authentication/authentication_bloc.dart';
 import 'package:hypha_wallet/ui/home_page/authentication_page.dart';
@@ -54,11 +53,11 @@ class HyphaAppView extends StatelessWidget {
         ),
       ],
       child: GetMaterialApp(
-        title: 'Flutter Demo',
+        title: 'Hypha Wallet',
         darkTheme: HyphaTheme.darkTheme,
         theme: HyphaTheme.lightTheme,
         themeMode: ThemeMode.system,
-        home: const MyHomePage(title: 'Flutter Demo Home Page'),
+        home: const SizedBox.shrink(),
       ),
     );
   }
