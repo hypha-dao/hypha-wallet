@@ -50,6 +50,7 @@ dependencies:
   collection: ^1.16.0
 
   # Generated Code
+  freezed_annotation: ^2.2.0
   freezed: ^2.3.2
   build_runner: ^2.3.2
 
@@ -67,6 +68,7 @@ dependencies:
 
   # Json Serial
   json_serializable: ^6.5.4
+  json_annotation: ^4.7.0
 
   # Firebase
   firebase_core: ^2.4.0

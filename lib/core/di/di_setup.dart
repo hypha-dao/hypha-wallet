@@ -22,7 +22,7 @@ part 'usecases_module.dart';
 final _getIt = GetIt.I;
 
 // Get It Library wrappers
-void _registerSingleton<T extends Object>(T dependency) => _getIt.registerSingleton<T>(dependency);
+// void _registerSingleton<T extends Object>(T dependency) => _getIt.registerSingleton<T>(dependency);
 
 void _registerLazySingleton<T extends Object>(FactoryFunc<T> factoryFunc) =>
     _getIt.registerLazySingleton<T>(factoryFunc);
@@ -30,8 +30,8 @@ void _registerLazySingleton<T extends Object>(FactoryFunc<T> factoryFunc) =>
 void _registerFactory<T extends Object>(FactoryFunc<T> factoryFunc) => _getIt.registerFactory<T>(factoryFunc);
 
 // Register factory with initial parameters
-void _registerFactoryWithParams<T extends Object, P1, P2>(FactoryFuncParam<T, P1, P2> factoryFunc) =>
-    _getIt.registerFactoryParam<T, P1, P2>(factoryFunc);
+// void _registerFactoryWithParams<T extends Object, P1, P2>(FactoryFuncParam<T, P1, P2> factoryFunc) =>
+//     _getIt.registerFactoryParam<T, P1, P2>(factoryFunc);
 
 /// The order matters when initializing the dependencies!
 Future<void> setupDependencies() async {
