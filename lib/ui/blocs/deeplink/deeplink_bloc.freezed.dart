@@ -16,20 +16,22 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$DeeplinkEvent {
-  Uri get link => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Uri link) incomingFirebaseDeepLink,
+    required TResult Function() clearPageCommand,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Uri link)? incomingFirebaseDeepLink,
+    TResult? Function()? clearPageCommand,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Uri link)? incomingFirebaseDeepLink,
+    TResult Function()? clearPageCommand,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -37,23 +39,22 @@ mixin _$DeeplinkEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_IncomingFirebaseDeepLink value)
         incomingFirebaseDeepLink,
+    required TResult Function(_ClearPageCommand value) clearPageCommand,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_IncomingFirebaseDeepLink value)?
         incomingFirebaseDeepLink,
+    TResult? Function(_ClearPageCommand value)? clearPageCommand,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_IncomingFirebaseDeepLink value)? incomingFirebaseDeepLink,
+    TResult Function(_ClearPageCommand value)? clearPageCommand,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $DeeplinkEventCopyWith<DeeplinkEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -62,8 +63,6 @@ abstract class $DeeplinkEventCopyWith<$Res> {
   factory $DeeplinkEventCopyWith(
           DeeplinkEvent value, $Res Function(DeeplinkEvent) then) =
       _$DeeplinkEventCopyWithImpl<$Res, DeeplinkEvent>;
-  @useResult
-  $Res call({Uri link});
 }
 
 /// @nodoc
@@ -75,29 +74,14 @@ class _$DeeplinkEventCopyWithImpl<$Res, $Val extends DeeplinkEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? link = null,
-  }) {
-    return _then(_value.copyWith(
-      link: null == link
-          ? _value.link
-          : link // ignore: cast_nullable_to_non_nullable
-              as Uri,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$_IncomingFirebaseDeepLinkCopyWith<$Res>
-    implements $DeeplinkEventCopyWith<$Res> {
+abstract class _$$_IncomingFirebaseDeepLinkCopyWith<$Res> {
   factory _$$_IncomingFirebaseDeepLinkCopyWith(
           _$_IncomingFirebaseDeepLink value,
           $Res Function(_$_IncomingFirebaseDeepLink) then) =
       __$$_IncomingFirebaseDeepLinkCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({Uri link});
 }
@@ -159,6 +143,7 @@ class _$_IncomingFirebaseDeepLink implements _IncomingFirebaseDeepLink {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Uri link) incomingFirebaseDeepLink,
+    required TResult Function() clearPageCommand,
   }) {
     return incomingFirebaseDeepLink(link);
   }
@@ -167,6 +152,7 @@ class _$_IncomingFirebaseDeepLink implements _IncomingFirebaseDeepLink {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Uri link)? incomingFirebaseDeepLink,
+    TResult? Function()? clearPageCommand,
   }) {
     return incomingFirebaseDeepLink?.call(link);
   }
@@ -175,6 +161,7 @@ class _$_IncomingFirebaseDeepLink implements _IncomingFirebaseDeepLink {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Uri link)? incomingFirebaseDeepLink,
+    TResult Function()? clearPageCommand,
     required TResult orElse(),
   }) {
     if (incomingFirebaseDeepLink != null) {
@@ -188,6 +175,7 @@ class _$_IncomingFirebaseDeepLink implements _IncomingFirebaseDeepLink {
   TResult map<TResult extends Object?>({
     required TResult Function(_IncomingFirebaseDeepLink value)
         incomingFirebaseDeepLink,
+    required TResult Function(_ClearPageCommand value) clearPageCommand,
   }) {
     return incomingFirebaseDeepLink(this);
   }
@@ -197,6 +185,7 @@ class _$_IncomingFirebaseDeepLink implements _IncomingFirebaseDeepLink {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_IncomingFirebaseDeepLink value)?
         incomingFirebaseDeepLink,
+    TResult? Function(_ClearPageCommand value)? clearPageCommand,
   }) {
     return incomingFirebaseDeepLink?.call(this);
   }
@@ -205,6 +194,7 @@ class _$_IncomingFirebaseDeepLink implements _IncomingFirebaseDeepLink {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_IncomingFirebaseDeepLink value)? incomingFirebaseDeepLink,
+    TResult Function(_ClearPageCommand value)? clearPageCommand,
     required TResult orElse(),
   }) {
     if (incomingFirebaseDeepLink != null) {
@@ -218,17 +208,120 @@ abstract class _IncomingFirebaseDeepLink implements DeeplinkEvent {
   const factory _IncomingFirebaseDeepLink(final Uri link) =
       _$_IncomingFirebaseDeepLink;
 
-  @override
   Uri get link;
-  @override
   @JsonKey(ignore: true)
   _$$_IncomingFirebaseDeepLinkCopyWith<_$_IncomingFirebaseDeepLink>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
+abstract class _$$_ClearPageCommandCopyWith<$Res> {
+  factory _$$_ClearPageCommandCopyWith(
+          _$_ClearPageCommand value, $Res Function(_$_ClearPageCommand) then) =
+      __$$_ClearPageCommandCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_ClearPageCommandCopyWithImpl<$Res>
+    extends _$DeeplinkEventCopyWithImpl<$Res, _$_ClearPageCommand>
+    implements _$$_ClearPageCommandCopyWith<$Res> {
+  __$$_ClearPageCommandCopyWithImpl(
+      _$_ClearPageCommand _value, $Res Function(_$_ClearPageCommand) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_ClearPageCommand implements _ClearPageCommand {
+  const _$_ClearPageCommand();
+
+  @override
+  String toString() {
+    return 'DeeplinkEvent.clearPageCommand()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_ClearPageCommand);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Uri link) incomingFirebaseDeepLink,
+    required TResult Function() clearPageCommand,
+  }) {
+    return clearPageCommand();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Uri link)? incomingFirebaseDeepLink,
+    TResult? Function()? clearPageCommand,
+  }) {
+    return clearPageCommand?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Uri link)? incomingFirebaseDeepLink,
+    TResult Function()? clearPageCommand,
+    required TResult orElse(),
+  }) {
+    if (clearPageCommand != null) {
+      return clearPageCommand();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_IncomingFirebaseDeepLink value)
+        incomingFirebaseDeepLink,
+    required TResult Function(_ClearPageCommand value) clearPageCommand,
+  }) {
+    return clearPageCommand(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_IncomingFirebaseDeepLink value)?
+        incomingFirebaseDeepLink,
+    TResult? Function(_ClearPageCommand value)? clearPageCommand,
+  }) {
+    return clearPageCommand?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_IncomingFirebaseDeepLink value)? incomingFirebaseDeepLink,
+    TResult Function(_ClearPageCommand value)? clearPageCommand,
+    required TResult orElse(),
+  }) {
+    if (clearPageCommand != null) {
+      return clearPageCommand(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ClearPageCommand implements DeeplinkEvent {
+  const factory _ClearPageCommand() = _$_ClearPageCommand;
+}
+
+/// @nodoc
 mixin _$DeeplinkState {
   String? get link => throw _privateConstructorUsedError;
+  PageCommand? get command => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $DeeplinkStateCopyWith<DeeplinkState> get copyWith =>
@@ -241,7 +334,9 @@ abstract class $DeeplinkStateCopyWith<$Res> {
           DeeplinkState value, $Res Function(DeeplinkState) then) =
       _$DeeplinkStateCopyWithImpl<$Res, DeeplinkState>;
   @useResult
-  $Res call({String? link});
+  $Res call({String? link, PageCommand? command});
+
+  $PageCommandCopyWith<$Res>? get command;
 }
 
 /// @nodoc
@@ -258,13 +353,30 @@ class _$DeeplinkStateCopyWithImpl<$Res, $Val extends DeeplinkState>
   @override
   $Res call({
     Object? link = freezed,
+    Object? command = freezed,
   }) {
     return _then(_value.copyWith(
       link: freezed == link
           ? _value.link
           : link // ignore: cast_nullable_to_non_nullable
               as String?,
+      command: freezed == command
+          ? _value.command
+          : command // ignore: cast_nullable_to_non_nullable
+              as PageCommand?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PageCommandCopyWith<$Res>? get command {
+    if (_value.command == null) {
+      return null;
+    }
+
+    return $PageCommandCopyWith<$Res>(_value.command!, (value) {
+      return _then(_value.copyWith(command: value) as $Val);
+    });
   }
 }
 
@@ -276,7 +388,10 @@ abstract class _$$_DeeplinkStateCopyWith<$Res>
       __$$_DeeplinkStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? link});
+  $Res call({String? link, PageCommand? command});
+
+  @override
+  $PageCommandCopyWith<$Res>? get command;
 }
 
 /// @nodoc
@@ -291,12 +406,17 @@ class __$$_DeeplinkStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? link = freezed,
+    Object? command = freezed,
   }) {
     return _then(_$_DeeplinkState(
       link: freezed == link
           ? _value.link
           : link // ignore: cast_nullable_to_non_nullable
               as String?,
+      command: freezed == command
+          ? _value.command
+          : command // ignore: cast_nullable_to_non_nullable
+              as PageCommand?,
     ));
   }
 }
@@ -304,14 +424,16 @@ class __$$_DeeplinkStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_DeeplinkState implements _DeeplinkState {
-  const _$_DeeplinkState({this.link});
+  const _$_DeeplinkState({this.link, this.command});
 
   @override
   final String? link;
+  @override
+  final PageCommand? command;
 
   @override
   String toString() {
-    return 'DeeplinkState(link: $link)';
+    return 'DeeplinkState(link: $link, command: $command)';
   }
 
   @override
@@ -319,11 +441,12 @@ class _$_DeeplinkState implements _DeeplinkState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_DeeplinkState &&
-            (identical(other.link, link) || other.link == link));
+            (identical(other.link, link) || other.link == link) &&
+            (identical(other.command, command) || other.command == command));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, link);
+  int get hashCode => Object.hash(runtimeType, link, command);
 
   @JsonKey(ignore: true)
   @override
@@ -333,12 +456,168 @@ class _$_DeeplinkState implements _DeeplinkState {
 }
 
 abstract class _DeeplinkState implements DeeplinkState {
-  const factory _DeeplinkState({final String? link}) = _$_DeeplinkState;
+  const factory _DeeplinkState(
+      {final String? link, final PageCommand? command}) = _$_DeeplinkState;
 
   @override
   String? get link;
   @override
+  PageCommand? get command;
+  @override
   @JsonKey(ignore: true)
   _$$_DeeplinkStateCopyWith<_$_DeeplinkState> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$PageCommand {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() navigateToCreateAccount,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? navigateToCreateAccount,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? navigateToCreateAccount,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_NavigateToCreateAccount value)
+        navigateToCreateAccount,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_NavigateToCreateAccount value)? navigateToCreateAccount,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_NavigateToCreateAccount value)? navigateToCreateAccount,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $PageCommandCopyWith<$Res> {
+  factory $PageCommandCopyWith(
+          PageCommand value, $Res Function(PageCommand) then) =
+      _$PageCommandCopyWithImpl<$Res, PageCommand>;
+}
+
+/// @nodoc
+class _$PageCommandCopyWithImpl<$Res, $Val extends PageCommand>
+    implements $PageCommandCopyWith<$Res> {
+  _$PageCommandCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$_NavigateToCreateAccountCopyWith<$Res> {
+  factory _$$_NavigateToCreateAccountCopyWith(_$_NavigateToCreateAccount value,
+          $Res Function(_$_NavigateToCreateAccount) then) =
+      __$$_NavigateToCreateAccountCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_NavigateToCreateAccountCopyWithImpl<$Res>
+    extends _$PageCommandCopyWithImpl<$Res, _$_NavigateToCreateAccount>
+    implements _$$_NavigateToCreateAccountCopyWith<$Res> {
+  __$$_NavigateToCreateAccountCopyWithImpl(_$_NavigateToCreateAccount _value,
+      $Res Function(_$_NavigateToCreateAccount) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_NavigateToCreateAccount implements _NavigateToCreateAccount {
+  const _$_NavigateToCreateAccount();
+
+  @override
+  String toString() {
+    return 'PageCommand.navigateToCreateAccount()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_NavigateToCreateAccount);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() navigateToCreateAccount,
+  }) {
+    return navigateToCreateAccount();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? navigateToCreateAccount,
+  }) {
+    return navigateToCreateAccount?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? navigateToCreateAccount,
+    required TResult orElse(),
+  }) {
+    if (navigateToCreateAccount != null) {
+      return navigateToCreateAccount();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_NavigateToCreateAccount value)
+        navigateToCreateAccount,
+  }) {
+    return navigateToCreateAccount(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_NavigateToCreateAccount value)? navigateToCreateAccount,
+  }) {
+    return navigateToCreateAccount?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_NavigateToCreateAccount value)? navigateToCreateAccount,
+    required TResult orElse(),
+  }) {
+    if (navigateToCreateAccount != null) {
+      return navigateToCreateAccount(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _NavigateToCreateAccount implements PageCommand {
+  const factory _NavigateToCreateAccount() = _$_NavigateToCreateAccount;
 }

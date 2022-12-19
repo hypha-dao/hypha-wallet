@@ -8,6 +8,7 @@ import 'package:hypha_wallet/core/logging/log_helper.dart';
 part 'deeplink_bloc.freezed.dart';
 part 'deeplink_event.dart';
 part 'deeplink_state.dart';
+part 'page_command.dart';
 
 class DeeplinkBloc extends Bloc<DeeplinkEvent, DeeplinkState> {
   StreamSubscription? _linkStreamSubscription;
@@ -16,6 +17,7 @@ class DeeplinkBloc extends Bloc<DeeplinkEvent, DeeplinkState> {
     initDynamicLinks();
 
     on<_IncomingFirebaseDeepLink>(_incomingFirebaseDeepLink);
+    on<_ClearPageCommand>((_, emit) => emit(state.copyWith(command: null)));
   }
 
   @override
@@ -45,6 +47,6 @@ class DeeplinkBloc extends Bloc<DeeplinkEvent, DeeplinkState> {
     // final DeepLinkData result = await GetInitialDeepLinkUseCase().run(event.newLink);
 
     /// Emit new state with data from link
-    // emit(DeepLinkStateMapper().mapResultToState(state, result));
+    emit(state.copyWith(command: PageCommand.navigateToCreateAccount()));
   }
 }

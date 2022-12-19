@@ -9,6 +9,7 @@ import 'package:hypha_wallet/ui/authentication/authentication_page.dart';
 import 'package:hypha_wallet/ui/blocs/authentication/authentication_bloc.dart';
 import 'package:hypha_wallet/ui/blocs/deeplink/deeplink_bloc.dart';
 import 'package:hypha_wallet/ui/home_page/authentication_page.dart';
+import 'package:hypha_wallet/ui/onboarding/intro_page.dart';
 
 class HyphaApp extends StatelessWidget {
   const HyphaApp({super.key});
@@ -54,7 +55,12 @@ class HyphaAppView extends StatelessWidget {
           },
         ),
         BlocListener<DeeplinkBloc, DeeplinkState>(
-          listener: (context, state) {},
+          listenWhen: (previous, current) => previous.command != current.command,
+          listener: (context, state) {
+            state.command?.when(navigateToCreateAccount: () => Get.offAll(() => const IntroPage()));
+
+            context.read<DeeplinkBloc>().add(DeeplinkEvent.clearPageCommand());
+          },
         ),
       ],
       child: GetMaterialApp(
