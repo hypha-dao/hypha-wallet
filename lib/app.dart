@@ -7,6 +7,7 @@ import 'package:hypha_wallet/core/repository/auth_repository.dart';
 import 'package:hypha_wallet/design/hypha_theme.dart';
 import 'package:hypha_wallet/ui/authentication/authentication_page.dart';
 import 'package:hypha_wallet/ui/blocs/authentication/authentication_bloc.dart';
+import 'package:hypha_wallet/ui/blocs/deeplink/deeplink_bloc.dart';
 import 'package:hypha_wallet/ui/home_page/authentication_page.dart';
 
 class HyphaApp extends StatelessWidget {
@@ -20,6 +21,7 @@ class HyphaApp extends StatelessWidget {
         BlocProvider<AuthenticationBloc>(
           create: (_) => GetIt.I.get<AuthenticationBloc>()..add(const AuthenticationEvent.initial()),
         ),
+        BlocProvider<DeeplinkBloc>(create: (_) => GetIt.I.get<DeeplinkBloc>()),
       ],
       child: const HyphaAppView(),
     );
@@ -45,11 +47,14 @@ class HyphaAppView extends StatelessWidget {
                 Get.to(const HomePage());
               }
             }, unAuthenticated: (status) {
-              Get.offAll(const AuthenticationPage());
+              Get.offAll(() => const AuthenticationPage());
             }, unknown: (AuthenticationStatus status) {
               LogHelper.d('Auth Bloc Listener $status');
             });
           },
+        ),
+        BlocListener<DeeplinkBloc, DeeplinkState>(
+          listener: (context, state) {},
         ),
       ],
       child: GetMaterialApp(

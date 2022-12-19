@@ -7,6 +7,8 @@ void _registerBlocsModule() {
         _getIt<HyphaSharedPrefs>(),
       ));
 
+  _registerFactory(() => DeeplinkBloc());
+
   // _registerFactoryWithParams<MoodCheckInBloc, MoodCheckInArguments, void>((moodCheckInArgs, _) => MoodCheckInBloc(
   //       moodCheckInArgs,
   //       _getIt<UpdateDailyMoodUseCase>(),

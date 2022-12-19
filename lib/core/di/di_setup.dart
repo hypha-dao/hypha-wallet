@@ -8,6 +8,7 @@ import 'package:hypha_wallet/core/repository/auth_repository.dart';
 import 'package:hypha_wallet/core/repository/hypha_shared_prefs.dart';
 import 'package:hypha_wallet/firebase_options.dart';
 import 'package:hypha_wallet/ui/blocs/authentication/authentication_bloc.dart';
+import 'package:hypha_wallet/ui/blocs/deeplink/deeplink_bloc.dart';
 import 'package:rx_shared_preferences/rx_shared_preferences.dart';
 
 part 'api_module.dart';
