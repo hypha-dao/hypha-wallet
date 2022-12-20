@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:hypha_wallet/ui/onboarding/create_profile_page.dart';
 
 class IntroPage extends StatelessWidget {
   const IntroPage();
@@ -7,15 +9,20 @@ class IntroPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: ElevatedButton(
-        onPressed: () {},
+        onPressed: () {
+          Get.to(CreateProfilePage(), transition: Transition.rightToLeft);
+        },
         child: Text('Create Account'),
       ),
-      body: Column(
-        children: [
-          Icon(Icons.ac_unit),
-          Text('Welcome'),
-          Text('More Info'),
-        ],
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.ac_unit),
+            Text('Welcome'),
+            Text('More Info'),
+          ],
+        ),
       ),
     );
   }
