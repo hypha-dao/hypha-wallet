@@ -9,8 +9,19 @@ void _registerBlocsModule() {
 
   _registerFactory(() => DeeplinkBloc());
 
-  _registerFactoryWithParams<CreateAccountBloc, XFile?, String>((image, userName) => CreateAccountBloc(
-        image,
-        userName,
-      ));
+  _registerFactoryWithParams<CreateAccountBloc, XFile?, String>(
+    (image, userName) => CreateAccountBloc(
+      _getIt<CheckAccountAvailabilityUseCase>(),
+      image,
+      userName,
+    ),
+  );
+
+  _registerFactoryWithParams<EditAccountBloc, XFile?, String>(
+    (image, userName) => EditAccountBloc(
+      _getIt<CheckAccountAvailabilityUseCase>(),
+      image,
+      userName,
+    ),
+  );
 }

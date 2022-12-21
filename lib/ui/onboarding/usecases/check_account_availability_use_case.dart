@@ -10,12 +10,11 @@ class CheckAccountAvailabilityUseCase extends InputUseCase<Result<bool, PageErro
 
   @override
   Future<Result<bool, PageError>> run(String input) async {
-    final result = await _userAccountRepository.isUserAccountAvailable(input);
-    return Result.value(result);
-    // if (result.isSuccess) {
-    //   return Result.value(result);
-    // } else {
-    //   return Result.error(PageError(GenericError.generic, 'Error looking for account'));
-    // }
+    try {
+      final result = await _userAccountRepository.isUserAccountAvailable(input);
+      return Result.value(result);
+    } catch (e) {
+      return Result.error(PageError(GenericError.generic, 'Error looking for account'));
+    }
   }
 }

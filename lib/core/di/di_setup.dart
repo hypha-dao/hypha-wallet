@@ -14,6 +14,8 @@ import 'package:hypha_wallet/firebase_options.dart';
 import 'package:hypha_wallet/ui/blocs/authentication/authentication_bloc.dart';
 import 'package:hypha_wallet/ui/blocs/deeplink/deeplink_bloc.dart';
 import 'package:hypha_wallet/ui/onboarding/create_account/interactor/create_account_bloc.dart';
+import 'package:hypha_wallet/ui/onboarding/edit_account/interactor/edit_account_bloc.dart';
+import 'package:hypha_wallet/ui/onboarding/usecases/check_account_availability_use_case.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:rx_shared_preferences/rx_shared_preferences.dart';
 
@@ -59,9 +61,6 @@ Future<void> setupDependencies() async {
 
   // Repositories Dependencies
   _registerRepositoriesModule();
-
-  // Managers Dependencies
-  // await _registerManagersModule();
 
   // Blocs
   _registerBlocsModule();
