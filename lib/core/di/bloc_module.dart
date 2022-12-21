@@ -9,10 +9,8 @@ void _registerBlocsModule() {
 
   _registerFactory(() => DeeplinkBloc());
 
-  // _registerFactoryWithParams<MoodCheckInBloc, MoodCheckInArguments, void>((moodCheckInArgs, _) => MoodCheckInBloc(
-  //       moodCheckInArgs,
-  //       _getIt<UpdateDailyMoodUseCase>(),
-  //       _getIt<PostDailyMoodUseCase>(),
-  //       _getIt<AnalyticsManager>(),
-  //     ));
+  _registerFactoryWithParams<CreateAccountBloc, XFile?, String>((image, userName) => CreateAccountBloc(
+        image,
+        userName,
+      ));
 }

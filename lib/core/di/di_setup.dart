@@ -9,6 +9,8 @@ import 'package:hypha_wallet/core/repository/hypha_shared_prefs.dart';
 import 'package:hypha_wallet/firebase_options.dart';
 import 'package:hypha_wallet/ui/blocs/authentication/authentication_bloc.dart';
 import 'package:hypha_wallet/ui/blocs/deeplink/deeplink_bloc.dart';
+import 'package:hypha_wallet/ui/onboarding/create_account/interactor/create_account_bloc.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:rx_shared_preferences/rx_shared_preferences.dart';
 
 part 'api_module.dart';
@@ -30,9 +32,9 @@ void _registerLazySingleton<T extends Object>(FactoryFunc<T> factoryFunc) =>
 
 void _registerFactory<T extends Object>(FactoryFunc<T> factoryFunc) => _getIt.registerFactory<T>(factoryFunc);
 
-// Register factory with initial parameters
-// void _registerFactoryWithParams<T extends Object, P1, P2>(FactoryFuncParam<T, P1, P2> factoryFunc) =>
-//     _getIt.registerFactoryParam<T, P1, P2>(factoryFunc);
+/// Register factory with initial parameters
+void _registerFactoryWithParams<T extends Object, P1, P2>(FactoryFuncParam<T, P1, P2> factoryFunc) =>
+    _getIt.registerFactoryParam<T, P1, P2>(factoryFunc);
 
 /// The order matters when initializing the dependencies!
 Future<void> setupDependencies() async {
