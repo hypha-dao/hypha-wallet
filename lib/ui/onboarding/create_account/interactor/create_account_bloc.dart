@@ -2,7 +2,9 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:hypha_wallet/core/extension/string_extension.dart';
 import 'package:hypha_wallet/ui/architecture/interactor/page_states.dart';
+import 'package:hypha_wallet/ui/onboarding/create_account/interactor/user_account_error.dart';
 import 'package:image_picker/image_picker.dart';
 
 part 'create_account_bloc.freezed.dart';
@@ -17,6 +19,37 @@ class CreateAccountBloc extends Bloc<CreateAccountEvent, CreateAccountState> {
   }
 
   Future<void> _initial(_Initial event, Emitter<CreateAccountState> emit) async {
-    emit(state.copyWith(pageState: PageState.success, userAccount: state.userName + '123'));
+    final userAccount = _generateUserAccount(state.userName);
+    emit(state.copyWith(pageState: PageState.success, userAccount: userAccount));
+  }
+
+  String _generateUserAccount(String fullName) {
+    String suggestedUsername = fullName.toLowerCase().trim().split('').map((character) {
+      final legalChar = RegExp(r'[a-z]|1|2|3|4|5').allMatches(character).isNotEmpty;
+
+      return legalChar ? character : '';
+    }).join();
+
+    suggestedUsername = suggestedUsername.padRight(12, '1');
+
+    return suggestedUsername.substring(0, 12);
+  }
+
+  UserAccountError? _validateUserAccount(String? username) {
+    final validCharacters = RegExp(r'^[a-z1-5]+$');
+
+    if (username.isNullOrEmpty) {
+      return UserAccountError.validationFailedSelectUsername;
+    } else if (RegExp(r'0|6|7|8|9').allMatches(username!).isNotEmpty) {
+      return UserAccountError.validationFailedOnlyNumbers15;
+    } else if (username.toLowerCase() != username) {
+      return UserAccountError.validationFailedNameLowercaseOnly;
+    } else if (!validCharacters.hasMatch(username) || username.contains(' ')) {
+      return UserAccountError.validationFailedNoSpecialCharactersOrSpaces;
+    } else if (username.length != 12) {
+      return UserAccountError.validationFailedUsernameMustBe12Characters;
+    }
+
+    return null;
   }
 }

@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hypha_wallet/core/logging/log_helper.dart';
-import 'package:hypha_wallet/core/repository/auth_repository.dart';
+import 'package:hypha_wallet/core/network/repository/auth_repository.dart';
 import 'package:hypha_wallet/design/hypha_theme.dart';
 import 'package:hypha_wallet/ui/authentication/authentication_page.dart';
 import 'package:hypha_wallet/ui/blocs/authentication/authentication_bloc.dart';

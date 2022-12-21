@@ -73,6 +73,9 @@ dependencies:
   # image picker
   image_picker: ^0.8.6
 
+  # Network
+  dio: ^4.0.6
+
   # Firebase
   firebase_core: ^2.4.0
   firebase_crashlytics: ^3.0.7

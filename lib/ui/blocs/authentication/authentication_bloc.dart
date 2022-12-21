@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hypha_wallet/core/logging/log_helper.dart';
 import 'package:hypha_wallet/core/models/authenticated_data.dart';
-import 'package:hypha_wallet/core/repository/auth_repository.dart';
-import 'package:hypha_wallet/core/repository/hypha_shared_prefs.dart';
+import 'package:hypha_wallet/core/network/repository/auth_repository.dart';
+import 'package:hypha_wallet/core/shared_preferences/hypha_shared_prefs.dart';
 
 part 'authentication_bloc.freezed.dart';
 part 'authentication_event.dart';
