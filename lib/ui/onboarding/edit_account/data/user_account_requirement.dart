@@ -16,4 +16,5 @@ enum RequirementState {
   empty,
   completed,
   failed,
+  loading,
 }

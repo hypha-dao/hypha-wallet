@@ -1,10 +1,14 @@
 import 'dart:async';
 
+import 'package:async/async.dart';
 import 'package:bloc/bloc.dart';
 import 'package:collection/collection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hypha_wallet/core/extension/collection_extension.dart';
+import 'package:hypha_wallet/core/logging/log_helper.dart';
+import 'package:hypha_wallet/ui/architecture/interactor/page_error.dart';
 import 'package:hypha_wallet/ui/architecture/interactor/page_states.dart';
+import 'package:hypha_wallet/ui/architecture/result/result.dart' as HResult;
 import 'package:hypha_wallet/ui/onboarding/edit_account/data/user_account_requirement.dart';
 import 'package:hypha_wallet/ui/onboarding/edit_account/interactor/user_account_error.dart';
 import 'package:hypha_wallet/ui/onboarding/usecases/check_account_availability_use_case.dart';
@@ -17,6 +21,7 @@ part 'page_command.dart';
 
 class EditAccountBloc extends Bloc<EditAccountEvent, EditAccountState> {
   final CheckAccountAvailabilityUseCase _checkAccountAvailabilityUseCase;
+  late CancelableOperation<HResult.Result<bool, PageError>>? searchUserCancellable = null;
 
   EditAccountBloc(
     this._checkAccountAvailabilityUseCase,
@@ -33,20 +38,6 @@ class EditAccountBloc extends Bloc<EditAccountEvent, EditAccountState> {
 
   Future<void> _initial(_Initial event, Emitter<EditAccountState> emit) async {
     emit(state.copyWith(pageState: PageState.success, userAccountRequirements: getFreshRequirements()));
-
-    // emit(state.copyWith(pageState: PageState.loading, userAccount: userAccount));
-    // Result<bool, PageError> result = await _checkAccountAvailabilityUseCase.run(userAccount);
-    //
-    // if (result.isValue) {
-    //   /// if account is available.
-    //   if (result.asValue!.value) {
-    //     emit(state.copyWith(pageState: PageState.success, userAccount: userAccount));
-    //   } else {
-    //
-    //   }
-    // } else {
-    //   /// Something failed trying to check if account is available
-    // }
   }
 
   List<UserAccountError> _validateUserAccount(String username) {
@@ -65,12 +56,17 @@ class EditAccountBloc extends Bloc<EditAccountEvent, EditAccountState> {
     }
     if (username.length != 12) {
       errors.add(UserAccountError.mustBe12Characters);
+      errors.add(UserAccountError.alreadyTaken);
     }
 
     return errors;
   }
 
-  FutureOr<void> _onAccountChange(_OnAccountChange event, Emitter<EditAccountState> emit) {
+  /// Validate the new account input
+  /// Display Errors if any
+  /// Check the new account availability
+  Future<FutureOr<void>> _onAccountChange(_OnAccountChange event, Emitter<EditAccountState> emit) async {
+    searchUserCancellable?.cancel();
     if (event.value.isEmpty) {
       add(EditAccountEvent.initial());
     } else {
@@ -78,12 +74,45 @@ class EditAccountBloc extends Bloc<EditAccountEvent, EditAccountState> {
       List<UserAccountRequirement> completedItems = getFreshRequirements(state: RequirementState.completed);
 
       result.forEach((UserAccountError element) {
-        UserAccountRequirement item = completedItems.firstWhere((UserAccountRequirement item) => item.error == element);
-        int index = completedItems.indexOf(item);
-        completedItems = completedItems.replaceImmutable(index, item.updateState(RequirementState.failed));
+        completedItems = updateItemState(completedItems, element, RequirementState.failed);
       });
 
       emit(state.copyWith(userAccountRequirements: completedItems));
+
+      if (event.value.length == 12) {
+        completedItems = updateItemState(completedItems, UserAccountError.alreadyTaken, RequirementState.loading);
+        emit(state.copyWith(userAccountRequirements: completedItems));
+
+        searchUserCancellable = CancelableOperation.fromFuture(
+          _checkAccountAvailabilityUseCase.run(event.value),
+          onCancel: () => {LogHelper.d('_checkAccountAvailabilityUseCase cancelled for: ' + event.value)},
+        );
+
+        HResult.Result<bool, PageError> result = await searchUserCancellable!.value;
+
+        emit(state.copyWith(userAccountRequirements: completedItems));
+
+        if (result.isValue) {
+          completedItems = updateItemState(
+            completedItems,
+            UserAccountError.alreadyTaken,
+            result.asValue!.value ? RequirementState.completed : RequirementState.failed,
+          );
+          emit(state.copyWith(userAccountRequirements: completedItems));
+        } else {
+          /// Show error? What to do
+        }
+      }
     }
+  }
+
+  List<UserAccountRequirement> updateItemState(
+    List<UserAccountRequirement> items,
+    UserAccountError error,
+    RequirementState state,
+  ) {
+    UserAccountRequirement item = items.firstWhere((UserAccountRequirement item) => item.error == error);
+    int index = items.indexOf(item);
+    return items.replaceImmutable(index, item.updateState(state));
   }
 }

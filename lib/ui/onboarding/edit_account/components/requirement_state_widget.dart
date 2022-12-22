@@ -40,6 +40,13 @@ class RequirementStateWidget extends StatelessWidget {
             shape: BoxShape.circle,
           ),
         );
+      case RequirementState.loading:
+      case RequirementState.failed:
+        return Container(
+          width: size,
+          height: size,
+          child: CircularProgressIndicator.adaptive(),
+        );
     }
   }
 }

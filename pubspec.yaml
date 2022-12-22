@@ -54,6 +54,9 @@ dependencies:
   freezed: ^2.3.2
   build_runner: ^2.3.2
 
+  # Async Code. Cancellable futures, etc
+  async: ^2.9.0
+
   # equality
   equatable: ^2.0.5
 

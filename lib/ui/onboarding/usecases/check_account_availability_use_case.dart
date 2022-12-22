@@ -11,7 +11,9 @@ class CheckAccountAvailabilityUseCase extends InputUseCase<Result<bool, PageErro
   @override
   Future<Result<bool, PageError>> run(String input) async {
     try {
-      final result = await _userAccountRepository.isUserAccountAvailable(input);
+      // TODO(gguij): Mocked result. Use API
+      final bool result = await Future.delayed(Duration(seconds: 3)).then((value) => true);
+      // final result = await _userAccountRepository.isUserAccountAvailable(input);
       return Result.value(result);
     } catch (e) {
       return Result.error(PageError(GenericError.generic, 'Error looking for account'));

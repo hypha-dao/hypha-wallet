@@ -31,5 +31,6 @@ linter:
     # Disabling invalid_annotation_target warning and warning in generates files
     invalid_annotation_target: ignore
 
+
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options
