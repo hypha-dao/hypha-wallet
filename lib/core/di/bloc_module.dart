@@ -20,6 +20,7 @@ void _registerBlocsModule() {
   _registerFactoryWithParams<EditAccountBloc, XFile?, String>(
     (image, userName) => EditAccountBloc(
       _getIt<CheckAccountAvailabilityUseCase>(),
+      _getIt<CreateAccountUseCase>(),
       image,
       userName,
     ),

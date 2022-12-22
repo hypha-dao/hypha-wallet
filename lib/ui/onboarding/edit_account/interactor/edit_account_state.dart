@@ -11,6 +11,7 @@ class EditAccountState with _$EditAccountState {
     String? userAccount,
     PageCommand? command,
     @Default([]) List<UserAccountRequirement> userAccountRequirements,
+    @Default(false) bool isNextButtonLoading,
   }) = _CreateAccountState;
 
   get isNextButtonAvailable =>

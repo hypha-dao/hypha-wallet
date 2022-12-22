@@ -8,10 +8,11 @@ import 'package:hypha_wallet/core/extension/collection_extension.dart';
 import 'package:hypha_wallet/core/logging/log_helper.dart';
 import 'package:hypha_wallet/ui/architecture/interactor/page_error.dart';
 import 'package:hypha_wallet/ui/architecture/interactor/page_states.dart';
-import 'package:hypha_wallet/ui/architecture/result/result.dart' as HResult;
+import 'package:hypha_wallet/ui/architecture/result/result.dart' as Hypha;
 import 'package:hypha_wallet/ui/onboarding/edit_account/data/user_account_requirement.dart';
 import 'package:hypha_wallet/ui/onboarding/edit_account/interactor/user_account_error.dart';
 import 'package:hypha_wallet/ui/onboarding/usecases/check_account_availability_use_case.dart';
+import 'package:hypha_wallet/ui/onboarding/usecases/create_account_use_case.dart';
 import 'package:image_picker/image_picker.dart';
 
 part 'edit_account_bloc.freezed.dart';
@@ -21,14 +22,17 @@ part 'page_command.dart';
 
 class EditAccountBloc extends Bloc<EditAccountEvent, EditAccountState> {
   final CheckAccountAvailabilityUseCase _checkAccountAvailabilityUseCase;
-  late CancelableOperation<HResult.Result<bool, PageError>>? searchUserCancellable = null;
+  final CreateAccountUseCase _createAccountUseCase;
+  late CancelableOperation<Hypha.Result<bool, PageError>>? searchUserCancellable = null;
 
   EditAccountBloc(
     this._checkAccountAvailabilityUseCase,
+    this._createAccountUseCase,
     XFile? image,
     String userName,
   ) : super(EditAccountState(userName: userName, image: image)) {
     on<_Initial>(_initial);
+    on<_OnNextPressed>(_onNextPressed);
     on<_ClearPageCommand>((_, emit) => emit(state.copyWith(command: null)));
     on<_OnAccountChange>(_onAccountChange);
   }
@@ -65,7 +69,7 @@ class EditAccountBloc extends Bloc<EditAccountEvent, EditAccountState> {
   /// Validate the new account input
   /// Display Errors if any
   /// Check the new account availability
-  Future<FutureOr<void>> _onAccountChange(_OnAccountChange event, Emitter<EditAccountState> emit) async {
+  FutureOr<void> _onAccountChange(_OnAccountChange event, Emitter<EditAccountState> emit) async {
     searchUserCancellable?.cancel();
     if (event.value.isEmpty) {
       add(EditAccountEvent.initial());
@@ -88,7 +92,7 @@ class EditAccountBloc extends Bloc<EditAccountEvent, EditAccountState> {
           onCancel: () => {LogHelper.d('_checkAccountAvailabilityUseCase cancelled for: ' + event.value)},
         );
 
-        HResult.Result<bool, PageError> result = await searchUserCancellable!.value;
+        Hypha.Result<bool, PageError> result = await searchUserCancellable!.value;
 
         emit(state.copyWith(userAccountRequirements: completedItems));
 
@@ -114,5 +118,16 @@ class EditAccountBloc extends Bloc<EditAccountEvent, EditAccountState> {
     UserAccountRequirement item = items.firstWhere((UserAccountRequirement item) => item.error == error);
     int index = items.indexOf(item);
     return items.replaceImmutable(index, item.updateState(state));
+  }
+
+  FutureOr<void> _onNextPressed(_OnNextPressed event, Emitter<EditAccountState> emit) async {
+    /// Make call to create Account
+    emit(state.copyWith(isNextButtonLoading: true));
+    Hypha.Result<bool, PageError> result = await _createAccountUseCase.run(state.userAccount!);
+    if (result.isValue) {
+      emit(state.copyWith(isNextButtonLoading: false));
+    } else {
+      emit(state.copyWith(isNextButtonLoading: false));
+    }
   }
 }

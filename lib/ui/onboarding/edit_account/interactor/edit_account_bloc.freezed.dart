@@ -19,6 +19,7 @@ mixin _$EditAccountEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() onNextPressed,
     required TResult Function() clearPageCommand,
     required TResult Function(String value) onAccountChange,
   }) =>
@@ -26,6 +27,7 @@ mixin _$EditAccountEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
+    TResult? Function()? onNextPressed,
     TResult? Function()? clearPageCommand,
     TResult? Function(String value)? onAccountChange,
   }) =>
@@ -33,6 +35,7 @@ mixin _$EditAccountEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? onNextPressed,
     TResult Function()? clearPageCommand,
     TResult Function(String value)? onAccountChange,
     required TResult orElse(),
@@ -41,6 +44,7 @@ mixin _$EditAccountEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_OnNextPressed value) onNextPressed,
     required TResult Function(_ClearPageCommand value) clearPageCommand,
     required TResult Function(_OnAccountChange value) onAccountChange,
   }) =>
@@ -48,6 +52,7 @@ mixin _$EditAccountEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
+    TResult? Function(_OnNextPressed value)? onNextPressed,
     TResult? Function(_ClearPageCommand value)? clearPageCommand,
     TResult? Function(_OnAccountChange value)? onAccountChange,
   }) =>
@@ -55,6 +60,7 @@ mixin _$EditAccountEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_OnNextPressed value)? onNextPressed,
     TResult Function(_ClearPageCommand value)? clearPageCommand,
     TResult Function(_OnAccountChange value)? onAccountChange,
     required TResult orElse(),
@@ -118,6 +124,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() onNextPressed,
     required TResult Function() clearPageCommand,
     required TResult Function(String value) onAccountChange,
   }) {
@@ -128,6 +135,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
+    TResult? Function()? onNextPressed,
     TResult? Function()? clearPageCommand,
     TResult? Function(String value)? onAccountChange,
   }) {
@@ -138,6 +146,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? onNextPressed,
     TResult Function()? clearPageCommand,
     TResult Function(String value)? onAccountChange,
     required TResult orElse(),
@@ -152,6 +161,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_OnNextPressed value) onNextPressed,
     required TResult Function(_ClearPageCommand value) clearPageCommand,
     required TResult Function(_OnAccountChange value) onAccountChange,
   }) {
@@ -162,6 +172,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
+    TResult? Function(_OnNextPressed value)? onNextPressed,
     TResult? Function(_ClearPageCommand value)? clearPageCommand,
     TResult? Function(_OnAccountChange value)? onAccountChange,
   }) {
@@ -172,6 +183,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_OnNextPressed value)? onNextPressed,
     TResult Function(_ClearPageCommand value)? clearPageCommand,
     TResult Function(_OnAccountChange value)? onAccountChange,
     required TResult orElse(),
@@ -185,6 +197,120 @@ class _$_Initial implements _Initial {
 
 abstract class _Initial implements EditAccountEvent {
   const factory _Initial() = _$_Initial;
+}
+
+/// @nodoc
+abstract class _$$_OnNextPressedCopyWith<$Res> {
+  factory _$$_OnNextPressedCopyWith(
+          _$_OnNextPressed value, $Res Function(_$_OnNextPressed) then) =
+      __$$_OnNextPressedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_OnNextPressedCopyWithImpl<$Res>
+    extends _$EditAccountEventCopyWithImpl<$Res, _$_OnNextPressed>
+    implements _$$_OnNextPressedCopyWith<$Res> {
+  __$$_OnNextPressedCopyWithImpl(
+      _$_OnNextPressed _value, $Res Function(_$_OnNextPressed) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_OnNextPressed implements _OnNextPressed {
+  const _$_OnNextPressed();
+
+  @override
+  String toString() {
+    return 'EditAccountEvent.onNextPressed()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_OnNextPressed);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() onNextPressed,
+    required TResult Function() clearPageCommand,
+    required TResult Function(String value) onAccountChange,
+  }) {
+    return onNextPressed();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? onNextPressed,
+    TResult? Function()? clearPageCommand,
+    TResult? Function(String value)? onAccountChange,
+  }) {
+    return onNextPressed?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? onNextPressed,
+    TResult Function()? clearPageCommand,
+    TResult Function(String value)? onAccountChange,
+    required TResult orElse(),
+  }) {
+    if (onNextPressed != null) {
+      return onNextPressed();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_OnNextPressed value) onNextPressed,
+    required TResult Function(_ClearPageCommand value) clearPageCommand,
+    required TResult Function(_OnAccountChange value) onAccountChange,
+  }) {
+    return onNextPressed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_OnNextPressed value)? onNextPressed,
+    TResult? Function(_ClearPageCommand value)? clearPageCommand,
+    TResult? Function(_OnAccountChange value)? onAccountChange,
+  }) {
+    return onNextPressed?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_OnNextPressed value)? onNextPressed,
+    TResult Function(_ClearPageCommand value)? clearPageCommand,
+    TResult Function(_OnAccountChange value)? onAccountChange,
+    required TResult orElse(),
+  }) {
+    if (onNextPressed != null) {
+      return onNextPressed(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _OnNextPressed implements EditAccountEvent {
+  const factory _OnNextPressed() = _$_OnNextPressed;
 }
 
 /// @nodoc
@@ -226,6 +352,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() onNextPressed,
     required TResult Function() clearPageCommand,
     required TResult Function(String value) onAccountChange,
   }) {
@@ -236,6 +363,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
+    TResult? Function()? onNextPressed,
     TResult? Function()? clearPageCommand,
     TResult? Function(String value)? onAccountChange,
   }) {
@@ -246,6 +374,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? onNextPressed,
     TResult Function()? clearPageCommand,
     TResult Function(String value)? onAccountChange,
     required TResult orElse(),
@@ -260,6 +389,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_OnNextPressed value) onNextPressed,
     required TResult Function(_ClearPageCommand value) clearPageCommand,
     required TResult Function(_OnAccountChange value) onAccountChange,
   }) {
@@ -270,6 +400,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
+    TResult? Function(_OnNextPressed value)? onNextPressed,
     TResult? Function(_ClearPageCommand value)? clearPageCommand,
     TResult? Function(_OnAccountChange value)? onAccountChange,
   }) {
@@ -280,6 +411,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_OnNextPressed value)? onNextPressed,
     TResult Function(_ClearPageCommand value)? clearPageCommand,
     TResult Function(_OnAccountChange value)? onAccountChange,
     required TResult orElse(),
@@ -360,6 +492,7 @@ class _$_OnAccountChange implements _OnAccountChange {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() onNextPressed,
     required TResult Function() clearPageCommand,
     required TResult Function(String value) onAccountChange,
   }) {
@@ -370,6 +503,7 @@ class _$_OnAccountChange implements _OnAccountChange {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
+    TResult? Function()? onNextPressed,
     TResult? Function()? clearPageCommand,
     TResult? Function(String value)? onAccountChange,
   }) {
@@ -380,6 +514,7 @@ class _$_OnAccountChange implements _OnAccountChange {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? onNextPressed,
     TResult Function()? clearPageCommand,
     TResult Function(String value)? onAccountChange,
     required TResult orElse(),
@@ -394,6 +529,7 @@ class _$_OnAccountChange implements _OnAccountChange {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_OnNextPressed value) onNextPressed,
     required TResult Function(_ClearPageCommand value) clearPageCommand,
     required TResult Function(_OnAccountChange value) onAccountChange,
   }) {
@@ -404,6 +540,7 @@ class _$_OnAccountChange implements _OnAccountChange {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
+    TResult? Function(_OnNextPressed value)? onNextPressed,
     TResult? Function(_ClearPageCommand value)? clearPageCommand,
     TResult? Function(_OnAccountChange value)? onAccountChange,
   }) {
@@ -414,6 +551,7 @@ class _$_OnAccountChange implements _OnAccountChange {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_OnNextPressed value)? onNextPressed,
     TResult Function(_ClearPageCommand value)? clearPageCommand,
     TResult Function(_OnAccountChange value)? onAccountChange,
     required TResult orElse(),
@@ -443,6 +581,7 @@ mixin _$EditAccountState {
   PageCommand? get command => throw _privateConstructorUsedError;
   List<UserAccountRequirement> get userAccountRequirements =>
       throw _privateConstructorUsedError;
+  bool get isNextButtonLoading => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $EditAccountStateCopyWith<EditAccountState> get copyWith =>
@@ -461,7 +600,8 @@ abstract class $EditAccountStateCopyWith<$Res> {
       String userName,
       String? userAccount,
       PageCommand? command,
-      List<UserAccountRequirement> userAccountRequirements});
+      List<UserAccountRequirement> userAccountRequirements,
+      bool isNextButtonLoading});
 
   $PageCommandCopyWith<$Res>? get command;
 }
@@ -485,6 +625,7 @@ class _$EditAccountStateCopyWithImpl<$Res, $Val extends EditAccountState>
     Object? userAccount = freezed,
     Object? command = freezed,
     Object? userAccountRequirements = null,
+    Object? isNextButtonLoading = null,
   }) {
     return _then(_value.copyWith(
       pageState: null == pageState
@@ -511,6 +652,10 @@ class _$EditAccountStateCopyWithImpl<$Res, $Val extends EditAccountState>
           ? _value.userAccountRequirements
           : userAccountRequirements // ignore: cast_nullable_to_non_nullable
               as List<UserAccountRequirement>,
+      isNextButtonLoading: null == isNextButtonLoading
+          ? _value.isNextButtonLoading
+          : isNextButtonLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 
@@ -541,7 +686,8 @@ abstract class _$$_CreateAccountStateCopyWith<$Res>
       String userName,
       String? userAccount,
       PageCommand? command,
-      List<UserAccountRequirement> userAccountRequirements});
+      List<UserAccountRequirement> userAccountRequirements,
+      bool isNextButtonLoading});
 
   @override
   $PageCommandCopyWith<$Res>? get command;
@@ -564,6 +710,7 @@ class __$$_CreateAccountStateCopyWithImpl<$Res>
     Object? userAccount = freezed,
     Object? command = freezed,
     Object? userAccountRequirements = null,
+    Object? isNextButtonLoading = null,
   }) {
     return _then(_$_CreateAccountState(
       pageState: null == pageState
@@ -590,6 +737,10 @@ class __$$_CreateAccountStateCopyWithImpl<$Res>
           ? _value._userAccountRequirements
           : userAccountRequirements // ignore: cast_nullable_to_non_nullable
               as List<UserAccountRequirement>,
+      isNextButtonLoading: null == isNextButtonLoading
+          ? _value.isNextButtonLoading
+          : isNextButtonLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -603,7 +754,8 @@ class _$_CreateAccountState extends _CreateAccountState {
       required this.userName,
       this.userAccount,
       this.command,
-      final List<UserAccountRequirement> userAccountRequirements = const []})
+      final List<UserAccountRequirement> userAccountRequirements = const [],
+      this.isNextButtonLoading = false})
       : _userAccountRequirements = userAccountRequirements,
         super._();
 
@@ -629,8 +781,12 @@ class _$_CreateAccountState extends _CreateAccountState {
   }
 
   @override
+  @JsonKey()
+  final bool isNextButtonLoading;
+
+  @override
   String toString() {
-    return 'EditAccountState(pageState: $pageState, image: $image, userName: $userName, userAccount: $userAccount, command: $command, userAccountRequirements: $userAccountRequirements)';
+    return 'EditAccountState(pageState: $pageState, image: $image, userName: $userName, userAccount: $userAccount, command: $command, userAccountRequirements: $userAccountRequirements, isNextButtonLoading: $isNextButtonLoading)';
   }
 
   @override
@@ -647,7 +803,9 @@ class _$_CreateAccountState extends _CreateAccountState {
                 other.userAccount == userAccount) &&
             (identical(other.command, command) || other.command == command) &&
             const DeepCollectionEquality().equals(
-                other._userAccountRequirements, _userAccountRequirements));
+                other._userAccountRequirements, _userAccountRequirements) &&
+            (identical(other.isNextButtonLoading, isNextButtonLoading) ||
+                other.isNextButtonLoading == isNextButtonLoading));
   }
 
   @override
@@ -658,7 +816,8 @@ class _$_CreateAccountState extends _CreateAccountState {
       userName,
       userAccount,
       command,
-      const DeepCollectionEquality().hash(_userAccountRequirements));
+      const DeepCollectionEquality().hash(_userAccountRequirements),
+      isNextButtonLoading);
 
   @JsonKey(ignore: true)
   @override
@@ -670,13 +829,13 @@ class _$_CreateAccountState extends _CreateAccountState {
 
 abstract class _CreateAccountState extends EditAccountState {
   const factory _CreateAccountState(
-          {final PageState pageState,
-          final XFile? image,
-          required final String userName,
-          final String? userAccount,
-          final PageCommand? command,
-          final List<UserAccountRequirement> userAccountRequirements}) =
-      _$_CreateAccountState;
+      {final PageState pageState,
+      final XFile? image,
+      required final String userName,
+      final String? userAccount,
+      final PageCommand? command,
+      final List<UserAccountRequirement> userAccountRequirements,
+      final bool isNextButtonLoading}) = _$_CreateAccountState;
   const _CreateAccountState._() : super._();
 
   @override
@@ -691,6 +850,8 @@ abstract class _CreateAccountState extends EditAccountState {
   PageCommand? get command;
   @override
   List<UserAccountRequirement> get userAccountRequirements;
+  @override
+  bool get isNextButtonLoading;
   @override
   @JsonKey(ignore: true)
   _$$_CreateAccountStateCopyWith<_$_CreateAccountState> get copyWith =>
