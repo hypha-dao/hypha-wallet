@@ -31,7 +31,7 @@ part 'usecases_module.dart';
 final _getIt = GetIt.I;
 
 // Get It Library wrappers
-void _registerSingleton<T extends Object>(T dependency) => _getIt.registerSingleton<T>(dependency);
+// void _registerSingleton<T extends Object>(T dependency) => _getIt.registerSingleton<T>(dependency);
 
 void _registerLazySingleton<T extends Object>(FactoryFunc<T> factoryFunc) =>
     _getIt.registerLazySingleton<T>(factoryFunc);
