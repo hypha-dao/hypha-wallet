@@ -8,5 +8,6 @@ class EditAccountState with _$EditAccountState {
     required String userName,
     String? userAccount,
     PageCommand? command,
+    @Default([]) List<UserAccountRequirement> userAccountRequirements,
   }) = _CreateAccountState;
 }
