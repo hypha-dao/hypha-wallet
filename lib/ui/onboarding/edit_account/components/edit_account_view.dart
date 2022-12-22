@@ -12,7 +12,7 @@ class EditAccountView extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           bottomNavigationBar: ElevatedButton(
-            onPressed: () {},
+            onPressed: state.isNextButtonAvailable ? () {} : null,
             child: Text('Next'),
           ),
           body: HyphaBodyWidget(

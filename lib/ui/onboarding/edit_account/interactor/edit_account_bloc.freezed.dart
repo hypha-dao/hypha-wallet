@@ -596,7 +596,7 @@ class __$$_CreateAccountStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_CreateAccountState implements _CreateAccountState {
+class _$_CreateAccountState extends _CreateAccountState {
   const _$_CreateAccountState(
       {this.pageState = PageState.initial,
       this.image,
@@ -604,7 +604,8 @@ class _$_CreateAccountState implements _CreateAccountState {
       this.userAccount,
       this.command,
       final List<UserAccountRequirement> userAccountRequirements = const []})
-      : _userAccountRequirements = userAccountRequirements;
+      : _userAccountRequirements = userAccountRequirements,
+        super._();
 
   @override
   @JsonKey()
@@ -667,7 +668,7 @@ class _$_CreateAccountState implements _CreateAccountState {
           this, _$identity);
 }
 
-abstract class _CreateAccountState implements EditAccountState {
+abstract class _CreateAccountState extends EditAccountState {
   const factory _CreateAccountState(
           {final PageState pageState,
           final XFile? image,
@@ -676,6 +677,7 @@ abstract class _CreateAccountState implements EditAccountState {
           final PageCommand? command,
           final List<UserAccountRequirement> userAccountRequirements}) =
       _$_CreateAccountState;
+  const _CreateAccountState._() : super._();
 
   @override
   PageState get pageState;

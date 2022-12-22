@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:async/async.dart';
 import 'package:bloc/bloc.dart';
+import 'package:collection/collection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hypha_wallet/core/extension/collection_extension.dart';
 import 'package:hypha_wallet/core/logging/log_helper.dart';
