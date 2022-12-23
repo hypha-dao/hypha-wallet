@@ -13,7 +13,7 @@ class CreateAccountUseCase extends InputUseCase<Result<bool, HyphaError>, String
     try {
       // TODO(Nik): Mocked result. Use API
       final bool result = await Future.delayed(Duration(seconds: 3)).then((value) => true);
-      // final result = await _userAccountRepository.createUserAccount(input);
+      // final bool result = await _userAccountRepository.createUserAccount(input);
       return Result.error(HyphaError.api('Error creating account'));
       // return Result.value(result);
     } catch (e) {

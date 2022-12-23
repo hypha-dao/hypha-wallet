@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:hypha_wallet/core/logging/log_helper.dart';
 import 'package:hypha_wallet/core/network/api/endpoints.dart';
 
 class DioClient {
@@ -30,6 +31,7 @@ class DioClient {
       );
       return response;
     } catch (e) {
+      LogHelper.e(e.toString());
       rethrow;
     }
   }
@@ -56,6 +58,7 @@ class DioClient {
       );
       return response;
     } catch (e) {
+      LogHelper.e(e.toString());
       rethrow;
     }
   }
@@ -82,6 +85,7 @@ class DioClient {
       );
       return response;
     } catch (e) {
+      LogHelper.e(e.toString());
       rethrow;
     }
   }
@@ -106,6 +110,7 @@ class DioClient {
       );
       return response.data;
     } catch (e) {
+      LogHelper.e(e.toString());
       rethrow;
     }
   }

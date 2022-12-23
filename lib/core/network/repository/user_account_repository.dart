@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:hypha_wallet/core/network/api/user_account_service.dart';
 import 'package:hypha_wallet/core/network/dio_exception.dart';
 
+// TODO(Nik): these API calls need your help
 class UserAccountRepository {
   final UserAccountService userService;
 
@@ -10,6 +11,16 @@ class UserAccountRepository {
   Future<bool> isUserAccountAvailable(String userAccount) async {
     try {
       final Response response = await userService.isUserAccountAvailable(userAccount);
+      return response.data as bool;
+    } on DioError catch (e) {
+      final errorMessage = DioExceptions.fromDioError(e).toString();
+      throw errorMessage;
+    }
+  }
+
+  Future<bool> createUserAccount(String userAccount) async {
+    try {
+      final Response response = await userService.createUserAccount(userAccount);
       return response.data as bool;
     } on DioError catch (e) {
       final errorMessage = DioExceptions.fromDioError(e).toString();
