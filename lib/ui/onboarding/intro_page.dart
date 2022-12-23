@@ -10,7 +10,7 @@ class IntroPage extends StatelessWidget {
     return Scaffold(
       bottomNavigationBar: ElevatedButton(
         onPressed: () {
-          Get.to(CreateProfilePage(), transition: Transition.rightToLeft);
+          Get.to(() => CreateProfilePage(), transition: Transition.rightToLeft);
         },
         child: Text('Create Account'),
       ),

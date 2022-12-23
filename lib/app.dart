@@ -2,12 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
+import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
+import 'package:hypha_wallet/core/extension/scope_functions.dart';
 import 'package:hypha_wallet/core/logging/log_helper.dart';
 import 'package:hypha_wallet/core/network/repository/auth_repository.dart';
 import 'package:hypha_wallet/design/hypha_theme.dart';
 import 'package:hypha_wallet/ui/authentication/authentication_page.dart';
 import 'package:hypha_wallet/ui/blocs/authentication/authentication_bloc.dart';
 import 'package:hypha_wallet/ui/blocs/deeplink/deeplink_bloc.dart';
+import 'package:hypha_wallet/ui/blocs/error_handler/error_handler_bloc.dart';
 import 'package:hypha_wallet/ui/home_page/authentication_page.dart';
 import 'package:hypha_wallet/ui/onboarding/intro_page.dart';
 
@@ -23,6 +26,7 @@ class HyphaApp extends StatelessWidget {
           create: (_) => GetIt.I.get<AuthenticationBloc>()..add(const AuthenticationEvent.initial()),
         ),
         BlocProvider<DeeplinkBloc>(create: (_) => GetIt.I.get<DeeplinkBloc>()),
+        BlocProvider<ErrorHandlerBloc>(create: (_) => GetIt.I.get<ErrorHandlerBloc>()),
       ],
       child: const HyphaAppView(),
     );
@@ -45,7 +49,7 @@ class HyphaAppView extends StatelessWidget {
           listener: (context, state) {
             state.when(authenticated: (status, userProfile) {
               if (status == AuthenticationStatus.authenticated) {
-                Get.to(const HomePage());
+                Get.to(() => const HomePage());
               }
             }, unAuthenticated: (status) {
               Get.offAll(() => const AuthenticationPage());
@@ -60,6 +64,45 @@ class HyphaAppView extends StatelessWidget {
             state.command?.when(navigateToCreateAccount: () => Get.offAll(() => const IntroPage()));
 
             context.read<DeeplinkBloc>().add(DeeplinkEvent.clearPageCommand());
+          },
+        ),
+
+        /// Error Handler Bloc Listener
+        BlocListener<ErrorHandlerBloc, ErrorHandlerState>(
+          listenWhen: (_, currentState) => currentState.pageCommand != null,
+          listener: (context, state) {
+            state.pageCommand?.when(
+              requestForceUpdate: () {
+                /// NOTHING FOR NOW
+              },
+              showReLoginDialog: () {
+                Get.defaultDialog(
+                  title: 'Something went wrong.',
+                  middleText: 'Please authenticate again.',
+                  cancel: Text('Login'),
+                  onCancel: () {
+                    BlocProvider.of<AuthenticationBloc>(context).add(
+                      const AuthenticationEvent.authenticationLogoutRequested(),
+                    );
+                  },
+                );
+              },
+              showConnectivityErrorDialog: () {
+                // TODO(gguij): handle connection error
+              },
+              showErrorDialog: (HyphaError hyphaError) {
+                Get.defaultDialog(
+                  title: hyphaError.message,
+                  cancel: hyphaError.actionText?.let((it) => Text(it)),
+                  onCancel: hyphaError.action?.call(),
+                );
+              },
+              showErrorMessage: (message) {
+                Get.showSnackbar(GetSnackBar(message: message, duration: Duration(seconds: 3)));
+              },
+            );
+
+            context.read<ErrorHandlerBloc>().add(const ErrorHandlerEvent.onClearPageCommand());
           },
         ),
       ],

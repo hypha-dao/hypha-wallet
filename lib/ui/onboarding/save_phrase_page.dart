@@ -10,7 +10,7 @@ class SavePhrasePage extends StatelessWidget {
     return Scaffold(
       bottomNavigationBar: ElevatedButton(
         onPressed: () {
-          Get.to(CheckPhrasePage(), transition: Transition.rightToLeft);
+          Get.to(() => CheckPhrasePage(), transition: Transition.rightToLeft);
         },
         child: Text('Next'),
       ),

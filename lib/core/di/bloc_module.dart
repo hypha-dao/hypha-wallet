@@ -8,6 +8,7 @@ void _registerBlocsModule() {
       ));
 
   _registerFactory(() => DeeplinkBloc());
+  _registerFactory(() => ErrorHandlerBloc(_getIt<ErrorHandlerManager>()));
 
   _registerFactoryWithParams<CreateAccountBloc, XFile?, String>(
     (image, userName) => CreateAccountBloc(
@@ -21,6 +22,7 @@ void _registerBlocsModule() {
     (image, userName) => EditAccountBloc(
       _getIt<CheckAccountAvailabilityUseCase>(),
       _getIt<CreateAccountUseCase>(),
+      _getIt<ErrorHandlerManager>(),
       image,
       userName,
     ),

@@ -29,7 +29,7 @@ class CreateAccountView extends StatelessWidget {
                   TextButton(
                       onPressed: () {
                         Get.Get.to(
-                          EditAccountPage(state.image, state.userName),
+                          () => EditAccountPage(state.image, state.userName),
                           transition: Get.Transition.rightToLeft,
                         );
                       },

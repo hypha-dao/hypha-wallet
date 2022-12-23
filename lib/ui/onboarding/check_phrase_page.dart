@@ -10,7 +10,7 @@ class CheckPhrasePage extends StatelessWidget {
     return Scaffold(
       bottomNavigationBar: ElevatedButton(
         onPressed: () {
-          Get.to(CreateAccountSuccessPage(), transition: Transition.rightToLeft);
+          Get.to(() => CreateAccountSuccessPage(), transition: Transition.rightToLeft);
         },
         child: Text('Next'),
       ),

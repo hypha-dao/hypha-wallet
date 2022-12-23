@@ -14,7 +14,7 @@ class EditAccountView extends StatelessWidget {
           bottomNavigationBar: ElevatedButton(
             onPressed: state.isNextButtonAvailable
                 ? () {
-                    EditAccountEvent.onNextPressed();
+                    context.read<EditAccountBloc>().add(EditAccountEvent.onNextPressed());
                   }
                 : null,
             child: Text('Next'),
