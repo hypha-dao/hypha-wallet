@@ -6,10 +6,11 @@ void _registerBlocsModule() {
         _getIt<AuthRepository>(),
         _getIt<HyphaSharedPrefs>(),
       ));
-
   _registerFactory(() => DeeplinkBloc());
   _registerFactory(() => ErrorHandlerBloc(_getIt<ErrorHandlerManager>()));
 
+  /// Views Blocs
+  _registerFactory(() => HomeBloc());
   _registerFactoryWithParams<CreateAccountBloc, XFile?, String>(
     (image, userName) => CreateAccountBloc(
       _getIt<CheckAccountAvailabilityUseCase>(),

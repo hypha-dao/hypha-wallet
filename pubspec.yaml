@@ -63,6 +63,9 @@ dependencies:
   # Shared Pref
   shared_preferences: ^2.0.15
 
+  # QR code Scanner
+  mobile_scanner: ^2.1.0
+
   # RX-ify Shared Preferences
   rx_shared_preferences: ^3.0.0
 

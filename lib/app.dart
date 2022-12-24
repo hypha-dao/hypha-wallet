@@ -7,11 +7,10 @@ import 'package:hypha_wallet/core/extension/scope_functions.dart';
 import 'package:hypha_wallet/core/logging/log_helper.dart';
 import 'package:hypha_wallet/core/network/repository/auth_repository.dart';
 import 'package:hypha_wallet/design/hypha_theme.dart';
-import 'package:hypha_wallet/ui/authentication/authentication_page.dart';
 import 'package:hypha_wallet/ui/blocs/authentication/authentication_bloc.dart';
 import 'package:hypha_wallet/ui/blocs/deeplink/deeplink_bloc.dart';
 import 'package:hypha_wallet/ui/blocs/error_handler/error_handler_bloc.dart';
-import 'package:hypha_wallet/ui/home_page/authentication_page.dart';
+import 'package:hypha_wallet/ui/home_page/home_page.dart';
 import 'package:hypha_wallet/ui/onboarding/intro_page.dart';
 
 class HyphaApp extends StatelessWidget {
@@ -49,10 +48,10 @@ class HyphaAppView extends StatelessWidget {
           listener: (context, state) {
             state.when(authenticated: (status, userProfile) {
               if (status == AuthenticationStatus.authenticated) {
-                Get.to(() => const HomePage());
+                Get.offAll(() => const HomePage());
               }
             }, unAuthenticated: (status) {
-              Get.offAll(() => const AuthenticationPage());
+              Get.offAll(() => const IntroPage());
             }, unknown: (AuthenticationStatus status) {
               LogHelper.d('Auth Bloc Listener $status');
             });
