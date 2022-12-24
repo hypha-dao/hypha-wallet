@@ -10,7 +10,7 @@ import 'package:hypha_wallet/design/hypha_theme.dart';
 import 'package:hypha_wallet/ui/blocs/authentication/authentication_bloc.dart';
 import 'package:hypha_wallet/ui/blocs/deeplink/deeplink_bloc.dart';
 import 'package:hypha_wallet/ui/blocs/error_handler/error_handler_bloc.dart';
-import 'package:hypha_wallet/ui/home_page/home_page.dart';
+import 'package:hypha_wallet/ui/bottom_navigation/hypha_bottom_navigation.dart';
 import 'package:hypha_wallet/ui/onboarding/intro_page.dart';
 
 class HyphaApp extends StatelessWidget {
@@ -48,7 +48,7 @@ class HyphaAppView extends StatelessWidget {
           listener: (context, state) {
             state.when(authenticated: (status, userProfile) {
               if (status == AuthenticationStatus.authenticated) {
-                Get.offAll(() => const HomePage());
+                Get.offAll(() => const HyphaBottomNavigation());
               }
             }, unAuthenticated: (status) {
               Get.offAll(() => const IntroPage());

@@ -15,6 +15,7 @@ import 'package:hypha_wallet/firebase_options.dart';
 import 'package:hypha_wallet/ui/blocs/authentication/authentication_bloc.dart';
 import 'package:hypha_wallet/ui/blocs/deeplink/deeplink_bloc.dart';
 import 'package:hypha_wallet/ui/blocs/error_handler/error_handler_bloc.dart';
+import 'package:hypha_wallet/ui/bottom_navigation/interactor/bottom_navigation_bloc.dart';
 import 'package:hypha_wallet/ui/home_page/interactor/home_bloc.dart';
 import 'package:hypha_wallet/ui/onboarding/create_account/interactor/create_account_bloc.dart';
 import 'package:hypha_wallet/ui/onboarding/edit_account/interactor/edit_account_bloc.dart';

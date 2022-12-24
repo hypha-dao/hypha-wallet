@@ -11,6 +11,7 @@ void _registerBlocsModule() {
 
   /// Views Blocs
   _registerFactory(() => HomeBloc());
+  _registerFactory(() => BottomNavigationBloc());
   _registerFactoryWithParams<CreateAccountBloc, XFile?, String>(
     (image, userName) => CreateAccountBloc(
       _getIt<CheckAccountAvailabilityUseCase>(),
