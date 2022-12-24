@@ -6,7 +6,6 @@ import 'package:hypha_wallet/core/error_handler/error_handler_manager.dart';
 import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
 import 'package:hypha_wallet/core/error_handler/model/hypha_error_severity.dart';
 import 'package:hypha_wallet/core/error_handler/model/hypha_error_type.dart';
-import 'package:hypha_wallet/core/logging/log_helper.dart';
 
 part 'error_handler_bloc.freezed.dart';
 part 'error_handler_event.dart';
@@ -22,7 +21,6 @@ class ErrorHandlerBloc extends Bloc<ErrorHandlerEvent, ErrorHandlerState> {
     on<_OnClearPageCommand>((_, emit) => emit(state.copyWith(pageCommand: null)));
 
     _errorPipelineSubscription = _errorHandlerManager.errorsPipeline.listen((error) {
-      LogHelper.e('GERY GERY Received in bloc');
       add(ErrorHandlerEvent.onError(error));
     });
   }
@@ -45,6 +43,7 @@ class ErrorHandlerBloc extends Bloc<ErrorHandlerEvent, ErrorHandlerState> {
         emit(state.copyWith(pageCommand: const PageCommand.showReLoginDialog()));
         break;
       case HyphaErrorType.custom:
+      case HyphaErrorType.generic:
         if (hyphaError.severity == HyphaErrorSeverity.critical) {
           emit(state.copyWith(pageCommand: PageCommand.showErrorDialog(hyphaError)));
         } else {
