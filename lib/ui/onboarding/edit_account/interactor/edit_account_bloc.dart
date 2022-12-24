@@ -127,7 +127,11 @@ class EditAccountBloc extends Bloc<EditAccountEvent, EditAccountState> {
   FutureOr<void> _onNextPressed(_OnNextPressed event, Emitter<EditAccountState> emit) async {
     /// Make call to create Account
     emit(state.copyWith(isNextButtonLoading: true));
-    Hypha.Result<bool, HyphaError> result = await _createAccountUseCase.run(state.userAccount!);
+    Hypha.Result<bool, HyphaError> result = await _createAccountUseCase.run(Input(
+      userAccount: state.userAccount!,
+      token: 'Mock Token',
+    ));
+
     if (result.isValue) {
       emit(state.copyWith(isNextButtonLoading: false));
     } else {

@@ -1,6 +1,6 @@
 part of 'di_setup.dart';
 
 void _registerRepositoriesModule() {
-  _registerLazySingleton(() => AuthRepository(_getIt<HyphaSharedPrefs>()));
+  _registerLazySingleton(() => AuthRepository(_getIt<HyphaSharedPrefs>(), _getIt<UserAccountService>()));
   _registerLazySingleton(() => UserAccountRepository(userService: _getIt<UserAccountService>()));
 }

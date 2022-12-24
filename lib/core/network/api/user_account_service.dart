@@ -13,8 +13,11 @@ class UserAccountService {
   }
 
   Future<Response> createUserAccount(String userAccount) async {
-    return await dioClient.post(Endpoints.userAccountAvailable, data: {
-      'userAccount': userAccount,
-    });
+    // TODO(Nik): these API calls need your help
+    return await Future.delayed(Duration(seconds: 3))
+        .then((value) => Response(data: true, requestOptions: RequestOptions(path: 'MOCK')));
+    // return await dioClient.post(Endpoints.userAccountAvailable, data: {
+    //   'userAccount': userAccount,
+    // });
   }
 }

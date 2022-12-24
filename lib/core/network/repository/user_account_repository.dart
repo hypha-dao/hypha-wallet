@@ -18,16 +18,6 @@ class UserAccountRepository {
     }
   }
 
-  Future<bool> createUserAccount(String userAccount) async {
-    try {
-      final Response response = await userService.createUserAccount(userAccount);
-      return response.data as bool;
-    } on DioError catch (e) {
-      final errorMessage = DioExceptions.fromDioError(e).toString();
-      throw errorMessage;
-    }
-  }
-
   // Future<NewUser> addNewUserRequested(String name, String job) async {
   //   try {
   //     final response = await userService.addUserApi(name, job);
