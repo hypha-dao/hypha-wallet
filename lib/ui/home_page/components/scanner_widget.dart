@@ -32,6 +32,7 @@ class _ScannerWidgetState extends State<ScannerWidget> {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(20),
         child: Container(
+          color: Colors.white,
           height: Get.height * .50,
           child: isActive
               ? MobileScanner(
