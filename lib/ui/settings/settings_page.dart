@@ -5,6 +5,24 @@ class SettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(body: Center(child: Text('Settings')));
+    return Scaffold(
+        body: Column(
+      children: [
+        ListTile(
+          title: Text('Secure your account'),
+          trailing: IconButton(
+            icon: Icon(Icons.navigate_next),
+            onPressed: () {},
+          ),
+        ),
+        ListTile(
+          title: Text('App Theme'),
+          trailing: IconButton(
+            icon: Icon(Icons.navigate_next),
+            onPressed: () {},
+          ),
+        )
+      ],
+    ));
   }
 }

@@ -22,13 +22,15 @@ class _ScannerWidgetState extends State<ScannerWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: isActive
-          ? null
-          : () {
-              setState(() {
-                isActive = true;
-              });
-            },
+      onTap: () => context.read<HomeBloc>().add(HomeEvent.onQRCodeScanned('code')),
+
+      // isActive
+      //     ? null
+      //     : () {
+      //         setState(() {
+      //           isActive = true;
+      //         });
+      //       },
       child: ClipRRect(
         borderRadius: BorderRadius.circular(20),
         child: Container(

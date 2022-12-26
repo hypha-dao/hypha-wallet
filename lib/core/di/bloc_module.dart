@@ -10,8 +10,9 @@ void _registerBlocsModule() {
   _registerFactory(() => ErrorHandlerBloc(_getIt<ErrorHandlerManager>()));
 
   /// Views Blocs
-  _registerFactory(() => HomeBloc());
+  _registerFactory(() => HomeBloc(_getIt<ParseQRCodeUseCase>()));
   _registerFactory(() => BottomNavigationBloc());
+  _registerFactory(() => TransactionDetailsBloc());
   _registerFactoryWithParams<CreateAccountBloc, XFile?, String>(
     (image, userName) => CreateAccountBloc(
       _getIt<CheckAccountAvailabilityUseCase>(),

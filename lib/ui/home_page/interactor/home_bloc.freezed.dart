@@ -586,37 +586,45 @@ abstract class _HomeState implements HomeState {
 
 /// @nodoc
 mixin _$PageCommand {
+  QrCodeData get data => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() navigateTo,
+    required TResult Function(QrCodeData data) navigateToTransactionDetails,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? navigateTo,
+    TResult? Function(QrCodeData data)? navigateToTransactionDetails,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? navigateTo,
+    TResult Function(QrCodeData data)? navigateToTransactionDetails,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_NavigateTo value) navigateTo,
+    required TResult Function(_NavigateToTransactionDetails value)
+        navigateToTransactionDetails,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_NavigateTo value)? navigateTo,
+    TResult? Function(_NavigateToTransactionDetails value)?
+        navigateToTransactionDetails,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_NavigateTo value)? navigateTo,
+    TResult Function(_NavigateToTransactionDetails value)?
+        navigateToTransactionDetails,
     required TResult orElse(),
   }) =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $PageCommandCopyWith<PageCommand> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -625,6 +633,8 @@ abstract class $PageCommandCopyWith<$Res> {
   factory $PageCommandCopyWith(
           PageCommand value, $Res Function(PageCommand) then) =
       _$PageCommandCopyWithImpl<$Res, PageCommand>;
+  @useResult
+  $Res call({QrCodeData data});
 }
 
 /// @nodoc
@@ -636,67 +646,111 @@ class _$PageCommandCopyWithImpl<$Res, $Val extends PageCommand>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? data = null,
+  }) {
+    return _then(_value.copyWith(
+      data: null == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as QrCodeData,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$_NavigateToCopyWith<$Res> {
-  factory _$$_NavigateToCopyWith(
-          _$_NavigateTo value, $Res Function(_$_NavigateTo) then) =
-      __$$_NavigateToCopyWithImpl<$Res>;
+abstract class _$$_NavigateToTransactionDetailsCopyWith<$Res>
+    implements $PageCommandCopyWith<$Res> {
+  factory _$$_NavigateToTransactionDetailsCopyWith(
+          _$_NavigateToTransactionDetails value,
+          $Res Function(_$_NavigateToTransactionDetails) then) =
+      __$$_NavigateToTransactionDetailsCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({QrCodeData data});
 }
 
 /// @nodoc
-class __$$_NavigateToCopyWithImpl<$Res>
-    extends _$PageCommandCopyWithImpl<$Res, _$_NavigateTo>
-    implements _$$_NavigateToCopyWith<$Res> {
-  __$$_NavigateToCopyWithImpl(
-      _$_NavigateTo _value, $Res Function(_$_NavigateTo) _then)
+class __$$_NavigateToTransactionDetailsCopyWithImpl<$Res>
+    extends _$PageCommandCopyWithImpl<$Res, _$_NavigateToTransactionDetails>
+    implements _$$_NavigateToTransactionDetailsCopyWith<$Res> {
+  __$$_NavigateToTransactionDetailsCopyWithImpl(
+      _$_NavigateToTransactionDetails _value,
+      $Res Function(_$_NavigateToTransactionDetails) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? data = null,
+  }) {
+    return _then(_$_NavigateToTransactionDetails(
+      null == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as QrCodeData,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$_NavigateTo implements _NavigateTo {
-  const _$_NavigateTo();
+class _$_NavigateToTransactionDetails implements _NavigateToTransactionDetails {
+  const _$_NavigateToTransactionDetails(this.data);
+
+  @override
+  final QrCodeData data;
 
   @override
   String toString() {
-    return 'PageCommand.navigateTo()';
+    return 'PageCommand.navigateToTransactionDetails(data: $data)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_NavigateTo);
+        (other.runtimeType == runtimeType &&
+            other is _$_NavigateToTransactionDetails &&
+            (identical(other.data, data) || other.data == data));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, data);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_NavigateToTransactionDetailsCopyWith<_$_NavigateToTransactionDetails>
+      get copyWith => __$$_NavigateToTransactionDetailsCopyWithImpl<
+          _$_NavigateToTransactionDetails>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() navigateTo,
+    required TResult Function(QrCodeData data) navigateToTransactionDetails,
   }) {
-    return navigateTo();
+    return navigateToTransactionDetails(data);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? navigateTo,
+    TResult? Function(QrCodeData data)? navigateToTransactionDetails,
   }) {
-    return navigateTo?.call();
+    return navigateToTransactionDetails?.call(data);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? navigateTo,
+    TResult Function(QrCodeData data)? navigateToTransactionDetails,
     required TResult orElse(),
   }) {
-    if (navigateTo != null) {
-      return navigateTo();
+    if (navigateToTransactionDetails != null) {
+      return navigateToTransactionDetails(data);
     }
     return orElse();
   }
@@ -704,32 +758,43 @@ class _$_NavigateTo implements _NavigateTo {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_NavigateTo value) navigateTo,
+    required TResult Function(_NavigateToTransactionDetails value)
+        navigateToTransactionDetails,
   }) {
-    return navigateTo(this);
+    return navigateToTransactionDetails(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_NavigateTo value)? navigateTo,
+    TResult? Function(_NavigateToTransactionDetails value)?
+        navigateToTransactionDetails,
   }) {
-    return navigateTo?.call(this);
+    return navigateToTransactionDetails?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_NavigateTo value)? navigateTo,
+    TResult Function(_NavigateToTransactionDetails value)?
+        navigateToTransactionDetails,
     required TResult orElse(),
   }) {
-    if (navigateTo != null) {
-      return navigateTo(this);
+    if (navigateToTransactionDetails != null) {
+      return navigateToTransactionDetails(this);
     }
     return orElse();
   }
 }
 
-abstract class _NavigateTo implements PageCommand {
-  const factory _NavigateTo() = _$_NavigateTo;
+abstract class _NavigateToTransactionDetails implements PageCommand {
+  const factory _NavigateToTransactionDetails(final QrCodeData data) =
+      _$_NavigateToTransactionDetails;
+
+  @override
+  QrCodeData get data;
+  @override
+  @JsonKey(ignore: true)
+  _$$_NavigateToTransactionDetailsCopyWith<_$_NavigateToTransactionDetails>
+      get copyWith => throw _privateConstructorUsedError;
 }

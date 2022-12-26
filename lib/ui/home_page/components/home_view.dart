@@ -7,6 +7,7 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeBloc, HomeState>(
+      buildWhen: (previous, current) => previous.pageState != current.pageState,
       builder: (context, state) {
         return Padding(
           padding: const EdgeInsets.all(24),
