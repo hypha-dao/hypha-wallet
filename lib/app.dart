@@ -12,6 +12,7 @@ import 'package:hypha_wallet/ui/blocs/deeplink/deeplink_bloc.dart';
 import 'package:hypha_wallet/ui/blocs/error_handler/error_handler_bloc.dart';
 import 'package:hypha_wallet/ui/bottom_navigation/hypha_bottom_navigation.dart';
 import 'package:hypha_wallet/ui/onboarding/intro_page.dart';
+import 'package:hypha_wallet/ui/settings/interactor/settings_bloc.dart';
 
 class HyphaApp extends StatelessWidget {
   const HyphaApp({super.key});
@@ -23,6 +24,9 @@ class HyphaApp extends StatelessWidget {
       providers: [
         BlocProvider<AuthenticationBloc>(
           create: (_) => GetIt.I.get<AuthenticationBloc>()..add(const AuthenticationEvent.initial()),
+        ),
+        BlocProvider<SettingsBloc>(
+          create: (_) => GetIt.I.get<SettingsBloc>()..add(const SettingsEvent.initial()),
         ),
         BlocProvider<DeeplinkBloc>(create: (_) => GetIt.I.get<DeeplinkBloc>()),
         BlocProvider<ErrorHandlerBloc>(create: (_) => GetIt.I.get<ErrorHandlerBloc>()),
@@ -105,12 +109,17 @@ class HyphaAppView extends StatelessWidget {
           },
         ),
       ],
-      child: GetMaterialApp(
-        title: 'Hypha Wallet',
-        darkTheme: HyphaTheme.darkTheme,
-        theme: HyphaTheme.lightTheme,
-        themeMode: ThemeMode.system,
-        home: const SizedBox.shrink(),
+      child: BlocBuilder<SettingsBloc, SettingsState>(
+        buildWhen: (previous, current) => previous.themeMode != current.themeMode,
+        builder: (context, state) {
+          return GetMaterialApp(
+            title: 'Hypha Wallet',
+            darkTheme: HyphaTheme.darkTheme,
+            theme: HyphaTheme.lightTheme,
+            themeMode: state.themeMode,
+            home: const SizedBox.shrink(),
+          );
+        },
       ),
     );
   }

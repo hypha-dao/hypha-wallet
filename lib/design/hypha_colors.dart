@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class HyphaColors {
   static const green = Color(0xFF00BB56);
+  static const red = Colors.red;
 
   /// Neutral Colors
   /// Neutrals with blacks, white, and greys for text, overlays, borders, and other similar components

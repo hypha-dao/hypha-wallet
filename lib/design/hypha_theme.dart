@@ -13,8 +13,7 @@ class HyphaTheme {
 
   static ThemeData get lightTheme {
     return ThemeData(
-      brightness: Brightness.light,
-      colorScheme: ColorScheme.fromSeed(seedColor: HyphaColors.green).copyWith(
+      colorScheme: ColorScheme.fromSeed(seedColor: HyphaColors.red).copyWith(
         brightness: Brightness.light,
       ),
       extensions: const <ThemeExtension<dynamic>>[],

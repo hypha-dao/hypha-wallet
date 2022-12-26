@@ -8,6 +8,7 @@ void _registerBlocsModule() {
       ));
   _registerFactory(() => DeeplinkBloc());
   _registerFactory(() => ErrorHandlerBloc(_getIt<ErrorHandlerManager>()));
+  _registerFactory(() => SettingsBloc(_getIt<HyphaSharedPrefs>()));
 
   /// Views Blocs
   _registerFactory(() => HomeBloc(_getIt<ParseQRCodeUseCase>()));
