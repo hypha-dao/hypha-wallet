@@ -557,6 +557,7 @@ abstract class _ClearPageCommand implements SettingsEvent {
 mixin _$SettingsState {
   PageState get pageState => throw _privateConstructorUsedError;
   ThemeMode get themeMode => throw _privateConstructorUsedError;
+  bool get showSecurityNotification => throw _privateConstructorUsedError;
   PageCommand? get command => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -570,7 +571,11 @@ abstract class $SettingsStateCopyWith<$Res> {
           SettingsState value, $Res Function(SettingsState) then) =
       _$SettingsStateCopyWithImpl<$Res, SettingsState>;
   @useResult
-  $Res call({PageState pageState, ThemeMode themeMode, PageCommand? command});
+  $Res call(
+      {PageState pageState,
+      ThemeMode themeMode,
+      bool showSecurityNotification,
+      PageCommand? command});
 
   $PageCommandCopyWith<$Res>? get command;
 }
@@ -590,6 +595,7 @@ class _$SettingsStateCopyWithImpl<$Res, $Val extends SettingsState>
   $Res call({
     Object? pageState = null,
     Object? themeMode = null,
+    Object? showSecurityNotification = null,
     Object? command = freezed,
   }) {
     return _then(_value.copyWith(
@@ -601,6 +607,10 @@ class _$SettingsStateCopyWithImpl<$Res, $Val extends SettingsState>
           ? _value.themeMode
           : themeMode // ignore: cast_nullable_to_non_nullable
               as ThemeMode,
+      showSecurityNotification: null == showSecurityNotification
+          ? _value.showSecurityNotification
+          : showSecurityNotification // ignore: cast_nullable_to_non_nullable
+              as bool,
       command: freezed == command
           ? _value.command
           : command // ignore: cast_nullable_to_non_nullable
@@ -629,7 +639,11 @@ abstract class _$$_SettingsStateCopyWith<$Res>
       __$$_SettingsStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({PageState pageState, ThemeMode themeMode, PageCommand? command});
+  $Res call(
+      {PageState pageState,
+      ThemeMode themeMode,
+      bool showSecurityNotification,
+      PageCommand? command});
 
   @override
   $PageCommandCopyWith<$Res>? get command;
@@ -648,6 +662,7 @@ class __$$_SettingsStateCopyWithImpl<$Res>
   $Res call({
     Object? pageState = null,
     Object? themeMode = null,
+    Object? showSecurityNotification = null,
     Object? command = freezed,
   }) {
     return _then(_$_SettingsState(
@@ -659,6 +674,10 @@ class __$$_SettingsStateCopyWithImpl<$Res>
           ? _value.themeMode
           : themeMode // ignore: cast_nullable_to_non_nullable
               as ThemeMode,
+      showSecurityNotification: null == showSecurityNotification
+          ? _value.showSecurityNotification
+          : showSecurityNotification // ignore: cast_nullable_to_non_nullable
+              as bool,
       command: freezed == command
           ? _value.command
           : command // ignore: cast_nullable_to_non_nullable
@@ -673,6 +692,7 @@ class _$_SettingsState implements _SettingsState {
   const _$_SettingsState(
       {this.pageState = PageState.initial,
       this.themeMode = ThemeMode.system,
+      this.showSecurityNotification = true,
       this.command});
 
   @override
@@ -682,11 +702,14 @@ class _$_SettingsState implements _SettingsState {
   @JsonKey()
   final ThemeMode themeMode;
   @override
+  @JsonKey()
+  final bool showSecurityNotification;
+  @override
   final PageCommand? command;
 
   @override
   String toString() {
-    return 'SettingsState(pageState: $pageState, themeMode: $themeMode, command: $command)';
+    return 'SettingsState(pageState: $pageState, themeMode: $themeMode, showSecurityNotification: $showSecurityNotification, command: $command)';
   }
 
   @override
@@ -698,11 +721,15 @@ class _$_SettingsState implements _SettingsState {
                 other.pageState == pageState) &&
             (identical(other.themeMode, themeMode) ||
                 other.themeMode == themeMode) &&
+            (identical(
+                    other.showSecurityNotification, showSecurityNotification) ||
+                other.showSecurityNotification == showSecurityNotification) &&
             (identical(other.command, command) || other.command == command));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, pageState, themeMode, command);
+  int get hashCode => Object.hash(
+      runtimeType, pageState, themeMode, showSecurityNotification, command);
 
   @JsonKey(ignore: true)
   @override
@@ -715,12 +742,15 @@ abstract class _SettingsState implements SettingsState {
   const factory _SettingsState(
       {final PageState pageState,
       final ThemeMode themeMode,
+      final bool showSecurityNotification,
       final PageCommand? command}) = _$_SettingsState;
 
   @override
   PageState get pageState;
   @override
   ThemeMode get themeMode;
+  @override
+  bool get showSecurityNotification;
   @override
   PageCommand? get command;
   @override

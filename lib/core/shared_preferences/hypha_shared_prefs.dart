@@ -9,7 +9,10 @@ enum LocalStorageValue {
   authenticatedData('Qc_keyAuthData', 0),
 
   /// Theme
-  selectedTheme('Qc_keyTheme', 0);
+  selectedTheme('Qc_keyTheme', 0),
+
+  /// Security Notification
+  securityNotification('Qc_keySecurity', 0);
 
   final String _key;
   final int version;
@@ -31,11 +34,10 @@ class HyphaSharedPrefs {
 }
 
 extension SharedPrefsExtensions on HyphaSharedPrefs {
-  /// Save auth user data
+  /// Auth Data
   Future<void> setAuthenticatedData(AuthenticatedData data) =>
       _prefs.setString(LocalStorageValue.authenticatedData.key, jsonEncode(data));
 
-  /// Get profile user
   Future<AuthenticatedData?> getAuthenticatedData() async {
     final String? profile = await _prefs.getString(LocalStorageValue.authenticatedData.key);
     return profile == null ? null : AuthenticatedData.fromJson(jsonDecode(profile));
@@ -48,12 +50,21 @@ extension SharedPrefsExtensions on HyphaSharedPrefs {
         .map((data) => data == null ? null : AuthenticatedData.fromJson(jsonDecode(data)));
   }
 
-  /// Save App Theme.
+  /// Themes
   Future<void> setTheme(ThemeMode theme) => _prefs.setString(LocalStorageValue.selectedTheme.key, theme.name);
 
-  /// Get App Theme.
   Future<ThemeMode> getTheme() async {
     final String? theme = await _prefs.getString(LocalStorageValue.selectedTheme.key);
     return ThemeMode.values.singleWhere((t) => t.name == theme, orElse: () => ThemeMode.system);
+  }
+
+  /// Settings
+  Future<void> setSecurityNotification(bool showSecurityNotification) => _prefs.setBool(
+        LocalStorageValue.securityNotification.key,
+        showSecurityNotification,
+      );
+
+  Future<bool> getSecurityNotification() async {
+    return await _prefs.getBool(LocalStorageValue.securityNotification.key) ?? true;
   }
 }

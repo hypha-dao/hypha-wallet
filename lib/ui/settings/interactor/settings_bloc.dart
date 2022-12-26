@@ -22,8 +22,9 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
 
   Future<void> _initial(_Initial event, Emitter<SettingsState> emit) async {
     final theme = await _sharedPrefs.getTheme();
+    final showSecurityNotification = await _sharedPrefs.getSecurityNotification();
 
-    emit(state.copyWith(themeMode: theme));
+    emit(state.copyWith(themeMode: theme, showSecurityNotification: showSecurityNotification));
   }
 
   void _onThemeChanged(_OnThemeChanged event, Emitter<SettingsState> emit) {
