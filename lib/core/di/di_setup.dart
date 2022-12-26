@@ -20,6 +20,7 @@ import 'package:hypha_wallet/ui/home_page/interactor/home_bloc.dart';
 import 'package:hypha_wallet/ui/home_page/usecases/parse_qr_code_use_case.dart';
 import 'package:hypha_wallet/ui/onboarding/create_account/interactor/create_account_bloc.dart';
 import 'package:hypha_wallet/ui/onboarding/edit_account/interactor/edit_account_bloc.dart';
+import 'package:hypha_wallet/ui/onboarding/import_account/interactor/import_account_bloc.dart';
 import 'package:hypha_wallet/ui/onboarding/usecases/check_account_availability_use_case.dart';
 import 'package:hypha_wallet/ui/onboarding/usecases/create_account_use_case.dart';
 import 'package:hypha_wallet/ui/settings/interactor/settings_bloc.dart';
