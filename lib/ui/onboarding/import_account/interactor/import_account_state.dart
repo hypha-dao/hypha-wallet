@@ -7,5 +7,8 @@ class ImportAccountState with _$ImportAccountState {
   const factory ImportAccountState({
     @Default(PageState.initial) PageState pageState,
     PageCommand? command,
+    @Default({}) final Map<int, String> userEnteredWords,
   }) = _ImportAccountState;
+
+  bool get areAllWordsEntered => userEnteredWords.length == 12 && !userEnteredWords.containsValue('');
 }
