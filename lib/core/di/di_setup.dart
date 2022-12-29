@@ -34,6 +34,7 @@ import 'package:hypha_wallet/ui/onboarding/usecases/check_account_availability_u
 import 'package:hypha_wallet/ui/onboarding/usecases/create_account_use_case.dart';
 import 'package:hypha_wallet/ui/settings/interactor/settings_bloc.dart';
 import 'package:hypha_wallet/ui/transaction_details/interactor/transaction_details_bloc.dart';
+import 'package:hypha_wallet/ui/transaction_details/usecases/sign_transaction_use_case.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:rx_shared_preferences/rx_shared_preferences.dart';
 

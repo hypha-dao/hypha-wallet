@@ -8,4 +8,5 @@ void _registerUseCasesModule() {
   _registerFactory(() => GenerateKeyFromRecoveryWordsUseCase(_getIt<CryptoAuthService>()));
   _registerFactory(() => FindAccountsUseCase(_getIt<EOSClient>()));
   _registerFactory(() => ValidateKeyUseCase());
+  _registerFactory(() => SignTransactionUseCase());
 }

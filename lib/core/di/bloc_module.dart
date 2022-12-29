@@ -20,7 +20,7 @@ void _registerBlocsModule() {
         _getIt<FindAccountsUseCase>(),
       ));
   _registerFactory(() => BottomNavigationBloc());
-  _registerFactory(() => TransactionDetailsBloc());
+  _registerFactory(() => TransactionDetailsBloc(_getIt<SignTransactionUseCase>()));
   _registerFactoryWithParams<CreateAccountBloc, XFile?, String>(
     (image, userName) => CreateAccountBloc(
       _getIt<CheckAccountAvailabilityUseCase>(),

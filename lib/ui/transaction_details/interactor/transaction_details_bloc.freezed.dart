@@ -19,32 +19,50 @@ mixin _$PageCommand {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() transactionCancelled,
+    required TResult Function() navigateToTransactionSuccess,
+    required TResult Function() navigateToTransactionFailed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? transactionCancelled,
+    TResult? Function()? navigateToTransactionSuccess,
+    TResult? Function()? navigateToTransactionFailed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? transactionCancelled,
+    TResult Function()? navigateToTransactionSuccess,
+    TResult Function()? navigateToTransactionFailed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_TransactionCancelled value) transactionCancelled,
+    required TResult Function(_NavigateToTransactionSuccess value)
+        navigateToTransactionSuccess,
+    required TResult Function(_NavigateToTransactionFailed value)
+        navigateToTransactionFailed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_TransactionCancelled value)? transactionCancelled,
+    TResult? Function(_NavigateToTransactionSuccess value)?
+        navigateToTransactionSuccess,
+    TResult? Function(_NavigateToTransactionFailed value)?
+        navigateToTransactionFailed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_TransactionCancelled value)? transactionCancelled,
+    TResult Function(_NavigateToTransactionSuccess value)?
+        navigateToTransactionSuccess,
+    TResult Function(_NavigateToTransactionFailed value)?
+        navigateToTransactionFailed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -107,6 +125,8 @@ class _$_TransactionCancelled implements _TransactionCancelled {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() transactionCancelled,
+    required TResult Function() navigateToTransactionSuccess,
+    required TResult Function() navigateToTransactionFailed,
   }) {
     return transactionCancelled();
   }
@@ -115,6 +135,8 @@ class _$_TransactionCancelled implements _TransactionCancelled {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? transactionCancelled,
+    TResult? Function()? navigateToTransactionSuccess,
+    TResult? Function()? navigateToTransactionFailed,
   }) {
     return transactionCancelled?.call();
   }
@@ -123,6 +145,8 @@ class _$_TransactionCancelled implements _TransactionCancelled {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? transactionCancelled,
+    TResult Function()? navigateToTransactionSuccess,
+    TResult Function()? navigateToTransactionFailed,
     required TResult orElse(),
   }) {
     if (transactionCancelled != null) {
@@ -135,6 +159,10 @@ class _$_TransactionCancelled implements _TransactionCancelled {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_TransactionCancelled value) transactionCancelled,
+    required TResult Function(_NavigateToTransactionSuccess value)
+        navigateToTransactionSuccess,
+    required TResult Function(_NavigateToTransactionFailed value)
+        navigateToTransactionFailed,
   }) {
     return transactionCancelled(this);
   }
@@ -143,6 +171,10 @@ class _$_TransactionCancelled implements _TransactionCancelled {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_TransactionCancelled value)? transactionCancelled,
+    TResult? Function(_NavigateToTransactionSuccess value)?
+        navigateToTransactionSuccess,
+    TResult? Function(_NavigateToTransactionFailed value)?
+        navigateToTransactionFailed,
   }) {
     return transactionCancelled?.call(this);
   }
@@ -151,6 +183,10 @@ class _$_TransactionCancelled implements _TransactionCancelled {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_TransactionCancelled value)? transactionCancelled,
+    TResult Function(_NavigateToTransactionSuccess value)?
+        navigateToTransactionSuccess,
+    TResult Function(_NavigateToTransactionFailed value)?
+        navigateToTransactionFailed,
     required TResult orElse(),
   }) {
     if (transactionCancelled != null) {
@@ -162,6 +198,241 @@ class _$_TransactionCancelled implements _TransactionCancelled {
 
 abstract class _TransactionCancelled implements PageCommand {
   const factory _TransactionCancelled() = _$_TransactionCancelled;
+}
+
+/// @nodoc
+abstract class _$$_NavigateToTransactionSuccessCopyWith<$Res> {
+  factory _$$_NavigateToTransactionSuccessCopyWith(
+          _$_NavigateToTransactionSuccess value,
+          $Res Function(_$_NavigateToTransactionSuccess) then) =
+      __$$_NavigateToTransactionSuccessCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_NavigateToTransactionSuccessCopyWithImpl<$Res>
+    extends _$PageCommandCopyWithImpl<$Res, _$_NavigateToTransactionSuccess>
+    implements _$$_NavigateToTransactionSuccessCopyWith<$Res> {
+  __$$_NavigateToTransactionSuccessCopyWithImpl(
+      _$_NavigateToTransactionSuccess _value,
+      $Res Function(_$_NavigateToTransactionSuccess) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_NavigateToTransactionSuccess implements _NavigateToTransactionSuccess {
+  const _$_NavigateToTransactionSuccess();
+
+  @override
+  String toString() {
+    return 'PageCommand.navigateToTransactionSuccess()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_NavigateToTransactionSuccess);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() transactionCancelled,
+    required TResult Function() navigateToTransactionSuccess,
+    required TResult Function() navigateToTransactionFailed,
+  }) {
+    return navigateToTransactionSuccess();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? transactionCancelled,
+    TResult? Function()? navigateToTransactionSuccess,
+    TResult? Function()? navigateToTransactionFailed,
+  }) {
+    return navigateToTransactionSuccess?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? transactionCancelled,
+    TResult Function()? navigateToTransactionSuccess,
+    TResult Function()? navigateToTransactionFailed,
+    required TResult orElse(),
+  }) {
+    if (navigateToTransactionSuccess != null) {
+      return navigateToTransactionSuccess();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_TransactionCancelled value) transactionCancelled,
+    required TResult Function(_NavigateToTransactionSuccess value)
+        navigateToTransactionSuccess,
+    required TResult Function(_NavigateToTransactionFailed value)
+        navigateToTransactionFailed,
+  }) {
+    return navigateToTransactionSuccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_TransactionCancelled value)? transactionCancelled,
+    TResult? Function(_NavigateToTransactionSuccess value)?
+        navigateToTransactionSuccess,
+    TResult? Function(_NavigateToTransactionFailed value)?
+        navigateToTransactionFailed,
+  }) {
+    return navigateToTransactionSuccess?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_TransactionCancelled value)? transactionCancelled,
+    TResult Function(_NavigateToTransactionSuccess value)?
+        navigateToTransactionSuccess,
+    TResult Function(_NavigateToTransactionFailed value)?
+        navigateToTransactionFailed,
+    required TResult orElse(),
+  }) {
+    if (navigateToTransactionSuccess != null) {
+      return navigateToTransactionSuccess(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _NavigateToTransactionSuccess implements PageCommand {
+  const factory _NavigateToTransactionSuccess() =
+      _$_NavigateToTransactionSuccess;
+}
+
+/// @nodoc
+abstract class _$$_NavigateToTransactionFailedCopyWith<$Res> {
+  factory _$$_NavigateToTransactionFailedCopyWith(
+          _$_NavigateToTransactionFailed value,
+          $Res Function(_$_NavigateToTransactionFailed) then) =
+      __$$_NavigateToTransactionFailedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_NavigateToTransactionFailedCopyWithImpl<$Res>
+    extends _$PageCommandCopyWithImpl<$Res, _$_NavigateToTransactionFailed>
+    implements _$$_NavigateToTransactionFailedCopyWith<$Res> {
+  __$$_NavigateToTransactionFailedCopyWithImpl(
+      _$_NavigateToTransactionFailed _value,
+      $Res Function(_$_NavigateToTransactionFailed) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_NavigateToTransactionFailed implements _NavigateToTransactionFailed {
+  const _$_NavigateToTransactionFailed();
+
+  @override
+  String toString() {
+    return 'PageCommand.navigateToTransactionFailed()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_NavigateToTransactionFailed);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() transactionCancelled,
+    required TResult Function() navigateToTransactionSuccess,
+    required TResult Function() navigateToTransactionFailed,
+  }) {
+    return navigateToTransactionFailed();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? transactionCancelled,
+    TResult? Function()? navigateToTransactionSuccess,
+    TResult? Function()? navigateToTransactionFailed,
+  }) {
+    return navigateToTransactionFailed?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? transactionCancelled,
+    TResult Function()? navigateToTransactionSuccess,
+    TResult Function()? navigateToTransactionFailed,
+    required TResult orElse(),
+  }) {
+    if (navigateToTransactionFailed != null) {
+      return navigateToTransactionFailed();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_TransactionCancelled value) transactionCancelled,
+    required TResult Function(_NavigateToTransactionSuccess value)
+        navigateToTransactionSuccess,
+    required TResult Function(_NavigateToTransactionFailed value)
+        navigateToTransactionFailed,
+  }) {
+    return navigateToTransactionFailed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_TransactionCancelled value)? transactionCancelled,
+    TResult? Function(_NavigateToTransactionSuccess value)?
+        navigateToTransactionSuccess,
+    TResult? Function(_NavigateToTransactionFailed value)?
+        navigateToTransactionFailed,
+  }) {
+    return navigateToTransactionFailed?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_TransactionCancelled value)? transactionCancelled,
+    TResult Function(_NavigateToTransactionSuccess value)?
+        navigateToTransactionSuccess,
+    TResult Function(_NavigateToTransactionFailed value)?
+        navigateToTransactionFailed,
+    required TResult orElse(),
+  }) {
+    if (navigateToTransactionFailed != null) {
+      return navigateToTransactionFailed(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _NavigateToTransactionFailed implements PageCommand {
+  const factory _NavigateToTransactionFailed() = _$_NavigateToTransactionFailed;
 }
 
 /// @nodoc
