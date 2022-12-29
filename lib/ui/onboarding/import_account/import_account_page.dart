@@ -14,7 +14,9 @@ class ImportAccountPage extends StatelessWidget {
       child: BlocListener<ImportAccountBloc, ImportAccountState>(
         listenWhen: (previous, current) => previous.command != current.command,
         listener: (context, state) {
-          state.command?.when(navigateTo: () {});
+          state.command?.when(navigateToAccountFound: (accounts) {
+            // Get.to(SelectAccountPage(accounts));
+          });
 
           context.read<ImportAccountBloc>().add(ImportAccountEvent.clearPageCommand());
         },

@@ -12,7 +12,13 @@ void _registerBlocsModule() {
 
   /// Views Blocs
   _registerFactory(() => HomeBloc(_getIt<ParseQRCodeUseCase>()));
-  _registerFactory(() => ImportAccountBloc());
+  _registerFactory(() => ImportAccountBloc(
+        _getIt<GenerateKeyFromRecoveryWordsUseCase>(),
+        _getIt<GenerateKeyFromSeedsPassportWordsUseCase>(),
+        _getIt<ValidateKeyUseCase>(),
+        _getIt<ErrorHandlerManager>(),
+        _getIt<FindAccountsUseCase>(),
+      ));
   _registerFactory(() => BottomNavigationBloc());
   _registerFactory(() => TransactionDetailsBloc());
   _registerFactoryWithParams<CreateAccountBloc, XFile?, String>(

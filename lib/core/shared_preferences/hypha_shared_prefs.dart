@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:hypha_wallet/core/models/authenticated_data.dart';
+import 'package:hypha_wallet/core/network/models/authenticated_data.dart';
 import 'package:rx_shared_preferences/rx_shared_preferences.dart';
 
 enum LocalStorageValue {

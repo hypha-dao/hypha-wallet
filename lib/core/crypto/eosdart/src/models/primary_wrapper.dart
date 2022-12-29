@@ -6,13 +6,12 @@ part 'primary_wrapper.g.dart';
 
 @JsonSerializable()
 class AccountNames {
-  @JsonKey(name: 'account_names')
-  List<String>? accountNames;
+  @JsonKey(name: 'account_names', defaultValue: [])
+  List<String> accountNames;
 
-  AccountNames();
+  AccountNames(this.accountNames);
 
-  factory AccountNames.fromJson(Map<String, dynamic> json) =>
-      _$AccountNamesFromJson(json);
+  factory AccountNames.fromJson(Map<String, dynamic> json) => _$AccountNamesFromJson(json);
 
   Map<String, dynamic> toJson() => _$AccountNamesToJson(this);
 
@@ -27,8 +26,7 @@ class RequiredKeys {
 
   RequiredKeys();
 
-  factory RequiredKeys.fromJson(Map<String, dynamic> json) =>
-      _$RequiredKeysFromJson(json);
+  factory RequiredKeys.fromJson(Map<String, dynamic> json) => _$RequiredKeysFromJson(json);
 
   Map<String, dynamic> toJson() => _$RequiredKeysToJson(this);
 

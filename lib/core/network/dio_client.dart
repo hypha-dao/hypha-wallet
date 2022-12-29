@@ -1,15 +1,27 @@
 import 'package:dio/dio.dart';
 import 'package:hypha_wallet/core/logging/log_helper.dart';
 import 'package:hypha_wallet/core/network/api/endpoints.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class DioClient {
-  final Dio _dio;
+  final Dio dio;
+  final String baseUrl;
+  final String version;
 
-  DioClient(this._dio) {
-    _dio
-      ..options.baseUrl = Endpoints.baseUrl
+  DioClient({required this.dio, required this.baseUrl, required this.version}) {
+    dio
+      ..options.baseUrl = baseUrl
       ..options.connectTimeout = Endpoints.connectionTimeout
       ..options.receiveTimeout = Endpoints.receiveTimeout
+      ..interceptors.add(
+        PrettyDioLogger(
+            requestHeader: false,
+            requestBody: true,
+            responseBody: true,
+            responseHeader: false,
+            error: true,
+            compact: true),
+      )
       ..options.responseType = ResponseType.json;
   }
 
@@ -22,7 +34,7 @@ class DioClient {
     ProgressCallback? onReceiveProgress,
   }) async {
     try {
-      final Response response = await _dio.get(
+      final Response response = await dio.get(
         url,
         queryParameters: queryParameters,
         options: options,
@@ -47,7 +59,7 @@ class DioClient {
     ProgressCallback? onReceiveProgress,
   }) async {
     try {
-      final Response response = await _dio.post(
+      final Response response = await dio.post(
         url,
         data: data,
         queryParameters: queryParameters,
@@ -74,7 +86,7 @@ class DioClient {
     ProgressCallback? onReceiveProgress,
   }) async {
     try {
-      final Response response = await _dio.put(
+      final Response response = await dio.put(
         url,
         data: data,
         queryParameters: queryParameters,
@@ -101,7 +113,7 @@ class DioClient {
     ProgressCallback? onReceiveProgress,
   }) async {
     try {
-      final Response response = await _dio.delete(
+      final Response response = await dio.delete(
         url,
         data: data,
         queryParameters: queryParameters,

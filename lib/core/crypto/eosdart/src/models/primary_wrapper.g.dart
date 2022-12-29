@@ -6,10 +6,12 @@ part of 'primary_wrapper.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-AccountNames _$AccountNamesFromJson(Map<String, dynamic> json) => AccountNames()
-  ..accountNames = (json['account_names'] as List<dynamic>?)
-      ?.map((e) => e as String)
-      .toList();
+AccountNames _$AccountNamesFromJson(Map<String, dynamic> json) => AccountNames(
+      (json['account_names'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          [],
+    );
 
 Map<String, dynamic> _$AccountNamesToJson(AccountNames instance) =>
     <String, dynamic>{

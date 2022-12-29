@@ -2,7 +2,7 @@ class Endpoints {
   Endpoints._();
 
   // base url TODO(Nik): Add Base URL here pls
-  static const String baseUrl = 'https://reqres.in/api';
+  static const String baseUrl = 'https://mainnet.telos.net';
 
   // receiveTimeout
   static const int receiveTimeout = 15000;

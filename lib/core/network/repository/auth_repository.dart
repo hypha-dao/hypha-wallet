@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:dio/dio.dart';
 import 'package:hypha_wallet/core/logging/log_helper.dart';
-import 'package:hypha_wallet/core/models/authenticated_data.dart';
 import 'package:hypha_wallet/core/network/api/user_account_service.dart';
 import 'package:hypha_wallet/core/network/dio_exception.dart';
+import 'package:hypha_wallet/core/network/models/authenticated_data.dart';
 import 'package:hypha_wallet/core/shared_preferences/hypha_shared_prefs.dart';
 
 enum AuthenticationStatus { unknown, authenticated, unauthenticated }

@@ -75,6 +75,7 @@ dependencies:
   # Crypto
   pointycastle: ^3.6.2
   bs58check: ^1.0.2
+  hdkey: ^0.0.1
 
   # Json Serial
   json_serializable: ^6.5.4
@@ -85,6 +86,9 @@ dependencies:
 
   # Network
   dio: ^4.0.6
+
+  # API Logs in Terminal
+  pretty_dio_logger: ^1.1.1
 
   # Firebase
   firebase_core: ^2.4.0

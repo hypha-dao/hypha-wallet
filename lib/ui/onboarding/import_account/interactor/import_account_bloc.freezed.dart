@@ -22,6 +22,9 @@ mixin _$ImportAccountEvent {
     required TResult Function() clearPageCommand,
     required TResult Function(String word, int index) onWordChanged,
     required TResult Function() onActionButtonTapped,
+    required TResult Function() onUserPastedWords,
+    required TResult Function(String privateKey) onPrivateKeyChanged,
+    required TResult Function(String privateKey) findAccountByKey,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -30,6 +33,9 @@ mixin _$ImportAccountEvent {
     TResult? Function()? clearPageCommand,
     TResult? Function(String word, int index)? onWordChanged,
     TResult? Function()? onActionButtonTapped,
+    TResult? Function()? onUserPastedWords,
+    TResult? Function(String privateKey)? onPrivateKeyChanged,
+    TResult? Function(String privateKey)? findAccountByKey,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,6 +44,9 @@ mixin _$ImportAccountEvent {
     TResult Function()? clearPageCommand,
     TResult Function(String word, int index)? onWordChanged,
     TResult Function()? onActionButtonTapped,
+    TResult Function()? onUserPastedWords,
+    TResult Function(String privateKey)? onPrivateKeyChanged,
+    TResult Function(String privateKey)? findAccountByKey,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -47,6 +56,9 @@ mixin _$ImportAccountEvent {
     required TResult Function(_ClearPageCommand value) clearPageCommand,
     required TResult Function(_OnWordChange value) onWordChanged,
     required TResult Function(_OnActionButtonTapped value) onActionButtonTapped,
+    required TResult Function(_OnUserPastedWords value) onUserPastedWords,
+    required TResult Function(_OnPrivateKeyChanged value) onPrivateKeyChanged,
+    required TResult Function(_FindAccountByKey value) findAccountByKey,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -55,6 +67,9 @@ mixin _$ImportAccountEvent {
     TResult? Function(_ClearPageCommand value)? clearPageCommand,
     TResult? Function(_OnWordChange value)? onWordChanged,
     TResult? Function(_OnActionButtonTapped value)? onActionButtonTapped,
+    TResult? Function(_OnUserPastedWords value)? onUserPastedWords,
+    TResult? Function(_OnPrivateKeyChanged value)? onPrivateKeyChanged,
+    TResult? Function(_FindAccountByKey value)? findAccountByKey,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -63,6 +78,9 @@ mixin _$ImportAccountEvent {
     TResult Function(_ClearPageCommand value)? clearPageCommand,
     TResult Function(_OnWordChange value)? onWordChanged,
     TResult Function(_OnActionButtonTapped value)? onActionButtonTapped,
+    TResult Function(_OnUserPastedWords value)? onUserPastedWords,
+    TResult Function(_OnPrivateKeyChanged value)? onPrivateKeyChanged,
+    TResult Function(_FindAccountByKey value)? findAccountByKey,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -127,6 +145,9 @@ class _$_Initial implements _Initial {
     required TResult Function() clearPageCommand,
     required TResult Function(String word, int index) onWordChanged,
     required TResult Function() onActionButtonTapped,
+    required TResult Function() onUserPastedWords,
+    required TResult Function(String privateKey) onPrivateKeyChanged,
+    required TResult Function(String privateKey) findAccountByKey,
   }) {
     return initial();
   }
@@ -138,6 +159,9 @@ class _$_Initial implements _Initial {
     TResult? Function()? clearPageCommand,
     TResult? Function(String word, int index)? onWordChanged,
     TResult? Function()? onActionButtonTapped,
+    TResult? Function()? onUserPastedWords,
+    TResult? Function(String privateKey)? onPrivateKeyChanged,
+    TResult? Function(String privateKey)? findAccountByKey,
   }) {
     return initial?.call();
   }
@@ -149,6 +173,9 @@ class _$_Initial implements _Initial {
     TResult Function()? clearPageCommand,
     TResult Function(String word, int index)? onWordChanged,
     TResult Function()? onActionButtonTapped,
+    TResult Function()? onUserPastedWords,
+    TResult Function(String privateKey)? onPrivateKeyChanged,
+    TResult Function(String privateKey)? findAccountByKey,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -164,6 +191,9 @@ class _$_Initial implements _Initial {
     required TResult Function(_ClearPageCommand value) clearPageCommand,
     required TResult Function(_OnWordChange value) onWordChanged,
     required TResult Function(_OnActionButtonTapped value) onActionButtonTapped,
+    required TResult Function(_OnUserPastedWords value) onUserPastedWords,
+    required TResult Function(_OnPrivateKeyChanged value) onPrivateKeyChanged,
+    required TResult Function(_FindAccountByKey value) findAccountByKey,
   }) {
     return initial(this);
   }
@@ -175,6 +205,9 @@ class _$_Initial implements _Initial {
     TResult? Function(_ClearPageCommand value)? clearPageCommand,
     TResult? Function(_OnWordChange value)? onWordChanged,
     TResult? Function(_OnActionButtonTapped value)? onActionButtonTapped,
+    TResult? Function(_OnUserPastedWords value)? onUserPastedWords,
+    TResult? Function(_OnPrivateKeyChanged value)? onPrivateKeyChanged,
+    TResult? Function(_FindAccountByKey value)? findAccountByKey,
   }) {
     return initial?.call(this);
   }
@@ -186,6 +219,9 @@ class _$_Initial implements _Initial {
     TResult Function(_ClearPageCommand value)? clearPageCommand,
     TResult Function(_OnWordChange value)? onWordChanged,
     TResult Function(_OnActionButtonTapped value)? onActionButtonTapped,
+    TResult Function(_OnUserPastedWords value)? onUserPastedWords,
+    TResult Function(_OnPrivateKeyChanged value)? onPrivateKeyChanged,
+    TResult Function(_FindAccountByKey value)? findAccountByKey,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -241,6 +277,9 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     required TResult Function() clearPageCommand,
     required TResult Function(String word, int index) onWordChanged,
     required TResult Function() onActionButtonTapped,
+    required TResult Function() onUserPastedWords,
+    required TResult Function(String privateKey) onPrivateKeyChanged,
+    required TResult Function(String privateKey) findAccountByKey,
   }) {
     return clearPageCommand();
   }
@@ -252,6 +291,9 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     TResult? Function()? clearPageCommand,
     TResult? Function(String word, int index)? onWordChanged,
     TResult? Function()? onActionButtonTapped,
+    TResult? Function()? onUserPastedWords,
+    TResult? Function(String privateKey)? onPrivateKeyChanged,
+    TResult? Function(String privateKey)? findAccountByKey,
   }) {
     return clearPageCommand?.call();
   }
@@ -263,6 +305,9 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     TResult Function()? clearPageCommand,
     TResult Function(String word, int index)? onWordChanged,
     TResult Function()? onActionButtonTapped,
+    TResult Function()? onUserPastedWords,
+    TResult Function(String privateKey)? onPrivateKeyChanged,
+    TResult Function(String privateKey)? findAccountByKey,
     required TResult orElse(),
   }) {
     if (clearPageCommand != null) {
@@ -278,6 +323,9 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     required TResult Function(_ClearPageCommand value) clearPageCommand,
     required TResult Function(_OnWordChange value) onWordChanged,
     required TResult Function(_OnActionButtonTapped value) onActionButtonTapped,
+    required TResult Function(_OnUserPastedWords value) onUserPastedWords,
+    required TResult Function(_OnPrivateKeyChanged value) onPrivateKeyChanged,
+    required TResult Function(_FindAccountByKey value) findAccountByKey,
   }) {
     return clearPageCommand(this);
   }
@@ -289,6 +337,9 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     TResult? Function(_ClearPageCommand value)? clearPageCommand,
     TResult? Function(_OnWordChange value)? onWordChanged,
     TResult? Function(_OnActionButtonTapped value)? onActionButtonTapped,
+    TResult? Function(_OnUserPastedWords value)? onUserPastedWords,
+    TResult? Function(_OnPrivateKeyChanged value)? onPrivateKeyChanged,
+    TResult? Function(_FindAccountByKey value)? findAccountByKey,
   }) {
     return clearPageCommand?.call(this);
   }
@@ -300,6 +351,9 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     TResult Function(_ClearPageCommand value)? clearPageCommand,
     TResult Function(_OnWordChange value)? onWordChanged,
     TResult Function(_OnActionButtonTapped value)? onActionButtonTapped,
+    TResult Function(_OnUserPastedWords value)? onUserPastedWords,
+    TResult Function(_OnPrivateKeyChanged value)? onPrivateKeyChanged,
+    TResult Function(_FindAccountByKey value)? findAccountByKey,
     required TResult orElse(),
   }) {
     if (clearPageCommand != null) {
@@ -389,6 +443,9 @@ class _$_OnWordChange implements _OnWordChange {
     required TResult Function() clearPageCommand,
     required TResult Function(String word, int index) onWordChanged,
     required TResult Function() onActionButtonTapped,
+    required TResult Function() onUserPastedWords,
+    required TResult Function(String privateKey) onPrivateKeyChanged,
+    required TResult Function(String privateKey) findAccountByKey,
   }) {
     return onWordChanged(word, index);
   }
@@ -400,6 +457,9 @@ class _$_OnWordChange implements _OnWordChange {
     TResult? Function()? clearPageCommand,
     TResult? Function(String word, int index)? onWordChanged,
     TResult? Function()? onActionButtonTapped,
+    TResult? Function()? onUserPastedWords,
+    TResult? Function(String privateKey)? onPrivateKeyChanged,
+    TResult? Function(String privateKey)? findAccountByKey,
   }) {
     return onWordChanged?.call(word, index);
   }
@@ -411,6 +471,9 @@ class _$_OnWordChange implements _OnWordChange {
     TResult Function()? clearPageCommand,
     TResult Function(String word, int index)? onWordChanged,
     TResult Function()? onActionButtonTapped,
+    TResult Function()? onUserPastedWords,
+    TResult Function(String privateKey)? onPrivateKeyChanged,
+    TResult Function(String privateKey)? findAccountByKey,
     required TResult orElse(),
   }) {
     if (onWordChanged != null) {
@@ -426,6 +489,9 @@ class _$_OnWordChange implements _OnWordChange {
     required TResult Function(_ClearPageCommand value) clearPageCommand,
     required TResult Function(_OnWordChange value) onWordChanged,
     required TResult Function(_OnActionButtonTapped value) onActionButtonTapped,
+    required TResult Function(_OnUserPastedWords value) onUserPastedWords,
+    required TResult Function(_OnPrivateKeyChanged value) onPrivateKeyChanged,
+    required TResult Function(_FindAccountByKey value) findAccountByKey,
   }) {
     return onWordChanged(this);
   }
@@ -437,6 +503,9 @@ class _$_OnWordChange implements _OnWordChange {
     TResult? Function(_ClearPageCommand value)? clearPageCommand,
     TResult? Function(_OnWordChange value)? onWordChanged,
     TResult? Function(_OnActionButtonTapped value)? onActionButtonTapped,
+    TResult? Function(_OnUserPastedWords value)? onUserPastedWords,
+    TResult? Function(_OnPrivateKeyChanged value)? onPrivateKeyChanged,
+    TResult? Function(_FindAccountByKey value)? findAccountByKey,
   }) {
     return onWordChanged?.call(this);
   }
@@ -448,6 +517,9 @@ class _$_OnWordChange implements _OnWordChange {
     TResult Function(_ClearPageCommand value)? clearPageCommand,
     TResult Function(_OnWordChange value)? onWordChanged,
     TResult Function(_OnActionButtonTapped value)? onActionButtonTapped,
+    TResult Function(_OnUserPastedWords value)? onUserPastedWords,
+    TResult Function(_OnPrivateKeyChanged value)? onPrivateKeyChanged,
+    TResult Function(_FindAccountByKey value)? findAccountByKey,
     required TResult orElse(),
   }) {
     if (onWordChanged != null) {
@@ -510,6 +582,9 @@ class _$_OnActionButtonTapped implements _OnActionButtonTapped {
     required TResult Function() clearPageCommand,
     required TResult Function(String word, int index) onWordChanged,
     required TResult Function() onActionButtonTapped,
+    required TResult Function() onUserPastedWords,
+    required TResult Function(String privateKey) onPrivateKeyChanged,
+    required TResult Function(String privateKey) findAccountByKey,
   }) {
     return onActionButtonTapped();
   }
@@ -521,6 +596,9 @@ class _$_OnActionButtonTapped implements _OnActionButtonTapped {
     TResult? Function()? clearPageCommand,
     TResult? Function(String word, int index)? onWordChanged,
     TResult? Function()? onActionButtonTapped,
+    TResult? Function()? onUserPastedWords,
+    TResult? Function(String privateKey)? onPrivateKeyChanged,
+    TResult? Function(String privateKey)? findAccountByKey,
   }) {
     return onActionButtonTapped?.call();
   }
@@ -532,6 +610,9 @@ class _$_OnActionButtonTapped implements _OnActionButtonTapped {
     TResult Function()? clearPageCommand,
     TResult Function(String word, int index)? onWordChanged,
     TResult Function()? onActionButtonTapped,
+    TResult Function()? onUserPastedWords,
+    TResult Function(String privateKey)? onPrivateKeyChanged,
+    TResult Function(String privateKey)? findAccountByKey,
     required TResult orElse(),
   }) {
     if (onActionButtonTapped != null) {
@@ -547,6 +628,9 @@ class _$_OnActionButtonTapped implements _OnActionButtonTapped {
     required TResult Function(_ClearPageCommand value) clearPageCommand,
     required TResult Function(_OnWordChange value) onWordChanged,
     required TResult Function(_OnActionButtonTapped value) onActionButtonTapped,
+    required TResult Function(_OnUserPastedWords value) onUserPastedWords,
+    required TResult Function(_OnPrivateKeyChanged value) onPrivateKeyChanged,
+    required TResult Function(_FindAccountByKey value) findAccountByKey,
   }) {
     return onActionButtonTapped(this);
   }
@@ -558,6 +642,9 @@ class _$_OnActionButtonTapped implements _OnActionButtonTapped {
     TResult? Function(_ClearPageCommand value)? clearPageCommand,
     TResult? Function(_OnWordChange value)? onWordChanged,
     TResult? Function(_OnActionButtonTapped value)? onActionButtonTapped,
+    TResult? Function(_OnUserPastedWords value)? onUserPastedWords,
+    TResult? Function(_OnPrivateKeyChanged value)? onPrivateKeyChanged,
+    TResult? Function(_FindAccountByKey value)? findAccountByKey,
   }) {
     return onActionButtonTapped?.call(this);
   }
@@ -569,6 +656,9 @@ class _$_OnActionButtonTapped implements _OnActionButtonTapped {
     TResult Function(_ClearPageCommand value)? clearPageCommand,
     TResult Function(_OnWordChange value)? onWordChanged,
     TResult Function(_OnActionButtonTapped value)? onActionButtonTapped,
+    TResult Function(_OnUserPastedWords value)? onUserPastedWords,
+    TResult Function(_OnPrivateKeyChanged value)? onPrivateKeyChanged,
+    TResult Function(_FindAccountByKey value)? findAccountByKey,
     required TResult orElse(),
   }) {
     if (onActionButtonTapped != null) {
@@ -583,10 +673,475 @@ abstract class _OnActionButtonTapped implements ImportAccountEvent {
 }
 
 /// @nodoc
+abstract class _$$_OnUserPastedWordsCopyWith<$Res> {
+  factory _$$_OnUserPastedWordsCopyWith(_$_OnUserPastedWords value,
+          $Res Function(_$_OnUserPastedWords) then) =
+      __$$_OnUserPastedWordsCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_OnUserPastedWordsCopyWithImpl<$Res>
+    extends _$ImportAccountEventCopyWithImpl<$Res, _$_OnUserPastedWords>
+    implements _$$_OnUserPastedWordsCopyWith<$Res> {
+  __$$_OnUserPastedWordsCopyWithImpl(
+      _$_OnUserPastedWords _value, $Res Function(_$_OnUserPastedWords) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_OnUserPastedWords implements _OnUserPastedWords {
+  const _$_OnUserPastedWords();
+
+  @override
+  String toString() {
+    return 'ImportAccountEvent.onUserPastedWords()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_OnUserPastedWords);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() clearPageCommand,
+    required TResult Function(String word, int index) onWordChanged,
+    required TResult Function() onActionButtonTapped,
+    required TResult Function() onUserPastedWords,
+    required TResult Function(String privateKey) onPrivateKeyChanged,
+    required TResult Function(String privateKey) findAccountByKey,
+  }) {
+    return onUserPastedWords();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? clearPageCommand,
+    TResult? Function(String word, int index)? onWordChanged,
+    TResult? Function()? onActionButtonTapped,
+    TResult? Function()? onUserPastedWords,
+    TResult? Function(String privateKey)? onPrivateKeyChanged,
+    TResult? Function(String privateKey)? findAccountByKey,
+  }) {
+    return onUserPastedWords?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? clearPageCommand,
+    TResult Function(String word, int index)? onWordChanged,
+    TResult Function()? onActionButtonTapped,
+    TResult Function()? onUserPastedWords,
+    TResult Function(String privateKey)? onPrivateKeyChanged,
+    TResult Function(String privateKey)? findAccountByKey,
+    required TResult orElse(),
+  }) {
+    if (onUserPastedWords != null) {
+      return onUserPastedWords();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_ClearPageCommand value) clearPageCommand,
+    required TResult Function(_OnWordChange value) onWordChanged,
+    required TResult Function(_OnActionButtonTapped value) onActionButtonTapped,
+    required TResult Function(_OnUserPastedWords value) onUserPastedWords,
+    required TResult Function(_OnPrivateKeyChanged value) onPrivateKeyChanged,
+    required TResult Function(_FindAccountByKey value) findAccountByKey,
+  }) {
+    return onUserPastedWords(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_ClearPageCommand value)? clearPageCommand,
+    TResult? Function(_OnWordChange value)? onWordChanged,
+    TResult? Function(_OnActionButtonTapped value)? onActionButtonTapped,
+    TResult? Function(_OnUserPastedWords value)? onUserPastedWords,
+    TResult? Function(_OnPrivateKeyChanged value)? onPrivateKeyChanged,
+    TResult? Function(_FindAccountByKey value)? findAccountByKey,
+  }) {
+    return onUserPastedWords?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_ClearPageCommand value)? clearPageCommand,
+    TResult Function(_OnWordChange value)? onWordChanged,
+    TResult Function(_OnActionButtonTapped value)? onActionButtonTapped,
+    TResult Function(_OnUserPastedWords value)? onUserPastedWords,
+    TResult Function(_OnPrivateKeyChanged value)? onPrivateKeyChanged,
+    TResult Function(_FindAccountByKey value)? findAccountByKey,
+    required TResult orElse(),
+  }) {
+    if (onUserPastedWords != null) {
+      return onUserPastedWords(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _OnUserPastedWords implements ImportAccountEvent {
+  const factory _OnUserPastedWords() = _$_OnUserPastedWords;
+}
+
+/// @nodoc
+abstract class _$$_OnPrivateKeyChangedCopyWith<$Res> {
+  factory _$$_OnPrivateKeyChangedCopyWith(_$_OnPrivateKeyChanged value,
+          $Res Function(_$_OnPrivateKeyChanged) then) =
+      __$$_OnPrivateKeyChangedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String privateKey});
+}
+
+/// @nodoc
+class __$$_OnPrivateKeyChangedCopyWithImpl<$Res>
+    extends _$ImportAccountEventCopyWithImpl<$Res, _$_OnPrivateKeyChanged>
+    implements _$$_OnPrivateKeyChangedCopyWith<$Res> {
+  __$$_OnPrivateKeyChangedCopyWithImpl(_$_OnPrivateKeyChanged _value,
+      $Res Function(_$_OnPrivateKeyChanged) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? privateKey = null,
+  }) {
+    return _then(_$_OnPrivateKeyChanged(
+      null == privateKey
+          ? _value.privateKey
+          : privateKey // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_OnPrivateKeyChanged implements _OnPrivateKeyChanged {
+  const _$_OnPrivateKeyChanged(this.privateKey);
+
+  @override
+  final String privateKey;
+
+  @override
+  String toString() {
+    return 'ImportAccountEvent.onPrivateKeyChanged(privateKey: $privateKey)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_OnPrivateKeyChanged &&
+            (identical(other.privateKey, privateKey) ||
+                other.privateKey == privateKey));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, privateKey);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_OnPrivateKeyChangedCopyWith<_$_OnPrivateKeyChanged> get copyWith =>
+      __$$_OnPrivateKeyChangedCopyWithImpl<_$_OnPrivateKeyChanged>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() clearPageCommand,
+    required TResult Function(String word, int index) onWordChanged,
+    required TResult Function() onActionButtonTapped,
+    required TResult Function() onUserPastedWords,
+    required TResult Function(String privateKey) onPrivateKeyChanged,
+    required TResult Function(String privateKey) findAccountByKey,
+  }) {
+    return onPrivateKeyChanged(privateKey);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? clearPageCommand,
+    TResult? Function(String word, int index)? onWordChanged,
+    TResult? Function()? onActionButtonTapped,
+    TResult? Function()? onUserPastedWords,
+    TResult? Function(String privateKey)? onPrivateKeyChanged,
+    TResult? Function(String privateKey)? findAccountByKey,
+  }) {
+    return onPrivateKeyChanged?.call(privateKey);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? clearPageCommand,
+    TResult Function(String word, int index)? onWordChanged,
+    TResult Function()? onActionButtonTapped,
+    TResult Function()? onUserPastedWords,
+    TResult Function(String privateKey)? onPrivateKeyChanged,
+    TResult Function(String privateKey)? findAccountByKey,
+    required TResult orElse(),
+  }) {
+    if (onPrivateKeyChanged != null) {
+      return onPrivateKeyChanged(privateKey);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_ClearPageCommand value) clearPageCommand,
+    required TResult Function(_OnWordChange value) onWordChanged,
+    required TResult Function(_OnActionButtonTapped value) onActionButtonTapped,
+    required TResult Function(_OnUserPastedWords value) onUserPastedWords,
+    required TResult Function(_OnPrivateKeyChanged value) onPrivateKeyChanged,
+    required TResult Function(_FindAccountByKey value) findAccountByKey,
+  }) {
+    return onPrivateKeyChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_ClearPageCommand value)? clearPageCommand,
+    TResult? Function(_OnWordChange value)? onWordChanged,
+    TResult? Function(_OnActionButtonTapped value)? onActionButtonTapped,
+    TResult? Function(_OnUserPastedWords value)? onUserPastedWords,
+    TResult? Function(_OnPrivateKeyChanged value)? onPrivateKeyChanged,
+    TResult? Function(_FindAccountByKey value)? findAccountByKey,
+  }) {
+    return onPrivateKeyChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_ClearPageCommand value)? clearPageCommand,
+    TResult Function(_OnWordChange value)? onWordChanged,
+    TResult Function(_OnActionButtonTapped value)? onActionButtonTapped,
+    TResult Function(_OnUserPastedWords value)? onUserPastedWords,
+    TResult Function(_OnPrivateKeyChanged value)? onPrivateKeyChanged,
+    TResult Function(_FindAccountByKey value)? findAccountByKey,
+    required TResult orElse(),
+  }) {
+    if (onPrivateKeyChanged != null) {
+      return onPrivateKeyChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _OnPrivateKeyChanged implements ImportAccountEvent {
+  const factory _OnPrivateKeyChanged(final String privateKey) =
+      _$_OnPrivateKeyChanged;
+
+  String get privateKey;
+  @JsonKey(ignore: true)
+  _$$_OnPrivateKeyChangedCopyWith<_$_OnPrivateKeyChanged> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_FindAccountByKeyCopyWith<$Res> {
+  factory _$$_FindAccountByKeyCopyWith(
+          _$_FindAccountByKey value, $Res Function(_$_FindAccountByKey) then) =
+      __$$_FindAccountByKeyCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String privateKey});
+}
+
+/// @nodoc
+class __$$_FindAccountByKeyCopyWithImpl<$Res>
+    extends _$ImportAccountEventCopyWithImpl<$Res, _$_FindAccountByKey>
+    implements _$$_FindAccountByKeyCopyWith<$Res> {
+  __$$_FindAccountByKeyCopyWithImpl(
+      _$_FindAccountByKey _value, $Res Function(_$_FindAccountByKey) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? privateKey = null,
+  }) {
+    return _then(_$_FindAccountByKey(
+      null == privateKey
+          ? _value.privateKey
+          : privateKey // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_FindAccountByKey implements _FindAccountByKey {
+  const _$_FindAccountByKey(this.privateKey);
+
+  @override
+  final String privateKey;
+
+  @override
+  String toString() {
+    return 'ImportAccountEvent.findAccountByKey(privateKey: $privateKey)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_FindAccountByKey &&
+            (identical(other.privateKey, privateKey) ||
+                other.privateKey == privateKey));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, privateKey);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_FindAccountByKeyCopyWith<_$_FindAccountByKey> get copyWith =>
+      __$$_FindAccountByKeyCopyWithImpl<_$_FindAccountByKey>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() clearPageCommand,
+    required TResult Function(String word, int index) onWordChanged,
+    required TResult Function() onActionButtonTapped,
+    required TResult Function() onUserPastedWords,
+    required TResult Function(String privateKey) onPrivateKeyChanged,
+    required TResult Function(String privateKey) findAccountByKey,
+  }) {
+    return findAccountByKey(privateKey);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? clearPageCommand,
+    TResult? Function(String word, int index)? onWordChanged,
+    TResult? Function()? onActionButtonTapped,
+    TResult? Function()? onUserPastedWords,
+    TResult? Function(String privateKey)? onPrivateKeyChanged,
+    TResult? Function(String privateKey)? findAccountByKey,
+  }) {
+    return findAccountByKey?.call(privateKey);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? clearPageCommand,
+    TResult Function(String word, int index)? onWordChanged,
+    TResult Function()? onActionButtonTapped,
+    TResult Function()? onUserPastedWords,
+    TResult Function(String privateKey)? onPrivateKeyChanged,
+    TResult Function(String privateKey)? findAccountByKey,
+    required TResult orElse(),
+  }) {
+    if (findAccountByKey != null) {
+      return findAccountByKey(privateKey);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_ClearPageCommand value) clearPageCommand,
+    required TResult Function(_OnWordChange value) onWordChanged,
+    required TResult Function(_OnActionButtonTapped value) onActionButtonTapped,
+    required TResult Function(_OnUserPastedWords value) onUserPastedWords,
+    required TResult Function(_OnPrivateKeyChanged value) onPrivateKeyChanged,
+    required TResult Function(_FindAccountByKey value) findAccountByKey,
+  }) {
+    return findAccountByKey(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_ClearPageCommand value)? clearPageCommand,
+    TResult? Function(_OnWordChange value)? onWordChanged,
+    TResult? Function(_OnActionButtonTapped value)? onActionButtonTapped,
+    TResult? Function(_OnUserPastedWords value)? onUserPastedWords,
+    TResult? Function(_OnPrivateKeyChanged value)? onPrivateKeyChanged,
+    TResult? Function(_FindAccountByKey value)? findAccountByKey,
+  }) {
+    return findAccountByKey?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_ClearPageCommand value)? clearPageCommand,
+    TResult Function(_OnWordChange value)? onWordChanged,
+    TResult Function(_OnActionButtonTapped value)? onActionButtonTapped,
+    TResult Function(_OnUserPastedWords value)? onUserPastedWords,
+    TResult Function(_OnPrivateKeyChanged value)? onPrivateKeyChanged,
+    TResult Function(_FindAccountByKey value)? findAccountByKey,
+    required TResult orElse(),
+  }) {
+    if (findAccountByKey != null) {
+      return findAccountByKey(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _FindAccountByKey implements ImportAccountEvent {
+  const factory _FindAccountByKey(final String privateKey) =
+      _$_FindAccountByKey;
+
+  String get privateKey;
+  @JsonKey(ignore: true)
+  _$$_FindAccountByKeyCopyWith<_$_FindAccountByKey> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$ImportAccountState {
   PageState get pageState => throw _privateConstructorUsedError;
   PageCommand? get command => throw _privateConstructorUsedError;
   Map<int, String> get userEnteredWords => throw _privateConstructorUsedError;
+  bool get isPartialLoading => throw _privateConstructorUsedError;
+  List<String> get accounts => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ImportAccountStateCopyWith<ImportAccountState> get copyWith =>
@@ -602,7 +1157,9 @@ abstract class $ImportAccountStateCopyWith<$Res> {
   $Res call(
       {PageState pageState,
       PageCommand? command,
-      Map<int, String> userEnteredWords});
+      Map<int, String> userEnteredWords,
+      bool isPartialLoading,
+      List<String> accounts});
 
   $PageCommandCopyWith<$Res>? get command;
 }
@@ -623,6 +1180,8 @@ class _$ImportAccountStateCopyWithImpl<$Res, $Val extends ImportAccountState>
     Object? pageState = null,
     Object? command = freezed,
     Object? userEnteredWords = null,
+    Object? isPartialLoading = null,
+    Object? accounts = null,
   }) {
     return _then(_value.copyWith(
       pageState: null == pageState
@@ -637,6 +1196,14 @@ class _$ImportAccountStateCopyWithImpl<$Res, $Val extends ImportAccountState>
           ? _value.userEnteredWords
           : userEnteredWords // ignore: cast_nullable_to_non_nullable
               as Map<int, String>,
+      isPartialLoading: null == isPartialLoading
+          ? _value.isPartialLoading
+          : isPartialLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      accounts: null == accounts
+          ? _value.accounts
+          : accounts // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ) as $Val);
   }
 
@@ -664,7 +1231,9 @@ abstract class _$$_ImportAccountStateCopyWith<$Res>
   $Res call(
       {PageState pageState,
       PageCommand? command,
-      Map<int, String> userEnteredWords});
+      Map<int, String> userEnteredWords,
+      bool isPartialLoading,
+      List<String> accounts});
 
   @override
   $PageCommandCopyWith<$Res>? get command;
@@ -684,6 +1253,8 @@ class __$$_ImportAccountStateCopyWithImpl<$Res>
     Object? pageState = null,
     Object? command = freezed,
     Object? userEnteredWords = null,
+    Object? isPartialLoading = null,
+    Object? accounts = null,
   }) {
     return _then(_$_ImportAccountState(
       pageState: null == pageState
@@ -698,6 +1269,14 @@ class __$$_ImportAccountStateCopyWithImpl<$Res>
           ? _value._userEnteredWords
           : userEnteredWords // ignore: cast_nullable_to_non_nullable
               as Map<int, String>,
+      isPartialLoading: null == isPartialLoading
+          ? _value.isPartialLoading
+          : isPartialLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      accounts: null == accounts
+          ? _value._accounts
+          : accounts // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -708,8 +1287,11 @@ class _$_ImportAccountState extends _ImportAccountState {
   const _$_ImportAccountState(
       {this.pageState = PageState.initial,
       this.command,
-      final Map<int, String> userEnteredWords = const {}})
+      final Map<int, String> userEnteredWords = const {},
+      this.isPartialLoading = false,
+      final List<String> accounts = const []})
       : _userEnteredWords = userEnteredWords,
+        _accounts = accounts,
         super._();
 
   @override
@@ -727,8 +1309,20 @@ class _$_ImportAccountState extends _ImportAccountState {
   }
 
   @override
+  @JsonKey()
+  final bool isPartialLoading;
+  final List<String> _accounts;
+  @override
+  @JsonKey()
+  List<String> get accounts {
+    if (_accounts is EqualUnmodifiableListView) return _accounts;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_accounts);
+  }
+
+  @override
   String toString() {
-    return 'ImportAccountState(pageState: $pageState, command: $command, userEnteredWords: $userEnteredWords)';
+    return 'ImportAccountState(pageState: $pageState, command: $command, userEnteredWords: $userEnteredWords, isPartialLoading: $isPartialLoading, accounts: $accounts)';
   }
 
   @override
@@ -740,12 +1334,20 @@ class _$_ImportAccountState extends _ImportAccountState {
                 other.pageState == pageState) &&
             (identical(other.command, command) || other.command == command) &&
             const DeepCollectionEquality()
-                .equals(other._userEnteredWords, _userEnteredWords));
+                .equals(other._userEnteredWords, _userEnteredWords) &&
+            (identical(other.isPartialLoading, isPartialLoading) ||
+                other.isPartialLoading == isPartialLoading) &&
+            const DeepCollectionEquality().equals(other._accounts, _accounts));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, pageState, command,
-      const DeepCollectionEquality().hash(_userEnteredWords));
+  int get hashCode => Object.hash(
+      runtimeType,
+      pageState,
+      command,
+      const DeepCollectionEquality().hash(_userEnteredWords),
+      isPartialLoading,
+      const DeepCollectionEquality().hash(_accounts));
 
   @JsonKey(ignore: true)
   @override
@@ -759,7 +1361,9 @@ abstract class _ImportAccountState extends ImportAccountState {
   const factory _ImportAccountState(
       {final PageState pageState,
       final PageCommand? command,
-      final Map<int, String> userEnteredWords}) = _$_ImportAccountState;
+      final Map<int, String> userEnteredWords,
+      final bool isPartialLoading,
+      final List<String> accounts}) = _$_ImportAccountState;
   const _ImportAccountState._() : super._();
 
   @override
@@ -769,6 +1373,10 @@ abstract class _ImportAccountState extends ImportAccountState {
   @override
   Map<int, String> get userEnteredWords;
   @override
+  bool get isPartialLoading;
+  @override
+  List<String> get accounts;
+  @override
   @JsonKey(ignore: true)
   _$$_ImportAccountStateCopyWith<_$_ImportAccountState> get copyWith =>
       throw _privateConstructorUsedError;
@@ -776,37 +1384,43 @@ abstract class _ImportAccountState extends ImportAccountState {
 
 /// @nodoc
 mixin _$PageCommand {
+  List<String> get accounts => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() navigateTo,
+    required TResult Function(List<String> accounts) navigateToAccountFound,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? navigateTo,
+    TResult? Function(List<String> accounts)? navigateToAccountFound,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? navigateTo,
+    TResult Function(List<String> accounts)? navigateToAccountFound,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_NavigateTo value) navigateTo,
+    required TResult Function(_NavigateToAccountFound value)
+        navigateToAccountFound,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_NavigateTo value)? navigateTo,
+    TResult? Function(_NavigateToAccountFound value)? navigateToAccountFound,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_NavigateTo value)? navigateTo,
+    TResult Function(_NavigateToAccountFound value)? navigateToAccountFound,
     required TResult orElse(),
   }) =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $PageCommandCopyWith<PageCommand> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -815,6 +1429,8 @@ abstract class $PageCommandCopyWith<$Res> {
   factory $PageCommandCopyWith(
           PageCommand value, $Res Function(PageCommand) then) =
       _$PageCommandCopyWithImpl<$Res, PageCommand>;
+  @useResult
+  $Res call({List<String> accounts});
 }
 
 /// @nodoc
@@ -826,67 +1442,116 @@ class _$PageCommandCopyWithImpl<$Res, $Val extends PageCommand>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? accounts = null,
+  }) {
+    return _then(_value.copyWith(
+      accounts: null == accounts
+          ? _value.accounts
+          : accounts // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$_NavigateToCopyWith<$Res> {
-  factory _$$_NavigateToCopyWith(
-          _$_NavigateTo value, $Res Function(_$_NavigateTo) then) =
-      __$$_NavigateToCopyWithImpl<$Res>;
+abstract class _$$_NavigateToAccountFoundCopyWith<$Res>
+    implements $PageCommandCopyWith<$Res> {
+  factory _$$_NavigateToAccountFoundCopyWith(_$_NavigateToAccountFound value,
+          $Res Function(_$_NavigateToAccountFound) then) =
+      __$$_NavigateToAccountFoundCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({List<String> accounts});
 }
 
 /// @nodoc
-class __$$_NavigateToCopyWithImpl<$Res>
-    extends _$PageCommandCopyWithImpl<$Res, _$_NavigateTo>
-    implements _$$_NavigateToCopyWith<$Res> {
-  __$$_NavigateToCopyWithImpl(
-      _$_NavigateTo _value, $Res Function(_$_NavigateTo) _then)
+class __$$_NavigateToAccountFoundCopyWithImpl<$Res>
+    extends _$PageCommandCopyWithImpl<$Res, _$_NavigateToAccountFound>
+    implements _$$_NavigateToAccountFoundCopyWith<$Res> {
+  __$$_NavigateToAccountFoundCopyWithImpl(_$_NavigateToAccountFound _value,
+      $Res Function(_$_NavigateToAccountFound) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? accounts = null,
+  }) {
+    return _then(_$_NavigateToAccountFound(
+      null == accounts
+          ? _value._accounts
+          : accounts // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$_NavigateTo implements _NavigateTo {
-  const _$_NavigateTo();
+class _$_NavigateToAccountFound implements _NavigateToAccountFound {
+  const _$_NavigateToAccountFound(final List<String> accounts)
+      : _accounts = accounts;
+
+  final List<String> _accounts;
+  @override
+  List<String> get accounts {
+    if (_accounts is EqualUnmodifiableListView) return _accounts;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_accounts);
+  }
 
   @override
   String toString() {
-    return 'PageCommand.navigateTo()';
+    return 'PageCommand.navigateToAccountFound(accounts: $accounts)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_NavigateTo);
+        (other.runtimeType == runtimeType &&
+            other is _$_NavigateToAccountFound &&
+            const DeepCollectionEquality().equals(other._accounts, _accounts));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_accounts));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_NavigateToAccountFoundCopyWith<_$_NavigateToAccountFound> get copyWith =>
+      __$$_NavigateToAccountFoundCopyWithImpl<_$_NavigateToAccountFound>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() navigateTo,
+    required TResult Function(List<String> accounts) navigateToAccountFound,
   }) {
-    return navigateTo();
+    return navigateToAccountFound(accounts);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? navigateTo,
+    TResult? Function(List<String> accounts)? navigateToAccountFound,
   }) {
-    return navigateTo?.call();
+    return navigateToAccountFound?.call(accounts);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? navigateTo,
+    TResult Function(List<String> accounts)? navigateToAccountFound,
     required TResult orElse(),
   }) {
-    if (navigateTo != null) {
-      return navigateTo();
+    if (navigateToAccountFound != null) {
+      return navigateToAccountFound(accounts);
     }
     return orElse();
   }
@@ -894,32 +1559,41 @@ class _$_NavigateTo implements _NavigateTo {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_NavigateTo value) navigateTo,
+    required TResult Function(_NavigateToAccountFound value)
+        navigateToAccountFound,
   }) {
-    return navigateTo(this);
+    return navigateToAccountFound(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_NavigateTo value)? navigateTo,
+    TResult? Function(_NavigateToAccountFound value)? navigateToAccountFound,
   }) {
-    return navigateTo?.call(this);
+    return navigateToAccountFound?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_NavigateTo value)? navigateTo,
+    TResult Function(_NavigateToAccountFound value)? navigateToAccountFound,
     required TResult orElse(),
   }) {
-    if (navigateTo != null) {
-      return navigateTo(this);
+    if (navigateToAccountFound != null) {
+      return navigateToAccountFound(this);
     }
     return orElse();
   }
 }
 
-abstract class _NavigateTo implements PageCommand {
-  const factory _NavigateTo() = _$_NavigateTo;
+abstract class _NavigateToAccountFound implements PageCommand {
+  const factory _NavigateToAccountFound(final List<String> accounts) =
+      _$_NavigateToAccountFound;
+
+  @override
+  List<String> get accounts;
+  @override
+  @JsonKey(ignore: true)
+  _$$_NavigateToAccountFoundCopyWith<_$_NavigateToAccountFound> get copyWith =>
+      throw _privateConstructorUsedError;
 }

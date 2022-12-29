@@ -2,7 +2,8 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:typed_data';
 
-import 'package:http/http.dart' as http;
+import 'package:async/async.dart';
+import 'package:dio/dio.dart';
 import 'package:hypha_wallet/core/crypto/eosdart/src/eosdart_base.dart';
 import 'package:hypha_wallet/core/crypto/eosdart/src/jsons.dart';
 import 'package:hypha_wallet/core/crypto/eosdart/src/models/abi.dart';
@@ -16,11 +17,13 @@ import 'package:hypha_wallet/core/crypto/eosdart/src/models/primary_wrapper.dart
 import 'package:hypha_wallet/core/crypto/eosdart/src/models/transaction.dart';
 import 'package:hypha_wallet/core/crypto/eosdart/src/serialize.dart' as ser;
 import 'package:hypha_wallet/core/crypto/eosdart_ecc/eosdart_ecc.dart' as ecc;
+import 'package:hypha_wallet/core/logging/log_helper.dart';
+import 'package:hypha_wallet/core/network/dio_client.dart';
 
 /// EOSClient calls APIs against given EOS nodes
 class EOSClient {
-  final String _nodeURL;
-  final String _version;
+  final DioClient _dioClient;
+
   int expirationInSec;
   int httpTimeout;
   Map<String, ecc.EOSPrivateKey> keys = {};
@@ -31,8 +34,7 @@ class EOSClient {
 
   /// Construct the EOS client from eos node URL
   EOSClient(
-    this._nodeURL,
-    this._version, {
+    this._dioClient, {
     this.expirationInSec = 180,
     List<String> privateKeys = const [],
     this.httpTimeout = 10,
@@ -55,26 +57,14 @@ class EOSClient {
   // ignore: avoid_setters_without_getters
   set privateKeys(List<String> privateKeys) => _mapKeys(privateKeys);
 
-  Future _post(String path, Object body) async {
-    final Completer completer = Completer();
-    // ignore: unawaited_futures
-    http
-        .post(Uri.parse('$_nodeURL/$_version$path'), body: json.encode(body))
-        .timeout(Duration(seconds: httpTimeout))
-        .then((http.Response response) {
-      if (response.statusCode >= 300) {
-        completer.completeError(response.body);
-      } else {
-        completer.complete(json.decode(response.body));
-      }
-    });
-    return completer.future;
+  Future<Response> _post(String path, Object body) {
+    return _dioClient.post('/${_dioClient.version}$path', data: body);
   }
 
   /// Get EOS Node Info
   Future<NodeInfo> getInfo() async {
     return _post('/chain/get_info', {}).then((nodeInfo) {
-      final NodeInfo info = NodeInfo.fromJson(nodeInfo);
+      final NodeInfo info = NodeInfo.fromJson(nodeInfo.data);
       return info;
     });
   }
@@ -145,42 +135,42 @@ class EOSClient {
   /// Get EOS Block Info
   Future<Block> getBlock(String blockNumOrId) async {
     return _post('/chain/get_block', {'block_num_or_id': blockNumOrId}).then((block) {
-      return Block.fromJson(block);
+      return Block.fromJson(block.data);
     });
   }
 
   /// Get EOS Block Header State
   Future<BlockHeaderState> getBlockHeaderState(String blockNumOrId) async {
     return _post('/chain/get_block_header_state', {'block_num_or_id': blockNumOrId}).then((block) {
-      return BlockHeaderState.fromJson(block);
+      return BlockHeaderState.fromJson(block.data);
     });
   }
 
   /// Get EOS abi from account name
   Future<AbiResp> getAbi(String accountName) async {
     return _post('/chain/get_abi', {'account_name': accountName}).then((abi) {
-      return AbiResp.fromJson(abi);
+      return AbiResp.fromJson(abi.data);
     });
   }
 
   /// Get EOS raw abi from account name
   Future<AbiResp> getRawAbi(String? accountName) async {
     return _post('/chain/get_raw_abi', {'account_name': accountName}).then((abi) {
-      return AbiResp.fromJson(abi);
+      return AbiResp.fromJson(abi.data);
     });
   }
 
   /// Get EOS raw code and abi from account name
   Future<AbiResp> getRawCodeAndAbi(String accountName) async {
     return _post('/chain/get_raw_code_and_abi', {'account_name': accountName}).then((abi) {
-      return AbiResp.fromJson(abi);
+      return AbiResp.fromJson(abi.data);
     });
   }
 
   /// Get EOS account info form the given account name
   Future<Account> getAccount(String accountName) async {
     return _post('/chain/get_account', {'account_name': accountName}).then((account) {
-      return Account.fromJson(account);
+      return Account.fromJson(account.data);
     });
   }
 
@@ -203,29 +193,34 @@ class EOSClient {
 //    print(abiResp.abi);
     return _post('/chain/get_required_keys', {'transaction': trx, 'available_keys': availableKeys})
         .then((requiredKeys) {
-      return RequiredKeys.fromJson(requiredKeys);
+      return RequiredKeys.fromJson(requiredKeys.data);
     });
   }
 
   /// Get EOS account actions
   Future<Actions> getActions(String accountName, {int? pos, int? offset}) async {
     return _post('/history/get_actions', {'account_name': accountName, 'pot': pos, 'offset': offset}).then((actions) {
-      return Actions.fromJson(actions);
+      return Actions.fromJson(actions.data);
     });
   }
 
   /// Get EOS transaction
   Future<TransactionBlock> getTransaction(String id, {int? blockNumHint}) async {
     return _post('/history/get_transaction', {'id': id, 'block_num_hint': blockNumHint}).then((transaction) {
-      return TransactionBlock.fromJson(transaction);
+      return TransactionBlock.fromJson(transaction.data);
     });
   }
 
   /// Get Key Accounts
-  Future<AccountNames> getKeyAccounts(String pubKey) async {
-    return _post('/history/get_key_accounts', {'public_key': pubKey}).then((accountNames) {
-      return AccountNames.fromJson(accountNames);
-    });
+  Future<Result<AccountNames>> getKeyAccounts(String pubKey) async {
+    try {
+      return Result.capture(_post('/history/get_key_accounts', {'public_key': pubKey}).then((Response accountNames) {
+        return AccountNames.fromJson(accountNames.data as Map<String, dynamic>);
+      }));
+    } catch (e) {
+      LogHelper.e(e.toString());
+      return Result.error(e.toString());
+    }
   }
 
   /// Push transaction to EOS chain

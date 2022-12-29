@@ -14,7 +14,11 @@ class ImportAccountView extends StatelessWidget {
         return Scaffold(
           appBar: AppBar(title: Text('Import Account')),
           bottomNavigationBar: ElevatedButton(
-            onPressed: state.areAllWordsEntered ? () {} : null,
+            onPressed: true
+                ? () {
+                    context.read<ImportAccountBloc>().add(ImportAccountEvent.onActionButtonTapped());
+                  }
+                : null,
             child: Text('Find Account'),
           ),
           body: SingleChildScrollView(
@@ -80,6 +84,21 @@ class ImportAccountView extends StatelessWidget {
                       },
                     ),
                   ),
+                  TextButton(
+                    onPressed: () {
+                      context.read<ImportAccountBloc>().add(ImportAccountEvent.onUserPastedWords());
+                    },
+                    child: Text('Paste Words'),
+                  ),
+                  TextField(
+                      decoration: InputDecoration(label: Text('Private Key')),
+                      onChanged: (value) {
+                        context.read<ImportAccountBloc>().add(ImportAccountEvent.onPrivateKeyChanged(value));
+                      }),
+                  ListView(
+                    shrinkWrap: true,
+                    children: state.accounts.map((String e) => ListTile(title: Text(e))).toList(),
+                  )
                 ],
               ),
             ),
