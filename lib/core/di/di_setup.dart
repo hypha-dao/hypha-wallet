@@ -7,6 +7,8 @@ import 'package:get_it/get_it.dart';
 import 'package:hypha_wallet/core/crypto/eosdart/eosdart.dart';
 import 'package:hypha_wallet/core/error_handler/error_handler_manager.dart';
 import 'package:hypha_wallet/core/local/services/crypto_auth_service.dart';
+import 'package:hypha_wallet/core/local/services/permission_service.dart';
+import 'package:hypha_wallet/core/local/services/permission_service_implementation.dart';
 import 'package:hypha_wallet/core/logging/firebase_crash_reporting_tree.dart';
 import 'package:hypha_wallet/core/network/api/endpoints.dart';
 import 'package:hypha_wallet/core/network/api/user_account_service.dart';

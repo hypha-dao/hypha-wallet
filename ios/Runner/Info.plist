@@ -45,7 +45,13 @@
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
+	<key>NSCameraUsageDescription</key>
+    <string>Uses camera for profile pictures and QR codes.</string>
 	<key>UISupportedInterfaceOrientations</key>
+	<key>NSFaceIDUsageDescription</key>
+    <string>Unlock wallet with FaceID</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>Uses photo library to access pictures for profile.</string>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>

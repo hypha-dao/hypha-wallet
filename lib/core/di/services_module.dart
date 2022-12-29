@@ -18,4 +18,6 @@ Future<void> _registerServicesModule() async {
   _registerFactoryWithParams<EOSClient, String?, String?>(
     (baseUrl, version) => EOSClient(_getIt<DioClient>(param1: baseUrl, param2: version)),
   );
+
+  _registerLazySingleton<PermissionService>(() => PermissionServiceImplementation());
 }

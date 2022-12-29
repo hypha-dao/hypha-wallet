@@ -1,5 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="earth.hypha.wallet.hypha_wallet">
+
+    <!-- Permissions options for the `camera` group -->
+    <uses-permission android:name="android.permission.USE_BIOMETRIC" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
    <application
         android:label="hypha_wallet"
         android:name="${applicationName}"
