@@ -93,6 +93,9 @@ dependencies:
   # App Permissions
   permission_handler: ^10.2.0
 
+  # Share
+  share_plus: ^6.3.0
+
   # Firebase
   firebase_core: ^2.4.0
   firebase_crashlytics: ^3.0.7
