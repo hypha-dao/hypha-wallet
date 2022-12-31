@@ -59,12 +59,12 @@ extension SharedPrefsExtensions on HyphaSharedPrefs {
   }
 
   /// Settings
-  Future<void> setSecurityNotification(bool showSecurityNotification) => _prefs.setBool(
+  Future<void> setShowSecurityNotification(bool showSecurityNotification) => _prefs.setBool(
         LocalStorageValue.securityNotification.key,
         showSecurityNotification,
       );
 
-  Future<bool> getSecurityNotification() async {
+  Future<bool> getShowSecurityNotification() async {
     return await _prefs.getBool(LocalStorageValue.securityNotification.key) ?? true;
   }
 }

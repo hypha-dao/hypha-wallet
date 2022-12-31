@@ -18,11 +18,12 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     on<_Initial>(_initial);
     on<_OnThemeChanged>(_onThemeChanged);
     on<_ClearPageCommand>((_, emit) => emit(state.copyWith(command: null)));
+    on<_OnSecureAccountTapped>(_onSecureAccountTapped);
   }
 
   Future<void> _initial(_Initial event, Emitter<SettingsState> emit) async {
     final theme = await _sharedPrefs.getTheme();
-    final showSecurityNotification = await _sharedPrefs.getSecurityNotification();
+    final showSecurityNotification = await _sharedPrefs.getShowSecurityNotification();
 
     emit(state.copyWith(themeMode: theme, showSecurityNotification: showSecurityNotification));
   }
@@ -30,5 +31,10 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
   void _onThemeChanged(_OnThemeChanged event, Emitter<SettingsState> emit) {
     _sharedPrefs.setTheme(state.themeMode == ThemeMode.dark ? ThemeMode.light : ThemeMode.dark);
     emit(state.copyWith(themeMode: state.themeMode == ThemeMode.dark ? ThemeMode.light : ThemeMode.dark));
+  }
+
+  FutureOr<void> _onSecureAccountTapped(_OnSecureAccountTapped event, Emitter<SettingsState> emit) {
+    _sharedPrefs.setShowSecurityNotification(false);
+    emit(state.copyWith(showSecurityNotification: false));
   }
 }

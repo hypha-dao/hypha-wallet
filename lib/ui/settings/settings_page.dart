@@ -17,7 +17,10 @@ class SettingsPage extends StatelessWidget {
             body: Column(
           children: [
             ListTile(
-              onTap: () => GetX.Get.to(() => AccountSecurityPage(), transition: GetX.Transition.rightToLeft),
+              onTap: () {
+                context.read<SettingsBloc>().add(SettingsEvent.onSecureAccountTapped());
+                GetX.Get.to(() => AccountSecurityPage(), transition: GetX.Transition.rightToLeft);
+              },
               title: Text('Secure your account'),
               trailing: Icon(Icons.navigate_next),
               minLeadingWidth: 0,
