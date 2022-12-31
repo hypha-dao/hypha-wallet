@@ -16,7 +16,7 @@ class AccountSecurityPage extends StatelessWidget {
         builder: (context, state) {
           return Column(
             children: [
-              if (state.userAuthData?.words != null) ...[
+              if (state.userAuthData?.words.isNotEmpty == true) ...[
                 ListTile(
                   onTap: () {
                     Get.to(() => SaveWordsPage(state.userAuthData!.words));

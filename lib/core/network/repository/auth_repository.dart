@@ -14,8 +14,8 @@ enum AuthenticationStatus { unknown, authenticated, unauthenticated }
 
 class AuthRepository {
   final HyphaSharedPrefs _appSharedPrefs;
-  final UserAccountService _userService;
   final SecureStorageService _secureStorageService;
+  final UserAccountService _userService;
   final _controller = StreamController<AuthenticationStatus>();
 
   AuthRepository(this._appSharedPrefs, this._userService, this._secureStorageService);
@@ -65,7 +65,8 @@ class AuthRepository {
 
     try {
       /// Clear Profile and Key
-      // await _appSharedPrefs.clear();
+      await _appSharedPrefs.clear();
+      await _secureStorageService.clearAllData();
     } catch (error, stacktrace) {
       LogHelper.e('Error clearing user data', error: error, stacktrace: stacktrace);
     }

@@ -88,7 +88,7 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
     _AuthenticationLogoutRequested event,
     Emitter<AuthenticationState> emit,
   ) async {
-    // await _signOutUseCase.run();
+    await _authRepository.signOut();
   }
 
   FutureOr<void> _onAuthenticatedDataChanged(_OnAuthenticatedDataChanged event, Emitter<AuthenticationState> emit) {
