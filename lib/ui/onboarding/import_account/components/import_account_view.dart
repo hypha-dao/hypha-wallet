@@ -48,7 +48,17 @@ class ImportAccountView extends StatelessWidget {
                       }),
                   ListView(
                     shrinkWrap: true,
-                    children: state.accounts.map((String e) => ListTile(title: Text(e))).toList(),
+                    children: state.accounts
+                        .map(
+                          (e) => ListTile(
+                            title: Text(e.userName),
+                            subtitle: Text(e.accountName),
+                            onTap: () {
+                              context.read<ImportAccountBloc>().add(ImportAccountEvent.onAccountSelected(e));
+                            },
+                          ),
+                        )
+                        .toList(),
                   )
                 ],
               ),

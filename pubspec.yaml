@@ -96,6 +96,9 @@ dependencies:
   # Share
   share_plus: ^6.3.0
 
+  # encrypt stored data
+  flutter_secure_storage: ^7.0.1
+
   # Firebase
   firebase_core: ^2.4.0
   firebase_crashlytics: ^3.0.7

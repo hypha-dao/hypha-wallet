@@ -6,7 +6,10 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hypha_wallet/core/error_handler/error_handler_manager.dart';
 import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
 import 'package:hypha_wallet/core/error_handler/model/hypha_error_type.dart';
+import 'package:hypha_wallet/core/local/models/user_auth_data.dart';
 import 'package:hypha_wallet/core/logging/log_helper.dart';
+import 'package:hypha_wallet/core/network/models/user_profile_data.dart';
+import 'package:hypha_wallet/core/network/repository/auth_repository.dart';
 import 'package:hypha_wallet/ui/architecture/interactor/page_states.dart';
 import 'package:hypha_wallet/ui/onboarding/import_account/usecases/find_account_use_case.dart';
 import 'package:hypha_wallet/ui/onboarding/import_account/usecases/generate_key_from_recovery_words_use_case.dart';
@@ -21,6 +24,7 @@ part 'page_command.dart';
 const int wordsMax = 12;
 
 class ImportAccountBloc extends Bloc<ImportAccountEvent, ImportAccountState> {
+  final AuthRepository _authRepository;
   final GenerateKeyFromRecoveryWordsUseCase _fromRecoveryWordsUseCase;
   final GenerateKeyFromSeedsPassportWordsUseCase _fromSeedsPassportWordsUseCase;
   final ValidateKeyUseCase _validateKeyUseCase;
@@ -33,6 +37,7 @@ class ImportAccountBloc extends Bloc<ImportAccountEvent, ImportAccountState> {
     this._validateKeyUseCase,
     this._errorHandlerManager,
     this._findAccountsUseCase,
+    this._authRepository,
   ) : super(ImportAccountState()) {
     on<_Initial>(_initial);
     on<_ClearPageCommand>((_, emit) => emit(state.copyWith(command: null)));
@@ -41,6 +46,7 @@ class ImportAccountBloc extends Bloc<ImportAccountEvent, ImportAccountState> {
     on<_OnUserPastedWords>(_onUserPastedWords);
     on<_OnPrivateKeyChanged>(_onPrivateKeyChanged);
     on<_FindAccountByKey>(_findAccountByKey);
+    on<_OnAccountSelected>(_onAccountSelected);
   }
 
   Future<String> _getClipboardData() async {
@@ -85,7 +91,7 @@ class ImportAccountBloc extends Bloc<ImportAccountEvent, ImportAccountState> {
     emit(state.copyWith(userEnteredWords: enteredWords));
   }
 
-  Future<FutureOr<void>> _onActionButtonTapped(_OnActionButtonTapped event, Emitter<ImportAccountState> emit) async {
+  FutureOr<void> _onActionButtonTapped(_OnActionButtonTapped event, Emitter<ImportAccountState> emit) async {
     final authData = await _fromRecoveryWordsUseCase.run(state.userEnteredWords.values.toList());
     var privateKey = authData.eOSPrivateKey.toString();
 
@@ -106,9 +112,11 @@ class ImportAccountBloc extends Bloc<ImportAccountEvent, ImportAccountState> {
     } else {
       final results = await _findAccountsUseCase.run(publicKey);
       if (results.isValue) {
-        var accounts = results.asValue!.value.accountNames;
+        var accounts = results.asValue!.value;
         if (accounts.isEmpty) {
           _errorHandlerManager.handlerError(HyphaError(message: 'No Accounts Found', type: HyphaErrorType.generic));
+        } else {
+          emit(state.copyWith(accountKey: event.privateKey));
         }
 
         emit(state.copyWith(isPartialLoading: false, accounts: accounts));
@@ -117,5 +125,14 @@ class ImportAccountBloc extends Bloc<ImportAccountEvent, ImportAccountState> {
         _errorHandlerManager.handlerError(HyphaError(message: 'Error Loading accounts', type: HyphaErrorType.generic));
       }
     }
+  }
+
+  FutureOr<void> _onAccountSelected(_OnAccountSelected event, Emitter<ImportAccountState> emit) {
+    _authRepository.login(
+        event.accountData,
+        UserAuthData.fromKeyAndWords(
+          state.accountKey!,
+          state.areAllWordsEntered ? state.userEnteredWords.values.toList() : [],
+        ));
   }
 }

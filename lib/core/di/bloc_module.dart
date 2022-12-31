@@ -5,6 +5,7 @@ void _registerBlocsModule() {
   _registerFactory(() => AuthenticationBloc(
         _getIt<AuthRepository>(),
         _getIt<HyphaSharedPrefs>(),
+        _getIt<SecureStorageService>(),
       ));
   _registerFactory(() => DeeplinkBloc());
   _registerFactory(() => ErrorHandlerBloc(_getIt<ErrorHandlerManager>()));
@@ -18,6 +19,7 @@ void _registerBlocsModule() {
         _getIt<ValidateKeyUseCase>(),
         _getIt<ErrorHandlerManager>(),
         _getIt<FindAccountsUseCase>(),
+        _getIt<AuthRepository>(),
       ));
   _registerFactory(() => BottomNavigationBloc());
   _registerFactory(() => TransactionDetailsBloc(_getIt<SignTransactionUseCase>()));
@@ -34,6 +36,7 @@ void _registerBlocsModule() {
       _getIt<CheckAccountAvailabilityUseCase>(),
       _getIt<CreateAccountUseCase>(),
       _getIt<ErrorHandlerManager>(),
+      _getIt<CryptoAuthService>(),
       image,
       userName,
     ),

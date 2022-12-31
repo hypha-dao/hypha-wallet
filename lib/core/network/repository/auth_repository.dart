@@ -1,46 +1,63 @@
 import 'dart:async';
 
 import 'package:dio/dio.dart';
+import 'package:hypha_wallet/core/local/models/user_auth_data.dart';
+import 'package:hypha_wallet/core/local/services/secure_storage_service.dart';
 import 'package:hypha_wallet/core/logging/log_helper.dart';
 import 'package:hypha_wallet/core/network/api/user_account_service.dart';
 import 'package:hypha_wallet/core/network/dio_exception.dart';
-import 'package:hypha_wallet/core/network/models/authenticated_data.dart';
+import 'package:hypha_wallet/core/network/models/user_profile_data.dart';
 import 'package:hypha_wallet/core/shared_preferences/hypha_shared_prefs.dart';
+import 'package:image_picker/image_picker.dart';
 
 enum AuthenticationStatus { unknown, authenticated, unauthenticated }
 
 class AuthRepository {
   final HyphaSharedPrefs _appSharedPrefs;
   final UserAccountService _userService;
+  final SecureStorageService _secureStorageService;
   final _controller = StreamController<AuthenticationStatus>();
 
-  AuthRepository(this._appSharedPrefs, this._userService);
+  AuthRepository(this._appSharedPrefs, this._userService, this._secureStorageService);
 
   /// This stream will represent the source of truth for the user authentication.
-  Stream<AuthenticationStatus> get status async* {
-    yield* _controller.stream;
-  }
 
-  Future<bool> createUserAccount({required String userAccount, required String token}) async {
+  Future<bool> createUserAccount({
+    required String accountName,
+    required String userName,
+    required UserAuthData userAuthData,
+    XFile? image,
+  }) async {
     try {
-      final Response response = await _userService.createUserAccount(userAccount);
+      final Response response = await _userService.createUserAccount(
+        userName: userName,
+        accountName: accountName,
+        image: image,
+      );
 
-      // TODO(gguij): Check if success
-      var ad = AuthenticatedData(account: userAccount, token: token);
-      _appSharedPrefs.setAuthenticatedData(ad);
-      _controller.add(AuthenticationStatus.authenticated);
-      return response.data as bool;
+      // TODO(gguij): Check if success, grab the user image from the service response
+      _loginUser(UserProfileData(accountName: accountName, userName: userName), userAuthData);
+      return true;
     } on DioError catch (e) {
       final errorMessage = DioExceptions.fromDioError(e).toString();
       throw errorMessage;
     }
   }
 
-  Future<AuthenticatedData> login(String account, String token) async {
-    var ad = AuthenticatedData(account: account, token: token);
-    _appSharedPrefs.setAuthenticatedData(ad);
+  Stream<AuthenticationStatus> get status async* {
+    yield* _controller.stream;
+  }
+
+  Future<UserProfileData> login(UserProfileData userProfileData, UserAuthData userAuthData) async {
+    _loginUser(userProfileData, userAuthData);
+    return userProfileData;
+  }
+
+  _loginUser(UserProfileData userProfileData, UserAuthData userAuthData) {
+    _appSharedPrefs.setUserProfileDataData(userProfileData);
+    _secureStorageService.setUserAuthData(userAuthData);
+
     _controller.add(AuthenticationStatus.authenticated);
-    return ad;
   }
 
   Future<void> signOut() async {

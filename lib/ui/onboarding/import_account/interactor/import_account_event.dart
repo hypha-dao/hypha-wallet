@@ -9,4 +9,5 @@ class ImportAccountEvent with _$ImportAccountEvent {
   const factory ImportAccountEvent.onUserPastedWords() = _OnUserPastedWords;
   const factory ImportAccountEvent.onPrivateKeyChanged(String privateKey) = _OnPrivateKeyChanged;
   const factory ImportAccountEvent.findAccountByKey(String privateKey) = _FindAccountByKey;
+  const factory ImportAccountEvent.onAccountSelected(UserProfileData accountData) = _OnAccountSelected;
 }

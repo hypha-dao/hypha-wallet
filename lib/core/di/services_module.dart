@@ -11,6 +11,10 @@ Future<void> _registerServicesModule() async {
     ),
   );
 
+  /// Secure Storage
+  _registerLazySingleton(() => FlutterSecureStorage());
+  _registerLazySingleton(() => SecureStorageService(_getIt<FlutterSecureStorage>()));
+
   /// Services
   _registerLazySingleton(() => UserAccountService(dioClient: _getIt<DioClient>()));
   _registerLazySingleton(() => CryptoAuthService());

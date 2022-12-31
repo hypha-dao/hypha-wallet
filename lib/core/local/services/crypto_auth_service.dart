@@ -1,6 +1,6 @@
 import 'package:hdkey/hdkey.dart';
 import 'package:hypha_wallet/core/crypto/eosdart_ecc/src/key.dart';
-import 'package:hypha_wallet/core/local/models/auth_data_model.dart';
+import 'package:hypha_wallet/core/local/models/user_auth_data.dart';
 import 'package:hypha_wallet/core/mnemonic_code/hex.dart';
 import 'package:hypha_wallet/core/mnemonic_code/mnemonic_code.dart';
 
@@ -8,19 +8,19 @@ const STRENGTH_FOR_TWELVE_WORDS = 16;
 
 class CryptoAuthService {
   /// Creates a random private key/12 words pair. Used for user auth.
-  AuthDataModel createRandomPrivateKeyAndWords() {
+  UserAuthData createRandomPrivateKeyAndWords() {
     final words = _createRandom12Words();
 
-    return AuthDataModel(_createPrivateKeyFrom12Words(words), words);
+    return UserAuthData(_createPrivateKeyFrom12Words(words), words);
   }
 
   /// Creates a private key/12 words pair. From words
-  AuthDataModel createPrivateKeyFromWords(List<String> words) {
-    return AuthDataModel(_createPrivateKeyFrom12Words(words), words);
+  UserAuthData createPrivateKeyFromWords(List<String> words) {
+    return UserAuthData(_createPrivateKeyFrom12Words(words), words);
   }
 
-  AuthDataModel privateKeyFromSeedsGlobalPassportWords(List<String> words) {
-    return AuthDataModel(createPrivateKeyFrom12WordsBip39(words), words);
+  UserAuthData privateKeyFromSeedsGlobalPassportWords(List<String> words) {
+    return UserAuthData(createPrivateKeyFrom12WordsBip39(words), words);
   }
 
   /// Creates a private key from 12 words list

@@ -2,8 +2,10 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:hypha_wallet/core/local/models/user_auth_data.dart';
+import 'package:hypha_wallet/core/local/services/secure_storage_service.dart';
 import 'package:hypha_wallet/core/logging/log_helper.dart';
-import 'package:hypha_wallet/core/network/models/authenticated_data.dart';
+import 'package:hypha_wallet/core/network/models/user_profile_data.dart';
 import 'package:hypha_wallet/core/network/repository/auth_repository.dart';
 import 'package:hypha_wallet/core/shared_preferences/hypha_shared_prefs.dart';
 
@@ -16,12 +18,14 @@ part 'authentication_state.dart';
 class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> {
   final AuthRepository _authRepository;
   final HyphaSharedPrefs _appSharedPrefs;
+  final SecureStorageService _secureStorageService;
   late StreamSubscription<AuthenticationStatus> _authenticationStatusSubscription;
-  late StreamSubscription<AuthenticatedData?> _authSubscription;
+  late StreamSubscription<UserProfileData?> _authSubscription;
 
   AuthenticationBloc(
     this._authRepository,
     this._appSharedPrefs,
+    this._secureStorageService,
   ) : super(const AuthenticationState.unknown()) {
     on<_InitialAuthentication>(_initial);
     on<_AuthenticationStatusChanged>(_onAuthenticationStatusChanged);
@@ -31,7 +35,7 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
       (status) => add(AuthenticationEvent.authenticationStatusChanged(status)),
     );
 
-    _authSubscription = _appSharedPrefs.watchProfile().listen((AuthenticatedData? profile) {
+    _authSubscription = _appSharedPrefs.watchProfile().listen((UserProfileData? profile) {
       if (profile != null) {
         add(AuthenticationEvent.onAuthenticatedDataChanged(profile));
       }
@@ -47,9 +51,10 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
 
   FutureOr<void> _initial(_InitialAuthentication event, Emitter<AuthenticationState> emit) async {
     try {
-      var authData = await _appSharedPrefs.getAuthenticatedData();
-      if (authData != null) {
-        emit(AuthenticationState.authenticated(AuthenticationStatus.authenticated, authData));
+      var userProfileData = await _appSharedPrefs.getUserProfileData();
+      var authData = await _secureStorageService.getUserAuthData();
+      if (userProfileData != null && authData != null) {
+        emit(AuthenticationState.authenticated(AuthenticationStatus.authenticated, userProfileData, authData));
       } else {
         emit(const AuthenticationState.unAuthenticated());
       }
@@ -67,9 +72,10 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
       case AuthenticationStatus.unauthenticated:
         return emit(const AuthenticationState.unAuthenticated());
       case AuthenticationStatus.authenticated:
-        var authData = await _appSharedPrefs.getAuthenticatedData();
-        if (authData != null) {
-          return emit(AuthenticationState.authenticated(event.status, authData));
+        var profileData = await _appSharedPrefs.getUserProfileData();
+        var authData = await _secureStorageService.getUserAuthData();
+        if (profileData != null && authData != null) {
+          return emit(AuthenticationState.authenticated(event.status, profileData, authData));
         } else {
           return emit(const AuthenticationState.unAuthenticated());
         }

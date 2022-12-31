@@ -22,8 +22,7 @@ mixin _$AuthenticationEvent {
     required TResult Function(AuthenticationStatus status)
         authenticationStatusChanged,
     required TResult Function() authenticationLogoutRequested,
-    required TResult Function(AuthenticatedData data)
-        onAuthenticatedDataChanged,
+    required TResult Function(UserProfileData data) onAuthenticatedDataChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -31,7 +30,7 @@ mixin _$AuthenticationEvent {
     TResult? Function()? initial,
     TResult? Function(AuthenticationStatus status)? authenticationStatusChanged,
     TResult? Function()? authenticationLogoutRequested,
-    TResult? Function(AuthenticatedData data)? onAuthenticatedDataChanged,
+    TResult? Function(UserProfileData data)? onAuthenticatedDataChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -39,7 +38,7 @@ mixin _$AuthenticationEvent {
     TResult Function()? initial,
     TResult Function(AuthenticationStatus status)? authenticationStatusChanged,
     TResult Function()? authenticationLogoutRequested,
-    TResult Function(AuthenticatedData data)? onAuthenticatedDataChanged,
+    TResult Function(UserProfileData data)? onAuthenticatedDataChanged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -139,8 +138,7 @@ class _$_InitialAuthentication implements _InitialAuthentication {
     required TResult Function(AuthenticationStatus status)
         authenticationStatusChanged,
     required TResult Function() authenticationLogoutRequested,
-    required TResult Function(AuthenticatedData data)
-        onAuthenticatedDataChanged,
+    required TResult Function(UserProfileData data) onAuthenticatedDataChanged,
   }) {
     return initial();
   }
@@ -151,7 +149,7 @@ class _$_InitialAuthentication implements _InitialAuthentication {
     TResult? Function()? initial,
     TResult? Function(AuthenticationStatus status)? authenticationStatusChanged,
     TResult? Function()? authenticationLogoutRequested,
-    TResult? Function(AuthenticatedData data)? onAuthenticatedDataChanged,
+    TResult? Function(UserProfileData data)? onAuthenticatedDataChanged,
   }) {
     return initial?.call();
   }
@@ -162,7 +160,7 @@ class _$_InitialAuthentication implements _InitialAuthentication {
     TResult Function()? initial,
     TResult Function(AuthenticationStatus status)? authenticationStatusChanged,
     TResult Function()? authenticationLogoutRequested,
-    TResult Function(AuthenticatedData data)? onAuthenticatedDataChanged,
+    TResult Function(UserProfileData data)? onAuthenticatedDataChanged,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -294,8 +292,7 @@ class _$_AuthenticationStatusChanged implements _AuthenticationStatusChanged {
     required TResult Function(AuthenticationStatus status)
         authenticationStatusChanged,
     required TResult Function() authenticationLogoutRequested,
-    required TResult Function(AuthenticatedData data)
-        onAuthenticatedDataChanged,
+    required TResult Function(UserProfileData data) onAuthenticatedDataChanged,
   }) {
     return authenticationStatusChanged(status);
   }
@@ -306,7 +303,7 @@ class _$_AuthenticationStatusChanged implements _AuthenticationStatusChanged {
     TResult? Function()? initial,
     TResult? Function(AuthenticationStatus status)? authenticationStatusChanged,
     TResult? Function()? authenticationLogoutRequested,
-    TResult? Function(AuthenticatedData data)? onAuthenticatedDataChanged,
+    TResult? Function(UserProfileData data)? onAuthenticatedDataChanged,
   }) {
     return authenticationStatusChanged?.call(status);
   }
@@ -317,7 +314,7 @@ class _$_AuthenticationStatusChanged implements _AuthenticationStatusChanged {
     TResult Function()? initial,
     TResult Function(AuthenticationStatus status)? authenticationStatusChanged,
     TResult Function()? authenticationLogoutRequested,
-    TResult Function(AuthenticatedData data)? onAuthenticatedDataChanged,
+    TResult Function(UserProfileData data)? onAuthenticatedDataChanged,
     required TResult orElse(),
   }) {
     if (authenticationStatusChanged != null) {
@@ -430,8 +427,7 @@ class _$_AuthenticationLogoutRequested
     required TResult Function(AuthenticationStatus status)
         authenticationStatusChanged,
     required TResult Function() authenticationLogoutRequested,
-    required TResult Function(AuthenticatedData data)
-        onAuthenticatedDataChanged,
+    required TResult Function(UserProfileData data) onAuthenticatedDataChanged,
   }) {
     return authenticationLogoutRequested();
   }
@@ -442,7 +438,7 @@ class _$_AuthenticationLogoutRequested
     TResult? Function()? initial,
     TResult? Function(AuthenticationStatus status)? authenticationStatusChanged,
     TResult? Function()? authenticationLogoutRequested,
-    TResult? Function(AuthenticatedData data)? onAuthenticatedDataChanged,
+    TResult? Function(UserProfileData data)? onAuthenticatedDataChanged,
   }) {
     return authenticationLogoutRequested?.call();
   }
@@ -453,7 +449,7 @@ class _$_AuthenticationLogoutRequested
     TResult Function()? initial,
     TResult Function(AuthenticationStatus status)? authenticationStatusChanged,
     TResult Function()? authenticationLogoutRequested,
-    TResult Function(AuthenticatedData data)? onAuthenticatedDataChanged,
+    TResult Function(UserProfileData data)? onAuthenticatedDataChanged,
     required TResult orElse(),
   }) {
     if (authenticationLogoutRequested != null) {
@@ -521,9 +517,9 @@ abstract class _$$_OnAuthenticatedDataChangedCopyWith<$Res> {
           $Res Function(_$_OnAuthenticatedDataChanged) then) =
       __$$_OnAuthenticatedDataChangedCopyWithImpl<$Res>;
   @useResult
-  $Res call({AuthenticatedData data});
+  $Res call({UserProfileData data});
 
-  $AuthenticatedDataCopyWith<$Res> get data;
+  $UserProfileDataCopyWith<$Res> get data;
 }
 
 /// @nodoc
@@ -545,14 +541,14 @@ class __$$_OnAuthenticatedDataChangedCopyWithImpl<$Res>
       null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as AuthenticatedData,
+              as UserProfileData,
     ));
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $AuthenticatedDataCopyWith<$Res> get data {
-    return $AuthenticatedDataCopyWith<$Res>(_value.data, (value) {
+  $UserProfileDataCopyWith<$Res> get data {
+    return $UserProfileDataCopyWith<$Res>(_value.data, (value) {
       return _then(_value.copyWith(data: value));
     });
   }
@@ -564,7 +560,7 @@ class _$_OnAuthenticatedDataChanged implements _OnAuthenticatedDataChanged {
   const _$_OnAuthenticatedDataChanged(this.data);
 
   @override
-  final AuthenticatedData data;
+  final UserProfileData data;
 
   @override
   String toString() {
@@ -596,8 +592,7 @@ class _$_OnAuthenticatedDataChanged implements _OnAuthenticatedDataChanged {
     required TResult Function(AuthenticationStatus status)
         authenticationStatusChanged,
     required TResult Function() authenticationLogoutRequested,
-    required TResult Function(AuthenticatedData data)
-        onAuthenticatedDataChanged,
+    required TResult Function(UserProfileData data) onAuthenticatedDataChanged,
   }) {
     return onAuthenticatedDataChanged(data);
   }
@@ -608,7 +603,7 @@ class _$_OnAuthenticatedDataChanged implements _OnAuthenticatedDataChanged {
     TResult? Function()? initial,
     TResult? Function(AuthenticationStatus status)? authenticationStatusChanged,
     TResult? Function()? authenticationLogoutRequested,
-    TResult? Function(AuthenticatedData data)? onAuthenticatedDataChanged,
+    TResult? Function(UserProfileData data)? onAuthenticatedDataChanged,
   }) {
     return onAuthenticatedDataChanged?.call(data);
   }
@@ -619,7 +614,7 @@ class _$_OnAuthenticatedDataChanged implements _OnAuthenticatedDataChanged {
     TResult Function()? initial,
     TResult Function(AuthenticationStatus status)? authenticationStatusChanged,
     TResult Function()? authenticationLogoutRequested,
-    TResult Function(AuthenticatedData data)? onAuthenticatedDataChanged,
+    TResult Function(UserProfileData data)? onAuthenticatedDataChanged,
     required TResult orElse(),
   }) {
     if (onAuthenticatedDataChanged != null) {
@@ -676,10 +671,10 @@ class _$_OnAuthenticatedDataChanged implements _OnAuthenticatedDataChanged {
 }
 
 abstract class _OnAuthenticatedDataChanged implements AuthenticationEvent {
-  const factory _OnAuthenticatedDataChanged(final AuthenticatedData data) =
+  const factory _OnAuthenticatedDataChanged(final UserProfileData data) =
       _$_OnAuthenticatedDataChanged;
 
-  AuthenticatedData get data;
+  UserProfileData get data;
   @JsonKey(ignore: true)
   _$$_OnAuthenticatedDataChangedCopyWith<_$_OnAuthenticatedDataChanged>
       get copyWith => throw _privateConstructorUsedError;
@@ -689,35 +684,45 @@ abstract class _OnAuthenticatedDataChanged implements AuthenticationEvent {
 mixin _$AuthenticationState {
   AuthenticationStatus get authenticationStatus =>
       throw _privateConstructorUsedError;
+  UserProfileData? get authenticatedData => throw _privateConstructorUsedError;
+  UserAuthData? get userAuthData => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(AuthenticationStatus authenticationStatus,
-            AuthenticatedData authenticatedData)
+            UserProfileData authenticatedData, UserAuthData userAuthData)
         authenticated,
-    required TResult Function(AuthenticationStatus authenticationStatus)
+    required TResult Function(AuthenticationStatus authenticationStatus,
+            UserProfileData? authenticatedData, UserAuthData? userAuthData)
         unAuthenticated,
-    required TResult Function(AuthenticationStatus authenticationStatus)
+    required TResult Function(AuthenticationStatus authenticationStatus,
+            UserProfileData? authenticatedData, UserAuthData? userAuthData)
         unknown,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(AuthenticationStatus authenticationStatus,
-            AuthenticatedData authenticatedData)?
+            UserProfileData authenticatedData, UserAuthData userAuthData)?
         authenticated,
-    TResult? Function(AuthenticationStatus authenticationStatus)?
+    TResult? Function(AuthenticationStatus authenticationStatus,
+            UserProfileData? authenticatedData, UserAuthData? userAuthData)?
         unAuthenticated,
-    TResult? Function(AuthenticationStatus authenticationStatus)? unknown,
+    TResult? Function(AuthenticationStatus authenticationStatus,
+            UserProfileData? authenticatedData, UserAuthData? userAuthData)?
+        unknown,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(AuthenticationStatus authenticationStatus,
-            AuthenticatedData authenticatedData)?
+            UserProfileData authenticatedData, UserAuthData userAuthData)?
         authenticated,
-    TResult Function(AuthenticationStatus authenticationStatus)?
+    TResult Function(AuthenticationStatus authenticationStatus,
+            UserProfileData? authenticatedData, UserAuthData? userAuthData)?
         unAuthenticated,
-    TResult Function(AuthenticationStatus authenticationStatus)? unknown,
+    TResult Function(AuthenticationStatus authenticationStatus,
+            UserProfileData? authenticatedData, UserAuthData? userAuthData)?
+        unknown,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -755,7 +760,12 @@ abstract class $AuthenticationStateCopyWith<$Res> {
           AuthenticationState value, $Res Function(AuthenticationState) then) =
       _$AuthenticationStateCopyWithImpl<$Res, AuthenticationState>;
   @useResult
-  $Res call({AuthenticationStatus authenticationStatus});
+  $Res call(
+      {AuthenticationStatus authenticationStatus,
+      UserProfileData authenticatedData,
+      UserAuthData userAuthData});
+
+  $UserProfileDataCopyWith<$Res>? get authenticatedData;
 }
 
 /// @nodoc
@@ -772,13 +782,35 @@ class _$AuthenticationStateCopyWithImpl<$Res, $Val extends AuthenticationState>
   @override
   $Res call({
     Object? authenticationStatus = null,
+    Object? authenticatedData = null,
+    Object? userAuthData = null,
   }) {
     return _then(_value.copyWith(
       authenticationStatus: null == authenticationStatus
           ? _value.authenticationStatus
           : authenticationStatus // ignore: cast_nullable_to_non_nullable
               as AuthenticationStatus,
+      authenticatedData: null == authenticatedData
+          ? _value.authenticatedData!
+          : authenticatedData // ignore: cast_nullable_to_non_nullable
+              as UserProfileData,
+      userAuthData: null == userAuthData
+          ? _value.userAuthData!
+          : userAuthData // ignore: cast_nullable_to_non_nullable
+              as UserAuthData,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $UserProfileDataCopyWith<$Res>? get authenticatedData {
+    if (_value.authenticatedData == null) {
+      return null;
+    }
+
+    return $UserProfileDataCopyWith<$Res>(_value.authenticatedData!, (value) {
+      return _then(_value.copyWith(authenticatedData: value) as $Val);
+    });
   }
 }
 
@@ -792,9 +824,11 @@ abstract class _$$_AuthenticatedCopyWith<$Res>
   @useResult
   $Res call(
       {AuthenticationStatus authenticationStatus,
-      AuthenticatedData authenticatedData});
+      UserProfileData authenticatedData,
+      UserAuthData userAuthData});
 
-  $AuthenticatedDataCopyWith<$Res> get authenticatedData;
+  @override
+  $UserProfileDataCopyWith<$Res> get authenticatedData;
 }
 
 /// @nodoc
@@ -810,6 +844,7 @@ class __$$_AuthenticatedCopyWithImpl<$Res>
   $Res call({
     Object? authenticationStatus = null,
     Object? authenticatedData = null,
+    Object? userAuthData = null,
   }) {
     return _then(_$_Authenticated(
       null == authenticationStatus
@@ -819,14 +854,18 @@ class __$$_AuthenticatedCopyWithImpl<$Res>
       null == authenticatedData
           ? _value.authenticatedData
           : authenticatedData // ignore: cast_nullable_to_non_nullable
-              as AuthenticatedData,
+              as UserProfileData,
+      null == userAuthData
+          ? _value.userAuthData
+          : userAuthData // ignore: cast_nullable_to_non_nullable
+              as UserAuthData,
     ));
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $AuthenticatedDataCopyWith<$Res> get authenticatedData {
-    return $AuthenticatedDataCopyWith<$Res>(_value.authenticatedData, (value) {
+  $UserProfileDataCopyWith<$Res> get authenticatedData {
+    return $UserProfileDataCopyWith<$Res>(_value.authenticatedData, (value) {
       return _then(_value.copyWith(authenticatedData: value));
     });
   }
@@ -835,16 +874,19 @@ class __$$_AuthenticatedCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Authenticated implements _Authenticated {
-  const _$_Authenticated(this.authenticationStatus, this.authenticatedData);
+  const _$_Authenticated(
+      this.authenticationStatus, this.authenticatedData, this.userAuthData);
 
   @override
   final AuthenticationStatus authenticationStatus;
   @override
-  final AuthenticatedData authenticatedData;
+  final UserProfileData authenticatedData;
+  @override
+  final UserAuthData userAuthData;
 
   @override
   String toString() {
-    return 'AuthenticationState.authenticated(authenticationStatus: $authenticationStatus, authenticatedData: $authenticatedData)';
+    return 'AuthenticationState.authenticated(authenticationStatus: $authenticationStatus, authenticatedData: $authenticatedData, userAuthData: $userAuthData)';
   }
 
   @override
@@ -855,12 +897,14 @@ class _$_Authenticated implements _Authenticated {
             (identical(other.authenticationStatus, authenticationStatus) ||
                 other.authenticationStatus == authenticationStatus) &&
             (identical(other.authenticatedData, authenticatedData) ||
-                other.authenticatedData == authenticatedData));
+                other.authenticatedData == authenticatedData) &&
+            (identical(other.userAuthData, userAuthData) ||
+                other.userAuthData == userAuthData));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, authenticationStatus, authenticatedData);
+  int get hashCode => Object.hash(
+      runtimeType, authenticationStatus, authenticatedData, userAuthData);
 
   @JsonKey(ignore: true)
   @override
@@ -872,42 +916,52 @@ class _$_Authenticated implements _Authenticated {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(AuthenticationStatus authenticationStatus,
-            AuthenticatedData authenticatedData)
+            UserProfileData authenticatedData, UserAuthData userAuthData)
         authenticated,
-    required TResult Function(AuthenticationStatus authenticationStatus)
+    required TResult Function(AuthenticationStatus authenticationStatus,
+            UserProfileData? authenticatedData, UserAuthData? userAuthData)
         unAuthenticated,
-    required TResult Function(AuthenticationStatus authenticationStatus)
+    required TResult Function(AuthenticationStatus authenticationStatus,
+            UserProfileData? authenticatedData, UserAuthData? userAuthData)
         unknown,
   }) {
-    return authenticated(authenticationStatus, authenticatedData);
+    return authenticated(authenticationStatus, authenticatedData, userAuthData);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(AuthenticationStatus authenticationStatus,
-            AuthenticatedData authenticatedData)?
+            UserProfileData authenticatedData, UserAuthData userAuthData)?
         authenticated,
-    TResult? Function(AuthenticationStatus authenticationStatus)?
+    TResult? Function(AuthenticationStatus authenticationStatus,
+            UserProfileData? authenticatedData, UserAuthData? userAuthData)?
         unAuthenticated,
-    TResult? Function(AuthenticationStatus authenticationStatus)? unknown,
+    TResult? Function(AuthenticationStatus authenticationStatus,
+            UserProfileData? authenticatedData, UserAuthData? userAuthData)?
+        unknown,
   }) {
-    return authenticated?.call(authenticationStatus, authenticatedData);
+    return authenticated?.call(
+        authenticationStatus, authenticatedData, userAuthData);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(AuthenticationStatus authenticationStatus,
-            AuthenticatedData authenticatedData)?
+            UserProfileData authenticatedData, UserAuthData userAuthData)?
         authenticated,
-    TResult Function(AuthenticationStatus authenticationStatus)?
+    TResult Function(AuthenticationStatus authenticationStatus,
+            UserProfileData? authenticatedData, UserAuthData? userAuthData)?
         unAuthenticated,
-    TResult Function(AuthenticationStatus authenticationStatus)? unknown,
+    TResult Function(AuthenticationStatus authenticationStatus,
+            UserProfileData? authenticatedData, UserAuthData? userAuthData)?
+        unknown,
     required TResult orElse(),
   }) {
     if (authenticated != null) {
-      return authenticated(authenticationStatus, authenticatedData);
+      return authenticated(
+          authenticationStatus, authenticatedData, userAuthData);
     }
     return orElse();
   }
@@ -948,12 +1002,17 @@ class _$_Authenticated implements _Authenticated {
 }
 
 abstract class _Authenticated implements AuthenticationState {
-  const factory _Authenticated(final AuthenticationStatus authenticationStatus,
-      final AuthenticatedData authenticatedData) = _$_Authenticated;
+  const factory _Authenticated(
+      final AuthenticationStatus authenticationStatus,
+      final UserProfileData authenticatedData,
+      final UserAuthData userAuthData) = _$_Authenticated;
 
   @override
   AuthenticationStatus get authenticationStatus;
-  AuthenticatedData get authenticatedData;
+  @override
+  UserProfileData get authenticatedData;
+  @override
+  UserAuthData get userAuthData;
   @override
   @JsonKey(ignore: true)
   _$$_AuthenticatedCopyWith<_$_Authenticated> get copyWith =>
@@ -968,7 +1027,13 @@ abstract class _$$_UnAuthenticatedCopyWith<$Res>
       __$$_UnAuthenticatedCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({AuthenticationStatus authenticationStatus});
+  $Res call(
+      {AuthenticationStatus authenticationStatus,
+      UserProfileData? authenticatedData,
+      UserAuthData? userAuthData});
+
+  @override
+  $UserProfileDataCopyWith<$Res>? get authenticatedData;
 }
 
 /// @nodoc
@@ -983,12 +1048,22 @@ class __$$_UnAuthenticatedCopyWithImpl<$Res>
   @override
   $Res call({
     Object? authenticationStatus = null,
+    Object? authenticatedData = freezed,
+    Object? userAuthData = freezed,
   }) {
     return _then(_$_UnAuthenticated(
       authenticationStatus: null == authenticationStatus
           ? _value.authenticationStatus
           : authenticationStatus // ignore: cast_nullable_to_non_nullable
               as AuthenticationStatus,
+      authenticatedData: freezed == authenticatedData
+          ? _value.authenticatedData
+          : authenticatedData // ignore: cast_nullable_to_non_nullable
+              as UserProfileData?,
+      userAuthData: freezed == userAuthData
+          ? _value.userAuthData
+          : userAuthData // ignore: cast_nullable_to_non_nullable
+              as UserAuthData?,
     ));
   }
 }
@@ -997,15 +1072,21 @@ class __$$_UnAuthenticatedCopyWithImpl<$Res>
 
 class _$_UnAuthenticated implements _UnAuthenticated {
   const _$_UnAuthenticated(
-      {this.authenticationStatus = AuthenticationStatus.unauthenticated});
+      {this.authenticationStatus = AuthenticationStatus.unauthenticated,
+      this.authenticatedData,
+      this.userAuthData});
 
   @override
   @JsonKey()
   final AuthenticationStatus authenticationStatus;
+  @override
+  final UserProfileData? authenticatedData;
+  @override
+  final UserAuthData? userAuthData;
 
   @override
   String toString() {
-    return 'AuthenticationState.unAuthenticated(authenticationStatus: $authenticationStatus)';
+    return 'AuthenticationState.unAuthenticated(authenticationStatus: $authenticationStatus, authenticatedData: $authenticatedData, userAuthData: $userAuthData)';
   }
 
   @override
@@ -1014,11 +1095,16 @@ class _$_UnAuthenticated implements _UnAuthenticated {
         (other.runtimeType == runtimeType &&
             other is _$_UnAuthenticated &&
             (identical(other.authenticationStatus, authenticationStatus) ||
-                other.authenticationStatus == authenticationStatus));
+                other.authenticationStatus == authenticationStatus) &&
+            (identical(other.authenticatedData, authenticatedData) ||
+                other.authenticatedData == authenticatedData) &&
+            (identical(other.userAuthData, userAuthData) ||
+                other.userAuthData == userAuthData));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, authenticationStatus);
+  int get hashCode => Object.hash(
+      runtimeType, authenticationStatus, authenticatedData, userAuthData);
 
   @JsonKey(ignore: true)
   @override
@@ -1030,42 +1116,53 @@ class _$_UnAuthenticated implements _UnAuthenticated {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(AuthenticationStatus authenticationStatus,
-            AuthenticatedData authenticatedData)
+            UserProfileData authenticatedData, UserAuthData userAuthData)
         authenticated,
-    required TResult Function(AuthenticationStatus authenticationStatus)
+    required TResult Function(AuthenticationStatus authenticationStatus,
+            UserProfileData? authenticatedData, UserAuthData? userAuthData)
         unAuthenticated,
-    required TResult Function(AuthenticationStatus authenticationStatus)
+    required TResult Function(AuthenticationStatus authenticationStatus,
+            UserProfileData? authenticatedData, UserAuthData? userAuthData)
         unknown,
   }) {
-    return unAuthenticated(authenticationStatus);
+    return unAuthenticated(
+        authenticationStatus, authenticatedData, userAuthData);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(AuthenticationStatus authenticationStatus,
-            AuthenticatedData authenticatedData)?
+            UserProfileData authenticatedData, UserAuthData userAuthData)?
         authenticated,
-    TResult? Function(AuthenticationStatus authenticationStatus)?
+    TResult? Function(AuthenticationStatus authenticationStatus,
+            UserProfileData? authenticatedData, UserAuthData? userAuthData)?
         unAuthenticated,
-    TResult? Function(AuthenticationStatus authenticationStatus)? unknown,
+    TResult? Function(AuthenticationStatus authenticationStatus,
+            UserProfileData? authenticatedData, UserAuthData? userAuthData)?
+        unknown,
   }) {
-    return unAuthenticated?.call(authenticationStatus);
+    return unAuthenticated?.call(
+        authenticationStatus, authenticatedData, userAuthData);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(AuthenticationStatus authenticationStatus,
-            AuthenticatedData authenticatedData)?
+            UserProfileData authenticatedData, UserAuthData userAuthData)?
         authenticated,
-    TResult Function(AuthenticationStatus authenticationStatus)?
+    TResult Function(AuthenticationStatus authenticationStatus,
+            UserProfileData? authenticatedData, UserAuthData? userAuthData)?
         unAuthenticated,
-    TResult Function(AuthenticationStatus authenticationStatus)? unknown,
+    TResult Function(AuthenticationStatus authenticationStatus,
+            UserProfileData? authenticatedData, UserAuthData? userAuthData)?
+        unknown,
     required TResult orElse(),
   }) {
     if (unAuthenticated != null) {
-      return unAuthenticated(authenticationStatus);
+      return unAuthenticated(
+          authenticationStatus, authenticatedData, userAuthData);
     }
     return orElse();
   }
@@ -1107,10 +1204,16 @@ class _$_UnAuthenticated implements _UnAuthenticated {
 
 abstract class _UnAuthenticated implements AuthenticationState {
   const factory _UnAuthenticated(
-      {final AuthenticationStatus authenticationStatus}) = _$_UnAuthenticated;
+      {final AuthenticationStatus authenticationStatus,
+      final UserProfileData? authenticatedData,
+      final UserAuthData? userAuthData}) = _$_UnAuthenticated;
 
   @override
   AuthenticationStatus get authenticationStatus;
+  @override
+  UserProfileData? get authenticatedData;
+  @override
+  UserAuthData? get userAuthData;
   @override
   @JsonKey(ignore: true)
   _$$_UnAuthenticatedCopyWith<_$_UnAuthenticated> get copyWith =>
@@ -1125,7 +1228,13 @@ abstract class _$$_UnknownCopyWith<$Res>
       __$$_UnknownCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({AuthenticationStatus authenticationStatus});
+  $Res call(
+      {AuthenticationStatus authenticationStatus,
+      UserProfileData? authenticatedData,
+      UserAuthData? userAuthData});
+
+  @override
+  $UserProfileDataCopyWith<$Res>? get authenticatedData;
 }
 
 /// @nodoc
@@ -1139,12 +1248,22 @@ class __$$_UnknownCopyWithImpl<$Res>
   @override
   $Res call({
     Object? authenticationStatus = null,
+    Object? authenticatedData = freezed,
+    Object? userAuthData = freezed,
   }) {
     return _then(_$_Unknown(
       authenticationStatus: null == authenticationStatus
           ? _value.authenticationStatus
           : authenticationStatus // ignore: cast_nullable_to_non_nullable
               as AuthenticationStatus,
+      authenticatedData: freezed == authenticatedData
+          ? _value.authenticatedData
+          : authenticatedData // ignore: cast_nullable_to_non_nullable
+              as UserProfileData?,
+      userAuthData: freezed == userAuthData
+          ? _value.userAuthData
+          : userAuthData // ignore: cast_nullable_to_non_nullable
+              as UserAuthData?,
     ));
   }
 }
@@ -1152,15 +1271,22 @@ class __$$_UnknownCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Unknown implements _Unknown {
-  const _$_Unknown({this.authenticationStatus = AuthenticationStatus.unknown});
+  const _$_Unknown(
+      {this.authenticationStatus = AuthenticationStatus.unknown,
+      this.authenticatedData,
+      this.userAuthData});
 
   @override
   @JsonKey()
   final AuthenticationStatus authenticationStatus;
+  @override
+  final UserProfileData? authenticatedData;
+  @override
+  final UserAuthData? userAuthData;
 
   @override
   String toString() {
-    return 'AuthenticationState.unknown(authenticationStatus: $authenticationStatus)';
+    return 'AuthenticationState.unknown(authenticationStatus: $authenticationStatus, authenticatedData: $authenticatedData, userAuthData: $userAuthData)';
   }
 
   @override
@@ -1169,11 +1295,16 @@ class _$_Unknown implements _Unknown {
         (other.runtimeType == runtimeType &&
             other is _$_Unknown &&
             (identical(other.authenticationStatus, authenticationStatus) ||
-                other.authenticationStatus == authenticationStatus));
+                other.authenticationStatus == authenticationStatus) &&
+            (identical(other.authenticatedData, authenticatedData) ||
+                other.authenticatedData == authenticatedData) &&
+            (identical(other.userAuthData, userAuthData) ||
+                other.userAuthData == userAuthData));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, authenticationStatus);
+  int get hashCode => Object.hash(
+      runtimeType, authenticationStatus, authenticatedData, userAuthData);
 
   @JsonKey(ignore: true)
   @override
@@ -1185,42 +1316,50 @@ class _$_Unknown implements _Unknown {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(AuthenticationStatus authenticationStatus,
-            AuthenticatedData authenticatedData)
+            UserProfileData authenticatedData, UserAuthData userAuthData)
         authenticated,
-    required TResult Function(AuthenticationStatus authenticationStatus)
+    required TResult Function(AuthenticationStatus authenticationStatus,
+            UserProfileData? authenticatedData, UserAuthData? userAuthData)
         unAuthenticated,
-    required TResult Function(AuthenticationStatus authenticationStatus)
+    required TResult Function(AuthenticationStatus authenticationStatus,
+            UserProfileData? authenticatedData, UserAuthData? userAuthData)
         unknown,
   }) {
-    return unknown(authenticationStatus);
+    return unknown(authenticationStatus, authenticatedData, userAuthData);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(AuthenticationStatus authenticationStatus,
-            AuthenticatedData authenticatedData)?
+            UserProfileData authenticatedData, UserAuthData userAuthData)?
         authenticated,
-    TResult? Function(AuthenticationStatus authenticationStatus)?
+    TResult? Function(AuthenticationStatus authenticationStatus,
+            UserProfileData? authenticatedData, UserAuthData? userAuthData)?
         unAuthenticated,
-    TResult? Function(AuthenticationStatus authenticationStatus)? unknown,
+    TResult? Function(AuthenticationStatus authenticationStatus,
+            UserProfileData? authenticatedData, UserAuthData? userAuthData)?
+        unknown,
   }) {
-    return unknown?.call(authenticationStatus);
+    return unknown?.call(authenticationStatus, authenticatedData, userAuthData);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(AuthenticationStatus authenticationStatus,
-            AuthenticatedData authenticatedData)?
+            UserProfileData authenticatedData, UserAuthData userAuthData)?
         authenticated,
-    TResult Function(AuthenticationStatus authenticationStatus)?
+    TResult Function(AuthenticationStatus authenticationStatus,
+            UserProfileData? authenticatedData, UserAuthData? userAuthData)?
         unAuthenticated,
-    TResult Function(AuthenticationStatus authenticationStatus)? unknown,
+    TResult Function(AuthenticationStatus authenticationStatus,
+            UserProfileData? authenticatedData, UserAuthData? userAuthData)?
+        unknown,
     required TResult orElse(),
   }) {
     if (unknown != null) {
-      return unknown(authenticationStatus);
+      return unknown(authenticationStatus, authenticatedData, userAuthData);
     }
     return orElse();
   }
@@ -1261,11 +1400,17 @@ class _$_Unknown implements _Unknown {
 }
 
 abstract class _Unknown implements AuthenticationState {
-  const factory _Unknown({final AuthenticationStatus authenticationStatus}) =
-      _$_Unknown;
+  const factory _Unknown(
+      {final AuthenticationStatus authenticationStatus,
+      final UserProfileData? authenticatedData,
+      final UserAuthData? userAuthData}) = _$_Unknown;
 
   @override
   AuthenticationStatus get authenticationStatus;
+  @override
+  UserProfileData? get authenticatedData;
+  @override
+  UserAuthData? get userAuthData;
   @override
   @JsonKey(ignore: true)
   _$$_UnknownCopyWith<_$_Unknown> get copyWith =>

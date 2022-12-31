@@ -7,6 +7,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hypha_wallet/core/error_handler/error_handler_manager.dart';
 import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
 import 'package:hypha_wallet/core/extension/collection_extension.dart';
+import 'package:hypha_wallet/core/local/models/user_auth_data.dart';
+import 'package:hypha_wallet/core/local/services/crypto_auth_service.dart';
 import 'package:hypha_wallet/core/logging/log_helper.dart';
 import 'package:hypha_wallet/ui/architecture/interactor/page_states.dart';
 import 'package:hypha_wallet/ui/architecture/result/result.dart' as Hypha;
@@ -23,6 +25,7 @@ part 'page_command.dart';
 
 class EditAccountBloc extends Bloc<EditAccountEvent, EditAccountState> {
   final CheckAccountAvailabilityUseCase _checkAccountAvailabilityUseCase;
+  final CryptoAuthService _cryptoAuthService;
   final CreateAccountUseCase _createAccountUseCase;
   final ErrorHandlerManager _errorHandlerManager;
   late CancelableOperation<Hypha.Result<bool, HyphaError>>? searchUserCancellable = null;
@@ -31,6 +34,7 @@ class EditAccountBloc extends Bloc<EditAccountEvent, EditAccountState> {
     this._checkAccountAvailabilityUseCase,
     this._createAccountUseCase,
     this._errorHandlerManager,
+    this._cryptoAuthService,
     XFile? image,
     String userName,
   ) : super(EditAccountState(userName: userName, image: image)) {
@@ -125,11 +129,14 @@ class EditAccountBloc extends Bloc<EditAccountEvent, EditAccountState> {
   }
 
   FutureOr<void> _onNextPressed(_OnNextPressed event, Emitter<EditAccountState> emit) async {
+    UserAuthData auth = _cryptoAuthService.createRandomPrivateKeyAndWords();
+
     /// Make call to create Account
     emit(state.copyWith(isNextButtonLoading: true));
     Hypha.Result<bool, HyphaError> result = await _createAccountUseCase.run(Input(
-      userAccount: state.userAccount!,
-      token: 'Mock Token',
+      userAuthData: auth,
+      accountName: state.userAccount!,
+      userName: state.userName,
     ));
 
     if (result.isValue) {

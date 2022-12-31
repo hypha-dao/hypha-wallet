@@ -4,7 +4,8 @@ import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:share_plus/share_plus.dart';
 
 class SaveKeyPage extends StatelessWidget {
-  const SaveKeyPage({super.key});
+  final String privateKey;
+  const SaveKeyPage(this.privateKey, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,6 @@ class SaveKeyPage extends StatelessWidget {
           SizedBox(height: 16),
           Text('Write down your private key in a safe and secure place.'),
           SizedBox(height: 16),
-          // TODO(gguij): add key
           Container(
             margin: EdgeInsets.all(16),
             decoration: BoxDecoration(borderRadius: BorderRadius.circular(16), color: HyphaColors.white),
@@ -29,7 +29,7 @@ class SaveKeyPage extends StatelessWidget {
               onTap: () async {
                 await Share.share('words');
               },
-              title: Text('THisIsTheKey', style: TextStyle(color: HyphaColors.black)),
+              title: Text(privateKey, style: TextStyle(color: HyphaColors.black)),
               trailing: Icon(Icons.share, color: HyphaColors.black),
             ),
           ),

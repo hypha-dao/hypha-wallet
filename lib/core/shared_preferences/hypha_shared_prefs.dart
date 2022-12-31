@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:hypha_wallet/core/network/models/authenticated_data.dart';
+import 'package:hypha_wallet/core/network/models/user_profile_data.dart';
 import 'package:rx_shared_preferences/rx_shared_preferences.dart';
 
 enum LocalStorageValue {
@@ -35,19 +35,19 @@ class HyphaSharedPrefs {
 
 extension SharedPrefsExtensions on HyphaSharedPrefs {
   /// Auth Data
-  Future<void> setAuthenticatedData(AuthenticatedData data) =>
+  Future<void> setUserProfileDataData(UserProfileData data) =>
       _prefs.setString(LocalStorageValue.authenticatedData.key, jsonEncode(data));
 
-  Future<AuthenticatedData?> getAuthenticatedData() async {
+  Future<UserProfileData?> getUserProfileData() async {
     final String? profile = await _prefs.getString(LocalStorageValue.authenticatedData.key);
-    return profile == null ? null : AuthenticatedData.fromJson(jsonDecode(profile));
+    return profile == null ? null : UserProfileData.fromJson(jsonDecode(profile));
   }
 
   /// Watch profile user
-  Stream<AuthenticatedData?> watchProfile() {
+  Stream<UserProfileData?> watchProfile() {
     return _prefs
         .getStringStream(LocalStorageValue.authenticatedData.key)
-        .map((data) => data == null ? null : AuthenticatedData.fromJson(jsonDecode(data)));
+        .map((data) => data == null ? null : UserProfileData.fromJson(jsonDecode(data)));
   }
 
   /// Themes

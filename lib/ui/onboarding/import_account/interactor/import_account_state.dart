@@ -8,8 +8,9 @@ class ImportAccountState with _$ImportAccountState {
     @Default(PageState.initial) PageState pageState,
     PageCommand? command,
     @Default({}) final Map<int, String> userEnteredWords,
+    @Default(null) final String? accountKey,
     @Default(false) bool isPartialLoading,
-    @Default([]) List<String> accounts,
+    @Default([]) List<UserProfileData> accounts,
   }) = _ImportAccountState;
 
   bool get areAllWordsEntered => userEnteredWords.length == 12 && !userEnteredWords.containsValue('');
