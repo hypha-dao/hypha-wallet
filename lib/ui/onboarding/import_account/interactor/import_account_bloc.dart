@@ -11,6 +11,7 @@ import 'package:hypha_wallet/core/logging/log_helper.dart';
 import 'package:hypha_wallet/core/network/models/user_profile_data.dart';
 import 'package:hypha_wallet/core/network/repository/auth_repository.dart';
 import 'package:hypha_wallet/ui/architecture/interactor/page_states.dart';
+import 'package:hypha_wallet/ui/onboarding/import_account/interactor/account_import_type.dart';
 import 'package:hypha_wallet/ui/onboarding/import_account/usecases/find_account_use_case.dart';
 import 'package:hypha_wallet/ui/onboarding/import_account/usecases/generate_key_from_recovery_words_use_case.dart';
 import 'package:hypha_wallet/ui/onboarding/import_account/usecases/generate_key_from_seeds_passport_words_use_case.dart';
@@ -47,6 +48,7 @@ class ImportAccountBloc extends Bloc<ImportAccountEvent, ImportAccountState> {
     on<_OnPrivateKeyChanged>(_onPrivateKeyChanged);
     on<_FindAccountByKey>(_findAccountByKey);
     on<_OnAccountSelected>(_onAccountSelected);
+    on<_OnImportTypeChangeTapped>(_onImportTypeChangeTapped);
   }
 
   Future<String> _getClipboardData() async {
@@ -111,6 +113,7 @@ class ImportAccountBloc extends Bloc<ImportAccountEvent, ImportAccountState> {
       emit(state.copyWith(isPartialLoading: false));
     } else {
       final results = await _findAccountsUseCase.run(publicKey);
+
       if (results.isValue) {
         var accounts = results.asValue!.value;
         if (accounts.isEmpty) {
@@ -134,5 +137,14 @@ class ImportAccountBloc extends Bloc<ImportAccountEvent, ImportAccountState> {
           state.accountKey!,
           state.areAllWordsEntered ? state.userEnteredWords.values.toList() : [],
         ));
+  }
+
+  FutureOr<void> _onImportTypeChangeTapped(_OnImportTypeChangeTapped event, Emitter<ImportAccountState> emit) {
+    emit(
+      state.copyWith(
+        accountImportType:
+            state.accountImportType == AccountImportType.words ? AccountImportType.key : AccountImportType.words,
+      ),
+    );
   }
 }

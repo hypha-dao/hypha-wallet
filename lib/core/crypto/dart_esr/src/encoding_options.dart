@@ -14,7 +14,7 @@ SigningRequestEncodingOptions defaultSigningRequestEncodingOptions(
         textEncoder: DefaultTextEncoder(),
         textDecoder: DefaultTextDecoder(),
         zlib: DefaultZlibProvider(),
-        abiProvider: DefaultAbiProvider(nodeUrl, nodeVersion: nodeVersion));
+        abiProvider: DefaultAbiProvider(GetIt.I.get<EOSClient>()));
 
 class DefaultZlibProvider implements ZlibProvider {
   @override
@@ -29,11 +29,9 @@ class DefaultZlibProvider implements ZlibProvider {
 }
 
 class DefaultAbiProvider implements AbiProvider {
-  late EOSClient client;
+  final EOSClient client;
 
-  DefaultAbiProvider(String nodeUrl, {String nodeVersion = 'v1'}) {
-    client = GetIt.I<EOSClient>(param1: nodeUrl, param2: nodeVersion);
-  }
+  DefaultAbiProvider(this.client);
 
   @override
   Future getAbi(String? account) async {

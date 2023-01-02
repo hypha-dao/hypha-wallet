@@ -26,6 +26,7 @@ mixin _$ImportAccountEvent {
     required TResult Function(String privateKey) onPrivateKeyChanged,
     required TResult Function(String privateKey) findAccountByKey,
     required TResult Function(UserProfileData accountData) onAccountSelected,
+    required TResult Function() onImportTypeChangeTapped,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,6 +39,7 @@ mixin _$ImportAccountEvent {
     TResult? Function(String privateKey)? onPrivateKeyChanged,
     TResult? Function(String privateKey)? findAccountByKey,
     TResult? Function(UserProfileData accountData)? onAccountSelected,
+    TResult? Function()? onImportTypeChangeTapped,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -50,6 +52,7 @@ mixin _$ImportAccountEvent {
     TResult Function(String privateKey)? onPrivateKeyChanged,
     TResult Function(String privateKey)? findAccountByKey,
     TResult Function(UserProfileData accountData)? onAccountSelected,
+    TResult Function()? onImportTypeChangeTapped,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -63,6 +66,8 @@ mixin _$ImportAccountEvent {
     required TResult Function(_OnPrivateKeyChanged value) onPrivateKeyChanged,
     required TResult Function(_FindAccountByKey value) findAccountByKey,
     required TResult Function(_OnAccountSelected value) onAccountSelected,
+    required TResult Function(_OnImportTypeChangeTapped value)
+        onImportTypeChangeTapped,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -75,6 +80,8 @@ mixin _$ImportAccountEvent {
     TResult? Function(_OnPrivateKeyChanged value)? onPrivateKeyChanged,
     TResult? Function(_FindAccountByKey value)? findAccountByKey,
     TResult? Function(_OnAccountSelected value)? onAccountSelected,
+    TResult? Function(_OnImportTypeChangeTapped value)?
+        onImportTypeChangeTapped,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -87,6 +94,7 @@ mixin _$ImportAccountEvent {
     TResult Function(_OnPrivateKeyChanged value)? onPrivateKeyChanged,
     TResult Function(_FindAccountByKey value)? findAccountByKey,
     TResult Function(_OnAccountSelected value)? onAccountSelected,
+    TResult Function(_OnImportTypeChangeTapped value)? onImportTypeChangeTapped,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -155,6 +163,7 @@ class _$_Initial implements _Initial {
     required TResult Function(String privateKey) onPrivateKeyChanged,
     required TResult Function(String privateKey) findAccountByKey,
     required TResult Function(UserProfileData accountData) onAccountSelected,
+    required TResult Function() onImportTypeChangeTapped,
   }) {
     return initial();
   }
@@ -170,6 +179,7 @@ class _$_Initial implements _Initial {
     TResult? Function(String privateKey)? onPrivateKeyChanged,
     TResult? Function(String privateKey)? findAccountByKey,
     TResult? Function(UserProfileData accountData)? onAccountSelected,
+    TResult? Function()? onImportTypeChangeTapped,
   }) {
     return initial?.call();
   }
@@ -185,6 +195,7 @@ class _$_Initial implements _Initial {
     TResult Function(String privateKey)? onPrivateKeyChanged,
     TResult Function(String privateKey)? findAccountByKey,
     TResult Function(UserProfileData accountData)? onAccountSelected,
+    TResult Function()? onImportTypeChangeTapped,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -204,6 +215,8 @@ class _$_Initial implements _Initial {
     required TResult Function(_OnPrivateKeyChanged value) onPrivateKeyChanged,
     required TResult Function(_FindAccountByKey value) findAccountByKey,
     required TResult Function(_OnAccountSelected value) onAccountSelected,
+    required TResult Function(_OnImportTypeChangeTapped value)
+        onImportTypeChangeTapped,
   }) {
     return initial(this);
   }
@@ -219,6 +232,8 @@ class _$_Initial implements _Initial {
     TResult? Function(_OnPrivateKeyChanged value)? onPrivateKeyChanged,
     TResult? Function(_FindAccountByKey value)? findAccountByKey,
     TResult? Function(_OnAccountSelected value)? onAccountSelected,
+    TResult? Function(_OnImportTypeChangeTapped value)?
+        onImportTypeChangeTapped,
   }) {
     return initial?.call(this);
   }
@@ -234,6 +249,7 @@ class _$_Initial implements _Initial {
     TResult Function(_OnPrivateKeyChanged value)? onPrivateKeyChanged,
     TResult Function(_FindAccountByKey value)? findAccountByKey,
     TResult Function(_OnAccountSelected value)? onAccountSelected,
+    TResult Function(_OnImportTypeChangeTapped value)? onImportTypeChangeTapped,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -293,6 +309,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     required TResult Function(String privateKey) onPrivateKeyChanged,
     required TResult Function(String privateKey) findAccountByKey,
     required TResult Function(UserProfileData accountData) onAccountSelected,
+    required TResult Function() onImportTypeChangeTapped,
   }) {
     return clearPageCommand();
   }
@@ -308,6 +325,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     TResult? Function(String privateKey)? onPrivateKeyChanged,
     TResult? Function(String privateKey)? findAccountByKey,
     TResult? Function(UserProfileData accountData)? onAccountSelected,
+    TResult? Function()? onImportTypeChangeTapped,
   }) {
     return clearPageCommand?.call();
   }
@@ -323,6 +341,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     TResult Function(String privateKey)? onPrivateKeyChanged,
     TResult Function(String privateKey)? findAccountByKey,
     TResult Function(UserProfileData accountData)? onAccountSelected,
+    TResult Function()? onImportTypeChangeTapped,
     required TResult orElse(),
   }) {
     if (clearPageCommand != null) {
@@ -342,6 +361,8 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     required TResult Function(_OnPrivateKeyChanged value) onPrivateKeyChanged,
     required TResult Function(_FindAccountByKey value) findAccountByKey,
     required TResult Function(_OnAccountSelected value) onAccountSelected,
+    required TResult Function(_OnImportTypeChangeTapped value)
+        onImportTypeChangeTapped,
   }) {
     return clearPageCommand(this);
   }
@@ -357,6 +378,8 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     TResult? Function(_OnPrivateKeyChanged value)? onPrivateKeyChanged,
     TResult? Function(_FindAccountByKey value)? findAccountByKey,
     TResult? Function(_OnAccountSelected value)? onAccountSelected,
+    TResult? Function(_OnImportTypeChangeTapped value)?
+        onImportTypeChangeTapped,
   }) {
     return clearPageCommand?.call(this);
   }
@@ -372,6 +395,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     TResult Function(_OnPrivateKeyChanged value)? onPrivateKeyChanged,
     TResult Function(_FindAccountByKey value)? findAccountByKey,
     TResult Function(_OnAccountSelected value)? onAccountSelected,
+    TResult Function(_OnImportTypeChangeTapped value)? onImportTypeChangeTapped,
     required TResult orElse(),
   }) {
     if (clearPageCommand != null) {
@@ -465,6 +489,7 @@ class _$_OnWordChange implements _OnWordChange {
     required TResult Function(String privateKey) onPrivateKeyChanged,
     required TResult Function(String privateKey) findAccountByKey,
     required TResult Function(UserProfileData accountData) onAccountSelected,
+    required TResult Function() onImportTypeChangeTapped,
   }) {
     return onWordChanged(word, index);
   }
@@ -480,6 +505,7 @@ class _$_OnWordChange implements _OnWordChange {
     TResult? Function(String privateKey)? onPrivateKeyChanged,
     TResult? Function(String privateKey)? findAccountByKey,
     TResult? Function(UserProfileData accountData)? onAccountSelected,
+    TResult? Function()? onImportTypeChangeTapped,
   }) {
     return onWordChanged?.call(word, index);
   }
@@ -495,6 +521,7 @@ class _$_OnWordChange implements _OnWordChange {
     TResult Function(String privateKey)? onPrivateKeyChanged,
     TResult Function(String privateKey)? findAccountByKey,
     TResult Function(UserProfileData accountData)? onAccountSelected,
+    TResult Function()? onImportTypeChangeTapped,
     required TResult orElse(),
   }) {
     if (onWordChanged != null) {
@@ -514,6 +541,8 @@ class _$_OnWordChange implements _OnWordChange {
     required TResult Function(_OnPrivateKeyChanged value) onPrivateKeyChanged,
     required TResult Function(_FindAccountByKey value) findAccountByKey,
     required TResult Function(_OnAccountSelected value) onAccountSelected,
+    required TResult Function(_OnImportTypeChangeTapped value)
+        onImportTypeChangeTapped,
   }) {
     return onWordChanged(this);
   }
@@ -529,6 +558,8 @@ class _$_OnWordChange implements _OnWordChange {
     TResult? Function(_OnPrivateKeyChanged value)? onPrivateKeyChanged,
     TResult? Function(_FindAccountByKey value)? findAccountByKey,
     TResult? Function(_OnAccountSelected value)? onAccountSelected,
+    TResult? Function(_OnImportTypeChangeTapped value)?
+        onImportTypeChangeTapped,
   }) {
     return onWordChanged?.call(this);
   }
@@ -544,6 +575,7 @@ class _$_OnWordChange implements _OnWordChange {
     TResult Function(_OnPrivateKeyChanged value)? onPrivateKeyChanged,
     TResult Function(_FindAccountByKey value)? findAccountByKey,
     TResult Function(_OnAccountSelected value)? onAccountSelected,
+    TResult Function(_OnImportTypeChangeTapped value)? onImportTypeChangeTapped,
     required TResult orElse(),
   }) {
     if (onWordChanged != null) {
@@ -610,6 +642,7 @@ class _$_OnActionButtonTapped implements _OnActionButtonTapped {
     required TResult Function(String privateKey) onPrivateKeyChanged,
     required TResult Function(String privateKey) findAccountByKey,
     required TResult Function(UserProfileData accountData) onAccountSelected,
+    required TResult Function() onImportTypeChangeTapped,
   }) {
     return onActionButtonTapped();
   }
@@ -625,6 +658,7 @@ class _$_OnActionButtonTapped implements _OnActionButtonTapped {
     TResult? Function(String privateKey)? onPrivateKeyChanged,
     TResult? Function(String privateKey)? findAccountByKey,
     TResult? Function(UserProfileData accountData)? onAccountSelected,
+    TResult? Function()? onImportTypeChangeTapped,
   }) {
     return onActionButtonTapped?.call();
   }
@@ -640,6 +674,7 @@ class _$_OnActionButtonTapped implements _OnActionButtonTapped {
     TResult Function(String privateKey)? onPrivateKeyChanged,
     TResult Function(String privateKey)? findAccountByKey,
     TResult Function(UserProfileData accountData)? onAccountSelected,
+    TResult Function()? onImportTypeChangeTapped,
     required TResult orElse(),
   }) {
     if (onActionButtonTapped != null) {
@@ -659,6 +694,8 @@ class _$_OnActionButtonTapped implements _OnActionButtonTapped {
     required TResult Function(_OnPrivateKeyChanged value) onPrivateKeyChanged,
     required TResult Function(_FindAccountByKey value) findAccountByKey,
     required TResult Function(_OnAccountSelected value) onAccountSelected,
+    required TResult Function(_OnImportTypeChangeTapped value)
+        onImportTypeChangeTapped,
   }) {
     return onActionButtonTapped(this);
   }
@@ -674,6 +711,8 @@ class _$_OnActionButtonTapped implements _OnActionButtonTapped {
     TResult? Function(_OnPrivateKeyChanged value)? onPrivateKeyChanged,
     TResult? Function(_FindAccountByKey value)? findAccountByKey,
     TResult? Function(_OnAccountSelected value)? onAccountSelected,
+    TResult? Function(_OnImportTypeChangeTapped value)?
+        onImportTypeChangeTapped,
   }) {
     return onActionButtonTapped?.call(this);
   }
@@ -689,6 +728,7 @@ class _$_OnActionButtonTapped implements _OnActionButtonTapped {
     TResult Function(_OnPrivateKeyChanged value)? onPrivateKeyChanged,
     TResult Function(_FindAccountByKey value)? findAccountByKey,
     TResult Function(_OnAccountSelected value)? onAccountSelected,
+    TResult Function(_OnImportTypeChangeTapped value)? onImportTypeChangeTapped,
     required TResult orElse(),
   }) {
     if (onActionButtonTapped != null) {
@@ -748,6 +788,7 @@ class _$_OnUserPastedWords implements _OnUserPastedWords {
     required TResult Function(String privateKey) onPrivateKeyChanged,
     required TResult Function(String privateKey) findAccountByKey,
     required TResult Function(UserProfileData accountData) onAccountSelected,
+    required TResult Function() onImportTypeChangeTapped,
   }) {
     return onUserPastedWords();
   }
@@ -763,6 +804,7 @@ class _$_OnUserPastedWords implements _OnUserPastedWords {
     TResult? Function(String privateKey)? onPrivateKeyChanged,
     TResult? Function(String privateKey)? findAccountByKey,
     TResult? Function(UserProfileData accountData)? onAccountSelected,
+    TResult? Function()? onImportTypeChangeTapped,
   }) {
     return onUserPastedWords?.call();
   }
@@ -778,6 +820,7 @@ class _$_OnUserPastedWords implements _OnUserPastedWords {
     TResult Function(String privateKey)? onPrivateKeyChanged,
     TResult Function(String privateKey)? findAccountByKey,
     TResult Function(UserProfileData accountData)? onAccountSelected,
+    TResult Function()? onImportTypeChangeTapped,
     required TResult orElse(),
   }) {
     if (onUserPastedWords != null) {
@@ -797,6 +840,8 @@ class _$_OnUserPastedWords implements _OnUserPastedWords {
     required TResult Function(_OnPrivateKeyChanged value) onPrivateKeyChanged,
     required TResult Function(_FindAccountByKey value) findAccountByKey,
     required TResult Function(_OnAccountSelected value) onAccountSelected,
+    required TResult Function(_OnImportTypeChangeTapped value)
+        onImportTypeChangeTapped,
   }) {
     return onUserPastedWords(this);
   }
@@ -812,6 +857,8 @@ class _$_OnUserPastedWords implements _OnUserPastedWords {
     TResult? Function(_OnPrivateKeyChanged value)? onPrivateKeyChanged,
     TResult? Function(_FindAccountByKey value)? findAccountByKey,
     TResult? Function(_OnAccountSelected value)? onAccountSelected,
+    TResult? Function(_OnImportTypeChangeTapped value)?
+        onImportTypeChangeTapped,
   }) {
     return onUserPastedWords?.call(this);
   }
@@ -827,6 +874,7 @@ class _$_OnUserPastedWords implements _OnUserPastedWords {
     TResult Function(_OnPrivateKeyChanged value)? onPrivateKeyChanged,
     TResult Function(_FindAccountByKey value)? findAccountByKey,
     TResult Function(_OnAccountSelected value)? onAccountSelected,
+    TResult Function(_OnImportTypeChangeTapped value)? onImportTypeChangeTapped,
     required TResult orElse(),
   }) {
     if (onUserPastedWords != null) {
@@ -914,6 +962,7 @@ class _$_OnPrivateKeyChanged implements _OnPrivateKeyChanged {
     required TResult Function(String privateKey) onPrivateKeyChanged,
     required TResult Function(String privateKey) findAccountByKey,
     required TResult Function(UserProfileData accountData) onAccountSelected,
+    required TResult Function() onImportTypeChangeTapped,
   }) {
     return onPrivateKeyChanged(privateKey);
   }
@@ -929,6 +978,7 @@ class _$_OnPrivateKeyChanged implements _OnPrivateKeyChanged {
     TResult? Function(String privateKey)? onPrivateKeyChanged,
     TResult? Function(String privateKey)? findAccountByKey,
     TResult? Function(UserProfileData accountData)? onAccountSelected,
+    TResult? Function()? onImportTypeChangeTapped,
   }) {
     return onPrivateKeyChanged?.call(privateKey);
   }
@@ -944,6 +994,7 @@ class _$_OnPrivateKeyChanged implements _OnPrivateKeyChanged {
     TResult Function(String privateKey)? onPrivateKeyChanged,
     TResult Function(String privateKey)? findAccountByKey,
     TResult Function(UserProfileData accountData)? onAccountSelected,
+    TResult Function()? onImportTypeChangeTapped,
     required TResult orElse(),
   }) {
     if (onPrivateKeyChanged != null) {
@@ -963,6 +1014,8 @@ class _$_OnPrivateKeyChanged implements _OnPrivateKeyChanged {
     required TResult Function(_OnPrivateKeyChanged value) onPrivateKeyChanged,
     required TResult Function(_FindAccountByKey value) findAccountByKey,
     required TResult Function(_OnAccountSelected value) onAccountSelected,
+    required TResult Function(_OnImportTypeChangeTapped value)
+        onImportTypeChangeTapped,
   }) {
     return onPrivateKeyChanged(this);
   }
@@ -978,6 +1031,8 @@ class _$_OnPrivateKeyChanged implements _OnPrivateKeyChanged {
     TResult? Function(_OnPrivateKeyChanged value)? onPrivateKeyChanged,
     TResult? Function(_FindAccountByKey value)? findAccountByKey,
     TResult? Function(_OnAccountSelected value)? onAccountSelected,
+    TResult? Function(_OnImportTypeChangeTapped value)?
+        onImportTypeChangeTapped,
   }) {
     return onPrivateKeyChanged?.call(this);
   }
@@ -993,6 +1048,7 @@ class _$_OnPrivateKeyChanged implements _OnPrivateKeyChanged {
     TResult Function(_OnPrivateKeyChanged value)? onPrivateKeyChanged,
     TResult Function(_FindAccountByKey value)? findAccountByKey,
     TResult Function(_OnAccountSelected value)? onAccountSelected,
+    TResult Function(_OnImportTypeChangeTapped value)? onImportTypeChangeTapped,
     required TResult orElse(),
   }) {
     if (onPrivateKeyChanged != null) {
@@ -1085,6 +1141,7 @@ class _$_FindAccountByKey implements _FindAccountByKey {
     required TResult Function(String privateKey) onPrivateKeyChanged,
     required TResult Function(String privateKey) findAccountByKey,
     required TResult Function(UserProfileData accountData) onAccountSelected,
+    required TResult Function() onImportTypeChangeTapped,
   }) {
     return findAccountByKey(privateKey);
   }
@@ -1100,6 +1157,7 @@ class _$_FindAccountByKey implements _FindAccountByKey {
     TResult? Function(String privateKey)? onPrivateKeyChanged,
     TResult? Function(String privateKey)? findAccountByKey,
     TResult? Function(UserProfileData accountData)? onAccountSelected,
+    TResult? Function()? onImportTypeChangeTapped,
   }) {
     return findAccountByKey?.call(privateKey);
   }
@@ -1115,6 +1173,7 @@ class _$_FindAccountByKey implements _FindAccountByKey {
     TResult Function(String privateKey)? onPrivateKeyChanged,
     TResult Function(String privateKey)? findAccountByKey,
     TResult Function(UserProfileData accountData)? onAccountSelected,
+    TResult Function()? onImportTypeChangeTapped,
     required TResult orElse(),
   }) {
     if (findAccountByKey != null) {
@@ -1134,6 +1193,8 @@ class _$_FindAccountByKey implements _FindAccountByKey {
     required TResult Function(_OnPrivateKeyChanged value) onPrivateKeyChanged,
     required TResult Function(_FindAccountByKey value) findAccountByKey,
     required TResult Function(_OnAccountSelected value) onAccountSelected,
+    required TResult Function(_OnImportTypeChangeTapped value)
+        onImportTypeChangeTapped,
   }) {
     return findAccountByKey(this);
   }
@@ -1149,6 +1210,8 @@ class _$_FindAccountByKey implements _FindAccountByKey {
     TResult? Function(_OnPrivateKeyChanged value)? onPrivateKeyChanged,
     TResult? Function(_FindAccountByKey value)? findAccountByKey,
     TResult? Function(_OnAccountSelected value)? onAccountSelected,
+    TResult? Function(_OnImportTypeChangeTapped value)?
+        onImportTypeChangeTapped,
   }) {
     return findAccountByKey?.call(this);
   }
@@ -1164,6 +1227,7 @@ class _$_FindAccountByKey implements _FindAccountByKey {
     TResult Function(_OnPrivateKeyChanged value)? onPrivateKeyChanged,
     TResult Function(_FindAccountByKey value)? findAccountByKey,
     TResult Function(_OnAccountSelected value)? onAccountSelected,
+    TResult Function(_OnImportTypeChangeTapped value)? onImportTypeChangeTapped,
     required TResult orElse(),
   }) {
     if (findAccountByKey != null) {
@@ -1267,6 +1331,7 @@ class _$_OnAccountSelected implements _OnAccountSelected {
     required TResult Function(String privateKey) onPrivateKeyChanged,
     required TResult Function(String privateKey) findAccountByKey,
     required TResult Function(UserProfileData accountData) onAccountSelected,
+    required TResult Function() onImportTypeChangeTapped,
   }) {
     return onAccountSelected(accountData);
   }
@@ -1282,6 +1347,7 @@ class _$_OnAccountSelected implements _OnAccountSelected {
     TResult? Function(String privateKey)? onPrivateKeyChanged,
     TResult? Function(String privateKey)? findAccountByKey,
     TResult? Function(UserProfileData accountData)? onAccountSelected,
+    TResult? Function()? onImportTypeChangeTapped,
   }) {
     return onAccountSelected?.call(accountData);
   }
@@ -1297,6 +1363,7 @@ class _$_OnAccountSelected implements _OnAccountSelected {
     TResult Function(String privateKey)? onPrivateKeyChanged,
     TResult Function(String privateKey)? findAccountByKey,
     TResult Function(UserProfileData accountData)? onAccountSelected,
+    TResult Function()? onImportTypeChangeTapped,
     required TResult orElse(),
   }) {
     if (onAccountSelected != null) {
@@ -1316,6 +1383,8 @@ class _$_OnAccountSelected implements _OnAccountSelected {
     required TResult Function(_OnPrivateKeyChanged value) onPrivateKeyChanged,
     required TResult Function(_FindAccountByKey value) findAccountByKey,
     required TResult Function(_OnAccountSelected value) onAccountSelected,
+    required TResult Function(_OnImportTypeChangeTapped value)
+        onImportTypeChangeTapped,
   }) {
     return onAccountSelected(this);
   }
@@ -1331,6 +1400,8 @@ class _$_OnAccountSelected implements _OnAccountSelected {
     TResult? Function(_OnPrivateKeyChanged value)? onPrivateKeyChanged,
     TResult? Function(_FindAccountByKey value)? findAccountByKey,
     TResult? Function(_OnAccountSelected value)? onAccountSelected,
+    TResult? Function(_OnImportTypeChangeTapped value)?
+        onImportTypeChangeTapped,
   }) {
     return onAccountSelected?.call(this);
   }
@@ -1346,6 +1417,7 @@ class _$_OnAccountSelected implements _OnAccountSelected {
     TResult Function(_OnPrivateKeyChanged value)? onPrivateKeyChanged,
     TResult Function(_FindAccountByKey value)? findAccountByKey,
     TResult Function(_OnAccountSelected value)? onAccountSelected,
+    TResult Function(_OnImportTypeChangeTapped value)? onImportTypeChangeTapped,
     required TResult orElse(),
   }) {
     if (onAccountSelected != null) {
@@ -1366,8 +1438,157 @@ abstract class _OnAccountSelected implements ImportAccountEvent {
 }
 
 /// @nodoc
+abstract class _$$_OnImportTypeChangeTappedCopyWith<$Res> {
+  factory _$$_OnImportTypeChangeTappedCopyWith(
+          _$_OnImportTypeChangeTapped value,
+          $Res Function(_$_OnImportTypeChangeTapped) then) =
+      __$$_OnImportTypeChangeTappedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_OnImportTypeChangeTappedCopyWithImpl<$Res>
+    extends _$ImportAccountEventCopyWithImpl<$Res, _$_OnImportTypeChangeTapped>
+    implements _$$_OnImportTypeChangeTappedCopyWith<$Res> {
+  __$$_OnImportTypeChangeTappedCopyWithImpl(_$_OnImportTypeChangeTapped _value,
+      $Res Function(_$_OnImportTypeChangeTapped) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_OnImportTypeChangeTapped implements _OnImportTypeChangeTapped {
+  const _$_OnImportTypeChangeTapped();
+
+  @override
+  String toString() {
+    return 'ImportAccountEvent.onImportTypeChangeTapped()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_OnImportTypeChangeTapped);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() clearPageCommand,
+    required TResult Function(String word, int index) onWordChanged,
+    required TResult Function() onActionButtonTapped,
+    required TResult Function() onUserPastedWords,
+    required TResult Function(String privateKey) onPrivateKeyChanged,
+    required TResult Function(String privateKey) findAccountByKey,
+    required TResult Function(UserProfileData accountData) onAccountSelected,
+    required TResult Function() onImportTypeChangeTapped,
+  }) {
+    return onImportTypeChangeTapped();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? clearPageCommand,
+    TResult? Function(String word, int index)? onWordChanged,
+    TResult? Function()? onActionButtonTapped,
+    TResult? Function()? onUserPastedWords,
+    TResult? Function(String privateKey)? onPrivateKeyChanged,
+    TResult? Function(String privateKey)? findAccountByKey,
+    TResult? Function(UserProfileData accountData)? onAccountSelected,
+    TResult? Function()? onImportTypeChangeTapped,
+  }) {
+    return onImportTypeChangeTapped?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? clearPageCommand,
+    TResult Function(String word, int index)? onWordChanged,
+    TResult Function()? onActionButtonTapped,
+    TResult Function()? onUserPastedWords,
+    TResult Function(String privateKey)? onPrivateKeyChanged,
+    TResult Function(String privateKey)? findAccountByKey,
+    TResult Function(UserProfileData accountData)? onAccountSelected,
+    TResult Function()? onImportTypeChangeTapped,
+    required TResult orElse(),
+  }) {
+    if (onImportTypeChangeTapped != null) {
+      return onImportTypeChangeTapped();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_ClearPageCommand value) clearPageCommand,
+    required TResult Function(_OnWordChange value) onWordChanged,
+    required TResult Function(_OnActionButtonTapped value) onActionButtonTapped,
+    required TResult Function(_OnUserPastedWords value) onUserPastedWords,
+    required TResult Function(_OnPrivateKeyChanged value) onPrivateKeyChanged,
+    required TResult Function(_FindAccountByKey value) findAccountByKey,
+    required TResult Function(_OnAccountSelected value) onAccountSelected,
+    required TResult Function(_OnImportTypeChangeTapped value)
+        onImportTypeChangeTapped,
+  }) {
+    return onImportTypeChangeTapped(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_ClearPageCommand value)? clearPageCommand,
+    TResult? Function(_OnWordChange value)? onWordChanged,
+    TResult? Function(_OnActionButtonTapped value)? onActionButtonTapped,
+    TResult? Function(_OnUserPastedWords value)? onUserPastedWords,
+    TResult? Function(_OnPrivateKeyChanged value)? onPrivateKeyChanged,
+    TResult? Function(_FindAccountByKey value)? findAccountByKey,
+    TResult? Function(_OnAccountSelected value)? onAccountSelected,
+    TResult? Function(_OnImportTypeChangeTapped value)?
+        onImportTypeChangeTapped,
+  }) {
+    return onImportTypeChangeTapped?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_ClearPageCommand value)? clearPageCommand,
+    TResult Function(_OnWordChange value)? onWordChanged,
+    TResult Function(_OnActionButtonTapped value)? onActionButtonTapped,
+    TResult Function(_OnUserPastedWords value)? onUserPastedWords,
+    TResult Function(_OnPrivateKeyChanged value)? onPrivateKeyChanged,
+    TResult Function(_FindAccountByKey value)? findAccountByKey,
+    TResult Function(_OnAccountSelected value)? onAccountSelected,
+    TResult Function(_OnImportTypeChangeTapped value)? onImportTypeChangeTapped,
+    required TResult orElse(),
+  }) {
+    if (onImportTypeChangeTapped != null) {
+      return onImportTypeChangeTapped(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _OnImportTypeChangeTapped implements ImportAccountEvent {
+  const factory _OnImportTypeChangeTapped() = _$_OnImportTypeChangeTapped;
+}
+
+/// @nodoc
 mixin _$ImportAccountState {
   PageState get pageState => throw _privateConstructorUsedError;
+  AccountImportType get accountImportType => throw _privateConstructorUsedError;
   PageCommand? get command => throw _privateConstructorUsedError;
   Map<int, String> get userEnteredWords => throw _privateConstructorUsedError;
   String? get accountKey => throw _privateConstructorUsedError;
@@ -1387,6 +1608,7 @@ abstract class $ImportAccountStateCopyWith<$Res> {
   @useResult
   $Res call(
       {PageState pageState,
+      AccountImportType accountImportType,
       PageCommand? command,
       Map<int, String> userEnteredWords,
       String? accountKey,
@@ -1410,6 +1632,7 @@ class _$ImportAccountStateCopyWithImpl<$Res, $Val extends ImportAccountState>
   @override
   $Res call({
     Object? pageState = null,
+    Object? accountImportType = null,
     Object? command = freezed,
     Object? userEnteredWords = null,
     Object? accountKey = freezed,
@@ -1421,6 +1644,10 @@ class _$ImportAccountStateCopyWithImpl<$Res, $Val extends ImportAccountState>
           ? _value.pageState
           : pageState // ignore: cast_nullable_to_non_nullable
               as PageState,
+      accountImportType: null == accountImportType
+          ? _value.accountImportType
+          : accountImportType // ignore: cast_nullable_to_non_nullable
+              as AccountImportType,
       command: freezed == command
           ? _value.command
           : command // ignore: cast_nullable_to_non_nullable
@@ -1467,6 +1694,7 @@ abstract class _$$_ImportAccountStateCopyWith<$Res>
   @useResult
   $Res call(
       {PageState pageState,
+      AccountImportType accountImportType,
       PageCommand? command,
       Map<int, String> userEnteredWords,
       String? accountKey,
@@ -1489,6 +1717,7 @@ class __$$_ImportAccountStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? pageState = null,
+    Object? accountImportType = null,
     Object? command = freezed,
     Object? userEnteredWords = null,
     Object? accountKey = freezed,
@@ -1500,6 +1729,10 @@ class __$$_ImportAccountStateCopyWithImpl<$Res>
           ? _value.pageState
           : pageState // ignore: cast_nullable_to_non_nullable
               as PageState,
+      accountImportType: null == accountImportType
+          ? _value.accountImportType
+          : accountImportType // ignore: cast_nullable_to_non_nullable
+              as AccountImportType,
       command: freezed == command
           ? _value.command
           : command // ignore: cast_nullable_to_non_nullable
@@ -1529,6 +1762,7 @@ class __$$_ImportAccountStateCopyWithImpl<$Res>
 class _$_ImportAccountState extends _ImportAccountState {
   const _$_ImportAccountState(
       {this.pageState = PageState.initial,
+      this.accountImportType = AccountImportType.words,
       this.command,
       final Map<int, String> userEnteredWords = const {},
       this.accountKey = null,
@@ -1541,6 +1775,9 @@ class _$_ImportAccountState extends _ImportAccountState {
   @override
   @JsonKey()
   final PageState pageState;
+  @override
+  @JsonKey()
+  final AccountImportType accountImportType;
   @override
   final PageCommand? command;
   final Map<int, String> _userEnteredWords;
@@ -1569,7 +1806,7 @@ class _$_ImportAccountState extends _ImportAccountState {
 
   @override
   String toString() {
-    return 'ImportAccountState(pageState: $pageState, command: $command, userEnteredWords: $userEnteredWords, accountKey: $accountKey, isPartialLoading: $isPartialLoading, accounts: $accounts)';
+    return 'ImportAccountState(pageState: $pageState, accountImportType: $accountImportType, command: $command, userEnteredWords: $userEnteredWords, accountKey: $accountKey, isPartialLoading: $isPartialLoading, accounts: $accounts)';
   }
 
   @override
@@ -1579,6 +1816,8 @@ class _$_ImportAccountState extends _ImportAccountState {
             other is _$_ImportAccountState &&
             (identical(other.pageState, pageState) ||
                 other.pageState == pageState) &&
+            (identical(other.accountImportType, accountImportType) ||
+                other.accountImportType == accountImportType) &&
             (identical(other.command, command) || other.command == command) &&
             const DeepCollectionEquality()
                 .equals(other._userEnteredWords, _userEnteredWords) &&
@@ -1593,6 +1832,7 @@ class _$_ImportAccountState extends _ImportAccountState {
   int get hashCode => Object.hash(
       runtimeType,
       pageState,
+      accountImportType,
       command,
       const DeepCollectionEquality().hash(_userEnteredWords),
       accountKey,
@@ -1610,6 +1850,7 @@ class _$_ImportAccountState extends _ImportAccountState {
 abstract class _ImportAccountState extends ImportAccountState {
   const factory _ImportAccountState(
       {final PageState pageState,
+      final AccountImportType accountImportType,
       final PageCommand? command,
       final Map<int, String> userEnteredWords,
       final String? accountKey,
@@ -1619,6 +1860,8 @@ abstract class _ImportAccountState extends ImportAccountState {
 
   @override
   PageState get pageState;
+  @override
+  AccountImportType get accountImportType;
   @override
   PageCommand? get command;
   @override

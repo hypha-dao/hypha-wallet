@@ -1,16 +1,16 @@
 import 'package:dio/dio.dart';
 import 'package:hypha_wallet/core/network/api/endpoints.dart';
-import 'package:hypha_wallet/core/network/dio_client.dart';
+import 'package:hypha_wallet/core/network/networking_manager.dart';
 import 'package:image_picker/image_picker.dart';
 
 // TODO(Nik): these API calls need your help
 class UserAccountService {
-  final DioClient dioClient;
+  final NetworkingManager networkingManager;
 
-  UserAccountService({required this.dioClient});
+  UserAccountService({required this.networkingManager});
 
   Future<Response> isUserAccountAvailable(String userAccount) async {
-    return await dioClient.get(Endpoints.userAccountAvailable);
+    return await networkingManager.get(Endpoints.userAccountAvailable);
   }
 
   Future<Response> createUserAccount({

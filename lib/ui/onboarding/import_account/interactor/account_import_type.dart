@@ -1,0 +1,4 @@
+enum AccountImportType {
+  words,
+  key;
+}

@@ -4,6 +4,7 @@ import 'dart:typed_data';
 
 import 'package:async/async.dart';
 import 'package:dio/dio.dart';
+import 'package:hypha_wallet/core/crypto/eosdart/eosdart.dart';
 import 'package:hypha_wallet/core/crypto/eosdart/src/eosdart_base.dart';
 import 'package:hypha_wallet/core/crypto/eosdart/src/jsons.dart';
 import 'package:hypha_wallet/core/crypto/eosdart/src/models/abi.dart';
@@ -18,12 +19,10 @@ import 'package:hypha_wallet/core/crypto/eosdart/src/models/transaction.dart';
 import 'package:hypha_wallet/core/crypto/eosdart/src/serialize.dart' as ser;
 import 'package:hypha_wallet/core/crypto/eosdart_ecc/eosdart_ecc.dart' as ecc;
 import 'package:hypha_wallet/core/logging/log_helper.dart';
-import 'package:hypha_wallet/core/network/dio_client.dart';
+import 'package:hypha_wallet/core/network/networking_manager.dart';
 
 /// EOSClient calls APIs against given EOS nodes
-class EOSClient {
-  final DioClient _dioClient;
-
+class EOSClient extends NetworkingManager {
   int expirationInSec;
   int httpTimeout;
   Map<String, ecc.EOSPrivateKey> keys = {};
@@ -32,13 +31,16 @@ class EOSClient {
   Map<String?, Type>? abiTypes;
   late Map<String?, Type> transactionTypes;
 
+  final String version;
+
   /// Construct the EOS client from eos node URL
-  EOSClient(
-    this._dioClient, {
+  EOSClient({
+    required String baseUrl,
+    required this.version,
     this.expirationInSec = 180,
     List<String> privateKeys = const [],
     this.httpTimeout = 10,
-  }) {
+  }) : super(baseUrl) {
     _mapKeys(privateKeys);
 
     abiTypes = ser.getTypesFromAbi(ser.createInitialTypes(), Abi.fromJson(json.decode(abiJson)));
@@ -58,7 +60,7 @@ class EOSClient {
   set privateKeys(List<String> privateKeys) => _mapKeys(privateKeys);
 
   Future<Response> _post(String path, Object body) {
-    return _dioClient.post('/${_dioClient.version}$path', data: body);
+    return this.post('/${this.version}$path', data: body);
   }
 
   /// Get EOS Node Info

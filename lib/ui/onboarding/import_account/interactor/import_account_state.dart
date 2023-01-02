@@ -6,6 +6,7 @@ class ImportAccountState with _$ImportAccountState {
 
   const factory ImportAccountState({
     @Default(PageState.initial) PageState pageState,
+    @Default(AccountImportType.words) AccountImportType accountImportType,
     PageCommand? command,
     @Default({}) final Map<int, String> userEnteredWords,
     @Default(null) final String? accountKey,

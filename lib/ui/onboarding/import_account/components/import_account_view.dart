@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hypha_wallet/design/secret_phrase/hypha_secret_phrase.dart';
@@ -7,7 +8,6 @@ class ImportAccountView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ImportAccountBloc, ImportAccountState>(
-      buildWhen: (previous, current) => previous.pageState != current.pageState,
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(title: Text('Import Account')),
@@ -42,11 +42,25 @@ class ImportAccountView extends StatelessWidget {
                     },
                     child: Text('Paste Words'),
                   ),
-                  TextField(
-                      decoration: InputDecoration(label: Text('Private Key')),
-                      onChanged: (value) {
-                        context.read<ImportAccountBloc>().add(ImportAccountEvent.onPrivateKeyChanged(value));
-                      }),
+                  if (state.userEnteredWords.isEmpty) ...[
+                    RichText(
+                      text: TextSpan(
+                        style: Theme.of(context).textTheme.subtitle2,
+                        children: <TextSpan>[
+                          TextSpan(
+                            text: 'Tap Here',
+                            style: Theme.of(context).textTheme.subtitle1?.copyWith(color: Colors.blueAccent),
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () {
+                                context.read<ImportAccountBloc>().add(ImportAccountEvent.onImportTypeChangeTapped());
+                              },
+                          ),
+                          const TextSpan(text: ' '),
+                          TextSpan(text: 'to import using your Private Key.'),
+                        ],
+                      ),
+                    ),
+                  ],
                   ListView(
                     shrinkWrap: true,
                     children: state.accounts
