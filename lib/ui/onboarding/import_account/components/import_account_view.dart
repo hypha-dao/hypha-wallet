@@ -7,6 +7,7 @@ class ImportAccountView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ImportAccountBloc, ImportAccountState>(
+      buildWhen: (previous, current) => previous.pageState != current.pageState,
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(title: Text('Import Account')),
@@ -27,14 +28,14 @@ class ImportAccountView extends StatelessWidget {
                   Text('Use 12 words to import account'),
                   SizedBox(height: 16),
                   HyphaSecretPhrase(
-                      words: state.userEnteredWords,
-                      onSelected: (value) {
-                        context.read<ImportAccountBloc>().add(ImportAccountEvent.onWordChanged(value.value, value.key));
-                      },
-                      onChanged: (value) {
-                        FocusScope.of(context).nextFocus();
-                        context.read<ImportAccountBloc>().add(ImportAccountEvent.onWordChanged(value.value, value.key));
-                      }),
+                    words: state.userEnteredWords,
+                    onSelected: (value) {
+                      context.read<ImportAccountBloc>().add(ImportAccountEvent.onWordChanged(value.value, value.key));
+                    },
+                    onChanged: (value) {
+                      context.read<ImportAccountBloc>().add(ImportAccountEvent.onWordChanged(value.value, value.key));
+                    },
+                  ),
                   TextButton(
                     onPressed: () {
                       context.read<ImportAccountBloc>().add(ImportAccountEvent.onUserPastedWords());
