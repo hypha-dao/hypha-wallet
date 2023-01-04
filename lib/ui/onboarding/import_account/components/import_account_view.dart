@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hypha_wallet/design/buttons/hypha_app_button.dart';
 import 'package:hypha_wallet/design/secret_phrase/hypha_secret_phrase.dart';
 import 'package:hypha_wallet/ui/onboarding/import_account/interactor/import_account_bloc.dart';
 
@@ -11,13 +12,13 @@ class ImportAccountView extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(title: Text('Import Account')),
-          bottomNavigationBar: ElevatedButton(
+          bottomNavigationBar: HyphaAppButton(
             onPressed: state.areAllWordsEntered
                 ? () {
                     context.read<ImportAccountBloc>().add(ImportAccountEvent.onActionButtonTapped());
                   }
                 : null,
-            child: Text('Find Account'),
+            title: 'Find Account',
           ),
           body: SingleChildScrollView(
             child: Padding(

@@ -13,7 +13,7 @@ class CreateAccountView extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           floatingActionButton: FloatingActionButton.extended(onPressed: () {}, label: Text('Next')),
-          // bottomNavigationBar: ElevatedButton(
+          // bottomNavigationBar: HyphaAppButton(
           //   onPressed: () {},
           //   child: Text('Next'),
           // ),

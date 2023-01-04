@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hypha_wallet/design/avatar_image/hypha_avatar_image.dart';
+import 'package:hypha_wallet/design/buttons/hypha_app_button.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/ui/onboarding/create_account/create_account_page.dart';
 import 'package:image_picker/image_picker.dart';
@@ -27,13 +28,13 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
     return Scaffold(
       bottomNavigationBar: ValueListenableBuilder<TextEditingValue>(
         valueListenable: _controller,
-        builder: (context, value, child) => ElevatedButton(
+        builder: (context, value, child) => HyphaAppButton(
           onPressed: value.text.isEmpty
               ? null
               : () {
                   Get.to(() => CreateAccountPage(_file, _controller.text), transition: Transition.rightToLeft);
                 },
-          child: Text('Next'),
+          title: 'Next',
         ),
       ),
       appBar: AppBar(title: Text('Create your Hypha Account')),

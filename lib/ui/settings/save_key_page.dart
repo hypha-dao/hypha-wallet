@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hypha_wallet/design/buttons/hypha_app_button.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -11,9 +12,9 @@ class SaveKeyPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Save Key')),
-      bottomNavigationBar: ElevatedButton(
+      bottomNavigationBar: HyphaAppButton(
         onPressed: () => Get.back(),
-        child: Text("I've saved my Key"),
+        title: "I've saved my Key",
       ),
       body: Column(
         children: [

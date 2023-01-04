@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hypha_wallet/design/buttons/hypha_app_button.dart';
 
 class CreateAccountSuccessPage extends StatelessWidget {
   const CreateAccountSuccessPage();
@@ -6,9 +7,9 @@ class CreateAccountSuccessPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: ElevatedButton(
+      bottomNavigationBar: HyphaAppButton(
         onPressed: () {},
-        child: Text('Done'),
+        title: 'Done',
       ),
       body: Center(
         child: Column(

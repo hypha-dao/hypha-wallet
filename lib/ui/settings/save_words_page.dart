@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:hypha_wallet/design/buttons/hypha_app_button.dart';
 import 'package:hypha_wallet/design/secret_phrase/hypha_secret_phrase.dart';
 import 'package:hypha_wallet/ui/blocs/authentication/authentication_bloc.dart';
 import 'package:share_plus/share_plus.dart';
@@ -13,9 +14,9 @@ class SaveWordsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Save Words')),
-      bottomNavigationBar: ElevatedButton(
+      bottomNavigationBar: HyphaAppButton(
         onPressed: () => Get.back(),
-        child: Text("I've saved my secret words"),
+        title: "I've saved my secret words",
       ),
       body: BlocBuilder<AuthenticationBloc, AuthenticationState>(
         builder: (context, state) {

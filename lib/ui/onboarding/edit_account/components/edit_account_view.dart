@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hypha_wallet/design/avatar_image/hypha_avatar_image.dart';
+import 'package:hypha_wallet/design/buttons/hypha_app_button.dart';
 import 'package:hypha_wallet/ui/onboarding/edit_account/components/requirement_state_widget.dart';
 import 'package:hypha_wallet/ui/onboarding/edit_account/interactor/edit_account_bloc.dart';
 import 'package:hypha_wallet/ui/shared/hypha_body_widget.dart';
@@ -33,13 +34,13 @@ class _EditAccountViewState extends State<EditAccountView> {
         }
 
         return Scaffold(
-          bottomNavigationBar: ElevatedButton(
+          bottomNavigationBar: HyphaAppButton(
             onPressed: state.isNextButtonAvailable
                 ? () {
                     context.read<EditAccountBloc>().add(EditAccountEvent.onNextPressed());
                   }
                 : null,
-            child: Text('Next'),
+            title: 'Next',
           ),
           body: HyphaBodyWidget(
             success: (context) => Center(

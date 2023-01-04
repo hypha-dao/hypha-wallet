@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hypha_wallet/design/buttons/hypha_app_button.dart';
 import 'package:hypha_wallet/ui/onboarding/create_profile_page.dart';
 import 'package:hypha_wallet/ui/onboarding/import_account/import_account_page.dart';
 
@@ -12,17 +13,17 @@ class IntroPage extends StatelessWidget {
       bottomNavigationBar: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          ElevatedButton(
+          HyphaAppButton(
             onPressed: () {
               Get.to(() => CreateProfilePage(), transition: Transition.rightToLeft);
             },
-            child: Text('Create Account'),
+            title: 'Create Account',
           ),
-          ElevatedButton(
+          HyphaAppButton(
             onPressed: () {
               Get.to(() => ImportAccountPage(), transition: Transition.rightToLeft);
             },
-            child: Text('Import Account'),
+            title: 'Import Account',
           ),
         ],
       ),
