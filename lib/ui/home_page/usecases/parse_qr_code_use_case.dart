@@ -7,9 +7,25 @@ class ParseQRCodeUseCase extends InputUseCase<Result<QrCodeData, HyphaError>, St
 
   @override
   Future<Result<QrCodeData, HyphaError>> run(String input) async {
-    return Future.delayed(Duration(seconds: 2))
-        .then((value) => Result.value(QrCodeData(rawData: input, otherStuff: 'TODO(nik): Parse data and send back')));
+    var validationError = _validateQrCode(input);
+
+    if (validationError != null) {
+      return Future.delayed(Duration(seconds: 2)).then((value) => Result.error(validationError));
+    } else {
+      return Future.delayed(Duration(seconds: 2))
+          .then((value) => Result.value(QrCodeData(rawData: input, otherStuff: 'TODO(nik): Parse data and send back')));
+    }
   }
+}
+
+HyphaError? _validateQrCode(String input) {
+  if (input.isEmpty) {
+    return HyphaError.generic("We don't recognize this QR Code");
+    // TODO(gguij): Add Logic to validate QR code here
+  } else if (false) {
+    return HyphaError.generic("We don't recognize this QR Code");
+  } else
+    return null;
 }
 
 class QrCodeData {

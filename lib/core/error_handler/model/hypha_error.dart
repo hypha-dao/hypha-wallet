@@ -20,6 +20,8 @@ class HyphaError {
 
   factory HyphaError.api(String message) => HyphaError(message: message, type: HyphaErrorType.api);
 
+  factory HyphaError.generic(String message) => HyphaError(message: message, type: HyphaErrorType.generic);
+
   factory HyphaError.unknown(String? message) {
     return HyphaError(message: message ?? 'Unknown Error', type: HyphaErrorType.unknown);
   }

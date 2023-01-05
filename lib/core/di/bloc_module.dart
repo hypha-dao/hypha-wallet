@@ -9,7 +9,7 @@ void _registerBlocsModule() {
   _registerFactory(() => SettingsBloc(_getIt<HyphaSharedPrefs>()));
 
   /// Views Blocs
-  _registerFactory(() => HomeBloc(_getIt<ParseQRCodeUseCase>()));
+  _registerFactory(() => HomeBloc(_getIt<ParseQRCodeUseCase>(), _getIt<ErrorHandlerManager>()));
   _registerFactory(() => ImportAccountBloc(
         _getIt<GenerateKeyFromRecoveryWordsUseCase>(),
         _getIt<GenerateKeyFromSeedsPassportWordsUseCase>(),
