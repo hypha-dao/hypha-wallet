@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:hypha_wallet/design/buttons/button_type.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 
 class HyphaAppButton extends StatelessWidget {
   final String title;
   final VoidCallback? onPressed;
   final bool isLoading;
+  final ButtonType buttonType;
   final Icon? icon;
   final bool isFullWidth;
   final EdgeInsets margin;
@@ -13,9 +15,10 @@ class HyphaAppButton extends StatelessWidget {
     super.key,
     required this.onPressed,
     this.isLoading = false,
+    this.buttonType = ButtonType.primary,
     required this.title,
     this.icon,
-    this.isFullWidth = false,
+    this.isFullWidth = true,
     this.margin = EdgeInsets.zero,
   });
 
@@ -24,6 +27,7 @@ class HyphaAppButton extends StatelessWidget {
     return Padding(
       padding: margin,
       child: ElevatedButton(
+        style: buttonType.appButtonStyle(context),
         onPressed: onPressed,
         child: Builder(
           builder: (context) {

@@ -4,9 +4,10 @@ import 'package:hypha_wallet/design/hypha_colors.dart';
 
 class HyphaTheme {
   static ThemeData get darkTheme {
-    var mainTextTheme = GoogleFonts.ralewayTextTheme();
+    var baseTheme = ThemeData(brightness: Brightness.dark);
+    var mainTextTheme = GoogleFonts.ralewayTextTheme(baseTheme.textTheme);
 
-    return ThemeData(
+    return baseTheme.copyWith(
       colorScheme: ColorScheme.fromSeed(seedColor: HyphaColors.green).copyWith(
         brightness: Brightness.dark,
       ),

@@ -25,22 +25,34 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: ValueListenableBuilder<TextEditingValue>(
-        valueListenable: _controller,
-        builder: (context, value, child) => HyphaAppButton(
-          onPressed: value.text.isEmpty
-              ? null
-              : () {
-                  Get.to(() => CreateAccountPage(_file, _controller.text), transition: Transition.rightToLeft);
-                },
-          title: 'Next',
-        ),
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        image: DecorationImage(image: AssetImage('assets/images/graphics/bg_texture.jpg'), fit: BoxFit.cover),
       ),
-      appBar: AppBar(title: Text('Create your Hypha Account')),
-      body: Padding(
-        padding: const EdgeInsets.all(24),
-        child: Column(
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        bottomNavigationBar: ValueListenableBuilder<TextEditingValue>(
+          valueListenable: _controller,
+          builder: (context, value, child) => HyphaAppButton(
+            onPressed: value.text.isEmpty
+                ? null
+                : () {
+                    Get.to(() => CreateAccountPage(_file, _controller.text), transition: Transition.rightToLeft);
+                  },
+            title: 'Next',
+          ),
+        ),
+        appBar: AppBar(
+          centerTitle: true,
+          backgroundColor: HyphaColors.transparent,
+          title: Column(
+            children: [
+              Text('Create your'),
+              Text('Hypha Account'),
+            ],
+          ),
+        ),
+        body: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             SizedBox(height: 24),
