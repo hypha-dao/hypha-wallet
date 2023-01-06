@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:hypha_wallet/design/hypha_colors.dart';
 
 class HyphaAvatarImage extends StatelessWidget {
   final String? imageFromFile;
@@ -31,14 +33,25 @@ class HyphaAvatarImage extends StatelessWidget {
     } else if (imageFromUrl != null) {
       image = ClipOval(child: Image.network(imageFromUrl!));
     } else {
-      image = Icon(Icons.add_photo_alternate_outlined, size: imageRadius * 2);
+      image = Icon(Icons.image_outlined, size: imageRadius * 2, color: context.textTheme.titleSmall?.color);
     }
 
     return GestureDetector(
       onTap: onTap,
-      child: CircleAvatar(
-        radius: imageRadius * 2,
-        child: image,
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(80),
+          border: Border.all(
+            width: 1,
+            color: HyphaColors.primary,
+            style: BorderStyle.solid,
+          ),
+        ),
+        child: CircleAvatar(
+          radius: imageRadius * 2,
+          backgroundColor: HyphaColors.transparent,
+          child: image,
+        ),
       ),
     );
   }
