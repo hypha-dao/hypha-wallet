@@ -19,7 +19,7 @@ class OnboardingPage extends StatelessWidget {
           child: HyphaAppButton(
             margin: EdgeInsets.symmetric(horizontal: 45, vertical: 40),
             onPressed: () {
-              Get.to(() => CreateProfilePage(), transition: Transition.rightToLeft);
+              Get.to(() => CreateProfilePage(), transition: Transition.rightToLeftWithFade);
             },
             title: 'CREATE ACCOUNT',
           ),

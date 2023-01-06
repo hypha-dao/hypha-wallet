@@ -46,6 +46,7 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
         appBar: AppBar(
           centerTitle: true,
           backgroundColor: HyphaColors.transparent,
+          elevation: 0,
           title: Column(
             children: [
               Text('Create your', style: context.textTheme.titleSmall?.copyWith(fontWeight: FontWeight.bold)),

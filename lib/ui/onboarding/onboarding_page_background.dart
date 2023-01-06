@@ -11,6 +11,7 @@ class OnboardingPageBackground extends StatelessWidget {
     return DecoratedBox(
       decoration: BoxDecoration(
         image: DecorationImage(
+          opacity: 0.85,
           image: AssetImage(context.hyphaAssetTheme.onboardingBackground),
           fit: BoxFit.cover,
         ),
