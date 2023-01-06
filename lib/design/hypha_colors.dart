@@ -4,9 +4,22 @@ class HyphaColors {
   static const green = Color(0xFF00BB56);
   static const red = Colors.red;
 
+  static const primary = Color(0xFF498AE5);
+
+  static const lightBlue = Color(0xFF61A9FC);
+  static const darkBlue = Color(0xFF315BCE);
+
+  static const blueGradient = LinearGradient(
+    begin: Alignment.centerLeft,
+    end: Alignment.centerRight,
+    colors: [lightBlue, darkBlue],
+  );
+
   /// Neutral Colors
   /// Neutrals with blacks, white, and greys for text, overlays, borders, and other similar components
   static const black = Color(0xFF000000);
+  static const lightBlack = Color(0xFF1A2636);
+
   static const grey900 = Color(0xFF212121);
   static const grey800 = Color(0xFF242424);
   static const grey700 = Color(0xFF424242);

@@ -99,6 +99,8 @@ dependencies:
   # Fonts
   google_fonts: ^3.0.1
 
+  flutter_svg: ^1.1.6
+
   # encrypt stored data
   flutter_secure_storage: ^7.0.1
 
@@ -135,7 +137,9 @@ flutter:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
   assets:
-   - assets/images/graphics/bg_texture.jpg
+   - assets/images/graphics/bg_texture.png
+   - assets/images/logos/hypha_logo.svg
+   - assets/images/logos/hypha_logo_composite.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

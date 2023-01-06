@@ -4,6 +4,7 @@ import 'package:hypha_wallet/design/avatar_image/hypha_avatar_image.dart';
 import 'package:hypha_wallet/design/buttons/hypha_app_button.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/ui/onboarding/create_account/create_account_page.dart';
+import 'package:hypha_wallet/ui/onboarding/onboarding_page_background.dart';
 import 'package:image_picker/image_picker.dart';
 
 class CreateProfilePage extends StatefulWidget {
@@ -25,10 +26,7 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        image: DecorationImage(image: AssetImage('assets/images/graphics/bg_texture.jpg'), fit: BoxFit.cover),
-      ),
+    return OnboardingPageBackground(
       child: Scaffold(
         backgroundColor: Colors.transparent,
         bottomNavigationBar: ValueListenableBuilder<TextEditingValue>(

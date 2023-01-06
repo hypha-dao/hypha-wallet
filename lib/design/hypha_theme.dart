@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hypha_wallet/design/hypha_colors.dart';
+import 'package:hypha_wallet/design/color_scheme/color_schemes.g.dart';
 
 class HyphaTheme {
   static ThemeData get darkTheme {
@@ -8,11 +8,11 @@ class HyphaTheme {
     var mainTextTheme = GoogleFonts.ralewayTextTheme(baseTheme.textTheme);
 
     return baseTheme.copyWith(
-      colorScheme: ColorScheme.fromSeed(seedColor: HyphaColors.green).copyWith(
-        brightness: Brightness.dark,
-      ),
+      colorScheme: darkColorScheme,
       textTheme: mainTextTheme.copyWith(
-        button: GoogleFonts.poppins(textStyle: mainTextTheme.button),
+        titleMedium: GoogleFonts.poppins(textStyle: mainTextTheme.titleMedium),
+        titleLarge: GoogleFonts.poppins(textStyle: mainTextTheme.titleLarge),
+        titleSmall: GoogleFonts.poppins(textStyle: mainTextTheme.titleSmall),
       ),
       extensions: const <ThemeExtension<dynamic>>[],
     );
@@ -22,11 +22,11 @@ class HyphaTheme {
     var mainTextTheme = GoogleFonts.ralewayTextTheme();
 
     return ThemeData(
-      colorScheme: ColorScheme.fromSeed(seedColor: HyphaColors.red).copyWith(
-        brightness: Brightness.light,
-      ),
+      colorScheme: lightColorScheme,
       textTheme: mainTextTheme.copyWith(
-        button: GoogleFonts.poppins(textStyle: mainTextTheme.button),
+        titleMedium: GoogleFonts.poppins(textStyle: mainTextTheme.titleMedium),
+        titleLarge: GoogleFonts.poppins(textStyle: mainTextTheme.titleLarge),
+        titleSmall: GoogleFonts.poppins(textStyle: mainTextTheme.titleSmall),
       ),
       extensions: const <ThemeExtension<dynamic>>[],
     );
