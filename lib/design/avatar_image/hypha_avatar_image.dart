@@ -40,7 +40,7 @@ class HyphaAvatarImage extends StatelessWidget {
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(80),
+          borderRadius: BorderRadius.circular(imageRadius * 2),
           border: Border.all(
             width: 1,
             color: HyphaColors.primary,

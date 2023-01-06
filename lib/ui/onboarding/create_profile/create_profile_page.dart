@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hypha_wallet/design/avatar_image/hypha_avatar_image.dart';
 import 'package:hypha_wallet/design/buttons/hypha_app_button.dart';
-import 'package:hypha_wallet/design/hypha_colors.dart';
+import 'package:hypha_wallet/ui/onboarding/components/onboarding_appbar.dart';
 import 'package:hypha_wallet/ui/onboarding/create_account/create_account_page.dart';
 import 'package:hypha_wallet/ui/onboarding/onboarding_page_background.dart';
 import 'package:image_picker/image_picker.dart';
@@ -43,17 +43,7 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
             ),
           ),
         ),
-        appBar: AppBar(
-          centerTitle: true,
-          backgroundColor: HyphaColors.transparent,
-          elevation: 0,
-          title: Column(
-            children: [
-              Text('Create your', style: context.textTheme.titleSmall?.copyWith(fontWeight: FontWeight.bold)),
-              Text('Hypha Account', style: context.textTheme.titleSmall?.copyWith(fontWeight: FontWeight.bold)),
-            ],
-          ),
-        ),
+        appBar: OnboardingAppbar(),
         body: Padding(
           padding: EdgeInsets.symmetric(horizontal: 45),
           child: Column(
@@ -64,7 +54,7 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
                 alignment: Alignment.center,
                 children: [
                   HyphaAvatarImage(
-                      imageRadius: 30,
+                      imageRadius: 36,
                       imageFromFile: _file?.path,
                       onTap: () async {
                         final XFile? image = await ImagePicker().pickImage(source: ImageSource.gallery);
@@ -73,8 +63,8 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
                         });
                       }),
                   Positioned(
-                    top: -8,
-                    right: -8,
+                    top: -4,
+                    right: -4,
                     child: IconButton(
                         onPressed: () async {
                           if (_file != null) {

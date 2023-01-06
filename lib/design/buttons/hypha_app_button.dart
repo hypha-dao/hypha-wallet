@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 
 class HyphaAppButton extends StatelessWidget {
@@ -50,7 +51,10 @@ class HyphaAppButton extends StatelessWidget {
                   items.add(icon!);
                   items.add(const SizedBox(width: 8));
                 }
-                items.add(Text(title));
+                items.add(Text(
+                  title,
+                  style: context.textTheme.titleSmall?.copyWith(fontWeight: FontWeight.bold, letterSpacing: 1),
+                ));
               }
 
               return Padding(

@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:hypha_wallet/design/buttons/hypha_app_button.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
-import 'package:hypha_wallet/ui/onboarding/create_profile_page.dart';
+import 'package:hypha_wallet/ui/onboarding/create_profile/create_profile_page.dart';
 import 'package:hypha_wallet/ui/onboarding/onboarding_page_background.dart';
 
 class OnboardingPage extends StatelessWidget {
@@ -40,6 +40,7 @@ class OnboardingPage extends StatelessWidget {
                   style: context.textTheme.bodyMedium?.copyWith(
                     fontWeight: FontWeight.normal,
                     color: context.textTheme.titleMedium?.color?.withOpacity(0.5),
+                    height: 1.5,
                   ),
                   textAlign: TextAlign.center,
                 ),
