@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 
 class OnboardingPageBackground extends StatelessWidget {
   final Widget child;
@@ -10,7 +11,7 @@ class OnboardingPageBackground extends StatelessWidget {
     return DecoratedBox(
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage('assets/images/graphics/bg_texture.png'),
+          image: AssetImage(context.hyphaAssetTheme.onboardingBackground),
           fit: BoxFit.cover,
         ),
       ),

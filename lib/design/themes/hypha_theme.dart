@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hypha_wallet/design/color_scheme/color_schemes.g.dart';
+import 'package:hypha_wallet/design/themes/extensions/hypha_assets_theme.dart';
 
 class HyphaTheme {
   static ThemeData get darkTheme {
@@ -14,7 +15,9 @@ class HyphaTheme {
         titleLarge: GoogleFonts.poppins(textStyle: mainTextTheme.titleLarge),
         titleSmall: GoogleFonts.poppins(textStyle: mainTextTheme.titleSmall),
       ),
-      extensions: const <ThemeExtension<dynamic>>[],
+      extensions: <ThemeExtension<dynamic>>[
+        HyphaAssetsTheme.dark,
+      ],
     );
   }
 
@@ -28,7 +31,9 @@ class HyphaTheme {
         titleLarge: GoogleFonts.poppins(textStyle: mainTextTheme.titleLarge),
         titleSmall: GoogleFonts.poppins(textStyle: mainTextTheme.titleSmall),
       ),
-      extensions: const <ThemeExtension<dynamic>>[],
+      extensions: <ThemeExtension<dynamic>>[
+        HyphaAssetsTheme.light,
+      ],
     );
   }
 }
