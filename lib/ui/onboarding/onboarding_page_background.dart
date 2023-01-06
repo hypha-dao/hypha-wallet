@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 
 class OnboardingPageBackground extends StatelessWidget {
@@ -11,7 +12,7 @@ class OnboardingPageBackground extends StatelessWidget {
     return DecoratedBox(
       decoration: BoxDecoration(
         image: DecorationImage(
-          opacity: 0.85,
+          colorFilter: ColorFilter.mode(HyphaColors.darkBlack.withOpacity(0.85), BlendMode.darken),
           image: AssetImage(context.hyphaAssetTheme.onboardingBackground),
           fit: BoxFit.cover,
         ),
