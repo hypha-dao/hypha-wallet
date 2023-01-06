@@ -1,44 +1,38 @@
 import 'package:flutter/material.dart';
 
 class HyphaColors {
-  static const green = Color(0xFF00BB56);
-  static const red = Colors.red;
+  /// Primary colors
+  static const primaryBlu = Color(0xFF498AE5);
+  static const offWhite = Color(0xFFF4F6F8);
 
-  static const primary = Color(0xFF498AE5);
+  static const error = Color(0xFFE23D50);
+  static const success = Color(0xFF1CB59B);
 
   static const lightBlue = Color(0xFF61A9FC);
   static const darkBlue = Color(0xFF315BCE);
 
-  static const blueGradient = LinearGradient(
+  /// Neutral Colors
+  /// Neutrals with blacks, white, and greys for text, overlays, borders, and other similar components
+  static const white = Color(0xFFFFFFFF);
+  static const black = Color(0xFF000000);
+  static const lightBlack = Color(0xFF1A2636);
+  static const darkBlack = Color(0xFF0B121C);
+  static const gradientBlackLight = Color(0xFF131D2B);
+  static const midGrey = Color(0xFF5F6F84);
+
+  static final black50 = const Color(0xFF000000).withOpacity(0.50);
+  static const transparent = Color(0x00000000);
+
+  /// Gradients
+  static const gradientBlu = LinearGradient(
     begin: Alignment.centerLeft,
     end: Alignment.centerRight,
     colors: [lightBlue, darkBlue],
   );
 
-  /// Neutral Colors
-  /// Neutrals with blacks, white, and greys for text, overlays, borders, and other similar components
-  static const black = Color(0xFF000000);
-  static const lightBlack = Color(0xFF1A2636);
-
-  static const grey900 = Color(0xFF212121);
-  static const grey800 = Color(0xFF242424);
-  static const grey700 = Color(0xFF424242);
-  static const grey600 = Color(0xFF757575);
-  static const grey300 = Color(0xFFBBBBBB);
-  static const grey200 = Color(0xFFD7D7D7);
-  static const grey100 = Color(0xFFEBEBEB);
-  static const white = Color(0xFFFFFFFF);
-
-  static const transparent = Color(0x00000000);
-
-  /// Overlays
-  static final black75 = const Color(0xFF000000).withOpacity(0.75);
-  static final black50 = const Color(0xFF000000).withOpacity(0.50);
-  static final black40 = const Color(0xFF000000).withOpacity(0.40);
-  static final black20 = const Color(0xFF000000).withOpacity(0.20);
-  static final black8 = const Color(0xFF000000).withOpacity(0.08);
-  static final white30 = const Color(0xFFFFFFFF).withOpacity(0.30);
-  static final white40 = const Color(0xFFFFFFFF).withOpacity(0.40);
-  static final white10 = const Color(0xFFFFFFFF).withOpacity(0.10);
-  static final white05 = const Color(0xFFFFFFFF).withOpacity(0.05);
+  static const gradientBlack = LinearGradient(
+    begin: Alignment.centerLeft,
+    end: Alignment.centerRight,
+    colors: [gradientBlackLight, darkBlack],
+  );
 }

@@ -3,8 +3,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:hypha_wallet/design/buttons/hypha_app_button.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
-import 'package:hypha_wallet/ui/onboarding/create_profile/create_profile_page.dart';
 import 'package:hypha_wallet/ui/onboarding/import_account/import_account_page.dart';
+import 'package:hypha_wallet/ui/onboarding/onboarding_page.dart';
 import 'package:hypha_wallet/ui/onboarding/onboarding_page_background.dart';
 
 class IntroPage extends StatelessWidget {
@@ -21,7 +21,7 @@ class IntroPage extends StatelessWidget {
             HyphaAppButton(
               margin: EdgeInsets.symmetric(horizontal: 45),
               onPressed: () {
-                Get.to(() => CreateProfilePage(), transition: Transition.rightToLeft);
+                Get.to(() => OnboardingPage(), transition: Transition.rightToLeft);
               },
               title: 'Create Account',
             ),

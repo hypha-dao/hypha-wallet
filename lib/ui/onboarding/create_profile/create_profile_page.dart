@@ -84,8 +84,13 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
               ),
               SizedBox(height: 80),
               TextField(
-                decoration: InputDecoration(hintText: 'Name'),
+                decoration: InputDecoration(labelText: 'Name'),
                 autofocus: true,
+                onSubmitted: (value) {
+                  if (value.isNotEmpty) {
+                    Get.to(() => CreateAccountPage(_file, _controller.text), transition: Transition.rightToLeft);
+                  }
+                },
                 controller: _controller,
               ),
             ],

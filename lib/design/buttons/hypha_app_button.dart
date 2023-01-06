@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
+import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 
 class HyphaAppButton extends StatelessWidget {
   final String title;
@@ -33,7 +33,7 @@ class HyphaAppButton extends StatelessWidget {
         child: Ink(
           decoration: onPressed != null
               ? BoxDecoration(
-                  gradient: HyphaColors.blueGradient,
+                  gradient: HyphaColors.gradientBlu,
                   borderRadius: borderRadius,
                 )
               : null,
@@ -51,10 +51,7 @@ class HyphaAppButton extends StatelessWidget {
                   items.add(icon!);
                   items.add(const SizedBox(width: 8));
                 }
-                items.add(Text(
-                  title,
-                  style: context.textTheme.titleSmall?.copyWith(fontWeight: FontWeight.bold, letterSpacing: 1),
-                ));
+                items.add(Text(title.toUpperCase(), style: context.hyphaTextTheme.buttons));
               }
 
               return Padding(

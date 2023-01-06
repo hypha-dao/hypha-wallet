@@ -28,7 +28,7 @@ class SettingsPage extends StatelessWidget {
                   ? Container(
                       height: double.infinity,
                       width: 10,
-                      decoration: BoxDecoration(shape: BoxShape.circle, color: HyphaColors.red),
+                      decoration: BoxDecoration(shape: BoxShape.circle, color: HyphaColors.error),
                     )
                   : SizedBox(height: 10, width: 10),
             ),

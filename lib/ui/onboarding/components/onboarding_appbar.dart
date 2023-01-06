@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
+import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 
 class OnboardingAppbar extends StatelessWidget implements PreferredSizeWidget {
   const OnboardingAppbar({Key? key}) : super(key: key);
@@ -13,8 +13,8 @@ class OnboardingAppbar extends StatelessWidget implements PreferredSizeWidget {
       elevation: 0,
       title: Column(
         children: [
-          Text('Create your', style: context.textTheme.titleSmall?.copyWith(fontWeight: FontWeight.bold)),
-          Text('Hypha Account', style: context.textTheme.titleSmall?.copyWith(fontWeight: FontWeight.bold)),
+          Text('Create your', style: context.hyphaTextTheme.smallTitles),
+          Text('Hypha Account', style: context.hyphaTextTheme.smallTitles),
         ],
       ),
     );

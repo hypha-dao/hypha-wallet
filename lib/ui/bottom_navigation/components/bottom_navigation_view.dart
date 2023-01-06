@@ -37,7 +37,7 @@ class BottomNavigationView extends StatelessWidget {
                               right: 0,
                               top: 0,
                               child: Container(
-                                decoration: BoxDecoration(color: HyphaColors.red, shape: BoxShape.circle),
+                                decoration: BoxDecoration(color: HyphaColors.error, shape: BoxShape.circle),
                                 constraints: const BoxConstraints(minWidth: 14, minHeight: 10),
                               ),
                             )

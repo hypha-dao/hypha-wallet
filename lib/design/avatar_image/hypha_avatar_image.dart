@@ -43,7 +43,7 @@ class HyphaAvatarImage extends StatelessWidget {
           borderRadius: BorderRadius.circular(imageRadius * 2),
           border: Border.all(
             width: 1,
-            color: HyphaColors.primary,
+            color: HyphaColors.primaryBlu,
             style: BorderStyle.solid,
           ),
         ),
