@@ -26,6 +26,7 @@ import 'package:hypha_wallet/ui/bottom_navigation/interactor/bottom_navigation_b
 import 'package:hypha_wallet/ui/home_page/interactor/home_bloc.dart';
 import 'package:hypha_wallet/ui/home_page/usecases/parse_qr_code_use_case.dart';
 import 'package:hypha_wallet/ui/onboarding/create_account/interactor/create_account_bloc.dart';
+import 'package:hypha_wallet/ui/onboarding/edit_account/edit_account_page.dart';
 import 'package:hypha_wallet/ui/onboarding/edit_account/interactor/edit_account_bloc.dart';
 import 'package:hypha_wallet/ui/onboarding/import_account/interactor/import_account_bloc.dart';
 import 'package:hypha_wallet/ui/onboarding/import_account/usecases/find_account_use_case.dart';

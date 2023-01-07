@@ -6,16 +6,14 @@ import 'package:hypha_wallet/ui/onboarding/edit_account/interactor/edit_account_
 import 'package:image_picker/image_picker.dart';
 
 class EditAccountPage extends StatelessWidget {
-  final XFile? _file;
-  final String _name;
+  final PageParams _pageParams;
 
-  const EditAccountPage(this._file, this._name);
+  const EditAccountPage(this._pageParams);
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>
-          GetIt.I.get<EditAccountBloc>(param1: _file, param2: _name)..add(const EditAccountEvent.initial()),
+      create: (context) => GetIt.I.get<EditAccountBloc>(param1: _pageParams)..add(const EditAccountEvent.initial()),
       child: BlocListener<EditAccountBloc, EditAccountState>(
         listenWhen: (previous, current) => previous.command != current.command,
         listener: (context, state) {
@@ -27,4 +25,11 @@ class EditAccountPage extends StatelessWidget {
       ),
     );
   }
+}
+
+class PageParams {
+  final XFile? file;
+  final String name;
+
+  const PageParams({this.file, required this.name});
 }

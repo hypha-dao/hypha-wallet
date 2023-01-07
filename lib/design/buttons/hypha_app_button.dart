@@ -6,6 +6,7 @@ class HyphaAppButton extends StatelessWidget {
   final String title;
   final VoidCallback? onPressed;
   final bool isLoading;
+  final bool isActive;
   final Icon? icon;
   final bool isFullWidth;
   final EdgeInsets margin;
@@ -14,6 +15,7 @@ class HyphaAppButton extends StatelessWidget {
     super.key,
     this.onPressed,
     this.isLoading = false,
+    this.isActive = true,
     required this.title,
     this.icon,
     this.isFullWidth = true,
@@ -28,10 +30,12 @@ class HyphaAppButton extends StatelessWidget {
       child: MaterialButton(
         shape: RoundedRectangleBorder(borderRadius: borderRadius),
         padding: const EdgeInsets.all(0.0),
-        onPressed: onPressed,
+        onPressed: () {
+          onPressed?.call();
+        },
         color: HyphaColors.lightBlack,
         child: Ink(
-          decoration: onPressed != null
+          decoration: isActive
               ? BoxDecoration(
                   gradient: HyphaColors.gradientBlu,
                   borderRadius: borderRadius,

@@ -28,14 +28,13 @@ void _registerBlocsModule() {
     ),
   );
 
-  _registerFactoryWithParams<EditAccountBloc, XFile?, String>(
-    (image, userName) => EditAccountBloc(
+  _registerFactoryWithParams<EditAccountBloc, PageParams, void>(
+    (pageParams, _) => EditAccountBloc(
       _getIt<CheckAccountAvailabilityUseCase>(),
       _getIt<CreateAccountUseCase>(),
       _getIt<ErrorHandlerManager>(),
       _getIt<CryptoAuthService>(),
-      image,
-      userName,
+      pageParams,
     ),
   );
 }

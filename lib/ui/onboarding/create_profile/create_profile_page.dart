@@ -54,7 +54,7 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
                 alignment: Alignment.center,
                 children: [
                   HyphaAvatarImage(
-                      imageRadius: 36,
+                      imageRadius: 50,
                       imageFromFile: _file?.path,
                       onTap: () async {
                         final XFile? image = await ImagePicker().pickImage(source: ImageSource.gallery);
@@ -63,8 +63,8 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
                         });
                       }),
                   Positioned(
-                    top: -4,
-                    right: -4,
+                    top: -10,
+                    right: -10,
                     child: IconButton(
                         onPressed: () async {
                           if (_file != null) {

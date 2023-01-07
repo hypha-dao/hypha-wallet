@@ -25,15 +25,21 @@ class HyphaAvatarImage extends StatelessWidget {
       image = ClipOval(
         child: Image.file(
           File(imageFromFile!),
-          width: imageRadius * 4,
-          height: imageRadius * 4,
+          width: imageRadius * 2,
+          height: imageRadius * 2,
           fit: BoxFit.cover,
         ),
       );
     } else if (imageFromUrl != null) {
-      image = ClipOval(child: Image.network(imageFromUrl!));
+      image = ClipOval(
+        child: Image.network(
+          imageFromUrl!,
+          width: imageRadius * 2,
+          height: imageRadius * 2,
+        ),
+      );
     } else {
-      image = Icon(Icons.image_outlined, size: imageRadius * 2, color: context.textTheme.titleSmall?.color);
+      image = Icon(Icons.image_outlined, size: imageRadius, color: context.textTheme.titleSmall?.color);
     }
 
     return GestureDetector(
@@ -48,7 +54,7 @@ class HyphaAvatarImage extends StatelessWidget {
           ),
         ),
         child: CircleAvatar(
-          radius: imageRadius * 2,
+          radius: imageRadius,
           backgroundColor: HyphaColors.transparent,
           child: image,
         ),

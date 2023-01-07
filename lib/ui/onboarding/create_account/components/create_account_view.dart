@@ -33,25 +33,19 @@ class CreateAccountView extends StatelessWidget {
                 child: Column(
                   children: [
                     SizedBox(height: 70),
-                    HyphaAvatarImage(imageFromFile: state.image?.path, imageRadius: 28),
+                    HyphaAvatarImage(imageFromFile: state.image?.path, imageRadius: 34),
                     SizedBox(height: 14),
                     Text(state.userName, style: context.hyphaTextTheme.smallTitles),
                     SizedBox(height: 70),
                     GestureDetector(
                       onTap: () {
-                        Get.Get.to(
-                          () => EditAccountPage(state.image, state.userName),
-                          transition: Get.Transition.rightToLeft,
-                        );
+                        _navigate(state);
                       },
                       child: TextFormField(
                         autofocus: false,
                         enabled: false,
                         onTap: () {
-                          Get.Get.to(
-                            () => EditAccountPage(state.image, state.userName),
-                            transition: Get.Transition.rightToLeft,
-                          );
+                          _navigate(state);
                         },
                         initialValue: state.userAccount,
                         decoration: InputDecoration(
@@ -76,6 +70,16 @@ class CreateAccountView extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+
+  void _navigate(CreateAccountState state) {
+    Get.Get.to(
+      () => EditAccountPage(PageParams(
+        file: state.image,
+        name: state.userName,
+      )),
+      transition: Get.Transition.rightToLeft,
     );
   }
 }

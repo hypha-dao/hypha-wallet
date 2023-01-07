@@ -13,6 +13,7 @@ import 'package:hypha_wallet/core/logging/log_helper.dart';
 import 'package:hypha_wallet/ui/architecture/interactor/page_states.dart';
 import 'package:hypha_wallet/ui/architecture/result/result.dart' as Hypha;
 import 'package:hypha_wallet/ui/onboarding/edit_account/data/user_account_requirement.dart';
+import 'package:hypha_wallet/ui/onboarding/edit_account/edit_account_page.dart';
 import 'package:hypha_wallet/ui/onboarding/edit_account/interactor/user_account_error.dart';
 import 'package:hypha_wallet/ui/onboarding/usecases/check_account_availability_use_case.dart';
 import 'package:hypha_wallet/ui/onboarding/usecases/create_account_use_case.dart';
@@ -35,9 +36,8 @@ class EditAccountBloc extends Bloc<EditAccountEvent, EditAccountState> {
     this._createAccountUseCase,
     this._errorHandlerManager,
     this._cryptoAuthService,
-    XFile? image,
-    String userName,
-  ) : super(EditAccountState(userName: userName, image: image)) {
+    PageParams pageParams,
+  ) : super(EditAccountState(userName: pageParams.name, image: pageParams.file)) {
     on<_Initial>(_initial);
     on<_OnNextPressed>(_onNextPressed);
     on<_ClearPageCommand>((_, emit) => emit(state.copyWith(command: null)));
