@@ -44,7 +44,7 @@ class RequirementStateWidget extends StatelessWidget {
         return Container(
           width: size,
           height: size,
-          child: CircularProgressIndicator.adaptive(),
+          child: CircularProgressIndicator(color: HyphaColors.primaryBlu, strokeWidth: 1),
         );
     }
   }
