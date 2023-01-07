@@ -13,7 +13,6 @@ class RequirementStateWidget extends StatelessWidget {
 
     switch (state) {
       case RequirementState.empty:
-      case RequirementState.failed:
         return Container(
           width: size,
           height: size,
@@ -31,15 +30,15 @@ class RequirementStateWidget extends StatelessWidget {
             shape: BoxShape.circle,
           ),
         );
-      // case RequirementState.failed:
-      //   return Container(
-      //     width: size,
-      //     height: size,
-      //     decoration: BoxDecoration(
-      //       color: HyphaColors.error,
-      //       shape: BoxShape.circle,
-      //     ),
-      //   );
+      case RequirementState.failed:
+        return Container(
+          width: size,
+          height: size,
+          decoration: BoxDecoration(
+            color: HyphaColors.error,
+            shape: BoxShape.circle,
+          ),
+        );
       case RequirementState.loading:
         return Container(
           width: size,
