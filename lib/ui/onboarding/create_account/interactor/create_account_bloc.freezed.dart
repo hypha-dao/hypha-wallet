@@ -20,18 +20,21 @@ mixin _$CreateAccountEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() clearPageCommand,
+    required TResult Function() onNextTapped,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? clearPageCommand,
+    TResult? Function()? onNextTapped,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? clearPageCommand,
+    TResult Function()? onNextTapped,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -39,18 +42,21 @@ mixin _$CreateAccountEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_ClearPageCommand value) clearPageCommand,
+    required TResult Function(_OnNextTapped value) onNextTapped,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_ClearPageCommand value)? clearPageCommand,
+    TResult? Function(_OnNextTapped value)? onNextTapped,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_ClearPageCommand value)? clearPageCommand,
+    TResult Function(_OnNextTapped value)? onNextTapped,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -113,6 +119,7 @@ class _$_Initial implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() clearPageCommand,
+    required TResult Function() onNextTapped,
   }) {
     return initial();
   }
@@ -122,6 +129,7 @@ class _$_Initial implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? clearPageCommand,
+    TResult? Function()? onNextTapped,
   }) {
     return initial?.call();
   }
@@ -131,6 +139,7 @@ class _$_Initial implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? clearPageCommand,
+    TResult Function()? onNextTapped,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -144,6 +153,7 @@ class _$_Initial implements _Initial {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_ClearPageCommand value) clearPageCommand,
+    required TResult Function(_OnNextTapped value) onNextTapped,
   }) {
     return initial(this);
   }
@@ -153,6 +163,7 @@ class _$_Initial implements _Initial {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_ClearPageCommand value)? clearPageCommand,
+    TResult? Function(_OnNextTapped value)? onNextTapped,
   }) {
     return initial?.call(this);
   }
@@ -162,6 +173,7 @@ class _$_Initial implements _Initial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_ClearPageCommand value)? clearPageCommand,
+    TResult Function(_OnNextTapped value)? onNextTapped,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -215,6 +227,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() clearPageCommand,
+    required TResult Function() onNextTapped,
   }) {
     return clearPageCommand();
   }
@@ -224,6 +237,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? clearPageCommand,
+    TResult? Function()? onNextTapped,
   }) {
     return clearPageCommand?.call();
   }
@@ -233,6 +247,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? clearPageCommand,
+    TResult Function()? onNextTapped,
     required TResult orElse(),
   }) {
     if (clearPageCommand != null) {
@@ -246,6 +261,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_ClearPageCommand value) clearPageCommand,
+    required TResult Function(_OnNextTapped value) onNextTapped,
   }) {
     return clearPageCommand(this);
   }
@@ -255,6 +271,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_ClearPageCommand value)? clearPageCommand,
+    TResult? Function(_OnNextTapped value)? onNextTapped,
   }) {
     return clearPageCommand?.call(this);
   }
@@ -264,6 +281,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_ClearPageCommand value)? clearPageCommand,
+    TResult Function(_OnNextTapped value)? onNextTapped,
     required TResult orElse(),
   }) {
     if (clearPageCommand != null) {
@@ -275,6 +293,114 @@ class _$_ClearPageCommand implements _ClearPageCommand {
 
 abstract class _ClearPageCommand implements CreateAccountEvent {
   const factory _ClearPageCommand() = _$_ClearPageCommand;
+}
+
+/// @nodoc
+abstract class _$$_OnNextTappedCopyWith<$Res> {
+  factory _$$_OnNextTappedCopyWith(
+          _$_OnNextTapped value, $Res Function(_$_OnNextTapped) then) =
+      __$$_OnNextTappedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_OnNextTappedCopyWithImpl<$Res>
+    extends _$CreateAccountEventCopyWithImpl<$Res, _$_OnNextTapped>
+    implements _$$_OnNextTappedCopyWith<$Res> {
+  __$$_OnNextTappedCopyWithImpl(
+      _$_OnNextTapped _value, $Res Function(_$_OnNextTapped) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_OnNextTapped implements _OnNextTapped {
+  const _$_OnNextTapped();
+
+  @override
+  String toString() {
+    return 'CreateAccountEvent.onNextTapped()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_OnNextTapped);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() clearPageCommand,
+    required TResult Function() onNextTapped,
+  }) {
+    return onNextTapped();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? clearPageCommand,
+    TResult? Function()? onNextTapped,
+  }) {
+    return onNextTapped?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? clearPageCommand,
+    TResult Function()? onNextTapped,
+    required TResult orElse(),
+  }) {
+    if (onNextTapped != null) {
+      return onNextTapped();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_ClearPageCommand value) clearPageCommand,
+    required TResult Function(_OnNextTapped value) onNextTapped,
+  }) {
+    return onNextTapped(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_ClearPageCommand value)? clearPageCommand,
+    TResult? Function(_OnNextTapped value)? onNextTapped,
+  }) {
+    return onNextTapped?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_ClearPageCommand value)? clearPageCommand,
+    TResult Function(_OnNextTapped value)? onNextTapped,
+    required TResult orElse(),
+  }) {
+    if (onNextTapped != null) {
+      return onNextTapped(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _OnNextTapped implements CreateAccountEvent {
+  const factory _OnNextTapped() = _$_OnNextTapped;
 }
 
 /// @nodoc
@@ -505,33 +631,39 @@ abstract class _CreateAccountState implements CreateAccountState {
 mixin _$PageCommand {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() navigateTo,
+    required TResult Function() showLoadingDialog,
+    required TResult Function() hideLoadingDialog,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? navigateTo,
+    TResult? Function()? showLoadingDialog,
+    TResult? Function()? hideLoadingDialog,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? navigateTo,
+    TResult Function()? showLoadingDialog,
+    TResult Function()? hideLoadingDialog,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_NavigateTo value) navigateTo,
+    required TResult Function(_ShowLoadingDialog value) showLoadingDialog,
+    required TResult Function(_HideLoadingDialog value) hideLoadingDialog,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_NavigateTo value)? navigateTo,
+    TResult? Function(_ShowLoadingDialog value)? showLoadingDialog,
+    TResult? Function(_HideLoadingDialog value)? hideLoadingDialog,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_NavigateTo value)? navigateTo,
+    TResult Function(_ShowLoadingDialog value)? showLoadingDialog,
+    TResult Function(_HideLoadingDialog value)? hideLoadingDialog,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -556,35 +688,35 @@ class _$PageCommandCopyWithImpl<$Res, $Val extends PageCommand>
 }
 
 /// @nodoc
-abstract class _$$_NavigateToCopyWith<$Res> {
-  factory _$$_NavigateToCopyWith(
-          _$_NavigateTo value, $Res Function(_$_NavigateTo) then) =
-      __$$_NavigateToCopyWithImpl<$Res>;
+abstract class _$$_ShowLoadingDialogCopyWith<$Res> {
+  factory _$$_ShowLoadingDialogCopyWith(_$_ShowLoadingDialog value,
+          $Res Function(_$_ShowLoadingDialog) then) =
+      __$$_ShowLoadingDialogCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_NavigateToCopyWithImpl<$Res>
-    extends _$PageCommandCopyWithImpl<$Res, _$_NavigateTo>
-    implements _$$_NavigateToCopyWith<$Res> {
-  __$$_NavigateToCopyWithImpl(
-      _$_NavigateTo _value, $Res Function(_$_NavigateTo) _then)
+class __$$_ShowLoadingDialogCopyWithImpl<$Res>
+    extends _$PageCommandCopyWithImpl<$Res, _$_ShowLoadingDialog>
+    implements _$$_ShowLoadingDialogCopyWith<$Res> {
+  __$$_ShowLoadingDialogCopyWithImpl(
+      _$_ShowLoadingDialog _value, $Res Function(_$_ShowLoadingDialog) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_NavigateTo implements _NavigateTo {
-  const _$_NavigateTo();
+class _$_ShowLoadingDialog implements _ShowLoadingDialog {
+  const _$_ShowLoadingDialog();
 
   @override
   String toString() {
-    return 'PageCommand.navigateTo()';
+    return 'PageCommand.showLoadingDialog()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_NavigateTo);
+        (other.runtimeType == runtimeType && other is _$_ShowLoadingDialog);
   }
 
   @override
@@ -593,27 +725,30 @@ class _$_NavigateTo implements _NavigateTo {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() navigateTo,
+    required TResult Function() showLoadingDialog,
+    required TResult Function() hideLoadingDialog,
   }) {
-    return navigateTo();
+    return showLoadingDialog();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? navigateTo,
+    TResult? Function()? showLoadingDialog,
+    TResult? Function()? hideLoadingDialog,
   }) {
-    return navigateTo?.call();
+    return showLoadingDialog?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? navigateTo,
+    TResult Function()? showLoadingDialog,
+    TResult Function()? hideLoadingDialog,
     required TResult orElse(),
   }) {
-    if (navigateTo != null) {
-      return navigateTo();
+    if (showLoadingDialog != null) {
+      return showLoadingDialog();
     }
     return orElse();
   }
@@ -621,32 +756,137 @@ class _$_NavigateTo implements _NavigateTo {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_NavigateTo value) navigateTo,
+    required TResult Function(_ShowLoadingDialog value) showLoadingDialog,
+    required TResult Function(_HideLoadingDialog value) hideLoadingDialog,
   }) {
-    return navigateTo(this);
+    return showLoadingDialog(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_NavigateTo value)? navigateTo,
+    TResult? Function(_ShowLoadingDialog value)? showLoadingDialog,
+    TResult? Function(_HideLoadingDialog value)? hideLoadingDialog,
   }) {
-    return navigateTo?.call(this);
+    return showLoadingDialog?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_NavigateTo value)? navigateTo,
+    TResult Function(_ShowLoadingDialog value)? showLoadingDialog,
+    TResult Function(_HideLoadingDialog value)? hideLoadingDialog,
     required TResult orElse(),
   }) {
-    if (navigateTo != null) {
-      return navigateTo(this);
+    if (showLoadingDialog != null) {
+      return showLoadingDialog(this);
     }
     return orElse();
   }
 }
 
-abstract class _NavigateTo implements PageCommand {
-  const factory _NavigateTo() = _$_NavigateTo;
+abstract class _ShowLoadingDialog implements PageCommand {
+  const factory _ShowLoadingDialog() = _$_ShowLoadingDialog;
+}
+
+/// @nodoc
+abstract class _$$_HideLoadingDialogCopyWith<$Res> {
+  factory _$$_HideLoadingDialogCopyWith(_$_HideLoadingDialog value,
+          $Res Function(_$_HideLoadingDialog) then) =
+      __$$_HideLoadingDialogCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_HideLoadingDialogCopyWithImpl<$Res>
+    extends _$PageCommandCopyWithImpl<$Res, _$_HideLoadingDialog>
+    implements _$$_HideLoadingDialogCopyWith<$Res> {
+  __$$_HideLoadingDialogCopyWithImpl(
+      _$_HideLoadingDialog _value, $Res Function(_$_HideLoadingDialog) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_HideLoadingDialog implements _HideLoadingDialog {
+  const _$_HideLoadingDialog();
+
+  @override
+  String toString() {
+    return 'PageCommand.hideLoadingDialog()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_HideLoadingDialog);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() showLoadingDialog,
+    required TResult Function() hideLoadingDialog,
+  }) {
+    return hideLoadingDialog();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? showLoadingDialog,
+    TResult? Function()? hideLoadingDialog,
+  }) {
+    return hideLoadingDialog?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? showLoadingDialog,
+    TResult Function()? hideLoadingDialog,
+    required TResult orElse(),
+  }) {
+    if (hideLoadingDialog != null) {
+      return hideLoadingDialog();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ShowLoadingDialog value) showLoadingDialog,
+    required TResult Function(_HideLoadingDialog value) hideLoadingDialog,
+  }) {
+    return hideLoadingDialog(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ShowLoadingDialog value)? showLoadingDialog,
+    TResult? Function(_HideLoadingDialog value)? hideLoadingDialog,
+  }) {
+    return hideLoadingDialog?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ShowLoadingDialog value)? showLoadingDialog,
+    TResult Function(_HideLoadingDialog value)? hideLoadingDialog,
+    required TResult orElse(),
+  }) {
+    if (hideLoadingDialog != null) {
+      return hideLoadingDialog(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _HideLoadingDialog implements PageCommand {
+  const factory _HideLoadingDialog() = _$_HideLoadingDialog;
 }

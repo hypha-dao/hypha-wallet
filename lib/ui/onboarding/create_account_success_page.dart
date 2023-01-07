@@ -1,27 +1,49 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:hypha_wallet/design/avatar_image/hypha_avatar_image.dart';
 import 'package:hypha_wallet/design/buttons/hypha_app_button.dart';
+import 'package:hypha_wallet/design/hypha_colors.dart';
+import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
+import 'package:hypha_wallet/ui/onboarding/onboarding_page_background.dart';
+import 'package:image_picker/image_picker.dart';
 
 class CreateAccountSuccessPage extends StatelessWidget {
-  const CreateAccountSuccessPage();
+  final XFile? file;
+  final String name;
+  final String accountName;
+
+  const CreateAccountSuccessPage({this.file, required this.name, required this.accountName});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: HyphaAppButton(
-        onPressed: () {},
-        title: 'Done',
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text('Create Account Success'),
-            Icon(Icons.image),
-            Text('Gery G'),
-            Text('@geryG'),
-            Text('Bio'),
-            Text('Bio more info '),
-          ],
+    return OnboardingPageBackground(
+      withOpacity: false,
+      child: Scaffold(
+        backgroundColor: HyphaColors.transparent,
+        bottomNavigationBar: SafeArea(
+          child: HyphaAppButton(
+            margin: EdgeInsets.symmetric(horizontal: 45, vertical: 40),
+            onPressed: () {
+              Get.back();
+            },
+            title: 'Next',
+          ),
+        ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SizedBox(height: 80),
+              Text('Well done!', style: context.hyphaTextTheme.regular.copyWith(color: HyphaColors.lightBlue)),
+              Text('Account Ready', style: context.hyphaTextTheme.smallTitles),
+              SizedBox(height: 140),
+              HyphaAvatarImage(imageFromFile: file?.path, imageRadius: 34),
+              SizedBox(height: 14),
+              Text(name, style: context.hyphaTextTheme.mediumTitles),
+              SizedBox(height: 4),
+              Text('@$accountName', style: context.hyphaTextTheme.regular.copyWith(color: HyphaColors.lightBlue)),
+            ],
+          ),
         ),
       ),
     );

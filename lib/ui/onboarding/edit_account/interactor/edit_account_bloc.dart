@@ -97,7 +97,7 @@ class EditAccountBloc extends Bloc<EditAccountEvent, EditAccountState> {
 
         searchUserCancellable = CancelableOperation.fromFuture(
           _checkAccountAvailabilityUseCase.run(event.value),
-          onCancel: () => {LogHelper.d('_checkAccountAvailabilityUseCase cancelled for: ' + event.value)},
+          onCancel: () => {LogHelper.d('_checkAccountAvailabilityUseCase cancelled for: ${event.value}')},
         );
 
         Hypha.Result<bool, HyphaError> result = await searchUserCancellable!.value;

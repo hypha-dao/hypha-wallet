@@ -2,8 +2,14 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:hypha_wallet/core/error_handler/error_handler_manager.dart';
+import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
+import 'package:hypha_wallet/core/local/models/user_auth_data.dart';
+import 'package:hypha_wallet/core/local/services/crypto_auth_service.dart';
 import 'package:hypha_wallet/ui/architecture/interactor/page_states.dart';
+import 'package:hypha_wallet/ui/architecture/result/result.dart' as Hypha;
 import 'package:hypha_wallet/ui/onboarding/usecases/check_account_availability_use_case.dart';
+import 'package:hypha_wallet/ui/onboarding/usecases/create_account_use_case.dart';
 import 'package:image_picker/image_picker.dart';
 
 part 'create_account_bloc.freezed.dart';
@@ -13,13 +19,20 @@ part 'page_command.dart';
 
 class CreateAccountBloc extends Bloc<CreateAccountEvent, CreateAccountState> {
   final CheckAccountAvailabilityUseCase _checkAccountAvailabilityUseCase;
+  final CryptoAuthService _cryptoAuthService;
+  final CreateAccountUseCase _createAccountUseCase;
+  final ErrorHandlerManager _errorHandlerManager;
 
   CreateAccountBloc(
+    this._cryptoAuthService,
+    this._createAccountUseCase,
     this._checkAccountAvailabilityUseCase,
+    this._errorHandlerManager,
     XFile? image,
     String userName,
   ) : super(CreateAccountState(userName: userName, image: image)) {
     on<_Initial>(_initial);
+    on<_OnNextTapped>(_onNextTapped);
     on<_ClearPageCommand>((_, emit) => emit(state.copyWith(command: null)));
   }
 
@@ -52,5 +65,25 @@ class CreateAccountBloc extends Bloc<CreateAccountEvent, CreateAccountState> {
     suggestedUsername = suggestedUsername.padRight(12, '1');
 
     return suggestedUsername.substring(0, 12);
+  }
+
+  FutureOr<void> _onNextTapped(_OnNextTapped event, Emitter<CreateAccountState> emit) async {
+    emit(state.copyWith(command: PageCommand.showLoadingDialog()));
+
+    UserAuthData auth = _cryptoAuthService.createRandomPrivateKeyAndWords();
+
+    /// Make call to create Account
+    Hypha.Result<bool, HyphaError> result = await _createAccountUseCase.run(Input(
+      userAuthData: auth,
+      accountName: state.userAccount!,
+      userName: state.userName,
+    ));
+
+    if (result.isValue) {
+      // emit(state.copyWith(isNextButtonLoading: false));
+    } else {
+      _errorHandlerManager.handlerError(result.asError!.error);
+      emit(state.copyWith(command: PageCommand.hideLoadingDialog()));
+    }
   }
 }

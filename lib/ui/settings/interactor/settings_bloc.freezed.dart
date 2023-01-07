@@ -834,7 +834,7 @@ class __$$_SettingsStateCopyWithImpl<$Res>
 class _$_SettingsState implements _SettingsState {
   const _$_SettingsState(
       {this.pageState = PageState.initial,
-      this.themeMode = ThemeMode.system,
+      this.themeMode = ThemeMode.dark,
       this.showSecurityNotification = true,
       this.command});
 

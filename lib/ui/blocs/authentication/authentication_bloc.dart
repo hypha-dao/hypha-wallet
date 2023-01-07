@@ -59,7 +59,7 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
         emit(const AuthenticationState.unAuthenticated());
       }
     } catch (error, stacktrace) {
-      LogHelper.e('Error during user sign-in status', error: error ?? '', stacktrace: stacktrace);
+      LogHelper.e('Error during user sign-in status', error: error, stacktrace: stacktrace);
       emit(const AuthenticationState.unAuthenticated());
     }
   }

@@ -13,6 +13,8 @@ class CreateAccountUseCase extends InputUseCase<Result<bool, HyphaError>, Input>
   @override
   Future<Result<bool, HyphaError>> run(Input input) async {
     try {
+      return Future.delayed(Duration(seconds: 3))
+          .then((value) => Result.error(HyphaError.api('Error creating account')));
       // TODO(Nik): Mocked result. Use API
       final bool result = await _authRepository.createUserAccount(
         userName: input.userName,

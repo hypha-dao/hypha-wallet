@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:hypha_wallet/design/buttons/hypha_app_button.dart';
-import 'package:hypha_wallet/ui/onboarding/create_account_success_page.dart';
 
 class CheckPhrasePage extends StatelessWidget {
   const CheckPhrasePage();
@@ -11,7 +9,7 @@ class CheckPhrasePage extends StatelessWidget {
     return Scaffold(
       bottomNavigationBar: HyphaAppButton(
         onPressed: () {
-          Get.to(() => CreateAccountSuccessPage(), transition: Transition.rightToLeft);
+          // Get.to(() => CreateAccountSuccessPage(), transition: Transition.rightToLeft);
         },
         title: 'Next',
       ),

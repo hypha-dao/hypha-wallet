@@ -22,7 +22,10 @@ void _registerBlocsModule() {
   _registerFactory(() => TransactionDetailsBloc(_getIt<SignTransactionUseCase>()));
   _registerFactoryWithParams<CreateAccountBloc, XFile?, String>(
     (image, userName) => CreateAccountBloc(
+      _getIt<CryptoAuthService>(),
+      _getIt<CreateAccountUseCase>(),
       _getIt<CheckAccountAvailabilityUseCase>(),
+      _getIt<ErrorHandlerManager>(),
       image,
       userName,
     ),

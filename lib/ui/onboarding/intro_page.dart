@@ -13,6 +13,7 @@ class IntroPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return OnboardingPageBackground(
+      withOpacity: false,
       child: Scaffold(
         backgroundColor: HyphaColors.transparent,
         bottomNavigationBar: Column(

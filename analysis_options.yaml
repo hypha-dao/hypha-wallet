@@ -28,6 +28,8 @@ linter:
     always_use_package_imports: true
     avoid_relative_lib_imports: true
     implementation_imports: true
+    unnecessary_string_interpolations: true
+    prefer_interpolation_to_compose_strings: true
     # Disabling invalid_annotation_target warning and warning in generates files
     invalid_annotation_target: ignore
 
