@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:hypha_wallet/design/avatar_image/hypha_avatar_image.dart';
 import 'package:hypha_wallet/design/buttons/hypha_app_button.dart';
 import 'package:hypha_wallet/ui/onboarding/components/onboarding_appbar.dart';
+import 'package:hypha_wallet/ui/onboarding/components/onboarding_page_background.dart';
 import 'package:hypha_wallet/ui/onboarding/create_account/create_account_page.dart';
-import 'package:hypha_wallet/ui/onboarding/onboarding_page_background.dart';
 import 'package:image_picker/image_picker.dart';
 
 class CreateProfilePage extends StatefulWidget {
@@ -43,7 +43,7 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
             ),
           ),
         ),
-        appBar: OnboardingAppbar(),
+        appBar: OnboardingAppbar(title: 'Create your', subTitle: 'Hypha Account'),
         body: Padding(
           padding: EdgeInsets.symmetric(horizontal: 45),
           child: Column(

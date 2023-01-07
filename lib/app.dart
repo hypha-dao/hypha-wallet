@@ -10,8 +10,8 @@ import 'package:hypha_wallet/ui/blocs/authentication/authentication_bloc.dart';
 import 'package:hypha_wallet/ui/blocs/deeplink/deeplink_bloc.dart';
 import 'package:hypha_wallet/ui/blocs/error_handler/error_handler_bloc.dart';
 import 'package:hypha_wallet/ui/bottom_navigation/hypha_bottom_navigation.dart';
-import 'package:hypha_wallet/ui/onboarding/intro_page.dart';
 import 'package:hypha_wallet/ui/onboarding/onboarding_page.dart';
+import 'package:hypha_wallet/ui/onboarding/onboarding_page_with_link.dart';
 import 'package:hypha_wallet/ui/settings/interactor/settings_bloc.dart';
 
 class HyphaApp extends StatelessWidget {
@@ -53,7 +53,7 @@ class HyphaAppView extends StatelessWidget {
             state.when(authenticated: (userProfile, authData) {
               Get.offAll(() => const HyphaBottomNavigation());
             }, unAuthenticated: (_, __) {
-              Get.offAll(() => const IntroPage());
+              Get.offAll(() => const OnboardingPage());
             }, unknown: (_, __) {
               LogHelper.d('Auth Bloc Listener unknown');
             });
@@ -62,7 +62,7 @@ class HyphaAppView extends StatelessWidget {
         BlocListener<DeeplinkBloc, DeeplinkState>(
           listenWhen: (previous, current) => previous.command != current.command,
           listener: (context, state) {
-            state.command?.when(navigateToCreateAccount: () => Get.offAll(() => const OnboardingPage()));
+            state.command?.when(navigateToCreateAccount: () => Get.offAll(() => const OnboardingPageWithLink()));
 
             context.read<DeeplinkBloc>().add(DeeplinkEvent.clearPageCommand());
           },

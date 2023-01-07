@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hypha_wallet/design/progress_indicator/hypha_progress_logo.dart';
-import 'package:hypha_wallet/ui/onboarding/onboarding_page_background.dart';
+import 'package:hypha_wallet/ui/onboarding/components/onboarding_page_background.dart';
 
 class HyphaFullPageProgressIndicator {
   static show(BuildContext context) {

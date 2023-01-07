@@ -6,9 +6,9 @@ import 'package:hypha_wallet/design/buttons/hypha_app_button.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 import 'package:hypha_wallet/ui/onboarding/components/onboarding_appbar.dart';
+import 'package:hypha_wallet/ui/onboarding/components/onboarding_page_background.dart';
 import 'package:hypha_wallet/ui/onboarding/create_account/interactor/create_account_bloc.dart';
 import 'package:hypha_wallet/ui/onboarding/edit_account/edit_account_page.dart';
-import 'package:hypha_wallet/ui/onboarding/onboarding_page_background.dart';
 import 'package:hypha_wallet/ui/shared/hypha_body_widget.dart';
 
 class CreateAccountView extends StatelessWidget {
@@ -19,7 +19,7 @@ class CreateAccountView extends StatelessWidget {
         return OnboardingPageBackground(
           child: Scaffold(
             backgroundColor: HyphaColors.transparent,
-            appBar: OnboardingAppbar(),
+            appBar: OnboardingAppbar(title: 'Create your', subTitle: 'Hypha Account'),
             bottomNavigationBar: SafeArea(
               child: HyphaAppButton(
                 margin: EdgeInsets.symmetric(horizontal: 45, vertical: 40),
