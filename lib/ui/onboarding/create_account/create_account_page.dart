@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:hypha_wallet/design/progress_indicator/hypha_progress_logo.dart';
+import 'package:hypha_wallet/design/progress_indicator/hypha_full_page_progress_indicator.dart';
 import 'package:hypha_wallet/ui/onboarding/create_account/components/create_account_view.dart';
 import 'package:hypha_wallet/ui/onboarding/create_account/interactor/create_account_bloc.dart';
-import 'package:hypha_wallet/ui/onboarding/onboarding_page_background.dart';
 import 'package:image_picker/image_picker.dart';
 
 class CreateAccountPage extends StatelessWidget {
@@ -21,23 +20,14 @@ class CreateAccountPage extends StatelessWidget {
       child: BlocListener<CreateAccountBloc, CreateAccountState>(
         listenWhen: (previous, current) => previous.command != current.command,
         listener: (context, state) {
-          state.command?.when(showLoadingDialog: () {
-            showGeneralDialog(
-              context: context,
-              barrierDismissible: false,
-              barrierLabel: 'Dialog',
-              transitionDuration: Duration(milliseconds: 400),
-              pageBuilder: (_, __, ___) {
-                return Scaffold(
-                  body: OnboardingPageBackground(
-                    child: HyphaProgressLogo(),
-                  ),
-                );
-              },
-            );
-          }, hideLoadingDialog: () {
-            Navigator.of(context).pop();
-          });
+          state.command?.when(
+            showLoadingDialog: () {
+              HyphaFullPageProgressIndicator.show(context);
+            },
+            hideLoadingDialog: () {
+              Navigator.of(context).pop();
+            },
+          );
 
           context.read<CreateAccountBloc>().add(CreateAccountEvent.clearPageCommand());
         },

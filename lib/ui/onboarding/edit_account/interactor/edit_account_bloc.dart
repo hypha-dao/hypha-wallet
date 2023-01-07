@@ -132,7 +132,7 @@ class EditAccountBloc extends Bloc<EditAccountEvent, EditAccountState> {
     UserAuthData auth = _cryptoAuthService.createRandomPrivateKeyAndWords();
 
     /// Make call to create Account
-    emit(state.copyWith(isNextButtonLoading: true));
+    emit(state.copyWith(command: PageCommand.showLoadingDialog()));
     Hypha.Result<bool, HyphaError> result = await _createAccountUseCase.run(Input(
       userAuthData: auth,
       accountName: state.userAccount!,
@@ -140,10 +140,9 @@ class EditAccountBloc extends Bloc<EditAccountEvent, EditAccountState> {
     ));
 
     if (result.isValue) {
-      emit(state.copyWith(isNextButtonLoading: false));
     } else {
+      emit(state.copyWith(command: PageCommand.hideLoadingDialog()));
       _errorHandlerManager.handlerError(result.asError!.error);
-      emit(state.copyWith(isNextButtonLoading: false));
     }
   }
 }

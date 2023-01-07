@@ -581,7 +581,6 @@ mixin _$EditAccountState {
   PageCommand? get command => throw _privateConstructorUsedError;
   List<UserAccountRequirement> get userAccountRequirements =>
       throw _privateConstructorUsedError;
-  bool get isNextButtonLoading => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $EditAccountStateCopyWith<EditAccountState> get copyWith =>
@@ -600,8 +599,7 @@ abstract class $EditAccountStateCopyWith<$Res> {
       String userName,
       String? userAccount,
       PageCommand? command,
-      List<UserAccountRequirement> userAccountRequirements,
-      bool isNextButtonLoading});
+      List<UserAccountRequirement> userAccountRequirements});
 
   $PageCommandCopyWith<$Res>? get command;
 }
@@ -625,7 +623,6 @@ class _$EditAccountStateCopyWithImpl<$Res, $Val extends EditAccountState>
     Object? userAccount = freezed,
     Object? command = freezed,
     Object? userAccountRequirements = null,
-    Object? isNextButtonLoading = null,
   }) {
     return _then(_value.copyWith(
       pageState: null == pageState
@@ -652,10 +649,6 @@ class _$EditAccountStateCopyWithImpl<$Res, $Val extends EditAccountState>
           ? _value.userAccountRequirements
           : userAccountRequirements // ignore: cast_nullable_to_non_nullable
               as List<UserAccountRequirement>,
-      isNextButtonLoading: null == isNextButtonLoading
-          ? _value.isNextButtonLoading
-          : isNextButtonLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
     ) as $Val);
   }
 
@@ -686,8 +679,7 @@ abstract class _$$_CreateAccountStateCopyWith<$Res>
       String userName,
       String? userAccount,
       PageCommand? command,
-      List<UserAccountRequirement> userAccountRequirements,
-      bool isNextButtonLoading});
+      List<UserAccountRequirement> userAccountRequirements});
 
   @override
   $PageCommandCopyWith<$Res>? get command;
@@ -710,7 +702,6 @@ class __$$_CreateAccountStateCopyWithImpl<$Res>
     Object? userAccount = freezed,
     Object? command = freezed,
     Object? userAccountRequirements = null,
-    Object? isNextButtonLoading = null,
   }) {
     return _then(_$_CreateAccountState(
       pageState: null == pageState
@@ -737,10 +728,6 @@ class __$$_CreateAccountStateCopyWithImpl<$Res>
           ? _value._userAccountRequirements
           : userAccountRequirements // ignore: cast_nullable_to_non_nullable
               as List<UserAccountRequirement>,
-      isNextButtonLoading: null == isNextButtonLoading
-          ? _value.isNextButtonLoading
-          : isNextButtonLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
     ));
   }
 }
@@ -754,8 +741,7 @@ class _$_CreateAccountState extends _CreateAccountState {
       required this.userName,
       this.userAccount,
       this.command,
-      final List<UserAccountRequirement> userAccountRequirements = const [],
-      this.isNextButtonLoading = false})
+      final List<UserAccountRequirement> userAccountRequirements = const []})
       : _userAccountRequirements = userAccountRequirements,
         super._();
 
@@ -781,12 +767,8 @@ class _$_CreateAccountState extends _CreateAccountState {
   }
 
   @override
-  @JsonKey()
-  final bool isNextButtonLoading;
-
-  @override
   String toString() {
-    return 'EditAccountState(pageState: $pageState, image: $image, userName: $userName, userAccount: $userAccount, command: $command, userAccountRequirements: $userAccountRequirements, isNextButtonLoading: $isNextButtonLoading)';
+    return 'EditAccountState(pageState: $pageState, image: $image, userName: $userName, userAccount: $userAccount, command: $command, userAccountRequirements: $userAccountRequirements)';
   }
 
   @override
@@ -803,9 +785,7 @@ class _$_CreateAccountState extends _CreateAccountState {
                 other.userAccount == userAccount) &&
             (identical(other.command, command) || other.command == command) &&
             const DeepCollectionEquality().equals(
-                other._userAccountRequirements, _userAccountRequirements) &&
-            (identical(other.isNextButtonLoading, isNextButtonLoading) ||
-                other.isNextButtonLoading == isNextButtonLoading));
+                other._userAccountRequirements, _userAccountRequirements));
   }
 
   @override
@@ -816,8 +796,7 @@ class _$_CreateAccountState extends _CreateAccountState {
       userName,
       userAccount,
       command,
-      const DeepCollectionEquality().hash(_userAccountRequirements),
-      isNextButtonLoading);
+      const DeepCollectionEquality().hash(_userAccountRequirements));
 
   @JsonKey(ignore: true)
   @override
@@ -829,13 +808,13 @@ class _$_CreateAccountState extends _CreateAccountState {
 
 abstract class _CreateAccountState extends EditAccountState {
   const factory _CreateAccountState(
-      {final PageState pageState,
-      final XFile? image,
-      required final String userName,
-      final String? userAccount,
-      final PageCommand? command,
-      final List<UserAccountRequirement> userAccountRequirements,
-      final bool isNextButtonLoading}) = _$_CreateAccountState;
+          {final PageState pageState,
+          final XFile? image,
+          required final String userName,
+          final String? userAccount,
+          final PageCommand? command,
+          final List<UserAccountRequirement> userAccountRequirements}) =
+      _$_CreateAccountState;
   const _CreateAccountState._() : super._();
 
   @override
@@ -851,8 +830,6 @@ abstract class _CreateAccountState extends EditAccountState {
   @override
   List<UserAccountRequirement> get userAccountRequirements;
   @override
-  bool get isNextButtonLoading;
-  @override
   @JsonKey(ignore: true)
   _$$_CreateAccountStateCopyWith<_$_CreateAccountState> get copyWith =>
       throw _privateConstructorUsedError;
@@ -862,33 +839,39 @@ abstract class _CreateAccountState extends EditAccountState {
 mixin _$PageCommand {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() navigateTo,
+    required TResult Function() showLoadingDialog,
+    required TResult Function() hideLoadingDialog,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? navigateTo,
+    TResult? Function()? showLoadingDialog,
+    TResult? Function()? hideLoadingDialog,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? navigateTo,
+    TResult Function()? showLoadingDialog,
+    TResult Function()? hideLoadingDialog,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_NavigateTo value) navigateTo,
+    required TResult Function(_ShowLoadingDialog value) showLoadingDialog,
+    required TResult Function(_HideLoadingDialog value) hideLoadingDialog,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_NavigateTo value)? navigateTo,
+    TResult? Function(_ShowLoadingDialog value)? showLoadingDialog,
+    TResult? Function(_HideLoadingDialog value)? hideLoadingDialog,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_NavigateTo value)? navigateTo,
+    TResult Function(_ShowLoadingDialog value)? showLoadingDialog,
+    TResult Function(_HideLoadingDialog value)? hideLoadingDialog,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -913,35 +896,35 @@ class _$PageCommandCopyWithImpl<$Res, $Val extends PageCommand>
 }
 
 /// @nodoc
-abstract class _$$_NavigateToCopyWith<$Res> {
-  factory _$$_NavigateToCopyWith(
-          _$_NavigateTo value, $Res Function(_$_NavigateTo) then) =
-      __$$_NavigateToCopyWithImpl<$Res>;
+abstract class _$$_ShowLoadingDialogCopyWith<$Res> {
+  factory _$$_ShowLoadingDialogCopyWith(_$_ShowLoadingDialog value,
+          $Res Function(_$_ShowLoadingDialog) then) =
+      __$$_ShowLoadingDialogCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_NavigateToCopyWithImpl<$Res>
-    extends _$PageCommandCopyWithImpl<$Res, _$_NavigateTo>
-    implements _$$_NavigateToCopyWith<$Res> {
-  __$$_NavigateToCopyWithImpl(
-      _$_NavigateTo _value, $Res Function(_$_NavigateTo) _then)
+class __$$_ShowLoadingDialogCopyWithImpl<$Res>
+    extends _$PageCommandCopyWithImpl<$Res, _$_ShowLoadingDialog>
+    implements _$$_ShowLoadingDialogCopyWith<$Res> {
+  __$$_ShowLoadingDialogCopyWithImpl(
+      _$_ShowLoadingDialog _value, $Res Function(_$_ShowLoadingDialog) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_NavigateTo implements _NavigateTo {
-  const _$_NavigateTo();
+class _$_ShowLoadingDialog implements _ShowLoadingDialog {
+  const _$_ShowLoadingDialog();
 
   @override
   String toString() {
-    return 'PageCommand.navigateTo()';
+    return 'PageCommand.showLoadingDialog()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_NavigateTo);
+        (other.runtimeType == runtimeType && other is _$_ShowLoadingDialog);
   }
 
   @override
@@ -950,27 +933,30 @@ class _$_NavigateTo implements _NavigateTo {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() navigateTo,
+    required TResult Function() showLoadingDialog,
+    required TResult Function() hideLoadingDialog,
   }) {
-    return navigateTo();
+    return showLoadingDialog();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? navigateTo,
+    TResult? Function()? showLoadingDialog,
+    TResult? Function()? hideLoadingDialog,
   }) {
-    return navigateTo?.call();
+    return showLoadingDialog?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? navigateTo,
+    TResult Function()? showLoadingDialog,
+    TResult Function()? hideLoadingDialog,
     required TResult orElse(),
   }) {
-    if (navigateTo != null) {
-      return navigateTo();
+    if (showLoadingDialog != null) {
+      return showLoadingDialog();
     }
     return orElse();
   }
@@ -978,32 +964,137 @@ class _$_NavigateTo implements _NavigateTo {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_NavigateTo value) navigateTo,
+    required TResult Function(_ShowLoadingDialog value) showLoadingDialog,
+    required TResult Function(_HideLoadingDialog value) hideLoadingDialog,
   }) {
-    return navigateTo(this);
+    return showLoadingDialog(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_NavigateTo value)? navigateTo,
+    TResult? Function(_ShowLoadingDialog value)? showLoadingDialog,
+    TResult? Function(_HideLoadingDialog value)? hideLoadingDialog,
   }) {
-    return navigateTo?.call(this);
+    return showLoadingDialog?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_NavigateTo value)? navigateTo,
+    TResult Function(_ShowLoadingDialog value)? showLoadingDialog,
+    TResult Function(_HideLoadingDialog value)? hideLoadingDialog,
     required TResult orElse(),
   }) {
-    if (navigateTo != null) {
-      return navigateTo(this);
+    if (showLoadingDialog != null) {
+      return showLoadingDialog(this);
     }
     return orElse();
   }
 }
 
-abstract class _NavigateTo implements PageCommand {
-  const factory _NavigateTo() = _$_NavigateTo;
+abstract class _ShowLoadingDialog implements PageCommand {
+  const factory _ShowLoadingDialog() = _$_ShowLoadingDialog;
+}
+
+/// @nodoc
+abstract class _$$_HideLoadingDialogCopyWith<$Res> {
+  factory _$$_HideLoadingDialogCopyWith(_$_HideLoadingDialog value,
+          $Res Function(_$_HideLoadingDialog) then) =
+      __$$_HideLoadingDialogCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_HideLoadingDialogCopyWithImpl<$Res>
+    extends _$PageCommandCopyWithImpl<$Res, _$_HideLoadingDialog>
+    implements _$$_HideLoadingDialogCopyWith<$Res> {
+  __$$_HideLoadingDialogCopyWithImpl(
+      _$_HideLoadingDialog _value, $Res Function(_$_HideLoadingDialog) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_HideLoadingDialog implements _HideLoadingDialog {
+  const _$_HideLoadingDialog();
+
+  @override
+  String toString() {
+    return 'PageCommand.hideLoadingDialog()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_HideLoadingDialog);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() showLoadingDialog,
+    required TResult Function() hideLoadingDialog,
+  }) {
+    return hideLoadingDialog();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? showLoadingDialog,
+    TResult? Function()? hideLoadingDialog,
+  }) {
+    return hideLoadingDialog?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? showLoadingDialog,
+    TResult Function()? hideLoadingDialog,
+    required TResult orElse(),
+  }) {
+    if (hideLoadingDialog != null) {
+      return hideLoadingDialog();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ShowLoadingDialog value) showLoadingDialog,
+    required TResult Function(_HideLoadingDialog value) hideLoadingDialog,
+  }) {
+    return hideLoadingDialog(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ShowLoadingDialog value)? showLoadingDialog,
+    TResult? Function(_HideLoadingDialog value)? hideLoadingDialog,
+  }) {
+    return hideLoadingDialog?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ShowLoadingDialog value)? showLoadingDialog,
+    TResult Function(_HideLoadingDialog value)? hideLoadingDialog,
+    required TResult orElse(),
+  }) {
+    if (hideLoadingDialog != null) {
+      return hideLoadingDialog(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _HideLoadingDialog implements PageCommand {
+  const factory _HideLoadingDialog() = _$_HideLoadingDialog;
 }
