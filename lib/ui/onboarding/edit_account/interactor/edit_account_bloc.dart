@@ -140,6 +140,7 @@ class EditAccountBloc extends Bloc<EditAccountEvent, EditAccountState> {
     ));
 
     if (result.isValue) {
+      emit(state.copyWith(command: PageCommand.navigateToSuccess()));
     } else {
       emit(state.copyWith(command: PageCommand.hideLoadingDialog()));
       _errorHandlerManager.handlerError(result.asError!.error);

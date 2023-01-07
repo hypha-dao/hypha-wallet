@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart' as Get;
 import 'package:get_it/get_it.dart';
 import 'package:hypha_wallet/design/progress_indicator/hypha_full_page_progress_indicator.dart';
+import 'package:hypha_wallet/ui/onboarding/create_account_success_page.dart';
 import 'package:hypha_wallet/ui/onboarding/edit_account/components/edit_account_view.dart';
 import 'package:hypha_wallet/ui/onboarding/edit_account/interactor/edit_account_bloc.dart';
 import 'package:image_picker/image_picker.dart';
@@ -24,6 +26,16 @@ class EditAccountPage extends StatelessWidget {
             },
             hideLoadingDialog: () {
               Navigator.of(context).pop();
+            },
+            navigateToSuccess: () {
+              Get.Get.to(
+                () => CreateAccountSuccessPage(
+                  accountName: state.userAccount!,
+                  name: state.userName,
+                  file: state.image,
+                ),
+                transition: Get.Transition.rightToLeft,
+              );
             },
           );
 

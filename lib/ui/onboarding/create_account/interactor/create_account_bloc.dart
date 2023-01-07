@@ -80,7 +80,7 @@ class CreateAccountBloc extends Bloc<CreateAccountEvent, CreateAccountState> {
     ));
 
     if (result.isValue) {
-      // emit(state.copyWith(isNextButtonLoading: false));
+      emit(state.copyWith(command: PageCommand.navigateToSuccess()));
     } else {
       _errorHandlerManager.handlerError(result.asError!.error);
       emit(state.copyWith(command: PageCommand.hideLoadingDialog()));

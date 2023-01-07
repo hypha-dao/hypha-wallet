@@ -682,45 +682,43 @@ abstract class _OnAuthenticatedDataChanged implements AuthenticationEvent {
 
 /// @nodoc
 mixin _$AuthenticationState {
-  AuthenticationStatus get authenticationStatus =>
-      throw _privateConstructorUsedError;
   UserProfileData? get authenticatedData => throw _privateConstructorUsedError;
   UserAuthData? get userAuthData => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(AuthenticationStatus authenticationStatus,
+    required TResult Function(
             UserProfileData authenticatedData, UserAuthData userAuthData)
         authenticated,
-    required TResult Function(AuthenticationStatus authenticationStatus,
+    required TResult Function(
             UserProfileData? authenticatedData, UserAuthData? userAuthData)
         unAuthenticated,
-    required TResult Function(AuthenticationStatus authenticationStatus,
+    required TResult Function(
             UserProfileData? authenticatedData, UserAuthData? userAuthData)
         unknown,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(AuthenticationStatus authenticationStatus,
+    TResult? Function(
             UserProfileData authenticatedData, UserAuthData userAuthData)?
         authenticated,
-    TResult? Function(AuthenticationStatus authenticationStatus,
+    TResult? Function(
             UserProfileData? authenticatedData, UserAuthData? userAuthData)?
         unAuthenticated,
-    TResult? Function(AuthenticationStatus authenticationStatus,
+    TResult? Function(
             UserProfileData? authenticatedData, UserAuthData? userAuthData)?
         unknown,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(AuthenticationStatus authenticationStatus,
+    TResult Function(
             UserProfileData authenticatedData, UserAuthData userAuthData)?
         authenticated,
-    TResult Function(AuthenticationStatus authenticationStatus,
+    TResult Function(
             UserProfileData? authenticatedData, UserAuthData? userAuthData)?
         unAuthenticated,
-    TResult Function(AuthenticationStatus authenticationStatus,
+    TResult Function(
             UserProfileData? authenticatedData, UserAuthData? userAuthData)?
         unknown,
     required TResult orElse(),
@@ -760,10 +758,7 @@ abstract class $AuthenticationStateCopyWith<$Res> {
           AuthenticationState value, $Res Function(AuthenticationState) then) =
       _$AuthenticationStateCopyWithImpl<$Res, AuthenticationState>;
   @useResult
-  $Res call(
-      {AuthenticationStatus authenticationStatus,
-      UserProfileData authenticatedData,
-      UserAuthData userAuthData});
+  $Res call({UserProfileData authenticatedData, UserAuthData userAuthData});
 
   $UserProfileDataCopyWith<$Res>? get authenticatedData;
 }
@@ -781,15 +776,10 @@ class _$AuthenticationStateCopyWithImpl<$Res, $Val extends AuthenticationState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? authenticationStatus = null,
     Object? authenticatedData = null,
     Object? userAuthData = null,
   }) {
     return _then(_value.copyWith(
-      authenticationStatus: null == authenticationStatus
-          ? _value.authenticationStatus
-          : authenticationStatus // ignore: cast_nullable_to_non_nullable
-              as AuthenticationStatus,
       authenticatedData: null == authenticatedData
           ? _value.authenticatedData!
           : authenticatedData // ignore: cast_nullable_to_non_nullable
@@ -822,10 +812,7 @@ abstract class _$$_AuthenticatedCopyWith<$Res>
       __$$_AuthenticatedCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {AuthenticationStatus authenticationStatus,
-      UserProfileData authenticatedData,
-      UserAuthData userAuthData});
+  $Res call({UserProfileData authenticatedData, UserAuthData userAuthData});
 
   @override
   $UserProfileDataCopyWith<$Res> get authenticatedData;
@@ -842,15 +829,10 @@ class __$$_AuthenticatedCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? authenticationStatus = null,
     Object? authenticatedData = null,
     Object? userAuthData = null,
   }) {
     return _then(_$_Authenticated(
-      null == authenticationStatus
-          ? _value.authenticationStatus
-          : authenticationStatus // ignore: cast_nullable_to_non_nullable
-              as AuthenticationStatus,
       null == authenticatedData
           ? _value.authenticatedData
           : authenticatedData // ignore: cast_nullable_to_non_nullable
@@ -874,11 +856,8 @@ class __$$_AuthenticatedCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Authenticated implements _Authenticated {
-  const _$_Authenticated(
-      this.authenticationStatus, this.authenticatedData, this.userAuthData);
+  const _$_Authenticated(this.authenticatedData, this.userAuthData);
 
-  @override
-  final AuthenticationStatus authenticationStatus;
   @override
   final UserProfileData authenticatedData;
   @override
@@ -886,7 +865,7 @@ class _$_Authenticated implements _Authenticated {
 
   @override
   String toString() {
-    return 'AuthenticationState.authenticated(authenticationStatus: $authenticationStatus, authenticatedData: $authenticatedData, userAuthData: $userAuthData)';
+    return 'AuthenticationState.authenticated(authenticatedData: $authenticatedData, userAuthData: $userAuthData)';
   }
 
   @override
@@ -894,8 +873,6 @@ class _$_Authenticated implements _Authenticated {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Authenticated &&
-            (identical(other.authenticationStatus, authenticationStatus) ||
-                other.authenticationStatus == authenticationStatus) &&
             (identical(other.authenticatedData, authenticatedData) ||
                 other.authenticatedData == authenticatedData) &&
             (identical(other.userAuthData, userAuthData) ||
@@ -903,8 +880,7 @@ class _$_Authenticated implements _Authenticated {
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, authenticationStatus, authenticatedData, userAuthData);
+  int get hashCode => Object.hash(runtimeType, authenticatedData, userAuthData);
 
   @JsonKey(ignore: true)
   @override
@@ -915,53 +891,51 @@ class _$_Authenticated implements _Authenticated {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(AuthenticationStatus authenticationStatus,
+    required TResult Function(
             UserProfileData authenticatedData, UserAuthData userAuthData)
         authenticated,
-    required TResult Function(AuthenticationStatus authenticationStatus,
+    required TResult Function(
             UserProfileData? authenticatedData, UserAuthData? userAuthData)
         unAuthenticated,
-    required TResult Function(AuthenticationStatus authenticationStatus,
+    required TResult Function(
             UserProfileData? authenticatedData, UserAuthData? userAuthData)
         unknown,
   }) {
-    return authenticated(authenticationStatus, authenticatedData, userAuthData);
+    return authenticated(authenticatedData, userAuthData);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(AuthenticationStatus authenticationStatus,
+    TResult? Function(
             UserProfileData authenticatedData, UserAuthData userAuthData)?
         authenticated,
-    TResult? Function(AuthenticationStatus authenticationStatus,
+    TResult? Function(
             UserProfileData? authenticatedData, UserAuthData? userAuthData)?
         unAuthenticated,
-    TResult? Function(AuthenticationStatus authenticationStatus,
+    TResult? Function(
             UserProfileData? authenticatedData, UserAuthData? userAuthData)?
         unknown,
   }) {
-    return authenticated?.call(
-        authenticationStatus, authenticatedData, userAuthData);
+    return authenticated?.call(authenticatedData, userAuthData);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(AuthenticationStatus authenticationStatus,
+    TResult Function(
             UserProfileData authenticatedData, UserAuthData userAuthData)?
         authenticated,
-    TResult Function(AuthenticationStatus authenticationStatus,
+    TResult Function(
             UserProfileData? authenticatedData, UserAuthData? userAuthData)?
         unAuthenticated,
-    TResult Function(AuthenticationStatus authenticationStatus,
+    TResult Function(
             UserProfileData? authenticatedData, UserAuthData? userAuthData)?
         unknown,
     required TResult orElse(),
   }) {
     if (authenticated != null) {
-      return authenticated(
-          authenticationStatus, authenticatedData, userAuthData);
+      return authenticated(authenticatedData, userAuthData);
     }
     return orElse();
   }
@@ -1002,13 +976,9 @@ class _$_Authenticated implements _Authenticated {
 }
 
 abstract class _Authenticated implements AuthenticationState {
-  const factory _Authenticated(
-      final AuthenticationStatus authenticationStatus,
-      final UserProfileData authenticatedData,
+  const factory _Authenticated(final UserProfileData authenticatedData,
       final UserAuthData userAuthData) = _$_Authenticated;
 
-  @override
-  AuthenticationStatus get authenticationStatus;
   @override
   UserProfileData get authenticatedData;
   @override
@@ -1027,10 +997,7 @@ abstract class _$$_UnAuthenticatedCopyWith<$Res>
       __$$_UnAuthenticatedCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {AuthenticationStatus authenticationStatus,
-      UserProfileData? authenticatedData,
-      UserAuthData? userAuthData});
+  $Res call({UserProfileData? authenticatedData, UserAuthData? userAuthData});
 
   @override
   $UserProfileDataCopyWith<$Res>? get authenticatedData;
@@ -1047,15 +1014,10 @@ class __$$_UnAuthenticatedCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? authenticationStatus = null,
     Object? authenticatedData = freezed,
     Object? userAuthData = freezed,
   }) {
     return _then(_$_UnAuthenticated(
-      authenticationStatus: null == authenticationStatus
-          ? _value.authenticationStatus
-          : authenticationStatus // ignore: cast_nullable_to_non_nullable
-              as AuthenticationStatus,
       authenticatedData: freezed == authenticatedData
           ? _value.authenticatedData
           : authenticatedData // ignore: cast_nullable_to_non_nullable
@@ -1071,14 +1033,8 @@ class __$$_UnAuthenticatedCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_UnAuthenticated implements _UnAuthenticated {
-  const _$_UnAuthenticated(
-      {this.authenticationStatus = AuthenticationStatus.unauthenticated,
-      this.authenticatedData,
-      this.userAuthData});
+  const _$_UnAuthenticated({this.authenticatedData, this.userAuthData});
 
-  @override
-  @JsonKey()
-  final AuthenticationStatus authenticationStatus;
   @override
   final UserProfileData? authenticatedData;
   @override
@@ -1086,7 +1042,7 @@ class _$_UnAuthenticated implements _UnAuthenticated {
 
   @override
   String toString() {
-    return 'AuthenticationState.unAuthenticated(authenticationStatus: $authenticationStatus, authenticatedData: $authenticatedData, userAuthData: $userAuthData)';
+    return 'AuthenticationState.unAuthenticated(authenticatedData: $authenticatedData, userAuthData: $userAuthData)';
   }
 
   @override
@@ -1094,8 +1050,6 @@ class _$_UnAuthenticated implements _UnAuthenticated {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_UnAuthenticated &&
-            (identical(other.authenticationStatus, authenticationStatus) ||
-                other.authenticationStatus == authenticationStatus) &&
             (identical(other.authenticatedData, authenticatedData) ||
                 other.authenticatedData == authenticatedData) &&
             (identical(other.userAuthData, userAuthData) ||
@@ -1103,8 +1057,7 @@ class _$_UnAuthenticated implements _UnAuthenticated {
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, authenticationStatus, authenticatedData, userAuthData);
+  int get hashCode => Object.hash(runtimeType, authenticatedData, userAuthData);
 
   @JsonKey(ignore: true)
   @override
@@ -1115,54 +1068,51 @@ class _$_UnAuthenticated implements _UnAuthenticated {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(AuthenticationStatus authenticationStatus,
+    required TResult Function(
             UserProfileData authenticatedData, UserAuthData userAuthData)
         authenticated,
-    required TResult Function(AuthenticationStatus authenticationStatus,
+    required TResult Function(
             UserProfileData? authenticatedData, UserAuthData? userAuthData)
         unAuthenticated,
-    required TResult Function(AuthenticationStatus authenticationStatus,
+    required TResult Function(
             UserProfileData? authenticatedData, UserAuthData? userAuthData)
         unknown,
   }) {
-    return unAuthenticated(
-        authenticationStatus, authenticatedData, userAuthData);
+    return unAuthenticated(authenticatedData, userAuthData);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(AuthenticationStatus authenticationStatus,
+    TResult? Function(
             UserProfileData authenticatedData, UserAuthData userAuthData)?
         authenticated,
-    TResult? Function(AuthenticationStatus authenticationStatus,
+    TResult? Function(
             UserProfileData? authenticatedData, UserAuthData? userAuthData)?
         unAuthenticated,
-    TResult? Function(AuthenticationStatus authenticationStatus,
+    TResult? Function(
             UserProfileData? authenticatedData, UserAuthData? userAuthData)?
         unknown,
   }) {
-    return unAuthenticated?.call(
-        authenticationStatus, authenticatedData, userAuthData);
+    return unAuthenticated?.call(authenticatedData, userAuthData);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(AuthenticationStatus authenticationStatus,
+    TResult Function(
             UserProfileData authenticatedData, UserAuthData userAuthData)?
         authenticated,
-    TResult Function(AuthenticationStatus authenticationStatus,
+    TResult Function(
             UserProfileData? authenticatedData, UserAuthData? userAuthData)?
         unAuthenticated,
-    TResult Function(AuthenticationStatus authenticationStatus,
+    TResult Function(
             UserProfileData? authenticatedData, UserAuthData? userAuthData)?
         unknown,
     required TResult orElse(),
   }) {
     if (unAuthenticated != null) {
-      return unAuthenticated(
-          authenticationStatus, authenticatedData, userAuthData);
+      return unAuthenticated(authenticatedData, userAuthData);
     }
     return orElse();
   }
@@ -1204,12 +1154,9 @@ class _$_UnAuthenticated implements _UnAuthenticated {
 
 abstract class _UnAuthenticated implements AuthenticationState {
   const factory _UnAuthenticated(
-      {final AuthenticationStatus authenticationStatus,
-      final UserProfileData? authenticatedData,
+      {final UserProfileData? authenticatedData,
       final UserAuthData? userAuthData}) = _$_UnAuthenticated;
 
-  @override
-  AuthenticationStatus get authenticationStatus;
   @override
   UserProfileData? get authenticatedData;
   @override
@@ -1228,10 +1175,7 @@ abstract class _$$_UnknownCopyWith<$Res>
       __$$_UnknownCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {AuthenticationStatus authenticationStatus,
-      UserProfileData? authenticatedData,
-      UserAuthData? userAuthData});
+  $Res call({UserProfileData? authenticatedData, UserAuthData? userAuthData});
 
   @override
   $UserProfileDataCopyWith<$Res>? get authenticatedData;
@@ -1247,15 +1191,10 @@ class __$$_UnknownCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? authenticationStatus = null,
     Object? authenticatedData = freezed,
     Object? userAuthData = freezed,
   }) {
     return _then(_$_Unknown(
-      authenticationStatus: null == authenticationStatus
-          ? _value.authenticationStatus
-          : authenticationStatus // ignore: cast_nullable_to_non_nullable
-              as AuthenticationStatus,
       authenticatedData: freezed == authenticatedData
           ? _value.authenticatedData
           : authenticatedData // ignore: cast_nullable_to_non_nullable
@@ -1271,14 +1210,8 @@ class __$$_UnknownCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Unknown implements _Unknown {
-  const _$_Unknown(
-      {this.authenticationStatus = AuthenticationStatus.unknown,
-      this.authenticatedData,
-      this.userAuthData});
+  const _$_Unknown({this.authenticatedData, this.userAuthData});
 
-  @override
-  @JsonKey()
-  final AuthenticationStatus authenticationStatus;
   @override
   final UserProfileData? authenticatedData;
   @override
@@ -1286,7 +1219,7 @@ class _$_Unknown implements _Unknown {
 
   @override
   String toString() {
-    return 'AuthenticationState.unknown(authenticationStatus: $authenticationStatus, authenticatedData: $authenticatedData, userAuthData: $userAuthData)';
+    return 'AuthenticationState.unknown(authenticatedData: $authenticatedData, userAuthData: $userAuthData)';
   }
 
   @override
@@ -1294,8 +1227,6 @@ class _$_Unknown implements _Unknown {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Unknown &&
-            (identical(other.authenticationStatus, authenticationStatus) ||
-                other.authenticationStatus == authenticationStatus) &&
             (identical(other.authenticatedData, authenticatedData) ||
                 other.authenticatedData == authenticatedData) &&
             (identical(other.userAuthData, userAuthData) ||
@@ -1303,8 +1234,7 @@ class _$_Unknown implements _Unknown {
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, authenticationStatus, authenticatedData, userAuthData);
+  int get hashCode => Object.hash(runtimeType, authenticatedData, userAuthData);
 
   @JsonKey(ignore: true)
   @override
@@ -1315,51 +1245,51 @@ class _$_Unknown implements _Unknown {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(AuthenticationStatus authenticationStatus,
+    required TResult Function(
             UserProfileData authenticatedData, UserAuthData userAuthData)
         authenticated,
-    required TResult Function(AuthenticationStatus authenticationStatus,
+    required TResult Function(
             UserProfileData? authenticatedData, UserAuthData? userAuthData)
         unAuthenticated,
-    required TResult Function(AuthenticationStatus authenticationStatus,
+    required TResult Function(
             UserProfileData? authenticatedData, UserAuthData? userAuthData)
         unknown,
   }) {
-    return unknown(authenticationStatus, authenticatedData, userAuthData);
+    return unknown(authenticatedData, userAuthData);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(AuthenticationStatus authenticationStatus,
+    TResult? Function(
             UserProfileData authenticatedData, UserAuthData userAuthData)?
         authenticated,
-    TResult? Function(AuthenticationStatus authenticationStatus,
+    TResult? Function(
             UserProfileData? authenticatedData, UserAuthData? userAuthData)?
         unAuthenticated,
-    TResult? Function(AuthenticationStatus authenticationStatus,
+    TResult? Function(
             UserProfileData? authenticatedData, UserAuthData? userAuthData)?
         unknown,
   }) {
-    return unknown?.call(authenticationStatus, authenticatedData, userAuthData);
+    return unknown?.call(authenticatedData, userAuthData);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(AuthenticationStatus authenticationStatus,
+    TResult Function(
             UserProfileData authenticatedData, UserAuthData userAuthData)?
         authenticated,
-    TResult Function(AuthenticationStatus authenticationStatus,
+    TResult Function(
             UserProfileData? authenticatedData, UserAuthData? userAuthData)?
         unAuthenticated,
-    TResult Function(AuthenticationStatus authenticationStatus,
+    TResult Function(
             UserProfileData? authenticatedData, UserAuthData? userAuthData)?
         unknown,
     required TResult orElse(),
   }) {
     if (unknown != null) {
-      return unknown(authenticationStatus, authenticatedData, userAuthData);
+      return unknown(authenticatedData, userAuthData);
     }
     return orElse();
   }
@@ -1401,12 +1331,9 @@ class _$_Unknown implements _Unknown {
 
 abstract class _Unknown implements AuthenticationState {
   const factory _Unknown(
-      {final AuthenticationStatus authenticationStatus,
-      final UserProfileData? authenticatedData,
+      {final UserProfileData? authenticatedData,
       final UserAuthData? userAuthData}) = _$_Unknown;
 
-  @override
-  AuthenticationStatus get authenticationStatus;
   @override
   UserProfileData? get authenticatedData;
   @override

@@ -633,18 +633,21 @@ mixin _$PageCommand {
   TResult when<TResult extends Object?>({
     required TResult Function() showLoadingDialog,
     required TResult Function() hideLoadingDialog,
+    required TResult Function() navigateToSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? showLoadingDialog,
     TResult? Function()? hideLoadingDialog,
+    TResult? Function()? navigateToSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? showLoadingDialog,
     TResult Function()? hideLoadingDialog,
+    TResult Function()? navigateToSuccess,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -652,18 +655,21 @@ mixin _$PageCommand {
   TResult map<TResult extends Object?>({
     required TResult Function(_ShowLoadingDialog value) showLoadingDialog,
     required TResult Function(_HideLoadingDialog value) hideLoadingDialog,
+    required TResult Function(_NavigateToSuccess value) navigateToSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ShowLoadingDialog value)? showLoadingDialog,
     TResult? Function(_HideLoadingDialog value)? hideLoadingDialog,
+    TResult? Function(_NavigateToSuccess value)? navigateToSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ShowLoadingDialog value)? showLoadingDialog,
     TResult Function(_HideLoadingDialog value)? hideLoadingDialog,
+    TResult Function(_NavigateToSuccess value)? navigateToSuccess,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -727,6 +733,7 @@ class _$_ShowLoadingDialog implements _ShowLoadingDialog {
   TResult when<TResult extends Object?>({
     required TResult Function() showLoadingDialog,
     required TResult Function() hideLoadingDialog,
+    required TResult Function() navigateToSuccess,
   }) {
     return showLoadingDialog();
   }
@@ -736,6 +743,7 @@ class _$_ShowLoadingDialog implements _ShowLoadingDialog {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? showLoadingDialog,
     TResult? Function()? hideLoadingDialog,
+    TResult? Function()? navigateToSuccess,
   }) {
     return showLoadingDialog?.call();
   }
@@ -745,6 +753,7 @@ class _$_ShowLoadingDialog implements _ShowLoadingDialog {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? showLoadingDialog,
     TResult Function()? hideLoadingDialog,
+    TResult Function()? navigateToSuccess,
     required TResult orElse(),
   }) {
     if (showLoadingDialog != null) {
@@ -758,6 +767,7 @@ class _$_ShowLoadingDialog implements _ShowLoadingDialog {
   TResult map<TResult extends Object?>({
     required TResult Function(_ShowLoadingDialog value) showLoadingDialog,
     required TResult Function(_HideLoadingDialog value) hideLoadingDialog,
+    required TResult Function(_NavigateToSuccess value) navigateToSuccess,
   }) {
     return showLoadingDialog(this);
   }
@@ -767,6 +777,7 @@ class _$_ShowLoadingDialog implements _ShowLoadingDialog {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ShowLoadingDialog value)? showLoadingDialog,
     TResult? Function(_HideLoadingDialog value)? hideLoadingDialog,
+    TResult? Function(_NavigateToSuccess value)? navigateToSuccess,
   }) {
     return showLoadingDialog?.call(this);
   }
@@ -776,6 +787,7 @@ class _$_ShowLoadingDialog implements _ShowLoadingDialog {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ShowLoadingDialog value)? showLoadingDialog,
     TResult Function(_HideLoadingDialog value)? hideLoadingDialog,
+    TResult Function(_NavigateToSuccess value)? navigateToSuccess,
     required TResult orElse(),
   }) {
     if (showLoadingDialog != null) {
@@ -829,6 +841,7 @@ class _$_HideLoadingDialog implements _HideLoadingDialog {
   TResult when<TResult extends Object?>({
     required TResult Function() showLoadingDialog,
     required TResult Function() hideLoadingDialog,
+    required TResult Function() navigateToSuccess,
   }) {
     return hideLoadingDialog();
   }
@@ -838,6 +851,7 @@ class _$_HideLoadingDialog implements _HideLoadingDialog {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? showLoadingDialog,
     TResult? Function()? hideLoadingDialog,
+    TResult? Function()? navigateToSuccess,
   }) {
     return hideLoadingDialog?.call();
   }
@@ -847,6 +861,7 @@ class _$_HideLoadingDialog implements _HideLoadingDialog {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? showLoadingDialog,
     TResult Function()? hideLoadingDialog,
+    TResult Function()? navigateToSuccess,
     required TResult orElse(),
   }) {
     if (hideLoadingDialog != null) {
@@ -860,6 +875,7 @@ class _$_HideLoadingDialog implements _HideLoadingDialog {
   TResult map<TResult extends Object?>({
     required TResult Function(_ShowLoadingDialog value) showLoadingDialog,
     required TResult Function(_HideLoadingDialog value) hideLoadingDialog,
+    required TResult Function(_NavigateToSuccess value) navigateToSuccess,
   }) {
     return hideLoadingDialog(this);
   }
@@ -869,6 +885,7 @@ class _$_HideLoadingDialog implements _HideLoadingDialog {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ShowLoadingDialog value)? showLoadingDialog,
     TResult? Function(_HideLoadingDialog value)? hideLoadingDialog,
+    TResult? Function(_NavigateToSuccess value)? navigateToSuccess,
   }) {
     return hideLoadingDialog?.call(this);
   }
@@ -878,6 +895,7 @@ class _$_HideLoadingDialog implements _HideLoadingDialog {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ShowLoadingDialog value)? showLoadingDialog,
     TResult Function(_HideLoadingDialog value)? hideLoadingDialog,
+    TResult Function(_NavigateToSuccess value)? navigateToSuccess,
     required TResult orElse(),
   }) {
     if (hideLoadingDialog != null) {
@@ -889,4 +907,112 @@ class _$_HideLoadingDialog implements _HideLoadingDialog {
 
 abstract class _HideLoadingDialog implements PageCommand {
   const factory _HideLoadingDialog() = _$_HideLoadingDialog;
+}
+
+/// @nodoc
+abstract class _$$_NavigateToSuccessCopyWith<$Res> {
+  factory _$$_NavigateToSuccessCopyWith(_$_NavigateToSuccess value,
+          $Res Function(_$_NavigateToSuccess) then) =
+      __$$_NavigateToSuccessCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_NavigateToSuccessCopyWithImpl<$Res>
+    extends _$PageCommandCopyWithImpl<$Res, _$_NavigateToSuccess>
+    implements _$$_NavigateToSuccessCopyWith<$Res> {
+  __$$_NavigateToSuccessCopyWithImpl(
+      _$_NavigateToSuccess _value, $Res Function(_$_NavigateToSuccess) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_NavigateToSuccess implements _NavigateToSuccess {
+  const _$_NavigateToSuccess();
+
+  @override
+  String toString() {
+    return 'PageCommand.navigateToSuccess()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_NavigateToSuccess);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() showLoadingDialog,
+    required TResult Function() hideLoadingDialog,
+    required TResult Function() navigateToSuccess,
+  }) {
+    return navigateToSuccess();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? showLoadingDialog,
+    TResult? Function()? hideLoadingDialog,
+    TResult? Function()? navigateToSuccess,
+  }) {
+    return navigateToSuccess?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? showLoadingDialog,
+    TResult Function()? hideLoadingDialog,
+    TResult Function()? navigateToSuccess,
+    required TResult orElse(),
+  }) {
+    if (navigateToSuccess != null) {
+      return navigateToSuccess();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ShowLoadingDialog value) showLoadingDialog,
+    required TResult Function(_HideLoadingDialog value) hideLoadingDialog,
+    required TResult Function(_NavigateToSuccess value) navigateToSuccess,
+  }) {
+    return navigateToSuccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ShowLoadingDialog value)? showLoadingDialog,
+    TResult? Function(_HideLoadingDialog value)? hideLoadingDialog,
+    TResult? Function(_NavigateToSuccess value)? navigateToSuccess,
+  }) {
+    return navigateToSuccess?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ShowLoadingDialog value)? showLoadingDialog,
+    TResult Function(_HideLoadingDialog value)? hideLoadingDialog,
+    TResult Function(_NavigateToSuccess value)? navigateToSuccess,
+    required TResult orElse(),
+  }) {
+    if (navigateToSuccess != null) {
+      return navigateToSuccess(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _NavigateToSuccess implements PageCommand {
+  const factory _NavigateToSuccess() = _$_NavigateToSuccess;
 }

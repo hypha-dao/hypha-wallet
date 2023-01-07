@@ -25,14 +25,6 @@ class CreateAccountView extends StatelessWidget {
                 margin: EdgeInsets.symmetric(horizontal: 45, vertical: 40),
                 onPressed: () {
                   context.read<CreateAccountBloc>().add(CreateAccountEvent.onNextTapped());
-                  // Get.Get.to(
-                  //       () => CreateAccountSuccessPage(
-                  //     accountName: state.userAccount!,
-                  //     name: state.userName,
-                  //     file: state.image,
-                  //   ),
-                  //   transition: Get.Transition.rightToLeft,
-                  // );
                 },
                 title: 'Next',
               ),

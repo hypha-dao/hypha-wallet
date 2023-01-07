@@ -54,7 +54,7 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
       var userProfileData = await _appSharedPrefs.getUserProfileData();
       var authData = await _secureStorageService.getUserAuthData();
       if (userProfileData != null && authData != null) {
-        emit(AuthenticationState.authenticated(AuthenticationStatus.authenticated, userProfileData, authData));
+        emit(AuthenticationState.authenticated(userProfileData, authData));
       } else {
         emit(const AuthenticationState.unAuthenticated());
       }
@@ -75,7 +75,7 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
         var profileData = await _appSharedPrefs.getUserProfileData();
         var authData = await _secureStorageService.getUserAuthData();
         if (profileData != null && authData != null) {
-          return emit(AuthenticationState.authenticated(event.status, profileData, authData));
+          return emit(AuthenticationState.authenticated(profileData, authData));
         } else {
           return emit(const AuthenticationState.unAuthenticated());
         }

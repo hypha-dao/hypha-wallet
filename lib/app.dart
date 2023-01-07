@@ -5,7 +5,6 @@ import 'package:get_it/get_it.dart';
 import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
 import 'package:hypha_wallet/core/extension/scope_functions.dart';
 import 'package:hypha_wallet/core/logging/log_helper.dart';
-import 'package:hypha_wallet/core/network/repository/auth_repository.dart';
 import 'package:hypha_wallet/design/themes/hypha_theme.dart';
 import 'package:hypha_wallet/ui/blocs/authentication/authentication_bloc.dart';
 import 'package:hypha_wallet/ui/blocs/deeplink/deeplink_bloc.dart';
@@ -48,17 +47,15 @@ class HyphaAppView extends StatelessWidget {
       listeners: [
         BlocListener<AuthenticationBloc, AuthenticationState>(
           listenWhen: (previous, current) {
-            return previous.authenticationStatus != current.authenticationStatus;
+            return previous != current;
           },
           listener: (context, state) {
-            state.when(authenticated: (status, userProfile, authData) {
-              if (status == AuthenticationStatus.authenticated) {
-                Get.offAll(() => const HyphaBottomNavigation());
-              }
-            }, unAuthenticated: (status, _, __) {
+            state.when(authenticated: (userProfile, authData) {
+              Get.offAll(() => const HyphaBottomNavigation());
+            }, unAuthenticated: (_, __) {
               Get.offAll(() => const IntroPage());
-            }, unknown: (AuthenticationStatus status, _, __) {
-              LogHelper.d('Auth Bloc Listener $status');
+            }, unknown: (_, __) {
+              LogHelper.d('Auth Bloc Listener unknown');
             });
           },
         ),
