@@ -48,7 +48,7 @@ class CreateAccountSuccessPage extends StatelessWidget {
                 Text('Well done!', style: context.hyphaTextTheme.regular.copyWith(color: HyphaColors.lightBlue)),
                 Text('Account Ready', style: context.hyphaTextTheme.smallTitles),
                 SizedBox(height: 140),
-                HyphaAvatarImage(imageFromFile: file?.path, imageRadius: 34),
+                HyphaAvatarImage(imageFromFile: file?.path, imageRadius: 34, name: name),
                 SizedBox(height: 14),
                 Text(name, style: context.hyphaTextTheme.mediumTitles),
                 SizedBox(height: 4),

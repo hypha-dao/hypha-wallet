@@ -35,7 +35,7 @@ class CreateAccountView extends StatelessWidget {
                 child: Column(
                   children: [
                     SizedBox(height: 70),
-                    HyphaAvatarImage(imageFromFile: state.image?.path, imageRadius: 34),
+                    HyphaAvatarImage(imageFromFile: state.image?.path, imageRadius: 34, name: state.userName),
                     SizedBox(height: 14),
                     Text(state.userName, style: context.hyphaTextTheme.smallTitles),
                     SizedBox(height: 70),

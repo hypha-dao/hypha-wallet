@@ -3,10 +3,12 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
+import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 
 class HyphaAvatarImage extends StatelessWidget {
   final String? imageFromFile;
   final String? imageFromUrl;
+  final String? name;
   final double imageRadius;
   final GestureTapCallback? onTap;
 
@@ -14,6 +16,7 @@ class HyphaAvatarImage extends StatelessWidget {
     super.key,
     this.imageFromFile,
     this.imageFromUrl,
+    this.name,
     required this.imageRadius,
     this.onTap,
   });
@@ -36,6 +39,21 @@ class HyphaAvatarImage extends StatelessWidget {
           imageFromUrl!,
           width: imageRadius * 2,
           height: imageRadius * 2,
+        ),
+      );
+    } else if (name != null) {
+      image = Container(
+        width: imageRadius * 2,
+        height: imageRadius * 2,
+        decoration: BoxDecoration(gradient: HyphaColors.gradientBlu, shape: BoxShape.circle),
+        child: Center(
+          child: Text(
+            name!.characters.first,
+            style: context.hyphaTextTheme.regular.copyWith(
+              color: HyphaColors.white,
+              fontSize: 36,
+            ),
+          ),
         ),
       );
     } else {

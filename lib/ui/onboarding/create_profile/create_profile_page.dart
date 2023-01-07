@@ -54,14 +54,15 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
                 alignment: Alignment.center,
                 children: [
                   HyphaAvatarImage(
-                      imageRadius: 50,
-                      imageFromFile: _file?.path,
-                      onTap: () async {
-                        final XFile? image = await ImagePicker().pickImage(source: ImageSource.gallery);
-                        setState(() {
-                          _file = image;
-                        });
-                      }),
+                    imageRadius: 50,
+                    imageFromFile: _file?.path,
+                    onTap: () async {
+                      final XFile? image = await ImagePicker().pickImage(source: ImageSource.gallery);
+                      setState(() {
+                        _file = image;
+                      });
+                    },
+                  ),
                   Positioned(
                     top: -10,
                     right: -10,
