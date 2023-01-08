@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 import 'package:hypha_wallet/ui/onboarding/components/onboarding_appbar.dart';
 import 'package:hypha_wallet/ui/onboarding/components/onboarding_page_background.dart';
+import 'package:hypha_wallet/ui/onboarding/import_account/import_account_page.dart';
+import 'package:hypha_wallet/ui/onboarding/import_account/import_key/import_account_by_key_page.dart';
 
 class SelectImportMethod extends StatelessWidget {
   const SelectImportMethod();
@@ -28,8 +31,20 @@ class SelectImportMethod extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  _SquareButton(icon: Icons.key_rounded, text: 'Private key'),
-                  _SquareButton(icon: Icons.format_list_bulleted, text: '12 Words'),
+                  _SquareButton(
+                    icon: Icons.key_rounded,
+                    text: 'Private key',
+                    onTap: () {
+                      Get.to(() => ImportAccountByKeyPage(), transition: Transition.rightToLeft);
+                    },
+                  ),
+                  _SquareButton(
+                    icon: Icons.format_list_bulleted,
+                    text: '12 Words',
+                    onTap: () {
+                      Get.to(() => ImportAccountPage(), transition: Transition.rightToLeft);
+                    },
+                  ),
                 ],
               )
             ],
@@ -43,15 +58,16 @@ class SelectImportMethod extends StatelessWidget {
 class _SquareButton extends StatelessWidget {
   final IconData icon;
   final String text;
+  final GestureTapCallback onTap;
 
-  const _SquareButton({required this.icon, required this.text});
+  const _SquareButton({required this.icon, required this.text, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         InkWell(
-          onTap: () {},
+          onTap: onTap,
           borderRadius: BorderRadius.circular(16),
           child: Ink(
             padding: EdgeInsets.all(44),

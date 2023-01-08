@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:hypha_wallet/ui/onboarding/import_account/components/import_account_view.dart';
+import 'package:hypha_wallet/ui/onboarding/import_account/import_key/import_account_by_key_view.dart';
 import 'package:hypha_wallet/ui/onboarding/import_account/interactor/import_account_bloc.dart';
 
-class ImportAccountPage extends StatelessWidget {
-  const ImportAccountPage();
+class ImportAccountByKeyPage extends StatelessWidget {
+  const ImportAccountByKeyPage();
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class ImportAccountPage extends StatelessWidget {
 
           context.read<ImportAccountBloc>().add(ImportAccountEvent.clearPageCommand());
         },
-        child: ImportAccountView(),
+        child: ImportAccountByKeyView(),
       ),
     );
   }
