@@ -53,8 +53,8 @@ class CreateAccountView extends StatelessWidget {
                         decoration: InputDecoration(
                           labelText: 'BlockChain Account',
                           labelStyle: context.textTheme.labelLarge?.copyWith(color: HyphaColors.primaryBlu),
-                          disabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: HyphaColors.lightBlue)),
-                          enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: HyphaColors.lightBlue)),
+                          disabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: HyphaColors.primaryBlu)),
+                          enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: HyphaColors.primaryBlu)),
                         ),
                       ),
                     ),

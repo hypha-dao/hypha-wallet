@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
-import 'package:hypha_wallet/design/avatar_image/hypha_avatar_image.dart';
 import 'package:hypha_wallet/design/buttons/hypha_app_button.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/secret_phrase/hypha_secret_phrase.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 import 'package:hypha_wallet/ui/onboarding/components/onboarding_appbar.dart';
 import 'package:hypha_wallet/ui/onboarding/components/onboarding_page_background.dart';
+import 'package:hypha_wallet/ui/onboarding/import_account/components/user_account_list.dart';
 import 'package:hypha_wallet/ui/onboarding/import_account/interactor/import_account_bloc.dart';
 
 class ImportAccountView extends StatelessWidget {
@@ -24,7 +23,7 @@ class ImportAccountView extends StatelessWidget {
               isLoading: state.isPartialLoading,
               onPressed: state.areAllWordsEntered
                   ? () {
-                      context.read<ImportAccountBloc>().add(ImportAccountEvent.onActionButtonTapped());
+                      context.read<ImportAccountBloc>().add(ImportAccountEvent.onActionButtonTapped(true));
                     }
                   : null,
               title: 'Find Account',
@@ -60,31 +59,12 @@ class ImportAccountView extends StatelessWidget {
                       },
                       child: Text('Paste Words', style: context.hyphaTextTheme.buttons),
                     ),
-                    ListView(
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      children: state.accounts
-                          .map(
-                            (e) => Padding(
-                              padding: const EdgeInsets.only(top: 20),
-                              child: ListTile(
-                                contentPadding: EdgeInsets.all(14),
-                                tileColor: HyphaColors.lightBlack,
-                                title: Text(e.userName, style: context.hyphaTextTheme.smallTitles),
-                                leading: HyphaAvatarImage(
-                                  imageRadius: 24,
-                                  name: e.accountName.characters.first.capitalize,
-                                ),
-                                subtitle: Text(e.accountName, style: context.hyphaTextTheme.ralMediumBody),
-                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(16))),
-                                onTap: () {
-                                  context.read<ImportAccountBloc>().add(ImportAccountEvent.onAccountSelected(e));
-                                },
-                              ),
-                            ),
-                          )
-                          .toList(),
-                    )
+                    UserAccountList(
+                      accounts: state.accounts,
+                      onTap: (data) {
+                        context.read<ImportAccountBloc>().add(ImportAccountEvent.onAccountSelected(data));
+                      },
+                    ),
                   ],
                 ),
               ),

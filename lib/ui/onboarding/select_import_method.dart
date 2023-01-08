@@ -4,8 +4,8 @@ import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 import 'package:hypha_wallet/ui/onboarding/components/onboarding_appbar.dart';
 import 'package:hypha_wallet/ui/onboarding/components/onboarding_page_background.dart';
-import 'package:hypha_wallet/ui/onboarding/import_account/import_account_page.dart';
 import 'package:hypha_wallet/ui/onboarding/import_account/import_key/import_account_by_key_page.dart';
+import 'package:hypha_wallet/ui/onboarding/import_account/import_words/import_account_page.dart';
 
 class SelectImportMethod extends StatelessWidget {
   const SelectImportMethod();

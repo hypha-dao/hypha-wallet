@@ -10,6 +10,7 @@ class ImportAccountState with _$ImportAccountState {
     PageCommand? command,
     @Default({}) final Map<int, String> userEnteredWords,
     @Default(null) final String? accountKey,
+    @Default(false) final bool isPrivateKeyValid,
     @Default(false) bool isPartialLoading,
     @Default([]) List<UserProfileData> accounts,
   }) = _ImportAccountState;

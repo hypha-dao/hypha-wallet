@@ -6,6 +6,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hypha_wallet/core/error_handler/error_handler_manager.dart';
 import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
 import 'package:hypha_wallet/core/error_handler/model/hypha_error_type.dart';
+import 'package:hypha_wallet/core/extension/scope_functions.dart';
 import 'package:hypha_wallet/core/local/models/user_auth_data.dart';
 import 'package:hypha_wallet/core/logging/log_helper.dart';
 import 'package:hypha_wallet/core/network/models/user_profile_data.dart';
@@ -31,6 +32,8 @@ class ImportAccountBloc extends Bloc<ImportAccountEvent, ImportAccountState> {
   final ValidateKeyUseCase _validateKeyUseCase;
   final ErrorHandlerManager _errorHandlerManager;
   final FindAccountsUseCase _findAccountsUseCase;
+
+  Timer? _debounce;
 
   ImportAccountBloc(
     this._fromRecoveryWordsUseCase,
@@ -79,7 +82,7 @@ class ImportAccountBloc extends Bloc<ImportAccountEvent, ImportAccountState> {
 
     emit(state.copyWith(userEnteredWords: wordsMap));
     if (wordsMap.length == wordsMax) {
-      add(const ImportAccountEvent.onActionButtonTapped());
+      add(const ImportAccountEvent.onActionButtonTapped(true));
     }
   }
 
@@ -94,14 +97,21 @@ class ImportAccountBloc extends Bloc<ImportAccountEvent, ImportAccountState> {
   }
 
   FutureOr<void> _onActionButtonTapped(_OnActionButtonTapped event, Emitter<ImportAccountState> emit) async {
-    final authData = await _fromRecoveryWordsUseCase.run(state.userEnteredWords.values.toList());
-    var privateKey = authData.eOSPrivateKey.toString();
-
-    add(ImportAccountEvent.findAccountByKey(privateKey));
+    if (event.findByWords) {
+      final authData = await _fromRecoveryWordsUseCase.run(state.userEnteredWords.values.toList());
+      var privateKey = authData.eOSPrivateKey.toString();
+      add(ImportAccountEvent.findAccountByKey(privateKey));
+    } else {
+      state.accountKey?.let((it) => add(ImportAccountEvent.findAccountByKey(it)));
+    }
   }
 
   FutureOr<void> _onPrivateKeyChanged(_OnPrivateKeyChanged event, Emitter<ImportAccountState> emit) {
-    add(ImportAccountEvent.findAccountByKey(event.privateKey));
+    emit(state.copyWith(accountKey: event.privateKey));
+    if (_debounce?.isActive ?? false) _debounce?.cancel();
+    _debounce = Timer(const Duration(milliseconds: 500), () {
+      add(ImportAccountEvent.findAccountByKey(event.privateKey));
+    });
   }
 
   Future<FutureOr<void>> _findAccountByKey(_FindAccountByKey event, Emitter<ImportAccountState> emit) async {
@@ -110,8 +120,9 @@ class ImportAccountBloc extends Bloc<ImportAccountEvent, ImportAccountState> {
 
     if (publicKey == null || publicKey.isEmpty) {
       _errorHandlerManager.handlerError(HyphaError(message: 'Invalid Key', type: HyphaErrorType.generic));
-      emit(state.copyWith(isPartialLoading: false));
+      emit(state.copyWith(isPartialLoading: false, isPrivateKeyValid: false));
     } else {
+      emit(state.copyWith(isPartialLoading: false, isPrivateKeyValid: true));
       final results = await _findAccountsUseCase.run(publicKey);
 
       if (results.isValue) {
