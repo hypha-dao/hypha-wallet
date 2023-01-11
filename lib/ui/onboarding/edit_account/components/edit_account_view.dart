@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart' as Get;
 import 'package:hypha_wallet/design/avatar_image/hypha_avatar_image.dart';
+import 'package:hypha_wallet/design/background/onboarding_page_background.dart';
 import 'package:hypha_wallet/design/buttons/hypha_app_button.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 import 'package:hypha_wallet/ui/onboarding/components/onboarding_appbar.dart';
-import 'package:hypha_wallet/ui/onboarding/components/onboarding_page_background.dart';
 import 'package:hypha_wallet/ui/onboarding/edit_account/components/requirement_state_widget.dart';
 import 'package:hypha_wallet/ui/onboarding/edit_account/interactor/edit_account_bloc.dart';
 import 'package:hypha_wallet/ui/shared/hypha_body_widget.dart';
@@ -38,7 +38,7 @@ class _EditAccountViewState extends State<EditAccountView> {
           });
         }
 
-        return OnboardingPageBackground(
+        return HyphaPageBackground(
           child: Scaffold(
             backgroundColor: HyphaColors.transparent,
             appBar: OnboardingAppbar(title: 'Create your', subTitle: 'Hypha Account'),

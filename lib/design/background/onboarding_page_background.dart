@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 
-class OnboardingPageBackground extends StatelessWidget {
+class HyphaPageBackground extends StatelessWidget {
   final bool withOpacity;
   final Widget child;
 
-  const OnboardingPageBackground({super.key, required this.child, this.withOpacity = true});
+  const HyphaPageBackground({super.key, required this.child, this.withOpacity = true});
 
   @override
   Widget build(BuildContext context) {

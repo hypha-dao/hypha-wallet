@@ -12,7 +12,6 @@ class BottomNavigationView extends StatelessWidget {
     return BlocBuilder<BottomNavigationBloc, BottomNavigationState>(
       builder: (context, state) {
         return Scaffold(
-            appBar: AppBar(title: Text('Hypha Wallet')),
             bottomNavigationBar: BottomNavigationBar(
               currentIndex: state.selectedPage,
               onTap: (int index) {

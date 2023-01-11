@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hypha_wallet/design/background/onboarding_page_background.dart';
 import 'package:hypha_wallet/design/buttons/hypha_app_button.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/secret_phrase/hypha_secret_phrase.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 import 'package:hypha_wallet/ui/onboarding/components/onboarding_appbar.dart';
-import 'package:hypha_wallet/ui/onboarding/components/onboarding_page_background.dart';
 import 'package:hypha_wallet/ui/onboarding/import_account/components/user_account_list.dart';
 import 'package:hypha_wallet/ui/onboarding/import_account/interactor/import_account_bloc.dart';
 
@@ -14,7 +14,7 @@ class ImportAccountView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ImportAccountBloc, ImportAccountState>(
       builder: (context, state) {
-        return OnboardingPageBackground(
+        return HyphaPageBackground(
           child: Scaffold(
             backgroundColor: HyphaColors.transparent,
             appBar: OnboardingAppbar(title: 'Use your', subTitle: ' 12 Secret words'),

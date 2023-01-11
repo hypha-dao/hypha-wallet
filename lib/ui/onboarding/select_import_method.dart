@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hypha_wallet/design/background/onboarding_page_background.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 import 'package:hypha_wallet/ui/onboarding/components/onboarding_appbar.dart';
-import 'package:hypha_wallet/ui/onboarding/components/onboarding_page_background.dart';
 import 'package:hypha_wallet/ui/onboarding/import_account/import_key/import_account_by_key_page.dart';
 import 'package:hypha_wallet/ui/onboarding/import_account/import_words/import_account_page.dart';
 
@@ -12,7 +12,7 @@ class SelectImportMethod extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return OnboardingPageBackground(
+    return HyphaPageBackground(
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: OnboardingAppbar(title: 'Import your', subTitle: 'Hypha Account'),

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:hypha_wallet/design/background/onboarding_page_background.dart';
 import 'package:hypha_wallet/design/buttons/hypha_app_button.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
-import 'package:hypha_wallet/ui/onboarding/components/onboarding_page_background.dart';
 import 'package:hypha_wallet/ui/onboarding/create_profile/create_profile_page.dart';
 
 class OnboardingPageWithLink extends StatelessWidget {
@@ -12,7 +12,7 @@ class OnboardingPageWithLink extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return OnboardingPageBackground(
+    return HyphaPageBackground(
       child: Scaffold(
         backgroundColor: HyphaColors.transparent,
         bottomNavigationBar: SafeArea(

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:hypha_wallet/design/background/onboarding_page_background.dart';
 import 'package:hypha_wallet/design/buttons/button_type.dart';
 import 'package:hypha_wallet/design/buttons/hypha_app_button.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
-import 'package:hypha_wallet/ui/onboarding/components/onboarding_page_background.dart';
 import 'package:hypha_wallet/ui/onboarding/onboarding_page_with_link.dart';
 import 'package:hypha_wallet/ui/onboarding/select_import_method.dart';
 
@@ -14,7 +14,7 @@ class OnboardingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return OnboardingPageBackground(
+    return HyphaPageBackground(
       withOpacity: false,
       child: Scaffold(
         backgroundColor: HyphaColors.transparent,
