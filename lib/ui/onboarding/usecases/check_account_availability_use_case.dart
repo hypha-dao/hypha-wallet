@@ -11,9 +11,7 @@ class CheckAccountAvailabilityUseCase extends InputUseCase<Result<bool, HyphaErr
   @override
   Future<Result<bool, HyphaError>> run(String input) async {
     try {
-      // TODO(gguij): Mocked result. Use API
-      final bool result = await Future.delayed(Duration(seconds: 3)).then((value) => true);
-      // final result = await _userAccountRepository.isUserAccountAvailable(input);
+      final result = await _userAccountRepository.isUserAccountAvailable(input);
       return Result.value(result);
     } catch (e) {
       return Result.error(HyphaError.api('Error looking for account'));

@@ -10,7 +10,9 @@ class UserAccountService {
   UserAccountService({required this.networkingManager});
 
   Future<Response> isUserAccountAvailable(String userAccount) async {
-    return await networkingManager.get(Endpoints.userAccountAvailable);
+    final requestBody = '{ "account_name": "$userAccount" }';
+
+    return networkingManager.post(Endpoints.userAccountAvailable, data: requestBody);
   }
 
   Future<Response> createUserAccount({

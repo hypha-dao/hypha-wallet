@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:hypha_wallet/core/logging/log_helper.dart';
 import 'package:hypha_wallet/core/network/api/user_account_service.dart';
 import 'package:hypha_wallet/core/network/dio_exception.dart';
 
@@ -8,13 +9,17 @@ class UserAccountRepository {
 
   UserAccountRepository({required this.userService});
 
+  /// This is so hacky...
+  /// If the call fails means the account is available, if the call succeeds means the account is not available....
   Future<bool> isUserAccountAvailable(String userAccount) async {
     try {
+      /// Dont even need the response, becuase we just need this to 'fail'...
       final Response response = await userService.isUserAccountAvailable(userAccount);
-      return response.data as bool;
+      return false;
     } on DioError catch (e) {
       final errorMessage = DioExceptions.fromDioError(e).toString();
-      throw errorMessage;
+      LogHelper.d(errorMessage);
+      return true;
     }
   }
 

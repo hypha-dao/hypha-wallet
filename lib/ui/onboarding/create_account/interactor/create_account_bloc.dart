@@ -38,6 +38,7 @@ class CreateAccountBloc extends Bloc<CreateAccountEvent, CreateAccountState> {
 
   Future<void> _initial(_Initial event, Emitter<CreateAccountState> emit) async {
     final userAccount = _generateUserAccount(state.userName);
+
     emit(state.copyWith(pageState: PageState.success, userAccount: userAccount));
 
     // emit(state.copyWith(pageState: PageState.loading, userAccount: userAccount));
