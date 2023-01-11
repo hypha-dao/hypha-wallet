@@ -36,7 +36,7 @@ class AuthRepository {
       );
 
       // TODO(gguij): Check if success, grab the user image from the service response
-      _saveUserData(UserProfileData(accountName: accountName, userName: userName), userAuthData);
+      _saveUserData(UserProfileData(accountName: accountName, userName: userName), userAuthData, false);
       return response.data;
     } on DioError catch (e) {
       final errorMessage = DioExceptions.fromDioError(e).toString();
@@ -48,14 +48,22 @@ class AuthRepository {
     yield* _controller.stream;
   }
 
-  Future<UserProfileData> login(UserProfileData userProfileData, UserAuthData userAuthData) async {
-    _saveUserData(userProfileData, userAuthData);
+  Future<UserProfileData> login(
+    UserProfileData userProfileData,
+    UserAuthData userAuthData,
+    bool shouldLoginAfter,
+  ) async {
+    _saveUserData(userProfileData, userAuthData, shouldLoginAfter);
     return userProfileData;
   }
 
-  _saveUserData(UserProfileData userProfileData, UserAuthData userAuthData) {
+  _saveUserData(UserProfileData userProfileData, UserAuthData userAuthData, bool shouldLoginAfter) {
     _appSharedPrefs.setUserProfileDataData(userProfileData);
     _secureStorageService.setUserAuthData(userAuthData);
+
+    if (shouldLoginAfter) {
+      loginUser();
+    }
   }
 
   void loginUser() {

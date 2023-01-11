@@ -114,7 +114,7 @@ class ImportAccountBloc extends Bloc<ImportAccountEvent, ImportAccountState> {
     });
   }
 
-  Future<FutureOr<void>> _findAccountByKey(_FindAccountByKey event, Emitter<ImportAccountState> emit) async {
+  FutureOr<void> _findAccountByKey(_FindAccountByKey event, Emitter<ImportAccountState> emit) async {
     emit(state.copyWith(isPartialLoading: true));
     final String? publicKey = await _validateKeyUseCase.run(event.privateKey);
 
@@ -143,11 +143,13 @@ class ImportAccountBloc extends Bloc<ImportAccountEvent, ImportAccountState> {
 
   FutureOr<void> _onAccountSelected(_OnAccountSelected event, Emitter<ImportAccountState> emit) {
     _authRepository.login(
-        event.accountData,
-        UserAuthData.fromKeyAndWords(
-          state.accountKey!,
-          state.areAllWordsEntered ? state.userEnteredWords.values.toList() : [],
-        ));
+      event.accountData,
+      UserAuthData.fromKeyAndWords(
+        state.accountKey!,
+        state.areAllWordsEntered ? state.userEnteredWords.values.toList() : [],
+      ),
+      true,
+    );
   }
 
   FutureOr<void> _onImportTypeChangeTapped(_OnImportTypeChangeTapped event, Emitter<ImportAccountState> emit) {
