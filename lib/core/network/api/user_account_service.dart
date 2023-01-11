@@ -38,14 +38,16 @@ class UserAccountService {
 
     while (sequence < maxTries) {
       var accountName = generateUserName(fullName: fullName, sequence: sequence);
-      final available = await isUserAccountAvailable(accountName);
-      if (available) {
-        return accountName;
+      if (accountName != null) {
+        final available = await isUserAccountAvailable(accountName);
+        if (available) {
+          return accountName;
+        }
       }
       sequence++;
     }
 
-    return generateUserName(fullName: fullName);
+    return generateUserName(fullName: fullName)!;
   }
 
   /// Generate a valid EOSIO account name from an input name; generates
@@ -56,7 +58,9 @@ class UserAccountService {
   /// full name: Any string, e.g. 'Jhonny Hypha'
   /// sequence: generator sequence number - each unique sequence number generates a unique
   /// valid EOS account name.
-  String generateUserName({required String fullName, int sequence = 0}) {
+  ///
+  /// Returns null if the sequence name is a duplicate
+  String? generateUserName({required String fullName, int sequence = 0}) {
     String suggestedUsername = fullName.toLowerCase().trim().split('').map((character) {
       // ignore: unnecessary_raw_strings
       final legalChar = RegExp(r'[a-z]|1|2|3|4|5').allMatches(character).isNotEmpty;
@@ -68,10 +72,15 @@ class UserAccountService {
     suggestedUsername = suggestedUsername.substring(0, 12);
 
     if (sequence > 0) {
-      //print('$sequence radix ${sequence.toRadixString(4)}');
-      final postfix = sequence.toRadixString(4).split('').map((e) => e.incrementString()).join();
-      //print('postfix $postfix');
-      suggestedUsername = suggestedUsername.replaceRange(12 - postfix.length, 12, postfix);
+      print('$sequence radix ${(sequence - 1).toRadixString(5)}');
+      final postfix = (sequence - 1).toRadixString(5).split('').map((e) => e.incrementString()).join();
+      print('postfix $postfix');
+      final sequenceName = suggestedUsername.replaceRange(12 - postfix.length, 12, postfix);
+      if (sequenceName == suggestedUsername) {
+        return null;
+      } else {
+        suggestedUsername = sequenceName;
+      }
     }
 
     return suggestedUsername;

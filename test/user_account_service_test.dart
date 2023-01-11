@@ -14,11 +14,12 @@ void main() {
     expect(generated, 'foobar111111');
 
     final generated94 = service.generateUserName(fullName: name, sequence: 94);
-    expect(generated94, 'foobar112243');
+    expect(generated94, 'foobar111444');
 
     final nameSet = Set();
     for (int s = 0; s < 100; s++) {
       final gen = service.generateUserName(fullName: name, sequence: s);
+      if (gen == null) continue;
       expect(nameSet.contains(gen), false);
       nameSet.add(gen);
       print('gen $gen');
@@ -35,11 +36,12 @@ void main() {
     expect(generated, 'theremotecub');
 
     final generated63 = service.generateUserName(fullName: name, sequence: 63);
-    expect(generated63, 'theremote444');
+    expect(generated63, 'theremote333');
 
     final nameSet = Set();
     for (int s = 0; s < 100; s++) {
       final gen = service.generateUserName(fullName: name, sequence: s);
+      if (gen == null) continue;
       expect(nameSet.contains(gen), false);
       nameSet.add(gen);
       print('$s gen $gen');
