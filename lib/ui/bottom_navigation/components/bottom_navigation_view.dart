@@ -18,8 +18,8 @@ class BottomNavigationView extends StatelessWidget {
                 BlocProvider.of<BottomNavigationBloc>(context).add(BottomNavigationEvent.onPageSelected(index));
               },
               items: [
-                BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-                BottomNavigationBarItem(icon: Icon(Icons.wallet), label: 'Wallet'),
+                BottomNavigationBarItem(icon: Icon(Icons.qr_code_scanner, size: 34), label: 'Scan QR'),
+                BottomNavigationBarItem(icon: Icon(Icons.wallet, size: 34), label: 'Wallet'),
                 BottomNavigationBarItem(
                   icon: BlocBuilder<SettingsBloc, SettingsState>(
                     buildWhen: (previous, current) =>
@@ -29,7 +29,7 @@ class BottomNavigationView extends StatelessWidget {
                         children: [
                           const Padding(
                             padding: EdgeInsets.only(right: 6, left: 6),
-                            child: Icon(Icons.settings),
+                            child: Icon(Icons.settings, size: 34),
                           ),
                           if (state.showSecurityNotification)
                             Positioned(
