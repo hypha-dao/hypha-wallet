@@ -10,6 +10,10 @@ class UserAccountRepository {
     return await userService.isUserAccountAvailable(userAccount);
   }
 
+  Future<String> findAvailableUserAccount(String fullName) async {
+    return await userService.findAvailableUserAccount(fullName);
+  }
+
   // Future<NewUser> addNewUserRequested(String name, String job) async {
   //   try {
   //     final response = await userService.addUserApi(name, job);

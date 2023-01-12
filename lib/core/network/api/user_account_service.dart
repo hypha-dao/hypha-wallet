@@ -25,7 +25,7 @@ class UserAccountService {
   Future<bool> isUserAccountAvailable(String accountName) async {
     final requestBody = '{ "account_name": "$accountName" }';
     try {
-      final res = networkingManager.post(Endpoints.getAccount, data: requestBody);
+      final res = await networkingManager.post(Endpoints.getAccount, data: requestBody);
       return false;
     } catch (error) {
       return true;
@@ -39,7 +39,7 @@ class UserAccountService {
     while (sequence < maxTries) {
       var accountName = generateUserName(fullName: fullName, sequence: sequence);
       if (accountName != null) {
-        final available = await isUserAccountAvailable(accountName);
+        final bool available = await isUserAccountAvailable(accountName);
         if (available) {
           return accountName;
         }
