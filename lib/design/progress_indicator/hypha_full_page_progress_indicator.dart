@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hypha_wallet/design/background/onboarding_page_background.dart';
+import 'package:hypha_wallet/design/background/hypha_page_background.dart';
 import 'package:hypha_wallet/design/progress_indicator/hypha_progress_logo.dart';
 
 class HyphaFullPageProgressIndicator {

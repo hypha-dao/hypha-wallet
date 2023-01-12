@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hypha_wallet/design/avatar_image/hypha_avatar_image.dart';
-import 'package:hypha_wallet/design/background/onboarding_page_background.dart';
+import 'package:hypha_wallet/design/background/hypha_page_background.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 import 'package:hypha_wallet/ui/blocs/authentication/authentication_bloc.dart';
 import 'package:hypha_wallet/ui/home_page/components/scanner_widget.dart';

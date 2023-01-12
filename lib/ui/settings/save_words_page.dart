@@ -28,7 +28,7 @@ class SaveWordsPage extends StatelessWidget {
             children: [
               HyphaAppButton(
                 onPressed: () async {
-                  await Share.share('words');
+                  await Share.share(words.toString());
                 },
                 title: 'COPY 12 WORDS',
                 buttonType: ButtonType.secondary,

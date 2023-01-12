@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
+import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 
 class HyphaActionableCard extends StatelessWidget {
   final Icon icon;
@@ -23,7 +25,7 @@ class HyphaActionableCard extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
       ),
-      color: HyphaColors.lightBlack,
+      color: context.isDarkMode ? HyphaColors.lightBlack : HyphaColors.white,
       child: InkWell(
         borderRadius: BorderRadius.circular(16),
         onTap: onTap,
@@ -37,14 +39,14 @@ class HyphaActionableCard extends StatelessWidget {
                 children: [
                   icon,
                   SizedBox(width: 8),
-                  Expanded(child: Text(title)),
+                  Expanded(child: Text(title, style: context.hyphaTextTheme.smallTitles)),
                   if (trailer != null) ...[trailer!],
                 ],
               ),
               SizedBox(height: 14),
               Container(height: 1, color: HyphaColors.midGrey),
               SizedBox(height: 18),
-              Text(subtitle),
+              Text(subtitle, style: context.hyphaTextTheme.ralMediumBody.copyWith(color: HyphaColors.midGrey)),
             ],
           ),
         ),

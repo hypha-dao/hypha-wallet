@@ -34,6 +34,12 @@ class HyphaTheme {
     return baseTheme.copyWith(
       colorScheme: lightColorScheme,
       textTheme: mainTextTheme,
+      appBarTheme: AppBarTheme(
+        backgroundColor: HyphaColors.transparent,
+        iconTheme: IconThemeData(color: HyphaColors.black),
+        elevation: 0,
+        titleTextStyle: HyphaTextTheme.light.smallTitles.copyWith(color: HyphaColors.black),
+      ),
       bottomNavigationBarTheme: AppBottomNavigationTheme.bottomNavigationThemeData(lightColorScheme),
       extensions: <ThemeExtension<dynamic>>[
         HyphaAssetsTheme.light,
