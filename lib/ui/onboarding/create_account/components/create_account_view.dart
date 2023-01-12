@@ -44,6 +44,7 @@ class CreateAccountView extends StatelessWidget {
                         _navigate(state);
                       },
                       child: TextFormField(
+                        key: Key(state.userAccount ?? ''),
                         autofocus: false,
                         enabled: false,
                         onTap: () {

@@ -24,7 +24,7 @@ void _registerBlocsModule() {
     (image, userName) => CreateAccountBloc(
       _getIt<CryptoAuthService>(),
       _getIt<CreateAccountUseCase>(),
-      _getIt<CheckAccountAvailabilityUseCase>(),
+      _getIt<FindAvailableAccountUseCase>(),
       _getIt<ErrorHandlerManager>(),
       image,
       userName,

@@ -10,32 +10,7 @@ class UserAccountRepository {
     return await userService.isUserAccountAvailable(userAccount);
   }
 
-  // Future<NewUser> addNewUserRequested(String name, String job) async {
-  //   try {
-  //     final response = await userService.addUserApi(name, job);
-  //     return NewUser.fromJson(response.data);
-  //   } on DioError catch (e) {
-  //     final errorMessage = DioExceptions.fromDioError(e).toString();
-  //     throw errorMessage;
-  //   }
-  // }
-
-  // Future<NewUser> updateUserRequested(int id, String name, String job) async {
-  //   try {
-  //     final response = await userService.updateUserApi(id, name, job);
-  //     return NewUser.fromJson(response.data);
-  //   } on DioError catch (e) {
-  //     final errorMessage = DioExceptions.fromDioError(e).toString();
-  //     throw errorMessage;
-  //   }
-  // }
-  //
-  // Future<void> deleteNewUserRequested(int id) async {
-  //   try {
-  //     await userService.deleteUserApi(id);
-  //   } on DioError catch (e) {
-  //     final errorMessage = DioExceptions.fromDioError(e).toString();
-  //     throw errorMessage;
-  //   }
-  // }
+  Future<String> findAvailableUserAccount(String fullName) async {
+    return await userService.findAvailableUserAccount(fullName);
+  }
 }
