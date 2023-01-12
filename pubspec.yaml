@@ -137,8 +137,7 @@ flutter:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
   assets:
-   - assets/images/graphics/bg_texture.png
-   - assets/images/graphics/qr_back.png
+   - assets/images/graphics/
    - assets/images/logos/hypha_logo.svg
    - assets/images/logos/hypha_logo_composite.svg
 

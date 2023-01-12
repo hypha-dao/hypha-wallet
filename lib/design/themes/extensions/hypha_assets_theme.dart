@@ -31,7 +31,7 @@ class HyphaAssetsTheme extends ThemeExtension<HyphaAssetsTheme> {
   // the light theme
   static HyphaAssetsTheme light = const HyphaAssetsTheme(
     hyphaLogoComposite: 'assets/images/logos/hypha_logo_composite.svg',
-    onboardingBackground: 'assets/images/graphics/bg_texture.png',
+    onboardingBackground: 'assets/images/graphics/bg_texture_light.png',
   );
 
   // the dark theme

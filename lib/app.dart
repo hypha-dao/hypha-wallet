@@ -114,7 +114,7 @@ class HyphaAppView extends StatelessWidget {
             title: 'Hypha Wallet',
             darkTheme: HyphaTheme.darkTheme,
             theme: HyphaTheme.lightTheme,
-            themeMode: ThemeMode.dark,
+            themeMode: state.themeMode,
             home: const SizedBox.shrink(),
           );
         },
