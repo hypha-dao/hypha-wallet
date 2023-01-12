@@ -1,7 +1,7 @@
 class Endpoints {
   Endpoints._();
 
-  // base url TODO(Nik): Add Base URL here pls
+  // base url
   static const String baseUrl = 'https://mainnet.telos.net';
 
   // receiveTimeout
@@ -10,5 +10,5 @@ class Endpoints {
   // connectTimeout
   static const int connectionTimeout = 15000;
 
-  static const String userAccountAvailable = '/v1/chain/get_account';
+  static const String getAccount = '/v1/chain/get_account';
 }
