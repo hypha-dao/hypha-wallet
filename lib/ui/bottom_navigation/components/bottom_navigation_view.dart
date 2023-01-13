@@ -6,6 +6,8 @@ import 'package:hypha_wallet/ui/home_page/home_page.dart';
 import 'package:hypha_wallet/ui/settings/interactor/settings_bloc.dart';
 import 'package:hypha_wallet/ui/settings/settings_page.dart';
 
+const iconSize = 24.0;
+
 class BottomNavigationView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -18,8 +20,9 @@ class BottomNavigationView extends StatelessWidget {
                 BlocProvider.of<BottomNavigationBloc>(context).add(BottomNavigationEvent.onPageSelected(index));
               },
               items: [
-                BottomNavigationBarItem(icon: Icon(Icons.qr_code_scanner, size: 34), label: 'Scan QR'),
-                BottomNavigationBarItem(icon: Icon(Icons.wallet, size: 34), label: 'Wallet'),
+                BottomNavigationBarItem(icon: Icon(Icons.qr_code_scanner, size: iconSize), label: 'Scan QR'),
+                BottomNavigationBarItem(icon: Icon(Icons.history, size: iconSize), label: 'History'),
+                BottomNavigationBarItem(icon: Icon(Icons.person, size: iconSize), label: 'Profile'),
                 BottomNavigationBarItem(
                   icon: BlocBuilder<SettingsBloc, SettingsState>(
                     buildWhen: (previous, current) =>
@@ -29,7 +32,7 @@ class BottomNavigationView extends StatelessWidget {
                         children: [
                           const Padding(
                             padding: EdgeInsets.only(right: 6, left: 6),
-                            child: Icon(Icons.settings, size: 34),
+                            child: Icon(Icons.settings, size: iconSize),
                           ),
                           if (state.showSecurityNotification)
                             Positioned(
@@ -53,6 +56,7 @@ class BottomNavigationView extends StatelessWidget {
               index: state.selectedPage,
               children: [
                 HomePage(),
+                SettingsPage(),
                 SettingsPage(),
                 SettingsPage(),
               ],
