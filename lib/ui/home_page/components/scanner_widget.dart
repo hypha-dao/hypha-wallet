@@ -7,6 +7,7 @@ import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
 import 'package:hypha_wallet/core/error_handler/model/hypha_error_type.dart';
 import 'package:hypha_wallet/core/logging/log_helper.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
+import 'package:hypha_wallet/design/icons/hypha_icons.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 import 'package:hypha_wallet/ui/blocs/error_handler/error_handler_bloc.dart';
 import 'package:hypha_wallet/ui/home_page/interactor/home_bloc.dart';
@@ -32,7 +33,6 @@ class _ScannerWidgetState extends State<ScannerWidget> {
       onTap: isActive
           ? null
           : () {
-              // context.read<HomeBloc>().add(HomeEvent.onQRCodeScanned('code'));
               setState(() {
                 isActive = true;
                 _heightFactor = 0.40;
@@ -54,7 +54,7 @@ class _ScannerWidgetState extends State<ScannerWidget> {
                 ? Stack(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(16),
+                        padding: const EdgeInsets.all(12),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(30),
                           child: MobileScanner(
@@ -87,7 +87,7 @@ class _ScannerWidgetState extends State<ScannerWidget> {
                               _heightFactor = 0.30;
                             });
                           },
-                          icon: Icon(Icons.add_circle, size: 36, color: HyphaColors.primaryBlu),
+                          icon: Icon(HyphaIcons.cancel_circled, size: 36, color: HyphaColors.primaryBlu),
                         ),
                         alignment: Alignment.bottomCenter,
                       ),

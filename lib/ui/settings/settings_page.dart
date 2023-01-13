@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:hypha_wallet/design/actionable_cards/hypha_actionable_card.dart';
 import 'package:hypha_wallet/design/background/hypha_page_background.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
+import 'package:hypha_wallet/design/icons/hypha_icons.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 import 'package:hypha_wallet/ui/blocs/authentication/authentication_bloc.dart';
 import 'package:hypha_wallet/ui/settings/interactor/settings_bloc.dart';
@@ -46,7 +47,7 @@ class SettingsPage extends StatelessWidget {
                       ),
                       SizedBox(height: 30),
                       HyphaActionableCard(
-                        icon: Icon(Icons.dark_mode_outlined),
+                        icon: Icon(HyphaIcons.moon),
                         title: 'Dark mode',
                         subtitle: 'Switch between Dark and Light mode',
                         trailer: Switch.adaptive(
@@ -61,7 +62,7 @@ class SettingsPage extends StatelessWidget {
                       BlocBuilder<AuthenticationBloc, AuthenticationState>(
                         builder: (context, state) {
                           return HyphaActionableCard(
-                            icon: Icon(Icons.key),
+                            icon: Icon(HyphaIcons.key),
                             title: 'Backup private key',
                             subtitle:
                                 'Your private key (and the 12 secret words) are the only way to retrieve your hypha account and funds',
@@ -78,7 +79,7 @@ class SettingsPage extends StatelessWidget {
                             return SizedBox.shrink();
                           } else {
                             return HyphaActionableCard(
-                              icon: Icon(Icons.shield),
+                              icon: Icon(HyphaIcons.shield),
                               title: 'Backup 12 words',
                               subtitle:
                                   'The 12 secret words (and the private key) are the only way to retrieve your hypha account and funds',

@@ -48,11 +48,12 @@ class HyphaAvatarImage extends StatelessWidget {
         decoration: BoxDecoration(gradient: HyphaColors.gradientBlu, shape: BoxShape.circle),
         child: Center(
           child: Text(
-            name!.characters.first,
+            name!.characters.first.toUpperCase(),
             style: context.hyphaTextTheme.regular.copyWith(
               color: HyphaColors.white,
               fontSize: 36,
             ),
+            textAlign: TextAlign.center,
           ),
         ),
       );
