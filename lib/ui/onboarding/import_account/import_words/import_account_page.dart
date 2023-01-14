@@ -5,7 +5,7 @@ import 'package:hypha_wallet/ui/onboarding/import_account/import_words/import_ac
 import 'package:hypha_wallet/ui/onboarding/import_account/interactor/import_account_bloc.dart';
 
 class ImportAccountPage extends StatelessWidget {
-  const ImportAccountPage();
+  const ImportAccountPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +18,9 @@ class ImportAccountPage extends StatelessWidget {
             // Get.to(SelectAccountPage(accounts));
           });
 
-          context.read<ImportAccountBloc>().add(ImportAccountEvent.clearPageCommand());
+          context.read<ImportAccountBloc>().add(const ImportAccountEvent.clearPageCommand());
         },
-        child: ImportAccountView(),
+        child: const ImportAccountView(),
       ),
     );
   }

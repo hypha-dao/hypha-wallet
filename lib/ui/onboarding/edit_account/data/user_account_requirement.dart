@@ -9,7 +9,7 @@ class UserAccountRequirement {
     this.state = RequirementState.empty,
   });
 
-  UserAccountRequirement updateState(RequirementState state) => UserAccountRequirement(state: state, error: this.error);
+  UserAccountRequirement updateState(RequirementState state) => UserAccountRequirement(state: state, error: error);
 }
 
 enum RequirementState {

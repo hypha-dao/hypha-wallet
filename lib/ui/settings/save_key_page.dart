@@ -18,7 +18,7 @@ class SaveKeyPage extends StatelessWidget {
       withGradient: true,
       child: Scaffold(
         backgroundColor: HyphaColors.transparent,
-        appBar: AppBar(title: Text('Private Key')),
+        appBar: AppBar(title: const Text('Private Key')),
         bottomNavigationBar: Padding(
           padding: const EdgeInsets.only(left: 22, right: 22, bottom: 32),
           child: Column(
@@ -31,7 +31,7 @@ class SaveKeyPage extends StatelessWidget {
                 title: 'COPY PRIVATE KEY',
                 buttonType: ButtonType.secondary,
               ),
-              SizedBox(height: 12),
+              const SizedBox(height: 12),
               HyphaAppButton(
                 onPressed: () => Get.back(),
                 title: 'DONE',
@@ -40,9 +40,9 @@ class SaveKeyPage extends StatelessWidget {
           ),
         ),
         body: ListView(
-          padding: EdgeInsets.only(left: 45, right: 45),
+          padding: const EdgeInsets.only(left: 45, right: 45),
           children: [
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Text(
               'Save your private key somewhere safe, never share it with anyone.',
               style: context.hyphaTextTheme.regular.copyWith(
@@ -50,9 +50,9 @@ class SaveKeyPage extends StatelessWidget {
               ),
               textAlign: TextAlign.center,
             ),
-            SizedBox(height: 116),
+            const SizedBox(height: 116),
             TextFormField(
-              key: Key(privateKey ?? ''),
+              key: Key(privateKey),
               autofocus: false,
               enabled: false,
               onTap: () async {
@@ -62,11 +62,11 @@ class SaveKeyPage extends StatelessWidget {
               decoration: InputDecoration(
                 labelText: 'Private Key',
                 labelStyle: context.textTheme.labelLarge?.copyWith(color: HyphaColors.primaryBlu),
-                disabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: HyphaColors.primaryBlu)),
-                enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: HyphaColors.primaryBlu)),
+                disabledBorder: const UnderlineInputBorder(borderSide: BorderSide(color: HyphaColors.primaryBlu)),
+                enabledBorder: const UnderlineInputBorder(borderSide: BorderSide(color: HyphaColors.primaryBlu)),
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
           ],
         ),
       ),

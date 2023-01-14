@@ -12,6 +12,8 @@ import 'package:hypha_wallet/ui/onboarding/edit_account/edit_account_page.dart';
 import 'package:hypha_wallet/ui/shared/hypha_body_widget.dart';
 
 class CreateAccountView extends StatelessWidget {
+  const CreateAccountView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<CreateAccountBloc, CreateAccountState>(
@@ -19,26 +21,26 @@ class CreateAccountView extends StatelessWidget {
         return HyphaPageBackground(
           child: Scaffold(
             backgroundColor: HyphaColors.transparent,
-            appBar: OnboardingAppbar(title: 'Create your', subTitle: 'Hypha Account'),
+            appBar: const OnboardingAppbar(title: 'Create your', subTitle: 'Hypha Account'),
             bottomNavigationBar: SafeArea(
               child: HyphaAppButton(
-                margin: EdgeInsets.symmetric(horizontal: 45, vertical: 40),
+                margin: const EdgeInsets.symmetric(horizontal: 45, vertical: 40),
                 onPressed: () {
-                  context.read<CreateAccountBloc>().add(CreateAccountEvent.onNextTapped());
+                  context.read<CreateAccountBloc>().add(const CreateAccountEvent.onNextTapped());
                 },
                 title: 'Next',
               ),
             ),
             body: HyphaBodyWidget(
               success: (context) => Padding(
-                padding: EdgeInsets.symmetric(horizontal: 45),
+                padding: const EdgeInsets.symmetric(horizontal: 45),
                 child: Column(
                   children: [
-                    SizedBox(height: 70),
+                    const SizedBox(height: 70),
                     HyphaAvatarImage(imageFromFile: state.image?.path, imageRadius: 34, name: state.userName),
-                    SizedBox(height: 14),
+                    const SizedBox(height: 14),
                     Text(state.userName, style: context.hyphaTextTheme.smallTitles),
-                    SizedBox(height: 70),
+                    const SizedBox(height: 70),
                     GestureDetector(
                       onTap: () {
                         _navigate(state);
@@ -54,12 +56,14 @@ class CreateAccountView extends StatelessWidget {
                         decoration: InputDecoration(
                           labelText: 'BlockChain Account',
                           labelStyle: context.textTheme.labelLarge?.copyWith(color: HyphaColors.primaryBlu),
-                          disabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: HyphaColors.primaryBlu)),
-                          enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: HyphaColors.primaryBlu)),
+                          disabledBorder:
+                              const UnderlineInputBorder(borderSide: BorderSide(color: HyphaColors.primaryBlu)),
+                          enabledBorder:
+                              const UnderlineInputBorder(borderSide: BorderSide(color: HyphaColors.primaryBlu)),
                         ),
                       ),
                     ),
-                    SizedBox(height: 60),
+                    const SizedBox(height: 60),
                     Text(
                       'We created a blockchain account for you. You are ready to finalise by clicking the next button. Tap in the field to create a different one',
                       style: context.hyphaTextTheme.ralMediumBody.copyWith(color: HyphaColors.midGrey),

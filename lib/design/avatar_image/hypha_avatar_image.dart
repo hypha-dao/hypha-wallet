@@ -45,7 +45,7 @@ class HyphaAvatarImage extends StatelessWidget {
       image = Container(
         width: imageRadius * 2,
         height: imageRadius * 2,
-        decoration: BoxDecoration(gradient: HyphaColors.gradientBlu, shape: BoxShape.circle),
+        decoration: const BoxDecoration(gradient: HyphaColors.gradientBlu, shape: BoxShape.circle),
         child: Center(
           child: Text(
             name!.characters.first.toUpperCase(),
@@ -63,7 +63,7 @@ class HyphaAvatarImage extends StatelessWidget {
 
     return GestureDetector(
       onTap: onTap,
-      child: Container(
+      child: DecoratedBox(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(imageRadius * 2),
           border: Border.all(

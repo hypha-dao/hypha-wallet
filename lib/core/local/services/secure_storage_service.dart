@@ -29,8 +29,8 @@ class SecureStorageService {
   }
 
   Future<UserAuthData?> getUserAuthData() async {
-    String? privateKey = await _getPrivateKey();
-    String? secretPhrase = await _getSecretPhrase();
+    final String? privateKey = await _getPrivateKey();
+    final String? secretPhrase = await _getSecretPhrase();
 
     if (privateKey != null) {
       final words = secretPhrase?.let((it) => it.split('-')) ?? [];

@@ -9,6 +9,8 @@ import 'package:hypha_wallet/ui/settings/settings_page.dart';
 const iconSize = 24.0;
 
 class BottomNavigationView extends StatelessWidget {
+  const BottomNavigationView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<BottomNavigationBloc, BottomNavigationState>(
@@ -20,9 +22,9 @@ class BottomNavigationView extends StatelessWidget {
                 BlocProvider.of<BottomNavigationBloc>(context).add(BottomNavigationEvent.onPageSelected(index));
               },
               items: [
-                BottomNavigationBarItem(icon: Icon(Icons.qr_code_scanner, size: iconSize), label: 'Scan QR'),
-                BottomNavigationBarItem(icon: Icon(Icons.history, size: iconSize), label: 'History'),
-                BottomNavigationBarItem(icon: Icon(Icons.person, size: iconSize), label: 'Profile'),
+                const BottomNavigationBarItem(icon: Icon(Icons.qr_code_scanner, size: iconSize), label: 'Scan QR'),
+                const BottomNavigationBarItem(icon: Icon(Icons.history, size: iconSize), label: 'History'),
+                const BottomNavigationBarItem(icon: Icon(Icons.person, size: iconSize), label: 'Profile'),
                 BottomNavigationBarItem(
                   icon: BlocBuilder<SettingsBloc, SettingsState>(
                     buildWhen: (previous, current) =>
@@ -39,7 +41,7 @@ class BottomNavigationView extends StatelessWidget {
                               right: 0,
                               top: 0,
                               child: Container(
-                                decoration: BoxDecoration(color: HyphaColors.error, shape: BoxShape.circle),
+                                decoration: const BoxDecoration(color: HyphaColors.error, shape: BoxShape.circle),
                                 constraints: const BoxConstraints(minWidth: 14, minHeight: 10),
                               ),
                             )
@@ -55,10 +57,10 @@ class BottomNavigationView extends StatelessWidget {
             body: IndexedStack(
               index: state.selectedPage,
               children: [
-                HomePage(),
-                SettingsPage(),
-                SettingsPage(),
-                SettingsPage(),
+                const HomePage(),
+                const SettingsPage(),
+                const SettingsPage(),
+                const SettingsPage(),
               ],
             ));
       },

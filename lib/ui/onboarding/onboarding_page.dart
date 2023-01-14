@@ -10,7 +10,7 @@ import 'package:hypha_wallet/ui/onboarding/onboarding_page_with_link.dart';
 import 'package:hypha_wallet/ui/onboarding/select_import_method.dart';
 
 class OnboardingPage extends StatelessWidget {
-  const OnboardingPage();
+  const OnboardingPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,18 +24,18 @@ class OnboardingPage extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               HyphaAppButton(
-                margin: EdgeInsets.symmetric(horizontal: 45),
+                margin: const EdgeInsets.symmetric(horizontal: 45),
                 onPressed: () {
-                  Get.to(() => OnboardingPageWithLink(), transition: Transition.rightToLeft);
+                  Get.to(() => const OnboardingPageWithLink(), transition: Transition.rightToLeft);
                 },
                 title: 'Sign-Up',
                 buttonType: ButtonType.secondary,
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               HyphaAppButton(
-                margin: EdgeInsets.symmetric(horizontal: 45),
+                margin: const EdgeInsets.symmetric(horizontal: 45),
                 onPressed: () {
-                  Get.to(() => SelectImportMethod(), transition: Transition.rightToLeft);
+                  Get.to(() => const SelectImportMethod(), transition: Transition.rightToLeft);
                 },
                 title: 'Import Account',
               ),
@@ -46,11 +46,11 @@ class OnboardingPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(height: 110),
+              const SizedBox(height: 110),
               SvgPicture.asset(context.hyphaAssetTheme.hyphaLogoComposite, width: 80, height: 110),
-              SizedBox(height: 78),
+              const SizedBox(height: 78),
               Text('Welcome', style: context.hyphaTextTheme.mediumTitles),
-              SizedBox(height: 22),
+              const SizedBox(height: 22),
               Padding(
                 padding: const EdgeInsets.only(left: 54, right: 54),
                 child: Text(

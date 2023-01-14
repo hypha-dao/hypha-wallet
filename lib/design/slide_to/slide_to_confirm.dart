@@ -65,7 +65,7 @@ class SlideAction extends StatefulWidget {
 
   /// Create a new instance of the widget
   const SlideAction({
-    Key? key,
+    super.key,
     this.sliderButtonIconSize = 24,
     this.sliderButtonIconPadding = 16,
     this.sliderButtonYOffset = 0,
@@ -84,7 +84,7 @@ class SlideAction extends StatefulWidget {
     this.text,
     this.textStyle,
     this.sliderButtonIcon,
-  }) : super(key: key);
+  });
   @override
   SlideActionState createState() => SlideActionState();
 }
@@ -140,7 +140,7 @@ class SlideActionState extends State<SlideAction> with TickerProviderStateMixin 
                             child: Transform(
                               transform: Matrix4.rotationY(_checkAnimationDx * (pi / 2)),
                               alignment: Alignment.centerRight,
-                              child: Container(
+                              child: ColoredBox(
                                 color: widget.outerColor ?? Theme.of(context).colorScheme.secondary,
                               ),
                             ),
@@ -199,6 +199,7 @@ class SlideActionState extends State<SlideAction> with TickerProviderStateMixin 
                                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                                   child: Material(
                                     borderRadius: BorderRadius.circular(widget.borderRadius),
+                                    color: widget.innerColor ?? Theme.of(context).primaryIconTheme.color,
                                     child: Container(
                                       padding: EdgeInsets.all(widget.sliderButtonIconPadding),
                                       child: Transform.rotate(
@@ -213,7 +214,6 @@ class SlideActionState extends State<SlideAction> with TickerProviderStateMixin 
                                         ),
                                       ),
                                     ),
-                                    color: widget.innerColor ?? Theme.of(context).primaryIconTheme.color,
                                   ),
                                 ),
                               ),
@@ -329,7 +329,7 @@ class SlideActionState extends State<SlideAction> with TickerProviderStateMixin 
     animation.addListener(() {
       if (mounted) {
         setState(() {
-          _dx = (_endDx - (_endDx * animation.value));
+          _dx = _endDx - (_endDx * animation.value);
         });
       }
     });
@@ -359,12 +359,12 @@ class SlideActionState extends State<SlideAction> with TickerProviderStateMixin 
     );
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      final RenderBox containerBox = _containerKey.currentContext!.findRenderObject() as RenderBox;
-      _containerWidth = containerBox.size.width;
+      final RenderBox? containerBox = _containerKey.currentContext!.findRenderObject() as RenderBox?;
+      _containerWidth = containerBox?.size.width;
       _initialContainerWidth = _containerWidth;
 
-      final RenderBox sliderBox = _sliderKey.currentContext!.findRenderObject() as RenderBox;
-      final sliderWidth = sliderBox.size.width;
+      final RenderBox? sliderBox = _sliderKey.currentContext!.findRenderObject() as RenderBox?;
+      final sliderWidth = sliderBox?.size.width ?? double.infinity;
 
       _maxDx = _containerWidth! - (sliderWidth / 2) - 40 - widget.sliderButtonYOffset;
     });

@@ -18,7 +18,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final ParseQRCodeUseCase _parseQRCodeUseCase;
   final ErrorHandlerManager _errorHandlerManager;
 
-  HomeBloc(this._parseQRCodeUseCase, this._errorHandlerManager) : super(HomeState()) {
+  HomeBloc(this._parseQRCodeUseCase, this._errorHandlerManager) : super(const HomeState()) {
     on<_Initial>(_initial);
     on<_OnQRCodeScanned>(_onQRCodeScanned);
     on<_ClearPageCommand>((_, emit) => emit(state.copyWith(command: null)));

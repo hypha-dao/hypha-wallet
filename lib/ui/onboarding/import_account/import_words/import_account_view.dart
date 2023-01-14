@@ -10,6 +10,8 @@ import 'package:hypha_wallet/ui/onboarding/import_account/components/user_accoun
 import 'package:hypha_wallet/ui/onboarding/import_account/interactor/import_account_bloc.dart';
 
 class ImportAccountView extends StatelessWidget {
+  const ImportAccountView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ImportAccountBloc, ImportAccountState>(
@@ -17,13 +19,13 @@ class ImportAccountView extends StatelessWidget {
         return HyphaPageBackground(
           child: Scaffold(
             backgroundColor: HyphaColors.transparent,
-            appBar: OnboardingAppbar(title: 'Use your', subTitle: ' 12 Secret words'),
+            appBar: const OnboardingAppbar(title: 'Use your', subTitle: ' 12 Secret words'),
             bottomNavigationBar: HyphaAppButton(
-              margin: EdgeInsets.only(left: 45, right: 45, bottom: 45, top: 16),
+              margin: const EdgeInsets.only(left: 45, right: 45, bottom: 45, top: 16),
               isLoading: state.isPartialLoading,
               onPressed: state.areAllWordsEntered
                   ? () {
-                      context.read<ImportAccountBloc>().add(ImportAccountEvent.onActionButtonTapped(true));
+                      context.read<ImportAccountBloc>().add(const ImportAccountEvent.onActionButtonTapped(true));
                     }
                   : null,
               title: 'Find Account',
@@ -43,7 +45,7 @@ class ImportAccountView extends StatelessWidget {
                         textAlign: TextAlign.center,
                       ),
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     HyphaSecretPhrase(
                       words: state.userEnteredWords,
                       onSelected: (value) {
@@ -55,7 +57,7 @@ class ImportAccountView extends StatelessWidget {
                     ),
                     TextButton(
                       onPressed: () {
-                        context.read<ImportAccountBloc>().add(ImportAccountEvent.onUserPastedWords());
+                        context.read<ImportAccountBloc>().add(const ImportAccountEvent.onUserPastedWords());
                       },
                       child: Text('Paste Words', style: context.hyphaTextTheme.buttons),
                     ),

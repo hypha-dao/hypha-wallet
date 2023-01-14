@@ -16,7 +16,7 @@ class RequirementStateWidget extends StatelessWidget {
         return Container(
           width: size,
           height: size,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: HyphaColors.lightBlack,
             shape: BoxShape.circle,
           ),
@@ -25,7 +25,7 @@ class RequirementStateWidget extends StatelessWidget {
         return Container(
           width: size,
           height: size,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: HyphaColors.success,
             shape: BoxShape.circle,
           ),
@@ -34,7 +34,7 @@ class RequirementStateWidget extends StatelessWidget {
         return Container(
           width: size,
           height: size,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: HyphaColors.error,
             shape: BoxShape.circle,
           ),
@@ -43,7 +43,7 @@ class RequirementStateWidget extends StatelessWidget {
         return Container(
           width: size,
           height: size,
-          child: CircularProgressIndicator(color: HyphaColors.primaryBlu, strokeWidth: 1),
+          child: const CircularProgressIndicator(color: HyphaColors.primaryBlu, strokeWidth: 1),
         );
     }
   }

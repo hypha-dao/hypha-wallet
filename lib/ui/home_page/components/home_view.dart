@@ -9,6 +9,8 @@ import 'package:hypha_wallet/ui/home_page/components/scanner_widget.dart';
 import 'package:hypha_wallet/ui/home_page/interactor/home_bloc.dart';
 
 class HomeView extends StatelessWidget {
+  const HomeView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeBloc, HomeState>(
@@ -20,7 +22,7 @@ class HomeView extends StatelessWidget {
             padding: const EdgeInsets.all(24),
             child: Column(
               children: [
-                SizedBox(height: 24),
+                const SizedBox(height: 24),
                 Padding(
                   padding: const EdgeInsets.only(right: 16, top: 16),
                   child: Align(
@@ -32,8 +34,8 @@ class HomeView extends StatelessWidget {
                   ),
                 ),
                 SvgPicture.asset(context.hyphaAssetTheme.hyphaLogoComposite, width: 80, height: 110),
-                SizedBox(height: 60),
-                ScannerWidget(),
+                const SizedBox(height: 60),
+                const ScannerWidget(),
               ],
             ),
           ),

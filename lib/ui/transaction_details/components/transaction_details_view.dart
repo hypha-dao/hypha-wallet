@@ -4,6 +4,8 @@ import 'package:hypha_wallet/design/slide_to/slide_to_confirm.dart';
 import 'package:hypha_wallet/ui/transaction_details/interactor/transaction_details_bloc.dart';
 
 class TransactionDetailsView extends StatelessWidget {
+  const TransactionDetailsView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<TransactionDetailsBloc, TransactionDetailsState>(
@@ -13,20 +15,20 @@ class TransactionDetailsView extends StatelessWidget {
             padding: const EdgeInsets.all(24),
             child: ListView(
               children: [
-                Text('Trans Title', textAlign: TextAlign.center),
-                Text('Some Text', textAlign: TextAlign.center),
-                Card(child: Text('Detail 1')),
-                Card(child: Text('Detail 2')),
-                SizedBox(height: 16),
+                const Text('Trans Title', textAlign: TextAlign.center),
+                const Text('Some Text', textAlign: TextAlign.center),
+                const Card(child: Text('Detail 1')),
+                const Card(child: Text('Detail 2')),
+                const SizedBox(height: 16),
                 Row(
                   children: [
                     IconButton(
                         onPressed: () {
                           context
                               .read<TransactionDetailsBloc>()
-                              .add(TransactionDetailsEvent.onCancelTransactionTapped());
+                              .add(const TransactionDetailsEvent.onCancelTransactionTapped());
                         },
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.close,
                           size: 34,
                         )),
@@ -41,15 +43,15 @@ class TransactionDetailsView extends StatelessWidget {
                               onSubmit: () {
                                 context
                                     .read<TransactionDetailsBloc>()
-                                    .add(TransactionDetailsEvent.onUserSlideCompleted());
+                                    .add(const TransactionDetailsEvent.onUserSlideCompleted());
                               },
                               alignment: Alignment.center,
-                              submittedIcon: CircularProgressIndicator.adaptive(),
-                              child: Text(
+                              submittedIcon: const CircularProgressIndicator.adaptive(),
+                              sliderButtonIcon: const Icon(Icons.arrow_forward_rounded, color: Colors.black),
+                              child: const Text(
                                 'Slide to approve',
                                 style: TextStyle(color: Colors.white),
                               ),
-                              sliderButtonIcon: Icon(Icons.arrow_forward_rounded, color: Colors.black),
                             ),
                           );
                         },
@@ -57,8 +59,8 @@ class TransactionDetailsView extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(height: 16),
-                Text('Slide to sign transaction'),
+                const SizedBox(height: 16),
+                const Text('Slide to sign transaction'),
               ],
             ),
           ),

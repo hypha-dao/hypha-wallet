@@ -14,7 +14,7 @@ import 'package:hypha_wallet/ui/home_page/interactor/home_bloc.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 
 class ScannerWidget extends StatefulWidget {
-  const ScannerWidget();
+  const ScannerWidget({super.key});
 
   @override
   State<ScannerWidget> createState() => _ScannerWidgetState();
@@ -22,10 +22,7 @@ class ScannerWidget extends StatefulWidget {
 
 class _ScannerWidgetState extends State<ScannerWidget> {
   bool isActive = false;
-  double _width = 50;
   double _heightFactor = .30;
-  Color _color = Colors.green;
-  BorderRadiusGeometry _borderRadius = BorderRadius.circular(8);
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +41,7 @@ class _ScannerWidgetState extends State<ScannerWidget> {
           duration: const Duration(milliseconds: 300),
           curve: Curves.fastOutSlowIn,
           decoration: BoxDecoration(
-            image: DecorationImage(image: AssetImage('assets/images/graphics/qr_back.png'), fit: BoxFit.fill),
+            image: const DecorationImage(image: AssetImage('assets/images/graphics/qr_back.png'), fit: BoxFit.fill),
             borderRadius: BorderRadius.circular(30),
           ),
           height: Get.height * _heightFactor,
@@ -80,6 +77,7 @@ class _ScannerWidgetState extends State<ScannerWidget> {
                         ),
                       ),
                       Align(
+                        alignment: Alignment.bottomCenter,
                         child: IconButton(
                           onPressed: () {
                             setState(() {
@@ -87,9 +85,8 @@ class _ScannerWidgetState extends State<ScannerWidget> {
                               _heightFactor = 0.30;
                             });
                           },
-                          icon: Icon(HyphaIcons.cancel_circled, size: 36, color: HyphaColors.primaryBlu),
+                          icon: const Icon(HyphaIcons.cancel_circled, size: 36, color: HyphaColors.primaryBlu),
                         ),
-                        alignment: Alignment.bottomCenter,
                       ),
                     ],
                   )
@@ -97,8 +94,8 @@ class _ScannerWidgetState extends State<ScannerWidget> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(Icons.qr_code_scanner, size: 80, color: HyphaColors.primaryBlu),
-                        SizedBox(height: 12),
+                        const Icon(Icons.qr_code_scanner, size: 80, color: HyphaColors.primaryBlu),
+                        const SizedBox(height: 12),
                         Text('Scan QR', style: context.hyphaTextTheme.smallTitles.copyWith(color: HyphaColors.white)),
                       ],
                     ),

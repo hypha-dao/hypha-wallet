@@ -14,14 +14,14 @@ class CreateAccountSuccessPage extends StatelessWidget {
   final String name;
   final String accountName;
 
-  const CreateAccountSuccessPage({this.file, required this.name, required this.accountName});
+  const CreateAccountSuccessPage({super.key, this.file, required this.name, required this.accountName});
 
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
         context.read<AuthenticationBloc>().add(
-              AuthenticationEvent.authenticationStatusChanged(AuthenticationStatus.authenticated),
+              const AuthenticationEvent.authenticationStatusChanged(AuthenticationStatus.authenticated),
             );
         return true;
       },
@@ -31,10 +31,10 @@ class CreateAccountSuccessPage extends StatelessWidget {
           backgroundColor: HyphaColors.transparent,
           bottomNavigationBar: SafeArea(
             child: HyphaAppButton(
-              margin: EdgeInsets.symmetric(horizontal: 45, vertical: 40),
+              margin: const EdgeInsets.symmetric(horizontal: 45, vertical: 40),
               onPressed: () {
                 context.read<AuthenticationBloc>().add(
-                      AuthenticationEvent.authenticationStatusChanged(AuthenticationStatus.authenticated),
+                      const AuthenticationEvent.authenticationStatusChanged(AuthenticationStatus.authenticated),
                     );
               },
               title: 'Next',
@@ -44,14 +44,14 @@ class CreateAccountSuccessPage extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                SizedBox(height: 80),
+                const SizedBox(height: 80),
                 Text('Well done!', style: context.hyphaTextTheme.regular.copyWith(color: HyphaColors.lightBlue)),
                 Text('Account Ready', style: context.hyphaTextTheme.smallTitles),
-                SizedBox(height: 140),
+                const SizedBox(height: 140),
                 HyphaAvatarImage(imageFromFile: file?.path, imageRadius: 34, name: name),
-                SizedBox(height: 14),
+                const SizedBox(height: 14),
                 Text(name, style: context.hyphaTextTheme.mediumTitles),
-                SizedBox(height: 4),
+                const SizedBox(height: 4),
                 Text('@$accountName', style: context.hyphaTextTheme.regular.copyWith(color: HyphaColors.lightBlue)),
               ],
             ),

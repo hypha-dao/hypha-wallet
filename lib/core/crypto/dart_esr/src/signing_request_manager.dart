@@ -8,7 +8,9 @@ import 'package:hypha_wallet/core/crypto/eosdart/eosdart.dart' as eosDart;
 
 class SigningRequestManager {
   static eosDart.Type? type(int version) => ESRConstants.signingRequestAbiType(version)['signing_request'];
+
   static eosDart.Type? idType(int version) => ESRConstants.signingRequestAbiType(version)['identity'];
+
   static eosDart.Type? transactionType(int version) => ESRConstants.signingRequestAbiType(version)['transaction'];
 
   int version;
@@ -19,10 +21,10 @@ class SigningRequestManager {
   AbiProvider? abiProvider;
   RequestSignature? signature;
 
-  /**
-    * Create a new signing request.
-    * Normally not used directly, see the `create` and `from` class methods.
-    */
+  ///
+  /// Create a new signing request.
+  /// Normally not used directly, see the `create` and `from` class methods.
+  ///
   SigningRequestManager(this.version, this.signingRequest, this.textEncoder, this.textDecoder,
       {this.zlib, this.abiProvider, this.signature}) {
     if (signingRequest.flags & ESRConstants.RequestFlagsBroadcast != 0 && signingRequest.req.first is Identity) {
@@ -141,13 +143,11 @@ class SigningRequestManager {
     return await SigningRequestManager.create(createArgs, options: options);
   }
 
-  /**
-   * Create a request from a chain id and serialized transaction.
-   * @param chainId The chain id where the transaction is valid.
-   * @param serializedTransaction The serialized transaction.
-   * @param options Creation options.
-   */
-  static SigningRequestManager fromTransaction(dynamic chainId, dynamic serializedTransaction,
+  /// Create a request from a chain id and serialized transaction.
+  /// @param chainId The chain id where the transaction is valid.
+  /// @param serializedTransaction The serialized transaction.
+  /// @param options Creation options.
+  factory SigningRequestManager.fromTransaction(dynamic chainId, dynamic serializedTransaction,
       {required SigningRequestEncodingOptions options}) {
     if (chainId is String) {
       chainId = eosDart.arrayToHex(chainId as Uint8List);
@@ -177,8 +177,8 @@ class SigningRequestManager {
   }
 
   /// Creates a signing request from encoded `esr:` uri string. */
-  static SigningRequestManager from(String? uri, {required SigningRequestEncodingOptions options}) {
-    if (!(uri is String)) {
+  factory SigningRequestManager.from(String? uri, {required SigningRequestEncodingOptions options}) {
+    if (uri is! String) {
       throw 'Invalid request uri';
     }
     final splitUri = uri.split(':');
@@ -191,7 +191,7 @@ class SigningRequestManager {
     return SigningRequestManager.fromData(data, options: options);
   }
 
-  static SigningRequestManager fromData(Uint8List data, {required SigningRequestEncodingOptions options}) {
+  factory SigningRequestManager.fromData(Uint8List data, {required SigningRequestEncodingOptions options}) {
     final header = data.first;
     final version = header & ~(1 << 7);
     if (!(version == ESRConstants.ProtocolVersion || version == ESRConstants.ProtocolVersion3)) {
@@ -417,6 +417,7 @@ class SigningRequestManager {
     final transaction = resolveTransaction(abis, signer, ctx);
 
     for (final action in transaction.actions) {
+      // ignore: prefer_typing_uninitialized_variables
       var contractAbi;
       if (SigningRequestUtils.isIdentity(action)) {
         contractAbi = ESRConstants.signingRequestAbi;
@@ -593,9 +594,8 @@ class SigningRequestManager {
     return rv;
   }
 
-  /** Set a metadata key. 
-   * value : string | boolean
-  */
+  /// Set a metadata key.
+  /// value : string | boolean
   void setInfoKey(String key, dynamic value) {
     Uint8List encodedValue;
     switch (value.runtimeType) {
@@ -715,7 +715,7 @@ class SigningRequestUtils {
     if (action?.data is String) {
       return;
     }
-    var contractAbi;
+    eosDart.Abi? contractAbi;
     if (abi != null) {
       contractAbi = abi;
     } else if (SigningRequestUtils.isIdentity(action)) {

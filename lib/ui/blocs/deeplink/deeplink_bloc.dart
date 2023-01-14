@@ -13,7 +13,7 @@ part 'page_command.dart';
 class DeeplinkBloc extends Bloc<DeeplinkEvent, DeeplinkState> {
   StreamSubscription? _linkStreamSubscription;
 
-  DeeplinkBloc() : super(DeeplinkState()) {
+  DeeplinkBloc() : super(const DeeplinkState()) {
     initDynamicLinks();
 
     on<_IncomingFirebaseDeepLink>(_incomingFirebaseDeepLink);
@@ -47,6 +47,6 @@ class DeeplinkBloc extends Bloc<DeeplinkEvent, DeeplinkState> {
     // final DeepLinkData result = await GetInitialDeepLinkUseCase().run(event.newLink);
 
     /// Emit new state with data from link
-    emit(state.copyWith(command: PageCommand.navigateToCreateAccount()));
+    emit(state.copyWith(command: const PageCommand.navigateToCreateAccount()));
   }
 }

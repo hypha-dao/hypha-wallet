@@ -8,7 +8,7 @@ import 'package:hypha_wallet/ui/transaction_details/components/transaction_succe
 import 'package:hypha_wallet/ui/transaction_details/interactor/transaction_details_bloc.dart';
 
 class TransactionDetailsPage extends StatelessWidget {
-  const TransactionDetailsPage();
+  const TransactionDetailsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,14 +20,14 @@ class TransactionDetailsPage extends StatelessWidget {
           state.command?.when(transactionCancelled: () {
             GetX.Get.back();
           }, navigateToTransactionSuccess: () {
-            GetX.Get.off(() => TransactionSuccessPage(), transition: GetX.Transition.downToUp);
+            GetX.Get.off(() => const TransactionSuccessPage(), transition: GetX.Transition.downToUp);
           }, navigateToTransactionFailed: () {
-            GetX.Get.off(() => TransactionFailedPage(), transition: GetX.Transition.downToUp);
+            GetX.Get.off(() => const TransactionFailedPage(), transition: GetX.Transition.downToUp);
           });
 
-          context.read<TransactionDetailsBloc>().add(TransactionDetailsEvent.clearPageCommand());
+          context.read<TransactionDetailsBloc>().add(const TransactionDetailsEvent.clearPageCommand());
         },
-        child: TransactionDetailsView(),
+        child: const TransactionDetailsView(),
       ),
     );
   }

@@ -16,11 +16,11 @@ class SaveWordsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(gradient: HyphaColors.gradientBlack),
+    return DecoratedBox(
+      decoration: const BoxDecoration(gradient: HyphaColors.gradientBlack),
       child: Scaffold(
         backgroundColor: HyphaColors.transparent,
-        appBar: AppBar(title: Text('12 Words')),
+        appBar: AppBar(title: const Text('12 Words')),
         bottomNavigationBar: Padding(
           padding: const EdgeInsets.only(left: 22, right: 22, bottom: 32),
           child: Column(
@@ -33,7 +33,7 @@ class SaveWordsPage extends StatelessWidget {
                 title: 'COPY 12 WORDS',
                 buttonType: ButtonType.secondary,
               ),
-              SizedBox(height: 12),
+              const SizedBox(height: 12),
               HyphaAppButton(
                 onPressed: () => Get.back(),
                 title: 'DONE',
@@ -44,16 +44,16 @@ class SaveWordsPage extends StatelessWidget {
         body: BlocBuilder<AuthenticationBloc, AuthenticationState>(
           builder: (context, state) {
             return ListView(
-              padding: EdgeInsets.all(22),
+              padding: const EdgeInsets.all(22),
               children: [
                 Text(
                   'Write down your secret words in the correct order, on paper.',
                   textAlign: TextAlign.center,
                   style: context.hyphaTextTheme.regular.copyWith(color: HyphaColors.primaryBlu),
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 HyphaSecretPhrase(words: words.asMap()),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
               ],
             );
           },

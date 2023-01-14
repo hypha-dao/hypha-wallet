@@ -4,6 +4,8 @@ import 'package:hypha_wallet/design/buttons/hypha_app_button.dart';
 import 'package:hypha_wallet/ui/bottom_navigation/hypha_bottom_navigation.dart';
 
 class TransactionFailedPage extends StatelessWidget {
+  const TransactionFailedPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,10 +19,10 @@ class TransactionFailedPage extends StatelessWidget {
         padding: const EdgeInsets.all(24),
         child: ListView(
           children: [
-            Text('Fail', textAlign: TextAlign.center),
-            SizedBox(height: 16),
-            Icon(Icons.snowboarding, size: 64),
-            SizedBox(height: 16),
+            const Text('Fail', textAlign: TextAlign.center),
+            const SizedBox(height: 16),
+            const Icon(Icons.snowboarding, size: 64),
+            const SizedBox(height: 16),
           ],
         ),
       ),

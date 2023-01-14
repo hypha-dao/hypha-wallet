@@ -12,7 +12,6 @@ void _registerBlocsModule() {
   _registerFactory(() => HomeBloc(_getIt<ParseQRCodeUseCase>(), _getIt<ErrorHandlerManager>()));
   _registerFactory(() => ImportAccountBloc(
         _getIt<GenerateKeyFromRecoveryWordsUseCase>(),
-        _getIt<GenerateKeyFromSeedsPassportWordsUseCase>(),
         _getIt<ValidateKeyUseCase>(),
         _getIt<ErrorHandlerManager>(),
         _getIt<FindAccountsUseCase>(),

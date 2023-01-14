@@ -12,7 +12,7 @@ part 'transaction_details_state.dart';
 
 class TransactionDetailsBloc extends Bloc<TransactionDetailsEvent, TransactionDetailsState> {
   final SignTransactionUseCase _signTransactionUseCase;
-  TransactionDetailsBloc(this._signTransactionUseCase) : super(TransactionDetailsState()) {
+  TransactionDetailsBloc(this._signTransactionUseCase) : super(const TransactionDetailsState()) {
     on<_Initial>(_initial);
     on<_OnUserSlideCompleted>(_onUserSlideCompleted);
     on<_OnCancelTransactionTapped>(_onCancelTransactionTapped);
@@ -25,13 +25,13 @@ class TransactionDetailsBloc extends Bloc<TransactionDetailsEvent, TransactionDe
     /// Show loading, sign transaction, navigate to success or show error
     final result = await _signTransactionUseCase.run('MOCK DATA');
     if (result.isValue) {
-      emit(state.copyWith(command: PageCommand.navigateToTransactionSuccess()));
+      emit(state.copyWith(command: const PageCommand.navigateToTransactionSuccess()));
     } else {
-      emit(state.copyWith(command: PageCommand.navigateToTransactionFailed()));
+      emit(state.copyWith(command: const PageCommand.navigateToTransactionFailed()));
     }
   }
 
   FutureOr<void> _onCancelTransactionTapped(_OnCancelTransactionTapped event, Emitter<TransactionDetailsState> emit) {
-    emit(state.copyWith(command: PageCommand.transactionCancelled()));
+    emit(state.copyWith(command: const PageCommand.transactionCancelled()));
   }
 }

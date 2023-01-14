@@ -8,7 +8,7 @@ import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.d
 import 'package:hypha_wallet/ui/onboarding/create_profile/create_profile_page.dart';
 
 class OnboardingPageWithLink extends StatelessWidget {
-  const OnboardingPageWithLink();
+  const OnboardingPageWithLink({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,9 +17,9 @@ class OnboardingPageWithLink extends StatelessWidget {
         backgroundColor: HyphaColors.transparent,
         bottomNavigationBar: SafeArea(
           child: HyphaAppButton(
-            margin: EdgeInsets.symmetric(horizontal: 45, vertical: 40),
+            margin: const EdgeInsets.symmetric(horizontal: 45, vertical: 40),
             onPressed: () {
-              Get.to(() => CreateProfilePage(), transition: Transition.rightToLeft);
+              Get.to(() => const CreateProfilePage(), transition: Transition.rightToLeft);
             },
             title: 'CREATE ACCOUNT',
           ),
@@ -28,11 +28,11 @@ class OnboardingPageWithLink extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              SizedBox(height: 140),
+              const SizedBox(height: 140),
               SvgPicture.asset(context.hyphaAssetTheme.hyphaLogoComposite, width: 80, height: 110),
-              SizedBox(height: 78),
+              const SizedBox(height: 78),
               Text('Welcome', style: context.hyphaTextTheme.mediumTitles),
-              SizedBox(height: 22),
+              const SizedBox(height: 22),
               Padding(
                 padding: const EdgeInsets.only(left: 54, right: 54),
                 child: Text(

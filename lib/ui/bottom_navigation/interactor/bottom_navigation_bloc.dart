@@ -10,7 +10,7 @@ part 'bottom_navigation_state.dart';
 part 'page_command.dart';
 
 class BottomNavigationBloc extends Bloc<BottomNavigationEvent, BottomNavigationState> {
-  BottomNavigationBloc() : super(BottomNavigationState()) {
+  BottomNavigationBloc() : super(const BottomNavigationState()) {
     on<_Initial>(_initial);
     on<_OnPageSelected>(_onPageSelected);
     on<_ClearPageCommand>((_, emit) => emit(state.copyWith(command: null)));

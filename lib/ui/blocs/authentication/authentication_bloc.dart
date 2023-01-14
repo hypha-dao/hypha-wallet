@@ -51,8 +51,8 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
 
   FutureOr<void> _initial(_InitialAuthentication event, Emitter<AuthenticationState> emit) async {
     try {
-      var userProfileData = await _appSharedPrefs.getUserProfileData();
-      var authData = await _secureStorageService.getUserAuthData();
+      final userProfileData = await _appSharedPrefs.getUserProfileData();
+      final authData = await _secureStorageService.getUserAuthData();
       if (userProfileData != null && authData != null) {
         emit(AuthenticationState.authenticated(userProfileData, authData));
       } else {
@@ -72,8 +72,8 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
       case AuthenticationStatus.unauthenticated:
         return emit(const AuthenticationState.unAuthenticated());
       case AuthenticationStatus.authenticated:
-        var profileData = await _appSharedPrefs.getUserProfileData();
-        var authData = await _secureStorageService.getUserAuthData();
+        final profileData = await _appSharedPrefs.getUserProfileData();
+        final authData = await _secureStorageService.getUserAuthData();
         if (profileData != null && authData != null) {
           return emit(AuthenticationState.authenticated(profileData, authData));
         } else {

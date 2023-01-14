@@ -10,6 +10,8 @@ import 'package:hypha_wallet/ui/onboarding/import_account/components/user_accoun
 import 'package:hypha_wallet/ui/onboarding/import_account/interactor/import_account_bloc.dart';
 
 class ImportAccountByKeyView extends StatelessWidget {
+  const ImportAccountByKeyView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ImportAccountBloc, ImportAccountState>(
@@ -17,13 +19,13 @@ class ImportAccountByKeyView extends StatelessWidget {
         return HyphaPageBackground(
           child: Scaffold(
             backgroundColor: HyphaColors.transparent,
-            appBar: OnboardingAppbar(title: 'Use your', subTitle: 'Private key'),
+            appBar: const OnboardingAppbar(title: 'Use your', subTitle: 'Private key'),
             bottomNavigationBar: HyphaAppButton(
-              margin: EdgeInsets.only(left: 45, right: 45, bottom: 45, top: 16),
+              margin: const EdgeInsets.only(left: 45, right: 45, bottom: 45, top: 16),
               isLoading: state.isPartialLoading,
               onPressed: state.isPrivateKeyValid
                   ? () {
-                      context.read<ImportAccountBloc>().add(ImportAccountEvent.onActionButtonTapped(false));
+                      context.read<ImportAccountBloc>().add(const ImportAccountEvent.onActionButtonTapped(false));
                     }
                   : null,
               title: 'Find Account',
@@ -35,25 +37,27 @@ class ImportAccountByKeyView extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     Text(
                       'Enter your private key to import your Hypha Account',
                       style: context.hyphaTextTheme.regular.copyWith(color: HyphaColors.primaryBlu),
                       textAlign: TextAlign.center,
                     ),
-                    SizedBox(height: 120),
+                    const SizedBox(height: 120),
                     TextField(
                       decoration: InputDecoration(
                         labelText: 'Private Key',
                         labelStyle: context.textTheme.labelLarge?.copyWith(color: HyphaColors.midGrey),
-                        disabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: HyphaColors.primaryBlu)),
-                        enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: HyphaColors.primaryBlu)),
+                        disabledBorder:
+                            const UnderlineInputBorder(borderSide: BorderSide(color: HyphaColors.primaryBlu)),
+                        enabledBorder:
+                            const UnderlineInputBorder(borderSide: BorderSide(color: HyphaColors.primaryBlu)),
                       ),
                       onChanged: (value) {
                         context.read<ImportAccountBloc>().add(ImportAccountEvent.onPrivateKeyChanged(value));
                       },
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     UserAccountList(
                       accounts: state.accounts,
                       onTap: (data) {

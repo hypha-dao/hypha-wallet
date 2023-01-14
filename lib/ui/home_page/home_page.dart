@@ -7,7 +7,7 @@ import 'package:hypha_wallet/ui/home_page/interactor/home_bloc.dart';
 import 'package:hypha_wallet/ui/transaction_details/transaction_details_page.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage();
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,12 +17,12 @@ class HomePage extends StatelessWidget {
         listenWhen: (previous, current) => previous.command != current.command,
         listener: (context, state) {
           state.command?.when(navigateToTransactionDetails: (data) {
-            Get.to(() => TransactionDetailsPage());
+            Get.to(() => const TransactionDetailsPage());
           });
 
-          context.read<HomeBloc>().add(HomeEvent.clearPageCommand());
+          context.read<HomeBloc>().add(const HomeEvent.clearPageCommand());
         },
-        child: HomeView(),
+        child: const HomeView(),
       ),
     );
   }

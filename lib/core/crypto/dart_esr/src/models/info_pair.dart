@@ -17,5 +17,5 @@ class InfoPair {
   Map<String, dynamic> toJson() => _$InfoPairToJson(this);
 
   @override
-  String toString() => this.toJson().toString();
+  String toString() => toJson().toString();
 }

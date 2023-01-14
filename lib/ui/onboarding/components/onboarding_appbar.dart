@@ -5,7 +5,7 @@ import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.d
 class OnboardingAppbar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final String subTitle;
-  const OnboardingAppbar({Key? key, required this.title, required this.subTitle}) : super(key: key);
+  const OnboardingAppbar({super.key, required this.title, required this.subTitle});
 
   @override
   Widget build(BuildContext context) {
@@ -23,5 +23,5 @@ class OnboardingAppbar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(kToolbarHeight);
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }

@@ -11,7 +11,7 @@ class AccountSecurityPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Security')),
+      appBar: AppBar(title: const Text('Security')),
       body: BlocBuilder<AuthenticationBloc, AuthenticationState>(
         builder: (context, state) {
           return Column(
@@ -21,8 +21,8 @@ class AccountSecurityPage extends StatelessWidget {
                   onTap: () {
                     Get.to(() => SaveWordsPage(state.userAuthData!.words));
                   },
-                  title: Text('Save your 12 secret words'),
-                  trailing: Icon(Icons.navigate_next),
+                  title: const Text('Save your 12 secret words'),
+                  trailing: const Icon(Icons.navigate_next),
                 )
               ],
               if (state.userAuthData?.eOSPrivateKey != null) ...[
@@ -30,8 +30,8 @@ class AccountSecurityPage extends StatelessWidget {
                   onTap: () {
                     Get.to(() => SaveKeyPage(state.userAuthData!.eOSPrivateKey.toString()));
                   },
-                  title: Text('Save your private key'),
-                  trailing: Icon(Icons.navigate_next),
+                  title: const Text('Save your private key'),
+                  trailing: const Icon(Icons.navigate_next),
                 ),
               ]
             ],

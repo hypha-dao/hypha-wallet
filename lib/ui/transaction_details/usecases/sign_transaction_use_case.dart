@@ -9,7 +9,7 @@ class SignTransactionUseCase extends InputUseCase<Result<bool, HyphaError>, Stri
   Future<Result<bool, HyphaError>> run(String input) async {
     try {
       // TODO(NIK): Mocked service call
-      return Future.delayed(Duration(seconds: 2)).then((value) => Result.value(true));
+      return Future.delayed(const Duration(seconds: 2)).then((value) => Result.value(true));
     } catch (e) {
       return Result.error(HyphaError.api('Error creating account'));
     }

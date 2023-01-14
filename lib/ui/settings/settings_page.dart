@@ -35,9 +35,9 @@ class SettingsPage extends StatelessWidget {
                     ),
                   ),
                   ListView(
-                    padding: EdgeInsets.all(22),
+                    padding: const EdgeInsets.all(22),
                     children: [
-                      SizedBox(height: 62),
+                      const SizedBox(height: 62),
                       Text(
                         'Settings',
                         style: context.hyphaTextTheme.smallTitles.copyWith(
@@ -45,24 +45,24 @@ class SettingsPage extends StatelessWidget {
                         ),
                         textAlign: TextAlign.center,
                       ),
-                      SizedBox(height: 30),
+                      const SizedBox(height: 30),
                       HyphaActionableCard(
-                        icon: Icon(HyphaIcons.moon),
+                        icon: const Icon(HyphaIcons.moon),
                         title: 'Dark mode',
                         subtitle: 'Switch between Dark and Light mode',
                         trailer: Switch.adaptive(
                           materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                           value: state.themeMode == ThemeMode.dark,
                           onChanged: (bool value) {
-                            context.read<SettingsBloc>().add(SettingsEvent.onThemeChanged());
+                            context.read<SettingsBloc>().add(const SettingsEvent.onThemeChanged());
                           },
                         ),
                       ),
-                      SizedBox(height: 16),
+                      const SizedBox(height: 16),
                       BlocBuilder<AuthenticationBloc, AuthenticationState>(
                         builder: (context, state) {
                           return HyphaActionableCard(
-                            icon: Icon(HyphaIcons.key),
+                            icon: const Icon(HyphaIcons.key),
                             title: 'Backup private key',
                             subtitle:
                                 'Your private key (and the 12 secret words) are the only way to retrieve your hypha account and funds',
@@ -72,14 +72,14 @@ class SettingsPage extends StatelessWidget {
                           );
                         },
                       ),
-                      SizedBox(height: 16),
+                      const SizedBox(height: 16),
                       BlocBuilder<AuthenticationBloc, AuthenticationState>(
                         builder: (context, state) {
                           if (state.userAuthData?.words.isEmpty == true) {
-                            return SizedBox.shrink();
+                            return const SizedBox.shrink();
                           } else {
                             return HyphaActionableCard(
-                              icon: Icon(HyphaIcons.shield),
+                              icon: const Icon(HyphaIcons.shield),
                               title: 'Backup 12 words',
                               subtitle:
                                   'The 12 secret words (and the private key) are the only way to retrieve your hypha account and funds',
@@ -90,13 +90,15 @@ class SettingsPage extends StatelessWidget {
                           }
                         },
                       ),
-                      SizedBox(height: 16),
+                      const SizedBox(height: 16),
                       ListTile(
                         minLeadingWidth: 0,
                         onTap: () {
-                          context.read<AuthenticationBloc>().add(AuthenticationEvent.authenticationLogoutRequested());
+                          context
+                              .read<AuthenticationBloc>()
+                              .add(const AuthenticationEvent.authenticationLogoutRequested());
                         },
-                        title: Text('Logout'),
+                        title: const Text('Logout'),
                       )
                     ],
                   ),

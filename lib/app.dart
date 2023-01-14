@@ -37,9 +37,7 @@ class HyphaApp extends StatelessWidget {
 }
 
 class HyphaAppView extends StatelessWidget {
-  const HyphaAppView({
-    Key? key,
-  }) : super(key: key);
+  const HyphaAppView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +62,7 @@ class HyphaAppView extends StatelessWidget {
           listener: (context, state) {
             state.command?.when(navigateToCreateAccount: () => Get.offAll(() => const OnboardingPageWithLink()));
 
-            context.read<DeeplinkBloc>().add(DeeplinkEvent.clearPageCommand());
+            context.read<DeeplinkBloc>().add(const DeeplinkEvent.clearPageCommand());
           },
         ),
 
@@ -80,7 +78,7 @@ class HyphaAppView extends StatelessWidget {
                 Get.defaultDialog(
                   title: 'Something went wrong.',
                   middleText: 'Please authenticate again.',
-                  cancel: Text('Login'),
+                  cancel: const Text('Login'),
                   onCancel: () {
                     BlocProvider.of<AuthenticationBloc>(context).add(
                       const AuthenticationEvent.authenticationLogoutRequested(),
@@ -99,7 +97,7 @@ class HyphaAppView extends StatelessWidget {
                 );
               },
               showErrorMessage: (message) {
-                Get.showSnackbar(GetSnackBar(message: message, duration: Duration(seconds: 3)));
+                Get.showSnackbar(GetSnackBar(message: message, duration: const Duration(seconds: 3)));
               },
             );
 

@@ -8,7 +8,7 @@ import 'package:hypha_wallet/ui/onboarding/create_account/create_account_page.da
 import 'package:image_picker/image_picker.dart';
 
 class CreateProfilePage extends StatefulWidget {
-  const CreateProfilePage();
+  const CreateProfilePage({super.key});
 
   @override
   State<CreateProfilePage> createState() => _CreateProfilePageState();
@@ -33,7 +33,7 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
           valueListenable: _controller,
           builder: (context, value, child) => SafeArea(
             child: HyphaAppButton(
-              margin: EdgeInsets.symmetric(horizontal: 45, vertical: 40),
+              margin: const EdgeInsets.symmetric(horizontal: 45, vertical: 40),
               onPressed: value.text.isEmpty
                   ? null
                   : () {
@@ -43,13 +43,13 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
             ),
           ),
         ),
-        appBar: OnboardingAppbar(title: 'Create your', subTitle: 'Hypha Account'),
+        appBar: const OnboardingAppbar(title: 'Create your', subTitle: 'Hypha Account'),
         body: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 45),
+          padding: const EdgeInsets.symmetric(horizontal: 45),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              SizedBox(height: 80),
+              const SizedBox(height: 80),
               Stack(
                 alignment: Alignment.center,
                 children: [
@@ -83,9 +83,9 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
                   )
                 ],
               ),
-              SizedBox(height: 80),
+              const SizedBox(height: 80),
               TextField(
-                decoration: InputDecoration(labelText: 'Name'),
+                decoration: const InputDecoration(labelText: 'Name'),
                 autofocus: true,
                 onSubmitted: (value) {
                   if (value.isNotEmpty) {

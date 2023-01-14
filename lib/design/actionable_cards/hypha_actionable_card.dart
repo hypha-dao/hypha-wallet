@@ -38,14 +38,14 @@ class HyphaActionableCard extends StatelessWidget {
               Row(
                 children: [
                   icon,
-                  SizedBox(width: 8),
+                  const SizedBox(width: 8),
                   Expanded(child: Text(title, style: context.hyphaTextTheme.smallTitles)),
                   if (trailer != null) ...[trailer!],
                 ],
               ),
-              SizedBox(height: 14),
+              const SizedBox(height: 14),
               Container(height: 1, color: HyphaColors.midGrey),
-              SizedBox(height: 18),
+              const SizedBox(height: 18),
               Text(subtitle, style: context.hyphaTextTheme.ralMediumBody.copyWith(color: HyphaColors.midGrey)),
             ],
           ),

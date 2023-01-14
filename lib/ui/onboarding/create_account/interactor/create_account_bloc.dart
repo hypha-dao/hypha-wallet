@@ -37,37 +37,37 @@ class CreateAccountBloc extends Bloc<CreateAccountEvent, CreateAccountState> {
   }
 
   Future<void> _initial(_Initial event, Emitter<CreateAccountState> emit) async {
-    emit(state.copyWith(pageState: PageState.success, command: PageCommand.showLoadingDialog()));
+    emit(state.copyWith(pageState: PageState.success, command: const PageCommand.showLoadingDialog()));
     final Hypha.Result<String, HyphaError> result = await _findAvailableAccountUseCase.run(state.userName);
     if (result.isValue) {
       emit(state.copyWith(
         pageState: PageState.success,
         userAccount: result.asValue!.value,
-        command: PageCommand.hideLoadingDialog(),
+        command: const PageCommand.hideLoadingDialog(),
       ));
     } else {
-      emit(state.copyWith(command: PageCommand.hideLoadingDialog()));
+      emit(state.copyWith(command: const PageCommand.hideLoadingDialog()));
       _errorHandlerManager.handlerError(result.asError!.error);
     }
   }
 
   FutureOr<void> _onNextTapped(_OnNextTapped event, Emitter<CreateAccountState> emit) async {
-    emit(state.copyWith(command: PageCommand.showLoadingDialog()));
+    emit(state.copyWith(command: const PageCommand.showLoadingDialog()));
 
-    UserAuthData auth = _cryptoAuthService.createRandomPrivateKeyAndWords();
+    final UserAuthData auth = _cryptoAuthService.createRandomPrivateKeyAndWords();
 
     /// Make call to create Account
-    Hypha.Result<bool, HyphaError> result = await _createAccountUseCase.run(Input(
+    final Hypha.Result<bool, HyphaError> result = await _createAccountUseCase.run(Input(
       userAuthData: auth,
       accountName: state.userAccount!,
       userName: state.userName,
     ));
 
     if (result.isValue) {
-      emit(state.copyWith(command: PageCommand.navigateToSuccess()));
+      emit(state.copyWith(command: const PageCommand.navigateToSuccess()));
     } else {
       _errorHandlerManager.handlerError(result.asError!.error);
-      emit(state.copyWith(command: PageCommand.hideLoadingDialog()));
+      emit(state.copyWith(command: const PageCommand.hideLoadingDialog()));
     }
   }
 }
