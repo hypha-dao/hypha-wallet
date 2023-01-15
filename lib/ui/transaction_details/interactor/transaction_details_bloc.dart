@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hypha_wallet/ui/architecture/interactor/page_states.dart';
-import 'package:hypha_wallet/ui/transaction_details/components/transaction_success_page.dart';
 import 'package:hypha_wallet/ui/transaction_details/interactor/data/transaction_action_data.dart';
+import 'package:hypha_wallet/ui/transaction_details/success/transaction_success_page.dart';
 import 'package:hypha_wallet/ui/transaction_details/usecases/sign_transaction_use_case.dart';
 
 part 'page_command.dart';
