@@ -18,7 +18,6 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$PageCommand {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() transactionCancelled,
     required TResult Function(SuccessTransactionType type)
         navigateToTransactionSuccess,
     required TResult Function() navigateToTransactionFailed,
@@ -26,7 +25,6 @@ mixin _$PageCommand {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? transactionCancelled,
     TResult? Function(SuccessTransactionType type)?
         navigateToTransactionSuccess,
     TResult? Function()? navigateToTransactionFailed,
@@ -34,7 +32,6 @@ mixin _$PageCommand {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? transactionCancelled,
     TResult Function(SuccessTransactionType type)? navigateToTransactionSuccess,
     TResult Function()? navigateToTransactionFailed,
     required TResult orElse(),
@@ -42,7 +39,6 @@ mixin _$PageCommand {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_TransactionCancelled value) transactionCancelled,
     required TResult Function(_NavigateToTransactionSuccess value)
         navigateToTransactionSuccess,
     required TResult Function(_NavigateToTransactionFailed value)
@@ -51,7 +47,6 @@ mixin _$PageCommand {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_TransactionCancelled value)? transactionCancelled,
     TResult? Function(_NavigateToTransactionSuccess value)?
         navigateToTransactionSuccess,
     TResult? Function(_NavigateToTransactionFailed value)?
@@ -60,7 +55,6 @@ mixin _$PageCommand {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_TransactionCancelled value)? transactionCancelled,
     TResult Function(_NavigateToTransactionSuccess value)?
         navigateToTransactionSuccess,
     TResult Function(_NavigateToTransactionFailed value)?
@@ -89,122 +83,6 @@ class _$PageCommandCopyWithImpl<$Res, $Val extends PageCommand>
 }
 
 /// @nodoc
-abstract class _$$_TransactionCancelledCopyWith<$Res> {
-  factory _$$_TransactionCancelledCopyWith(_$_TransactionCancelled value,
-          $Res Function(_$_TransactionCancelled) then) =
-      __$$_TransactionCancelledCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_TransactionCancelledCopyWithImpl<$Res>
-    extends _$PageCommandCopyWithImpl<$Res, _$_TransactionCancelled>
-    implements _$$_TransactionCancelledCopyWith<$Res> {
-  __$$_TransactionCancelledCopyWithImpl(_$_TransactionCancelled _value,
-      $Res Function(_$_TransactionCancelled) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$_TransactionCancelled implements _TransactionCancelled {
-  const _$_TransactionCancelled();
-
-  @override
-  String toString() {
-    return 'PageCommand.transactionCancelled()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_TransactionCancelled);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() transactionCancelled,
-    required TResult Function(SuccessTransactionType type)
-        navigateToTransactionSuccess,
-    required TResult Function() navigateToTransactionFailed,
-  }) {
-    return transactionCancelled();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? transactionCancelled,
-    TResult? Function(SuccessTransactionType type)?
-        navigateToTransactionSuccess,
-    TResult? Function()? navigateToTransactionFailed,
-  }) {
-    return transactionCancelled?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? transactionCancelled,
-    TResult Function(SuccessTransactionType type)? navigateToTransactionSuccess,
-    TResult Function()? navigateToTransactionFailed,
-    required TResult orElse(),
-  }) {
-    if (transactionCancelled != null) {
-      return transactionCancelled();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_TransactionCancelled value) transactionCancelled,
-    required TResult Function(_NavigateToTransactionSuccess value)
-        navigateToTransactionSuccess,
-    required TResult Function(_NavigateToTransactionFailed value)
-        navigateToTransactionFailed,
-  }) {
-    return transactionCancelled(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_TransactionCancelled value)? transactionCancelled,
-    TResult? Function(_NavigateToTransactionSuccess value)?
-        navigateToTransactionSuccess,
-    TResult? Function(_NavigateToTransactionFailed value)?
-        navigateToTransactionFailed,
-  }) {
-    return transactionCancelled?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_TransactionCancelled value)? transactionCancelled,
-    TResult Function(_NavigateToTransactionSuccess value)?
-        navigateToTransactionSuccess,
-    TResult Function(_NavigateToTransactionFailed value)?
-        navigateToTransactionFailed,
-    required TResult orElse(),
-  }) {
-    if (transactionCancelled != null) {
-      return transactionCancelled(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _TransactionCancelled implements PageCommand {
-  const factory _TransactionCancelled() = _$_TransactionCancelled;
-}
-
-/// @nodoc
 abstract class _$$_NavigateToTransactionSuccessCopyWith<$Res> {
   factory _$$_NavigateToTransactionSuccessCopyWith(
           _$_NavigateToTransactionSuccess value,
@@ -226,10 +104,10 @@ class __$$_NavigateToTransactionSuccessCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? type = freezed,
+    Object? type = null,
   }) {
     return _then(_$_NavigateToTransactionSuccess(
-      freezed == type
+      null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as SuccessTransactionType,
@@ -255,12 +133,11 @@ class _$_NavigateToTransactionSuccess implements _NavigateToTransactionSuccess {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_NavigateToTransactionSuccess &&
-            const DeepCollectionEquality().equals(other.type, type));
+            (identical(other.type, type) || other.type == type));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(type));
+  int get hashCode => Object.hash(runtimeType, type);
 
   @JsonKey(ignore: true)
   @override
@@ -272,7 +149,6 @@ class _$_NavigateToTransactionSuccess implements _NavigateToTransactionSuccess {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() transactionCancelled,
     required TResult Function(SuccessTransactionType type)
         navigateToTransactionSuccess,
     required TResult Function() navigateToTransactionFailed,
@@ -283,7 +159,6 @@ class _$_NavigateToTransactionSuccess implements _NavigateToTransactionSuccess {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? transactionCancelled,
     TResult? Function(SuccessTransactionType type)?
         navigateToTransactionSuccess,
     TResult? Function()? navigateToTransactionFailed,
@@ -294,7 +169,6 @@ class _$_NavigateToTransactionSuccess implements _NavigateToTransactionSuccess {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? transactionCancelled,
     TResult Function(SuccessTransactionType type)? navigateToTransactionSuccess,
     TResult Function()? navigateToTransactionFailed,
     required TResult orElse(),
@@ -308,7 +182,6 @@ class _$_NavigateToTransactionSuccess implements _NavigateToTransactionSuccess {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_TransactionCancelled value) transactionCancelled,
     required TResult Function(_NavigateToTransactionSuccess value)
         navigateToTransactionSuccess,
     required TResult Function(_NavigateToTransactionFailed value)
@@ -320,7 +193,6 @@ class _$_NavigateToTransactionSuccess implements _NavigateToTransactionSuccess {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_TransactionCancelled value)? transactionCancelled,
     TResult? Function(_NavigateToTransactionSuccess value)?
         navigateToTransactionSuccess,
     TResult? Function(_NavigateToTransactionFailed value)?
@@ -332,7 +204,6 @@ class _$_NavigateToTransactionSuccess implements _NavigateToTransactionSuccess {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_TransactionCancelled value)? transactionCancelled,
     TResult Function(_NavigateToTransactionSuccess value)?
         navigateToTransactionSuccess,
     TResult Function(_NavigateToTransactionFailed value)?
@@ -397,7 +268,6 @@ class _$_NavigateToTransactionFailed implements _NavigateToTransactionFailed {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() transactionCancelled,
     required TResult Function(SuccessTransactionType type)
         navigateToTransactionSuccess,
     required TResult Function() navigateToTransactionFailed,
@@ -408,7 +278,6 @@ class _$_NavigateToTransactionFailed implements _NavigateToTransactionFailed {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? transactionCancelled,
     TResult? Function(SuccessTransactionType type)?
         navigateToTransactionSuccess,
     TResult? Function()? navigateToTransactionFailed,
@@ -419,7 +288,6 @@ class _$_NavigateToTransactionFailed implements _NavigateToTransactionFailed {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? transactionCancelled,
     TResult Function(SuccessTransactionType type)? navigateToTransactionSuccess,
     TResult Function()? navigateToTransactionFailed,
     required TResult orElse(),
@@ -433,7 +301,6 @@ class _$_NavigateToTransactionFailed implements _NavigateToTransactionFailed {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_TransactionCancelled value) transactionCancelled,
     required TResult Function(_NavigateToTransactionSuccess value)
         navigateToTransactionSuccess,
     required TResult Function(_NavigateToTransactionFailed value)
@@ -445,7 +312,6 @@ class _$_NavigateToTransactionFailed implements _NavigateToTransactionFailed {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_TransactionCancelled value)? transactionCancelled,
     TResult? Function(_NavigateToTransactionSuccess value)?
         navigateToTransactionSuccess,
     TResult? Function(_NavigateToTransactionFailed value)?
@@ -457,7 +323,6 @@ class _$_NavigateToTransactionFailed implements _NavigateToTransactionFailed {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_TransactionCancelled value)? transactionCancelled,
     TResult Function(_NavigateToTransactionSuccess value)?
         navigateToTransactionSuccess,
     TResult Function(_NavigateToTransactionFailed value)?
@@ -482,7 +347,6 @@ mixin _$TransactionDetailsEvent {
     required TResult Function() initial,
     required TResult Function() onUserSlideCompleted,
     required TResult Function() onUserSlideCanceled,
-    required TResult Function() onCancelTransactionTapped,
     required TResult Function() clearPageCommand,
   }) =>
       throw _privateConstructorUsedError;
@@ -491,7 +355,6 @@ mixin _$TransactionDetailsEvent {
     TResult? Function()? initial,
     TResult? Function()? onUserSlideCompleted,
     TResult? Function()? onUserSlideCanceled,
-    TResult? Function()? onCancelTransactionTapped,
     TResult? Function()? clearPageCommand,
   }) =>
       throw _privateConstructorUsedError;
@@ -500,7 +363,6 @@ mixin _$TransactionDetailsEvent {
     TResult Function()? initial,
     TResult Function()? onUserSlideCompleted,
     TResult Function()? onUserSlideCanceled,
-    TResult Function()? onCancelTransactionTapped,
     TResult Function()? clearPageCommand,
     required TResult orElse(),
   }) =>
@@ -510,8 +372,6 @@ mixin _$TransactionDetailsEvent {
     required TResult Function(_Initial value) initial,
     required TResult Function(_OnUserSlideCompleted value) onUserSlideCompleted,
     required TResult Function(_OnUserSlideCanceled value) onUserSlideCanceled,
-    required TResult Function(_OnCancelTransactionTapped value)
-        onCancelTransactionTapped,
     required TResult Function(_ClearPageCommand value) clearPageCommand,
   }) =>
       throw _privateConstructorUsedError;
@@ -520,8 +380,6 @@ mixin _$TransactionDetailsEvent {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_OnUserSlideCompleted value)? onUserSlideCompleted,
     TResult? Function(_OnUserSlideCanceled value)? onUserSlideCanceled,
-    TResult? Function(_OnCancelTransactionTapped value)?
-        onCancelTransactionTapped,
     TResult? Function(_ClearPageCommand value)? clearPageCommand,
   }) =>
       throw _privateConstructorUsedError;
@@ -530,8 +388,6 @@ mixin _$TransactionDetailsEvent {
     TResult Function(_Initial value)? initial,
     TResult Function(_OnUserSlideCompleted value)? onUserSlideCompleted,
     TResult Function(_OnUserSlideCanceled value)? onUserSlideCanceled,
-    TResult Function(_OnCancelTransactionTapped value)?
-        onCancelTransactionTapped,
     TResult Function(_ClearPageCommand value)? clearPageCommand,
     required TResult orElse(),
   }) =>
@@ -597,7 +453,6 @@ class _$_Initial implements _Initial {
     required TResult Function() initial,
     required TResult Function() onUserSlideCompleted,
     required TResult Function() onUserSlideCanceled,
-    required TResult Function() onCancelTransactionTapped,
     required TResult Function() clearPageCommand,
   }) {
     return initial();
@@ -609,7 +464,6 @@ class _$_Initial implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? onUserSlideCompleted,
     TResult? Function()? onUserSlideCanceled,
-    TResult? Function()? onCancelTransactionTapped,
     TResult? Function()? clearPageCommand,
   }) {
     return initial?.call();
@@ -621,7 +475,6 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? onUserSlideCompleted,
     TResult Function()? onUserSlideCanceled,
-    TResult Function()? onCancelTransactionTapped,
     TResult Function()? clearPageCommand,
     required TResult orElse(),
   }) {
@@ -637,8 +490,6 @@ class _$_Initial implements _Initial {
     required TResult Function(_Initial value) initial,
     required TResult Function(_OnUserSlideCompleted value) onUserSlideCompleted,
     required TResult Function(_OnUserSlideCanceled value) onUserSlideCanceled,
-    required TResult Function(_OnCancelTransactionTapped value)
-        onCancelTransactionTapped,
     required TResult Function(_ClearPageCommand value) clearPageCommand,
   }) {
     return initial(this);
@@ -650,8 +501,6 @@ class _$_Initial implements _Initial {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_OnUserSlideCompleted value)? onUserSlideCompleted,
     TResult? Function(_OnUserSlideCanceled value)? onUserSlideCanceled,
-    TResult? Function(_OnCancelTransactionTapped value)?
-        onCancelTransactionTapped,
     TResult? Function(_ClearPageCommand value)? clearPageCommand,
   }) {
     return initial?.call(this);
@@ -663,8 +512,6 @@ class _$_Initial implements _Initial {
     TResult Function(_Initial value)? initial,
     TResult Function(_OnUserSlideCompleted value)? onUserSlideCompleted,
     TResult Function(_OnUserSlideCanceled value)? onUserSlideCanceled,
-    TResult Function(_OnCancelTransactionTapped value)?
-        onCancelTransactionTapped,
     TResult Function(_ClearPageCommand value)? clearPageCommand,
     required TResult orElse(),
   }) {
@@ -720,7 +567,6 @@ class _$_OnUserSlideCompleted implements _OnUserSlideCompleted {
     required TResult Function() initial,
     required TResult Function() onUserSlideCompleted,
     required TResult Function() onUserSlideCanceled,
-    required TResult Function() onCancelTransactionTapped,
     required TResult Function() clearPageCommand,
   }) {
     return onUserSlideCompleted();
@@ -732,7 +578,6 @@ class _$_OnUserSlideCompleted implements _OnUserSlideCompleted {
     TResult? Function()? initial,
     TResult? Function()? onUserSlideCompleted,
     TResult? Function()? onUserSlideCanceled,
-    TResult? Function()? onCancelTransactionTapped,
     TResult? Function()? clearPageCommand,
   }) {
     return onUserSlideCompleted?.call();
@@ -744,7 +589,6 @@ class _$_OnUserSlideCompleted implements _OnUserSlideCompleted {
     TResult Function()? initial,
     TResult Function()? onUserSlideCompleted,
     TResult Function()? onUserSlideCanceled,
-    TResult Function()? onCancelTransactionTapped,
     TResult Function()? clearPageCommand,
     required TResult orElse(),
   }) {
@@ -760,8 +604,6 @@ class _$_OnUserSlideCompleted implements _OnUserSlideCompleted {
     required TResult Function(_Initial value) initial,
     required TResult Function(_OnUserSlideCompleted value) onUserSlideCompleted,
     required TResult Function(_OnUserSlideCanceled value) onUserSlideCanceled,
-    required TResult Function(_OnCancelTransactionTapped value)
-        onCancelTransactionTapped,
     required TResult Function(_ClearPageCommand value) clearPageCommand,
   }) {
     return onUserSlideCompleted(this);
@@ -773,8 +615,6 @@ class _$_OnUserSlideCompleted implements _OnUserSlideCompleted {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_OnUserSlideCompleted value)? onUserSlideCompleted,
     TResult? Function(_OnUserSlideCanceled value)? onUserSlideCanceled,
-    TResult? Function(_OnCancelTransactionTapped value)?
-        onCancelTransactionTapped,
     TResult? Function(_ClearPageCommand value)? clearPageCommand,
   }) {
     return onUserSlideCompleted?.call(this);
@@ -786,8 +626,6 @@ class _$_OnUserSlideCompleted implements _OnUserSlideCompleted {
     TResult Function(_Initial value)? initial,
     TResult Function(_OnUserSlideCompleted value)? onUserSlideCompleted,
     TResult Function(_OnUserSlideCanceled value)? onUserSlideCanceled,
-    TResult Function(_OnCancelTransactionTapped value)?
-        onCancelTransactionTapped,
     TResult Function(_ClearPageCommand value)? clearPageCommand,
     required TResult orElse(),
   }) {
@@ -843,7 +681,6 @@ class _$_OnUserSlideCanceled implements _OnUserSlideCanceled {
     required TResult Function() initial,
     required TResult Function() onUserSlideCompleted,
     required TResult Function() onUserSlideCanceled,
-    required TResult Function() onCancelTransactionTapped,
     required TResult Function() clearPageCommand,
   }) {
     return onUserSlideCanceled();
@@ -855,7 +692,6 @@ class _$_OnUserSlideCanceled implements _OnUserSlideCanceled {
     TResult? Function()? initial,
     TResult? Function()? onUserSlideCompleted,
     TResult? Function()? onUserSlideCanceled,
-    TResult? Function()? onCancelTransactionTapped,
     TResult? Function()? clearPageCommand,
   }) {
     return onUserSlideCanceled?.call();
@@ -867,7 +703,6 @@ class _$_OnUserSlideCanceled implements _OnUserSlideCanceled {
     TResult Function()? initial,
     TResult Function()? onUserSlideCompleted,
     TResult Function()? onUserSlideCanceled,
-    TResult Function()? onCancelTransactionTapped,
     TResult Function()? clearPageCommand,
     required TResult orElse(),
   }) {
@@ -883,8 +718,6 @@ class _$_OnUserSlideCanceled implements _OnUserSlideCanceled {
     required TResult Function(_Initial value) initial,
     required TResult Function(_OnUserSlideCompleted value) onUserSlideCompleted,
     required TResult Function(_OnUserSlideCanceled value) onUserSlideCanceled,
-    required TResult Function(_OnCancelTransactionTapped value)
-        onCancelTransactionTapped,
     required TResult Function(_ClearPageCommand value) clearPageCommand,
   }) {
     return onUserSlideCanceled(this);
@@ -896,8 +729,6 @@ class _$_OnUserSlideCanceled implements _OnUserSlideCanceled {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_OnUserSlideCompleted value)? onUserSlideCompleted,
     TResult? Function(_OnUserSlideCanceled value)? onUserSlideCanceled,
-    TResult? Function(_OnCancelTransactionTapped value)?
-        onCancelTransactionTapped,
     TResult? Function(_ClearPageCommand value)? clearPageCommand,
   }) {
     return onUserSlideCanceled?.call(this);
@@ -909,8 +740,6 @@ class _$_OnUserSlideCanceled implements _OnUserSlideCanceled {
     TResult Function(_Initial value)? initial,
     TResult Function(_OnUserSlideCompleted value)? onUserSlideCompleted,
     TResult Function(_OnUserSlideCanceled value)? onUserSlideCanceled,
-    TResult Function(_OnCancelTransactionTapped value)?
-        onCancelTransactionTapped,
     TResult Function(_ClearPageCommand value)? clearPageCommand,
     required TResult orElse(),
   }) {
@@ -923,133 +752,6 @@ class _$_OnUserSlideCanceled implements _OnUserSlideCanceled {
 
 abstract class _OnUserSlideCanceled implements TransactionDetailsEvent {
   const factory _OnUserSlideCanceled() = _$_OnUserSlideCanceled;
-}
-
-/// @nodoc
-abstract class _$$_OnCancelTransactionTappedCopyWith<$Res> {
-  factory _$$_OnCancelTransactionTappedCopyWith(
-          _$_OnCancelTransactionTapped value,
-          $Res Function(_$_OnCancelTransactionTapped) then) =
-      __$$_OnCancelTransactionTappedCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_OnCancelTransactionTappedCopyWithImpl<$Res>
-    extends _$TransactionDetailsEventCopyWithImpl<$Res,
-        _$_OnCancelTransactionTapped>
-    implements _$$_OnCancelTransactionTappedCopyWith<$Res> {
-  __$$_OnCancelTransactionTappedCopyWithImpl(
-      _$_OnCancelTransactionTapped _value,
-      $Res Function(_$_OnCancelTransactionTapped) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$_OnCancelTransactionTapped implements _OnCancelTransactionTapped {
-  const _$_OnCancelTransactionTapped();
-
-  @override
-  String toString() {
-    return 'TransactionDetailsEvent.onCancelTransactionTapped()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_OnCancelTransactionTapped);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() onUserSlideCompleted,
-    required TResult Function() onUserSlideCanceled,
-    required TResult Function() onCancelTransactionTapped,
-    required TResult Function() clearPageCommand,
-  }) {
-    return onCancelTransactionTapped();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? onUserSlideCompleted,
-    TResult? Function()? onUserSlideCanceled,
-    TResult? Function()? onCancelTransactionTapped,
-    TResult? Function()? clearPageCommand,
-  }) {
-    return onCancelTransactionTapped?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? onUserSlideCompleted,
-    TResult Function()? onUserSlideCanceled,
-    TResult Function()? onCancelTransactionTapped,
-    TResult Function()? clearPageCommand,
-    required TResult orElse(),
-  }) {
-    if (onCancelTransactionTapped != null) {
-      return onCancelTransactionTapped();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_OnUserSlideCompleted value) onUserSlideCompleted,
-    required TResult Function(_OnUserSlideCanceled value) onUserSlideCanceled,
-    required TResult Function(_OnCancelTransactionTapped value)
-        onCancelTransactionTapped,
-    required TResult Function(_ClearPageCommand value) clearPageCommand,
-  }) {
-    return onCancelTransactionTapped(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_OnUserSlideCompleted value)? onUserSlideCompleted,
-    TResult? Function(_OnUserSlideCanceled value)? onUserSlideCanceled,
-    TResult? Function(_OnCancelTransactionTapped value)?
-        onCancelTransactionTapped,
-    TResult? Function(_ClearPageCommand value)? clearPageCommand,
-  }) {
-    return onCancelTransactionTapped?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_OnUserSlideCompleted value)? onUserSlideCompleted,
-    TResult Function(_OnUserSlideCanceled value)? onUserSlideCanceled,
-    TResult Function(_OnCancelTransactionTapped value)?
-        onCancelTransactionTapped,
-    TResult Function(_ClearPageCommand value)? clearPageCommand,
-    required TResult orElse(),
-  }) {
-    if (onCancelTransactionTapped != null) {
-      return onCancelTransactionTapped(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _OnCancelTransactionTapped implements TransactionDetailsEvent {
-  const factory _OnCancelTransactionTapped() = _$_OnCancelTransactionTapped;
 }
 
 /// @nodoc
@@ -1093,7 +795,6 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     required TResult Function() initial,
     required TResult Function() onUserSlideCompleted,
     required TResult Function() onUserSlideCanceled,
-    required TResult Function() onCancelTransactionTapped,
     required TResult Function() clearPageCommand,
   }) {
     return clearPageCommand();
@@ -1105,7 +806,6 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     TResult? Function()? initial,
     TResult? Function()? onUserSlideCompleted,
     TResult? Function()? onUserSlideCanceled,
-    TResult? Function()? onCancelTransactionTapped,
     TResult? Function()? clearPageCommand,
   }) {
     return clearPageCommand?.call();
@@ -1117,7 +817,6 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     TResult Function()? initial,
     TResult Function()? onUserSlideCompleted,
     TResult Function()? onUserSlideCanceled,
-    TResult Function()? onCancelTransactionTapped,
     TResult Function()? clearPageCommand,
     required TResult orElse(),
   }) {
@@ -1133,8 +832,6 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     required TResult Function(_Initial value) initial,
     required TResult Function(_OnUserSlideCompleted value) onUserSlideCompleted,
     required TResult Function(_OnUserSlideCanceled value) onUserSlideCanceled,
-    required TResult Function(_OnCancelTransactionTapped value)
-        onCancelTransactionTapped,
     required TResult Function(_ClearPageCommand value) clearPageCommand,
   }) {
     return clearPageCommand(this);
@@ -1146,8 +843,6 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_OnUserSlideCompleted value)? onUserSlideCompleted,
     TResult? Function(_OnUserSlideCanceled value)? onUserSlideCanceled,
-    TResult? Function(_OnCancelTransactionTapped value)?
-        onCancelTransactionTapped,
     TResult? Function(_ClearPageCommand value)? clearPageCommand,
   }) {
     return clearPageCommand?.call(this);
@@ -1159,8 +854,6 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     TResult Function(_Initial value)? initial,
     TResult Function(_OnUserSlideCompleted value)? onUserSlideCompleted,
     TResult Function(_OnUserSlideCanceled value)? onUserSlideCanceled,
-    TResult Function(_OnCancelTransactionTapped value)?
-        onCancelTransactionTapped,
     TResult Function(_ClearPageCommand value)? clearPageCommand,
     required TResult orElse(),
   }) {

@@ -21,9 +21,7 @@ class TransactionDetailsPage extends StatelessWidget {
       child: BlocListener<TransactionDetailsBloc, TransactionDetailsState>(
         listenWhen: (previous, current) => previous.command != current.command,
         listener: (context, state) {
-          state.command?.when(transactionCancelled: () {
-            GetX.Get.back();
-          }, navigateToTransactionSuccess: (type) {
+          state.command?.when(navigateToTransactionSuccess: (type) {
             GetX.Get.off(
               () => TransactionSuccessPage(transactionType: type),
               transition: GetX.Transition.downToUp,
