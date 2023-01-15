@@ -16,14 +16,16 @@ class TransactionFailedPage extends StatelessWidget {
     final failedText = RichText(
       textAlign: TextAlign.center,
       text: TextSpan(
-        style: context.hyphaTextTheme.regular,
+        style: context.hyphaTextTheme.regular.copyWith(
+          color: context.isDarkTheme ? HyphaColors.white : HyphaColors.black,
+        ),
         children: <TextSpan>[
           TextSpan(
             text: 'Something went wrong,\ntransaction ',
             style: context.hyphaTextTheme.regular.copyWith(color: HyphaColors.error),
           ),
           const TextSpan(text: ' '),
-          TextSpan(text: 'failed', style: context.hyphaTextTheme.regular),
+          const TextSpan(text: 'failed'),
         ],
       ),
     );

@@ -44,14 +44,16 @@ class TransactionSuccessPage extends StatelessWidget {
     final successText = RichText(
       textAlign: TextAlign.center,
       text: TextSpan(
-        style: context.hyphaTextTheme.regular,
+        style: context.hyphaTextTheme.regular.copyWith(
+          color: context.isDarkTheme ? HyphaColors.white : HyphaColors.black,
+        ),
         children: <TextSpan>[
           TextSpan(
             text: 'The transaction has been successfully',
             style: context.hyphaTextTheme.regular.copyWith(color: HyphaColors.primaryBlu),
           ),
           const TextSpan(text: ' '),
-          TextSpan(text: transactionType.value, style: context.hyphaTextTheme.regular),
+          TextSpan(text: transactionType.value),
         ],
       ),
     );
