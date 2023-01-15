@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hypha_wallet/ui/architecture/interactor/page_states.dart';
+import 'package:hypha_wallet/ui/transaction_details/components/transaction_success_page.dart';
 import 'package:hypha_wallet/ui/transaction_details/interactor/data/transaction_action_data.dart';
 import 'package:hypha_wallet/ui/transaction_details/usecases/sign_transaction_use_case.dart';
 
@@ -28,14 +29,20 @@ class TransactionDetailsBloc extends Bloc<TransactionDetailsEvent, TransactionDe
     /// Show loading, sign transaction, navigate to success or show error
     final result = await _signTransactionUseCase.run('MOCK DATA');
     if (result.isValue) {
-      emit(state.copyWith(command: const PageCommand.navigateToTransactionSuccess()));
+      emit(state.copyWith(command: const PageCommand.navigateToTransactionSuccess(SuccessTransactionType.approved)));
     } else {
       emit(state.copyWith(command: const PageCommand.navigateToTransactionFailed()));
     }
   }
 
   FutureOr<void> _onUserSlideCanceled(_OnUserSlideCanceled event, Emitter<TransactionDetailsState> emit) async {
-    /// Show loading, cancel transaction, navigate to cancel
+    /// Show loading, reject, navigate to success or show error
+    final result = await _signTransactionUseCase.run('MOCK DATA');
+    if (result.isValue) {
+      emit(state.copyWith(command: const PageCommand.navigateToTransactionSuccess(SuccessTransactionType.rejected)));
+    } else {
+      emit(state.copyWith(command: const PageCommand.navigateToTransactionFailed()));
+    }
   }
 
   FutureOr<void> _onCancelTransactionTapped(_OnCancelTransactionTapped event, Emitter<TransactionDetailsState> emit) {

@@ -23,8 +23,11 @@ class TransactionDetailsPage extends StatelessWidget {
         listener: (context, state) {
           state.command?.when(transactionCancelled: () {
             GetX.Get.back();
-          }, navigateToTransactionSuccess: () {
-            GetX.Get.off(() => const TransactionSuccessPage(), transition: GetX.Transition.downToUp);
+          }, navigateToTransactionSuccess: (type) {
+            GetX.Get.off(
+              () => TransactionSuccessPage(transactionType: type),
+              transition: GetX.Transition.downToUp,
+            );
           }, navigateToTransactionFailed: () {
             GetX.Get.off(() => const TransactionFailedPage(), transition: GetX.Transition.downToUp);
           });

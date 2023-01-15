@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:hypha_wallet/design/background/hypha_half_background.dart';
 import 'package:hypha_wallet/design/background/hypha_page_background.dart';
 import 'package:hypha_wallet/design/cards/hypha_actionable_card.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
@@ -24,16 +25,7 @@ class SettingsPage extends StatelessWidget {
               backgroundColor: HyphaColors.transparent,
               body: Stack(
                 children: [
-                  Container(
-                    height: 170,
-                    decoration: const BoxDecoration(
-                      gradient: HyphaColors.gradientBlu,
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(30),
-                        bottomRight: Radius.circular(30),
-                      ),
-                    ),
-                  ),
+                  const HyphaHalfBackground(),
                   ListView(
                     padding: const EdgeInsets.all(22),
                     children: [
