@@ -102,7 +102,7 @@ class _Header extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(26),
-      color: HyphaColors.lightBlack,
+      color: context.isDarkTheme ? HyphaColors.lightBlack : HyphaColors.white,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
