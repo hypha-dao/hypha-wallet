@@ -19,7 +19,6 @@ class TransactionDetailsBloc extends Bloc<TransactionDetailsEvent, TransactionDe
     on<_Initial>(_initial);
     on<_OnUserSlideCompleted>(_onUserSlideCompleted);
     on<_OnUserSlideCanceled>(_onUserSlideCanceled);
-    on<_OnCancelTransactionTapped>(_onCancelTransactionTapped);
     on<_ClearPageCommand>((_, emit) => emit(state.copyWith(command: null)));
   }
 
@@ -39,13 +38,10 @@ class TransactionDetailsBloc extends Bloc<TransactionDetailsEvent, TransactionDe
     /// Show loading, reject, navigate to success or show error
     final result = await _signTransactionUseCase.run('MOCK DATA');
     if (result.isValue) {
-      emit(state.copyWith(command: const PageCommand.navigateToTransactionSuccess(SuccessTransactionType.rejected)));
+      emit(state.copyWith(command: const PageCommand.navigateToTransactionFailed()));
+      // emit(state.copyWith(command: const PageCommand.navigateToTransactionSuccess(SuccessTransactionType.rejected)));
     } else {
       emit(state.copyWith(command: const PageCommand.navigateToTransactionFailed()));
     }
-  }
-
-  FutureOr<void> _onCancelTransactionTapped(_OnCancelTransactionTapped event, Emitter<TransactionDetailsState> emit) {
-    emit(state.copyWith(command: const PageCommand.transactionCancelled()));
   }
 }
