@@ -14,45 +14,44 @@ class TransactionDetailsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<TransactionDetailsBloc, TransactionDetailsState>(
       builder: (context, state) {
-        return Scaffold(
-          body: DecoratedBox(
-            decoration: BoxDecoration(
-              gradient: context.isDarkTheme ? HyphaColors.gradientBlack : HyphaColors.gradientWhite,
-            ),
-            child: Column(
-              children: [
-                Expanded(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        const _Header('Signing request', 'From hypha DAO on Telos'),
-                        const SizedBox(height: 8),
-                        ...state.transactionDetailsData.cards
-                            .map((e) => HyphaTransactionActionCard(transactionDetailsCardData: e))
-                            .toList(),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 22),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'This transaction expires in ',
-                                style: context.hyphaTextTheme.ralMediumSmallNote.copyWith(color: HyphaColors.midGrey),
-                              ),
-                              Text(
-                                state.transactionDetailsData.expirationTime.toString(),
-                                style: context.hyphaTextTheme.ralMediumSmallNote.copyWith(color: HyphaColors.midGrey),
-                              ),
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
+        return DecoratedBox(
+          decoration: BoxDecoration(
+            gradient: context.isDarkTheme ? HyphaColors.gradientBlack : HyphaColors.gradientWhite,
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(30)),
+          ),
+          child: Column(
+            children: [
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      const _Header('Signing request', 'From hypha DAO on Telos'),
+                      const SizedBox(height: 8),
+                      ...state.transactionDetailsData.cards
+                          .map((e) => HyphaTransactionActionCard(transactionDetailsCardData: e))
+                          .toList(),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 22),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'This transaction expires in ',
+                              style: context.hyphaTextTheme.ralMediumSmallNote.copyWith(color: HyphaColors.midGrey),
+                            ),
+                            Text(
+                              state.transactionDetailsData.expirationTime.toString(),
+                              style: context.hyphaTextTheme.ralMediumSmallNote.copyWith(color: HyphaColors.midGrey),
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
                   ),
                 ),
-                const _Slider(),
-              ],
-            ),
+              ),
+              const _Slider(),
+            ],
           ),
         );
       },
@@ -102,7 +101,10 @@ class _Header extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(26),
-      color: context.isDarkTheme ? HyphaColors.lightBlack : HyphaColors.white,
+      decoration: BoxDecoration(
+        color: context.isDarkTheme ? HyphaColors.lightBlack : HyphaColors.white,
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(30)),
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

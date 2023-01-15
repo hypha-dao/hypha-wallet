@@ -11,8 +11,6 @@ import 'package:hypha_wallet/design/icons/hypha_icons.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 import 'package:hypha_wallet/ui/blocs/error_handler/error_handler_bloc.dart';
 import 'package:hypha_wallet/ui/home_page/interactor/home_bloc.dart';
-import 'package:hypha_wallet/ui/transaction_details/interactor/data/transaction_action_data.dart';
-import 'package:hypha_wallet/ui/transaction_details/transaction_details_page.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 
 class ScannerWidget extends StatefulWidget {
@@ -32,16 +30,17 @@ class _ScannerWidgetState extends State<ScannerWidget> {
       onTap: isActive
           ? null
           : () {
-              final transactionData = TransactionDetailsData(
-                  signingTitle: 'From hypha DAO on Telos',
-                  expirationTime: const Duration(seconds: 60),
-                  cards: [
-                    TransactionDetailsCardData(
-                        items: {'account_name': 'luigicarlini', 'login_code': '668888666888666'},
-                        primaryText: 'Login User',
-                        secondaryText: 'Eosio.login - loginuser')
-                  ]);
-              Get.to(TransactionDetailsPage(transactionDetailsData: transactionData));
+              context.read<HomeBloc>().add(HomeEvent.onQRCodeScanned('code'));
+              // final transactionData = TransactionDetailsData(
+              //     signingTitle: 'From hypha DAO on Telos',
+              //     expirationTime: const Duration(seconds: 60),
+              //     cards: [
+              //       TransactionDetailsCardData(
+              //           items: {'account_name': 'luigicarlini', 'login_code': '668888666888666'},
+              //           primaryText: 'Login User',
+              //           secondaryText: 'Eosio.login - loginuser')
+              //     ]);
+              // Get.to(TransactionDetailsPage(transactionDetailsData: transactionData));
               // setState(() {
               //   isActive = true;
               //   _heightFactor = 0.40;
