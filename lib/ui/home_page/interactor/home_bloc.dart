@@ -6,8 +6,8 @@ import 'package:hypha_wallet/core/error_handler/error_handler_manager.dart';
 import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
 import 'package:hypha_wallet/core/error_handler/model/hypha_error_type.dart';
 import 'package:hypha_wallet/ui/architecture/interactor/page_states.dart';
-import 'package:hypha_wallet/ui/architecture/result/result.dart';
 import 'package:hypha_wallet/ui/home_page/usecases/parse_qr_code_use_case.dart';
+import 'package:hypha_wallet/ui/transaction_details/interactor/data/transaction_action_data.dart';
 
 part 'home_bloc.freezed.dart';
 part 'home_event.dart';
@@ -35,7 +35,16 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     final result = await _parseQRCodeUseCase.run(event.value);
 
     if (result.isValue) {
-      emit(state.copyWith(command: PageCommand.navigateToTransactionDetails(result.valueOrCrash)));
+      final transactionData = TransactionDetailsData(
+          signingTitle: 'From hypha DAO on Telos',
+          expirationTime: Duration(seconds: 60),
+          cards: [
+            TransactionDetailsCardData(
+                items: {'account_name': 'luigicarlini', 'login_code': '668888666888666'},
+                primaryText: 'Login User',
+                secondaryText: 'Eosio.login - loginuser')
+          ]);
+      emit(state.copyWith(command: PageCommand.navigateToTransactionDetails(transactionData)));
     } else {
       _errorHandlerManager.handlerError(HyphaError(message: 'Error reading QR Code', type: HyphaErrorType.generic));
     }

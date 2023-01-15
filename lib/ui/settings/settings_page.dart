@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:hypha_wallet/design/actionable_cards/hypha_actionable_card.dart';
 import 'package:hypha_wallet/design/background/hypha_page_background.dart';
+import 'package:hypha_wallet/design/cards/hypha_actionable_card.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/icons/hypha_icons.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';

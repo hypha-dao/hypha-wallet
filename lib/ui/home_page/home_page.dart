@@ -17,7 +17,7 @@ class HomePage extends StatelessWidget {
         listenWhen: (previous, current) => previous.command != current.command,
         listener: (context, state) {
           state.command?.when(navigateToTransactionDetails: (data) {
-            Get.to(() => const TransactionDetailsPage());
+            Get.to(() => TransactionDetailsPage(transactionDetailsData: data));
           });
 
           context.read<HomeBloc>().add(const HomeEvent.clearPageCommand());

@@ -18,7 +18,9 @@ void _registerBlocsModule() {
         _getIt<AuthRepository>(),
       ));
   _registerFactory(() => BottomNavigationBloc());
-  _registerFactory(() => TransactionDetailsBloc(_getIt<SignTransactionUseCase>()));
+  _registerFactoryWithParams<TransactionDetailsBloc, TransactionDetailsData, void>(
+    (transDetailData, _) => TransactionDetailsBloc(_getIt<SignTransactionUseCase>(), transDetailData),
+  );
   _registerFactoryWithParams<CreateAccountBloc, XFile?, String>(
     (image, userName) => CreateAccountBloc(
       _getIt<CryptoAuthService>(),

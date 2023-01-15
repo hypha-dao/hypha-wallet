@@ -1,20 +1,17 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/src/gestures/long_press.dart';
+import 'package:hypha_wallet/design/hypha_colors.dart';
+import 'package:hypha_wallet/design/slide_to/slider_button.dart';
 
 /// Slider call to action component
 class SlideAction extends StatefulWidget {
   /// The size of the sliding icon
   final double sliderButtonIconSize;
 
-  /// Tha padding of the sliding icon
-  final double sliderButtonIconPadding;
-
   /// The offset on the y axis of the slider icon
-  final double sliderButtonYOffset;
-
-  /// If the slider icon rotates
-  final bool sliderRotate;
+  final double _sliderButtonYOffset = 60;
 
   /// The child that is rendered instead of the default Text widget
   final Widget? child;
@@ -30,14 +27,6 @@ class SlideAction extends StatefulWidget {
   /// If not set, this attribute defaults to accentColor from your theme.
   final Color? outerColor;
 
-  /// The text showed in the default Text widget
-  final String? text;
-
-  /// Text style which is applied on the Text widget.
-  ///
-  /// By default, the text is colored using [innerColor].
-  final TextStyle? textStyle;
-
   /// The borderRadius of the sliding icon and of the background
   final double borderRadius;
 
@@ -45,11 +34,11 @@ class SlideAction extends StatefulWidget {
   /// If this is null the component will not animate to complete
   final VoidCallback? onSubmit;
 
+  /// Callback called on Cancel
+  final VoidCallback? onCancel;
+
   /// Elevation of the component
   final double elevation;
-
-  /// The widget to render instead of the default icon
-  final Widget? sliderButtonIcon;
 
   /// The widget to render instead of the default submitted icon
   final Widget? submittedIcon;
@@ -67,9 +56,6 @@ class SlideAction extends StatefulWidget {
   const SlideAction({
     super.key,
     this.sliderButtonIconSize = 24,
-    this.sliderButtonIconPadding = 16,
-    this.sliderButtonYOffset = 0,
-    this.sliderRotate = true,
     this.height = 70,
     this.outerColor,
     this.borderRadius = 52,
@@ -79,12 +65,11 @@ class SlideAction extends StatefulWidget {
     this.alignment = Alignment.center,
     this.submittedIcon,
     this.onSubmit,
+    this.onCancel,
     this.child,
     this.innerColor,
-    this.text,
-    this.textStyle,
-    this.sliderButtonIcon,
   });
+
   @override
   SlideActionState createState() => SlideActionState();
 }
@@ -95,12 +80,15 @@ class SlideActionState extends State<SlideAction> with TickerProviderStateMixin 
   final GlobalKey _sliderKey = GlobalKey();
   double _dx = 0;
   double _maxDx = 0;
+  double _minDx = 0;
+
   double get _progress => _dx == 0 ? 0 : _dx / _maxDx;
   double _endDx = 0;
   double _dz = 1;
   double? _initialContainerWidth, _containerWidth;
   double _checkAnimationDx = 0;
   bool submitted = false;
+  bool isDown = false;
   late AnimationController _checkAnimationController,
       _shrinkAnimationController,
       _resizeAnimationController,
@@ -118,10 +106,12 @@ class SlideActionState extends State<SlideAction> with TickerProviderStateMixin 
           height: widget.height,
           width: _containerWidth,
           constraints: _containerWidth != null ? null : BoxConstraints.expand(height: widget.height),
-          child: Material(
-            elevation: widget.elevation,
-            color: widget.outerColor ?? Theme.of(context).colorScheme.secondary,
-            borderRadius: BorderRadius.circular(widget.borderRadius),
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(widget.borderRadius),
+              color: widget.outerColor ?? Theme.of(context).colorScheme.secondary,
+              gradient: isDown ? HyphaColors.gradientBlu : null,
+            ),
             child: submitted
                 ? Transform(
                     alignment: Alignment.center,
@@ -153,25 +143,26 @@ class SlideActionState extends State<SlideAction> with TickerProviderStateMixin 
                     alignment: Alignment.center,
                     clipBehavior: Clip.none,
                     children: <Widget>[
-                      Opacity(
-                        opacity: 1 - 1 * _progress,
-                        child: Transform(
-                          alignment: Alignment.center,
-                          transform: Matrix4.rotationY(widget.reversed ? pi : 0),
-                          child: widget.child ??
-                              Text(
-                                widget.text ?? 'Slide to act',
-                                textAlign: TextAlign.center,
-                                style: widget.textStyle ??
-                                    TextStyle(
-                                      color: widget.innerColor ?? Theme.of(context).primaryIconTheme.color,
-                                      fontSize: 24,
-                                    ),
-                              ),
+                      Positioned(
+                        right: 90,
+                        child: Opacity(
+                          opacity: 1 - 1 * _progress.abs(),
+                          child: Transform(
+                            alignment: Alignment.center,
+                            transform: Matrix4.rotationY(widget.reversed ? pi : 0),
+                            child: widget.child,
+                          ),
                         ),
                       ),
                       Positioned(
-                        left: widget.sliderButtonYOffset,
+                          left: 20,
+                          child: Opacity(
+                            opacity: 1 - 1 * _progress.abs(),
+                            child: const Icon(Icons.close),
+                          )),
+                      const Positioned(right: 20, child: Icon(Icons.check)),
+                      Positioned(
+                        left: widget._sliderButtonYOffset,
                         child: Transform.scale(
                           scale: _dz,
                           origin: Offset(_dx, 0),
@@ -181,40 +172,21 @@ class SlideActionState extends State<SlideAction> with TickerProviderStateMixin 
                               key: _sliderKey,
                               child: GestureDetector(
                                 onHorizontalDragUpdate: onHorizontalDragUpdate,
+                                onHorizontalDragDown: onHorizontalDragDown,
                                 onHorizontalDragEnd: (details) async {
                                   _endDx = _dx;
-                                  if (_progress <= 0.8 || widget.onSubmit == null) {
-                                    _cancelAnimation();
+                                  isDown = false;
+                                  if (_progress >= 0.8 || widget.onSubmit == null) {
+                                    await onActionTaken(widget.onSubmit!);
+                                  } else if (_progress <= -0.3 || widget.onCancel == null) {
+                                    await onActionTaken(widget.onCancel!);
                                   } else {
-                                    await _resizeAnimation();
-
-                                    await _shrinkAnimation();
-
-                                    await _checkAnimation();
-
-                                    widget.onSubmit!();
+                                    _cancelAnimation();
                                   }
                                 },
                                 child: Padding(
                                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                                  child: Material(
-                                    borderRadius: BorderRadius.circular(widget.borderRadius),
-                                    color: widget.innerColor ?? Theme.of(context).primaryIconTheme.color,
-                                    child: Container(
-                                      padding: EdgeInsets.all(widget.sliderButtonIconPadding),
-                                      child: Transform.rotate(
-                                        angle: widget.sliderRotate ? -pi * _progress : 0,
-                                        child: Center(
-                                          child: widget.sliderButtonIcon ??
-                                              Icon(
-                                                Icons.arrow_forward,
-                                                size: widget.sliderButtonIconSize,
-                                                color: widget.outerColor ?? Theme.of(context).colorScheme.secondary,
-                                              ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
+                                  child: SliderButton(isDown: isDown),
                                 ),
                               ),
                             ),
@@ -229,9 +201,29 @@ class SlideActionState extends State<SlideAction> with TickerProviderStateMixin 
     );
   }
 
+  Future<void> onActionTaken(VoidCallback callback) async {
+    await _resizeAnimation();
+    await _shrinkAnimation();
+    await _checkAnimation();
+    callback();
+  }
+
   void onHorizontalDragUpdate(DragUpdateDetails details) {
     setState(() {
-      _dx = (_dx + details.delta.dx).clamp(0.0, _maxDx);
+      _dx = (_dx + details.delta.dx).clamp(_minDx, _maxDx);
+      isDown = true;
+    });
+  }
+
+  void onLongPressDown(LongPressDownDetails details) {
+    setState(() {
+      isDown = true;
+    });
+  }
+
+  void onHorizontalDragDown(DragDownDetails details) {
+    setState(() {
+      isDown = true;
     });
   }
 
@@ -366,7 +358,8 @@ class SlideActionState extends State<SlideAction> with TickerProviderStateMixin 
       final RenderBox? sliderBox = _sliderKey.currentContext!.findRenderObject() as RenderBox?;
       final sliderWidth = sliderBox?.size.width ?? double.infinity;
 
-      _maxDx = _containerWidth! - (sliderWidth / 2) - 40 - widget.sliderButtonYOffset;
+      _maxDx = _containerWidth! - (sliderWidth / 2) - 60 - widget._sliderButtonYOffset;
+      _minDx = (sliderWidth / 2) - 60 - widget._sliderButtonYOffset;
     });
   }
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hypha_wallet/design/dividers/hypha_divider.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 
@@ -44,7 +45,7 @@ class HyphaActionableCard extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 14),
-              Container(height: 1, color: HyphaColors.midGrey),
+              const HyphaDivider(),
               const SizedBox(height: 18),
               Text(subtitle, style: context.hyphaTextTheme.ralMediumBody.copyWith(color: HyphaColors.midGrey)),
             ],

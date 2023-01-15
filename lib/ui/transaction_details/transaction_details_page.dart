@@ -5,15 +5,19 @@ import 'package:get_it/get_it.dart';
 import 'package:hypha_wallet/ui/transaction_details/components/transaction_details_view.dart';
 import 'package:hypha_wallet/ui/transaction_details/components/transaction_failed_page.dart';
 import 'package:hypha_wallet/ui/transaction_details/components/transaction_success_page.dart';
+import 'package:hypha_wallet/ui/transaction_details/interactor/data/transaction_action_data.dart';
 import 'package:hypha_wallet/ui/transaction_details/interactor/transaction_details_bloc.dart';
 
 class TransactionDetailsPage extends StatelessWidget {
-  const TransactionDetailsPage({super.key});
+  final TransactionDetailsData transactionDetailsData;
+
+  const TransactionDetailsPage({super.key, required this.transactionDetailsData});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => GetIt.I.get<TransactionDetailsBloc>()..add(const TransactionDetailsEvent.initial()),
+      create: (context) => GetIt.I.get<TransactionDetailsBloc>(param1: transactionDetailsData)
+        ..add(const TransactionDetailsEvent.initial()),
       child: BlocListener<TransactionDetailsBloc, TransactionDetailsState>(
         listenWhen: (previous, current) => previous.command != current.command,
         listener: (context, state) {
