@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
+import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 import 'package:hypha_wallet/ui/onboarding/edit_account/data/user_account_requirement.dart';
 
 class RequirementStateWidget extends StatelessWidget {
@@ -16,8 +17,8 @@ class RequirementStateWidget extends StatelessWidget {
         return Container(
           width: size,
           height: size,
-          decoration: const BoxDecoration(
-            color: HyphaColors.lightBlack,
+          decoration: BoxDecoration(
+            color: context.isDarkTheme ? HyphaColors.lightBlack : HyphaColors.midGrey.withOpacity(0.10),
             shape: BoxShape.circle,
           ),
         );

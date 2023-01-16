@@ -11,7 +11,7 @@ class HyphaPageBackground extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final opacityColor = context.isDarkTheme ? HyphaColors.darkBlack : HyphaColors.white;
+    final opacityColor = context.isDarkTheme ? HyphaColors.darkBlack : HyphaColors.darkWhite;
 
     return DecoratedBox(
       decoration: BoxDecoration(

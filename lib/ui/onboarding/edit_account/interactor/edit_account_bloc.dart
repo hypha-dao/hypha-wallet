@@ -29,7 +29,7 @@ class EditAccountBloc extends Bloc<EditAccountEvent, EditAccountState> {
   final CryptoAuthService _cryptoAuthService;
   final CreateAccountUseCase _createAccountUseCase;
   final ErrorHandlerManager _errorHandlerManager;
-  late CancelableOperation<Hypha.Result<bool, HyphaError>>? searchUserCancellable;
+  CancelableOperation<Hypha.Result<bool, HyphaError>>? searchUserCancellable;
 
   EditAccountBloc(
     this._checkAccountAvailabilityUseCase,
