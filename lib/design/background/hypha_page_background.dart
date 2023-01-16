@@ -11,6 +11,8 @@ class HyphaPageBackground extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final opacityColor = context.isDarkTheme ? HyphaColors.darkBlack : HyphaColors.white;
+
     return DecoratedBox(
       decoration: BoxDecoration(
         gradient: withGradient
@@ -21,8 +23,7 @@ class HyphaPageBackground extends StatelessWidget {
         image: withGradient
             ? null
             : DecorationImage(
-                colorFilter:
-                    withOpacity ? ColorFilter.mode(HyphaColors.darkBlack.withOpacity(0.85), BlendMode.darken) : null,
+                colorFilter: withOpacity ? ColorFilter.mode(opacityColor.withOpacity(0.85), BlendMode.darken) : null,
                 image: AssetImage(context.hyphaAssetTheme.backgroundTexture),
                 fit: BoxFit.cover,
               ),

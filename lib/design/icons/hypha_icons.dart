@@ -33,4 +33,7 @@ class HyphaIcons {
   static const IconData shield = IconData(0xe806, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData key = IconData(0xe807, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData subtraction_1 = IconData(0xe808, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData onboarding_key = IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData list = IconData(0xe809, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData image = IconData(0xe80b, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }

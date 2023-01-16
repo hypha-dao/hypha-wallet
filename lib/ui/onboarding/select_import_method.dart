@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hypha_wallet/design/background/hypha_page_background.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
+import 'package:hypha_wallet/design/icons/hypha_icons.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 import 'package:hypha_wallet/ui/onboarding/components/onboarding_appbar.dart';
 import 'package:hypha_wallet/ui/onboarding/import_account/import_key/import_account_by_key_page.dart';
@@ -32,14 +33,14 @@ class SelectImportMethod extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   _SquareButton(
-                    icon: Icons.key_rounded,
+                    icon: HyphaIcons.onboarding_key,
                     text: 'Private key',
                     onTap: () {
                       Get.to(() => const ImportAccountByKeyPage(), transition: Transition.rightToLeft);
                     },
                   ),
                   _SquareButton(
-                    icon: Icons.format_list_bulleted,
+                    icon: HyphaIcons.list,
                     text: '12 Words',
                     onTap: () {
                       Get.to(() => const ImportAccountPage(), transition: Transition.rightToLeft);
@@ -72,10 +73,10 @@ class _SquareButton extends StatelessWidget {
           child: Ink(
             padding: const EdgeInsets.all(44),
             decoration: BoxDecoration(
-              color: HyphaColors.lightBlack,
+              color: context.isDarkTheme ? HyphaColors.lightBlack : HyphaColors.white,
               borderRadius: BorderRadius.circular(16),
             ),
-            child: Icon(icon, size: 50),
+            child: Icon(icon, size: 50, color: context.isDarkTheme ? HyphaColors.white : HyphaColors.primaryBlu),
           ),
         ),
         const SizedBox(height: 20),

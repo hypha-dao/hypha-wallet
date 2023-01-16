@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hypha_wallet/design/avatar_image/hypha_avatar_image.dart';
+import 'package:hypha_wallet/design/avatar_image/hypha_editable_avatar_image.dart';
 import 'package:hypha_wallet/design/background/hypha_half_background.dart';
 import 'package:hypha_wallet/design/background/hypha_page_background.dart';
 import 'package:hypha_wallet/design/cards/hypha_actionable_card.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 import 'package:hypha_wallet/ui/blocs/authentication/authentication_bloc.dart';
-import 'package:image_picker/image_picker.dart';
 
 class ProfileView extends StatelessWidget {
   const ProfileView({super.key});
@@ -29,38 +28,19 @@ class ProfileView extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       const SizedBox(height: 40),
-                      Stack(
-                        alignment: Alignment.center,
-                        children: [
-                          HyphaAvatarImage(
-                            imageRadius: 50,
-                            // imageFromFile: _file?.path,
-                            onTap: () async {
-                              final XFile? image = await ImagePicker().pickImage(source: ImageSource.gallery);
-                              // setState(() {
-                              //   _file = image;
-                              // });
-                            },
-                          ),
-                          Positioned(
-                            top: -10,
-                            right: -10,
-                            child: IconButton(
-                                onPressed: () async {
-                                  // if (_file != null) {
-                                  //   setState(() {
-                                  //     _file = null;
-                                  //   });
-                                  // } else {
-                                  //   final XFile? image = await ImagePicker().pickImage(source: ImageSource.gallery);
-                                  //   setState(() {
-                                  //     _file = image;
-                                  //   });
-                                  // }
-                                },
-                                icon: const Icon(null == null ? Icons.add_circle : Icons.remove_circle)),
-                          )
-                        ],
+                      HyphaEditableAvatarImage(
+                        imageRadius: 50,
+                        // imageFromFile: _file?.path,
+                        onImageRemoved: () {
+                          // setState(() {
+                          //   _file = null;
+                          // });
+                        },
+                        onImageSelected: (image) async {
+                          // setState(() {
+                          //   _file = image;
+                          // });
+                        },
                       ),
                       const SizedBox(height: 14),
                       Text(state.authenticatedData?.userName ?? '', style: context.hyphaTextTheme.mediumTitles),

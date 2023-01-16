@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
+import 'package:hypha_wallet/design/icons/hypha_icons.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 
 class HyphaAvatarImage extends StatelessWidget {
@@ -20,6 +21,8 @@ class HyphaAvatarImage extends StatelessWidget {
     required this.imageRadius,
     this.onTap,
   });
+
+  bool get hasImage => imageFromUrl != null || imageFromFile != null;
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +61,7 @@ class HyphaAvatarImage extends StatelessWidget {
         ),
       );
     } else {
-      image = Icon(Icons.image_outlined, size: imageRadius, color: context.textTheme.titleSmall?.color);
+      image = Icon(HyphaIcons.image, size: imageRadius, color: context.textTheme.titleSmall?.color);
     }
 
     return GestureDetector(
@@ -67,13 +70,13 @@ class HyphaAvatarImage extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(imageRadius * 2),
           border: Border.all(
-            width: 1,
-            color: HyphaColors.primaryBlu,
+            width: hasImage ? 2 : 1,
+            color: hasImage ? HyphaColors.white : HyphaColors.primaryBlu,
             style: BorderStyle.solid,
           ),
         ),
         child: CircleAvatar(
-          radius: imageRadius,
+          radius: imageRadius + (hasImage ? 2 : 1),
           backgroundColor: HyphaColors.transparent,
           child: image,
         ),
