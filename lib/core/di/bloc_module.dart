@@ -18,6 +18,7 @@ void _registerBlocsModule() {
         _getIt<AuthRepository>(),
       ));
   _registerFactory(() => BottomNavigationBloc());
+  _registerFactory(() => ProfileBloc());
   _registerFactoryWithParams<TransactionDetailsBloc, TransactionDetailsData, void>(
     (transDetailData, _) => TransactionDetailsBloc(_getIt<SignTransactionUseCase>(), transDetailData),
   );

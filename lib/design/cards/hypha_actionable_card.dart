@@ -5,7 +5,7 @@ import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 
 class HyphaActionableCard extends StatelessWidget {
-  final Icon icon;
+  final Icon? icon;
   final String title;
   final Widget? trailer;
   final String subtitle;
@@ -13,7 +13,7 @@ class HyphaActionableCard extends StatelessWidget {
 
   const HyphaActionableCard({
     super.key,
-    required this.icon,
+    this.icon,
     required this.title,
     this.trailer,
     required this.subtitle,
@@ -38,8 +38,10 @@ class HyphaActionableCard extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  icon,
-                  const SizedBox(width: 8),
+                  if (icon != null) ...[
+                    icon!,
+                    const SizedBox(width: 8),
+                  ],
                   Expanded(child: Text(title, style: context.hyphaTextTheme.smallTitles)),
                   if (trailer != null) ...[trailer!],
                 ],

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/ui/bottom_navigation/interactor/bottom_navigation_bloc.dart';
 import 'package:hypha_wallet/ui/home_page/home_page.dart';
+import 'package:hypha_wallet/ui/profile/profile_page.dart';
 import 'package:hypha_wallet/ui/settings/interactor/settings_bloc.dart';
 import 'package:hypha_wallet/ui/settings/settings_page.dart';
 
@@ -59,7 +60,7 @@ class BottomNavigationView extends StatelessWidget {
               children: [
                 const HomePage(),
                 const SettingsPage(),
-                const SettingsPage(),
+                const ProfilePage(),
                 const SettingsPage(),
               ],
             ));
