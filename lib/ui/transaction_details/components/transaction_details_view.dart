@@ -51,6 +51,7 @@ class TransactionDetailsView extends StatelessWidget {
                 ),
               ),
               const _Slider(),
+              const SizedBox(height: 8),
             ],
           ),
         );

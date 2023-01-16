@@ -13,7 +13,7 @@ class HyphaTransactionActionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List rows = List.empty(growable: true);
-    transactionDetailsCardData.items.forEach((key, value) {
+    transactionDetailsCardData.params.forEach((key, value) {
       rows.add(Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -21,6 +21,7 @@ class HyphaTransactionActionCard extends StatelessWidget {
           Text(value, style: context.hyphaTextTheme.ralMediumBody),
         ],
       ));
+      rows.add(const SizedBox(height: 8));
     });
     return Card(
       margin: const EdgeInsets.all(22),
@@ -36,14 +37,7 @@ class HyphaTransactionActionCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(children: [
-                const Icon(Icons.person),
-                Text(transactionDetailsCardData.primaryText, style: context.hyphaTextTheme.smallTitles),
-              ]),
-              const SizedBox(height: 12),
-              const HyphaDivider(),
-              const SizedBox(height: 12),
-              Text(transactionDetailsCardData.secondaryText, style: context.hyphaTextTheme.ralMediumBody),
+              Text(transactionDetailsCardData.contractAction, style: context.hyphaTextTheme.smallTitles),
               const SizedBox(height: 12),
               const HyphaDivider(),
               const SizedBox(height: 12),

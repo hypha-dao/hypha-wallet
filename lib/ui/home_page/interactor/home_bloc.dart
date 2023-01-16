@@ -37,12 +37,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     if (result.isValue) {
       final transactionData = TransactionDetailsData(
           signingTitle: 'From hypha DAO on Telos',
-          expirationTime: Duration(seconds: 60),
+          expirationTime: const Duration(seconds: 60),
           cards: [
             TransactionDetailsCardData(
-                items: {'account_name': 'luigicarlini', 'login_code': '668888666888666'},
-                primaryText: 'Login User',
-                secondaryText: 'Eosio.login - loginuser')
+              params: {'account_name': 'luigicarlini', 'login_code': '668888666888666'},
+              contractAction: 'Eosio.login - loginuser',
+            )
           ]);
       emit(state.copyWith(command: PageCommand.navigateToTransactionDetails(transactionData)));
     } else {

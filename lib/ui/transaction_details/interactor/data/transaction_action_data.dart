@@ -7,9 +7,8 @@ class TransactionDetailsData {
 }
 
 class TransactionDetailsCardData {
-  final Map<String, String> items;
-  final String primaryText;
-  final String secondaryText;
+  final Map<String, String> params;
+  final String contractAction;
 
-  TransactionDetailsCardData({required this.items, required this.primaryText, required this.secondaryText});
+  TransactionDetailsCardData({required this.params, required this.contractAction});
 }

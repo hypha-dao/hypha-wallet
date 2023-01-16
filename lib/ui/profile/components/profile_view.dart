@@ -27,9 +27,10 @@ class ProfileView extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      const SizedBox(height: 40),
+                      const SizedBox(height: 80),
                       HyphaEditableAvatarImage(
                         imageRadius: 50,
+                        name: state.authenticatedData?.userName,
                         // imageFromFile: _file?.path,
                         onImageRemoved: () {
                           // setState(() {
