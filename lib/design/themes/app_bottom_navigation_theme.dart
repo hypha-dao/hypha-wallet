@@ -7,7 +7,7 @@ class AppBottomNavigationTheme {
     // MindsetTextTheme mindsetTextTheme,
   ) {
     return BottomNavigationBarThemeData(
-      backgroundColor: HyphaColors.lightBlack,
+      backgroundColor: colorScheme.onPrimary,
       showSelectedLabels: true,
       showUnselectedLabels: true,
       selectedItemColor: HyphaColors.lightBlue,

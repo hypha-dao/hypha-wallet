@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:hypha_wallet/core/logging/log_helper.dart';
 import 'package:hypha_wallet/core/network/api/endpoints.dart';
 import 'package:hypha_wallet/core/network/networking_manager.dart';
 import 'package:image_picker/image_picker.dart';
@@ -15,7 +16,7 @@ class UserAccountService {
     XFile? image,
   }) async {
     // TODO(Nik): these API calls need your help
-    return await Future.delayed(Duration(seconds: 3))
+    return await Future.delayed(const Duration(seconds: 3))
         .then((value) => Response(data: true, requestOptions: RequestOptions(path: 'MOCK')));
     // return await dioClient.post(Endpoints.userAccountAvailable, data: {
     //   'userAccount': userAccount,
@@ -25,7 +26,8 @@ class UserAccountService {
   Future<bool> isUserAccountAvailable(String accountName) async {
     final requestBody = '{ "account_name": "$accountName" }';
     try {
-      final res = networkingManager.post(Endpoints.getAccount, data: requestBody);
+      final res = await networkingManager.post(Endpoints.getAccount, data: requestBody);
+      LogHelper.d('Result $res');
       return false;
     } catch (error) {
       return true;
@@ -37,9 +39,9 @@ class UserAccountService {
     final maxTries = 100;
 
     while (sequence < maxTries) {
-      var accountName = generateUserName(fullName: fullName, sequence: sequence);
+      final accountName = generateUserName(fullName: fullName, sequence: sequence);
       if (accountName != null) {
-        final available = await isUserAccountAvailable(accountName);
+        final bool available = await isUserAccountAvailable(accountName);
         if (available) {
           return accountName;
         }

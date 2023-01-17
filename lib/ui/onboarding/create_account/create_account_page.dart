@@ -12,7 +12,7 @@ class CreateAccountPage extends StatelessWidget {
   final XFile? _file;
   final String _name;
 
-  const CreateAccountPage(this._file, this._name);
+  const CreateAccountPage(this._file, this._name, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -41,9 +41,9 @@ class CreateAccountPage extends StatelessWidget {
             },
           );
 
-          context.read<CreateAccountBloc>().add(CreateAccountEvent.clearPageCommand());
+          context.read<CreateAccountBloc>().add(const CreateAccountEvent.clearPageCommand());
         },
-        child: CreateAccountView(),
+        child: const CreateAccountView(),
       ),
     );
   }

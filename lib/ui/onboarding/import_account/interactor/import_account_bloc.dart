@@ -15,7 +15,6 @@ import 'package:hypha_wallet/ui/architecture/interactor/page_states.dart';
 import 'package:hypha_wallet/ui/onboarding/import_account/interactor/account_import_type.dart';
 import 'package:hypha_wallet/ui/onboarding/import_account/usecases/find_account_use_case.dart';
 import 'package:hypha_wallet/ui/onboarding/import_account/usecases/generate_key_from_recovery_words_use_case.dart';
-import 'package:hypha_wallet/ui/onboarding/import_account/usecases/generate_key_from_seeds_passport_words_use_case.dart';
 import 'package:hypha_wallet/ui/onboarding/import_account/usecases/validate_key_use_case.dart';
 
 part 'import_account_bloc.freezed.dart';
@@ -28,7 +27,6 @@ const int wordsMax = 12;
 class ImportAccountBloc extends Bloc<ImportAccountEvent, ImportAccountState> {
   final AuthRepository _authRepository;
   final GenerateKeyFromRecoveryWordsUseCase _fromRecoveryWordsUseCase;
-  final GenerateKeyFromSeedsPassportWordsUseCase _fromSeedsPassportWordsUseCase;
   final ValidateKeyUseCase _validateKeyUseCase;
   final ErrorHandlerManager _errorHandlerManager;
   final FindAccountsUseCase _findAccountsUseCase;
@@ -37,12 +35,11 @@ class ImportAccountBloc extends Bloc<ImportAccountEvent, ImportAccountState> {
 
   ImportAccountBloc(
     this._fromRecoveryWordsUseCase,
-    this._fromSeedsPassportWordsUseCase,
     this._validateKeyUseCase,
     this._errorHandlerManager,
     this._findAccountsUseCase,
     this._authRepository,
-  ) : super(ImportAccountState()) {
+  ) : super(const ImportAccountState()) {
     on<_Initial>(_initial);
     on<_ClearPageCommand>((_, emit) => emit(state.copyWith(command: null)));
     on<_OnWordChange>(_onWordChange);
@@ -99,7 +96,7 @@ class ImportAccountBloc extends Bloc<ImportAccountEvent, ImportAccountState> {
   FutureOr<void> _onActionButtonTapped(_OnActionButtonTapped event, Emitter<ImportAccountState> emit) async {
     if (event.findByWords) {
       final authData = await _fromRecoveryWordsUseCase.run(state.userEnteredWords.values.toList());
-      var privateKey = authData.eOSPrivateKey.toString();
+      final privateKey = authData.eOSPrivateKey.toString();
       add(ImportAccountEvent.findAccountByKey(privateKey));
     } else {
       state.accountKey?.let((it) => add(ImportAccountEvent.findAccountByKey(it)));
@@ -126,7 +123,7 @@ class ImportAccountBloc extends Bloc<ImportAccountEvent, ImportAccountState> {
       final results = await _findAccountsUseCase.run(publicKey);
 
       if (results.isValue) {
-        var accounts = results.asValue!.value;
+        final accounts = results.asValue!.value;
         if (accounts.isEmpty) {
           _errorHandlerManager.handlerError(HyphaError(message: 'No Accounts Found', type: HyphaErrorType.generic));
         } else {

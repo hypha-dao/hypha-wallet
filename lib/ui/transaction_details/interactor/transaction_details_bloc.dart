@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hypha_wallet/ui/architecture/interactor/page_states.dart';
+import 'package:hypha_wallet/ui/transaction_details/interactor/data/transaction_action_data.dart';
+import 'package:hypha_wallet/ui/transaction_details/success/transaction_success_page.dart';
 import 'package:hypha_wallet/ui/transaction_details/usecases/sign_transaction_use_case.dart';
 
 part 'page_command.dart';
@@ -12,10 +14,11 @@ part 'transaction_details_state.dart';
 
 class TransactionDetailsBloc extends Bloc<TransactionDetailsEvent, TransactionDetailsState> {
   final SignTransactionUseCase _signTransactionUseCase;
-  TransactionDetailsBloc(this._signTransactionUseCase) : super(TransactionDetailsState()) {
+  TransactionDetailsBloc(this._signTransactionUseCase, TransactionDetailsData _transactionDetailsData)
+      : super(TransactionDetailsState(transactionDetailsData: _transactionDetailsData)) {
     on<_Initial>(_initial);
     on<_OnUserSlideCompleted>(_onUserSlideCompleted);
-    on<_OnCancelTransactionTapped>(_onCancelTransactionTapped);
+    on<_OnUserSlideCanceled>(_onUserSlideCanceled);
     on<_ClearPageCommand>((_, emit) => emit(state.copyWith(command: null)));
   }
 
@@ -25,13 +28,20 @@ class TransactionDetailsBloc extends Bloc<TransactionDetailsEvent, TransactionDe
     /// Show loading, sign transaction, navigate to success or show error
     final result = await _signTransactionUseCase.run('MOCK DATA');
     if (result.isValue) {
-      emit(state.copyWith(command: PageCommand.navigateToTransactionSuccess()));
+      emit(state.copyWith(command: const PageCommand.navigateToTransactionSuccess(SuccessTransactionType.approved)));
     } else {
-      emit(state.copyWith(command: PageCommand.navigateToTransactionFailed()));
+      emit(state.copyWith(command: const PageCommand.navigateToTransactionFailed()));
     }
   }
 
-  FutureOr<void> _onCancelTransactionTapped(_OnCancelTransactionTapped event, Emitter<TransactionDetailsState> emit) {
-    emit(state.copyWith(command: PageCommand.transactionCancelled()));
+  FutureOr<void> _onUserSlideCanceled(_OnUserSlideCanceled event, Emitter<TransactionDetailsState> emit) async {
+    /// Show loading, reject, navigate to success or show error
+    final result = await _signTransactionUseCase.run('MOCK DATA');
+    if (result.isValue) {
+      emit(state.copyWith(command: const PageCommand.navigateToTransactionFailed()));
+      // emit(state.copyWith(command: const PageCommand.navigateToTransactionSuccess(SuccessTransactionType.rejected)));
+    } else {
+      emit(state.copyWith(command: const PageCommand.navigateToTransactionFailed()));
+    }
   }
 }

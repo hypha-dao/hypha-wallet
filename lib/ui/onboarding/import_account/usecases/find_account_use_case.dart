@@ -11,7 +11,7 @@ class FindAccountsUseCase extends InputUseCase<Result<List<UserProfileData>>, St
 
   @override
   Future<Result<List<UserProfileData>>> run(String input) async {
-    Result<AccountNames> result = await _eosClient.getKeyAccounts(input);
+    final Result<AccountNames> result = await _eosClient.getKeyAccounts(input);
     if (result.isValue) {
       // TODO(NIK): Fetch data from the hypha profile api
       return Result.value(result.asValue!.value.accountNames

@@ -50,7 +50,7 @@ class EOSClient extends NetworkingManager {
   set privateKeys(List<String> privateKeys) => _mapKeys(privateKeys);
 
   Future<Response> _post(String path, Object body) {
-    return this.post('/${this.version}$path', data: body);
+    return post('/$version$path', data: body);
   }
 
   /// Get EOS Node Info

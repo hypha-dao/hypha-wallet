@@ -4,6 +4,8 @@ class HyphaColors {
   /// Primary colors
   static const primaryBlu = Color(0xFF498AE5);
   static const offWhite = Color(0xFFF4F6F8);
+  static const darkWhite = Color(0xFFECEFF4);
+  static const boxShadow = Color(0xFF33507C);
 
   static const error = Color(0xFFE23D50);
   static const success = Color(0xFF1CB59B);
@@ -25,14 +27,20 @@ class HyphaColors {
 
   /// Gradients
   static const gradientBlu = LinearGradient(
-    begin: Alignment.centerLeft,
-    end: Alignment.centerRight,
+    begin: Alignment.bottomLeft,
+    end: Alignment.topRight,
     colors: [lightBlue, darkBlue],
   );
 
   static const gradientBlack = LinearGradient(
-    begin: Alignment.centerLeft,
-    end: Alignment.centerRight,
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
     colors: [gradientBlackLight, darkBlack],
+  );
+
+  static const gradientWhite = LinearGradient(
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    colors: [offWhite, darkWhite],
   );
 }

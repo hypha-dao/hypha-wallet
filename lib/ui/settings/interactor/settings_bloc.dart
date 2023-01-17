@@ -14,7 +14,7 @@ part 'settings_state.dart';
 class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
   final HyphaSharedPrefs _sharedPrefs;
 
-  SettingsBloc(this._sharedPrefs) : super(SettingsState()) {
+  SettingsBloc(this._sharedPrefs) : super(const SettingsState()) {
     on<_Initial>(_initial);
     on<_OnThemeChanged>(_onThemeChanged);
     on<_ClearPageCommand>((_, emit) => emit(state.copyWith(command: null)));

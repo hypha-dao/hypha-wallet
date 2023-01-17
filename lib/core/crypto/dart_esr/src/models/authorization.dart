@@ -17,5 +17,5 @@ class Authorization {
   Map<String, dynamic> toJson() => _$AuthorizationToJson(this);
 
   @override
-  String toString() => this.toJson().toString();
+  String toString() => toJson().toString();
 }

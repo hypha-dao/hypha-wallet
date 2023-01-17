@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hypha_wallet/design/buttons/hypha_app_button.dart';
 
 class CheckPhrasePage extends StatelessWidget {
-  const CheckPhrasePage();
+  const CheckPhrasePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,19 +17,19 @@ class CheckPhrasePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Secret Phrase Check'),
-            Text('Check Phrase info text'),
+            const Text('Secret Phrase Check'),
+            const Text('Check Phrase info text'),
             GridView(
               shrinkWrap: true,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 childAspectRatio: 2,
               ),
               children: [
-                SecretPhraseWord(selected: false, word: 'Word 1'),
-                SecretPhraseWord(selected: false, word: 'Word 2'),
-                SecretPhraseWord(selected: false, word: 'Word 3'),
-                SecretPhraseWord(selected: false, word: 'Word 4'),
+                const SecretPhraseWord(selected: false, word: 'Word 1'),
+                const SecretPhraseWord(selected: false, word: 'Word 2'),
+                const SecretPhraseWord(selected: false, word: 'Word 3'),
+                const SecretPhraseWord(selected: false, word: 'Word 4'),
               ],
             )
           ],
@@ -46,8 +46,8 @@ class SecretPhraseWord extends StatelessWidget {
   const SecretPhraseWord({
     required this.selected,
     required this.word,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

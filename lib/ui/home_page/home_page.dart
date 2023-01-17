@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hypha_wallet/ui/home_page/components/home_view.dart';
 import 'package:hypha_wallet/ui/home_page/interactor/home_bloc.dart';
 import 'package:hypha_wallet/ui/transaction_details/transaction_details_page.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage();
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,13 +15,25 @@ class HomePage extends StatelessWidget {
       child: BlocListener<HomeBloc, HomeState>(
         listenWhen: (previous, current) => previous.command != current.command,
         listener: (context, state) {
-          state.command?.when(navigateToTransactionDetails: (data) {
-            Get.to(() => TransactionDetailsPage());
-          });
+          state.command?.when(
+            navigateToTransactionDetails: (data) {
+              showModalBottomSheet(
+                isScrollControlled: true,
+                context: context,
+                builder: (context) => FractionallySizedBox(
+                  heightFactor: 0.9,
+                  child: TransactionDetailsPage(transactionDetailsData: data),
+                ),
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
+                ),
+              );
+            },
+          );
 
-          context.read<HomeBloc>().add(HomeEvent.clearPageCommand());
+          context.read<HomeBloc>().add(const HomeEvent.clearPageCommand());
         },
-        child: HomeView(),
+        child: const HomeView(),
       ),
     );
   }

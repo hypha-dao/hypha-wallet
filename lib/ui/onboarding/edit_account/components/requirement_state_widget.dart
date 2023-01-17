@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
+import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 import 'package:hypha_wallet/ui/onboarding/edit_account/data/user_account_requirement.dart';
 
 class RequirementStateWidget extends StatelessWidget {
@@ -17,7 +18,7 @@ class RequirementStateWidget extends StatelessWidget {
           width: size,
           height: size,
           decoration: BoxDecoration(
-            color: HyphaColors.lightBlack,
+            color: context.isDarkTheme ? HyphaColors.lightBlack : HyphaColors.midGrey.withOpacity(0.10),
             shape: BoxShape.circle,
           ),
         );
@@ -25,7 +26,7 @@ class RequirementStateWidget extends StatelessWidget {
         return Container(
           width: size,
           height: size,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: HyphaColors.success,
             shape: BoxShape.circle,
           ),
@@ -34,7 +35,7 @@ class RequirementStateWidget extends StatelessWidget {
         return Container(
           width: size,
           height: size,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: HyphaColors.error,
             shape: BoxShape.circle,
           ),
@@ -43,7 +44,7 @@ class RequirementStateWidget extends StatelessWidget {
         return Container(
           width: size,
           height: size,
-          child: CircularProgressIndicator(color: HyphaColors.primaryBlu, strokeWidth: 1),
+          child: const CircularProgressIndicator(color: HyphaColors.primaryBlu, strokeWidth: 1),
         );
     }
   }

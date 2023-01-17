@@ -29,7 +29,7 @@ class EditAccountBloc extends Bloc<EditAccountEvent, EditAccountState> {
   final CryptoAuthService _cryptoAuthService;
   final CreateAccountUseCase _createAccountUseCase;
   final ErrorHandlerManager _errorHandlerManager;
-  late CancelableOperation<Hypha.Result<bool, HyphaError>>? searchUserCancellable = null;
+  CancelableOperation<Hypha.Result<bool, HyphaError>>? searchUserCancellable;
 
   EditAccountBloc(
     this._checkAccountAvailabilityUseCase,
@@ -54,7 +54,7 @@ class EditAccountBloc extends Bloc<EditAccountEvent, EditAccountState> {
   List<UserAccountError> _validateUserAccount(String username) {
     final validCharacters = RegExp(r'^[a-z1-5]+$');
 
-    List<UserAccountError> errors = List.empty(growable: true);
+    final List<UserAccountError> errors = List.empty(growable: true);
 
     if (RegExp(r'0|6|7|8|9').allMatches(username).isNotEmpty) {
       errors.add(UserAccountError.onlyNumbers15);
@@ -80,14 +80,14 @@ class EditAccountBloc extends Bloc<EditAccountEvent, EditAccountState> {
     emit(state.copyWith(userAccount: event.value));
     searchUserCancellable?.cancel();
     if (event.value.isEmpty) {
-      add(EditAccountEvent.initial());
+      add(const EditAccountEvent.initial());
     } else {
       final List<UserAccountError> result = _validateUserAccount(event.value);
       List<UserAccountRequirement> completedItems = getFreshRequirements(state: RequirementState.completed);
 
-      result.forEach((UserAccountError element) {
+      for (final element in result) {
         completedItems = updateItemState(completedItems, element, RequirementState.failed);
-      });
+      }
 
       emit(state.copyWith(userAccountRequirements: completedItems));
 
@@ -100,7 +100,7 @@ class EditAccountBloc extends Bloc<EditAccountEvent, EditAccountState> {
           onCancel: () => {LogHelper.d('_checkAccountAvailabilityUseCase cancelled for: ${event.value}')},
         );
 
-        Hypha.Result<bool, HyphaError> result = await searchUserCancellable!.value;
+        final Hypha.Result<bool, HyphaError> result = await searchUserCancellable!.value;
 
         emit(state.copyWith(userAccountRequirements: completedItems));
 
@@ -123,26 +123,26 @@ class EditAccountBloc extends Bloc<EditAccountEvent, EditAccountState> {
     UserAccountError error,
     RequirementState state,
   ) {
-    UserAccountRequirement item = items.firstWhere((UserAccountRequirement item) => item.error == error);
-    int index = items.indexOf(item);
+    final UserAccountRequirement item = items.firstWhere((UserAccountRequirement item) => item.error == error);
+    final int index = items.indexOf(item);
     return items.replaceImmutable(index, item.updateState(state));
   }
 
   FutureOr<void> _onNextPressed(_OnNextPressed event, Emitter<EditAccountState> emit) async {
-    UserAuthData auth = _cryptoAuthService.createRandomPrivateKeyAndWords();
+    final UserAuthData auth = _cryptoAuthService.createRandomPrivateKeyAndWords();
 
     /// Make call to create Account
-    emit(state.copyWith(command: PageCommand.showLoadingDialog()));
-    Hypha.Result<bool, HyphaError> result = await _createAccountUseCase.run(Input(
+    emit(state.copyWith(command: const PageCommand.showLoadingDialog()));
+    final Hypha.Result<bool, HyphaError> result = await _createAccountUseCase.run(Input(
       userAuthData: auth,
       accountName: state.userAccount!,
       userName: state.userName,
     ));
 
     if (result.isValue) {
-      emit(state.copyWith(command: PageCommand.navigateToSuccess()));
+      emit(state.copyWith(command: const PageCommand.navigateToSuccess()));
     } else {
-      emit(state.copyWith(command: PageCommand.hideLoadingDialog()));
+      emit(state.copyWith(command: const PageCommand.hideLoadingDialog()));
       _errorHandlerManager.handlerError(result.asError!.error);
     }
   }

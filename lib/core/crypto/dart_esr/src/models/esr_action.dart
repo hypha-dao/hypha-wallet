@@ -14,8 +14,8 @@ class ESRAction {
   @JsonKey(name: 'name')
   String? name;
 
-  @JsonKey(name: 'authorization', defaultValue: [])
-  List<Authorization> authorization;
+  @JsonKey(name: 'authorization')
+  List<Authorization> authorization = [];
 
   @JsonKey(name: 'data')
   Object? data;
@@ -23,9 +23,16 @@ class ESRAction {
 //  @JsonKey(name: 'hex_data')
 //  String hexData;
 
-  ESRAction(this.authorization);
+  ESRAction();
 
-  factory ESRAction.fromJson(Map<String, dynamic> json) => _$ESRActionFromJson(json);
+  factory ESRAction.fromJson(Map<String, dynamic> json) {
+    return ESRAction()
+      ..account = json['account'] as String
+      ..name = json['name'] as String
+      ..authorization =
+          (json['authorization'] as List).map((e) => Authorization.fromJson(Map<String, dynamic>.from(e))).toList()
+      ..data = json['data'];
+  }
 
   Map<String, dynamic> toJson() => _$ESRActionToJson(this);
 

@@ -8,8 +8,8 @@ import 'package:hypha_wallet/design/themes/extensions/hypha_text_theme.dart';
 
 class HyphaTheme {
   static ThemeData get darkTheme {
-    var baseTheme = ThemeData(brightness: Brightness.dark);
-    var mainTextTheme = GoogleFonts.ralewayTextTheme(baseTheme.textTheme);
+    final baseTheme = ThemeData(brightness: Brightness.dark);
+    final mainTextTheme = GoogleFonts.ralewayTextTheme(baseTheme.textTheme);
 
     return baseTheme.copyWith(
       colorScheme: darkColorScheme,
@@ -28,12 +28,18 @@ class HyphaTheme {
   }
 
   static ThemeData get lightTheme {
-    var baseTheme = ThemeData(brightness: Brightness.light);
-    var mainTextTheme = GoogleFonts.ralewayTextTheme(baseTheme.textTheme);
+    final baseTheme = ThemeData(brightness: Brightness.light);
+    final mainTextTheme = GoogleFonts.ralewayTextTheme(baseTheme.textTheme);
 
     return baseTheme.copyWith(
       colorScheme: lightColorScheme,
       textTheme: mainTextTheme,
+      appBarTheme: AppBarTheme(
+        backgroundColor: HyphaColors.transparent,
+        iconTheme: const IconThemeData(color: HyphaColors.black),
+        elevation: 0,
+        titleTextStyle: HyphaTextTheme.light.smallTitles.copyWith(color: HyphaColors.black),
+      ),
       bottomNavigationBarTheme: AppBottomNavigationTheme.bottomNavigationThemeData(lightColorScheme),
       extensions: <ThemeExtension<dynamic>>[
         HyphaAssetsTheme.light,

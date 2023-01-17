@@ -436,6 +436,7 @@ abstract class _OnQRCodeScanned implements HomeEvent {
 /// @nodoc
 mixin _$HomeState {
   PageState get pageState => throw _privateConstructorUsedError;
+  bool get isLoading => throw _privateConstructorUsedError;
   PageCommand? get command => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -448,7 +449,7 @@ abstract class $HomeStateCopyWith<$Res> {
   factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) then) =
       _$HomeStateCopyWithImpl<$Res, HomeState>;
   @useResult
-  $Res call({PageState pageState, PageCommand? command});
+  $Res call({PageState pageState, bool isLoading, PageCommand? command});
 
   $PageCommandCopyWith<$Res>? get command;
 }
@@ -467,6 +468,7 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
   @override
   $Res call({
     Object? pageState = null,
+    Object? isLoading = null,
     Object? command = freezed,
   }) {
     return _then(_value.copyWith(
@@ -474,6 +476,10 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
           ? _value.pageState
           : pageState // ignore: cast_nullable_to_non_nullable
               as PageState,
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
       command: freezed == command
           ? _value.command
           : command // ignore: cast_nullable_to_non_nullable
@@ -501,7 +507,7 @@ abstract class _$$_HomeStateCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
       __$$_HomeStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({PageState pageState, PageCommand? command});
+  $Res call({PageState pageState, bool isLoading, PageCommand? command});
 
   @override
   $PageCommandCopyWith<$Res>? get command;
@@ -519,6 +525,7 @@ class __$$_HomeStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? pageState = null,
+    Object? isLoading = null,
     Object? command = freezed,
   }) {
     return _then(_$_HomeState(
@@ -526,6 +533,10 @@ class __$$_HomeStateCopyWithImpl<$Res>
           ? _value.pageState
           : pageState // ignore: cast_nullable_to_non_nullable
               as PageState,
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
       command: freezed == command
           ? _value.command
           : command // ignore: cast_nullable_to_non_nullable
@@ -537,17 +548,23 @@ class __$$_HomeStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_HomeState implements _HomeState {
-  const _$_HomeState({this.pageState = PageState.initial, this.command});
+  const _$_HomeState(
+      {this.pageState = PageState.initial,
+      this.isLoading = false,
+      this.command});
 
   @override
   @JsonKey()
   final PageState pageState;
   @override
+  @JsonKey()
+  final bool isLoading;
+  @override
   final PageCommand? command;
 
   @override
   String toString() {
-    return 'HomeState(pageState: $pageState, command: $command)';
+    return 'HomeState(pageState: $pageState, isLoading: $isLoading, command: $command)';
   }
 
   @override
@@ -557,11 +574,13 @@ class _$_HomeState implements _HomeState {
             other is _$_HomeState &&
             (identical(other.pageState, pageState) ||
                 other.pageState == pageState) &&
+            (identical(other.isLoading, isLoading) ||
+                other.isLoading == isLoading) &&
             (identical(other.command, command) || other.command == command));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, pageState, command);
+  int get hashCode => Object.hash(runtimeType, pageState, isLoading, command);
 
   @JsonKey(ignore: true)
   @override
@@ -572,10 +591,14 @@ class _$_HomeState implements _HomeState {
 
 abstract class _HomeState implements HomeState {
   const factory _HomeState(
-      {final PageState pageState, final PageCommand? command}) = _$_HomeState;
+      {final PageState pageState,
+      final bool isLoading,
+      final PageCommand? command}) = _$_HomeState;
 
   @override
   PageState get pageState;
+  @override
+  bool get isLoading;
   @override
   PageCommand? get command;
   @override
@@ -586,20 +609,22 @@ abstract class _HomeState implements HomeState {
 
 /// @nodoc
 mixin _$PageCommand {
-  QrCodeData get data => throw _privateConstructorUsedError;
+  TransactionDetailsData get data => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(QrCodeData data) navigateToTransactionDetails,
+    required TResult Function(TransactionDetailsData data)
+        navigateToTransactionDetails,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(QrCodeData data)? navigateToTransactionDetails,
+    TResult? Function(TransactionDetailsData data)?
+        navigateToTransactionDetails,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(QrCodeData data)? navigateToTransactionDetails,
+    TResult Function(TransactionDetailsData data)? navigateToTransactionDetails,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -634,7 +659,7 @@ abstract class $PageCommandCopyWith<$Res> {
           PageCommand value, $Res Function(PageCommand) then) =
       _$PageCommandCopyWithImpl<$Res, PageCommand>;
   @useResult
-  $Res call({QrCodeData data});
+  $Res call({TransactionDetailsData data});
 }
 
 /// @nodoc
@@ -656,7 +681,7 @@ class _$PageCommandCopyWithImpl<$Res, $Val extends PageCommand>
       data: null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as QrCodeData,
+              as TransactionDetailsData,
     ) as $Val);
   }
 }
@@ -670,7 +695,7 @@ abstract class _$$_NavigateToTransactionDetailsCopyWith<$Res>
       __$$_NavigateToTransactionDetailsCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({QrCodeData data});
+  $Res call({TransactionDetailsData data});
 }
 
 /// @nodoc
@@ -691,7 +716,7 @@ class __$$_NavigateToTransactionDetailsCopyWithImpl<$Res>
       null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as QrCodeData,
+              as TransactionDetailsData,
     ));
   }
 }
@@ -702,7 +727,7 @@ class _$_NavigateToTransactionDetails implements _NavigateToTransactionDetails {
   const _$_NavigateToTransactionDetails(this.data);
 
   @override
-  final QrCodeData data;
+  final TransactionDetailsData data;
 
   @override
   String toString() {
@@ -730,7 +755,8 @@ class _$_NavigateToTransactionDetails implements _NavigateToTransactionDetails {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(QrCodeData data) navigateToTransactionDetails,
+    required TResult Function(TransactionDetailsData data)
+        navigateToTransactionDetails,
   }) {
     return navigateToTransactionDetails(data);
   }
@@ -738,7 +764,8 @@ class _$_NavigateToTransactionDetails implements _NavigateToTransactionDetails {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(QrCodeData data)? navigateToTransactionDetails,
+    TResult? Function(TransactionDetailsData data)?
+        navigateToTransactionDetails,
   }) {
     return navigateToTransactionDetails?.call(data);
   }
@@ -746,7 +773,7 @@ class _$_NavigateToTransactionDetails implements _NavigateToTransactionDetails {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(QrCodeData data)? navigateToTransactionDetails,
+    TResult Function(TransactionDetailsData data)? navigateToTransactionDetails,
     required TResult orElse(),
   }) {
     if (navigateToTransactionDetails != null) {
@@ -788,11 +815,11 @@ class _$_NavigateToTransactionDetails implements _NavigateToTransactionDetails {
 }
 
 abstract class _NavigateToTransactionDetails implements PageCommand {
-  const factory _NavigateToTransactionDetails(final QrCodeData data) =
-      _$_NavigateToTransactionDetails;
+  const factory _NavigateToTransactionDetails(
+      final TransactionDetailsData data) = _$_NavigateToTransactionDetails;
 
   @override
-  QrCodeData get data;
+  TransactionDetailsData get data;
   @override
   @JsonKey(ignore: true)
   _$$_NavigateToTransactionDetailsCopyWith<_$_NavigateToTransactionDetails>

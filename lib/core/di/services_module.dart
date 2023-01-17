@@ -6,7 +6,7 @@ Future<void> _registerServicesModule() async {
   _registerLazySingleton(() => NetworkingManager(Endpoints.baseUrl));
 
   /// Secure Storage
-  _registerLazySingleton(() => FlutterSecureStorage());
+  _registerLazySingleton(() => const FlutterSecureStorage());
   _registerLazySingleton(() => SecureStorageService(_getIt<FlutterSecureStorage>()));
 
   /// Services

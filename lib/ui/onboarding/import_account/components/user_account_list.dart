@@ -15,13 +15,13 @@ class UserAccountList extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       shrinkWrap: true,
-      physics: NeverScrollableScrollPhysics(),
+      physics: const NeverScrollableScrollPhysics(),
       children: accounts
           .map(
             (e) => Padding(
               padding: const EdgeInsets.only(top: 20),
               child: ListTile(
-                contentPadding: EdgeInsets.all(14),
+                contentPadding: const EdgeInsets.all(14),
                 tileColor: HyphaColors.lightBlack,
                 title: Text(e.userName, style: context.hyphaTextTheme.smallTitles),
                 leading: HyphaAvatarImage(
@@ -29,7 +29,7 @@ class UserAccountList extends StatelessWidget {
                   name: e.accountName.characters.first.capitalize,
                 ),
                 subtitle: Text(e.accountName, style: context.hyphaTextTheme.ralMediumBody),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(16))),
+                shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(16))),
                 onTap: () {
                   onTap?.call(e);
                 },

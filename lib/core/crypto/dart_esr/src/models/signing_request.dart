@@ -4,6 +4,7 @@ import 'dart:typed_data';
 
 import 'package:hypha_wallet/core/crypto/dart_esr/src/models/info_pair.dart';
 import 'package:hypha_wallet/core/crypto/eosdart/eosdart.dart';
+import 'package:hypha_wallet/core/logging/log_helper.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'signing_request.g.dart';
@@ -22,12 +23,25 @@ class SigningRequest {
   @JsonKey(name: 'callback')
   String? callback = '';
 
-  @JsonKey(name: 'info', defaultValue: [])
-  List<InfoPair> info;
+  @JsonKey(name: 'info')
+  List<InfoPair> info = [];
 
-  SigningRequest(this.info);
+  SigningRequest();
 
-  factory SigningRequest.fromJson(Map<String, dynamic> json) => _$SigningRequestFromJson(json);
+  factory SigningRequest.fromJson(Map<String, dynamic> json) {
+    final List info = json['info'];
+    final List<InfoPair> infos = info
+        .map((e) => (InfoPair()
+          ..key = e['key']
+          ..value = e['value']))
+        .toList();
+    return SigningRequest()
+      ..chainId = json['chain_id'] as List<dynamic>
+      ..req = json['req'] as List<dynamic>
+      ..flags = json['flags'] as int
+      ..callback = json['callback'] as String?
+      ..info = infos;
+  }
 
   Map<String, dynamic> toJson() => _$SigningRequestToJson(this);
 
@@ -50,6 +64,7 @@ class SigningRequest {
       throw 'Data must be either Uint8List or SerialBuffer';
     }
     var deserializedData = Map<String, dynamic>.from(type.deserialize?.call(type, buffer));
+    LogHelper.d('SigningRequest.fromBinary ' + deserializedData.toString());
     return SigningRequest.fromJson(deserializedData);
   }
 }

@@ -36,7 +36,7 @@ class ErrorHandlerBloc extends Bloc<ErrorHandlerEvent, ErrorHandlerState> {
         if (hyphaError.severity == HyphaErrorSeverity.critical) {
           emit(state.copyWith(pageCommand: const PageCommand.showConnectivityErrorDialog()));
         } else {
-          emit(state.copyWith(pageCommand: PageCommand.showErrorMessage('No Connectivity')));
+          emit(state.copyWith(pageCommand: const PageCommand.showErrorMessage('No Connectivity')));
         }
         break;
       case HyphaErrorType.tokenExpired:

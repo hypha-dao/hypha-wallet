@@ -16,13 +16,13 @@ class PermissionServiceImplementation implements PermissionService {
 
   @override
   Future<bool> handleCameraPermission() async {
-    PermissionStatus cameraPermissionStatus = await requestCameraPermission();
+    final PermissionStatus cameraPermissionStatus = await requestCameraPermission();
 
     if (cameraPermissionStatus != PermissionStatus.granted) {
       print('😰 😰 😰 😰 😰 😰 Permission to camera was not granted! 😰 😰 😰 😰 😰 😰');
       await Get.defaultDialog(
           title: 'Camera Permission',
-          content: Text(
+          content: const Text(
             'Camera permission is used for QR code scanning, would you like to go to app settings to give camera permission?',
           ),
           onConfirm: openAppSettings);
@@ -33,13 +33,13 @@ class PermissionServiceImplementation implements PermissionService {
 
   @override
   Future<bool> handlePhotosPermission() async {
-    PermissionStatus photosPermissionStatus = await requestPhotosPermission();
+    final PermissionStatus photosPermissionStatus = await requestPhotosPermission();
 
     if (photosPermissionStatus != PermissionStatus.granted) {
       print('😰 😰 😰 😰 😰 😰 Permission to photos not granted! 😰 😰 😰 😰 😰 😰');
       await Get.defaultDialog(
           title: 'Photos Permission',
-          content: Text(
+          content: const Text(
             'Photos permission is used for profile image, would you like to go to app settings to give photos permission?',
           ),
           onConfirm: openAppSettings);

@@ -13,6 +13,6 @@ class EditAccountState with _$EditAccountState {
     @Default([]) List<UserAccountRequirement> userAccountRequirements,
   }) = _CreateAccountState;
 
-  get isNextButtonAvailable =>
+  bool get isNextButtonAvailable =>
       userAccountRequirements.firstWhereOrNull((item) => item.state != RequirementState.completed) == null;
 }

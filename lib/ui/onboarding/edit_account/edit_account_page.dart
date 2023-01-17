@@ -11,7 +11,7 @@ import 'package:image_picker/image_picker.dart';
 class EditAccountPage extends StatelessWidget {
   final PageParams _pageParams;
 
-  const EditAccountPage(this._pageParams);
+  const EditAccountPage(this._pageParams, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -39,9 +39,9 @@ class EditAccountPage extends StatelessWidget {
             },
           );
 
-          context.read<EditAccountBloc>().add(EditAccountEvent.clearPageCommand());
+          context.read<EditAccountBloc>().add(const EditAccountEvent.clearPageCommand());
         },
-        child: EditAccountView(),
+        child: const EditAccountView(),
       ),
     );
   }
