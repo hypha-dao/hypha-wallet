@@ -47,4 +47,24 @@ void main() {
       print('$s gen $gen');
     }
   });
+  test('Name generator test from edge case name', () async {
+    final mockNetworkingManager = NetworkingManager('https://foobar');
+    final service = UserAccountService(networkingManager: mockNetworkingManager);
+
+    final name = 'a1111111112';
+
+    final generated = service.generateUserName(fullName: name, sequence: 0);
+
+    expect(generated, 'a11111111121');
+
+    final nameSet = Set();
+    for (int s = 0; s < 100; s++) {
+      final gen = service.generateUserName(fullName: name, sequence: s);
+      if (gen == null) continue;
+      print('testing $gen');
+      expect(nameSet.contains(gen), false);
+      nameSet.add(gen);
+      print('$s gen $gen');
+    }
+  });
 }

@@ -72,9 +72,9 @@ class UserAccountService {
     suggestedUsername = suggestedUsername.substring(0, 12);
 
     if (sequence > 0) {
-      //print('$sequence radix ${(sequence - 1).toRadixString(5)}');
+      print('$sequence radix ${(sequence - 1).toRadixString(5)}');
       final postfix = (sequence - 1).toRadixString(5).split('').map((e) => e.incrementString()).join();
-      //print('postfix $postfix');
+      print('postfix $postfix');
       final sequenceName = suggestedUsername.replaceRange(12 - postfix.length, 12, postfix);
       if (sequenceName == suggestedUsername) {
         return null;
