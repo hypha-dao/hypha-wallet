@@ -17,8 +17,12 @@ class HomePage extends StatelessWidget {
         listener: (context, state) {
           state.command?.when(navigateToTransactionDetails: (data) {
             showModalBottomSheet(
+              isScrollControlled: true,
               context: context,
-              builder: (context) => TransactionDetailsPage(transactionDetailsData: data),
+              builder: (context) => FractionallySizedBox(
+                heightFactor: 0.9,
+                child: TransactionDetailsPage(transactionDetailsData: data),
+              ),
               shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
               ),

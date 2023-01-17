@@ -47,7 +47,7 @@ class EOSSerializeUtils {
   /// Deserialize action. If `data` is a `string`, then it's assumed to be in hex. */
   static esr.ESRAction deserializeAction(int version, eos.Contract contract, String account, String? name,
       List<esr.Authorization> authorization, dynamic data, esr.TextEncoder? textEncoder, esr.TextDecoder? textDecoder) {
-    return ESRAction([])
+    return ESRAction()
       ..account = account
       ..name = name
       ..authorization = authorization

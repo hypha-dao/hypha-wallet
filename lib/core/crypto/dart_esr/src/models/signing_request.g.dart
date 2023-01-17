@@ -7,16 +7,14 @@ part of 'signing_request.dart';
 // **************************************************************************
 
 SigningRequest _$SigningRequestFromJson(Map<String, dynamic> json) =>
-    SigningRequest(
-      (json['info'] as List<dynamic>?)
-              ?.map((e) => InfoPair.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          [],
-    )
+    SigningRequest()
       ..chainId = json['chain_id'] as List<dynamic>
       ..req = json['req'] as List<dynamic>
       ..flags = json['flags'] as int
-      ..callback = json['callback'] as String?;
+      ..callback = json['callback'] as String?
+      ..info = (json['info'] as List<dynamic>)
+          .map((e) => InfoPair.fromJson(e as Map<String, dynamic>))
+          .toList();
 
 Map<String, dynamic> _$SigningRequestToJson(SigningRequest instance) =>
     <String, dynamic>{

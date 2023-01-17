@@ -30,7 +30,7 @@ class _ScannerWidgetState extends State<ScannerWidget> {
       onTap: isActive
           ? null
           : () {
-              context.read<HomeBloc>().add(HomeEvent.onQRCodeScanned('code'));
+              // context.read<HomeBloc>().add(HomeEvent.onQRCodeScanned('code'));
               // final transactionData = TransactionDetailsData(
               //     signingTitle: 'From hypha DAO on Telos',
               //     expirationTime: const Duration(seconds: 60),
@@ -41,10 +41,10 @@ class _ScannerWidgetState extends State<ScannerWidget> {
               //           secondaryText: 'Eosio.login - loginuser')
               //     ]);
               // Get.to(TransactionDetailsPage(transactionDetailsData: transactionData));
-              // setState(() {
-              //   isActive = true;
-              //   _heightFactor = 0.40;
-              // });
+              setState(() {
+                isActive = true;
+                _heightFactor = 0.40;
+              });
             },
       child: ClipRRect(
         borderRadius: BorderRadius.circular(30),
@@ -74,10 +74,14 @@ class _ScannerWidgetState extends State<ScannerWidget> {
                             onDetect: (barcode, args) {
                               if (barcode.rawValue == null) {
                                 LogHelper.d('Failed to scan Barcode');
-                                context.read<ErrorHandlerBloc>().add(ErrorHandlerEvent.onError(HyphaError(
-                                      message: 'Failed to scan QR code',
-                                      type: HyphaErrorType.generic,
-                                    )));
+                                context.read<ErrorHandlerBloc>().add(
+                                      ErrorHandlerEvent.onError(
+                                        HyphaError(
+                                          message: 'Failed to scan QR code',
+                                          type: HyphaErrorType.generic,
+                                        ),
+                                      ),
+                                    );
                               } else {
                                 final String code = barcode.rawValue!;
                                 LogHelper.d('Barcode found! $code');

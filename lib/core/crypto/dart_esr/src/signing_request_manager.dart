@@ -44,7 +44,7 @@ class SigningRequestManager {
     final TextEncoder? textEncoder = (options.textEncoder ?? DefaultTextEncoder) as TextEncoder?;
     final TextDecoder? textDecoder = (options.textDecoder ?? TextDecoder) as TextDecoder?;
 
-    final data = SigningRequest([]);
+    final data = SigningRequest();
     // set the request data
     if (args.identity != null) {
       data.req = ['identity', args.identity!.toJson()];
@@ -483,7 +483,7 @@ class SigningRequestManager {
           authorization = [auth];
         }
         return [
-          ESRAction([])
+          ESRAction()
             ..account = ''
             ..name = 'identity'
             ..authorization = authorization

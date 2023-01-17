@@ -21,11 +21,11 @@ class TransactionDetailsView extends StatelessWidget {
           ),
           child: Column(
             children: [
+              const _Header('Signing request', 'From hypha DAO on Telos'),
               Expanded(
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      const _Header('Signing request', 'From hypha DAO on Telos'),
                       const SizedBox(height: 8),
                       ...state.transactionDetailsData.cards
                           .map((e) => HyphaTransactionActionCard(transactionDetailsCardData: e))
@@ -100,28 +100,30 @@ class _Header extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(26),
-      decoration: BoxDecoration(
-        color: context.isDarkTheme ? HyphaColors.lightBlack : HyphaColors.white,
-        borderRadius: const BorderRadius.vertical(top: Radius.circular(30)),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(title, style: context.hyphaTextTheme.mediumTitles),
-              const SizedBox(height: 4),
-              Text(
-                subtitle,
-                style: context.hyphaTextTheme.regular.copyWith(color: HyphaColors.primaryBlu),
-              ),
-            ],
-          ),
-          SvgPicture.asset('assets/images/logos/hypha_logo.svg', height: 44, width: 44)
-        ],
+    return Card(
+      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(30))),
+      color: context.isDarkTheme ? HyphaColors.lightBlack : HyphaColors.white,
+      margin: EdgeInsets.zero,
+      elevation: 2,
+      child: Padding(
+        padding: const EdgeInsets.all(26),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(title, style: context.hyphaTextTheme.mediumTitles),
+                const SizedBox(height: 4),
+                Text(
+                  subtitle,
+                  style: context.hyphaTextTheme.regular.copyWith(color: HyphaColors.primaryBlu),
+                ),
+              ],
+            ),
+            SvgPicture.asset('assets/images/logos/hypha_logo.svg', height: 44, width: 44)
+          ],
+        ),
       ),
     );
   }
