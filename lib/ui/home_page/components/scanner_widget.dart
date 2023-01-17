@@ -14,7 +14,9 @@ import 'package:hypha_wallet/ui/home_page/interactor/home_bloc.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 
 class ScannerWidget extends StatefulWidget {
-  const ScannerWidget({super.key});
+  final bool isLoading;
+
+  const ScannerWidget({super.key, required this.isLoading});
 
   @override
   State<ScannerWidget> createState() => _ScannerWidgetState();
@@ -85,6 +87,10 @@ class _ScannerWidgetState extends State<ScannerWidget> {
                               } else {
                                 final String code = barcode.rawValue!;
                                 LogHelper.d('Barcode found! $code');
+                                setState(() {
+                                  isActive = false;
+                                  _heightFactor = 0.30;
+                                });
                                 context.read<HomeBloc>().add(HomeEvent.onQRCodeScanned(code));
                               }
                             },
@@ -109,9 +115,14 @@ class _ScannerWidgetState extends State<ScannerWidget> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Icon(Icons.qr_code_scanner, size: 80, color: HyphaColors.primaryBlu),
-                        const SizedBox(height: 12),
-                        Text('Scan QR', style: context.hyphaTextTheme.smallTitles.copyWith(color: HyphaColors.white)),
+                        widget.isLoading
+                            ? const SizedBox(height: 60, width: 60, child: CircularProgressIndicator())
+                            : const Icon(Icons.qr_code_scanner, size: 80, color: HyphaColors.primaryBlu),
+                        const SizedBox(height: 24),
+                        Text(
+                          widget.isLoading ? 'Loading Transaction' : 'Scan QR',
+                          style: context.hyphaTextTheme.smallTitles.copyWith(color: HyphaColors.white),
+                        ),
                       ],
                     ),
                   ),

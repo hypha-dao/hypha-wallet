@@ -14,7 +14,8 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeBloc, HomeState>(
-      buildWhen: (previous, current) => previous.pageState != current.pageState,
+      buildWhen: (previous, current) =>
+          previous.pageState != current.pageState || previous.isLoading != current.isLoading,
       builder: (context, state) {
         return HyphaPageBackground(
           withOpacity: false,
@@ -35,7 +36,7 @@ class HomeView extends StatelessWidget {
                 ),
                 SvgPicture.asset(context.hyphaAssetTheme.hyphaLogoComposite, width: 80, height: 110),
                 const SizedBox(height: 60),
-                const ScannerWidget(),
+                ScannerWidget(isLoading: state.isLoading),
               ],
             ),
           ),

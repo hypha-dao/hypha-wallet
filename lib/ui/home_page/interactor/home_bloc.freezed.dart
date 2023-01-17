@@ -436,6 +436,7 @@ abstract class _OnQRCodeScanned implements HomeEvent {
 /// @nodoc
 mixin _$HomeState {
   PageState get pageState => throw _privateConstructorUsedError;
+  bool get isLoading => throw _privateConstructorUsedError;
   PageCommand? get command => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -448,7 +449,7 @@ abstract class $HomeStateCopyWith<$Res> {
   factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) then) =
       _$HomeStateCopyWithImpl<$Res, HomeState>;
   @useResult
-  $Res call({PageState pageState, PageCommand? command});
+  $Res call({PageState pageState, bool isLoading, PageCommand? command});
 
   $PageCommandCopyWith<$Res>? get command;
 }
@@ -467,6 +468,7 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
   @override
   $Res call({
     Object? pageState = null,
+    Object? isLoading = null,
     Object? command = freezed,
   }) {
     return _then(_value.copyWith(
@@ -474,6 +476,10 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
           ? _value.pageState
           : pageState // ignore: cast_nullable_to_non_nullable
               as PageState,
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
       command: freezed == command
           ? _value.command
           : command // ignore: cast_nullable_to_non_nullable
@@ -501,7 +507,7 @@ abstract class _$$_HomeStateCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
       __$$_HomeStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({PageState pageState, PageCommand? command});
+  $Res call({PageState pageState, bool isLoading, PageCommand? command});
 
   @override
   $PageCommandCopyWith<$Res>? get command;
@@ -519,6 +525,7 @@ class __$$_HomeStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? pageState = null,
+    Object? isLoading = null,
     Object? command = freezed,
   }) {
     return _then(_$_HomeState(
@@ -526,6 +533,10 @@ class __$$_HomeStateCopyWithImpl<$Res>
           ? _value.pageState
           : pageState // ignore: cast_nullable_to_non_nullable
               as PageState,
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
       command: freezed == command
           ? _value.command
           : command // ignore: cast_nullable_to_non_nullable
@@ -537,17 +548,23 @@ class __$$_HomeStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_HomeState implements _HomeState {
-  const _$_HomeState({this.pageState = PageState.initial, this.command});
+  const _$_HomeState(
+      {this.pageState = PageState.initial,
+      this.isLoading = false,
+      this.command});
 
   @override
   @JsonKey()
   final PageState pageState;
   @override
+  @JsonKey()
+  final bool isLoading;
+  @override
   final PageCommand? command;
 
   @override
   String toString() {
-    return 'HomeState(pageState: $pageState, command: $command)';
+    return 'HomeState(pageState: $pageState, isLoading: $isLoading, command: $command)';
   }
 
   @override
@@ -557,11 +574,13 @@ class _$_HomeState implements _HomeState {
             other is _$_HomeState &&
             (identical(other.pageState, pageState) ||
                 other.pageState == pageState) &&
+            (identical(other.isLoading, isLoading) ||
+                other.isLoading == isLoading) &&
             (identical(other.command, command) || other.command == command));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, pageState, command);
+  int get hashCode => Object.hash(runtimeType, pageState, isLoading, command);
 
   @JsonKey(ignore: true)
   @override
@@ -572,10 +591,14 @@ class _$_HomeState implements _HomeState {
 
 abstract class _HomeState implements HomeState {
   const factory _HomeState(
-      {final PageState pageState, final PageCommand? command}) = _$_HomeState;
+      {final PageState pageState,
+      final bool isLoading,
+      final PageCommand? command}) = _$_HomeState;
 
   @override
   PageState get pageState;
+  @override
+  bool get isLoading;
   @override
   PageCommand? get command;
   @override

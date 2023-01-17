@@ -34,21 +34,16 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       return;
     }
 
-    // TODO(gguij): show loading?
-    final result =
-        await _parseQRCodeUseCase.run(ParseQrCodeInput(scanResult: event.value, accountName: 'daohyphatest'));
+    emit(state.copyWith(isLoading: true));
+    final result = await _parseQRCodeUseCase.run(
+      ParseQrCodeInput(scanResult: event.value, accountName: 'daohyphatest'),
+    );
 
     if (result.isValue) {
       final ScanQrCodeResultData value = result.asValue!.value;
 
-      value.transaction.actions.forEach((EOSAction element) {
-        LogHelper.d('MEssage Message transaction.actions EOSAction: element.name : ${element.name}');
-        LogHelper.d('MEssage Message transaction.actions EOSAction: element.data : ${element.data}');
-      });
-      LogHelper.d('MEssage Message transaction.isValid ${value.transaction.isValid}');
-
       final transactionData = TransactionDetailsData(
-          signingTitle: 'From hypha ${value.esr.actions.first.account}' ?? '',
+          signingTitle: 'From ${value.esr.actions.first.account}' ?? '',
           expirationTime: const Duration(seconds: 60),
           cards: value.transaction.actions.map((EOSAction e) {
             return TransactionDetailsCardData(
@@ -56,9 +51,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
               contractAction: '${e.account ?? ''} - ${e.name ?? ''}',
             );
           }).toList());
-      emit(state.copyWith(command: PageCommand.navigateToTransactionDetails(transactionData)));
+      emit(state.copyWith(command: PageCommand.navigateToTransactionDetails(transactionData), isLoading: false));
     } else {
-      LogHelper.d('MEssage Message ${result.asError!.error}');
+      LogHelper.d('_onQRCodeScanned Error ${result.asError!.error}');
+      emit(state.copyWith(isLoading: false));
       _errorHandlerManager.handlerError(HyphaError(message: 'Error reading QR Code', type: HyphaErrorType.generic));
     }
   }

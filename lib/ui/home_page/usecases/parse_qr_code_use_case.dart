@@ -18,13 +18,6 @@ class ParseQRCodeUseCase extends InputUseCase<HResult.Result<ScanQrCodeResultDat
     } else {
       return HResult.Result.error(qrCodeValidationResult.asError!.error as HyphaError);
     }
-
-    // if (qrCodeValidationResult != null) {
-    //   return Future.delayed(const Duration(seconds: 2)).then((value) => HResult.Result.error(qrCodeValidationResult));
-    // } else {
-    //   return Future.delayed(const Duration(seconds: 2))
-    //       .then((value) => HResult.Result.value(QrCodeData(rawData: input, otherStuff: 'TODO(nik): Parse data and send back')));
-    // }
   }
 }
 

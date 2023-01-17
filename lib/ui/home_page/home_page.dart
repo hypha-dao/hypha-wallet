@@ -15,19 +15,21 @@ class HomePage extends StatelessWidget {
       child: BlocListener<HomeBloc, HomeState>(
         listenWhen: (previous, current) => previous.command != current.command,
         listener: (context, state) {
-          state.command?.when(navigateToTransactionDetails: (data) {
-            showModalBottomSheet(
-              isScrollControlled: true,
-              context: context,
-              builder: (context) => FractionallySizedBox(
-                heightFactor: 0.9,
-                child: TransactionDetailsPage(transactionDetailsData: data),
-              ),
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
-              ),
-            );
-          });
+          state.command?.when(
+            navigateToTransactionDetails: (data) {
+              showModalBottomSheet(
+                isScrollControlled: true,
+                context: context,
+                builder: (context) => FractionallySizedBox(
+                  heightFactor: 0.9,
+                  child: TransactionDetailsPage(transactionDetailsData: data),
+                ),
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
+                ),
+              );
+            },
+          );
 
           context.read<HomeBloc>().add(const HomeEvent.clearPageCommand());
         },

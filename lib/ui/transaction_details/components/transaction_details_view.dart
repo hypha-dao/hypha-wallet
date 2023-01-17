@@ -21,7 +21,7 @@ class TransactionDetailsView extends StatelessWidget {
           ),
           child: Column(
             children: [
-              const _Header('Signing request', 'From hypha DAO on Telos'),
+              _Header('Signing request', state.transactionDetailsData.signingTitle),
               Expanded(
                 child: SingleChildScrollView(
                   child: Column(
