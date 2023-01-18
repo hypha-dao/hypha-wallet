@@ -609,22 +609,21 @@ abstract class _HomeState implements HomeState {
 
 /// @nodoc
 mixin _$PageCommand {
-  TransactionDetailsData get data => throw _privateConstructorUsedError;
+  ScanQrCodeResultData get data => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(TransactionDetailsData data)
+    required TResult Function(ScanQrCodeResultData data)
         navigateToTransactionDetails,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(TransactionDetailsData data)?
-        navigateToTransactionDetails,
+    TResult? Function(ScanQrCodeResultData data)? navigateToTransactionDetails,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(TransactionDetailsData data)? navigateToTransactionDetails,
+    TResult Function(ScanQrCodeResultData data)? navigateToTransactionDetails,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -659,7 +658,7 @@ abstract class $PageCommandCopyWith<$Res> {
           PageCommand value, $Res Function(PageCommand) then) =
       _$PageCommandCopyWithImpl<$Res, PageCommand>;
   @useResult
-  $Res call({TransactionDetailsData data});
+  $Res call({ScanQrCodeResultData data});
 }
 
 /// @nodoc
@@ -681,7 +680,7 @@ class _$PageCommandCopyWithImpl<$Res, $Val extends PageCommand>
       data: null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as TransactionDetailsData,
+              as ScanQrCodeResultData,
     ) as $Val);
   }
 }
@@ -695,7 +694,7 @@ abstract class _$$_NavigateToTransactionDetailsCopyWith<$Res>
       __$$_NavigateToTransactionDetailsCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({TransactionDetailsData data});
+  $Res call({ScanQrCodeResultData data});
 }
 
 /// @nodoc
@@ -716,7 +715,7 @@ class __$$_NavigateToTransactionDetailsCopyWithImpl<$Res>
       null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as TransactionDetailsData,
+              as ScanQrCodeResultData,
     ));
   }
 }
@@ -727,7 +726,7 @@ class _$_NavigateToTransactionDetails implements _NavigateToTransactionDetails {
   const _$_NavigateToTransactionDetails(this.data);
 
   @override
-  final TransactionDetailsData data;
+  final ScanQrCodeResultData data;
 
   @override
   String toString() {
@@ -755,7 +754,7 @@ class _$_NavigateToTransactionDetails implements _NavigateToTransactionDetails {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(TransactionDetailsData data)
+    required TResult Function(ScanQrCodeResultData data)
         navigateToTransactionDetails,
   }) {
     return navigateToTransactionDetails(data);
@@ -764,8 +763,7 @@ class _$_NavigateToTransactionDetails implements _NavigateToTransactionDetails {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(TransactionDetailsData data)?
-        navigateToTransactionDetails,
+    TResult? Function(ScanQrCodeResultData data)? navigateToTransactionDetails,
   }) {
     return navigateToTransactionDetails?.call(data);
   }
@@ -773,7 +771,7 @@ class _$_NavigateToTransactionDetails implements _NavigateToTransactionDetails {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(TransactionDetailsData data)? navigateToTransactionDetails,
+    TResult Function(ScanQrCodeResultData data)? navigateToTransactionDetails,
     required TResult orElse(),
   }) {
     if (navigateToTransactionDetails != null) {
@@ -815,11 +813,11 @@ class _$_NavigateToTransactionDetails implements _NavigateToTransactionDetails {
 }
 
 abstract class _NavigateToTransactionDetails implements PageCommand {
-  const factory _NavigateToTransactionDetails(
-      final TransactionDetailsData data) = _$_NavigateToTransactionDetails;
+  const factory _NavigateToTransactionDetails(final ScanQrCodeResultData data) =
+      _$_NavigateToTransactionDetails;
 
   @override
-  TransactionDetailsData get data;
+  ScanQrCodeResultData get data;
   @override
   @JsonKey(ignore: true)
   _$$_NavigateToTransactionDetailsCopyWith<_$_NavigateToTransactionDetails>

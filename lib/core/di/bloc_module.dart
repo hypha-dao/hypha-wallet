@@ -19,8 +19,8 @@ void _registerBlocsModule() {
       ));
   _registerFactory(() => BottomNavigationBloc());
   _registerFactory(() => ProfileBloc());
-  _registerFactoryWithParams<TransactionDetailsBloc, TransactionDetailsData, void>(
-    (transDetailData, _) => TransactionDetailsBloc(_getIt<SignTransactionUseCase>(), transDetailData),
+  _registerFactoryWithParams<TransactionDetailsBloc, ScanQrCodeResultData, void>(
+    (qrCodeData, _) => TransactionDetailsBloc(_getIt<SignTransactionUseCase>(), qrCodeData),
   );
   _registerFactoryWithParams<CreateAccountBloc, XFile?, String>(
     (image, userName) => CreateAccountBloc(

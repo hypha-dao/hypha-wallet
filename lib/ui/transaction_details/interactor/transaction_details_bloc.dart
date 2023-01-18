@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:hypha_wallet/core/crypto/seeds_esr/eos_action.dart';
+import 'package:hypha_wallet/core/crypto/seeds_esr/scan_qr_code_result_data.dart';
 import 'package:hypha_wallet/ui/architecture/interactor/page_states.dart';
 import 'package:hypha_wallet/ui/transaction_details/interactor/data/transaction_action_data.dart';
 import 'package:hypha_wallet/ui/transaction_details/success/transaction_success_page.dart';
@@ -14,8 +16,22 @@ part 'transaction_details_state.dart';
 
 class TransactionDetailsBloc extends Bloc<TransactionDetailsEvent, TransactionDetailsState> {
   final SignTransactionUseCase _signTransactionUseCase;
-  TransactionDetailsBloc(this._signTransactionUseCase, TransactionDetailsData _transactionDetailsData)
-      : super(TransactionDetailsState(transactionDetailsData: _transactionDetailsData)) {
+
+  TransactionDetailsBloc(this._signTransactionUseCase, ScanQrCodeResultData _qrCodeData)
+      : super(
+          TransactionDetailsState(
+              qrCodeData: _qrCodeData,
+              callback: _qrCodeData.esr.callback,
+              transactionDetailsData: TransactionDetailsData(
+                  signingTitle: 'From ${_qrCodeData.esr.actions.first.account}',
+                  expirationTime: const Duration(seconds: 60),
+                  cards: _qrCodeData.transaction.actions.map((EOSAction e) {
+                    return TransactionDetailsCardData(
+                      params: e.data.map((key, value) => MapEntry(key, value.toString())),
+                      contractAction: '${e.account ?? ''} - ${e.name ?? ''}',
+                    );
+                  }).toList())),
+        ) {
     on<_Initial>(_initial);
     on<_OnUserSlideCompleted>(_onUserSlideCompleted);
     on<_OnUserSlideCanceled>(_onUserSlideCanceled);
@@ -26,7 +42,7 @@ class TransactionDetailsBloc extends Bloc<TransactionDetailsEvent, TransactionDe
 
   FutureOr<void> _onUserSlideCompleted(_OnUserSlideCompleted event, Emitter<TransactionDetailsState> emit) async {
     /// Show loading, sign transaction, navigate to success or show error
-    final result = await _signTransactionUseCase.run('MOCK DATA');
+    final result = await _signTransactionUseCase.run(state.qrCodeData.transaction);
     if (result.isValue) {
       emit(state.copyWith(command: const PageCommand.navigateToTransactionSuccess(SuccessTransactionType.approved)));
     } else {
@@ -36,12 +52,12 @@ class TransactionDetailsBloc extends Bloc<TransactionDetailsEvent, TransactionDe
 
   FutureOr<void> _onUserSlideCanceled(_OnUserSlideCanceled event, Emitter<TransactionDetailsState> emit) async {
     /// Show loading, reject, navigate to success or show error
-    final result = await _signTransactionUseCase.run('MOCK DATA');
-    if (result.isValue) {
-      emit(state.copyWith(command: const PageCommand.navigateToTransactionFailed()));
-      // emit(state.copyWith(command: const PageCommand.navigateToTransactionSuccess(SuccessTransactionType.rejected)));
-    } else {
-      emit(state.copyWith(command: const PageCommand.navigateToTransactionFailed()));
-    }
+    // final result = await _signTransactionUseCase.run('MOCK DATA');
+    // if (result.isValue) {
+    emit(state.copyWith(command: const PageCommand.navigateToTransactionFailed()));
+    // emit(state.copyWith(command: const PageCommand.navigateToTransactionSuccess(SuccessTransactionType.rejected)));
+    // } else {
+    //   emit(state.copyWith(command: const PageCommand.navigateToTransactionFailed()));
+    // }
   }
 }

@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:hypha_wallet/core/crypto/seeds_esr/eos_action.dart';
 import 'package:hypha_wallet/core/crypto/seeds_esr/scan_qr_code_result_data.dart';
 import 'package:hypha_wallet/core/error_handler/error_handler_manager.dart';
 import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
@@ -42,16 +41,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     if (result.isValue) {
       final ScanQrCodeResultData value = result.asValue!.value;
 
-      final transactionData = TransactionDetailsData(
-          signingTitle: 'From ${value.esr.actions.first.account}' ?? '',
-          expirationTime: const Duration(seconds: 60),
-          cards: value.transaction.actions.map((EOSAction e) {
-            return TransactionDetailsCardData(
-              params: e.data.map((key, value) => MapEntry(key, value.toString())),
-              contractAction: '${e.account ?? ''} - ${e.name ?? ''}',
-            );
-          }).toList());
-      emit(state.copyWith(command: PageCommand.navigateToTransactionDetails(transactionData), isLoading: false));
+      emit(state.copyWith(command: PageCommand.navigateToTransactionDetails(value), isLoading: false));
     } else {
       LogHelper.d('_onQRCodeScanned Error ${result.asError!.error}');
       emit(state.copyWith(isLoading: false));

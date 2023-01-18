@@ -22,7 +22,7 @@ class HomePage extends StatelessWidget {
                 context: context,
                 builder: (context) => FractionallySizedBox(
                   heightFactor: 0.9,
-                  child: TransactionDetailsPage(transactionDetailsData: data),
+                  child: TransactionDetailsPage(qrCodeData: data),
                 ),
                 shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.vertical(top: Radius.circular(30)),

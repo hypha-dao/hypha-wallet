@@ -873,6 +873,8 @@ mixin _$TransactionDetailsState {
   PageState get pageState => throw _privateConstructorUsedError;
   TransactionDetailsData get transactionDetailsData =>
       throw _privateConstructorUsedError;
+  ScanQrCodeResultData get qrCodeData => throw _privateConstructorUsedError;
+  String? get callback => throw _privateConstructorUsedError;
   PageCommand? get command => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -889,6 +891,8 @@ abstract class $TransactionDetailsStateCopyWith<$Res> {
   $Res call(
       {PageState pageState,
       TransactionDetailsData transactionDetailsData,
+      ScanQrCodeResultData qrCodeData,
+      String? callback,
       PageCommand? command});
 
   $PageCommandCopyWith<$Res>? get command;
@@ -910,6 +914,8 @@ class _$TransactionDetailsStateCopyWithImpl<$Res,
   $Res call({
     Object? pageState = null,
     Object? transactionDetailsData = null,
+    Object? qrCodeData = null,
+    Object? callback = freezed,
     Object? command = freezed,
   }) {
     return _then(_value.copyWith(
@@ -921,6 +927,14 @@ class _$TransactionDetailsStateCopyWithImpl<$Res,
           ? _value.transactionDetailsData
           : transactionDetailsData // ignore: cast_nullable_to_non_nullable
               as TransactionDetailsData,
+      qrCodeData: null == qrCodeData
+          ? _value.qrCodeData
+          : qrCodeData // ignore: cast_nullable_to_non_nullable
+              as ScanQrCodeResultData,
+      callback: freezed == callback
+          ? _value.callback
+          : callback // ignore: cast_nullable_to_non_nullable
+              as String?,
       command: freezed == command
           ? _value.command
           : command // ignore: cast_nullable_to_non_nullable
@@ -952,6 +966,8 @@ abstract class _$$_TransactionDetailsStateCopyWith<$Res>
   $Res call(
       {PageState pageState,
       TransactionDetailsData transactionDetailsData,
+      ScanQrCodeResultData qrCodeData,
+      String? callback,
       PageCommand? command});
 
   @override
@@ -972,6 +988,8 @@ class __$$_TransactionDetailsStateCopyWithImpl<$Res>
   $Res call({
     Object? pageState = null,
     Object? transactionDetailsData = null,
+    Object? qrCodeData = null,
+    Object? callback = freezed,
     Object? command = freezed,
   }) {
     return _then(_$_TransactionDetailsState(
@@ -983,6 +1001,14 @@ class __$$_TransactionDetailsStateCopyWithImpl<$Res>
           ? _value.transactionDetailsData
           : transactionDetailsData // ignore: cast_nullable_to_non_nullable
               as TransactionDetailsData,
+      qrCodeData: null == qrCodeData
+          ? _value.qrCodeData
+          : qrCodeData // ignore: cast_nullable_to_non_nullable
+              as ScanQrCodeResultData,
+      callback: freezed == callback
+          ? _value.callback
+          : callback // ignore: cast_nullable_to_non_nullable
+              as String?,
       command: freezed == command
           ? _value.command
           : command // ignore: cast_nullable_to_non_nullable
@@ -997,6 +1023,8 @@ class _$_TransactionDetailsState implements _TransactionDetailsState {
   const _$_TransactionDetailsState(
       {this.pageState = PageState.initial,
       required this.transactionDetailsData,
+      required this.qrCodeData,
+      this.callback,
       this.command});
 
   @override
@@ -1005,11 +1033,15 @@ class _$_TransactionDetailsState implements _TransactionDetailsState {
   @override
   final TransactionDetailsData transactionDetailsData;
   @override
+  final ScanQrCodeResultData qrCodeData;
+  @override
+  final String? callback;
+  @override
   final PageCommand? command;
 
   @override
   String toString() {
-    return 'TransactionDetailsState(pageState: $pageState, transactionDetailsData: $transactionDetailsData, command: $command)';
+    return 'TransactionDetailsState(pageState: $pageState, transactionDetailsData: $transactionDetailsData, qrCodeData: $qrCodeData, callback: $callback, command: $command)';
   }
 
   @override
@@ -1021,12 +1053,16 @@ class _$_TransactionDetailsState implements _TransactionDetailsState {
                 other.pageState == pageState) &&
             (identical(other.transactionDetailsData, transactionDetailsData) ||
                 other.transactionDetailsData == transactionDetailsData) &&
+            (identical(other.qrCodeData, qrCodeData) ||
+                other.qrCodeData == qrCodeData) &&
+            (identical(other.callback, callback) ||
+                other.callback == callback) &&
             (identical(other.command, command) || other.command == command));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, pageState, transactionDetailsData, command);
+  int get hashCode => Object.hash(runtimeType, pageState,
+      transactionDetailsData, qrCodeData, callback, command);
 
   @JsonKey(ignore: true)
   @override
@@ -1041,12 +1077,18 @@ abstract class _TransactionDetailsState implements TransactionDetailsState {
   const factory _TransactionDetailsState(
       {final PageState pageState,
       required final TransactionDetailsData transactionDetailsData,
+      required final ScanQrCodeResultData qrCodeData,
+      final String? callback,
       final PageCommand? command}) = _$_TransactionDetailsState;
 
   @override
   PageState get pageState;
   @override
   TransactionDetailsData get transactionDetailsData;
+  @override
+  ScanQrCodeResultData get qrCodeData;
+  @override
+  String? get callback;
   @override
   PageCommand? get command;
   @override

@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hypha_wallet/core/crypto/eosdart/eosdart.dart';
+import 'package:hypha_wallet/core/crypto/seeds_esr/scan_qr_code_result_data.dart';
 import 'package:hypha_wallet/core/error_handler/error_handler_manager.dart';
 import 'package:hypha_wallet/core/local/services/crypto_auth_service.dart';
 import 'package:hypha_wallet/core/local/services/permission_service.dart';
@@ -13,6 +14,7 @@ import 'package:hypha_wallet/core/local/services/permission_service_implementati
 import 'package:hypha_wallet/core/local/services/secure_storage_service.dart';
 import 'package:hypha_wallet/core/logging/firebase_crash_reporting_tree.dart';
 import 'package:hypha_wallet/core/network/api/endpoints.dart';
+import 'package:hypha_wallet/core/network/api/eos_service.dart';
 import 'package:hypha_wallet/core/network/api/user_account_service.dart';
 import 'package:hypha_wallet/core/network/networking_manager.dart';
 import 'package:hypha_wallet/core/network/repository/auth_repository.dart';
@@ -38,7 +40,6 @@ import 'package:hypha_wallet/ui/onboarding/usecases/create_account_use_case.dart
 import 'package:hypha_wallet/ui/onboarding/usecases/find_available_account_use_case.dart';
 import 'package:hypha_wallet/ui/profile/interactor/profile_bloc.dart';
 import 'package:hypha_wallet/ui/settings/interactor/settings_bloc.dart';
-import 'package:hypha_wallet/ui/transaction_details/interactor/data/transaction_action_data.dart';
 import 'package:hypha_wallet/ui/transaction_details/interactor/transaction_details_bloc.dart';
 import 'package:hypha_wallet/ui/transaction_details/usecases/sign_transaction_use_case.dart';
 import 'package:image_picker/image_picker.dart';
