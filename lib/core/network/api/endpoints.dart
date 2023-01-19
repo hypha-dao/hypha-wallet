@@ -1,8 +1,11 @@
 class Endpoints {
   Endpoints._();
 
-  // base url
+  // base url - the load balancer takes care of available features on a given node, such as history, etc
   static const String baseUrl = 'http://mainnet.telos.net';
+
+  // Node to push transactions - should be a fast server
+  static const String pushTransactionNodeUrl = 'http://telos.greymass.com';
 
   // receiveTimeout
   static const int receiveTimeout = 15000;
