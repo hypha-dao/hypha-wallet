@@ -81,7 +81,7 @@ void main() {
 
   test('sign', () async {
     WidgetsFlutterBinding.ensureInitialized();
-    final secretKeyDONTCHECKIN = 'NEVER CHECK THIS IN'; // NEVER CHECK IN
+    final secretKeyDONTCHECKIN = 'xxx'; // NEVER CHECK IN
     final accountName = 'illumination'; // replace with your own account...
 
     final client = EOSClient(baseUrl: 'http://telos.greymass.com', privateKeys: [secretKeyDONTCHECKIN], version: 'v1');
@@ -109,6 +109,10 @@ void main() {
 
     final result = await SignTransactionUseCase(service, accountName).run(scanData.transaction);
 
-    print('res: $result');
+    print('transaction succeeded: ${result.isValue}');
+
+    expect(result.isValue, true);
+
+    print('transaction id: ${result.asValue!.value}');
   });
 }
