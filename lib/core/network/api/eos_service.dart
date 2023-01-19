@@ -27,11 +27,8 @@ class EOSService {
   }) async {
     final actions = eosTransaction.actions.map((e) => e.toEosAction).toList();
 
-    LogHelper.d('GERY GERY: sendTransaction ' + actions.toString());
     for (final action in actions) {
-      LogHelper.d('GERY GERY: sendTransaction Action: ' + action.toString());
       if (action.authorization == null || action.authorization == []) {
-        LogHelper.d('GERY GERY: sendTransaction Inside check: ');
         action.authorization = [
           Authorization()
             ..actor = accountName
@@ -40,15 +37,7 @@ class EOSService {
       }
     }
     final transaction = _buildTransaction(actions, accountName);
-
     final UserAuthData? userAuthData = await secureStorageService.getUserAuthData();
-    LogHelper.d('GERY GERY: ${userAuthData?.eOSPrivateKey?.toString()}');
-
-    // ignore: prefer_interpolation_to_compose_strings
-    print('GERY GERY: sendTransaction : ' + transaction.toJson().toString());
-
-    // final dio.Response resp = await eosClient.pushTransaction(transaction);
-
     return eosClient
         .pushTransaction(transaction)
         .then((dio.Response response) => _mapEosResponse(response, (dynamic map) {

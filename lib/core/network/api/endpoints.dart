@@ -2,7 +2,7 @@ class Endpoints {
   Endpoints._();
 
   // base url
-  static const String baseUrl = 'http://eos.greymass.com';
+  static const String baseUrl = 'http://telos.greymass.com';
 
   // receiveTimeout
   static const int receiveTimeout = 15000;
