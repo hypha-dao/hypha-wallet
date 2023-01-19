@@ -11,9 +11,9 @@ String onboardingPrivateKey = '5JhM4vypLzLdDtHo67TR5RtmsYm2mr8F2ugqcrCzfrMPLvo8c
 
 class EOSService {
   final EOSClient eosClient;
-  final SecureStorageService secureStorageService;
+  // final SecureStorageService secureStorageService;
 
-  EOSService(this.eosClient, this.secureStorageService);
+  EOSService(this.eosClient);
 
   EOSClient _withPrivateKey(String privateKey) {
     eosClient.privateKeys = [privateKey];
@@ -26,11 +26,11 @@ class EOSService {
   }) async {
     final actions = eosTransaction.actions.map((e) => e.toEosAction).toList();
 
-    LogHelper.d('GERY GERY: sendTransaction ' + actions.toString());
+    print('GERY GERY: sendTransaction ' + actions.toString());
     for (final action in actions) {
-      LogHelper.d('GERY GERY: sendTransaction Action: ' + action.toString());
+      print('GERY GERY: sendTransaction Action: ' + action.toString());
       if (action.authorization == null || action.authorization == []) {
-        LogHelper.d('GERY GERY: sendTransaction Inside check: ');
+        print('GERY GERY: sendTransaction Inside check: ');
         action.authorization = [
           Authorization()
             ..actor = accountName
@@ -40,16 +40,20 @@ class EOSService {
     }
     LogHelper.d('GERY GERY: sendTransaction Done wit if: ');
 
-    LogHelper.d('GERY GERY: sendTransaction Action: ' + actions.toString());
+    print('GERY GERY: sendTransaction Action: ' + actions.toString());
 
     final transaction = _buildTransaction(actions, accountName);
 
-    final UserAuthData? userAuthData = await secureStorageService.getUserAuthData();
-    LogHelper.d('GERY GERY: ${userAuthData?.eOSPrivateKey?.toString()}');
+    // final UserAuthData? userAuthData = await secureStorageService.getUserAuthData();
+    // LogHelper.d('GERY GERY: ${userAuthData?.eOSPrivateKey?.toString()}');
 
-    return EOSClient(baseUrl: 'http://eos.greymass.com', privateKeys: ['NIK ENTER YOUR KEY'], version: 'v1')
+    // ignore: prefer_interpolation_to_compose_strings
+    print('GERY GERY: sendTransaction : ' + transaction.toJson().toString());
+
+    return eosClient
         .pushTransaction(transaction)
         .then((dynamic response) => _mapEosResponse(response, (dynamic map) {
+              print("GERY success $response");
               return response['transaction_id'];
             }))
         .catchError((error) => _mapEosError(error));

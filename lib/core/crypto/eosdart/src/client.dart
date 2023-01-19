@@ -183,6 +183,8 @@ class EOSClient extends NetworkingManager {
     // raw abi to json
 //      AbiResp abiResp = await getRawAbi(account);
 //    print(abiResp.abi);
+
+    print("GERY available keys ${availableKeys.toString()}");
     return _post('/chain/get_required_keys', {'transaction': trx, 'available_keys': availableKeys})
         .then((requiredKeys) {
       return RequiredKeys.fromJson(requiredKeys.data);

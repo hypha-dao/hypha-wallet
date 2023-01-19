@@ -3,7 +3,6 @@
 import 'dart:convert';
 import 'dart:typed_data';
 
-import 'package:get_it/get_it.dart';
 import 'package:hypha_wallet/core/crypto/dart_esr/src/models/request_signature.dart';
 import 'package:hypha_wallet/core/crypto/dart_esr/zlib/archive.dart';
 import 'package:hypha_wallet/core/crypto/eosdart/eosdart.dart';
@@ -14,7 +13,7 @@ SigningRequestEncodingOptions defaultSigningRequestEncodingOptions(
         textEncoder: DefaultTextEncoder(),
         textDecoder: DefaultTextDecoder(),
         zlib: DefaultZlibProvider(),
-        abiProvider: DefaultAbiProvider(GetIt.I.get<EOSClient>()));
+        abiProvider: DefaultAbiProvider(EOSClient(baseUrl: nodeUrl, version: nodeVersion)));
 
 class DefaultZlibProvider implements ZlibProvider {
   @override
