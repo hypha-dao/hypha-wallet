@@ -17,6 +17,9 @@ class EOSService {
   EOSService(this.eosClient, this.secureStorageService);
 
   EOSClient _withPrivateKey(String privateKey) {
+    // This is weird - why not just create a new EOS client every time?
+    // This side-loads a global factory obkect and sets its keys, which sounds
+    // like a recipe for trouble. Nik.
     eosClient.privateKeys = [privateKey];
     return eosClient;
   }
@@ -38,7 +41,7 @@ class EOSService {
     }
     final transaction = _buildTransaction(actions, accountName);
     final UserAuthData? userAuthData = await secureStorageService.getUserAuthData();
-    return eosClient
+    return _withPrivateKey(userAuthData!.eOSPrivateKey.toString())
         .pushTransaction(transaction)
         .then((dio.Response response) => _mapEosResponse(response, (dynamic map) {
               return map['transaction_id'];
