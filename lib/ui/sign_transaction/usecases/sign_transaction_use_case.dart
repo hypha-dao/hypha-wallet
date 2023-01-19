@@ -17,7 +17,7 @@ class SignTransactionUseCase extends InputUseCase<HResult.Result<String, HyphaEr
       eosTransaction: input,
       accountName: accountName,
     );
-    print("send transaction ${result.isError}");
+    print('send transaction ${result.isError}');
     if (result.isValue) {
       return HResult.Result.value(result.asValue!.value as String);
     } else {
