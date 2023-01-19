@@ -6,6 +6,7 @@ import 'package:hypha_wallet/core/crypto/eosdart/eosdart.dart';
 import 'package:hypha_wallet/core/crypto/seeds_esr/eos_transaction.dart';
 import 'package:hypha_wallet/core/local/models/user_auth_data.dart';
 import 'package:hypha_wallet/core/local/services/secure_storage_service.dart';
+import 'package:hypha_wallet/core/network/api/endpoints.dart';
 
 String onboardingPrivateKey = '5JhM4vypLzLdDtHo67TR5RtmsYm2mr8F2ugqcrCzfrMPLvo8cQW';
 
@@ -14,14 +15,6 @@ class EOSService {
   final SecureStorageService secureStorageService;
 
   EOSService(this.eosClient, this.secureStorageService);
-
-  EOSClient _withPrivateKey(String privateKey) {
-    // This is weird - why not just create a new EOS client every time?
-    // This side-loads a global factory obkect and sets its keys, which sounds
-    // like a recipe for trouble. Nik.
-    eosClient.privateKeys = [privateKey];
-    return eosClient;
-  }
 
   Future<Result<dynamic>> sendTransaction({
     required EOSTransaction eosTransaction,
@@ -40,7 +33,13 @@ class EOSService {
     }
     final transaction = _buildTransaction(actions, accountName);
     final UserAuthData? userAuthData = await secureStorageService.getUserAuthData();
-    return _withPrivateKey(userAuthData!.eOSPrivateKey.toString())
+
+    final eosClient = EOSClient(
+        baseUrl: Endpoints.pushTransactionNodeUrl,
+        privateKeys: [userAuthData!.eOSPrivateKey.toString()],
+        version: 'v1');
+
+    return eosClient
         .pushTransaction(transaction)
         .then((dio.Response response) => _mapEosResponse(response, (dynamic map) {
               return map['transaction_id'];
