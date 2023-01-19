@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:async/async.dart';
-import 'package:dio/dio.dart';
+import 'package:dio/dio.dart' as dio;
 import 'package:hypha_wallet/core/crypto/eosdart/eosdart.dart';
 import 'package:hypha_wallet/core/crypto/eosdart/src/jsons.dart';
 import 'package:hypha_wallet/core/crypto/eosdart/src/serialize.dart' as ser;
@@ -49,7 +49,7 @@ class EOSClient extends NetworkingManager {
   // ignore: avoid_setters_without_getters
   set privateKeys(List<String> privateKeys) => _mapKeys(privateKeys);
 
-  Future<Response> _post(String path, Object body) {
+  Future<dio.Response> _post(String path, Object body) {
     return post('/$version$path', data: body);
   }
 
@@ -206,7 +206,8 @@ class EOSClient extends NetworkingManager {
   /// Get Key Accounts
   Future<Result<AccountNames>> getKeyAccounts(String pubKey) async {
     try {
-      return Result.capture(_post('/history/get_key_accounts', {'public_key': pubKey}).then((Response accountNames) {
+      return Result.capture(
+          _post('/history/get_key_accounts', {'public_key': pubKey}).then((dio.Response accountNames) {
         return AccountNames.fromJson(accountNames.data as Map<String, dynamic>);
       }));
     } catch (e) {
@@ -216,8 +217,8 @@ class EOSClient extends NetworkingManager {
   }
 
   /// Push transaction to EOS chain
-  Future<dynamic> pushTransaction(Transaction transaction,
-      {bool broadcast = true, bool sign = true, int blocksBehind = 3, int expireSecond = 180}) async {
+  Future<dio.Response> pushTransaction(Transaction transaction,
+      {bool sign = true, int blocksBehind = 3, int expireSecond = 180}) async {
     final NodeInfo info = await getInfo();
     final Block refBlock = await getBlock((info.headBlockNum! - blocksBehind).toString());
 
@@ -225,16 +226,26 @@ class EOSClient extends NetworkingManager {
     final PushTransactionArgs pushTransactionArgs =
         await _pushTransactionArgs(info.chainId, transactionTypes['transaction']!, trx, sign);
 
-    if (broadcast) {
-      return _post('/chain/push_transaction', {
-        'signatures': pushTransactionArgs.signatures,
-        'compression': 0,
-        'packed_context_free_data': '',
-        'packed_trx': ser.arrayToHex(pushTransactionArgs.serializedTransaction),
-      }).then((processedTrx) {
-        return processedTrx;
-      });
-    }
+    return _post('/chain/push_transaction', {
+      'signatures': pushTransactionArgs.signatures,
+      'compression': 0,
+      'packed_context_free_data': '',
+      'packed_trx': ser.arrayToHex(pushTransactionArgs.serializedTransaction),
+    }).then((processedTrx) {
+      print('processedTrx $processedTrx');
+      return processedTrx;
+    });
+  }
+
+  /// Push transaction to EOS chain
+  Future<PushTransactionArgs> pushTransactionWithoutBroadcasting(Transaction transaction,
+      {bool sign = true, int blocksBehind = 3, int expireSecond = 180}) async {
+    final NodeInfo info = await getInfo();
+    final Block refBlock = await getBlock((info.headBlockNum! - blocksBehind).toString());
+
+    final Transaction trx = await _fullFill(transaction, refBlock);
+    final PushTransactionArgs pushTransactionArgs =
+        await _pushTransactionArgs(info.chainId, transactionTypes['transaction']!, trx, sign);
 
     return pushTransactionArgs;
   }
