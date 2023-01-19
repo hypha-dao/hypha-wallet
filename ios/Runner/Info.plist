@@ -34,6 +34,16 @@
 				<string>earth.hypha.wallet.hyphaWallet</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>esr</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>esr</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
@@ -46,17 +56,17 @@
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>NSCameraUsageDescription</key>
-    <string>Uses camera for profile pictures and QR codes.</string>
+	<string>Uses camera for profile pictures and QR codes.</string>
 	<key>UISupportedInterfaceOrientations</key>
-    <array>
-        <string>UIInterfaceOrientationPortrait</string>
-        <string>UIInterfaceOrientationLandscapeLeft</string>
-        <string>UIInterfaceOrientationLandscapeRight</string>
-    </array>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
 	<key>NSFaceIDUsageDescription</key>
-    <string>Unlock wallet with FaceID</string>
-    <key>NSPhotoLibraryUsageDescription</key>
-    <string>Uses photo library to access pictures for profile.</string>
+	<string>Unlock wallet with FaceID</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Uses photo library to access pictures for profile.</string>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
@@ -66,5 +76,7 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>ITSAppUsesNonExemptEncryption</key>
+    <false/>
 </dict>
 </plist>
