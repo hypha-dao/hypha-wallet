@@ -19,9 +19,11 @@ void _registerBlocsModule() {
       ));
   _registerFactory(() => BottomNavigationBloc());
   _registerFactory(() => ProfileBloc());
-  _registerFactoryWithParams<TransactionDetailsBloc, ScanQrCodeResultData, void>(
-    (qrCodeData, _) => TransactionDetailsBloc(_getIt<SignTransactionUseCase>(), qrCodeData),
+  _registerFactoryWithParams<SignTransactionBloc, ScanQrCodeResultData, void>(
+    (qrCodeData, _) => SignTransactionBloc(_getIt<SignTransactionUseCase>(), qrCodeData),
   );
+  _registerFactory(() => TransactionsBloc());
+  _registerFactory(() => TransactionDetailBloc());
   _registerFactoryWithParams<CreateAccountBloc, XFile?, String>(
     (image, userName) => CreateAccountBloc(
       _getIt<CryptoAuthService>(),

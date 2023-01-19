@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hypha_wallet/ui/home_page/components/home_view.dart';
 import 'package:hypha_wallet/ui/home_page/interactor/home_bloc.dart';
-import 'package:hypha_wallet/ui/transaction_details/transaction_details_page.dart';
+import 'package:hypha_wallet/ui/sign_transaction/sign_transaction_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -22,7 +22,7 @@ class HomePage extends StatelessWidget {
                 context: context,
                 builder: (context) => FractionallySizedBox(
                   heightFactor: 0.9,
-                  child: TransactionDetailsPage(qrCodeData: data),
+                  child: SignTransactionPage(qrCodeData: data),
                 ),
                 shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.vertical(top: Radius.circular(30)),

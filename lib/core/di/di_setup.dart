@@ -25,6 +25,8 @@ import 'package:hypha_wallet/ui/blocs/authentication/authentication_bloc.dart';
 import 'package:hypha_wallet/ui/blocs/deeplink/deeplink_bloc.dart';
 import 'package:hypha_wallet/ui/blocs/error_handler/error_handler_bloc.dart';
 import 'package:hypha_wallet/ui/bottom_navigation/interactor/bottom_navigation_bloc.dart';
+import 'package:hypha_wallet/ui/history/details/interactor/transaction_detail_bloc.dart';
+import 'package:hypha_wallet/ui/history/transactions/interactor/transactions_bloc.dart';
 import 'package:hypha_wallet/ui/home_page/interactor/home_bloc.dart';
 import 'package:hypha_wallet/ui/home_page/usecases/parse_qr_code_use_case.dart';
 import 'package:hypha_wallet/ui/onboarding/create_account/interactor/create_account_bloc.dart';
@@ -40,8 +42,8 @@ import 'package:hypha_wallet/ui/onboarding/usecases/create_account_use_case.dart
 import 'package:hypha_wallet/ui/onboarding/usecases/find_available_account_use_case.dart';
 import 'package:hypha_wallet/ui/profile/interactor/profile_bloc.dart';
 import 'package:hypha_wallet/ui/settings/interactor/settings_bloc.dart';
-import 'package:hypha_wallet/ui/transaction_details/interactor/transaction_details_bloc.dart';
-import 'package:hypha_wallet/ui/transaction_details/usecases/sign_transaction_use_case.dart';
+import 'package:hypha_wallet/ui/sign_transaction/interactor/sign_transaction_bloc.dart';
+import 'package:hypha_wallet/ui/sign_transaction/usecases/sign_transaction_use_case.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:rx_shared_preferences/rx_shared_preferences.dart';
 

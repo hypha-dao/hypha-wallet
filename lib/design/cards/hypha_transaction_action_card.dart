@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:hypha_wallet/design/dividers/hypha_divider.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
-import 'package:hypha_wallet/ui/transaction_details/interactor/data/transaction_action_data.dart';
+import 'package:hypha_wallet/ui/sign_transaction/interactor/data/transaction_action_data.dart';
 
 class HyphaTransactionActionCard extends StatelessWidget {
   final TransactionDetailsCardData transactionDetailsCardData;

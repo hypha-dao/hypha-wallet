@@ -2,46 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hypha_wallet/design/background/hypha_half_background.dart';
 import 'package:hypha_wallet/design/background/hypha_page_background.dart';
+import 'package:hypha_wallet/design/buttons/button_type.dart';
 import 'package:hypha_wallet/design/buttons/hypha_app_button.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 import 'package:hypha_wallet/ui/bottom_navigation/hypha_bottom_navigation.dart';
 
-enum SuccessTransactionType {
-  approved('Approved'),
-  rejected('Rejected');
-
-  const SuccessTransactionType(this.value);
-
-  final String value;
-
-  Color get iconBackgroundColor {
-    switch (this) {
-      case SuccessTransactionType.approved:
-        return HyphaColors.success;
-      case SuccessTransactionType.rejected:
-        return HyphaColors.error;
-    }
-  }
-
-  IconData get icon {
-    switch (this) {
-      case SuccessTransactionType.approved:
-        return Icons.check;
-      case SuccessTransactionType.rejected:
-        return Icons.close;
-    }
-  }
-}
-
-class TransactionSuccessPage extends StatelessWidget {
-  final SuccessTransactionType transactionType;
-
-  const TransactionSuccessPage({super.key, required this.transactionType});
+class SignTransactionFailedPage extends StatelessWidget {
+  const SignTransactionFailedPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final successText = RichText(
+    final failedText = RichText(
       textAlign: TextAlign.center,
       text: TextSpan(
         style: context.hyphaTextTheme.regular.copyWith(
@@ -49,11 +21,11 @@ class TransactionSuccessPage extends StatelessWidget {
         ),
         children: <TextSpan>[
           TextSpan(
-            text: 'The transaction has been successfully',
-            style: context.hyphaTextTheme.regular.copyWith(color: HyphaColors.primaryBlu),
+            text: 'Something went wrong,\ntransaction ',
+            style: context.hyphaTextTheme.regular.copyWith(color: HyphaColors.error),
           ),
           const TextSpan(text: ' '),
-          TextSpan(text: transactionType.value),
+          const TextSpan(text: 'failed'),
         ],
       ),
     );
@@ -65,6 +37,7 @@ class TransactionSuccessPage extends StatelessWidget {
         bottomNavigationBar: Padding(
           padding: const EdgeInsets.only(left: 45, right: 45, bottom: 40),
           child: HyphaAppButton(
+            buttonType: ButtonType.secondary,
             onPressed: () {
               Get.offAll(() => const HyphaBottomNavigation());
             },
@@ -73,22 +46,31 @@ class TransactionSuccessPage extends StatelessWidget {
         ),
         body: Column(
           children: [
-            const HyphaHalfBackground(),
+            const HyphaHalfBackground(backgroundColor: HyphaColors.error),
             const SizedBox(height: 46),
             Padding(
               padding: const EdgeInsets.only(left: 45, right: 45, top: 45),
-              child: Text('Completed!', textAlign: TextAlign.center, style: context.hyphaTextTheme.mediumTitles),
+              child: Text('Whoops!', textAlign: TextAlign.center, style: context.hyphaTextTheme.mediumTitles),
             ),
             const SizedBox(height: 16),
-            Padding(padding: const EdgeInsets.only(left: 45, right: 45), child: successText),
-            const SizedBox(height: 46),
+            Padding(padding: const EdgeInsets.only(left: 45, right: 45), child: failedText),
+            const SizedBox(height: 16),
+            Padding(
+              padding: const EdgeInsets.only(left: 45, right: 45),
+              child: Text(
+                'Please try again. You need to launch the transaction again from the website or app that originated it. Sorry for the inconvenience',
+                style: context.hyphaTextTheme.ralMediumBody.copyWith(color: HyphaColors.midGrey),
+                textAlign: TextAlign.center,
+              ),
+            ),
+            const SizedBox(height: 26),
             Container(
               padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 shape: BoxShape.circle,
-                color: transactionType.iconBackgroundColor,
+                color: HyphaColors.error,
               ),
-              child: Icon(transactionType.icon, size: 24),
+              child: const Icon(Icons.warning_amber_outlined, size: 24),
             ),
             const SizedBox(height: 16),
           ],

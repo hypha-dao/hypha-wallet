@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'transaction_details_bloc.dart';
+part of 'sign_transaction_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -18,21 +18,22 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$PageCommand {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(SuccessTransactionType type)
+    required TResult Function(SignSuccessTransactionType type)
         navigateToTransactionSuccess,
     required TResult Function() navigateToTransactionFailed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(SuccessTransactionType type)?
+    TResult? Function(SignSuccessTransactionType type)?
         navigateToTransactionSuccess,
     TResult? Function()? navigateToTransactionFailed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(SuccessTransactionType type)? navigateToTransactionSuccess,
+    TResult Function(SignSuccessTransactionType type)?
+        navigateToTransactionSuccess,
     TResult Function()? navigateToTransactionFailed,
     required TResult orElse(),
   }) =>
@@ -89,7 +90,7 @@ abstract class _$$_NavigateToTransactionSuccessCopyWith<$Res> {
           $Res Function(_$_NavigateToTransactionSuccess) then) =
       __$$_NavigateToTransactionSuccessCopyWithImpl<$Res>;
   @useResult
-  $Res call({SuccessTransactionType type});
+  $Res call({SignSuccessTransactionType type});
 }
 
 /// @nodoc
@@ -110,7 +111,7 @@ class __$$_NavigateToTransactionSuccessCopyWithImpl<$Res>
       null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as SuccessTransactionType,
+              as SignSuccessTransactionType,
     ));
   }
 }
@@ -121,7 +122,7 @@ class _$_NavigateToTransactionSuccess implements _NavigateToTransactionSuccess {
   const _$_NavigateToTransactionSuccess(this.type);
 
   @override
-  final SuccessTransactionType type;
+  final SignSuccessTransactionType type;
 
   @override
   String toString() {
@@ -149,7 +150,7 @@ class _$_NavigateToTransactionSuccess implements _NavigateToTransactionSuccess {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(SuccessTransactionType type)
+    required TResult Function(SignSuccessTransactionType type)
         navigateToTransactionSuccess,
     required TResult Function() navigateToTransactionFailed,
   }) {
@@ -159,7 +160,7 @@ class _$_NavigateToTransactionSuccess implements _NavigateToTransactionSuccess {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(SuccessTransactionType type)?
+    TResult? Function(SignSuccessTransactionType type)?
         navigateToTransactionSuccess,
     TResult? Function()? navigateToTransactionFailed,
   }) {
@@ -169,7 +170,8 @@ class _$_NavigateToTransactionSuccess implements _NavigateToTransactionSuccess {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(SuccessTransactionType type)? navigateToTransactionSuccess,
+    TResult Function(SignSuccessTransactionType type)?
+        navigateToTransactionSuccess,
     TResult Function()? navigateToTransactionFailed,
     required TResult orElse(),
   }) {
@@ -219,9 +221,9 @@ class _$_NavigateToTransactionSuccess implements _NavigateToTransactionSuccess {
 
 abstract class _NavigateToTransactionSuccess implements PageCommand {
   const factory _NavigateToTransactionSuccess(
-      final SuccessTransactionType type) = _$_NavigateToTransactionSuccess;
+      final SignSuccessTransactionType type) = _$_NavigateToTransactionSuccess;
 
-  SuccessTransactionType get type;
+  SignSuccessTransactionType get type;
   @JsonKey(ignore: true)
   _$$_NavigateToTransactionSuccessCopyWith<_$_NavigateToTransactionSuccess>
       get copyWith => throw _privateConstructorUsedError;
@@ -268,7 +270,7 @@ class _$_NavigateToTransactionFailed implements _NavigateToTransactionFailed {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(SuccessTransactionType type)
+    required TResult Function(SignSuccessTransactionType type)
         navigateToTransactionSuccess,
     required TResult Function() navigateToTransactionFailed,
   }) {
@@ -278,7 +280,7 @@ class _$_NavigateToTransactionFailed implements _NavigateToTransactionFailed {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(SuccessTransactionType type)?
+    TResult? Function(SignSuccessTransactionType type)?
         navigateToTransactionSuccess,
     TResult? Function()? navigateToTransactionFailed,
   }) {
@@ -288,7 +290,8 @@ class _$_NavigateToTransactionFailed implements _NavigateToTransactionFailed {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(SuccessTransactionType type)? navigateToTransactionSuccess,
+    TResult Function(SignSuccessTransactionType type)?
+        navigateToTransactionSuccess,
     TResult Function()? navigateToTransactionFailed,
     required TResult orElse(),
   }) {
@@ -341,7 +344,7 @@ abstract class _NavigateToTransactionFailed implements PageCommand {
 }
 
 /// @nodoc
-mixin _$TransactionDetailsEvent {
+mixin _$SignTransactionEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
@@ -395,17 +398,17 @@ mixin _$TransactionDetailsEvent {
 }
 
 /// @nodoc
-abstract class $TransactionDetailsEventCopyWith<$Res> {
-  factory $TransactionDetailsEventCopyWith(TransactionDetailsEvent value,
-          $Res Function(TransactionDetailsEvent) then) =
-      _$TransactionDetailsEventCopyWithImpl<$Res, TransactionDetailsEvent>;
+abstract class $SignTransactionEventCopyWith<$Res> {
+  factory $SignTransactionEventCopyWith(SignTransactionEvent value,
+          $Res Function(SignTransactionEvent) then) =
+      _$SignTransactionEventCopyWithImpl<$Res, SignTransactionEvent>;
 }
 
 /// @nodoc
-class _$TransactionDetailsEventCopyWithImpl<$Res,
-        $Val extends TransactionDetailsEvent>
-    implements $TransactionDetailsEventCopyWith<$Res> {
-  _$TransactionDetailsEventCopyWithImpl(this._value, this._then);
+class _$SignTransactionEventCopyWithImpl<$Res,
+        $Val extends SignTransactionEvent>
+    implements $SignTransactionEventCopyWith<$Res> {
+  _$SignTransactionEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -422,7 +425,7 @@ abstract class _$$_InitialCopyWith<$Res> {
 
 /// @nodoc
 class __$$_InitialCopyWithImpl<$Res>
-    extends _$TransactionDetailsEventCopyWithImpl<$Res, _$_Initial>
+    extends _$SignTransactionEventCopyWithImpl<$Res, _$_Initial>
     implements _$$_InitialCopyWith<$Res> {
   __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
       : super(_value, _then);
@@ -435,7 +438,7 @@ class _$_Initial implements _Initial {
 
   @override
   String toString() {
-    return 'TransactionDetailsEvent.initial()';
+    return 'SignTransactionEvent.initial()';
   }
 
   @override
@@ -522,7 +525,7 @@ class _$_Initial implements _Initial {
   }
 }
 
-abstract class _Initial implements TransactionDetailsEvent {
+abstract class _Initial implements SignTransactionEvent {
   const factory _Initial() = _$_Initial;
 }
 
@@ -535,7 +538,7 @@ abstract class _$$_OnUserSlideCompletedCopyWith<$Res> {
 
 /// @nodoc
 class __$$_OnUserSlideCompletedCopyWithImpl<$Res>
-    extends _$TransactionDetailsEventCopyWithImpl<$Res, _$_OnUserSlideCompleted>
+    extends _$SignTransactionEventCopyWithImpl<$Res, _$_OnUserSlideCompleted>
     implements _$$_OnUserSlideCompletedCopyWith<$Res> {
   __$$_OnUserSlideCompletedCopyWithImpl(_$_OnUserSlideCompleted _value,
       $Res Function(_$_OnUserSlideCompleted) _then)
@@ -549,7 +552,7 @@ class _$_OnUserSlideCompleted implements _OnUserSlideCompleted {
 
   @override
   String toString() {
-    return 'TransactionDetailsEvent.onUserSlideCompleted()';
+    return 'SignTransactionEvent.onUserSlideCompleted()';
   }
 
   @override
@@ -636,7 +639,7 @@ class _$_OnUserSlideCompleted implements _OnUserSlideCompleted {
   }
 }
 
-abstract class _OnUserSlideCompleted implements TransactionDetailsEvent {
+abstract class _OnUserSlideCompleted implements SignTransactionEvent {
   const factory _OnUserSlideCompleted() = _$_OnUserSlideCompleted;
 }
 
@@ -649,7 +652,7 @@ abstract class _$$_OnUserSlideCanceledCopyWith<$Res> {
 
 /// @nodoc
 class __$$_OnUserSlideCanceledCopyWithImpl<$Res>
-    extends _$TransactionDetailsEventCopyWithImpl<$Res, _$_OnUserSlideCanceled>
+    extends _$SignTransactionEventCopyWithImpl<$Res, _$_OnUserSlideCanceled>
     implements _$$_OnUserSlideCanceledCopyWith<$Res> {
   __$$_OnUserSlideCanceledCopyWithImpl(_$_OnUserSlideCanceled _value,
       $Res Function(_$_OnUserSlideCanceled) _then)
@@ -663,7 +666,7 @@ class _$_OnUserSlideCanceled implements _OnUserSlideCanceled {
 
   @override
   String toString() {
-    return 'TransactionDetailsEvent.onUserSlideCanceled()';
+    return 'SignTransactionEvent.onUserSlideCanceled()';
   }
 
   @override
@@ -750,7 +753,7 @@ class _$_OnUserSlideCanceled implements _OnUserSlideCanceled {
   }
 }
 
-abstract class _OnUserSlideCanceled implements TransactionDetailsEvent {
+abstract class _OnUserSlideCanceled implements SignTransactionEvent {
   const factory _OnUserSlideCanceled() = _$_OnUserSlideCanceled;
 }
 
@@ -763,7 +766,7 @@ abstract class _$$_ClearPageCommandCopyWith<$Res> {
 
 /// @nodoc
 class __$$_ClearPageCommandCopyWithImpl<$Res>
-    extends _$TransactionDetailsEventCopyWithImpl<$Res, _$_ClearPageCommand>
+    extends _$SignTransactionEventCopyWithImpl<$Res, _$_ClearPageCommand>
     implements _$$_ClearPageCommandCopyWith<$Res> {
   __$$_ClearPageCommandCopyWithImpl(
       _$_ClearPageCommand _value, $Res Function(_$_ClearPageCommand) _then)
@@ -777,7 +780,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
 
   @override
   String toString() {
-    return 'TransactionDetailsEvent.clearPageCommand()';
+    return 'SignTransactionEvent.clearPageCommand()';
   }
 
   @override
@@ -864,12 +867,12 @@ class _$_ClearPageCommand implements _ClearPageCommand {
   }
 }
 
-abstract class _ClearPageCommand implements TransactionDetailsEvent {
+abstract class _ClearPageCommand implements SignTransactionEvent {
   const factory _ClearPageCommand() = _$_ClearPageCommand;
 }
 
 /// @nodoc
-mixin _$TransactionDetailsState {
+mixin _$SignTransactionState {
   PageState get pageState => throw _privateConstructorUsedError;
   TransactionDetailsData get transactionDetailsData =>
       throw _privateConstructorUsedError;
@@ -878,15 +881,15 @@ mixin _$TransactionDetailsState {
   PageCommand? get command => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $TransactionDetailsStateCopyWith<TransactionDetailsState> get copyWith =>
+  $SignTransactionStateCopyWith<SignTransactionState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $TransactionDetailsStateCopyWith<$Res> {
-  factory $TransactionDetailsStateCopyWith(TransactionDetailsState value,
-          $Res Function(TransactionDetailsState) then) =
-      _$TransactionDetailsStateCopyWithImpl<$Res, TransactionDetailsState>;
+abstract class $SignTransactionStateCopyWith<$Res> {
+  factory $SignTransactionStateCopyWith(SignTransactionState value,
+          $Res Function(SignTransactionState) then) =
+      _$SignTransactionStateCopyWithImpl<$Res, SignTransactionState>;
   @useResult
   $Res call(
       {PageState pageState,
@@ -899,10 +902,10 @@ abstract class $TransactionDetailsStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$TransactionDetailsStateCopyWithImpl<$Res,
-        $Val extends TransactionDetailsState>
-    implements $TransactionDetailsStateCopyWith<$Res> {
-  _$TransactionDetailsStateCopyWithImpl(this._value, this._then);
+class _$SignTransactionStateCopyWithImpl<$Res,
+        $Val extends SignTransactionState>
+    implements $SignTransactionStateCopyWith<$Res> {
+  _$SignTransactionStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -956,11 +959,11 @@ class _$TransactionDetailsStateCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_TransactionDetailsStateCopyWith<$Res>
-    implements $TransactionDetailsStateCopyWith<$Res> {
-  factory _$$_TransactionDetailsStateCopyWith(_$_TransactionDetailsState value,
-          $Res Function(_$_TransactionDetailsState) then) =
-      __$$_TransactionDetailsStateCopyWithImpl<$Res>;
+abstract class _$$_SignTransactionStateCopyWith<$Res>
+    implements $SignTransactionStateCopyWith<$Res> {
+  factory _$$_SignTransactionStateCopyWith(_$_SignTransactionState value,
+          $Res Function(_$_SignTransactionState) then) =
+      __$$_SignTransactionStateCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -975,12 +978,11 @@ abstract class _$$_TransactionDetailsStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_TransactionDetailsStateCopyWithImpl<$Res>
-    extends _$TransactionDetailsStateCopyWithImpl<$Res,
-        _$_TransactionDetailsState>
-    implements _$$_TransactionDetailsStateCopyWith<$Res> {
-  __$$_TransactionDetailsStateCopyWithImpl(_$_TransactionDetailsState _value,
-      $Res Function(_$_TransactionDetailsState) _then)
+class __$$_SignTransactionStateCopyWithImpl<$Res>
+    extends _$SignTransactionStateCopyWithImpl<$Res, _$_SignTransactionState>
+    implements _$$_SignTransactionStateCopyWith<$Res> {
+  __$$_SignTransactionStateCopyWithImpl(_$_SignTransactionState _value,
+      $Res Function(_$_SignTransactionState) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -992,7 +994,7 @@ class __$$_TransactionDetailsStateCopyWithImpl<$Res>
     Object? callback = freezed,
     Object? command = freezed,
   }) {
-    return _then(_$_TransactionDetailsState(
+    return _then(_$_SignTransactionState(
       pageState: null == pageState
           ? _value.pageState
           : pageState // ignore: cast_nullable_to_non_nullable
@@ -1019,8 +1021,8 @@ class __$$_TransactionDetailsStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_TransactionDetailsState implements _TransactionDetailsState {
-  const _$_TransactionDetailsState(
+class _$_SignTransactionState implements _SignTransactionState {
+  const _$_SignTransactionState(
       {this.pageState = PageState.initial,
       required this.transactionDetailsData,
       required this.qrCodeData,
@@ -1041,14 +1043,14 @@ class _$_TransactionDetailsState implements _TransactionDetailsState {
 
   @override
   String toString() {
-    return 'TransactionDetailsState(pageState: $pageState, transactionDetailsData: $transactionDetailsData, qrCodeData: $qrCodeData, callback: $callback, command: $command)';
+    return 'SignTransactionState(pageState: $pageState, transactionDetailsData: $transactionDetailsData, qrCodeData: $qrCodeData, callback: $callback, command: $command)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TransactionDetailsState &&
+            other is _$_SignTransactionState &&
             (identical(other.pageState, pageState) ||
                 other.pageState == pageState) &&
             (identical(other.transactionDetailsData, transactionDetailsData) ||
@@ -1067,19 +1069,18 @@ class _$_TransactionDetailsState implements _TransactionDetailsState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TransactionDetailsStateCopyWith<_$_TransactionDetailsState>
-      get copyWith =>
-          __$$_TransactionDetailsStateCopyWithImpl<_$_TransactionDetailsState>(
-              this, _$identity);
+  _$$_SignTransactionStateCopyWith<_$_SignTransactionState> get copyWith =>
+      __$$_SignTransactionStateCopyWithImpl<_$_SignTransactionState>(
+          this, _$identity);
 }
 
-abstract class _TransactionDetailsState implements TransactionDetailsState {
-  const factory _TransactionDetailsState(
+abstract class _SignTransactionState implements SignTransactionState {
+  const factory _SignTransactionState(
       {final PageState pageState,
       required final TransactionDetailsData transactionDetailsData,
       required final ScanQrCodeResultData qrCodeData,
       final String? callback,
-      final PageCommand? command}) = _$_TransactionDetailsState;
+      final PageCommand? command}) = _$_SignTransactionState;
 
   @override
   PageState get pageState;
@@ -1093,6 +1094,6 @@ abstract class _TransactionDetailsState implements TransactionDetailsState {
   PageCommand? get command;
   @override
   @JsonKey(ignore: true)
-  _$$_TransactionDetailsStateCopyWith<_$_TransactionDetailsState>
-      get copyWith => throw _privateConstructorUsedError;
+  _$$_SignTransactionStateCopyWith<_$_SignTransactionState> get copyWith =>
+      throw _privateConstructorUsedError;
 }

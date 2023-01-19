@@ -5,21 +5,21 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hypha_wallet/core/crypto/seeds_esr/eos_action.dart';
 import 'package:hypha_wallet/core/crypto/seeds_esr/scan_qr_code_result_data.dart';
 import 'package:hypha_wallet/ui/architecture/interactor/page_states.dart';
-import 'package:hypha_wallet/ui/transaction_details/interactor/data/transaction_action_data.dart';
-import 'package:hypha_wallet/ui/transaction_details/success/transaction_success_page.dart';
-import 'package:hypha_wallet/ui/transaction_details/usecases/sign_transaction_use_case.dart';
+import 'package:hypha_wallet/ui/sign_transaction/interactor/data/transaction_action_data.dart';
+import 'package:hypha_wallet/ui/sign_transaction/success/sign_transaction_success_page.dart';
+import 'package:hypha_wallet/ui/sign_transaction/usecases/sign_transaction_use_case.dart';
 
 part 'page_command.dart';
-part 'transaction_details_bloc.freezed.dart';
-part 'transaction_details_event.dart';
-part 'transaction_details_state.dart';
+part 'sign_transaction_bloc.freezed.dart';
+part 'sign_transaction_event.dart';
+part 'sign_transaction_state.dart';
 
-class TransactionDetailsBloc extends Bloc<TransactionDetailsEvent, TransactionDetailsState> {
+class SignTransactionBloc extends Bloc<SignTransactionEvent, SignTransactionState> {
   final SignTransactionUseCase _signTransactionUseCase;
 
-  TransactionDetailsBloc(this._signTransactionUseCase, ScanQrCodeResultData _qrCodeData)
+  SignTransactionBloc(this._signTransactionUseCase, ScanQrCodeResultData _qrCodeData)
       : super(
-          TransactionDetailsState(
+          SignTransactionState(
               qrCodeData: _qrCodeData,
               callback: _qrCodeData.esr.callback,
               transactionDetailsData: TransactionDetailsData(
@@ -38,19 +38,20 @@ class TransactionDetailsBloc extends Bloc<TransactionDetailsEvent, TransactionDe
     on<_ClearPageCommand>((_, emit) => emit(state.copyWith(command: null)));
   }
 
-  Future<void> _initial(_Initial event, Emitter<TransactionDetailsState> emit) async {}
+  Future<void> _initial(_Initial event, Emitter<SignTransactionState> emit) async {}
 
-  FutureOr<void> _onUserSlideCompleted(_OnUserSlideCompleted event, Emitter<TransactionDetailsState> emit) async {
+  FutureOr<void> _onUserSlideCompleted(_OnUserSlideCompleted event, Emitter<SignTransactionState> emit) async {
     /// Show loading, sign transaction, navigate to success or show error
     final result = await _signTransactionUseCase.run(state.qrCodeData.transaction);
     if (result.isValue) {
-      emit(state.copyWith(command: const PageCommand.navigateToTransactionSuccess(SuccessTransactionType.approved)));
+      emit(
+          state.copyWith(command: const PageCommand.navigateToTransactionSuccess(SignSuccessTransactionType.approved)));
     } else {
       emit(state.copyWith(command: const PageCommand.navigateToTransactionFailed()));
     }
   }
 
-  FutureOr<void> _onUserSlideCanceled(_OnUserSlideCanceled event, Emitter<TransactionDetailsState> emit) async {
+  FutureOr<void> _onUserSlideCanceled(_OnUserSlideCanceled event, Emitter<SignTransactionState> emit) async {
     /// Show loading, reject, navigate to success or show error
     // final result = await _signTransactionUseCase.run('MOCK DATA');
     // if (result.isValue) {

@@ -5,6 +5,7 @@ import 'package:hypha_wallet/core/crypto/eosdart/eosdart.dart';
 import 'package:hypha_wallet/core/crypto/seeds_esr/eos_transaction.dart';
 import 'package:hypha_wallet/core/local/models/user_auth_data.dart';
 import 'package:hypha_wallet/core/local/services/secure_storage_service.dart';
+import 'package:hypha_wallet/core/logging/log_helper.dart';
 
 String onboardingPrivateKey = '5JhM4vypLzLdDtHo67TR5RtmsYm2mr8F2ugqcrCzfrMPLvo8cQW';
 
@@ -25,8 +26,11 @@ class EOSService {
   }) async {
     final actions = eosTransaction.actions.map((e) => e.toEosAction).toList();
 
+    LogHelper.d('GERY GERY: sendTransaction ' + actions.toString());
     for (final action in actions) {
+      LogHelper.d('GERY GERY: sendTransaction Action: ' + action.toString());
       if (action.authorization == null || action.authorization == []) {
+        LogHelper.d('GERY GERY: sendTransaction Inside check: ');
         action.authorization = [
           Authorization()
             ..actor = accountName
@@ -34,10 +38,16 @@ class EOSService {
         ];
       }
     }
+    LogHelper.d('GERY GERY: sendTransaction Done wit if: ');
+
+    LogHelper.d('GERY GERY: sendTransaction Action: ' + actions.toString());
+
     final transaction = _buildTransaction(actions, accountName);
 
     final UserAuthData? userAuthData = await secureStorageService.getUserAuthData();
-    return _withPrivateKey(userAuthData?.eOSPrivateKey.toString() ?? onboardingPrivateKey)
+    LogHelper.d('GERY GERY: ${userAuthData?.eOSPrivateKey?.toString()}');
+
+    return EOSClient(baseUrl: 'http://eos.greymass.com', privateKeys: ['NIK ENTER YOUR KEY'], version: 'v1')
         .pushTransaction(transaction)
         .then((dynamic response) => _mapEosResponse(response, (dynamic map) {
               return response['transaction_id'];

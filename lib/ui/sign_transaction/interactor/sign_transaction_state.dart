@@ -1,12 +1,12 @@
-part of 'transaction_details_bloc.dart';
+part of 'sign_transaction_bloc.dart';
 
 @freezed
-class TransactionDetailsState with _$TransactionDetailsState {
-  const factory TransactionDetailsState({
+class SignTransactionState with _$SignTransactionState {
+  const factory SignTransactionState({
     @Default(PageState.initial) PageState pageState,
     required TransactionDetailsData transactionDetailsData,
     required ScanQrCodeResultData qrCodeData,
     String? callback,
     PageCommand? command,
-  }) = _TransactionDetailsState;
+  }) = _SignTransactionState;
 }

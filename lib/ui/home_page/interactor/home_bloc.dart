@@ -9,7 +9,6 @@ import 'package:hypha_wallet/core/error_handler/model/hypha_error_type.dart';
 import 'package:hypha_wallet/core/logging/log_helper.dart';
 import 'package:hypha_wallet/ui/architecture/interactor/page_states.dart';
 import 'package:hypha_wallet/ui/home_page/usecases/parse_qr_code_use_case.dart';
-import 'package:hypha_wallet/ui/transaction_details/interactor/data/transaction_action_data.dart';
 
 part 'home_bloc.freezed.dart';
 part 'home_event.dart';

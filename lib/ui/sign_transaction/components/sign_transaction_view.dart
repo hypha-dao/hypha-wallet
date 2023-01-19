@@ -5,14 +5,14 @@ import 'package:hypha_wallet/design/cards/hypha_transaction_action_card.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/slide_to/slide_to_confirm.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
-import 'package:hypha_wallet/ui/transaction_details/interactor/transaction_details_bloc.dart';
+import 'package:hypha_wallet/ui/sign_transaction/interactor/sign_transaction_bloc.dart';
 
-class TransactionDetailsView extends StatelessWidget {
-  const TransactionDetailsView({super.key});
+class SignTransactionView extends StatelessWidget {
+  const SignTransactionView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<TransactionDetailsBloc, TransactionDetailsState>(
+    return BlocBuilder<SignTransactionBloc, SignTransactionState>(
       builder: (context, state) {
         return DecoratedBox(
           decoration: BoxDecoration(
@@ -76,10 +76,10 @@ class _Slider extends StatelessWidget {
               outerColor: context.isDarkTheme ? HyphaColors.lightBlack : HyphaColors.white,
               key: _key,
               onSubmit: () {
-                context.read<TransactionDetailsBloc>().add(const TransactionDetailsEvent.onUserSlideCompleted());
+                context.read<SignTransactionBloc>().add(const SignTransactionEvent.onUserSlideCompleted());
               },
               onCancel: () {
-                context.read<TransactionDetailsBloc>().add(const TransactionDetailsEvent.onUserSlideCanceled());
+                context.read<SignTransactionBloc>().add(const SignTransactionEvent.onUserSlideCanceled());
               },
               alignment: Alignment.center,
               submittedIcon: const CircularProgressIndicator(),
