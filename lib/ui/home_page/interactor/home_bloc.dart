@@ -33,9 +33,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     }
 
     emit(state.copyWith(isLoading: true));
-    final result = await _parseQRCodeUseCase.run(
-      ParseQrCodeInput(scanResult: event.value, accountName: 'daohyphatest'),
-    );
+    final result = await _parseQRCodeUseCase.run(ParseQrCodeInput(scanResult: event.value));
 
     if (result.isValue) {
       final ScanQrCodeResultData value = result.asValue!.value;

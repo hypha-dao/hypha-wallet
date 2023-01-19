@@ -3,15 +3,20 @@ import 'package:hypha_wallet/core/crypto/seeds_esr/scan_qr_code_result_data.dart
 import 'package:hypha_wallet/core/crypto/seeds_esr/seeds_esr.dart';
 import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
 import 'package:hypha_wallet/core/logging/log_helper.dart';
+import 'package:hypha_wallet/core/network/models/user_profile_data.dart';
+import 'package:hypha_wallet/core/shared_preferences/hypha_shared_prefs.dart';
 import 'package:hypha_wallet/ui/architecture/interactor/base_usecase.dart';
 import 'package:hypha_wallet/ui/architecture/result/result.dart' as HResult;
 
 class ParseQRCodeUseCase extends InputUseCase<HResult.Result<ScanQrCodeResultData, HyphaError>, ParseQrCodeInput> {
-  ParseQRCodeUseCase();
+  final HyphaSharedPrefs _appSharedPrefs;
+  ParseQRCodeUseCase(this._appSharedPrefs);
 
   @override
   Future<HResult.Result<ScanQrCodeResultData, HyphaError>> run(ParseQrCodeInput input) async {
-    final qrCodeValidationResult = await _validateQrCode(accountName: input.accountName, scanResult: input.scanResult);
+    final UserProfileData? userData = await _appSharedPrefs.getUserProfileData();
+    final qrCodeValidationResult =
+        await _validateQrCode(accountName: userData?.accountName ?? '', scanResult: input.scanResult);
 
     if (qrCodeValidationResult.isValue) {
       return HResult.Result.value(qrCodeValidationResult.asValue!.value);
@@ -42,7 +47,6 @@ Future<Result<ScanQrCodeResultData>> _validateQrCode({required String scanResult
 
 class ParseQrCodeInput {
   final String scanResult;
-  final String accountName;
 
-  ParseQrCodeInput({required this.scanResult, required this.accountName});
+  ParseQrCodeInput({required this.scanResult});
 }
