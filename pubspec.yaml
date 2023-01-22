@@ -99,6 +99,9 @@ dependencies:
   # Fonts
   google_fonts: ^3.0.1
 
+  # formatting
+  intl: ^0.18.0
+
   flutter_svg: ^1.1.6
 
   # encrypt stored data

@@ -22,7 +22,10 @@ void _registerBlocsModule() {
   _registerFactoryWithParams<SignTransactionBloc, ScanQrCodeResultData, void>(
     (qrCodeData, _) => SignTransactionBloc(_getIt<SignTransactionUseCase>(), qrCodeData),
   );
-  _registerFactory(() => TransactionsBloc());
+  _registerFactory(() => TransactionsBloc(
+        _getIt<GetTransactionHistoryUseCase>(),
+        _getIt<ErrorHandlerManager>(),
+      ));
   _registerFactory(() => TransactionDetailBloc());
   _registerFactoryWithParams<CreateAccountBloc, XFile?, String>(
     (image, userName) => CreateAccountBloc(

@@ -28,7 +28,12 @@ class SignTransactionView extends StatelessWidget {
                     children: [
                       const SizedBox(height: 8),
                       ...state.transactionDetailsData.cards
-                          .map((e) => HyphaTransactionActionCard(transactionDetailsCardData: e))
+                          .map(
+                            (e) => Padding(
+                              padding: const EdgeInsets.all(22),
+                              child: HyphaTransactionActionCard(data: e),
+                            ),
+                          )
                           .toList(),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 22),

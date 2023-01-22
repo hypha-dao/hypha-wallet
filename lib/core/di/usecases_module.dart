@@ -10,4 +10,10 @@ void _registerUseCasesModule() {
   _registerFactory(() => FindAccountsUseCase(_getIt<EOSClient>()));
   _registerFactory(() => ValidateKeyUseCase());
   _registerFactory(() => SignTransactionUseCase(_getIt<EOSService>(), _getIt<HyphaSharedPrefs>()));
+  _registerFactory(
+    () => GetTransactionHistoryUseCase(
+      _getIt<TransactionHistoryRepository>(),
+      _getIt<HyphaSharedPrefs>(),
+    ),
+  );
 }

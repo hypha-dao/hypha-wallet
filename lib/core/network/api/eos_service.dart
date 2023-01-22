@@ -8,8 +8,6 @@ import 'package:hypha_wallet/core/local/models/user_auth_data.dart';
 import 'package:hypha_wallet/core/local/services/secure_storage_service.dart';
 import 'package:hypha_wallet/core/network/api/endpoints.dart';
 
-String onboardingPrivateKey = '5JhM4vypLzLdDtHo67TR5RtmsYm2mr8F2ugqcrCzfrMPLvo8cQW';
-
 class EOSService {
   final EOSClient eosClient;
   final SecureStorageService secureStorageService;
@@ -35,9 +33,10 @@ class EOSService {
     final UserAuthData? userAuthData = await secureStorageService.getUserAuthData();
 
     final eosClient = EOSClient(
-        baseUrl: Endpoints.pushTransactionNodeUrl,
-        privateKeys: [userAuthData!.eOSPrivateKey.toString()],
-        version: 'v1');
+      baseUrl: Endpoints.pushTransactionNodeUrl,
+      privateKeys: [userAuthData!.eOSPrivateKey.toString()],
+      version: 'v1',
+    );
 
     return eosClient
         .pushTransaction(transaction)

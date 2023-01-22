@@ -4,43 +4,82 @@ import 'package:hypha_wallet/design/dividers/hypha_divider.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 import 'package:hypha_wallet/ui/sign_transaction/interactor/data/transaction_action_data.dart';
+import 'package:intl/intl.dart';
 
 class HyphaTransactionActionCard extends StatelessWidget {
-  final TransactionDetailsCardData transactionDetailsCardData;
+  final TransactionDetailsCardData data;
 
-  const HyphaTransactionActionCard({super.key, required this.transactionDetailsCardData});
+  const HyphaTransactionActionCard({super.key, required this.data});
 
   @override
   Widget build(BuildContext context) {
     final List rows = List.empty(growable: true);
-    transactionDetailsCardData.params.forEach((key, value) {
+    data.params.forEach((key, value) {
       rows.add(Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(key, style: context.hyphaTextTheme.ralMediumBody.copyWith(color: HyphaColors.midGrey)),
-          Text(value, style: context.hyphaTextTheme.ralMediumBody),
+          const SizedBox(width: 4),
+          Flexible(
+            child: Text(
+              value.toString(),
+              style: context.hyphaTextTheme.ralMediumBody,
+              textAlign: TextAlign.right,
+              maxLines: 4,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
         ],
       ));
       rows.add(const SizedBox(height: 8));
     });
+
+    final List timeFrame = List.empty(growable: true);
+    if (data.timestamp != null) {
+      timeFrame.addAll([
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text('Signed On', style: context.hyphaTextTheme.ralMediumSmallNote.copyWith(color: HyphaColors.midGrey)),
+            const SizedBox(width: 4),
+            Text(
+              DateFormat('h:mma | d MMM yyyy').format(data.timestamp!),
+              style: context.hyphaTextTheme.ralMediumSmallNote,
+              textAlign: TextAlign.right,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ],
+        ),
+        const SizedBox(height: 16),
+        const HyphaDivider(),
+        const SizedBox(height: 22),
+      ]);
+    }
+
     return Card(
-      margin: const EdgeInsets.all(22),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       color: context.isDarkMode ? HyphaColors.lightBlack : HyphaColors.white,
       child: InkWell(
         borderRadius: BorderRadius.circular(16),
+        onTap: data.onTap,
         child: Padding(
           padding: const EdgeInsets.all(22),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(transactionDetailsCardData.contractAction, style: context.hyphaTextTheme.smallTitles),
-              const SizedBox(height: 12),
+              ...timeFrame,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('Contract Action - ${data.contractAction}', style: context.hyphaTextTheme.smallTitles),
+                  data.onTap != null ? const Icon(Icons.navigate_next) : const SizedBox.shrink()
+                ],
+              ),
+              const SizedBox(height: 22),
               const HyphaDivider(),
-              const SizedBox(height: 12),
+              const SizedBox(height: 16),
               ...rows
             ],
           ),

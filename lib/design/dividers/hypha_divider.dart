@@ -6,6 +6,6 @@ class HyphaDivider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(height: 1, color: HyphaColors.midGrey);
+    return Container(height: 1, color: HyphaColors.midGrey.withOpacity(0.20));
   }
 }

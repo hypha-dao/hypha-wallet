@@ -11,6 +11,8 @@ Future<void> _registerServicesModule() async {
 
   /// Services
   _registerLazySingleton(() => UserAccountService(networkingManager: _getIt<NetworkingManager>()));
+  _registerLazySingleton(() => TransactionHistoryService(_getIt<NetworkingManager>()));
+
   _registerLazySingleton(() => CryptoAuthService());
 
   _registerLazySingleton(() => EOSClient(baseUrl: Endpoints.baseUrl, version: 'v1'));

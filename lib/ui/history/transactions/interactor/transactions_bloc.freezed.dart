@@ -440,6 +440,7 @@ abstract class _ClearPageCommand implements TransactionsEvent {
 /// @nodoc
 mixin _$TransactionsState {
   PageState get pageState => throw _privateConstructorUsedError;
+  List<TransactionModel> get transactions => throw _privateConstructorUsedError;
   PageCommand? get command => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -453,7 +454,10 @@ abstract class $TransactionsStateCopyWith<$Res> {
           TransactionsState value, $Res Function(TransactionsState) then) =
       _$TransactionsStateCopyWithImpl<$Res, TransactionsState>;
   @useResult
-  $Res call({PageState pageState, PageCommand? command});
+  $Res call(
+      {PageState pageState,
+      List<TransactionModel> transactions,
+      PageCommand? command});
 
   $PageCommandCopyWith<$Res>? get command;
 }
@@ -472,6 +476,7 @@ class _$TransactionsStateCopyWithImpl<$Res, $Val extends TransactionsState>
   @override
   $Res call({
     Object? pageState = null,
+    Object? transactions = null,
     Object? command = freezed,
   }) {
     return _then(_value.copyWith(
@@ -479,6 +484,10 @@ class _$TransactionsStateCopyWithImpl<$Res, $Val extends TransactionsState>
           ? _value.pageState
           : pageState // ignore: cast_nullable_to_non_nullable
               as PageState,
+      transactions: null == transactions
+          ? _value.transactions
+          : transactions // ignore: cast_nullable_to_non_nullable
+              as List<TransactionModel>,
       command: freezed == command
           ? _value.command
           : command // ignore: cast_nullable_to_non_nullable
@@ -507,7 +516,10 @@ abstract class _$$_TransactionsStateCopyWith<$Res>
       __$$_TransactionsStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({PageState pageState, PageCommand? command});
+  $Res call(
+      {PageState pageState,
+      List<TransactionModel> transactions,
+      PageCommand? command});
 
   @override
   $PageCommandCopyWith<$Res>? get command;
@@ -525,6 +537,7 @@ class __$$_TransactionsStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? pageState = null,
+    Object? transactions = null,
     Object? command = freezed,
   }) {
     return _then(_$_TransactionsState(
@@ -532,6 +545,10 @@ class __$$_TransactionsStateCopyWithImpl<$Res>
           ? _value.pageState
           : pageState // ignore: cast_nullable_to_non_nullable
               as PageState,
+      transactions: null == transactions
+          ? _value._transactions
+          : transactions // ignore: cast_nullable_to_non_nullable
+              as List<TransactionModel>,
       command: freezed == command
           ? _value.command
           : command // ignore: cast_nullable_to_non_nullable
@@ -544,17 +561,29 @@ class __$$_TransactionsStateCopyWithImpl<$Res>
 
 class _$_TransactionsState implements _TransactionsState {
   const _$_TransactionsState(
-      {this.pageState = PageState.initial, this.command});
+      {this.pageState = PageState.initial,
+      final List<TransactionModel> transactions = const [],
+      this.command})
+      : _transactions = transactions;
 
   @override
   @JsonKey()
   final PageState pageState;
+  final List<TransactionModel> _transactions;
+  @override
+  @JsonKey()
+  List<TransactionModel> get transactions {
+    if (_transactions is EqualUnmodifiableListView) return _transactions;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_transactions);
+  }
+
   @override
   final PageCommand? command;
 
   @override
   String toString() {
-    return 'TransactionsState(pageState: $pageState, command: $command)';
+    return 'TransactionsState(pageState: $pageState, transactions: $transactions, command: $command)';
   }
 
   @override
@@ -564,11 +593,14 @@ class _$_TransactionsState implements _TransactionsState {
             other is _$_TransactionsState &&
             (identical(other.pageState, pageState) ||
                 other.pageState == pageState) &&
+            const DeepCollectionEquality()
+                .equals(other._transactions, _transactions) &&
             (identical(other.command, command) || other.command == command));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, pageState, command);
+  int get hashCode => Object.hash(runtimeType, pageState,
+      const DeepCollectionEquality().hash(_transactions), command);
 
   @JsonKey(ignore: true)
   @override
@@ -581,10 +613,13 @@ class _$_TransactionsState implements _TransactionsState {
 abstract class _TransactionsState implements TransactionsState {
   const factory _TransactionsState(
       {final PageState pageState,
+      final List<TransactionModel> transactions,
       final PageCommand? command}) = _$_TransactionsState;
 
   @override
   PageState get pageState;
+  @override
+  List<TransactionModel> get transactions;
   @override
   PageCommand? get command;
   @override

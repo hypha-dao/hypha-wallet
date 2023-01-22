@@ -7,4 +7,6 @@ void _registerRepositoriesModule() {
         _getIt<SecureStorageService>(),
       ));
   _registerLazySingleton(() => UserAccountRepository(userService: _getIt<UserAccountService>()));
+
+  _registerLazySingleton(() => TransactionHistoryRepository(service: _getIt<TransactionHistoryService>()));
 }
