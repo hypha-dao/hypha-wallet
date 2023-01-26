@@ -77,14 +77,25 @@ class SettingsPage extends StatelessWidget {
                       }
                     },
                   ),
-                  const SizedBox(height: 16),
-                  ListTile(
-                    minLeadingWidth: 0,
-                    onTap: () {
-                      context.read<AuthenticationBloc>().add(const AuthenticationEvent.authenticationLogoutRequested());
-                    },
-                    title: const Text('Logout'),
-                  )
+                  Card(
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                    color: context.isDarkMode ? HyphaColors.lightBlack : HyphaColors.white,
+                    child: InkWell(
+                      borderRadius: BorderRadius.circular(16),
+                      onTap: () {
+                        context
+                            .read<AuthenticationBloc>()
+                            .add(const AuthenticationEvent.authenticationLogoutRequested());
+                      },
+                      child: ListTile(
+                        leading: Icon(
+                          Icons.logout,
+                          color: context.isDarkTheme ? HyphaColors.white : HyphaColors.black,
+                        ),
+                        title: Text('Logout', style: context.hyphaTextTheme.smallTitles),
+                      ),
+                    ),
+                  ),
                 ],
               )),
         );

@@ -14,6 +14,7 @@ class HyphaTheme {
     return baseTheme.copyWith(
       colorScheme: darkColorScheme,
       textTheme: mainTextTheme,
+      iconTheme: const IconThemeData(color: HyphaColors.white),
       appBarTheme: AppBarTheme(
         backgroundColor: HyphaColors.transparent,
         elevation: 0,
@@ -34,6 +35,7 @@ class HyphaTheme {
     return baseTheme.copyWith(
       colorScheme: lightColorScheme,
       textTheme: mainTextTheme,
+      iconTheme: const IconThemeData(color: HyphaColors.black),
       appBarTheme: AppBarTheme(
         backgroundColor: HyphaColors.transparent,
         iconTheme: const IconThemeData(color: HyphaColors.black),
