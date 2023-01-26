@@ -22,7 +22,7 @@ class UserAccountList extends StatelessWidget {
               padding: const EdgeInsets.only(top: 20),
               child: ListTile(
                 contentPadding: const EdgeInsets.all(14),
-                tileColor: HyphaColors.lightBlack,
+                tileColor: context.isDarkTheme ? HyphaColors.lightBlack : HyphaColors.white,
                 title: Text(e.userName, style: context.hyphaTextTheme.smallTitles),
                 leading: HyphaAvatarImage(
                   imageRadius: 24,
