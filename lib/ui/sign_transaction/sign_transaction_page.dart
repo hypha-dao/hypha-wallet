@@ -6,8 +6,7 @@ import 'package:hypha_wallet/core/crypto/seeds_esr/scan_qr_code_result_data.dart
 import 'package:hypha_wallet/ui/sign_transaction/components/sign_transaction_view.dart';
 import 'package:hypha_wallet/ui/sign_transaction/failed/sign_transaction_failed_page.dart';
 import 'package:hypha_wallet/ui/sign_transaction/interactor/sign_transaction_bloc.dart';
-
-import 'success/sign_transaction_success_page.dart';
+import 'package:hypha_wallet/ui/sign_transaction/success/sign_transaction_success_page.dart';
 
 class SignTransactionPage extends StatelessWidget {
   final ScanQrCodeResultData qrCodeData;

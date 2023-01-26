@@ -5,6 +5,7 @@ class TransactionModel extends Equatable {
   final String? transactionId;
   final String account;
   final String actionName;
+  final int blockNumber;
   final Map<String, dynamic> data;
 
   const TransactionModel({
@@ -13,6 +14,7 @@ class TransactionModel extends Equatable {
     required this.account,
     required this.timestamp,
     required this.transactionId,
+    required this.blockNumber,
   });
 
   @override
@@ -25,18 +27,20 @@ class TransactionModel extends Equatable {
       data: json['act']['data'],
       timestamp: parseTimestamp(json['@timestamp']),
       transactionId: json['trx_id'],
+      blockNumber: json['block_num'],
     );
   }
 
-  factory TransactionModel.fromJsonMongo(Map<String, dynamic> json) {
-    return TransactionModel(
-      account: json['act']['account'],
-      actionName: json['act']['name'],
-      data: json['act']['data'],
-      timestamp: parseTimestamp(json['@timestamp']),
-      transactionId: json['trx_id'],
-    );
-  }
+// factory TransactionModel.fromJsonMongo(Map<String, dynamic> json) {
+//   return TransactionModel(
+//     account: json['act']['account'],
+//     actionName: json['act']['name'],
+//     data: json['act']['data'],
+//     timestamp: parseTimestamp(json['@timestamp']),
+//     transactionId: json['trx_id'],
+//     blockNumber: json['  block_num'],
+//   );
+// }
 
 // static TransactionModel? fromTransaction(GenericTransactionModel genericModel) {
 //   if (genericModel.transaction.isTransfer) {
