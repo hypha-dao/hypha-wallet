@@ -22,12 +22,13 @@ class LogoutConfirmationPage extends StatelessWidget {
                 child: Column(
                   children: [
                     const SizedBox(height: 44),
-                    const Icon(Icons.logout, size: 140),
-                    Text('Logout', style: context.hyphaTextTheme.mediumTitles),
+                    const Icon(Icons.logout, size: 200),
+                    Text('Log-out', style: context.hyphaTextTheme.mediumTitles),
                     const SizedBox(height: 8),
                     Text(
-                      'Are you sure you want to log-out?',
+                      'Are you sure you want\n to log-out?',
                       style: context.hyphaTextTheme.regular.copyWith(color: HyphaColors.primaryBlu),
+                      textAlign: TextAlign.center,
                     ),
                   ],
                 ),

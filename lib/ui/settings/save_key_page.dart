@@ -5,6 +5,7 @@ import 'package:hypha_wallet/design/buttons/button_type.dart';
 import 'package:hypha_wallet/design/buttons/hypha_app_button.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
+import 'package:hypha_wallet/ui/settings/private_key_info_page.dart';
 import 'package:share_plus/share_plus.dart';
 
 class SaveKeyPage extends StatelessWidget {
@@ -18,7 +19,27 @@ class SaveKeyPage extends StatelessWidget {
       withGradient: true,
       child: Scaffold(
         backgroundColor: HyphaColors.transparent,
-        appBar: AppBar(title: const Text('Private Key')),
+        appBar: AppBar(
+          title: const Text('Private Key'),
+          actions: [
+            IconButton(
+                onPressed: () {
+                  showModalBottomSheet(
+                    isScrollControlled: true,
+                    context: context,
+                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                    builder: (context) => const FractionallySizedBox(
+                      heightFactor: 0.87,
+                      child: PrivateKeyInfoPage(),
+                    ),
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
+                    ),
+                  );
+                },
+                icon: const Icon(Icons.info_outline))
+          ],
+        ),
         bottomNavigationBar: Padding(
           padding: const EdgeInsets.only(left: 22, right: 22, bottom: 32),
           child: Column(

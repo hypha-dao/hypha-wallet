@@ -3,12 +3,14 @@ import 'package:hypha_wallet/design/hypha_colors.dart';
 
 class HyphaHalfBackground extends StatelessWidget {
   final Color? backgroundColor;
-  const HyphaHalfBackground({super.key, this.backgroundColor});
+  final Widget? child;
+  const HyphaHalfBackground({super.key, this.backgroundColor, this.child});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 170,
+      width: double.infinity,
       decoration: BoxDecoration(
         color: backgroundColor,
         gradient: backgroundColor == null ? HyphaColors.gradientBlu : null,
@@ -17,6 +19,7 @@ class HyphaHalfBackground extends StatelessWidget {
           bottomRight: Radius.elliptical(180, 40),
         ),
       ),
+      child: child,
     );
   }
 }
