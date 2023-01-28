@@ -8,6 +8,7 @@ import 'package:hypha_wallet/design/icons/hypha_icons.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 import 'package:hypha_wallet/ui/blocs/authentication/authentication_bloc.dart';
 import 'package:hypha_wallet/ui/settings/interactor/settings_bloc.dart';
+import 'package:hypha_wallet/ui/settings/logout_confirmation_page.dart';
 import 'package:hypha_wallet/ui/settings/save_key_page.dart';
 import 'package:hypha_wallet/ui/settings/save_words_page.dart';
 
@@ -82,10 +83,25 @@ class SettingsPage extends StatelessWidget {
                     color: context.isDarkMode ? HyphaColors.lightBlack : HyphaColors.white,
                     child: InkWell(
                       borderRadius: BorderRadius.circular(16),
-                      onTap: () {
-                        context
-                            .read<AuthenticationBloc>()
-                            .add(const AuthenticationEvent.authenticationLogoutRequested());
+                      onTap: () async {
+                        final result = await showModalBottomSheet(
+                          isScrollControlled: true,
+                          context: context,
+                          clipBehavior: Clip.antiAliasWithSaveLayer,
+                          builder: (context) => const FractionallySizedBox(
+                            heightFactor: 0.87,
+                            child: LogoutConfirmationPage(),
+                          ),
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
+                          ),
+                        );
+
+                        if (result) {
+                          context
+                              .read<AuthenticationBloc>()
+                              .add(const AuthenticationEvent.authenticationLogoutRequested());
+                        }
                       },
                       child: ListTile(
                         leading: Icon(
