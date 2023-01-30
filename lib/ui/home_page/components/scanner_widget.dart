@@ -32,17 +32,6 @@ class _ScannerWidgetState extends State<ScannerWidget> {
       onTap: isActive
           ? null
           : () {
-              // context.read<HomeBloc>().add(HomeEvent.onQRCodeScanned('code'));
-              // final transactionData = TransactionDetailsData(
-              //     signingTitle: 'From hypha DAO on Telos',
-              //     expirationTime: const Duration(seconds: 60),
-              //     cards: [
-              //       TransactionDetailsCardData(
-              //           items: {'account_name': 'luigicarlini', 'login_code': '668888666888666'},
-              //           primaryText: 'Login User',
-              //           secondaryText: 'Eosio.login - loginuser')
-              //     ]);
-              // Get.to(TransactionDetailsPage(transactionDetailsData: transactionData));
               setState(() {
                 isActive = true;
                 _heightFactor = 0.40;

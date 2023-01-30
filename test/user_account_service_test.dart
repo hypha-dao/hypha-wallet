@@ -57,7 +57,7 @@ void main() {
 
     expect(generated, 'a11111111121');
 
-    final nameSet = Set();
+    final nameSet = <dynamic>{};
     for (int s = 0; s < 100; s++) {
       final gen = service.generateUserName(fullName: name, sequence: s);
       if (gen == null) continue;

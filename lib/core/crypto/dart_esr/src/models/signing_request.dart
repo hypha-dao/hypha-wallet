@@ -64,7 +64,7 @@ class SigningRequest {
       throw 'Data must be either Uint8List or SerialBuffer';
     }
     var deserializedData = Map<String, dynamic>.from(type.deserialize?.call(type, buffer));
-    LogHelper.d('SigningRequest.fromBinary ' + deserializedData.toString());
+    LogHelper.d('SigningRequest.fromBinary $deserializedData');
     return SigningRequest.fromJson(deserializedData);
   }
 }

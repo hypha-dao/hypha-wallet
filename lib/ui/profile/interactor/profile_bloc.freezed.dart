@@ -431,6 +431,7 @@ abstract class _ClearPageCommand implements ProfileEvent {
 mixin _$ProfileState {
   PageState get pageState => throw _privateConstructorUsedError;
   PageCommand? get command => throw _privateConstructorUsedError;
+  ProfileData? get profileData => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ProfileStateCopyWith<ProfileState> get copyWith =>
@@ -443,7 +444,8 @@ abstract class $ProfileStateCopyWith<$Res> {
           ProfileState value, $Res Function(ProfileState) then) =
       _$ProfileStateCopyWithImpl<$Res, ProfileState>;
   @useResult
-  $Res call({PageState pageState, PageCommand? command});
+  $Res call(
+      {PageState pageState, PageCommand? command, ProfileData? profileData});
 
   $PageCommandCopyWith<$Res>? get command;
 }
@@ -463,6 +465,7 @@ class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState>
   $Res call({
     Object? pageState = null,
     Object? command = freezed,
+    Object? profileData = freezed,
   }) {
     return _then(_value.copyWith(
       pageState: null == pageState
@@ -473,6 +476,10 @@ class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState>
           ? _value.command
           : command // ignore: cast_nullable_to_non_nullable
               as PageCommand?,
+      profileData: freezed == profileData
+          ? _value.profileData
+          : profileData // ignore: cast_nullable_to_non_nullable
+              as ProfileData?,
     ) as $Val);
   }
 
@@ -497,7 +504,8 @@ abstract class _$$_ProfileStateCopyWith<$Res>
       __$$_ProfileStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({PageState pageState, PageCommand? command});
+  $Res call(
+      {PageState pageState, PageCommand? command, ProfileData? profileData});
 
   @override
   $PageCommandCopyWith<$Res>? get command;
@@ -516,6 +524,7 @@ class __$$_ProfileStateCopyWithImpl<$Res>
   $Res call({
     Object? pageState = null,
     Object? command = freezed,
+    Object? profileData = freezed,
   }) {
     return _then(_$_ProfileState(
       pageState: null == pageState
@@ -526,6 +535,10 @@ class __$$_ProfileStateCopyWithImpl<$Res>
           ? _value.command
           : command // ignore: cast_nullable_to_non_nullable
               as PageCommand?,
+      profileData: freezed == profileData
+          ? _value.profileData
+          : profileData // ignore: cast_nullable_to_non_nullable
+              as ProfileData?,
     ));
   }
 }
@@ -533,7 +546,8 @@ class __$$_ProfileStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_ProfileState extends _ProfileState {
-  const _$_ProfileState({this.pageState = PageState.initial, this.command})
+  const _$_ProfileState(
+      {this.pageState = PageState.initial, this.command, this.profileData})
       : super._();
 
   @override
@@ -541,10 +555,12 @@ class _$_ProfileState extends _ProfileState {
   final PageState pageState;
   @override
   final PageCommand? command;
+  @override
+  final ProfileData? profileData;
 
   @override
   String toString() {
-    return 'ProfileState(pageState: $pageState, command: $command)';
+    return 'ProfileState(pageState: $pageState, command: $command, profileData: $profileData)';
   }
 
   @override
@@ -554,11 +570,13 @@ class _$_ProfileState extends _ProfileState {
             other is _$_ProfileState &&
             (identical(other.pageState, pageState) ||
                 other.pageState == pageState) &&
-            (identical(other.command, command) || other.command == command));
+            (identical(other.command, command) || other.command == command) &&
+            (identical(other.profileData, profileData) ||
+                other.profileData == profileData));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, pageState, command);
+  int get hashCode => Object.hash(runtimeType, pageState, command, profileData);
 
   @JsonKey(ignore: true)
   @override
@@ -570,13 +588,16 @@ class _$_ProfileState extends _ProfileState {
 abstract class _ProfileState extends ProfileState {
   const factory _ProfileState(
       {final PageState pageState,
-      final PageCommand? command}) = _$_ProfileState;
+      final PageCommand? command,
+      final ProfileData? profileData}) = _$_ProfileState;
   const _ProfileState._() : super._();
 
   @override
   PageState get pageState;
   @override
   PageCommand? get command;
+  @override
+  ProfileData? get profileData;
   @override
   @JsonKey(ignore: true)
   _$$_ProfileStateCopyWith<_$_ProfileState> get copyWith =>
