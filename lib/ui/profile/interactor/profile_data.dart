@@ -3,8 +3,8 @@ class ProfileData {
   final String name;
   final String account;
   final String? bio;
-  final String? bitCoinAddress;
-  final EosAccountData? eosAccountData;
+  final CryptoAccountData? bitCoinData;
+  final CryptoAccountData? eosData;
   final List<OrganizationData> organizations;
 
   ProfileData({
@@ -12,17 +12,26 @@ class ProfileData {
     required this.name,
     required this.account,
     this.bio,
-    this.bitCoinAddress,
-    this.eosAccountData,
+    this.bitCoinData,
+    this.eosData,
     required this.organizations,
   });
 }
 
-class EosAccountData {
-  final String eosAddress;
-  final String eosName;
+class CryptoAccountData {
+  final String cryptoName;
+  final String accountAddress;
+  final String? accountName;
+  final String imageUrl;
+  final bool isSelected;
 
-  EosAccountData({required this.eosAddress, required this.eosName});
+  CryptoAccountData({
+    required this.accountAddress,
+    this.accountName,
+    required this.imageUrl,
+    required this.cryptoName,
+    required this.isSelected,
+  });
 }
 
 class OrganizationData {
