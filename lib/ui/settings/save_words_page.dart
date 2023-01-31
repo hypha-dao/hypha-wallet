@@ -1,10 +1,10 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:hypha_wallet/design/buttons/button_type.dart';
 import 'package:hypha_wallet/design/buttons/hypha_app_button.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
-import 'package:hypha_wallet/design/secret_phrase/hypha_secret_phrase.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 import 'package:hypha_wallet/ui/blocs/authentication/authentication_bloc.dart';
 import 'package:hypha_wallet/ui/settings/words_info_page.dart';
@@ -43,7 +43,7 @@ class SaveWordsPage extends StatelessWidget {
           ],
         ),
         bottomNavigationBar: Padding(
-          padding: const EdgeInsets.only(left: 22, right: 22, bottom: 32),
+          padding: const EdgeInsets.only(left: 45, right: 45, bottom: 32),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -68,12 +68,44 @@ class SaveWordsPage extends StatelessWidget {
               padding: const EdgeInsets.all(22),
               children: [
                 Text(
-                  'Write down your secret words in the correct order, on paper.',
+                  'Write down your 12 secret words in the correct order',
                   textAlign: TextAlign.center,
                   style: context.hyphaTextTheme.regular.copyWith(color: HyphaColors.primaryBlu),
                 ),
-                const SizedBox(height: 16),
-                HyphaSecretPhrase(words: words.asMap()),
+                const SizedBox(height: 24),
+                Wrap(
+                  children: words.mapIndexed((index, word) {
+                    return Card(
+                      margin: const EdgeInsets.all(8),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      color: context.isDarkTheme ? HyphaColors.lightBlack : HyphaColors.white,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 10, right: 10, top: 7, bottom: 7),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              (index + 1).toString(),
+                              style: context.hyphaTextTheme.regular.copyWith(
+                                color: HyphaColors.primaryBlu,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                            Text(
+                              '  $word',
+                              style: context.hyphaTextTheme.regular,
+                              textAlign: TextAlign.center,
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  }).toList(),
+                ),
                 const SizedBox(height: 16),
               ],
             );

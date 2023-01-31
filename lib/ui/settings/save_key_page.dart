@@ -41,7 +41,7 @@ class SaveKeyPage extends StatelessWidget {
           ],
         ),
         bottomNavigationBar: Padding(
-          padding: const EdgeInsets.only(left: 22, right: 22, bottom: 32),
+          padding: const EdgeInsets.only(left: 45, right: 45, bottom: 32),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [

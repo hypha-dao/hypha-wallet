@@ -60,24 +60,29 @@ class SettingsPage extends StatelessWidget {
                       );
                     },
                   ),
-                  const SizedBox(height: 16),
                   BlocBuilder<AuthenticationBloc, AuthenticationState>(
                     builder: (context, state) {
                       if (state.userAuthData?.words.isEmpty == true) {
                         return const SizedBox.shrink();
                       } else {
-                        return HyphaActionableCard(
-                          icon: const Icon(HyphaIcons.shield),
-                          title: 'Backup 12 words',
-                          subtitle:
-                              'The 12 secret words (and the private key) are the only way to retrieve your hypha account and funds',
-                          onTap: () {
-                            Get.to(() => SaveWordsPage(state.userAuthData!.words));
-                          },
+                        return Column(
+                          children: [
+                            const SizedBox(height: 16),
+                            HyphaActionableCard(
+                              icon: const Icon(HyphaIcons.shield),
+                              title: 'Backup 12 words',
+                              subtitle:
+                                  'The 12 secret words (and the private key) are the only way to retrieve your hypha account and funds',
+                              onTap: () {
+                                Get.to(() => SaveWordsPage(state.userAuthData!.words));
+                              },
+                            ),
+                          ],
                         );
                       }
                     },
                   ),
+                  const SizedBox(height: 16),
                   Card(
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                     color: context.isDarkMode ? HyphaColors.lightBlack : HyphaColors.white,
