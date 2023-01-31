@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hypha_wallet/core/extension/scope_functions.dart';
 import 'package:hypha_wallet/design/avatar_image/hypha_editable_avatar_image.dart';
 import 'package:hypha_wallet/design/background/hypha_half_background.dart';
 import 'package:hypha_wallet/design/background/hypha_page_background.dart';
@@ -59,31 +58,28 @@ class ProfileView extends StatelessWidget {
                           subtitle: state.profileData?.bio ?? '',
                         ),
                         const SizedBox(height: 16),
-                        state.profileData?.eosData?.let(
-                              (it) => CryptoCurrencyWidget(
-                                imageUrl: it.imageUrl,
-                                name: it.cryptoName,
-                                address: it.accountAddress,
-                                subAddress: it.accountName,
-                                selected: it.isSelected,
-                                onTap: () {},
-                                onChanged: (value) {},
-                              ),
-                            ) ??
-                            const SizedBox.shrink(),
-                        const SizedBox(height: 16),
-                        state.profileData?.bitCoinData?.let(
-                              (it) => CryptoCurrencyWidget(
-                                imageUrl: it.imageUrl,
-                                name: it.cryptoName,
-                                address: it.accountAddress,
-                                subAddress: it.accountName,
-                                selected: it.isSelected,
-                                onTap: () {},
-                                onChanged: (value) {},
-                              ),
-                            ) ??
-                            const SizedBox.shrink(),
+                        if (state.profileData?.eosData != null)
+                          CryptoCurrencyWidget(
+                            imageUrl: state.profileData!.eosData!.imageUrl,
+                            name: state.profileData!.eosData!.cryptoName,
+                            address: state.profileData!.eosData!.accountAddress,
+                            subAddress: state.profileData!.eosData!.accountName,
+                            selected: state.profileData!.eosData!.isSelected,
+                            onTap: () {},
+                            onChanged: (value) {},
+                          ),
+                        if (state.profileData?.bitCoinData != null) ...[
+                          const SizedBox(height: 16),
+                          CryptoCurrencyWidget(
+                            imageUrl: state.profileData!.bitCoinData!.imageUrl,
+                            name: state.profileData!.bitCoinData!.cryptoName,
+                            address: state.profileData!.bitCoinData!.accountAddress,
+                            subAddress: state.profileData!.bitCoinData!.accountName,
+                            selected: state.profileData!.bitCoinData!.isSelected,
+                            onTap: () {},
+                            onChanged: (value) {},
+                          ),
+                        ]
                       ],
                     ),
                   ),
