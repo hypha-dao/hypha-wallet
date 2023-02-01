@@ -6,6 +6,7 @@ class SettingsState with _$SettingsState {
     @Default(PageState.initial) PageState pageState,
     @Default(ThemeMode.dark) ThemeMode themeMode,
     @Default(true) bool showSecurityNotification,
+    @Default(false) bool hasWords,
     PageCommand? command,
   }) = _SettingsState;
 }

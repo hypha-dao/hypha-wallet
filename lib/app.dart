@@ -12,7 +12,10 @@ import 'package:hypha_wallet/ui/blocs/error_handler/error_handler_bloc.dart';
 import 'package:hypha_wallet/ui/bottom_navigation/hypha_bottom_navigation.dart';
 import 'package:hypha_wallet/ui/onboarding/onboarding_page.dart';
 import 'package:hypha_wallet/ui/onboarding/onboarding_page_with_link.dart';
+import 'package:hypha_wallet/ui/settings/hypha_confirmation_page.dart';
 import 'package:hypha_wallet/ui/settings/interactor/settings_bloc.dart';
+import 'package:hypha_wallet/ui/settings/save_key_page.dart';
+import 'package:hypha_wallet/ui/settings/save_words_page.dart';
 
 class HyphaApp extends StatelessWidget {
   const HyphaApp({super.key});
@@ -63,6 +66,49 @@ class HyphaAppView extends StatelessWidget {
             state.command?.when(navigateToCreateAccount: () => Get.offAll(() => const OnboardingPageWithLink()));
 
             context.read<DeeplinkBloc>().add(const DeeplinkEvent.clearPageCommand());
+          },
+        ),
+
+        BlocListener<SettingsBloc, SettingsState>(
+          listenWhen: (previous, current) => current.command != null,
+          listener: (context, state) {
+            state.command?.whenOrNull(showSecurityPopup: (
+              title,
+              subtitle,
+              rationale,
+              mainButtonText,
+              image,
+              words,
+              privateKey,
+            ) async {
+              Get.bottomSheet(
+                FractionallySizedBox(
+                  heightFactor: 0.87,
+                  child: HyphaConfirmationPage(
+                    title: title,
+                    subtitle: subtitle,
+                    image: image,
+                    rationale: rationale,
+                    primaryButtonCallback: () {
+                      Get.off(state.hasWords ? SaveWordsPage(words) : SaveKeyPage(privateKey));
+                    },
+                    primaryButtonText: mainButtonText,
+                    secondaryButtonText: 'Close',
+                    secondaryButtonCallback: () {
+                      Get.back();
+                    },
+                  ),
+                ),
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
+                ),
+                enableDrag: true,
+                clipBehavior: Clip.antiAliasWithSaveLayer,
+                isScrollControlled: true,
+              );
+
+              context.read<SettingsBloc>().add(const SettingsEvent.clearPageCommand());
+            });
           },
         ),
 

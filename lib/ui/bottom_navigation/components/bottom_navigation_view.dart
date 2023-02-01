@@ -22,6 +22,9 @@ class BottomNavigationView extends StatelessWidget {
               currentIndex: state.selectedPage,
               onTap: (int index) {
                 BlocProvider.of<BottomNavigationBloc>(context).add(BottomNavigationEvent.onPageSelected(index));
+                if (index == 3) {
+                  BlocProvider.of<SettingsBloc>(context).add(const SettingsEvent.onShowSettings());
+                }
               },
               items: [
                 const BottomNavigationBarItem(icon: Icon(Icons.qr_code_scanner, size: iconSize), label: 'Scan QR'),

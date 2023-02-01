@@ -16,37 +16,72 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$PageCommand {
+  String get title => throw _privateConstructorUsedError;
+  String get subtitle => throw _privateConstructorUsedError;
+  String get rationale => throw _privateConstructorUsedError;
+  String get mainButtonText => throw _privateConstructorUsedError;
+  String get image => throw _privateConstructorUsedError;
+  List<String> get words => throw _privateConstructorUsedError;
+  String get privateKey => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() navigateTo,
+    required TResult Function(
+            String title,
+            String subtitle,
+            String rationale,
+            String mainButtonText,
+            String image,
+            List<String> words,
+            String privateKey)
+        showSecurityPopup,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? navigateTo,
+    TResult? Function(
+            String title,
+            String subtitle,
+            String rationale,
+            String mainButtonText,
+            String image,
+            List<String> words,
+            String privateKey)?
+        showSecurityPopup,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? navigateTo,
+    TResult Function(
+            String title,
+            String subtitle,
+            String rationale,
+            String mainButtonText,
+            String image,
+            List<String> words,
+            String privateKey)?
+        showSecurityPopup,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_NavigateTo value) navigateTo,
+    required TResult Function(_ShowSecurityPopup value) showSecurityPopup,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_NavigateTo value)? navigateTo,
+    TResult? Function(_ShowSecurityPopup value)? showSecurityPopup,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_NavigateTo value)? navigateTo,
+    TResult Function(_ShowSecurityPopup value)? showSecurityPopup,
     required TResult orElse(),
   }) =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $PageCommandCopyWith<PageCommand> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -55,6 +90,15 @@ abstract class $PageCommandCopyWith<$Res> {
   factory $PageCommandCopyWith(
           PageCommand value, $Res Function(PageCommand) then) =
       _$PageCommandCopyWithImpl<$Res, PageCommand>;
+  @useResult
+  $Res call(
+      {String title,
+      String subtitle,
+      String rationale,
+      String mainButtonText,
+      String image,
+      List<String> words,
+      String privateKey});
 }
 
 /// @nodoc
@@ -66,67 +110,247 @@ class _$PageCommandCopyWithImpl<$Res, $Val extends PageCommand>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? title = null,
+    Object? subtitle = null,
+    Object? rationale = null,
+    Object? mainButtonText = null,
+    Object? image = null,
+    Object? words = null,
+    Object? privateKey = null,
+  }) {
+    return _then(_value.copyWith(
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      subtitle: null == subtitle
+          ? _value.subtitle
+          : subtitle // ignore: cast_nullable_to_non_nullable
+              as String,
+      rationale: null == rationale
+          ? _value.rationale
+          : rationale // ignore: cast_nullable_to_non_nullable
+              as String,
+      mainButtonText: null == mainButtonText
+          ? _value.mainButtonText
+          : mainButtonText // ignore: cast_nullable_to_non_nullable
+              as String,
+      image: null == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String,
+      words: null == words
+          ? _value.words
+          : words // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      privateKey: null == privateKey
+          ? _value.privateKey
+          : privateKey // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$_NavigateToCopyWith<$Res> {
-  factory _$$_NavigateToCopyWith(
-          _$_NavigateTo value, $Res Function(_$_NavigateTo) then) =
-      __$$_NavigateToCopyWithImpl<$Res>;
+abstract class _$$_ShowSecurityPopupCopyWith<$Res>
+    implements $PageCommandCopyWith<$Res> {
+  factory _$$_ShowSecurityPopupCopyWith(_$_ShowSecurityPopup value,
+          $Res Function(_$_ShowSecurityPopup) then) =
+      __$$_ShowSecurityPopupCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String title,
+      String subtitle,
+      String rationale,
+      String mainButtonText,
+      String image,
+      List<String> words,
+      String privateKey});
 }
 
 /// @nodoc
-class __$$_NavigateToCopyWithImpl<$Res>
-    extends _$PageCommandCopyWithImpl<$Res, _$_NavigateTo>
-    implements _$$_NavigateToCopyWith<$Res> {
-  __$$_NavigateToCopyWithImpl(
-      _$_NavigateTo _value, $Res Function(_$_NavigateTo) _then)
+class __$$_ShowSecurityPopupCopyWithImpl<$Res>
+    extends _$PageCommandCopyWithImpl<$Res, _$_ShowSecurityPopup>
+    implements _$$_ShowSecurityPopupCopyWith<$Res> {
+  __$$_ShowSecurityPopupCopyWithImpl(
+      _$_ShowSecurityPopup _value, $Res Function(_$_ShowSecurityPopup) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? title = null,
+    Object? subtitle = null,
+    Object? rationale = null,
+    Object? mainButtonText = null,
+    Object? image = null,
+    Object? words = null,
+    Object? privateKey = null,
+  }) {
+    return _then(_$_ShowSecurityPopup(
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      subtitle: null == subtitle
+          ? _value.subtitle
+          : subtitle // ignore: cast_nullable_to_non_nullable
+              as String,
+      rationale: null == rationale
+          ? _value.rationale
+          : rationale // ignore: cast_nullable_to_non_nullable
+              as String,
+      mainButtonText: null == mainButtonText
+          ? _value.mainButtonText
+          : mainButtonText // ignore: cast_nullable_to_non_nullable
+              as String,
+      image: null == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String,
+      words: null == words
+          ? _value._words
+          : words // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      privateKey: null == privateKey
+          ? _value.privateKey
+          : privateKey // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$_NavigateTo implements _NavigateTo {
-  const _$_NavigateTo();
+class _$_ShowSecurityPopup implements _ShowSecurityPopup {
+  const _$_ShowSecurityPopup(
+      {required this.title,
+      required this.subtitle,
+      required this.rationale,
+      required this.mainButtonText,
+      required this.image,
+      required final List<String> words,
+      required this.privateKey})
+      : _words = words;
+
+  @override
+  final String title;
+  @override
+  final String subtitle;
+  @override
+  final String rationale;
+  @override
+  final String mainButtonText;
+  @override
+  final String image;
+  final List<String> _words;
+  @override
+  List<String> get words {
+    if (_words is EqualUnmodifiableListView) return _words;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_words);
+  }
+
+  @override
+  final String privateKey;
 
   @override
   String toString() {
-    return 'PageCommand.navigateTo()';
+    return 'PageCommand.showSecurityPopup(title: $title, subtitle: $subtitle, rationale: $rationale, mainButtonText: $mainButtonText, image: $image, words: $words, privateKey: $privateKey)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_NavigateTo);
+        (other.runtimeType == runtimeType &&
+            other is _$_ShowSecurityPopup &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.subtitle, subtitle) ||
+                other.subtitle == subtitle) &&
+            (identical(other.rationale, rationale) ||
+                other.rationale == rationale) &&
+            (identical(other.mainButtonText, mainButtonText) ||
+                other.mainButtonText == mainButtonText) &&
+            (identical(other.image, image) || other.image == image) &&
+            const DeepCollectionEquality().equals(other._words, _words) &&
+            (identical(other.privateKey, privateKey) ||
+                other.privateKey == privateKey));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(
+      runtimeType,
+      title,
+      subtitle,
+      rationale,
+      mainButtonText,
+      image,
+      const DeepCollectionEquality().hash(_words),
+      privateKey);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_ShowSecurityPopupCopyWith<_$_ShowSecurityPopup> get copyWith =>
+      __$$_ShowSecurityPopupCopyWithImpl<_$_ShowSecurityPopup>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() navigateTo,
+    required TResult Function(
+            String title,
+            String subtitle,
+            String rationale,
+            String mainButtonText,
+            String image,
+            List<String> words,
+            String privateKey)
+        showSecurityPopup,
   }) {
-    return navigateTo();
+    return showSecurityPopup(
+        title, subtitle, rationale, mainButtonText, image, words, privateKey);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? navigateTo,
+    TResult? Function(
+            String title,
+            String subtitle,
+            String rationale,
+            String mainButtonText,
+            String image,
+            List<String> words,
+            String privateKey)?
+        showSecurityPopup,
   }) {
-    return navigateTo?.call();
+    return showSecurityPopup?.call(
+        title, subtitle, rationale, mainButtonText, image, words, privateKey);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? navigateTo,
+    TResult Function(
+            String title,
+            String subtitle,
+            String rationale,
+            String mainButtonText,
+            String image,
+            List<String> words,
+            String privateKey)?
+        showSecurityPopup,
     required TResult orElse(),
   }) {
-    if (navigateTo != null) {
-      return navigateTo();
+    if (showSecurityPopup != null) {
+      return showSecurityPopup(
+          title, subtitle, rationale, mainButtonText, image, words, privateKey);
     }
     return orElse();
   }
@@ -134,34 +358,60 @@ class _$_NavigateTo implements _NavigateTo {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_NavigateTo value) navigateTo,
+    required TResult Function(_ShowSecurityPopup value) showSecurityPopup,
   }) {
-    return navigateTo(this);
+    return showSecurityPopup(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_NavigateTo value)? navigateTo,
+    TResult? Function(_ShowSecurityPopup value)? showSecurityPopup,
   }) {
-    return navigateTo?.call(this);
+    return showSecurityPopup?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_NavigateTo value)? navigateTo,
+    TResult Function(_ShowSecurityPopup value)? showSecurityPopup,
     required TResult orElse(),
   }) {
-    if (navigateTo != null) {
-      return navigateTo(this);
+    if (showSecurityPopup != null) {
+      return showSecurityPopup(this);
     }
     return orElse();
   }
 }
 
-abstract class _NavigateTo implements PageCommand {
-  const factory _NavigateTo() = _$_NavigateTo;
+abstract class _ShowSecurityPopup implements PageCommand {
+  const factory _ShowSecurityPopup(
+      {required final String title,
+      required final String subtitle,
+      required final String rationale,
+      required final String mainButtonText,
+      required final String image,
+      required final List<String> words,
+      required final String privateKey}) = _$_ShowSecurityPopup;
+
+  @override
+  String get title;
+  @override
+  String get subtitle;
+  @override
+  String get rationale;
+  @override
+  String get mainButtonText;
+  @override
+  String get image;
+  @override
+  List<String> get words;
+  @override
+  String get privateKey;
+  @override
+  @JsonKey(ignore: true)
+  _$$_ShowSecurityPopupCopyWith<_$_ShowSecurityPopup> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -172,6 +422,7 @@ mixin _$SettingsEvent {
     required TResult Function() onThemeChanged,
     required TResult Function() clearPageCommand,
     required TResult Function() onSecureAccountTapped,
+    required TResult Function() onShowSettings,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -180,6 +431,7 @@ mixin _$SettingsEvent {
     TResult? Function()? onThemeChanged,
     TResult? Function()? clearPageCommand,
     TResult? Function()? onSecureAccountTapped,
+    TResult? Function()? onShowSettings,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -188,6 +440,7 @@ mixin _$SettingsEvent {
     TResult Function()? onThemeChanged,
     TResult Function()? clearPageCommand,
     TResult Function()? onSecureAccountTapped,
+    TResult Function()? onShowSettings,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -198,6 +451,7 @@ mixin _$SettingsEvent {
     required TResult Function(_ClearPageCommand value) clearPageCommand,
     required TResult Function(_OnSecureAccountTapped value)
         onSecureAccountTapped,
+    required TResult Function(_OnShowSettings value) onShowSettings,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -206,6 +460,7 @@ mixin _$SettingsEvent {
     TResult? Function(_OnThemeChanged value)? onThemeChanged,
     TResult? Function(_ClearPageCommand value)? clearPageCommand,
     TResult? Function(_OnSecureAccountTapped value)? onSecureAccountTapped,
+    TResult? Function(_OnShowSettings value)? onShowSettings,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -214,6 +469,7 @@ mixin _$SettingsEvent {
     TResult Function(_OnThemeChanged value)? onThemeChanged,
     TResult Function(_ClearPageCommand value)? clearPageCommand,
     TResult Function(_OnSecureAccountTapped value)? onSecureAccountTapped,
+    TResult Function(_OnShowSettings value)? onShowSettings,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -278,6 +534,7 @@ class _$_Initial implements _Initial {
     required TResult Function() onThemeChanged,
     required TResult Function() clearPageCommand,
     required TResult Function() onSecureAccountTapped,
+    required TResult Function() onShowSettings,
   }) {
     return initial();
   }
@@ -289,6 +546,7 @@ class _$_Initial implements _Initial {
     TResult? Function()? onThemeChanged,
     TResult? Function()? clearPageCommand,
     TResult? Function()? onSecureAccountTapped,
+    TResult? Function()? onShowSettings,
   }) {
     return initial?.call();
   }
@@ -300,6 +558,7 @@ class _$_Initial implements _Initial {
     TResult Function()? onThemeChanged,
     TResult Function()? clearPageCommand,
     TResult Function()? onSecureAccountTapped,
+    TResult Function()? onShowSettings,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -316,6 +575,7 @@ class _$_Initial implements _Initial {
     required TResult Function(_ClearPageCommand value) clearPageCommand,
     required TResult Function(_OnSecureAccountTapped value)
         onSecureAccountTapped,
+    required TResult Function(_OnShowSettings value) onShowSettings,
   }) {
     return initial(this);
   }
@@ -327,6 +587,7 @@ class _$_Initial implements _Initial {
     TResult? Function(_OnThemeChanged value)? onThemeChanged,
     TResult? Function(_ClearPageCommand value)? clearPageCommand,
     TResult? Function(_OnSecureAccountTapped value)? onSecureAccountTapped,
+    TResult? Function(_OnShowSettings value)? onShowSettings,
   }) {
     return initial?.call(this);
   }
@@ -338,6 +599,7 @@ class _$_Initial implements _Initial {
     TResult Function(_OnThemeChanged value)? onThemeChanged,
     TResult Function(_ClearPageCommand value)? clearPageCommand,
     TResult Function(_OnSecureAccountTapped value)? onSecureAccountTapped,
+    TResult Function(_OnShowSettings value)? onShowSettings,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -393,6 +655,7 @@ class _$_OnThemeChanged implements _OnThemeChanged {
     required TResult Function() onThemeChanged,
     required TResult Function() clearPageCommand,
     required TResult Function() onSecureAccountTapped,
+    required TResult Function() onShowSettings,
   }) {
     return onThemeChanged();
   }
@@ -404,6 +667,7 @@ class _$_OnThemeChanged implements _OnThemeChanged {
     TResult? Function()? onThemeChanged,
     TResult? Function()? clearPageCommand,
     TResult? Function()? onSecureAccountTapped,
+    TResult? Function()? onShowSettings,
   }) {
     return onThemeChanged?.call();
   }
@@ -415,6 +679,7 @@ class _$_OnThemeChanged implements _OnThemeChanged {
     TResult Function()? onThemeChanged,
     TResult Function()? clearPageCommand,
     TResult Function()? onSecureAccountTapped,
+    TResult Function()? onShowSettings,
     required TResult orElse(),
   }) {
     if (onThemeChanged != null) {
@@ -431,6 +696,7 @@ class _$_OnThemeChanged implements _OnThemeChanged {
     required TResult Function(_ClearPageCommand value) clearPageCommand,
     required TResult Function(_OnSecureAccountTapped value)
         onSecureAccountTapped,
+    required TResult Function(_OnShowSettings value) onShowSettings,
   }) {
     return onThemeChanged(this);
   }
@@ -442,6 +708,7 @@ class _$_OnThemeChanged implements _OnThemeChanged {
     TResult? Function(_OnThemeChanged value)? onThemeChanged,
     TResult? Function(_ClearPageCommand value)? clearPageCommand,
     TResult? Function(_OnSecureAccountTapped value)? onSecureAccountTapped,
+    TResult? Function(_OnShowSettings value)? onShowSettings,
   }) {
     return onThemeChanged?.call(this);
   }
@@ -453,6 +720,7 @@ class _$_OnThemeChanged implements _OnThemeChanged {
     TResult Function(_OnThemeChanged value)? onThemeChanged,
     TResult Function(_ClearPageCommand value)? clearPageCommand,
     TResult Function(_OnSecureAccountTapped value)? onSecureAccountTapped,
+    TResult Function(_OnShowSettings value)? onShowSettings,
     required TResult orElse(),
   }) {
     if (onThemeChanged != null) {
@@ -508,6 +776,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     required TResult Function() onThemeChanged,
     required TResult Function() clearPageCommand,
     required TResult Function() onSecureAccountTapped,
+    required TResult Function() onShowSettings,
   }) {
     return clearPageCommand();
   }
@@ -519,6 +788,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     TResult? Function()? onThemeChanged,
     TResult? Function()? clearPageCommand,
     TResult? Function()? onSecureAccountTapped,
+    TResult? Function()? onShowSettings,
   }) {
     return clearPageCommand?.call();
   }
@@ -530,6 +800,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     TResult Function()? onThemeChanged,
     TResult Function()? clearPageCommand,
     TResult Function()? onSecureAccountTapped,
+    TResult Function()? onShowSettings,
     required TResult orElse(),
   }) {
     if (clearPageCommand != null) {
@@ -546,6 +817,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     required TResult Function(_ClearPageCommand value) clearPageCommand,
     required TResult Function(_OnSecureAccountTapped value)
         onSecureAccountTapped,
+    required TResult Function(_OnShowSettings value) onShowSettings,
   }) {
     return clearPageCommand(this);
   }
@@ -557,6 +829,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     TResult? Function(_OnThemeChanged value)? onThemeChanged,
     TResult? Function(_ClearPageCommand value)? clearPageCommand,
     TResult? Function(_OnSecureAccountTapped value)? onSecureAccountTapped,
+    TResult? Function(_OnShowSettings value)? onShowSettings,
   }) {
     return clearPageCommand?.call(this);
   }
@@ -568,6 +841,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     TResult Function(_OnThemeChanged value)? onThemeChanged,
     TResult Function(_ClearPageCommand value)? clearPageCommand,
     TResult Function(_OnSecureAccountTapped value)? onSecureAccountTapped,
+    TResult Function(_OnShowSettings value)? onShowSettings,
     required TResult orElse(),
   }) {
     if (clearPageCommand != null) {
@@ -623,6 +897,7 @@ class _$_OnSecureAccountTapped implements _OnSecureAccountTapped {
     required TResult Function() onThemeChanged,
     required TResult Function() clearPageCommand,
     required TResult Function() onSecureAccountTapped,
+    required TResult Function() onShowSettings,
   }) {
     return onSecureAccountTapped();
   }
@@ -634,6 +909,7 @@ class _$_OnSecureAccountTapped implements _OnSecureAccountTapped {
     TResult? Function()? onThemeChanged,
     TResult? Function()? clearPageCommand,
     TResult? Function()? onSecureAccountTapped,
+    TResult? Function()? onShowSettings,
   }) {
     return onSecureAccountTapped?.call();
   }
@@ -645,6 +921,7 @@ class _$_OnSecureAccountTapped implements _OnSecureAccountTapped {
     TResult Function()? onThemeChanged,
     TResult Function()? clearPageCommand,
     TResult Function()? onSecureAccountTapped,
+    TResult Function()? onShowSettings,
     required TResult orElse(),
   }) {
     if (onSecureAccountTapped != null) {
@@ -661,6 +938,7 @@ class _$_OnSecureAccountTapped implements _OnSecureAccountTapped {
     required TResult Function(_ClearPageCommand value) clearPageCommand,
     required TResult Function(_OnSecureAccountTapped value)
         onSecureAccountTapped,
+    required TResult Function(_OnShowSettings value) onShowSettings,
   }) {
     return onSecureAccountTapped(this);
   }
@@ -672,6 +950,7 @@ class _$_OnSecureAccountTapped implements _OnSecureAccountTapped {
     TResult? Function(_OnThemeChanged value)? onThemeChanged,
     TResult? Function(_ClearPageCommand value)? clearPageCommand,
     TResult? Function(_OnSecureAccountTapped value)? onSecureAccountTapped,
+    TResult? Function(_OnShowSettings value)? onShowSettings,
   }) {
     return onSecureAccountTapped?.call(this);
   }
@@ -683,6 +962,7 @@ class _$_OnSecureAccountTapped implements _OnSecureAccountTapped {
     TResult Function(_OnThemeChanged value)? onThemeChanged,
     TResult Function(_ClearPageCommand value)? clearPageCommand,
     TResult Function(_OnSecureAccountTapped value)? onSecureAccountTapped,
+    TResult Function(_OnShowSettings value)? onShowSettings,
     required TResult orElse(),
   }) {
     if (onSecureAccountTapped != null) {
@@ -697,10 +977,132 @@ abstract class _OnSecureAccountTapped implements SettingsEvent {
 }
 
 /// @nodoc
+abstract class _$$_OnShowSettingsCopyWith<$Res> {
+  factory _$$_OnShowSettingsCopyWith(
+          _$_OnShowSettings value, $Res Function(_$_OnShowSettings) then) =
+      __$$_OnShowSettingsCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_OnShowSettingsCopyWithImpl<$Res>
+    extends _$SettingsEventCopyWithImpl<$Res, _$_OnShowSettings>
+    implements _$$_OnShowSettingsCopyWith<$Res> {
+  __$$_OnShowSettingsCopyWithImpl(
+      _$_OnShowSettings _value, $Res Function(_$_OnShowSettings) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_OnShowSettings implements _OnShowSettings {
+  const _$_OnShowSettings();
+
+  @override
+  String toString() {
+    return 'SettingsEvent.onShowSettings()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_OnShowSettings);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() onThemeChanged,
+    required TResult Function() clearPageCommand,
+    required TResult Function() onSecureAccountTapped,
+    required TResult Function() onShowSettings,
+  }) {
+    return onShowSettings();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? onThemeChanged,
+    TResult? Function()? clearPageCommand,
+    TResult? Function()? onSecureAccountTapped,
+    TResult? Function()? onShowSettings,
+  }) {
+    return onShowSettings?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? onThemeChanged,
+    TResult Function()? clearPageCommand,
+    TResult Function()? onSecureAccountTapped,
+    TResult Function()? onShowSettings,
+    required TResult orElse(),
+  }) {
+    if (onShowSettings != null) {
+      return onShowSettings();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_OnThemeChanged value) onThemeChanged,
+    required TResult Function(_ClearPageCommand value) clearPageCommand,
+    required TResult Function(_OnSecureAccountTapped value)
+        onSecureAccountTapped,
+    required TResult Function(_OnShowSettings value) onShowSettings,
+  }) {
+    return onShowSettings(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_OnThemeChanged value)? onThemeChanged,
+    TResult? Function(_ClearPageCommand value)? clearPageCommand,
+    TResult? Function(_OnSecureAccountTapped value)? onSecureAccountTapped,
+    TResult? Function(_OnShowSettings value)? onShowSettings,
+  }) {
+    return onShowSettings?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_OnThemeChanged value)? onThemeChanged,
+    TResult Function(_ClearPageCommand value)? clearPageCommand,
+    TResult Function(_OnSecureAccountTapped value)? onSecureAccountTapped,
+    TResult Function(_OnShowSettings value)? onShowSettings,
+    required TResult orElse(),
+  }) {
+    if (onShowSettings != null) {
+      return onShowSettings(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _OnShowSettings implements SettingsEvent {
+  const factory _OnShowSettings() = _$_OnShowSettings;
+}
+
+/// @nodoc
 mixin _$SettingsState {
   PageState get pageState => throw _privateConstructorUsedError;
   ThemeMode get themeMode => throw _privateConstructorUsedError;
   bool get showSecurityNotification => throw _privateConstructorUsedError;
+  bool get hasWords => throw _privateConstructorUsedError;
   PageCommand? get command => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -718,6 +1120,7 @@ abstract class $SettingsStateCopyWith<$Res> {
       {PageState pageState,
       ThemeMode themeMode,
       bool showSecurityNotification,
+      bool hasWords,
       PageCommand? command});
 
   $PageCommandCopyWith<$Res>? get command;
@@ -739,6 +1142,7 @@ class _$SettingsStateCopyWithImpl<$Res, $Val extends SettingsState>
     Object? pageState = null,
     Object? themeMode = null,
     Object? showSecurityNotification = null,
+    Object? hasWords = null,
     Object? command = freezed,
   }) {
     return _then(_value.copyWith(
@@ -753,6 +1157,10 @@ class _$SettingsStateCopyWithImpl<$Res, $Val extends SettingsState>
       showSecurityNotification: null == showSecurityNotification
           ? _value.showSecurityNotification
           : showSecurityNotification // ignore: cast_nullable_to_non_nullable
+              as bool,
+      hasWords: null == hasWords
+          ? _value.hasWords
+          : hasWords // ignore: cast_nullable_to_non_nullable
               as bool,
       command: freezed == command
           ? _value.command
@@ -786,6 +1194,7 @@ abstract class _$$_SettingsStateCopyWith<$Res>
       {PageState pageState,
       ThemeMode themeMode,
       bool showSecurityNotification,
+      bool hasWords,
       PageCommand? command});
 
   @override
@@ -806,6 +1215,7 @@ class __$$_SettingsStateCopyWithImpl<$Res>
     Object? pageState = null,
     Object? themeMode = null,
     Object? showSecurityNotification = null,
+    Object? hasWords = null,
     Object? command = freezed,
   }) {
     return _then(_$_SettingsState(
@@ -820,6 +1230,10 @@ class __$$_SettingsStateCopyWithImpl<$Res>
       showSecurityNotification: null == showSecurityNotification
           ? _value.showSecurityNotification
           : showSecurityNotification // ignore: cast_nullable_to_non_nullable
+              as bool,
+      hasWords: null == hasWords
+          ? _value.hasWords
+          : hasWords // ignore: cast_nullable_to_non_nullable
               as bool,
       command: freezed == command
           ? _value.command
@@ -836,6 +1250,7 @@ class _$_SettingsState implements _SettingsState {
       {this.pageState = PageState.initial,
       this.themeMode = ThemeMode.dark,
       this.showSecurityNotification = true,
+      this.hasWords = false,
       this.command});
 
   @override
@@ -848,11 +1263,14 @@ class _$_SettingsState implements _SettingsState {
   @JsonKey()
   final bool showSecurityNotification;
   @override
+  @JsonKey()
+  final bool hasWords;
+  @override
   final PageCommand? command;
 
   @override
   String toString() {
-    return 'SettingsState(pageState: $pageState, themeMode: $themeMode, showSecurityNotification: $showSecurityNotification, command: $command)';
+    return 'SettingsState(pageState: $pageState, themeMode: $themeMode, showSecurityNotification: $showSecurityNotification, hasWords: $hasWords, command: $command)';
   }
 
   @override
@@ -867,12 +1285,14 @@ class _$_SettingsState implements _SettingsState {
             (identical(
                     other.showSecurityNotification, showSecurityNotification) ||
                 other.showSecurityNotification == showSecurityNotification) &&
+            (identical(other.hasWords, hasWords) ||
+                other.hasWords == hasWords) &&
             (identical(other.command, command) || other.command == command));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, pageState, themeMode, showSecurityNotification, command);
+  int get hashCode => Object.hash(runtimeType, pageState, themeMode,
+      showSecurityNotification, hasWords, command);
 
   @JsonKey(ignore: true)
   @override
@@ -886,6 +1306,7 @@ abstract class _SettingsState implements SettingsState {
       {final PageState pageState,
       final ThemeMode themeMode,
       final bool showSecurityNotification,
+      final bool hasWords,
       final PageCommand? command}) = _$_SettingsState;
 
   @override
@@ -894,6 +1315,8 @@ abstract class _SettingsState implements SettingsState {
   ThemeMode get themeMode;
   @override
   bool get showSecurityNotification;
+  @override
+  bool get hasWords;
   @override
   PageCommand? get command;
   @override
