@@ -91,6 +91,7 @@ class HyphaAppView extends StatelessWidget {
                     rationale: rationale,
                     primaryButtonCallback: () {
                       Get.off(state.hasWords ? SaveWordsPage(words) : SaveKeyPage(privateKey));
+                      context.read<SettingsBloc>().add(const SettingsEvent.onSecureAccountTapped());
                     },
                     primaryButtonText: mainButtonText,
                     secondaryButtonText: 'Close',
