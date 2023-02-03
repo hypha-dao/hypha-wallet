@@ -2,6 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:hypha_wallet/design/background/hypha_page_background.dart';
 import 'package:hypha_wallet/design/buttons/button_type.dart';
 import 'package:hypha_wallet/design/buttons/hypha_app_button.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
@@ -17,8 +18,8 @@ class SaveWordsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DecoratedBox(
-      decoration: const BoxDecoration(gradient: HyphaColors.gradientBlack),
+    return HyphaPageBackground(
+      withGradient: true,
       child: Scaffold(
         backgroundColor: HyphaColors.transparent,
         appBar: AppBar(
