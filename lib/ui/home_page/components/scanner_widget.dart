@@ -11,7 +11,9 @@ import 'package:hypha_wallet/design/icons/hypha_icons.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 import 'package:hypha_wallet/ui/blocs/error_handler/error_handler_bloc.dart';
 import 'package:hypha_wallet/ui/home_page/interactor/home_bloc.dart';
+import 'package:hypha_wallet/ui/settings/hypha_confirmation_page.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class ScannerWidget extends StatefulWidget {
   final bool isLoading;
@@ -31,11 +33,43 @@ class _ScannerWidgetState extends State<ScannerWidget> {
     return GestureDetector(
       onTap: isActive
           ? null
-          : () {
-              setState(() {
-                isActive = true;
-                _heightFactor = 0.40;
-              });
+          : () async {
+              final status = await Permission.camera.status;
+              LogHelper.d('GERY ' + status.toString());
+              if (status.isDenied) {
+                final result = await showModalBottomSheet(
+                  isScrollControlled: true,
+                  context: context,
+                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                  builder: (context) => FractionallySizedBox(
+                    heightFactor: 0.87,
+                    child: HyphaConfirmationPage(
+                      title: 'Camera',
+                      subtitle: 'Hypha Wallet would like to access to the phone camera',
+                      rationale:
+                          'Hypha Wallet needs access to the camera in order to use the “Scan QR” function. You can remove this permission anytime, from your device general settings.',
+                      image: 'assets/images/signout.png',
+                      primaryButtonCallback: () {
+                        Get.back(result: true);
+                      },
+                      primaryButtonText: 'Continue',
+                      secondaryButtonText: 'CLOSE',
+                      secondaryButtonCallback: () {
+                        Get.back(result: false);
+                      },
+                    ),
+                  ),
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
+                  ),
+                );
+
+                if (result) {
+                  showScanner();
+                }
+              } else {
+                showScanner();
+              }
             },
       child: ClipRRect(
         borderRadius: BorderRadius.circular(30),
@@ -119,5 +153,12 @@ class _ScannerWidgetState extends State<ScannerWidget> {
         ),
       ),
     );
+  }
+
+  void showScanner() {
+    setState(() {
+      isActive = true;
+      _heightFactor = 0.40;
+    });
   }
 }

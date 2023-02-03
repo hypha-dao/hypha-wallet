@@ -55,7 +55,7 @@ class HyphaConfirmationPage extends StatelessWidget {
                       if (rationale != null) ...[
                         const SizedBox(height: 8),
                         Text(
-                          'Never share your 12 secret words. Anyone with your secret words can access to your Hypha account and your funds.',
+                          rationale!,
                           style: context.hyphaTextTheme.ralMediumBody.copyWith(color: HyphaColors.midGrey),
                           textAlign: TextAlign.center,
                         ),
