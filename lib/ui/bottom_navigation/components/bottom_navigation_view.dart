@@ -18,7 +18,7 @@ class BottomNavigationView extends StatelessWidget {
     return BlocBuilder<BottomNavigationBloc, BottomNavigationState>(
       builder: (context, state) {
         return Scaffold(
-            bottomNavigationBar: Container(
+            bottomNavigationBar: DecoratedBox(
               decoration: BoxDecoration(
                 color: context.isDarkTheme ? HyphaColors.lightBlack : HyphaColors.white,
                 // borderRadius: const BorderRadius.all(Radius.circular(26)),
