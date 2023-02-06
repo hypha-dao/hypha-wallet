@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
+import 'package:hypha_wallet/design/icons/hypha_icons.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 import 'package:hypha_wallet/ui/bottom_navigation/interactor/bottom_navigation_bloc.dart';
 import 'package:hypha_wallet/ui/history/transactions/transactions_page.dart';
@@ -36,7 +37,7 @@ class BottomNavigationView extends StatelessWidget {
                     rippleColor: context.isDarkTheme ? HyphaColors.midGrey : Colors.grey[300]!,
                     gap: 8,
                     activeColor: HyphaColors.white,
-                    iconSize: 24,
+                    iconSize: 18,
                     padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                     duration: const Duration(milliseconds: 400),
                     tabBackgroundGradient: HyphaColors.gradientBlu,
@@ -44,10 +45,10 @@ class BottomNavigationView extends StatelessWidget {
                         ? HyphaColors.offWhite.withOpacity(0.20)
                         : HyphaColors.black.withOpacity(0.33),
                     tabs: [
-                      const GButton(icon: Icons.qr_code_scanner, text: 'Home'),
-                      const GButton(icon: Icons.history, text: 'Likes'),
-                      const GButton(icon: Icons.person, text: 'Search'),
-                      const GButton(icon: Icons.settings, text: 'Profile'),
+                      const GButton(icon: HyphaIcons.home_b, text: 'Home'),
+                      const GButton(icon: HyphaIcons.history_b, text: 'History'),
+                      const GButton(icon: HyphaIcons.profile_b, text: 'Profile'),
+                      const GButton(icon: HyphaIcons.settings_b, text: 'Settings'),
                     ],
                     selectedIndex: state.selectedPage,
                     onTabChange: (index) {

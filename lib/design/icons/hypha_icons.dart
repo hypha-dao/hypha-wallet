@@ -36,4 +36,10 @@ class HyphaIcons {
   static const IconData onboarding_key = IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData list = IconData(0xe809, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData image = IconData(0xe80b, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData history_b = IconData(0xe80a, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData image_svgrepo_com = IconData(0xe80b, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData profile_b = IconData(0xe80c, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData home_b = IconData(0xe80d, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData settings_b = IconData(0xe80e, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData wallet_b = IconData(0xe80f, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }

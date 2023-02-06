@@ -140,7 +140,7 @@ class _ScannerWidgetState extends State<ScannerWidget> {
                       children: [
                         widget.isLoading
                             ? const SizedBox(height: 60, width: 60, child: CircularProgressIndicator())
-                            : const Icon(Icons.qr_code_scanner, size: 80, color: HyphaColors.primaryBlu),
+                            : const Icon(HyphaIcons.home_b, size: 80, color: HyphaColors.primaryBlu),
                         const SizedBox(height: 24),
                         Text(
                           widget.isLoading ? 'Loading Transaction' : 'Scan QR',
