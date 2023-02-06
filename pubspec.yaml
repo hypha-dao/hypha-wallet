@@ -107,6 +107,9 @@ dependencies:
   # encrypt stored data
   flutter_secure_storage: ^7.0.1
 
+  # Bottom navigation bar
+  google_nav_bar: ^5.0.6
+
   # Firebase
   firebase_core: ^2.4.0
   firebase_crashlytics: ^3.0.7
