@@ -23,11 +23,13 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
   }
 
   Future<void> _initial(_Initial event, Emitter<TransactionsState> emit) async {
+    emit(state.copyWith(pageState: PageState.loading));
     final Result<List<TransactionModel>, HyphaError> result = await _getTransactionHistoryUseCase.run();
     if (result.isValue) {
       emit(state.copyWith(pageState: PageState.success, transactions: result.valueOrCrash));
     } else {
       _errorHandlerManager.handlerError(result.asError!.error);
+      emit(state.copyWith(pageState: PageState.failure));
     }
   }
 }
