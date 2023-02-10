@@ -23,11 +23,6 @@ class AuthApi {
 
   AuthApi({required this.activeUser, required this.loginContract});
 
-  // TODO(n13): Handle active user changed event
-  // init() {
-  //     PPP.events.on('activeUserChanged', (activeUser) => this.setActiveUser(activeUser));
-  // }
-
   Future<SignUpResult> _signUp(accountName) async {
     return Amplify.Auth.signUp(
       username: accountName,
