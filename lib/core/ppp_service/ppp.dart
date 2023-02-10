@@ -24,17 +24,14 @@ class PPP {
   /// @param {string} [originAppId] required for standalone apps, the appId of the app using the PPP client
   static void configure(String environment, String originAppId) async {
     instance._config = ppp_config_map[environment];
-    originAppId = originAppId;
+    instance.originAppId = originAppId;
     if (instance._config == null) {
       throw 'No configuration found for specified environment: $environment';
     }
 
-    // https://docs.amplify.aws/lib/auth/getting-started/q/platform/flutter/#initialize-amplify-auth
-
     final auth = AmplifyAuthCognito();
     final api = AmplifyAPI();
     final storage = AmplifyStorageS3();
-
     await Amplify.addPlugins([auth, api, storage]);
 
     Amplify.configure(instance._config!['AWS']);

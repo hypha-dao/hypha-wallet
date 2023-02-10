@@ -9,10 +9,6 @@ import 'package:mime/mime.dart';
 class ProfileApi {
   final ppp = PPP.instance;
 
-  // init() {
-  //     PPP.events.on('activeUserChanged', (activeUser) => this.setActiveUser(activeUser));
-  // }
-
   Future<dynamic> _request({required String endpoint, Map<String, dynamic> payload = const {}}) {
     return RequestApi.post(
       endpoint: endpoint,
