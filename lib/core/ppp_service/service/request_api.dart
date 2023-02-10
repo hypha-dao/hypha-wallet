@@ -23,7 +23,8 @@ class RequestApi {
 
       final restOperation = Amplify.API.post(restOptions: restOptions);
       final response = await restOperation.response;
-      print('POST call succeeded');
+
+      print('POST call succeeded:');
       print(response.body);
 
       return response.body;

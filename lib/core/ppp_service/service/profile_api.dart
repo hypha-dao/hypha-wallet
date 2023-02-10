@@ -1,28 +1,30 @@
 // ignore_for_file: slash_for_doc_comments, prefer_single_quotes, unnecessary_brace_in_string_interps
+import 'dart:io';
+
+import 'package:amplify_flutter/amplify_flutter.dart';
+import 'package:hypha_wallet/core/ppp_service/ppp.dart';
+import 'package:hypha_wallet/core/ppp_service/service/request_api.dart';
 import 'package:mime/mime.dart';
 
 class ProfileApi {
+  final ppp = PPP.instance;
 
+  // init() {
+  //     PPP.events.on('activeUserChanged', (activeUser) => this.setActiveUser(activeUser));
+  // }
 
+  Future<dynamic> _request({required String endpoint, Map<String, dynamic> payload = const {}}) {
+    return RequestApi.post(
+      endpoint: endpoint,
+      body: {
+        ...payload,
+        'originAppId': ppp.originAppId,
+      },
+      apiName: 'profileApi',
+    );
+  }
 
-    final ppp = PPP.instance;
-
-    // init() {
-    //     PPP.events.on('activeUserChanged', (activeUser) => this.setActiveUser(activeUser));
-    // }
-
-    Future<dynamic> _request({ required String endpoint, required Map<String, dynamic> payload }) {
-        return RequestApi.post(
-            endpoint: endpoint,
-            body: {
-                ...payload,
-                'originAppId': ppp.originAppId,
-            },
-            apiName: 'profileApi',
-        );
-    }
-
-    /**
+  /**
      * @desc Register a new user or edit users data. When registering a new user at least
      *  one of the emailAddress or smsNumber must be sent. When the emailAddress or smsNumber is
      *  modified, a verification code will be sent to the changed medium, and the medium must be
@@ -50,15 +52,15 @@ class ProfileApi {
      * that if the method does not throw an error the call was succesful
      * @throws error on an unsuccesful call to the service
      */
-    Future<dynamic> register(Map<String, dynamic> data) async {
-        final res = await _request(
-            endpoint: 'register',
-            payload: data,
-        );
-        return res['profile'];
-    }
+  Future<dynamic> register(Map<String, dynamic> data) async {
+    final res = await _request(
+      endpoint: 'register',
+      payload: data,
+    );
+    return res['profile'];
+  }
 
-    /**
+  /**
      * @desc Uploads an image associated to the current users account
      *
      * @param {Object} file the image to upload
@@ -66,34 +68,38 @@ class ProfileApi {
      * @return {string} the name of the image in the store
      * @throws error on an unsuccesful call to the service
      */
-    Future<dynamic> uploadImage(File file, accountName) async {
-        // const toMB = (bytes) => bytes / 1000000;
-        final int MAX_SIZE = int.parse(PPP.getConfig('maxImageSize'));
-        final types = PPP.getConfig('imageTypes');
-        final mimeType = lookupMimeType(file.path); // 'image/jpeg'
-        final fileSize = await file.length();
+  Future<dynamic> uploadImage(File file, accountName) async {
+    // const toMB = (bytes) => bytes / 1000000;
+    final int maxSize = int.parse(PPP.getConfig('maxImageSize'));
+    final types = PPP.getConfig('imageTypes');
+    final mimeType = lookupMimeType(file.path); // 'image/jpeg'
+    final fileSize = await file.length();
 
-        print("mime type: $mimeType");
+    print("mime type: $mimeType");
 
-        if (mimeType  == null) {
-          throw "File is of unknown mime type and cannot be processed. Allowed types are: ${types}";
-        }
-        if (types.indexOf(mimeType) < 0) {
-            throw 'File type is: ${mimeType}. Allowed types are: ${types}';
-        }
-        if (fileSize > MAX_SIZE) {
-            throw 'File size is: ${fileSize/1000000.0} MB. Max allowed size is: ${MAX_SIZE/1000000.0} MB';
-        }
-        final filename = '${accountName}-${DateTime.now()}.${extensionFromMime(mimeType)}';
-
-        UploadFileOptions options = UploadFileOptions()
-          ..accessLevel = StorageAccessLevel.protected
-          ..contentType = mimeType;
-        final stored = await Amplify.Storage.uploadFile(local: file, key: filename, options: options,);
-        return stored.key;
+    if (mimeType == null) {
+      throw "File is of unknown mime type and cannot be processed. Allowed types are: ${types}";
     }
+    if (types.indexOf(mimeType) < 0) {
+      throw 'File type is: ${mimeType}. Allowed types are: ${types}';
+    }
+    if (fileSize > maxSize) {
+      throw 'File size is: ${fileSize / 1000000.0} MB. Max allowed size is: ${maxSize / 1000000.0} MB';
+    }
+    final filename = '${accountName}-${DateTime.now()}.${extensionFromMime(mimeType)}';
 
-    /**
+    final options = UploadFileOptions()
+      ..accessLevel = StorageAccessLevel.protected
+      ..contentType = mimeType;
+    final stored = await Amplify.Storage.uploadFile(
+      local: file,
+      key: filename,
+      options: options,
+    );
+    return stored.key;
+  }
+
+  /**
      * @desc Returns the url to the image file
      *
      * @param {string} key the name of the file in the store, returned by the upload image method
@@ -102,63 +108,70 @@ class ProfileApi {
      * @return {string} the name of the image in the store
      * @throws error on an unsuccesful call to the service
      */
-    // async getImageUrl(key, identity) {
-    //     return Storage.get(key, {
-    //         level: 'protected',
-    //         identityId: identity
-    //     });
-    // }
-    Future<String> getImageUrl({ required String key, required String identity}) async {
-      final options = GetUrlOptions(accessLevel: StorageAccessLevel.protected);
-      final res = await Amplify.Storage.getUrl(key: key, options: options);
-      return res.url;
-    }
+  // async getImageUrl(key, identity) {
+  //     return Storage.get(key, {
+  //         level: 'protected',
+  //         identityId: identity
+  //     });
+  // }
+  Future<String> getImageUrl({required String key, required String identity}) async {
+    final options = GetUrlOptions(accessLevel: StorageAccessLevel.protected);
+    final res = await Amplify.Storage.getUrl(key: key, options: options);
+    return res.url;
+  }
 
-    /**
+  /**
      * @desc Retrieves registered user data
      * @param {String} [fetchType] @see ppp-common/ProfileFetchTypes indicates the wanted data base only,app only or both
      * @return {object} with the user data or null if user is not registered
      */
-    Future<Map<String, dynamic>?> getProfile({String? fetchType}) async {
-        final payload = fetchType != null ? {
-                'fetchType': fetchType,
-            } : {};
-        final res = await _request(
-            endpoint: 'get-profile',
-            payload: payload,
-        );
-        return res['profile'];
-    }
+  Future<Map<String, dynamic>?> getProfile({String? fetchType}) async {
+    final Map<String, dynamic> payload = fetchType != null
+        ? {
+            'fetchType': fetchType,
+          }
+        : {};
+    final res = await _request(
+      endpoint: 'get-profile',
+      payload: payload,
+    );
+    return res['profile'];
+  }
 
-    /**
+  /**
      * @desc Retrieves public profiles for one or more eosAccounts
      *
      * @param {Array} of strings indicating the eosAccounts for which data wants to be retrieved
      * @param {String} [fetchType] @see ppp-common/ProfileFetchTypes indicates the wanted data base only,app only or both
      * @return {object} mapping eosAccount to their profile data of the form {eosAccount: profile}
      */
-    async getProfiles(eosAccounts, fetchType = null) {
-        eosAccounts = Util.removeDuplicates(eosAccounts);
-        const { profiles } = await this._request({
-            endpoint: 'get-profiles',
-            payload: {
-                eosAccounts,
-                fetchType,
-            },
-        });
-        return profiles;
+  Future<Map<String, dynamic>> getProfiles(List<String> eosAccounts, {String? fetchType}) async {
+    // eosAccounts = Util.removeDuplicates(eosAccounts); // I don't think we need this? Nik
+    final payload = {
+      'eosAccounts': eosAccounts.toString(),
+    };
+    if (fetchType != null) {
+      payload['fetchType'] = fetchType;
     }
+    final res = await _request(
+      endpoint: 'get-profiles',
+      payload: payload,
+    );
+    final profiles = res['profiles'];
+    return profiles;
+  }
 
-    async hydrateWithUser(objs, accountProp = 'eosAccount', hydratedProp = null) {
-        return Util.hydrate(
-            objs,
-            accountProp,
-            hydratedProp || `${accountProp}Info`,
-            async (eosAccounts) => this.getAppData(eosAccounts),
-        );
-    }
+  /// hydrate not implemented - don't know what this is
+  // async hydrateWithUser(objs, accountProp = 'eosAccount', hydratedProp = null) {
+  //     return Util.hydrate(
+  //         objs,
+  //         accountProp,
+  //         hydratedProp || `${accountProp}Info`,
+  //         async (eosAccounts) => this.getAppData(eosAccounts),
+  //     );
+  // }
 
-    /**
+  /**
      * @desc Send a message to a user
      *
      * @param {String} eosAccount of the user who the message is going to be sent to
@@ -168,17 +181,17 @@ class ProfileApi {
      *         the call was succesful
      * @throws error on an unsuccesful call to the service
      */
-    async sendMessage(eosAccount, message) {
-        return this._request({
-            endpoint: 'send-msg',
-            payload: {
-                eosAccount,
-                message,
-            },
-        });
-    }
+  Future<dynamic> sendMessage(String eosAccount, String message) async {
+    return _request(
+      endpoint: 'send-msg',
+      payload: {
+        'eosAccount': eosAccount,
+        'message': message,
+      },
+    );
+  }
 
-    /**
+  /**
      * @desc Verify an sms number
      *
      * @param {String} smsOtp verification code
@@ -187,16 +200,16 @@ class ProfileApi {
      *         the call was succesful
      * @throws error on an unsuccesful call to the service
      */
-    async verifySms(smsOtp) {
-        return this._request({
-            endpoint: 'verify-sms',
-            payload: {
-                smsOtp,
-            },
-        });
-    }
+  Future<dynamic> verifySms(String smsOtp) async {
+    return _request(
+      endpoint: 'verify-sms',
+      payload: {
+        'smsOtp': smsOtp,
+      },
+    );
+  }
 
-    /**
+  /**
      * @desc Verify an email
      *
      * @param {String} emailOtp verification code
@@ -205,16 +218,16 @@ class ProfileApi {
      *         the call was succesful
      * @throws error on an unsuccesful call to the service
      */
-    async verifyEmail(emailOtp) {
-        return this._request({
-            endpoint: 'verify-email',
-            payload: {
-                emailOtp,
-            },
-        });
-    }
+  Future<dynamic> verifyEmail(String emailOtp) async {
+    return _request(
+      endpoint: 'verify-email',
+      payload: {
+        'emailOtp': emailOtp,
+      },
+    );
+  }
 
-    /**
+  /**
      * @desc Retrieves the chats a specific user is involved in, returns from the most recent
      * chat to the least recent, it can also search for a chat with specific counter party
      *
@@ -227,24 +240,28 @@ class ProfileApi {
      * only if there are more results to be retrieved
      * @throws error on an unsuccesful call to the service
      */
-    async getChats(search, limit, lastEvaluatedKey) {
-        const { chats } = await this._request({
-            endpoint: 'get-chats',
-            payload: {
-                search,
-                limit,
-                lastEvaluatedKey,
-            },
-        });
-        chats.items = chats.items.map((_item) => {
-            const item = _item;
-            item.sentAt = new Date(item.sentAt);
-            return item;
-        });
-        return chats;
-    }
+  Future<Map<String, dynamic>> getChats(String search, int limit, dynamic lastEvaluatedKey) async {
+    final result = await _request(
+      endpoint: 'get-chats',
+      payload: {
+        'search': search,
+        'limit': limit,
+        'lastEvaluatedKey': lastEvaluatedKey,
+      },
+    );
+    final chats = result['chats'];
 
-    /**
+    /// Nik: Not sure what the date coversion down there does, not doing this
+    // chats.items = chats.items.map((_item) => {
+    //     final item = _item;
+    //     item.sentAt = new Date(item.sentAt);
+    //     return item;
+    // });
+
+    return chats;
+  }
+
+  /**
      * @desc Retrieves the messages between the current user and the user specified in the eosAccount parameter,
      * returns from the most recent message to the least recent
      *
@@ -257,24 +274,27 @@ class ProfileApi {
      * only if there are more results to be retrieved
      * @throws error on an unsuccesful call to the service
      */
-    async getMessages(eosAccount, limit, lastEvaluatedKey) {
-        const { messages } = await this._request({
-            endpoint: 'get-messages',
-            payload: {
-                eosAccount2: eosAccount,
-                limit,
-                lastEvaluatedKey,
-            },
-        });
-        messages.items = messages.items.map((_item) => {
-            const item = _item;
-            item.sentAt = new Date(item.sentAt);
-            return item;
-        });
-        return messages;
-    }
+  Future<Map<String, dynamic>> getMessages(String eosAccount, int limit, dynamic lastEvaluatedKey) async {
+    final result = await _request(
+      endpoint: 'get-messages',
+      payload: {
+        'eosAccount2': eosAccount,
+        'limit': limit,
+        'lastEvaluatedKey': lastEvaluatedKey,
+      },
+    );
+    final messages = result['messages'];
 
-    /**
+    // date conversion code skipped...
+    // messages.items = messages.items.map((_item) => {
+    //     const item = _item;
+    //     item.sentAt = new Date(item.sentAt);
+    //     return item;
+    // });
+    return messages;
+  }
+
+  /**
      * @desc Enables the search of profiles using their eosAccount
      * @param {String} search start part of the eos account
      * @param {Number} [limit] the number of items to retrieve
@@ -285,19 +305,20 @@ class ProfileApi {
      * only if there are more results to be retrieved
      * @throws error on an unsuccesful call to the service
      */
-    async searchProfiles(search, limit, lastEvaluatedKey) {
-        const { profiles } = await this._request({
-            endpoint: 'search-profiles',
-            payload: {
-                search,
-                limit,
-                lastEvaluatedKey,
-            },
-        });
-        return profiles;
-    }
+  Future<Map<String, dynamic>> searchProfiles(search, limit, lastEvaluatedKey) async {
+    final result = await _request(
+      endpoint: 'search-profiles',
+      payload: {
+        'search': search,
+        'limit': limit,
+        'lastEvaluatedKey': lastEvaluatedKey,
+      },
+    );
+    final profiles = result['profiles'];
+    return profiles;
+  }
 
-    /**
+  /**
      * @desc Registers an app with the profile service, enabling it to interact with it
      * @param {object} data
      * @param {String} data.type app type @see ppp-common/AppTypes
@@ -316,67 +337,56 @@ class ProfileApi {
      * that if the method does not throw an error the call was succesful
      * @throws error on an unsuccesful call to the service
      */
-    async registerApp(data) {
-        const { app } = await this._request({
-            endpoint: 'register-app',
-            payload: {
-                ...data
-            },
-        });
-        return app;
-    }
+  Future<Map<String, dynamic>> registerApp(Map<String, dynamic> data) async {
+    final result = await _request(
+      endpoint: 'register-app',
+      payload: {...data},
+    );
+    final app = result['app'];
+    return app;
+  }
 
-    /**
+  /**
      * @desc Deletes an app
      *
      * @param {String} appId to delete
      * @return {object} with success message
      * @throws error on an unsuccesful call to the service
      */
-    async deleteApp(appId) {
-        return await this._request({
-            endpoint: 'delete-app',
-            payload: {
-                appId,
-            },
-        });
-    }
+  Future<Map<String, dynamic>> deleteApp(String appId) async {
+    return await _request(
+      endpoint: 'delete-app',
+      payload: {
+        'appId': appId,
+      },
+    );
+  }
 
-    /**
+  /**
      * @desc Retrieves public apps by one or more appIds
      *
      * @param {Array} of strings indicating the appIds for which data wants to be retrieved
      * @return {object} mapping appId to their app data of the form {appId: app}
      */
-    async getApps(appIds) {
-        appIds = Util.removeDuplicates(appIds);
-        const { apps } = await this._request({
-            endpoint: 'get-apps',
-            payload: {
-                appIds,
-            },
-        });
-        return apps;
-    }
+  Future<Map<String, dynamic>> getApps(appIds) async {
+    final result = await _request(
+      endpoint: 'get-apps',
+      payload: {
+        'appIds': appIds,
+      },
+    );
+    final apps = result['apps'];
+    return apps;
+  }
 
-    /**
+  /**
      * @desc Retrieves the apps associated to the logged in account
      *
      * @return {Array} of apps
      */
-    async getMyApps() {
-        const { apps } = await this._request({
-            endpoint: 'get-my-apps'
-        });
-        return apps;
-    }
+  Future<List<dynamic>> getMyApps() async {
+    final result = await _request(endpoint: 'get-my-apps');
+    final apps = result['apps'];
+    return apps;
+  }
 }
-
-import 'dart:ffi';
-import 'dart:io';
-
-import 'package:amplify_flutter/amplify_flutter.dart';
-import 'package:hypha_wallet/core/ppp_service/ppp.dart';
-import 'package:hypha_wallet/core/ppp_service/service/RequestApi.dart';
-
-export default ProfileApi;
