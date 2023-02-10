@@ -14,14 +14,14 @@ class PPP {
   ProfileApi? _profileApi;
   String? activeUser;
 
+  // exposting some config params as getters
   String? get loginContract => _config?['loginContract'];
-
-  PPP();
+  String? get imageTypes => _config?['imageTypes'];
+  int? get maxImageSize => int.parse(_config?['maxImageSize']);
 
   /// Configures the PPP client
   /// @param {string} environment to be used test or prod
   /// @param {string} [originAppId] required for standalone apps, the appId of the app using the PPP client
-
   static void configure(String environment, String originAppId) async {
     instance._config = ppp_config_map[environment];
     originAppId = originAppId;
@@ -38,26 +38,6 @@ class PPP {
     await Amplify.addPlugins([auth, api, storage]);
 
     Amplify.configure(instance._config!['AWS']);
-  }
-
-  static dynamic getConfig(String propertyPath) {
-    assert(instance._config != null, 'PPP configure method should be called first');
-    return getObjectAtPath(instance._config, propertyPath, null);
-  }
-
-  static dynamic getObjectAtPath(dynamic obj, String path, dynamic value) {
-    final steps = path.split('.');
-    var currentObj = obj;
-    var i = 0;
-    while (currentObj != null && currentObj is Map<String, dynamic> && i < steps.length) {
-      currentObj = currentObj[steps[i]];
-      i++;
-    }
-    if (currentObj == null) {
-      return value;
-    } else {
-      return currentObj;
-    }
   }
 
   // we implement change of user later..

@@ -70,8 +70,8 @@ class ProfileApi {
      */
   Future<dynamic> uploadImage(File file, accountName) async {
     // const toMB = (bytes) => bytes / 1000000;
-    final int maxSize = int.parse(PPP.getConfig('maxImageSize'));
-    final types = PPP.getConfig('imageTypes');
+    final int maxSize = ppp.maxImageSize!;
+    final types = ppp.imageTypes!;
     final mimeType = lookupMimeType(file.path); // 'image/jpeg'
     final fileSize = await file.length();
 
