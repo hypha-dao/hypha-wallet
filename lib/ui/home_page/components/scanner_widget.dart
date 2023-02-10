@@ -35,7 +35,6 @@ class _ScannerWidgetState extends State<ScannerWidget> {
           ? null
           : () async {
               final status = await Permission.camera.status;
-              LogHelper.d('GERY ' + status.toString());
               if (status.isDenied) {
                 final result = await showModalBottomSheet(
                   isScrollControlled: true,
