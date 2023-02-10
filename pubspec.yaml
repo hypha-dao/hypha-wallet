@@ -100,7 +100,7 @@ dependencies:
   google_fonts: ^3.0.1
 
   # formatting
-  intl: ^0.18.0
+  intl: ^0.17.0
 
   flutter_svg: ^1.1.6
 
@@ -115,6 +115,12 @@ dependencies:
   firebase_crashlytics: ^3.0.7
   firebase_remote_config: ^3.0.7
   firebase_dynamic_links: ^5.0.8
+
+  # AWS amplify for PPP service
+  amplify_flutter: ^0.6.12
+  amplify_auth_cognito: ^0.6.12
+  amplify_api: ^0.6.12
+  amplify_storage_s3: ^0.6.12
 
 dev_dependencies:
   flutter_test:
