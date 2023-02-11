@@ -13,11 +13,13 @@ class TransactionDetailsCardData {
   final String contractAction;
   final DateTime? timestamp;
   final GestureTapCallback? onTap;
+  final String? memo;
 
   TransactionDetailsCardData({
     required this.params,
     required this.contractAction,
     this.timestamp,
     this.onTap,
+    this.memo,
   });
 }

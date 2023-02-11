@@ -89,36 +89,7 @@ class SettingsView extends StatelessWidget {
                   child: InkWell(
                     borderRadius: BorderRadius.circular(16),
                     onTap: () async {
-                      final result = await showModalBottomSheet(
-                        isScrollControlled: true,
-                        context: context,
-                        clipBehavior: Clip.antiAliasWithSaveLayer,
-                        builder: (context) => FractionallySizedBox(
-                          heightFactor: 0.87,
-                          child: HyphaConfirmationPage(
-                            title: 'Log-out',
-                            subtitle: 'Are you sure you want to log-out?',
-                            image: 'assets/images/signout.png',
-                            primaryButtonCallback: () {
-                              Get.back(result: true);
-                            },
-                            primaryButtonText: 'YES LOG-OUT',
-                            secondaryButtonText: 'NO, NEVER MIND',
-                            secondaryButtonCallback: () {
-                              Get.back(result: false);
-                            },
-                          ),
-                        ),
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
-                        ),
-                      );
-
-                      if (result) {
-                        context
-                            .read<AuthenticationBloc>()
-                            .add(const AuthenticationEvent.authenticationLogoutRequested());
-                      }
+                      await onLogoutTapped(context);
                     },
                     child: ListTile(
                       leading: Icon(
@@ -135,5 +106,36 @@ class SettingsView extends StatelessWidget {
         );
       },
     );
+  }
+
+  Future<void> onLogoutTapped(BuildContext context) async {
+    final result = await showModalBottomSheet(
+      isScrollControlled: true,
+      context: context,
+      clipBehavior: Clip.antiAliasWithSaveLayer,
+      builder: (context) => FractionallySizedBox(
+        heightFactor: 0.87,
+        child: HyphaConfirmationPage(
+          title: 'Log-out',
+          subtitle: 'Are you sure you want to log-out?',
+          image: 'assets/images/signout.png',
+          primaryButtonCallback: () {
+            Get.back(result: true);
+          },
+          primaryButtonText: 'YES LOG-OUT',
+          secondaryButtonText: 'NO, NEVER MIND',
+          secondaryButtonCallback: () {
+            Get.back(result: false);
+          },
+        ),
+      ),
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
+      ),
+    );
+
+    if (result) {
+      context.read<AuthenticationBloc>().add(const AuthenticationEvent.authenticationLogoutRequested());
+    }
   }
 }
