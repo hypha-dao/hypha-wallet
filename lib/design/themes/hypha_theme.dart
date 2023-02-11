@@ -14,6 +14,10 @@ class HyphaTheme {
     return baseTheme.copyWith(
       colorScheme: darkColorScheme,
       textTheme: mainTextTheme,
+      switchTheme: const SwitchThemeData(
+        trackColor: MaterialStatePropertyAll(HyphaColors.primaryBlu),
+        thumbColor: MaterialStatePropertyAll(HyphaColors.offWhite),
+      ),
       iconTheme: const IconThemeData(color: HyphaColors.white),
       appBarTheme: AppBarTheme(
         backgroundColor: HyphaColors.transparent,
@@ -35,6 +39,10 @@ class HyphaTheme {
     return baseTheme.copyWith(
       colorScheme: lightColorScheme,
       textTheme: mainTextTheme,
+      switchTheme: const SwitchThemeData(
+        trackColor: MaterialStatePropertyAll(HyphaColors.primaryBlu),
+        thumbColor: MaterialStatePropertyAll(HyphaColors.offWhite),
+      ),
       iconTheme: const IconThemeData(color: HyphaColors.black),
       appBarTheme: AppBarTheme(
         backgroundColor: HyphaColors.transparent,
