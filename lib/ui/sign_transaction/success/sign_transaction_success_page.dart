@@ -73,7 +73,7 @@ class SignTransactionSuccessPage extends StatelessWidget {
         ),
         body: Column(
           children: [
-            const HyphaHalfBackground(),
+            const HyphaHalfBackground(showTopBar: false),
             const SizedBox(height: 46),
             Padding(
               padding: const EdgeInsets.only(left: 45, right: 45, top: 45),

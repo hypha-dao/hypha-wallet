@@ -46,7 +46,7 @@ class SignTransactionFailedPage extends StatelessWidget {
         ),
         body: Column(
           children: [
-            const HyphaHalfBackground(backgroundColor: HyphaColors.error),
+            const HyphaHalfBackground(backgroundColor: HyphaColors.error, showTopBar: false),
             const SizedBox(height: 46),
             Padding(
               padding: const EdgeInsets.only(left: 45, right: 45, top: 45),

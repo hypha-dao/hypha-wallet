@@ -22,7 +22,7 @@ class ProfileView extends StatelessWidget {
             backgroundColor: HyphaColors.transparent,
             body: Stack(
               children: [
-                const HyphaHalfBackground(),
+                const HyphaHalfBackground(showTopBar: false),
                 SingleChildScrollView(
                   child: Padding(
                     padding: const EdgeInsets.all(26),

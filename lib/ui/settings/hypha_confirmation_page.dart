@@ -35,7 +35,7 @@ class HyphaConfirmationPage extends StatelessWidget {
       ),
       child: Stack(
         children: [
-          const HyphaHalfBackground(),
+          const HyphaHalfBackground(showTopBar: true),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 45, vertical: 22),
             child: Column(
@@ -43,7 +43,7 @@ class HyphaConfirmationPage extends StatelessWidget {
                 Expanded(
                   child: Column(
                     children: [
-                      const SizedBox(height: 44),
+                      const SizedBox(height: 8),
                       Image.asset(image, width: 200, height: 200),
                       Text(title, style: context.hyphaTextTheme.mediumTitles),
                       const SizedBox(height: 8),
@@ -65,15 +65,15 @@ class HyphaConfirmationPage extends StatelessWidget {
                 ),
                 Column(
                   children: [
-                    HyphaAppButton(title: primaryButtonText, onPressed: primaryButtonCallback),
                     if (secondaryButtonText != null) ...[
-                      const SizedBox(height: 16),
                       HyphaAppButton(
                         title: secondaryButtonText!,
                         buttonType: ButtonType.secondary,
                         onPressed: secondaryButtonCallback,
                       ),
-                    ]
+                      const SizedBox(height: 16),
+                    ],
+                    HyphaAppButton(title: primaryButtonText, onPressed: primaryButtonCallback),
                   ],
                 )
               ],
