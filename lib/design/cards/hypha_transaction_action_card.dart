@@ -102,10 +102,10 @@ class HyphaTransactionActionCard extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 12),
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.all(Radius.circular(16)),
+                    borderRadius: const BorderRadius.all(Radius.circular(12)),
                     color: context.isDarkTheme
-                        ? HyphaColors.lightBlack.withOpacity(0.9)
-                        : HyphaColors.offWhite.withOpacity(0.9),
+                        ? HyphaColors.midGrey.withOpacity(0.10)
+                        : HyphaColors.midGrey.withOpacity(0.05),
                   ),
                   child: Text(data.memo!, style: context.hyphaTextTheme.ralMediumBody),
                 )
