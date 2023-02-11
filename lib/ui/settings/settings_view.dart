@@ -11,6 +11,7 @@ import 'package:hypha_wallet/ui/settings/hypha_confirmation_page.dart';
 import 'package:hypha_wallet/ui/settings/interactor/settings_bloc.dart';
 import 'package:hypha_wallet/ui/settings/save_key_page.dart';
 import 'package:hypha_wallet/ui/settings/save_words_page.dart';
+import 'package:hypha_wallet/ui/shared/ui_constants.dart';
 
 class SettingsView extends StatelessWidget {
   const SettingsView({super.key});
@@ -114,7 +115,7 @@ class SettingsView extends StatelessWidget {
       context: context,
       clipBehavior: Clip.antiAliasWithSaveLayer,
       builder: (context) => FractionallySizedBox(
-        heightFactor: 0.87,
+        heightFactor: UIConstants.bottomSheetHeightFraction,
         child: HyphaConfirmationPage(
           title: 'Log-out',
           subtitle: 'Are you sure you want to log-out?',

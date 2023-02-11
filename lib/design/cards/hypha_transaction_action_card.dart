@@ -77,7 +77,11 @@ class HyphaTransactionActionCard extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Contract Action - ${data.contractAction}', style: context.hyphaTextTheme.smallTitles),
+                  Text(
+                    data.contractAction,
+                    style: context.hyphaTextTheme.smallTitles,
+                    maxLines: 2,
+                  ),
                   data.onTap != null ? const Icon(Icons.navigate_next) : const SizedBox.shrink()
                 ],
               ),

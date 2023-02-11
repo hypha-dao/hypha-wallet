@@ -12,6 +12,7 @@ import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.d
 import 'package:hypha_wallet/ui/blocs/error_handler/error_handler_bloc.dart';
 import 'package:hypha_wallet/ui/home_page/interactor/home_bloc.dart';
 import 'package:hypha_wallet/ui/settings/hypha_confirmation_page.dart';
+import 'package:hypha_wallet/ui/shared/ui_constants.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -41,7 +42,7 @@ class _ScannerWidgetState extends State<ScannerWidget> {
                   context: context,
                   clipBehavior: Clip.antiAliasWithSaveLayer,
                   builder: (context) => FractionallySizedBox(
-                    heightFactor: 0.87,
+                    heightFactor: UIConstants.bottomSheetHeightFraction,
                     child: HyphaConfirmationPage(
                       title: 'Camera',
                       subtitle: 'Hypha Wallet would like to access to the phone camera',

@@ -83,7 +83,7 @@ class HyphaAppView extends StatelessWidget {
             ) async {
               Get.bottomSheet(
                 FractionallySizedBox(
-                  heightFactor: 0.87,
+                  heightFactor: 0.95,
                   child: HyphaConfirmationPage(
                     title: title,
                     subtitle: subtitle,
