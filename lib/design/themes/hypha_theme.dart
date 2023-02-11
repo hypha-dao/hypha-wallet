@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hypha_wallet/design/color_scheme/color_schemes.g.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
@@ -23,6 +24,10 @@ class HyphaTheme {
         backgroundColor: HyphaColors.transparent,
         elevation: 0,
         titleTextStyle: HyphaTextTheme.dark.smallTitles,
+        systemOverlayStyle: const SystemUiOverlayStyle(
+          statusBarIconBrightness: Brightness.dark, // For Android (dark icons)
+          statusBarBrightness: Brightness.light, // For iOS (dark icons)
+        ),
       ),
       bottomNavigationBarTheme: AppBottomNavigationTheme.bottomNavigationThemeData(darkColorScheme),
       extensions: <ThemeExtension<dynamic>>[
@@ -49,6 +54,11 @@ class HyphaTheme {
         iconTheme: const IconThemeData(color: HyphaColors.black),
         elevation: 0,
         titleTextStyle: HyphaTextTheme.light.smallTitles.copyWith(color: HyphaColors.black),
+        systemOverlayStyle: const SystemUiOverlayStyle(
+          // Status bar brightness (optional)
+          statusBarIconBrightness: Brightness.dark, // For Android (dark icons)
+          statusBarBrightness: Brightness.light, // For iOS (dark icons)
+        ),
       ),
       bottomNavigationBarTheme: AppBottomNavigationTheme.bottomNavigationThemeData(lightColorScheme),
       extensions: <ThemeExtension<dynamic>>[
