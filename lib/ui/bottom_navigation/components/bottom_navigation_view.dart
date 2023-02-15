@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/icons/hypha_icons.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
@@ -10,8 +11,6 @@ import 'package:hypha_wallet/ui/profile/profile_page.dart';
 import 'package:hypha_wallet/ui/settings/interactor/settings_bloc.dart';
 import 'package:hypha_wallet/ui/settings/settings_page.dart';
 
-const iconSize = 24.0;
-
 class BottomNavigationView extends StatelessWidget {
   const BottomNavigationView({super.key});
 
@@ -20,46 +19,47 @@ class BottomNavigationView extends StatelessWidget {
     return BlocBuilder<BottomNavigationBloc, BottomNavigationState>(
       builder: (context, state) {
         return Scaffold(
-            bottomNavigationBar: BottomNavigationBar(
-              currentIndex: state.selectedPage,
-              onTap: (int index) {
-                BlocProvider.of<BottomNavigationBloc>(context).add(BottomNavigationEvent.onPageSelected(index));
-                if (index == 3) {
-                  BlocProvider.of<SettingsBloc>(context).add(const SettingsEvent.onShowSettings());
-                }
-              },
-              items: [
-                const BottomNavigationBarItem(icon: Icon(Icons.qr_code_scanner, size: iconSize), label: 'Scan QR'),
-                const BottomNavigationBarItem(icon: Icon(Icons.history, size: iconSize), label: 'History'),
-                const BottomNavigationBarItem(icon: Icon(Icons.person, size: iconSize), label: 'Profile'),
-                BottomNavigationBarItem(
-                  icon: BlocBuilder<SettingsBloc, SettingsState>(
-                    buildWhen: (previous, current) =>
-                        previous.showSecurityNotification != current.showSecurityNotification,
-                    builder: (context, state) {
-                      return Stack(
-                        children: [
-                          const Padding(
-                            padding: EdgeInsets.only(right: 6, left: 6),
-                            child: Icon(Icons.settings, size: iconSize),
-                          ),
-                          if (state.showSecurityNotification)
-                            Positioned(
-                              right: 0,
-                              top: 0,
-                              child: Container(
-                                decoration: const BoxDecoration(color: HyphaColors.error, shape: BoxShape.circle),
-                                constraints: const BoxConstraints(minWidth: 14, minHeight: 10),
-                              ),
-                            )
-                        ],
-                      );
+            bottomNavigationBar: DecoratedBox(
+              decoration: BoxDecoration(
+                color: context.isDarkTheme ? HyphaColors.lightBlack : HyphaColors.white,
+                // borderRadius: const BorderRadius.all(Radius.circular(26)),
+                boxShadow: [
+                  BoxShadow(
+                    blurRadius: 20,
+                    color: Colors.black.withOpacity(.1),
+                  )
+                ],
+              ),
+              child: SafeArea(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
+                  child: GNav(
+                    rippleColor: context.isDarkTheme ? HyphaColors.midGrey : Colors.grey[300]!,
+                    gap: 8,
+                    activeColor: HyphaColors.white,
+                    iconSize: 18,
+                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                    duration: const Duration(milliseconds: 400),
+                    tabBackgroundGradient: HyphaColors.gradientBlu,
+                    color: context.isDarkTheme
+                        ? HyphaColors.offWhite.withOpacity(0.20)
+                        : HyphaColors.black.withOpacity(0.33),
+                    tabs: [
+                      const GButton(icon: HyphaIcons.home_b, text: 'Home'),
+                      const GButton(icon: HyphaIcons.history_b, text: 'History'),
+                      const GButton(icon: HyphaIcons.profile_b, text: 'Profile'),
+                      const GButton(icon: HyphaIcons.settings_b, text: 'Settings'),
+                    ],
+                    selectedIndex: state.selectedPage,
+                    onTabChange: (index) {
+                      BlocProvider.of<BottomNavigationBloc>(context).add(BottomNavigationEvent.onPageSelected(index));
+                      if (index == 3) {
+                        BlocProvider.of<SettingsBloc>(context).add(const SettingsEvent.onShowSettings());
+                      }
                     },
                   ),
-                  label: 'Settings',
                 ),
-                // BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Settings'),
-              ],
+              ),
             ),
             body: IndexedStack(
               index: state.selectedPage,
