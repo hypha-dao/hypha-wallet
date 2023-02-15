@@ -54,7 +54,7 @@ class ProfileView extends StatelessWidget {
                         const SizedBox(height: 24),
                         HyphaActionableCard(
                           trailer: const Icon(Icons.edit),
-                          title: 'Short Bio',
+                          title: 'Bio',
                           subtitle: state.profileData?.bio ?? '',
                         ),
                         const SizedBox(height: 16),
