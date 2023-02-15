@@ -1,6 +1,5 @@
 import 'package:hypha_wallet/core/network/api/user_account_service.dart';
 
-// TODO(Nik): these API calls need your help
 class UserAccountRepository {
   final UserAccountService userService;
 
