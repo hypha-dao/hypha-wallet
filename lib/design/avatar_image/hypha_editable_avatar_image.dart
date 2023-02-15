@@ -31,6 +31,7 @@ class HyphaEditableAvatarImage extends StatelessWidget {
         HyphaAvatarImage(
           imageRadius: imageRadius,
           imageFromFile: imageFromFile,
+          imageFromUrl: imageFromUrl,
           name: name,
           onTap: () async {
             await _selectImage();
