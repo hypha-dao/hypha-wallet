@@ -2,7 +2,6 @@
 
 import 'dart:math';
 
-import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hypha_wallet/core/crypto/eosdart/eosdart.dart';
@@ -31,14 +30,19 @@ class AuthApi {
   }
 
   Future<bool> signIn() async {
-    final accountName = activeUser; // await this.getAccountName();
+    final accountName = activeUser;
     try {
+      print('amplify try to sign up...');
+
       await _signUp(accountName);
     } catch (error) {
+      print('sgn up error... $error');
+
       if (!error.toString().contains('UsernameExistsException')) {
         rethrow;
       }
     }
+    print('amplify sign in...');
     final SignInResult signInResult1 = await Amplify.Auth.signIn(username: accountName);
 
     // original code - doesn't work like this in flutter...
@@ -51,11 +55,13 @@ class AuthApi {
     //final challengeParam = cognitoUser.nextStep?.additionalInfo?['challengeParameters'];
     final loginCode = signInResult1.nextStep?.additionalInfo?['loginCode'];
 
+    print("login code: $loginCode");
+    
     // https://docs.amplify.aws/lib/auth/signin_with_custom_flow/q/platform/flutter/
 
     final SignInResult signInResult2 = await Amplify.Auth.confirmSignIn(confirmationValue: loginCode!);
 
-    print("sign in result: ${signInResult2}");
+    print("sign in result 2: ${signInResult2}");
 
     return signInResult2.isSignedIn;
   }
@@ -102,8 +108,10 @@ class AuthApi {
   }
 
   Future<void> signOutCurrentUser() async {
+    print('sign out called');
     try {
-      await Amplify.Auth.signOut();
+      final res = await Amplify.Auth.signOut();
+      print('sign out done ${res.toString()}');
     } on AuthException catch (e) {
       print(e.message);
     }

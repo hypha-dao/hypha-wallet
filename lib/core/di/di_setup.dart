@@ -21,6 +21,7 @@ import 'package:hypha_wallet/core/network/networking_manager.dart';
 import 'package:hypha_wallet/core/network/repository/auth_repository.dart';
 import 'package:hypha_wallet/core/network/repository/transaction_history_repository.dart';
 import 'package:hypha_wallet/core/network/repository/user_account_repository.dart';
+import 'package:hypha_wallet/core/ppp_service/ppp.dart';
 import 'package:hypha_wallet/core/shared_preferences/hypha_shared_prefs.dart';
 import 'package:hypha_wallet/firebase_options.dart';
 import 'package:hypha_wallet/ui/blocs/authentication/authentication_bloc.dart';
@@ -103,4 +104,7 @@ Future<void> setupDependencies() async {
 
   // Use Cases
   _registerUseCasesModule();
+
+  // PPP
+  await PPP.configure('prod', null);
 }

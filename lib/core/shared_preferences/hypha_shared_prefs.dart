@@ -43,6 +43,10 @@ extension SharedPrefsExtensions on HyphaSharedPrefs {
     return profile == null ? null : UserProfileData.fromJson(jsonDecode(profile));
   }
 
+  Future<String?> getAccountName() async {
+    return (await getUserProfileData())?.accountName;
+  }
+
   /// Watch profile user
   Stream<UserProfileData?> watchProfile() {
     return _prefs

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:amplify_api/amplify_api.dart';
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
@@ -20,9 +22,10 @@ class PPP {
   int? get maxImageSize => int.parse(_config?['maxImageSize']);
 
   /// Configures the PPP client
-  /// @param {string} environment to be used test or prod
+  /// @param {string} environment to be used (test, prod, eos)
   /// @param {string} [originAppId] required for standalone apps, the appId of the app using the PPP client
-  static void configure(String environment, String originAppId) async {
+  static Future<void> configure(String environment, String? originAppId) async {
+    print("configure ");
     instance._config = ppp_config_map[environment];
     instance.originAppId = originAppId;
     if (instance._config == null) {
@@ -34,7 +37,9 @@ class PPP {
     final storage = AmplifyStorageS3();
     await Amplify.addPlugins([auth, api, storage]);
 
-    Amplify.configure(instance._config!['AWS']);
+    final jsonMap = Map<String, dynamic>.from(instance._config!['AWS']);
+    await Amplify.configure(jsonEncode(jsonMap));
+    print("configure done");
   }
 
   // we implement change of user later..
@@ -65,16 +70,16 @@ class PPP {
   static const Map<String, dynamic> ppp_config_map = {
     'test': {
       'AWS': {
-        'Auth': {
+        'auth': {
           'region': 'us-east-1',
           'userPoolId': 'us-east-1_BNGTP2fup',
           'userPoolWebClientId': '6mufhii0pab2392b6muvtiv8k8',
           'identityPoolId': 'us-east-1:b57a53c2-f77d-44d5-9656-15b40da6004d'
         },
-        'Storage': {
+        'storage': {
           'AWSS3': {'region': 'us-east-1', 'bucket': 'ppp-service-dev-attachmentsbucket-81z543wrbts3'}
         },
-        'API': {
+        'api': {
           'endpoints': [
             {'name': 'profileApi', 'endpoint': 'https://nfjlqism6i.execute-api.us-east-1.amazonaws.com/dev'}
           ]
@@ -88,16 +93,16 @@ class PPP {
     },
     'eos': {
       'AWS': {
-        'Auth': {
+        'auth': {
           'region': 'us-east-1',
           'userPoolId': 'us-east-1_lgd67Lgcq',
           'userPoolWebClientId': '498nk7ee6mjqt62n55rmka6e68',
           'identityPoolId': 'us-east-1:940e4c1b-2456-4c41-95eb-10a2b5982592'
         },
-        'Storage': {
+        'storage': {
           'AWSS3': {'region': 'us-east-1', 'bucket': 'ppp-service-eosmain-attachmentsbucket-1lau7ad0pzcslI'}
         },
-        'API': {
+        'api': {
           'endpoints': [
             {'name': 'profileApi', 'endpoint': 'https://m7asrw9a9h.execute-api.us-east-1.amazonaws.com/eosMain'}
           ]
@@ -111,16 +116,16 @@ class PPP {
     },
     'prod': {
       'AWS': {
-        'Auth': {
+        'auth': {
           'region': 'us-east-1',
           'userPoolId': 'us-east-1_9voNzsQ2J',
           'userPoolWebClientId': '6a2p1a1jsei5ttp3t3vro1f0c5',
           'identityPoolId': 'us-east-1:58bf768c-7607-41eb-b512-78314549d61b'
         },
-        'Storage': {
+        'storage': {
           'AWSS3': {'region': 'us-east-1', 'bucket': 'ppp-service-prod-attachmentsbucket-1qc5rzodik7x6'}
         },
-        'API': {
+        'api': {
           'endpoints': [
             {'name': 'profileApi', 'endpoint': 'https://ttac1sv2yj.execute-api.us-east-1.amazonaws.com/prod'}
           ]
