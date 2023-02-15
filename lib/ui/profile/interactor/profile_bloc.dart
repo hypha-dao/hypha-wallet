@@ -24,6 +24,8 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   }
 
   Future<void> _initial(_Initial event, Emitter<ProfileState> emit) async {
+    emit(state.copyWith(pageState: PageState.loading));
+
     final UserProfileData? userData = await _appSharedPrefs.getUserProfileData();
     final Result<ProfileData, HyphaError> result = await _fetchProfileUseCase.run(userData?.accountName ?? '');
     if (result.isValue) {
