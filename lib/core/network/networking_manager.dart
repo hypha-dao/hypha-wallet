@@ -6,13 +6,13 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 class NetworkingManager extends DioForNative {
   NetworkingManager(String baseUrl) : super() {
     // Add Logs Interceptor
-    interceptors.add(PrettyDioLogger(
-        requestHeader: false,
-        requestBody: true,
-        responseBody: true,
-        responseHeader: false,
-        error: true,
-        compact: true));
+    // interceptors.add(PrettyDioLogger(
+    //     requestHeader: false,
+    //     requestBody: true,
+    //     responseBody: true,
+    //     responseHeader: false,
+    //     error: true,
+    //     compact: true));
 
     options.connectTimeout = Endpoints.connectionTimeout;
     options.receiveTimeout = Endpoints.receiveTimeout;
