@@ -11,6 +11,7 @@ import 'package:hypha_wallet/ui/settings/hypha_confirmation_page.dart';
 import 'package:hypha_wallet/ui/settings/interactor/settings_bloc.dart';
 import 'package:hypha_wallet/ui/settings/save_key_page.dart';
 import 'package:hypha_wallet/ui/settings/save_words_page.dart';
+import 'package:hypha_wallet/ui/shared/ui_constants.dart';
 
 class SettingsView extends StatelessWidget {
   const SettingsView({super.key});
@@ -18,7 +19,7 @@ class SettingsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SettingsBloc, SettingsState>(
-      builder: (context, state) {
+      builder: (context, SettingsState state) {
         return HyphaPageBackground(
           withGradient: true,
           child: Scaffold(
@@ -83,51 +84,26 @@ class SettingsView extends StatelessWidget {
                   },
                 ),
                 const SizedBox(height: 16),
-                Card(
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-                  color: context.isDarkMode ? HyphaColors.lightBlack : HyphaColors.white,
-                  child: InkWell(
-                    borderRadius: BorderRadius.circular(16),
-                    onTap: () async {
-                      final result = await showModalBottomSheet(
-                        isScrollControlled: true,
-                        context: context,
-                        clipBehavior: Clip.antiAliasWithSaveLayer,
-                        builder: (context) => FractionallySizedBox(
-                          heightFactor: 0.87,
-                          child: HyphaConfirmationPage(
-                            title: 'Log-out',
-                            subtitle: 'Are you sure you want to log-out?',
-                            image: 'assets/images/signout.png',
-                            primaryButtonCallback: () {
-                              Get.back(result: true);
-                            },
-                            primaryButtonText: 'YES LOG-OUT',
-                            secondaryButtonText: 'NO, NEVER MIND',
-                            secondaryButtonCallback: () {
-                              Get.back(result: false);
-                            },
+                BlocBuilder<AuthenticationBloc, AuthenticationState>(
+                  builder: (context, AuthenticationState state) {
+                    return Card(
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                      color: context.isDarkMode ? HyphaColors.lightBlack : HyphaColors.white,
+                      child: InkWell(
+                        borderRadius: BorderRadius.circular(16),
+                        onTap: () async {
+                          await onLogoutTapped(context, state);
+                        },
+                        child: ListTile(
+                          leading: Icon(
+                            Icons.logout,
+                            color: context.isDarkTheme ? HyphaColors.white : HyphaColors.black,
                           ),
+                          title: Text('Logout', style: context.hyphaTextTheme.smallTitles),
                         ),
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
-                        ),
-                      );
-
-                      if (result) {
-                        context
-                            .read<AuthenticationBloc>()
-                            .add(const AuthenticationEvent.authenticationLogoutRequested());
-                      }
-                    },
-                    child: ListTile(
-                      leading: Icon(
-                        Icons.logout,
-                        color: context.isDarkTheme ? HyphaColors.white : HyphaColors.black,
                       ),
-                      title: Text('Logout', style: context.hyphaTextTheme.smallTitles),
-                    ),
-                  ),
+                    );
+                  },
                 ),
               ],
             ),
@@ -135,5 +111,43 @@ class SettingsView extends StatelessWidget {
         );
       },
     );
+  }
+
+  Future<void> onLogoutTapped(BuildContext context, AuthenticationState state) async {
+    final bool hasWords = state.userAuthData?.words.isNotEmpty == true;
+    final bool result = await showModalBottomSheet(
+      isScrollControlled: true,
+      context: context,
+      clipBehavior: Clip.antiAliasWithSaveLayer,
+      builder: (context) => FractionallySizedBox(
+        heightFactor: UIConstants.bottomSheetHeightFraction,
+        child: HyphaConfirmationPage(
+          title: 'Log-out',
+          subtitle: 'Are you sure you want to log-out your account?',
+          rationale:
+              'By logging out you will disconnect your blockchain account from the app. In order to access your account again you will need to import it by using your private key.',
+          image: 'assets/images/signout.png',
+          primaryButtonText: 'YES LOG-OUT',
+          primaryButtonCallback: () {
+            Get.back(result: true);
+          },
+          secondaryButtonText: hasWords ? 'BACKUP 12 WORDS' : 'BACKUP PRIVATE KEY',
+          secondaryButtonCallback: () {
+            if (hasWords) {
+              Get.to(() => SaveWordsPage(state.userAuthData!.words));
+            } else {
+              Get.to(() => SaveKeyPage(state.userAuthData!.eOSPrivateKey.toString()));
+            }
+          },
+        ),
+      ),
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
+      ),
+    );
+
+    if (result) {
+      context.read<AuthenticationBloc>().add(const AuthenticationEvent.authenticationLogoutRequested());
+    }
   }
 }

@@ -9,6 +9,13 @@ class Endpoints {
 
   static const String defaultV2EndpointUrl = 'https://api.telosfoundation.io';
 
+  // PPP Profile Service Backend
+  static const String profileServiceEndpoint = 'http://34.236.29.152:9109'; // temporary, read-only
+  static const String pppProfile = '/profile';
+  static const String pppProfiles = '/profiles';
+  static const String pppSearch = '/search';
+  static const String pppGetImageUrl = '/getImageUrl';
+
   // receiveTimeout
   static const int receiveTimeout = 15000;
 

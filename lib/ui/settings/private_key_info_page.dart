@@ -17,6 +17,7 @@ class PrivateKeyInfoPage extends StatelessWidget {
       child: Column(
         children: [
           HyphaHalfBackground(
+            showTopBar: true,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,

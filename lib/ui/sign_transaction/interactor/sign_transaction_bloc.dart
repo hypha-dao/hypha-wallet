@@ -26,9 +26,11 @@ class SignTransactionBloc extends Bloc<SignTransactionEvent, SignTransactionStat
                   signingTitle: 'From ${_qrCodeData.esr.actions.first.account}',
                   expirationTime: const Duration(seconds: 60),
                   cards: _qrCodeData.transaction.actions.map((EOSAction e) {
+                    final params = e.data.map((key, value) => MapEntry(key, value.toString()));
                     return TransactionDetailsCardData(
                       params: e.data.map((key, value) => MapEntry(key, value.toString())),
                       contractAction: '${e.account ?? ''} - ${e.name ?? ''}',
+                      memo: params['memo'],
                     );
                   }).toList())),
         ) {

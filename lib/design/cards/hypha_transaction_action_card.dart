@@ -14,25 +14,29 @@ class HyphaTransactionActionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List rows = List.empty(growable: true);
-    data.params.forEach((key, value) {
-      rows.add(Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(key, style: context.hyphaTextTheme.ralMediumBody.copyWith(color: HyphaColors.midGrey)),
-          const SizedBox(width: 4),
-          Flexible(
-            child: Text(
-              value.toString(),
-              style: context.hyphaTextTheme.ralMediumBody,
-              textAlign: TextAlign.right,
-              maxLines: 4,
-              overflow: TextOverflow.ellipsis,
-            ),
-          ),
-        ],
-      ));
-      rows.add(const SizedBox(height: 8));
-    });
+    data.params.forEach(
+      (key, value) {
+        if (key != 'memo') {
+          rows.add(Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(key, style: context.hyphaTextTheme.ralMediumBody.copyWith(color: HyphaColors.midGrey)),
+              const SizedBox(width: 4),
+              Flexible(
+                child: Text(
+                  value.toString(),
+                  style: context.hyphaTextTheme.ralMediumBody,
+                  textAlign: TextAlign.right,
+                  maxLines: 4,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ],
+          ));
+          rows.add(const SizedBox(height: 8));
+        }
+      },
+    );
 
     final List timeFrame = List.empty(growable: true);
     if (data.timestamp != null) {
@@ -73,14 +77,39 @@ class HyphaTransactionActionCard extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Contract Action - ${data.contractAction}', style: context.hyphaTextTheme.smallTitles),
+                  Text(
+                    data.contractAction,
+                    style: context.hyphaTextTheme.smallTitles,
+                    maxLines: 2,
+                  ),
                   data.onTap != null ? const Icon(Icons.navigate_next) : const SizedBox.shrink()
                 ],
               ),
               const SizedBox(height: 22),
               const HyphaDivider(),
               const SizedBox(height: 16),
-              ...rows
+              ...rows,
+              if (data.memo != null) ...[
+                const SizedBox(height: 16),
+                const HyphaDivider(),
+                const SizedBox(height: 16),
+                Text(
+                  'Memo',
+                  style: context.hyphaTextTheme.ralMediumBody.copyWith(color: HyphaColors.midGrey),
+                ),
+                const SizedBox(height: 8),
+                Container(
+                  padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 12),
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.all(Radius.circular(12)),
+                    color: context.isDarkTheme
+                        ? HyphaColors.midGrey.withOpacity(0.10)
+                        : HyphaColors.midGrey.withOpacity(0.05),
+                  ),
+                  child: Text(data.memo!, style: context.hyphaTextTheme.ralMediumBody),
+                )
+              ]
             ],
           ),
         ),

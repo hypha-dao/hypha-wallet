@@ -43,6 +43,7 @@ class TransactionsView extends StatelessWidget {
                       contractAction: item.actionName,
                       params: item.data,
                       timestamp: item.timestamp,
+                      memo: item.data['memo'],
                       onTap: () {
                         GetX.Get.to(
                           TransactionDetailsPage(transactionModel: item),

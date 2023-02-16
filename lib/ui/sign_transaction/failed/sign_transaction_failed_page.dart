@@ -21,7 +21,7 @@ class SignTransactionFailedPage extends StatelessWidget {
         ),
         children: <TextSpan>[
           TextSpan(
-            text: 'Something went wrong,\ntransaction ',
+            text: 'This transaction ',
             style: context.hyphaTextTheme.regular.copyWith(color: HyphaColors.error),
           ),
           const TextSpan(text: ' '),
@@ -44,35 +44,31 @@ class SignTransactionFailedPage extends StatelessWidget {
             title: 'Close',
           ),
         ),
-        body: Column(
+        body: Stack(
           children: [
-            const HyphaHalfBackground(backgroundColor: HyphaColors.error),
-            const SizedBox(height: 46),
-            Padding(
-              padding: const EdgeInsets.only(left: 45, right: 45, top: 45),
-              child: Text('Whoops!', textAlign: TextAlign.center, style: context.hyphaTextTheme.mediumTitles),
+            const HyphaHalfBackground(backgroundColor: HyphaColors.error, showTopBar: false),
+            Column(
+              children: [
+                const SizedBox(height: 80),
+                Image.asset('assets/images/warning.png', width: 240, height: 240),
+                Padding(
+                  padding: const EdgeInsets.only(left: 45, right: 45, top: 24),
+                  child: Text('Sorry...', textAlign: TextAlign.center, style: context.hyphaTextTheme.mediumTitles),
+                ),
+                const SizedBox(height: 16),
+                Padding(padding: const EdgeInsets.only(left: 45, right: 45), child: failedText),
+                const SizedBox(height: 16),
+                Padding(
+                  padding: const EdgeInsets.only(left: 45, right: 45),
+                  child: Text(
+                    'Please try again by triggering the transaction from the website or app. Sorry for the inconvenience.',
+                    style: context.hyphaTextTheme.ralMediumBody.copyWith(color: HyphaColors.midGrey),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                const SizedBox(height: 16),
+              ],
             ),
-            const SizedBox(height: 16),
-            Padding(padding: const EdgeInsets.only(left: 45, right: 45), child: failedText),
-            const SizedBox(height: 16),
-            Padding(
-              padding: const EdgeInsets.only(left: 45, right: 45),
-              child: Text(
-                'Please try again. You need to launch the transaction again from the website or app that originated it. Sorry for the inconvenience',
-                style: context.hyphaTextTheme.ralMediumBody.copyWith(color: HyphaColors.midGrey),
-                textAlign: TextAlign.center,
-              ),
-            ),
-            const SizedBox(height: 26),
-            Container(
-              padding: const EdgeInsets.all(16),
-              decoration: const BoxDecoration(
-                shape: BoxShape.circle,
-                color: HyphaColors.error,
-              ),
-              child: const Icon(Icons.warning_amber_outlined, size: 24),
-            ),
-            const SizedBox(height: 16),
           ],
         ),
       ),

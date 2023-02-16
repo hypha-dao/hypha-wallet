@@ -47,7 +47,11 @@ class CryptoCurrencyWidget extends StatelessWidget {
                 visualDensity: VisualDensity.compact,
                 title: Text(name, style: context.hyphaTextTheme.smallTitles),
                 subtitle: Text('Only visible to you', style: context.hyphaTextTheme.ralMediumSmallNote),
-                trailing: Switch(value: selected, onChanged: onChanged),
+                trailing: Switch.adaptive(
+                  value: selected,
+                  onChanged: onChanged,
+                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                ),
               ),
               const SizedBox(height: 14),
               const HyphaDivider(),

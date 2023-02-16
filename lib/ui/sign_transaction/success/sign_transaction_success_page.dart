@@ -49,7 +49,7 @@ class SignTransactionSuccessPage extends StatelessWidget {
         ),
         children: <TextSpan>[
           TextSpan(
-            text: 'The transaction has been successfully',
+            text: 'The transaction was successfully',
             style: context.hyphaTextTheme.regular.copyWith(color: HyphaColors.primaryBlu),
           ),
           const TextSpan(text: ' '),
@@ -71,26 +71,31 @@ class SignTransactionSuccessPage extends StatelessWidget {
             title: 'Close',
           ),
         ),
-        body: Column(
+        body: Stack(
           children: [
-            const HyphaHalfBackground(),
-            const SizedBox(height: 46),
-            Padding(
-              padding: const EdgeInsets.only(left: 45, right: 45, top: 45),
-              child: Text('Completed!', textAlign: TextAlign.center, style: context.hyphaTextTheme.mediumTitles),
+            const HyphaHalfBackground(showTopBar: false),
+            Column(
+              children: [
+                const SizedBox(height: 80),
+                Image.asset('assets/images/warning.png', width: 240, height: 240),
+                Padding(
+                  padding: const EdgeInsets.only(left: 45, right: 45, top: 16),
+                  child: Text('Completed!', textAlign: TextAlign.center, style: context.hyphaTextTheme.mediumTitles),
+                ),
+                const SizedBox(height: 16),
+                Padding(padding: const EdgeInsets.only(left: 45, right: 45), child: successText),
+                const SizedBox(height: 46),
+                Container(
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: transactionType.iconBackgroundColor,
+                  ),
+                  child: Icon(transactionType.icon, size: 24),
+                ),
+                const SizedBox(height: 16),
+              ],
             ),
-            const SizedBox(height: 16),
-            Padding(padding: const EdgeInsets.only(left: 45, right: 45), child: successText),
-            const SizedBox(height: 46),
-            Container(
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: transactionType.iconBackgroundColor,
-              ),
-              child: Icon(transactionType.icon, size: 24),
-            ),
-            const SizedBox(height: 16),
           ],
         ),
       ),

@@ -22,7 +22,7 @@ class ProfileView extends StatelessWidget {
             backgroundColor: HyphaColors.transparent,
             body: Stack(
               children: [
-                const HyphaHalfBackground(),
+                const HyphaHalfBackground(showTopBar: false),
                 SingleChildScrollView(
                   child: Padding(
                     padding: const EdgeInsets.all(26),
@@ -54,7 +54,7 @@ class ProfileView extends StatelessWidget {
                         const SizedBox(height: 24),
                         HyphaActionableCard(
                           trailer: const Icon(Icons.edit),
-                          title: 'Short Bio',
+                          title: 'Bio',
                           subtitle: state.profileData?.bio ?? '',
                         ),
                         const SizedBox(height: 16),

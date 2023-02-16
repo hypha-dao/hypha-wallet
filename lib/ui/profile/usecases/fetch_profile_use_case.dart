@@ -30,33 +30,6 @@ class FetchProfileUseCase extends InputUseCase<Result<ProfileData, HyphaError>, 
         final so = await auth.signOutCurrentUser();
       }
     }
+    return ProfileService().getProfile(accountName);
 
-    // keep returning old code until we have the real data DEBUG
-    return Future.delayed(const Duration(seconds: 2)).then(
-      (value) => Result.value(
-        ProfileData(
-          name: 'Gery Mc Lover',
-          account: 'TheRemoteCub',
-          organizations: [
-            OrganizationData(name: 'Hypha', image: 'https://picsum.photos/200'),
-          ],
-          image: 'https://picsum.photos/250',
-          bio: 'Tell other DAO members something about yourself, what makes you thrive or brings you here.',
-          bitCoinData: CryptoAccountData(
-            imageUrl: 'https://picsum.photos/200',
-            accountAddress: 'wertyui45t6y7u89iytfcvbji7y6tr',
-            cryptoName: 'BitCoin',
-            isSelected: true,
-          ),
-          eosData: CryptoAccountData(
-            imageUrl: 'https://picsum.photos/200',
-            accountAddress: 'EOSADDRESS',
-            accountName: 'EOS SUB NAME',
-            cryptoName: 'EOS',
-            isSelected: false,
-          ),
-        ),
-      ),
-    );
-  }
 }

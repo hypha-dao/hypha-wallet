@@ -6,6 +6,7 @@ import 'package:hypha_wallet/design/buttons/hypha_app_button.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 import 'package:hypha_wallet/ui/settings/private_key_info_page.dart';
+import 'package:hypha_wallet/ui/shared/ui_constants.dart';
 import 'package:share_plus/share_plus.dart';
 
 class SaveKeyPage extends StatelessWidget {
@@ -29,7 +30,7 @@ class SaveKeyPage extends StatelessWidget {
                     context: context,
                     clipBehavior: Clip.antiAliasWithSaveLayer,
                     builder: (context) => const FractionallySizedBox(
-                      heightFactor: 0.87,
+                      heightFactor: UIConstants.bottomSheetHeightFraction,
                       child: PrivateKeyInfoPage(),
                     ),
                     shape: const RoundedRectangleBorder(
