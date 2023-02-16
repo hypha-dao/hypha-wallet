@@ -1,0 +1,51 @@
+{
+    "api": {
+        "plugins": {
+            "awsAPIPlugin": {
+                "profileApi": {
+                    "endpointType": "REST",
+                    "endpoint": "https://ttac1sv2yj.execute-api.us-east-1.amazonaws.com/prod",
+                    "region": "us-east-1",
+                    "authorizationType": "AMAZON_COGNITO_USER_POOLS",
+                }
+            }
+        }
+    },
+    "auth": {
+        "plugins": {
+            "awsCognitoAuthPlugin": {
+                "IdentityManager": {
+                    "Default": {}
+                },
+                "CredentialsProvider": {
+                    "CognitoIdentity": {
+                        "Default": {
+                            "PoolId": "us-east-1:58bf768c-7607-41eb-b512-78314549d61b",
+                            "Region": "us-east-1"
+                        }
+                    }
+                },
+                "CognitoUserPool": {
+                    "Default": {
+                        "PoolId": "us-east-1_9voNzsQ2J",
+                        "AppClientId": "6a2p1a1jsei5ttp3t3vro1f0c5",
+                        "Region": "us-east-1"
+                    }
+                },
+                "Auth": {
+                    "Default": {
+                        "authenticationFlowType": "CUSTOM_AUTH",
+                    }
+                }
+            }
+        }
+    },
+    "storage": {
+        "plugins": {
+            "awsS3StoragePlugin": {
+                "bucket": "ppp-service-prod-attachmentsbucket-1qc5rzodik7x6",
+                "region": "us-east-1"
+            }
+        }
+    }
+}

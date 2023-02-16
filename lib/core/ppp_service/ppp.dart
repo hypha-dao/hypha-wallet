@@ -25,7 +25,7 @@ class PPP {
   /// @param {string} environment to be used (test, prod, eos)
   /// @param {string} [originAppId] required for standalone apps, the appId of the app using the PPP client
   static Future<void> configure(String environment, String? originAppId) async {
-    print("configure ");
+    print('configure ');
     instance._config = ppp_config_map[environment];
     instance.originAppId = originAppId;
     if (instance._config == null) {
@@ -39,7 +39,7 @@ class PPP {
 
     final jsonMap = Map<String, dynamic>.from(instance._config!['AWS']);
     await Amplify.configure(jsonEncode(jsonMap));
-    print("configure done");
+    print('configure done');
   }
 
   // we implement change of user later..
@@ -116,19 +116,46 @@ class PPP {
     },
     'prod': {
       'AWS': {
+        'api': {
+          'plugins': {
+            'awsAPIPlugin': {
+              'profileApi': {
+                'endpointType': 'REST',
+                'endpoint': 'https://ttac1sv2yj.execute-api.us-east-1.amazonaws.com/prod',
+                'region': 'us-east-1',
+                'authorizationType': 'AMAZON_COGNITO_USER_POOLS',
+              }
+            }
+          }
+        },
         'auth': {
-          'region': 'us-east-1',
-          'userPoolId': 'us-east-1_9voNzsQ2J',
-          'userPoolWebClientId': '6a2p1a1jsei5ttp3t3vro1f0c5',
-          'identityPoolId': 'us-east-1:58bf768c-7607-41eb-b512-78314549d61b'
+          'plugins': {
+            'awsCognitoAuthPlugin': {
+              'IdentityManager': {'Default': {}},
+              'CredentialsProvider': {
+                'CognitoIdentity': {
+                  'Default': {'PoolId': 'us-east-1:58bf768c-7607-41eb-b512-78314549d61b', 'Region': 'us-east-1'}
+                }
+              },
+              'CognitoUserPool': {
+                'Default': {
+                  'PoolId': 'us-east-1_9voNzsQ2J',
+                  'AppClientId': '6a2p1a1jsei5ttp3t3vro1f0c5',
+                  'Region': 'us-east-1'
+                }
+              },
+              'Auth': {
+                'Default': {
+                  'authenticationFlowType': 'CUSTOM_AUTH',
+                }
+              }
+            }
+          }
         },
         'storage': {
-          'AWSS3': {'region': 'us-east-1', 'bucket': 'ppp-service-prod-attachmentsbucket-1qc5rzodik7x6'}
-        },
-        'api': {
-          'endpoints': [
-            {'name': 'profileApi', 'endpoint': 'https://ttac1sv2yj.execute-api.us-east-1.amazonaws.com/prod'}
-          ]
+          'plugins': {
+            'awsS3StoragePlugin': {'bucket': 'ppp-service-prod-attachmentsbucket-1qc5rzodik7x6', 'region': 'us-east-1'}
+          }
         }
       },
       'loginContract': 'eosio.login',
