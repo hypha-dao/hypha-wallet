@@ -21,11 +21,11 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
 
   ProfileBloc(this._fetchProfileUseCase, this._appSharedPrefs) : super(const ProfileState()) {
     on<_Initial>(_initial);
+    on<_OnRefresh>(_onRefresh);
   }
 
   Future<void> _initial(_Initial event, Emitter<ProfileState> emit) async {
     emit(state.copyWith(pageState: PageState.loading));
-
     final UserProfileData? userData = await _appSharedPrefs.getUserProfileData();
     final Result<ProfileData, HyphaError> result = await _fetchProfileUseCase.run(userData?.accountName ?? '');
     if (result.isValue) {
@@ -33,5 +33,9 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     } else {
       emit(state.copyWith(pageState: PageState.failure));
     }
+  }
+
+  FutureOr<void> _onRefresh(_OnRefresh event, Emitter<ProfileState> emit) {
+    add(const ProfileEvent.initial());
   }
 }

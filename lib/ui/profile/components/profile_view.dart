@@ -21,7 +21,7 @@ class ProfileView extends StatelessWidget {
         builder: (context, state) {
           return RefreshIndicator(
             onRefresh: () async {
-              context.read<ProfileBloc>().add(const ProfileEvent.initial());
+              context.read<ProfileBloc>().add(const ProfileEvent.onRefresh());
             },
             child: HyphaBodyWidget(
               pageState: state.pageState,
