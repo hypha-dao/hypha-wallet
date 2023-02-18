@@ -42,6 +42,7 @@ class HyphaAvatarImage extends StatelessWidget {
           imageFromUrl!,
           width: imageRadius * 2,
           height: imageRadius * 2,
+          fit: BoxFit.cover,
         ),
       );
     } else if (name != null) {
