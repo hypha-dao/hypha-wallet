@@ -77,7 +77,7 @@ class SignTransactionSuccessPage extends StatelessWidget {
             Column(
               children: [
                 const SizedBox(height: 80),
-                Image.asset('assets/images/warning.png', width: 240, height: 240),
+                Image.asset('assets/images/thumb_up.png', width: 240, height: 240),
                 Padding(
                   padding: const EdgeInsets.only(left: 45, right: 45, top: 16),
                   child: Text('Completed!', textAlign: TextAlign.center, style: context.hyphaTextTheme.mediumTitles),
