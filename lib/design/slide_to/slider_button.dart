@@ -14,7 +14,8 @@ class SliderButton extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        gradient: isDown ? HyphaColors.gradientWhite : HyphaColors.gradientBlu,
+        color: isDown ? HyphaColors.white.withOpacity(0.25) : null,
+        gradient: isDown ? null : HyphaColors.gradientBlu,
         borderRadius: const BorderRadius.all(Radius.circular(25)),
       ),
       child: Center(

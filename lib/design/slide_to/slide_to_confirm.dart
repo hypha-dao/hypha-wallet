@@ -146,7 +146,7 @@ class SlideActionState extends State<SlideAction> with TickerProviderStateMixin 
                       Positioned(
                         right: 90,
                         child: Opacity(
-                          opacity: 1 - 1 * _progress.abs(),
+                          opacity: isDown ? 0 : 1,
                           child: Transform(
                             alignment: Alignment.center,
                             transform: Matrix4.rotationY(widget.reversed ? pi : 0),
@@ -173,6 +173,7 @@ class SlideActionState extends State<SlideAction> with TickerProviderStateMixin 
                               child: GestureDetector(
                                 onHorizontalDragUpdate: onHorizontalDragUpdate,
                                 onHorizontalDragDown: onHorizontalDragDown,
+                                onHorizontalDragCancel: onHorizontalDragCancel,
                                 onHorizontalDragEnd: (details) async {
                                   _endDx = _dx;
                                   isDown = false;
@@ -224,6 +225,12 @@ class SlideActionState extends State<SlideAction> with TickerProviderStateMixin 
   void onHorizontalDragDown(DragDownDetails details) {
     setState(() {
       isDown = true;
+    });
+  }
+
+  void onHorizontalDragCancel() {
+    setState(() {
+      isDown = false;
     });
   }
 
