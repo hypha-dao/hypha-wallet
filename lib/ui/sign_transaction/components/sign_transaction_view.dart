@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hypha_wallet/design/cards/hypha_transaction_action_card.dart';
+import 'package:hypha_wallet/design/countdown_timer/countdown_timer_text.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/slide_to/slide_to_confirm.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
@@ -44,8 +45,11 @@ class SignTransactionView extends StatelessWidget {
                               'This transaction expires in ',
                               style: context.hyphaTextTheme.ralMediumSmallNote.copyWith(color: HyphaColors.midGrey),
                             ),
-                            Text(
-                              state.transactionDetailsData.expirationTime.toString(),
+                            CountDownText(
+                              due: state.transactionDetailsData.expirationTime,
+                              finishedText: 'Expired',
+                              showLabel: true,
+                              longDateName: false,
                               style: context.hyphaTextTheme.ralMediumSmallNote.copyWith(color: HyphaColors.midGrey),
                             ),
                           ],
