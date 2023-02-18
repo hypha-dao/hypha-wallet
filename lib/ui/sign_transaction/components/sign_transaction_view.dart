@@ -37,7 +37,7 @@ class SignTransactionView extends StatelessWidget {
                           )
                           .toList(),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 44),
+                        padding: const EdgeInsets.symmetric(horizontal: 30),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
