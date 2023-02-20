@@ -6,9 +6,11 @@ import 'package:hypha_wallet/design/background/hypha_page_background.dart';
 import 'package:hypha_wallet/design/cards/hypha_actionable_card.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
+import 'package:hypha_wallet/ui/architecture/interactor/page_states.dart';
 import 'package:hypha_wallet/ui/profile/components/crypto_currency_widget.dart';
 import 'package:hypha_wallet/ui/profile/interactor/profile_bloc.dart';
 import 'package:hypha_wallet/ui/shared/hypha_body_widget.dart';
+import 'package:hypha_wallet/ui/shared/hypha_error_view.dart';
 
 class ProfileView extends StatelessWidget {
   const ProfileView({super.key});
@@ -24,7 +26,12 @@ class ProfileView extends StatelessWidget {
               context.read<ProfileBloc>().add(const ProfileEvent.onRefresh());
             },
             child: HyphaBodyWidget(
-              pageState: state.pageState,
+              pageState: PageState.failure,
+              failure: (_) {
+                return HyphaErrorWidget(onRefreshPressed: () {
+                  context.read<ProfileBloc>().add(const ProfileEvent.onRefresh());
+                });
+              },
               success: (value) => Scaffold(
                 backgroundColor: HyphaColors.transparent,
                 body: Stack(
