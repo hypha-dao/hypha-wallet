@@ -28,8 +28,8 @@ class HyphaAppButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final borderRadius = BorderRadius.circular(80);
-    final buttonColor = buttonType.appButtonColor(isActive);
-    final Color textColor = HyphaColors.offWhite.withOpacity(isActive ? 1 : 0.10);
+    final buttonColor = buttonType.appButtonColor(isActive, context.isDarkTheme);
+    final Color textColor = buttonType.appButtonTextColor(isActive, context.isDarkTheme);
 
     final body = Builder(
       builder: (context) {

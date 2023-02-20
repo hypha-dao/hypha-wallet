@@ -6,14 +6,37 @@ enum ButtonType {
   secondary,
   tertiary;
 
-  Color appButtonColor(bool isActive) {
+  Color? appButtonColor(bool isActive, bool isDarkTheme) {
     switch (this) {
       case ButtonType.primary:
-        return HyphaColors.lightBlack.withOpacity(isActive ? 0 : 0.60);
+        return isDarkTheme
+            ? HyphaColors.lightBlack.withOpacity(isActive ? 0 : 0.60)
+            : HyphaColors.primaryBlu.withOpacity(isActive ? 0 : 0.50);
       case ButtonType.secondary:
-        return HyphaColors.lightBlack.withOpacity(isActive ? 1 : 0.40);
+        return isDarkTheme
+            ? HyphaColors.lightBlack.withOpacity(isActive ? 1 : 0.40)
+            : isActive
+                ? HyphaColors.white
+                : HyphaColors.primaryBlu.withOpacity(isActive ? 0 : 0.50);
       case ButtonType.tertiary:
-        return HyphaColors.white.withOpacity(isActive ? 0 : 0);
+        return isDarkTheme ? HyphaColors.white.withOpacity(isActive ? 0 : 0) : null;
+    }
+  }
+
+  Color appButtonTextColor(bool isActive, bool isDarkTheme) {
+    switch (this) {
+      case ButtonType.primary:
+        return HyphaColors.offWhite.withOpacity(isActive ? 1 : 0.20);
+      case ButtonType.tertiary:
+        return isDarkTheme
+            ? HyphaColors.offWhite.withOpacity(isActive ? 1 : 0.20)
+            : HyphaColors.primaryBlu.withOpacity(isActive ? 1 : 0.20);
+      case ButtonType.secondary:
+        return isDarkTheme
+            ? HyphaColors.offWhite.withOpacity(isActive ? 1 : 0.20)
+            : isActive
+                ? HyphaColors.primaryBlu
+                : HyphaColors.offWhite.withOpacity(isActive ? 1 : 0.20);
     }
   }
 }
