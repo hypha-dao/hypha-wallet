@@ -38,10 +38,14 @@ Future<Result<ScanQrCodeResultData>> _validateQrCode({required String scanResult
     }
 
     final SeedsESR esr = SeedsESR(uri: scanResult);
-    return esr.resolve(account: accountName).then((value) => esr.processResolvedRequest()).catchError((onError) {
-      LogHelper.d('processQrCode : Error processing QR code $onError');
+    try {
+      await esr.resolve(account: accountName);
+      LogHelper.d('processQrCode : resolved completed');
+      return esr.processResolvedRequest();
+    } catch (error) {
+      LogHelper.d('processQrCode : Error processing QR code $error');
       return Result.error(HyphaError.generic('Error processing QR code'));
-    });
+    }
   }
 }
 
