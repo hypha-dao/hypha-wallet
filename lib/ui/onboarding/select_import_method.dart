@@ -18,7 +18,7 @@ class SelectImportMethod extends StatelessWidget {
         backgroundColor: Colors.transparent,
         appBar: const OnboardingAppbar(title: 'Import your', subTitle: 'Hypha Account'),
         body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 50),
+          padding: const EdgeInsets.symmetric(horizontal: 40),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -71,12 +71,12 @@ class _SquareButton extends StatelessWidget {
           onTap: onTap,
           borderRadius: BorderRadius.circular(16),
           child: Ink(
-            padding: const EdgeInsets.all(44),
+            padding: const EdgeInsets.all(40),
             decoration: BoxDecoration(
               color: context.isDarkTheme ? HyphaColors.lightBlack : HyphaColors.white,
               borderRadius: BorderRadius.circular(16),
             ),
-            child: Icon(icon, size: 50, color: context.isDarkTheme ? HyphaColors.white : HyphaColors.primaryBlu),
+            child: Icon(icon, size: 45, color: context.isDarkTheme ? HyphaColors.white : HyphaColors.primaryBlu),
           ),
         ),
         const SizedBox(height: 20),
