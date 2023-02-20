@@ -154,6 +154,7 @@ flutter:
    - assets/images/logos/hypha_logo_composite.svg
    - assets/images/signout.png
    - assets/images/warning.png
+   - assets/images/thumb_up.png
    - assets/images/shield.png
 
   # An image asset can refer to one or more resolution-specific "variants", see

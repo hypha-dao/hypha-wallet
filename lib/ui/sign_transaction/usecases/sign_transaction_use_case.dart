@@ -1,4 +1,4 @@
-import 'package:async/src/result/result.dart';
+import 'package:async/async.dart';
 import 'package:hypha_wallet/core/crypto/seeds_esr/eos_transaction.dart';
 import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
 import 'package:hypha_wallet/core/network/api/eos_service.dart';

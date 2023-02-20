@@ -115,7 +115,7 @@ class SettingsView extends StatelessWidget {
 
   Future<void> onLogoutTapped(BuildContext context, AuthenticationState state) async {
     final bool hasWords = state.userAuthData?.words.isNotEmpty == true;
-    final bool result = await showModalBottomSheet(
+    final bool? result = await showModalBottomSheet(
       isScrollControlled: true,
       context: context,
       clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -146,7 +146,7 @@ class SettingsView extends StatelessWidget {
       ),
     );
 
-    if (result) {
+    if (result == true) {
       context.read<AuthenticationBloc>().add(const AuthenticationEvent.authenticationLogoutRequested());
     }
   }
