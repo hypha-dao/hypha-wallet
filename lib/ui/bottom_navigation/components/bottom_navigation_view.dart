@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/icons/hypha_icons.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
@@ -11,6 +10,8 @@ import 'package:hypha_wallet/ui/profile/profile_page.dart';
 import 'package:hypha_wallet/ui/settings/interactor/settings_bloc.dart';
 import 'package:hypha_wallet/ui/settings/settings_page.dart';
 
+const double _bottomBarRadius = 22;
+
 class BottomNavigationView extends StatelessWidget {
   const BottomNavigationView({super.key});
 
@@ -19,10 +20,14 @@ class BottomNavigationView extends StatelessWidget {
     return BlocBuilder<BottomNavigationBloc, BottomNavigationState>(
       builder: (context, state) {
         return Scaffold(
+            extendBody: true,
             bottomNavigationBar: DecoratedBox(
               decoration: BoxDecoration(
                 color: context.isDarkTheme ? HyphaColors.lightBlack : HyphaColors.white,
-                // borderRadius: const BorderRadius.all(Radius.circular(26)),
+                borderRadius: const BorderRadius.only(
+                  topRight: Radius.circular(_bottomBarRadius),
+                  topLeft: Radius.circular(_bottomBarRadius),
+                ),
                 boxShadow: [
                   BoxShadow(
                     blurRadius: 20,
@@ -30,34 +35,27 @@ class BottomNavigationView extends StatelessWidget {
                   )
                 ],
               ),
-              child: SafeArea(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
-                  child: GNav(
-                    rippleColor: context.isDarkTheme ? HyphaColors.midGrey : Colors.grey[300]!,
-                    gap: 8,
-                    activeColor: HyphaColors.white,
-                    iconSize: 18,
-                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                    duration: const Duration(milliseconds: 400),
-                    tabBackgroundGradient: HyphaColors.gradientBlu,
-                    color: context.isDarkTheme
-                        ? HyphaColors.offWhite.withOpacity(0.20)
-                        : HyphaColors.black.withOpacity(0.33),
-                    tabs: [
-                      const GButton(icon: HyphaIcons.home_b, text: 'Home'),
-                      const GButton(icon: HyphaIcons.history_b, text: 'History'),
-                      const GButton(icon: HyphaIcons.profile_b, text: 'Profile'),
-                      const GButton(icon: HyphaIcons.settings_b, text: 'Settings'),
-                    ],
-                    selectedIndex: state.selectedPage,
-                    onTabChange: (index) {
-                      BlocProvider.of<BottomNavigationBloc>(context).add(BottomNavigationEvent.onPageSelected(index));
-                      if (index == 3) {
-                        BlocProvider.of<SettingsBloc>(context).add(const SettingsEvent.onShowSettings());
-                      }
-                    },
-                  ),
+              child: ClipRRect(
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(_bottomBarRadius),
+                  topRight: Radius.circular(_bottomBarRadius),
+                ),
+                clipBehavior: Clip.antiAlias,
+                child: BottomNavigationBar(
+                  backgroundColor: context.isDarkTheme ? HyphaColors.lightBlack : HyphaColors.white,
+                  currentIndex: state.selectedPage,
+                  onTap: (int index) {
+                    BlocProvider.of<BottomNavigationBloc>(context).add(BottomNavigationEvent.onPageSelected(index));
+                    if (index == 3) {
+                      BlocProvider.of<SettingsBloc>(context).add(const SettingsEvent.onShowSettings());
+                    }
+                  },
+                  items: [
+                    const BottomNavigationBarItem(icon: Icon(HyphaIcons.home_b), label: 'Home'),
+                    const BottomNavigationBarItem(icon: Icon(HyphaIcons.history_b), label: 'History'),
+                    const BottomNavigationBarItem(icon: Icon(HyphaIcons.profile_b), label: 'Profile'),
+                    const BottomNavigationBarItem(icon: Icon(HyphaIcons.settings_b), label: 'Settings'),
+                  ],
                 ),
               ),
             ),
