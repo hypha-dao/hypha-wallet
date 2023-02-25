@@ -4,5 +4,5 @@ part of 'create_account_bloc.dart';
 class CreateAccountEvent with _$CreateAccountEvent {
   const factory CreateAccountEvent.initial() = _Initial;
   const factory CreateAccountEvent.clearPageCommand() = _ClearPageCommand;
-  const factory CreateAccountEvent.onNextTapped() = _OnNextTapped;
+  const factory CreateAccountEvent.onNextTapped(InviteLinkData inviteLinkData) = _OnNextTapped;
 }

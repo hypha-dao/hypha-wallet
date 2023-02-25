@@ -12,6 +12,7 @@ import 'package:hypha_wallet/core/local/services/crypto_auth_service.dart';
 import 'package:hypha_wallet/core/logging/log_helper.dart';
 import 'package:hypha_wallet/ui/architecture/interactor/page_states.dart';
 import 'package:hypha_wallet/ui/architecture/result/result.dart' as Hypha;
+import 'package:hypha_wallet/ui/blocs/deeplink/deeplink_bloc.dart';
 import 'package:hypha_wallet/ui/onboarding/edit_account/data/user_account_requirement.dart';
 import 'package:hypha_wallet/ui/onboarding/edit_account/edit_account_page.dart';
 import 'package:hypha_wallet/ui/onboarding/edit_account/interactor/user_account_error.dart';
@@ -137,6 +138,8 @@ class EditAccountBloc extends Bloc<EditAccountEvent, EditAccountState> {
       userAuthData: auth,
       accountName: state.userAccount!,
       userName: state.userName,
+      inviteLinkData: event.inviteLinkData,
+      image: state.image,
     ));
 
     if (result.isValue) {

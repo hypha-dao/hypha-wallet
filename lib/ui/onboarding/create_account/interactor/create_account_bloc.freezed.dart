@@ -20,21 +20,21 @@ mixin _$CreateAccountEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() clearPageCommand,
-    required TResult Function() onNextTapped,
+    required TResult Function(InviteLinkData inviteLinkData) onNextTapped,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? clearPageCommand,
-    TResult? Function()? onNextTapped,
+    TResult? Function(InviteLinkData inviteLinkData)? onNextTapped,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? clearPageCommand,
-    TResult Function()? onNextTapped,
+    TResult Function(InviteLinkData inviteLinkData)? onNextTapped,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -119,7 +119,7 @@ class _$_Initial implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() clearPageCommand,
-    required TResult Function() onNextTapped,
+    required TResult Function(InviteLinkData inviteLinkData) onNextTapped,
   }) {
     return initial();
   }
@@ -129,7 +129,7 @@ class _$_Initial implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? clearPageCommand,
-    TResult? Function()? onNextTapped,
+    TResult? Function(InviteLinkData inviteLinkData)? onNextTapped,
   }) {
     return initial?.call();
   }
@@ -139,7 +139,7 @@ class _$_Initial implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? clearPageCommand,
-    TResult Function()? onNextTapped,
+    TResult Function(InviteLinkData inviteLinkData)? onNextTapped,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -227,7 +227,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() clearPageCommand,
-    required TResult Function() onNextTapped,
+    required TResult Function(InviteLinkData inviteLinkData) onNextTapped,
   }) {
     return clearPageCommand();
   }
@@ -237,7 +237,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? clearPageCommand,
-    TResult? Function()? onNextTapped,
+    TResult? Function(InviteLinkData inviteLinkData)? onNextTapped,
   }) {
     return clearPageCommand?.call();
   }
@@ -247,7 +247,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? clearPageCommand,
-    TResult Function()? onNextTapped,
+    TResult Function(InviteLinkData inviteLinkData)? onNextTapped,
     required TResult orElse(),
   }) {
     if (clearPageCommand != null) {
@@ -300,6 +300,8 @@ abstract class _$$_OnNextTappedCopyWith<$Res> {
   factory _$$_OnNextTappedCopyWith(
           _$_OnNextTapped value, $Res Function(_$_OnNextTapped) then) =
       __$$_OnNextTappedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({InviteLinkData inviteLinkData});
 }
 
 /// @nodoc
@@ -309,35 +311,60 @@ class __$$_OnNextTappedCopyWithImpl<$Res>
   __$$_OnNextTappedCopyWithImpl(
       _$_OnNextTapped _value, $Res Function(_$_OnNextTapped) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? inviteLinkData = null,
+  }) {
+    return _then(_$_OnNextTapped(
+      null == inviteLinkData
+          ? _value.inviteLinkData
+          : inviteLinkData // ignore: cast_nullable_to_non_nullable
+              as InviteLinkData,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_OnNextTapped implements _OnNextTapped {
-  const _$_OnNextTapped();
+  const _$_OnNextTapped(this.inviteLinkData);
+
+  @override
+  final InviteLinkData inviteLinkData;
 
   @override
   String toString() {
-    return 'CreateAccountEvent.onNextTapped()';
+    return 'CreateAccountEvent.onNextTapped(inviteLinkData: $inviteLinkData)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_OnNextTapped);
+        (other.runtimeType == runtimeType &&
+            other is _$_OnNextTapped &&
+            (identical(other.inviteLinkData, inviteLinkData) ||
+                other.inviteLinkData == inviteLinkData));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, inviteLinkData);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_OnNextTappedCopyWith<_$_OnNextTapped> get copyWith =>
+      __$$_OnNextTappedCopyWithImpl<_$_OnNextTapped>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() clearPageCommand,
-    required TResult Function() onNextTapped,
+    required TResult Function(InviteLinkData inviteLinkData) onNextTapped,
   }) {
-    return onNextTapped();
+    return onNextTapped(inviteLinkData);
   }
 
   @override
@@ -345,9 +372,9 @@ class _$_OnNextTapped implements _OnNextTapped {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? clearPageCommand,
-    TResult? Function()? onNextTapped,
+    TResult? Function(InviteLinkData inviteLinkData)? onNextTapped,
   }) {
-    return onNextTapped?.call();
+    return onNextTapped?.call(inviteLinkData);
   }
 
   @override
@@ -355,11 +382,11 @@ class _$_OnNextTapped implements _OnNextTapped {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? clearPageCommand,
-    TResult Function()? onNextTapped,
+    TResult Function(InviteLinkData inviteLinkData)? onNextTapped,
     required TResult orElse(),
   }) {
     if (onNextTapped != null) {
-      return onNextTapped();
+      return onNextTapped(inviteLinkData);
     }
     return orElse();
   }
@@ -400,7 +427,13 @@ class _$_OnNextTapped implements _OnNextTapped {
 }
 
 abstract class _OnNextTapped implements CreateAccountEvent {
-  const factory _OnNextTapped() = _$_OnNextTapped;
+  const factory _OnNextTapped(final InviteLinkData inviteLinkData) =
+      _$_OnNextTapped;
+
+  InviteLinkData get inviteLinkData;
+  @JsonKey(ignore: true)
+  _$$_OnNextTappedCopyWith<_$_OnNextTapped> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

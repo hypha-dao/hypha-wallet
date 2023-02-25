@@ -3,11 +3,13 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart' as Get;
+import 'package:hypha_wallet/core/extension/scope_functions.dart';
 import 'package:hypha_wallet/design/avatar_image/hypha_avatar_image.dart';
 import 'package:hypha_wallet/design/background/hypha_page_background.dart';
 import 'package:hypha_wallet/design/buttons/hypha_app_button.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
+import 'package:hypha_wallet/ui/blocs/deeplink/deeplink_bloc.dart';
 import 'package:hypha_wallet/ui/onboarding/components/onboarding_appbar.dart';
 import 'package:hypha_wallet/ui/onboarding/edit_account/components/requirement_state_widget.dart';
 import 'package:hypha_wallet/ui/onboarding/edit_account/interactor/edit_account_bloc.dart';
@@ -49,7 +51,11 @@ class _EditAccountViewState extends State<EditAccountView> {
               isActive: state.isNextButtonAvailable,
               onPressed: state.isNextButtonAvailable
                   ? () {
-                      context.read<EditAccountBloc>().add(const EditAccountEvent.onNextPressed());
+                      context
+                          .read<DeeplinkBloc>()
+                          .state
+                          .inviteLinkData
+                          ?.let((it) => context.read<EditAccountBloc>().add(EditAccountEvent.onNextPressed(it)));
                     }
                   : null,
               title: 'Next',

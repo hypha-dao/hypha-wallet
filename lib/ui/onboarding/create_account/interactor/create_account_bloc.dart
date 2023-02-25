@@ -8,6 +8,7 @@ import 'package:hypha_wallet/core/local/models/user_auth_data.dart';
 import 'package:hypha_wallet/core/local/services/crypto_auth_service.dart';
 import 'package:hypha_wallet/ui/architecture/interactor/page_states.dart';
 import 'package:hypha_wallet/ui/architecture/result/result.dart' as Hypha;
+import 'package:hypha_wallet/ui/blocs/deeplink/deeplink_bloc.dart';
 import 'package:hypha_wallet/ui/onboarding/usecases/create_account_use_case.dart';
 import 'package:hypha_wallet/ui/onboarding/usecases/find_available_account_use_case.dart';
 import 'package:image_picker/image_picker.dart';
@@ -61,6 +62,7 @@ class CreateAccountBloc extends Bloc<CreateAccountEvent, CreateAccountState> {
       userAuthData: auth,
       accountName: state.userAccount!,
       userName: state.userName,
+      inviteLinkData: event.inviteLinkData,
     ));
 
     if (result.isValue) {

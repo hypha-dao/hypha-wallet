@@ -36,7 +36,7 @@ class OnboardingPageWithLink extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 54, right: 54),
                 child: Text(
-                  'Hypha Wallet allow you to do XYandZ. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
+                  'The Hypha Wallet allows you to create a Hypha account, manage your keys and sign blockchain transactions in the DAO',
                   style: context.hyphaTextTheme.ralMediumBody.copyWith(color: HyphaColors.midGrey),
                   textAlign: TextAlign.center,
                 ),

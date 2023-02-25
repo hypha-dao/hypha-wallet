@@ -6,7 +6,6 @@ import 'package:hypha_wallet/design/buttons/button_type.dart';
 import 'package:hypha_wallet/design/buttons/hypha_app_button.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
-import 'package:hypha_wallet/ui/onboarding/onboarding_page_with_link.dart';
 import 'package:hypha_wallet/ui/onboarding/select_import_method.dart';
 
 class OnboardingPage extends StatelessWidget {
@@ -26,7 +25,7 @@ class OnboardingPage extends StatelessWidget {
               HyphaAppButton(
                 margin: const EdgeInsets.symmetric(horizontal: 45),
                 onPressed: () {
-                  Get.to(() => const OnboardingPageWithLink(), transition: Transition.rightToLeft);
+                  // Get.to(() => const OnboardingPageWithLink(), transition: Transition.rightToLeft);
                 },
                 title: 'Sign-Up',
                 buttonType: ButtonType.secondary,
@@ -54,7 +53,7 @@ class OnboardingPage extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 54, right: 54),
                 child: Text(
-                  'IF you already have an Hypha account please click “Import account” button and follow the steps. \n\nIf you don’t have an Hypha account yet, please click “Sign-up” button and proceed to dao.hypha.earth to receive an invite.',
+                  'If you already have an Hypha account please click “Import account” button and follow the steps. \n\nIf you don’t have an Hypha account yet, please click “Sign-up” button and proceed to dao.hypha.earth to create an account.',
                   style: context.hyphaTextTheme.ralMediumBody.copyWith(color: HyphaColors.midGrey),
                   textAlign: TextAlign.center,
                 ),

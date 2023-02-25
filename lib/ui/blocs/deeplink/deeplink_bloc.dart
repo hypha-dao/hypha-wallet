@@ -44,9 +44,22 @@ class DeeplinkBloc extends Bloc<DeeplinkEvent, DeeplinkState> {
 
   Future<void> _incomingFirebaseDeepLink(_IncomingFirebaseDeepLink event, Emitter<DeeplinkState> emit) async {
     /// fetch data from link.
-    // final DeepLinkData result = await GetInitialDeepLinkUseCase().run(event.newLink);
+    final queryParams = event.link.queryParameters;
+    if (queryParams.isNotEmpty &&
+        queryParams.containsKey('code') &&
+        queryParams.containsKey('chain') &&
+        queryParams.containsKey('dao')) {
+      final code = queryParams['code']!;
+      final chain = queryParams['chain']!;
+      final dao = queryParams['dao']!;
 
-    /// Emit new state with data from link
-    emit(state.copyWith(command: const PageCommand.navigateToCreateAccount()));
+      /// Emit new state with data from link
+      emit(
+        state.copyWith(
+          inviteLinkData: InviteLinkData(code: code, chain: chain, dao: dao),
+          command: const PageCommand.navigateToCreateAccount(),
+        ),
+      );
+    }
   }
 }

@@ -63,7 +63,11 @@ class HyphaAppView extends StatelessWidget {
         BlocListener<DeeplinkBloc, DeeplinkState>(
           listenWhen: (previous, current) => previous.command != current.command,
           listener: (context, state) {
-            state.command?.when(navigateToCreateAccount: () => Get.offAll(() => const OnboardingPageWithLink()));
+            state.command?.when(
+              navigateToCreateAccount: () => Get.offAll(
+                () => const OnboardingPageWithLink(),
+              ),
+            );
 
             context.read<DeeplinkBloc>().add(const DeeplinkEvent.clearPageCommand());
           },

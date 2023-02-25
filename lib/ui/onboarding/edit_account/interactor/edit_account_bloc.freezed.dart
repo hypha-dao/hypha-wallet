@@ -19,7 +19,7 @@ mixin _$EditAccountEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() onNextPressed,
+    required TResult Function(InviteLinkData inviteLinkData) onNextPressed,
     required TResult Function() clearPageCommand,
     required TResult Function(String value) onAccountChange,
   }) =>
@@ -27,7 +27,7 @@ mixin _$EditAccountEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? onNextPressed,
+    TResult? Function(InviteLinkData inviteLinkData)? onNextPressed,
     TResult? Function()? clearPageCommand,
     TResult? Function(String value)? onAccountChange,
   }) =>
@@ -35,7 +35,7 @@ mixin _$EditAccountEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? onNextPressed,
+    TResult Function(InviteLinkData inviteLinkData)? onNextPressed,
     TResult Function()? clearPageCommand,
     TResult Function(String value)? onAccountChange,
     required TResult orElse(),
@@ -124,7 +124,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() onNextPressed,
+    required TResult Function(InviteLinkData inviteLinkData) onNextPressed,
     required TResult Function() clearPageCommand,
     required TResult Function(String value) onAccountChange,
   }) {
@@ -135,7 +135,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? onNextPressed,
+    TResult? Function(InviteLinkData inviteLinkData)? onNextPressed,
     TResult? Function()? clearPageCommand,
     TResult? Function(String value)? onAccountChange,
   }) {
@@ -146,7 +146,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? onNextPressed,
+    TResult Function(InviteLinkData inviteLinkData)? onNextPressed,
     TResult Function()? clearPageCommand,
     TResult Function(String value)? onAccountChange,
     required TResult orElse(),
@@ -204,6 +204,8 @@ abstract class _$$_OnNextPressedCopyWith<$Res> {
   factory _$$_OnNextPressedCopyWith(
           _$_OnNextPressed value, $Res Function(_$_OnNextPressed) then) =
       __$$_OnNextPressedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({InviteLinkData inviteLinkData});
 }
 
 /// @nodoc
@@ -213,60 +215,85 @@ class __$$_OnNextPressedCopyWithImpl<$Res>
   __$$_OnNextPressedCopyWithImpl(
       _$_OnNextPressed _value, $Res Function(_$_OnNextPressed) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? inviteLinkData = null,
+  }) {
+    return _then(_$_OnNextPressed(
+      null == inviteLinkData
+          ? _value.inviteLinkData
+          : inviteLinkData // ignore: cast_nullable_to_non_nullable
+              as InviteLinkData,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_OnNextPressed implements _OnNextPressed {
-  const _$_OnNextPressed();
+  const _$_OnNextPressed(this.inviteLinkData);
+
+  @override
+  final InviteLinkData inviteLinkData;
 
   @override
   String toString() {
-    return 'EditAccountEvent.onNextPressed()';
+    return 'EditAccountEvent.onNextPressed(inviteLinkData: $inviteLinkData)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_OnNextPressed);
+        (other.runtimeType == runtimeType &&
+            other is _$_OnNextPressed &&
+            (identical(other.inviteLinkData, inviteLinkData) ||
+                other.inviteLinkData == inviteLinkData));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, inviteLinkData);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_OnNextPressedCopyWith<_$_OnNextPressed> get copyWith =>
+      __$$_OnNextPressedCopyWithImpl<_$_OnNextPressed>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() onNextPressed,
+    required TResult Function(InviteLinkData inviteLinkData) onNextPressed,
     required TResult Function() clearPageCommand,
     required TResult Function(String value) onAccountChange,
   }) {
-    return onNextPressed();
+    return onNextPressed(inviteLinkData);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? onNextPressed,
+    TResult? Function(InviteLinkData inviteLinkData)? onNextPressed,
     TResult? Function()? clearPageCommand,
     TResult? Function(String value)? onAccountChange,
   }) {
-    return onNextPressed?.call();
+    return onNextPressed?.call(inviteLinkData);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? onNextPressed,
+    TResult Function(InviteLinkData inviteLinkData)? onNextPressed,
     TResult Function()? clearPageCommand,
     TResult Function(String value)? onAccountChange,
     required TResult orElse(),
   }) {
     if (onNextPressed != null) {
-      return onNextPressed();
+      return onNextPressed(inviteLinkData);
     }
     return orElse();
   }
@@ -310,7 +337,13 @@ class _$_OnNextPressed implements _OnNextPressed {
 }
 
 abstract class _OnNextPressed implements EditAccountEvent {
-  const factory _OnNextPressed() = _$_OnNextPressed;
+  const factory _OnNextPressed(final InviteLinkData inviteLinkData) =
+      _$_OnNextPressed;
+
+  InviteLinkData get inviteLinkData;
+  @JsonKey(ignore: true)
+  _$$_OnNextPressedCopyWith<_$_OnNextPressed> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -352,7 +385,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() onNextPressed,
+    required TResult Function(InviteLinkData inviteLinkData) onNextPressed,
     required TResult Function() clearPageCommand,
     required TResult Function(String value) onAccountChange,
   }) {
@@ -363,7 +396,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? onNextPressed,
+    TResult? Function(InviteLinkData inviteLinkData)? onNextPressed,
     TResult? Function()? clearPageCommand,
     TResult? Function(String value)? onAccountChange,
   }) {
@@ -374,7 +407,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? onNextPressed,
+    TResult Function(InviteLinkData inviteLinkData)? onNextPressed,
     TResult Function()? clearPageCommand,
     TResult Function(String value)? onAccountChange,
     required TResult orElse(),
@@ -492,7 +525,7 @@ class _$_OnAccountChange implements _OnAccountChange {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() onNextPressed,
+    required TResult Function(InviteLinkData inviteLinkData) onNextPressed,
     required TResult Function() clearPageCommand,
     required TResult Function(String value) onAccountChange,
   }) {
@@ -503,7 +536,7 @@ class _$_OnAccountChange implements _OnAccountChange {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? onNextPressed,
+    TResult? Function(InviteLinkData inviteLinkData)? onNextPressed,
     TResult? Function()? clearPageCommand,
     TResult? Function(String value)? onAccountChange,
   }) {
@@ -514,7 +547,7 @@ class _$_OnAccountChange implements _OnAccountChange {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? onNextPressed,
+    TResult Function(InviteLinkData inviteLinkData)? onNextPressed,
     TResult Function()? clearPageCommand,
     TResult Function(String value)? onAccountChange,
     required TResult orElse(),

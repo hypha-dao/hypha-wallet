@@ -8,6 +8,7 @@ import 'package:hypha_wallet/core/network/api/user_account_service.dart';
 import 'package:hypha_wallet/core/network/dio_exception.dart';
 import 'package:hypha_wallet/core/network/models/user_profile_data.dart';
 import 'package:hypha_wallet/core/shared_preferences/hypha_shared_prefs.dart';
+import 'package:hypha_wallet/ui/blocs/deeplink/deeplink_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 
 enum AuthenticationStatus { unknown, authenticated, unauthenticated }
@@ -21,12 +22,12 @@ class AuthRepository {
   AuthRepository(this._appSharedPrefs, this._userService, this._secureStorageService);
 
   /// This stream will represent the source of truth for the user authentication.
-
   Future<bool> createUserAccount({
     required String accountName,
     required String userName,
     required UserAuthData userAuthData,
     XFile? image,
+    required InviteLinkData inviteLinkData,
   }) async {
     try {
       final Response response = await _userService.createUserAccount(

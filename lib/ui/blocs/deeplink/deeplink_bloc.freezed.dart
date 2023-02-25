@@ -320,7 +320,7 @@ abstract class _ClearPageCommand implements DeeplinkEvent {
 
 /// @nodoc
 mixin _$DeeplinkState {
-  String? get link => throw _privateConstructorUsedError;
+  InviteLinkData? get inviteLinkData => throw _privateConstructorUsedError;
   PageCommand? get command => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -334,7 +334,7 @@ abstract class $DeeplinkStateCopyWith<$Res> {
           DeeplinkState value, $Res Function(DeeplinkState) then) =
       _$DeeplinkStateCopyWithImpl<$Res, DeeplinkState>;
   @useResult
-  $Res call({String? link, PageCommand? command});
+  $Res call({InviteLinkData? inviteLinkData, PageCommand? command});
 
   $PageCommandCopyWith<$Res>? get command;
 }
@@ -352,14 +352,14 @@ class _$DeeplinkStateCopyWithImpl<$Res, $Val extends DeeplinkState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? link = freezed,
+    Object? inviteLinkData = freezed,
     Object? command = freezed,
   }) {
     return _then(_value.copyWith(
-      link: freezed == link
-          ? _value.link
-          : link // ignore: cast_nullable_to_non_nullable
-              as String?,
+      inviteLinkData: freezed == inviteLinkData
+          ? _value.inviteLinkData
+          : inviteLinkData // ignore: cast_nullable_to_non_nullable
+              as InviteLinkData?,
       command: freezed == command
           ? _value.command
           : command // ignore: cast_nullable_to_non_nullable
@@ -388,7 +388,7 @@ abstract class _$$_DeeplinkStateCopyWith<$Res>
       __$$_DeeplinkStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? link, PageCommand? command});
+  $Res call({InviteLinkData? inviteLinkData, PageCommand? command});
 
   @override
   $PageCommandCopyWith<$Res>? get command;
@@ -405,14 +405,14 @@ class __$$_DeeplinkStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? link = freezed,
+    Object? inviteLinkData = freezed,
     Object? command = freezed,
   }) {
     return _then(_$_DeeplinkState(
-      link: freezed == link
-          ? _value.link
-          : link // ignore: cast_nullable_to_non_nullable
-              as String?,
+      inviteLinkData: freezed == inviteLinkData
+          ? _value.inviteLinkData
+          : inviteLinkData // ignore: cast_nullable_to_non_nullable
+              as InviteLinkData?,
       command: freezed == command
           ? _value.command
           : command // ignore: cast_nullable_to_non_nullable
@@ -424,16 +424,16 @@ class __$$_DeeplinkStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_DeeplinkState implements _DeeplinkState {
-  const _$_DeeplinkState({this.link, this.command});
+  const _$_DeeplinkState({this.inviteLinkData, this.command});
 
   @override
-  final String? link;
+  final InviteLinkData? inviteLinkData;
   @override
   final PageCommand? command;
 
   @override
   String toString() {
-    return 'DeeplinkState(link: $link, command: $command)';
+    return 'DeeplinkState(inviteLinkData: $inviteLinkData, command: $command)';
   }
 
   @override
@@ -441,12 +441,13 @@ class _$_DeeplinkState implements _DeeplinkState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_DeeplinkState &&
-            (identical(other.link, link) || other.link == link) &&
+            (identical(other.inviteLinkData, inviteLinkData) ||
+                other.inviteLinkData == inviteLinkData) &&
             (identical(other.command, command) || other.command == command));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, link, command);
+  int get hashCode => Object.hash(runtimeType, inviteLinkData, command);
 
   @JsonKey(ignore: true)
   @override
@@ -457,10 +458,11 @@ class _$_DeeplinkState implements _DeeplinkState {
 
 abstract class _DeeplinkState implements DeeplinkState {
   const factory _DeeplinkState(
-      {final String? link, final PageCommand? command}) = _$_DeeplinkState;
+      {final InviteLinkData? inviteLinkData,
+      final PageCommand? command}) = _$_DeeplinkState;
 
   @override
-  String? get link;
+  InviteLinkData? get inviteLinkData;
   @override
   PageCommand? get command;
   @override
