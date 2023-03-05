@@ -123,14 +123,14 @@ class ImportAccountBloc extends Bloc<ImportAccountEvent, ImportAccountState> {
       final results = await _findAccountsUseCase.run(publicKey);
 
       if (results.isValue) {
-        final accounts = results.asValue!.value;
+        final Iterable<UserProfileData> accounts = results.asValue!.value;
         if (accounts.isEmpty) {
           _errorHandlerManager.handlerError(HyphaError(message: 'No Accounts Found', type: HyphaErrorType.generic));
         } else {
           emit(state.copyWith(accountKey: event.privateKey));
         }
 
-        emit(state.copyWith(isPartialLoading: false, accounts: accounts));
+        emit(state.copyWith(isPartialLoading: false, accounts: accounts.toList()));
       } else {
         LogHelper.d(results.asError!.error.toString());
         _errorHandlerManager.handlerError(HyphaError(message: 'Error Loading accounts', type: HyphaErrorType.generic));

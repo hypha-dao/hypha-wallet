@@ -6,7 +6,7 @@ import 'package:hypha_wallet/design/icons/hypha_icons.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 import 'package:hypha_wallet/ui/onboarding/components/onboarding_appbar.dart';
 import 'package:hypha_wallet/ui/onboarding/import_account/import_key/import_account_by_key_page.dart';
-import 'package:hypha_wallet/ui/onboarding/import_account/import_words/import_account_page.dart';
+import 'package:hypha_wallet/ui/onboarding/import_account/import_words/import_account_by_words_page.dart';
 
 class SelectImportMethod extends StatelessWidget {
   const SelectImportMethod({super.key});
@@ -43,7 +43,7 @@ class SelectImportMethod extends StatelessWidget {
                     icon: HyphaIcons.list,
                     text: '12 Words',
                     onTap: () {
-                      Get.to(() => const ImportAccountPage(), transition: Transition.rightToLeft);
+                      Get.to(() => const ImportAccountByWordsPage(), transition: Transition.rightToLeft);
                     },
                   ),
                 ],

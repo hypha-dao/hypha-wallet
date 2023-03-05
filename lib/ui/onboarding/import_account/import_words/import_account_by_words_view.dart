@@ -9,8 +9,8 @@ import 'package:hypha_wallet/ui/onboarding/components/onboarding_appbar.dart';
 import 'package:hypha_wallet/ui/onboarding/import_account/components/user_account_list.dart';
 import 'package:hypha_wallet/ui/onboarding/import_account/interactor/import_account_bloc.dart';
 
-class ImportAccountView extends StatelessWidget {
-  const ImportAccountView({super.key});
+class ImportAccountByWordsView extends StatelessWidget {
+  const ImportAccountByWordsView({super.key});
 
   @override
   Widget build(BuildContext context) {

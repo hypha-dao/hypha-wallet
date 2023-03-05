@@ -1,22 +1,42 @@
-import 'package:async/async.dart';
 import 'package:hypha_wallet/core/crypto/eosdart/eosdart.dart';
 import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
 import 'package:hypha_wallet/core/network/models/user_profile_data.dart';
+import 'package:hypha_wallet/core/network/repository/profile_repository.dart';
 import 'package:hypha_wallet/ui/architecture/interactor/base_usecase.dart';
+import 'package:hypha_wallet/ui/architecture/result/result.dart';
+import 'package:hypha_wallet/ui/profile/interactor/profile_data.dart';
 
-class FindAccountsUseCase extends InputUseCase<Result<List<UserProfileData>>, String> {
+class FindAccountsUseCase extends InputUseCase<Result<Iterable<UserProfileData>, HyphaError>, String> {
   final EOSClient _eosClient;
+  final ProfileService _profileService;
 
-  FindAccountsUseCase(this._eosClient);
+  FindAccountsUseCase(this._eosClient, this._profileService);
 
   @override
-  Future<Result<List<UserProfileData>>> run(String input) async {
-    final Result<AccountNames> result = await _eosClient.getKeyAccounts(input);
+  Future<Result<Iterable<UserProfileData>, HyphaError>> run(String input) async {
+    final result = await _eosClient.getKeyAccounts(input);
     if (result.isValue) {
-      // TODO(NIK): Fetch data from the hypha profile api
-      return Result.value(result.asValue!.value.accountNames
-          .map((e) => UserProfileData(accountName: e, userName: 'userNameTODO'))
-          .toList());
+      final AccountNames data = result.asValue!.value;
+      final Iterable<Future<Result<ProfileData, HyphaError>>> futures = data.accountNames.map(
+        (accountName) => _profileService.getProfile(accountName),
+      );
+
+      final List<Result<ProfileData, HyphaError>> profiles = await Future.wait(futures);
+
+      final List<UserProfileData> wtf = List.empty(growable: true);
+      for (final response in profiles) {
+        if (response.isValue) {
+          final ProfileData profileData = response.asValue!.value;
+          wtf.add(UserProfileData(
+            accountName: profileData.account,
+            userName: profileData.name,
+            userImage: profileData.image,
+            bio: profileData.bio,
+          ));
+        }
+      }
+
+      return Result.value(wtf);
     } else {
       return Result.error(HyphaError.api('Failed to fetch accounts'));
     }

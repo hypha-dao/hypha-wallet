@@ -59,7 +59,7 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
           userProfileData: userProfileData,
         ));
       } else {
-        emit(state.copyWith(authStatus: AuthenticationStatus.authenticated));
+        emit(state.copyWith(authStatus: AuthenticationStatus.unauthenticated));
       }
     } catch (error, stacktrace) {
       LogHelper.e('Error during user sign-in status', error: error, stacktrace: stacktrace);

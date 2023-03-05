@@ -27,6 +27,7 @@ class UserAccountList extends StatelessWidget {
                 leading: HyphaAvatarImage(
                   imageRadius: 24,
                   name: e.accountName.characters.first.capitalize,
+                  imageFromUrl: e.userImage,
                 ),
                 subtitle: Text(e.accountName, style: context.hyphaTextTheme.ralMediumBody),
                 shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(16))),
