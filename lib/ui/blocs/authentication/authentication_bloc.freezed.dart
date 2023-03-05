@@ -22,7 +22,7 @@ mixin _$AuthenticationEvent {
     required TResult Function(AuthenticationStatus status)
         authenticationStatusChanged,
     required TResult Function() authenticationLogoutRequested,
-    required TResult Function(UserProfileData data) onAuthenticatedDataChanged,
+    required TResult Function(UserProfileData data) onUserProfileDataChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -30,7 +30,7 @@ mixin _$AuthenticationEvent {
     TResult? Function()? initial,
     TResult? Function(AuthenticationStatus status)? authenticationStatusChanged,
     TResult? Function()? authenticationLogoutRequested,
-    TResult? Function(UserProfileData data)? onAuthenticatedDataChanged,
+    TResult? Function(UserProfileData data)? onUserProfileDataChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,7 +38,7 @@ mixin _$AuthenticationEvent {
     TResult Function()? initial,
     TResult Function(AuthenticationStatus status)? authenticationStatusChanged,
     TResult Function()? authenticationLogoutRequested,
-    TResult Function(UserProfileData data)? onAuthenticatedDataChanged,
+    TResult Function(UserProfileData data)? onUserProfileDataChanged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -50,7 +50,7 @@ mixin _$AuthenticationEvent {
     required TResult Function(_AuthenticationLogoutRequested value)
         authenticationLogoutRequested,
     required TResult Function(_OnAuthenticatedDataChanged value)
-        onAuthenticatedDataChanged,
+        onUserProfileDataChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -61,7 +61,7 @@ mixin _$AuthenticationEvent {
     TResult? Function(_AuthenticationLogoutRequested value)?
         authenticationLogoutRequested,
     TResult? Function(_OnAuthenticatedDataChanged value)?
-        onAuthenticatedDataChanged,
+        onUserProfileDataChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -72,7 +72,7 @@ mixin _$AuthenticationEvent {
     TResult Function(_AuthenticationLogoutRequested value)?
         authenticationLogoutRequested,
     TResult Function(_OnAuthenticatedDataChanged value)?
-        onAuthenticatedDataChanged,
+        onUserProfileDataChanged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -138,7 +138,7 @@ class _$_InitialAuthentication implements _InitialAuthentication {
     required TResult Function(AuthenticationStatus status)
         authenticationStatusChanged,
     required TResult Function() authenticationLogoutRequested,
-    required TResult Function(UserProfileData data) onAuthenticatedDataChanged,
+    required TResult Function(UserProfileData data) onUserProfileDataChanged,
   }) {
     return initial();
   }
@@ -149,7 +149,7 @@ class _$_InitialAuthentication implements _InitialAuthentication {
     TResult? Function()? initial,
     TResult? Function(AuthenticationStatus status)? authenticationStatusChanged,
     TResult? Function()? authenticationLogoutRequested,
-    TResult? Function(UserProfileData data)? onAuthenticatedDataChanged,
+    TResult? Function(UserProfileData data)? onUserProfileDataChanged,
   }) {
     return initial?.call();
   }
@@ -160,7 +160,7 @@ class _$_InitialAuthentication implements _InitialAuthentication {
     TResult Function()? initial,
     TResult Function(AuthenticationStatus status)? authenticationStatusChanged,
     TResult Function()? authenticationLogoutRequested,
-    TResult Function(UserProfileData data)? onAuthenticatedDataChanged,
+    TResult Function(UserProfileData data)? onUserProfileDataChanged,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -178,7 +178,7 @@ class _$_InitialAuthentication implements _InitialAuthentication {
     required TResult Function(_AuthenticationLogoutRequested value)
         authenticationLogoutRequested,
     required TResult Function(_OnAuthenticatedDataChanged value)
-        onAuthenticatedDataChanged,
+        onUserProfileDataChanged,
   }) {
     return initial(this);
   }
@@ -192,7 +192,7 @@ class _$_InitialAuthentication implements _InitialAuthentication {
     TResult? Function(_AuthenticationLogoutRequested value)?
         authenticationLogoutRequested,
     TResult? Function(_OnAuthenticatedDataChanged value)?
-        onAuthenticatedDataChanged,
+        onUserProfileDataChanged,
   }) {
     return initial?.call(this);
   }
@@ -206,7 +206,7 @@ class _$_InitialAuthentication implements _InitialAuthentication {
     TResult Function(_AuthenticationLogoutRequested value)?
         authenticationLogoutRequested,
     TResult Function(_OnAuthenticatedDataChanged value)?
-        onAuthenticatedDataChanged,
+        onUserProfileDataChanged,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -292,7 +292,7 @@ class _$_AuthenticationStatusChanged implements _AuthenticationStatusChanged {
     required TResult Function(AuthenticationStatus status)
         authenticationStatusChanged,
     required TResult Function() authenticationLogoutRequested,
-    required TResult Function(UserProfileData data) onAuthenticatedDataChanged,
+    required TResult Function(UserProfileData data) onUserProfileDataChanged,
   }) {
     return authenticationStatusChanged(status);
   }
@@ -303,7 +303,7 @@ class _$_AuthenticationStatusChanged implements _AuthenticationStatusChanged {
     TResult? Function()? initial,
     TResult? Function(AuthenticationStatus status)? authenticationStatusChanged,
     TResult? Function()? authenticationLogoutRequested,
-    TResult? Function(UserProfileData data)? onAuthenticatedDataChanged,
+    TResult? Function(UserProfileData data)? onUserProfileDataChanged,
   }) {
     return authenticationStatusChanged?.call(status);
   }
@@ -314,7 +314,7 @@ class _$_AuthenticationStatusChanged implements _AuthenticationStatusChanged {
     TResult Function()? initial,
     TResult Function(AuthenticationStatus status)? authenticationStatusChanged,
     TResult Function()? authenticationLogoutRequested,
-    TResult Function(UserProfileData data)? onAuthenticatedDataChanged,
+    TResult Function(UserProfileData data)? onUserProfileDataChanged,
     required TResult orElse(),
   }) {
     if (authenticationStatusChanged != null) {
@@ -332,7 +332,7 @@ class _$_AuthenticationStatusChanged implements _AuthenticationStatusChanged {
     required TResult Function(_AuthenticationLogoutRequested value)
         authenticationLogoutRequested,
     required TResult Function(_OnAuthenticatedDataChanged value)
-        onAuthenticatedDataChanged,
+        onUserProfileDataChanged,
   }) {
     return authenticationStatusChanged(this);
   }
@@ -346,7 +346,7 @@ class _$_AuthenticationStatusChanged implements _AuthenticationStatusChanged {
     TResult? Function(_AuthenticationLogoutRequested value)?
         authenticationLogoutRequested,
     TResult? Function(_OnAuthenticatedDataChanged value)?
-        onAuthenticatedDataChanged,
+        onUserProfileDataChanged,
   }) {
     return authenticationStatusChanged?.call(this);
   }
@@ -360,7 +360,7 @@ class _$_AuthenticationStatusChanged implements _AuthenticationStatusChanged {
     TResult Function(_AuthenticationLogoutRequested value)?
         authenticationLogoutRequested,
     TResult Function(_OnAuthenticatedDataChanged value)?
-        onAuthenticatedDataChanged,
+        onUserProfileDataChanged,
     required TResult orElse(),
   }) {
     if (authenticationStatusChanged != null) {
@@ -427,7 +427,7 @@ class _$_AuthenticationLogoutRequested
     required TResult Function(AuthenticationStatus status)
         authenticationStatusChanged,
     required TResult Function() authenticationLogoutRequested,
-    required TResult Function(UserProfileData data) onAuthenticatedDataChanged,
+    required TResult Function(UserProfileData data) onUserProfileDataChanged,
   }) {
     return authenticationLogoutRequested();
   }
@@ -438,7 +438,7 @@ class _$_AuthenticationLogoutRequested
     TResult? Function()? initial,
     TResult? Function(AuthenticationStatus status)? authenticationStatusChanged,
     TResult? Function()? authenticationLogoutRequested,
-    TResult? Function(UserProfileData data)? onAuthenticatedDataChanged,
+    TResult? Function(UserProfileData data)? onUserProfileDataChanged,
   }) {
     return authenticationLogoutRequested?.call();
   }
@@ -449,7 +449,7 @@ class _$_AuthenticationLogoutRequested
     TResult Function()? initial,
     TResult Function(AuthenticationStatus status)? authenticationStatusChanged,
     TResult Function()? authenticationLogoutRequested,
-    TResult Function(UserProfileData data)? onAuthenticatedDataChanged,
+    TResult Function(UserProfileData data)? onUserProfileDataChanged,
     required TResult orElse(),
   }) {
     if (authenticationLogoutRequested != null) {
@@ -467,7 +467,7 @@ class _$_AuthenticationLogoutRequested
     required TResult Function(_AuthenticationLogoutRequested value)
         authenticationLogoutRequested,
     required TResult Function(_OnAuthenticatedDataChanged value)
-        onAuthenticatedDataChanged,
+        onUserProfileDataChanged,
   }) {
     return authenticationLogoutRequested(this);
   }
@@ -481,7 +481,7 @@ class _$_AuthenticationLogoutRequested
     TResult? Function(_AuthenticationLogoutRequested value)?
         authenticationLogoutRequested,
     TResult? Function(_OnAuthenticatedDataChanged value)?
-        onAuthenticatedDataChanged,
+        onUserProfileDataChanged,
   }) {
     return authenticationLogoutRequested?.call(this);
   }
@@ -495,7 +495,7 @@ class _$_AuthenticationLogoutRequested
     TResult Function(_AuthenticationLogoutRequested value)?
         authenticationLogoutRequested,
     TResult Function(_OnAuthenticatedDataChanged value)?
-        onAuthenticatedDataChanged,
+        onUserProfileDataChanged,
     required TResult orElse(),
   }) {
     if (authenticationLogoutRequested != null) {
@@ -564,7 +564,7 @@ class _$_OnAuthenticatedDataChanged implements _OnAuthenticatedDataChanged {
 
   @override
   String toString() {
-    return 'AuthenticationEvent.onAuthenticatedDataChanged(data: $data)';
+    return 'AuthenticationEvent.onUserProfileDataChanged(data: $data)';
   }
 
   @override
@@ -592,9 +592,9 @@ class _$_OnAuthenticatedDataChanged implements _OnAuthenticatedDataChanged {
     required TResult Function(AuthenticationStatus status)
         authenticationStatusChanged,
     required TResult Function() authenticationLogoutRequested,
-    required TResult Function(UserProfileData data) onAuthenticatedDataChanged,
+    required TResult Function(UserProfileData data) onUserProfileDataChanged,
   }) {
-    return onAuthenticatedDataChanged(data);
+    return onUserProfileDataChanged(data);
   }
 
   @override
@@ -603,9 +603,9 @@ class _$_OnAuthenticatedDataChanged implements _OnAuthenticatedDataChanged {
     TResult? Function()? initial,
     TResult? Function(AuthenticationStatus status)? authenticationStatusChanged,
     TResult? Function()? authenticationLogoutRequested,
-    TResult? Function(UserProfileData data)? onAuthenticatedDataChanged,
+    TResult? Function(UserProfileData data)? onUserProfileDataChanged,
   }) {
-    return onAuthenticatedDataChanged?.call(data);
+    return onUserProfileDataChanged?.call(data);
   }
 
   @override
@@ -614,11 +614,11 @@ class _$_OnAuthenticatedDataChanged implements _OnAuthenticatedDataChanged {
     TResult Function()? initial,
     TResult Function(AuthenticationStatus status)? authenticationStatusChanged,
     TResult Function()? authenticationLogoutRequested,
-    TResult Function(UserProfileData data)? onAuthenticatedDataChanged,
+    TResult Function(UserProfileData data)? onUserProfileDataChanged,
     required TResult orElse(),
   }) {
-    if (onAuthenticatedDataChanged != null) {
-      return onAuthenticatedDataChanged(data);
+    if (onUserProfileDataChanged != null) {
+      return onUserProfileDataChanged(data);
     }
     return orElse();
   }
@@ -632,9 +632,9 @@ class _$_OnAuthenticatedDataChanged implements _OnAuthenticatedDataChanged {
     required TResult Function(_AuthenticationLogoutRequested value)
         authenticationLogoutRequested,
     required TResult Function(_OnAuthenticatedDataChanged value)
-        onAuthenticatedDataChanged,
+        onUserProfileDataChanged,
   }) {
-    return onAuthenticatedDataChanged(this);
+    return onUserProfileDataChanged(this);
   }
 
   @override
@@ -646,9 +646,9 @@ class _$_OnAuthenticatedDataChanged implements _OnAuthenticatedDataChanged {
     TResult? Function(_AuthenticationLogoutRequested value)?
         authenticationLogoutRequested,
     TResult? Function(_OnAuthenticatedDataChanged value)?
-        onAuthenticatedDataChanged,
+        onUserProfileDataChanged,
   }) {
-    return onAuthenticatedDataChanged?.call(this);
+    return onUserProfileDataChanged?.call(this);
   }
 
   @override
@@ -660,11 +660,11 @@ class _$_OnAuthenticatedDataChanged implements _OnAuthenticatedDataChanged {
     TResult Function(_AuthenticationLogoutRequested value)?
         authenticationLogoutRequested,
     TResult Function(_OnAuthenticatedDataChanged value)?
-        onAuthenticatedDataChanged,
+        onUserProfileDataChanged,
     required TResult orElse(),
   }) {
-    if (onAuthenticatedDataChanged != null) {
-      return onAuthenticatedDataChanged(this);
+    if (onUserProfileDataChanged != null) {
+      return onUserProfileDataChanged(this);
     }
     return orElse();
   }
