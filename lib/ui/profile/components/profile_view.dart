@@ -36,71 +36,79 @@ class ProfileView extends StatelessWidget {
                 body: Stack(
                   children: [
                     const HyphaHalfBackground(showTopBar: false),
-                    SingleChildScrollView(
-                      child: Padding(
-                        padding: const EdgeInsets.all(26),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            const SizedBox(height: 80),
-                            HyphaAvatarImage(
-                              imageRadius: 50,
-                              name: state.profileData?.name,
-                              imageFromUrl: state.profileData?.image,
-                            ),
-                            // HyphaEditableAvatarImage(
-                            //   imageRadius: 50,
-                            //   name: state.profileData?.name,
-                            //   imageFromUrl: state.profileData?.image,
-                            //   // imageFromFile: _file?.path,
-                            //   onImageRemoved: () {
-                            //     // setState(() {
-                            //     //   _file = null;
-                            //     // });
-                            //   },
-                            //   onImageSelected: (image) async {
-                            //     // setState(() {
-                            //     //   _file = image;
-                            //     // });
-                            //   },
-                            // ),
-                            const SizedBox(height: 14),
-                            Text(state.profileData?.name ?? '', style: context.hyphaTextTheme.mediumTitles),
-                            const SizedBox(height: 4),
-                            Text('@${state.profileData?.account ?? ''}',
-                                style: context.hyphaTextTheme.regular.copyWith(color: HyphaColors.lightBlue)),
-                            const SizedBox(height: 24),
-                            HyphaActionableCard(
+                    ListView(
+                      physics: const AlwaysScrollableScrollPhysics(),
+                      children: [
+                        const SizedBox(height: 80),
+                        Center(
+                          child: HyphaAvatarImage(
+                            imageRadius: 50,
+                            name: state.profileData?.name,
+                            imageFromUrl: state.profileData?.image,
+                          ),
+                        ),
+                        // HyphaEditableAvatarImage(
+                        //   imageRadius: 50,
+                        //   name: state.profileData?.name,
+                        //   imageFromUrl: state.profileData?.image,
+                        //   // imageFromFile: _file?.path,
+                        //   onImageRemoved: () {
+                        //     // setState(() {
+                        //     //   _file = null;
+                        //     // });
+                        //   },
+                        //   onImageSelected: (image) async {
+                        //     // setState(() {
+                        //     //   _file = image;
+                        //     // });
+                        //   },
+                        // ),
+                        const SizedBox(height: 14),
+                        Center(
+                          child: Text(state.profileData?.name ?? '', style: context.hyphaTextTheme.mediumTitles),
+                        ),
+                        const SizedBox(height: 4),
+                        Center(
+                          child: Text(
+                            '@${state.profileData?.account ?? ''}',
+                            style: context.hyphaTextTheme.regular.copyWith(color: HyphaColors.lightBlue),
+                          ),
+                        ),
+                        const SizedBox(height: 24),
+                        Center(
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 24),
+                            child: HyphaActionableCard(
                               // trailer: const Icon(Icons.edit),
                               title: 'Bio',
                               subtitle: state.profileData?.bio ?? '',
                             ),
-                            const SizedBox(height: 16),
-                            if (state.profileData?.eosData != null)
-                              CryptoCurrencyWidget(
-                                imageUrl: state.profileData!.eosData!.imageUrl,
-                                name: state.profileData!.eosData!.cryptoName,
-                                address: state.profileData!.eosData!.accountAddress,
-                                subAddress: state.profileData!.eosData!.accountName,
-                                selected: state.profileData!.eosData!.isSelected,
-                                onTap: () {},
-                                onChanged: (value) {},
-                              ),
-                            if (state.profileData?.bitCoinData != null) ...[
-                              const SizedBox(height: 16),
-                              CryptoCurrencyWidget(
-                                imageUrl: state.profileData!.bitCoinData!.imageUrl,
-                                name: state.profileData!.bitCoinData!.cryptoName,
-                                address: state.profileData!.bitCoinData!.accountAddress,
-                                subAddress: state.profileData!.bitCoinData!.accountName,
-                                selected: state.profileData!.bitCoinData!.isSelected,
-                                onTap: () {},
-                                onChanged: (value) {},
-                              ),
-                            ]
-                          ],
+                          ),
                         ),
-                      ),
+                        const SizedBox(height: 16),
+                        if (state.profileData?.eosData != null)
+                          CryptoCurrencyWidget(
+                            imageUrl: state.profileData!.eosData!.imageUrl,
+                            name: state.profileData!.eosData!.cryptoName,
+                            address: state.profileData!.eosData!.accountAddress,
+                            subAddress: state.profileData!.eosData!.accountName,
+                            selected: state.profileData!.eosData!.isSelected,
+                            onTap: () {},
+                            onChanged: (value) {},
+                          ),
+                        if (state.profileData?.bitCoinData != null) ...[
+                          const SizedBox(height: 16),
+                          CryptoCurrencyWidget(
+                            imageUrl: state.profileData!.bitCoinData!.imageUrl,
+                            name: state.profileData!.bitCoinData!.cryptoName,
+                            address: state.profileData!.bitCoinData!.accountAddress,
+                            subAddress: state.profileData!.bitCoinData!.accountName,
+                            selected: state.profileData!.bitCoinData!.isSelected,
+                            onTap: () {},
+                            onChanged: (value) {},
+                          ),
+                        ]
+                      ],
                     ),
                   ],
                 ),
