@@ -56,8 +56,14 @@ class ImportAccountBloc extends Bloc<ImportAccountEvent, ImportAccountState> {
     return clipboardData?.text ?? '';
   }
 
-  List<String> _formatPastedString(String clipData) =>
-      clipData.replaceAll(RegExp('[ ]{2,}'), ' ').replaceAll(',', ' ').replaceAll('-', ' ').split(' ');
+  List<String> _formatPastedString(String clipData) => clipData
+      .replaceAll(RegExp('[ ]{2,}'), ' ')
+      .replaceAll(' , ', ' ')
+      .replaceAll(',', ' ')
+      .replaceAll('\n', ' ')
+      .replaceAll(' - ', ' ')
+      .replaceAll('-', ' ')
+      .split(' ');
 
   Future<void> _onUserPastedWords(_OnUserPastedWords event, Emitter<ImportAccountState> emit) async {
     final clipData = await _getClipboardData();
