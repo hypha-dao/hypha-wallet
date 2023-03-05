@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hypha_wallet/design/avatar_image/hypha_editable_avatar_image.dart';
+import 'package:hypha_wallet/design/avatar_image/hypha_avatar_image.dart';
 import 'package:hypha_wallet/design/background/hypha_half_background.dart';
 import 'package:hypha_wallet/design/background/hypha_page_background.dart';
 import 'package:hypha_wallet/design/cards/hypha_actionable_card.dart';
@@ -43,22 +43,27 @@ class ProfileView extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             const SizedBox(height: 80),
-                            HyphaEditableAvatarImage(
+                            HyphaAvatarImage(
                               imageRadius: 50,
                               name: state.profileData?.name,
                               imageFromUrl: state.profileData?.image,
-                              // imageFromFile: _file?.path,
-                              onImageRemoved: () {
-                                // setState(() {
-                                //   _file = null;
-                                // });
-                              },
-                              onImageSelected: (image) async {
-                                // setState(() {
-                                //   _file = image;
-                                // });
-                              },
                             ),
+                            // HyphaEditableAvatarImage(
+                            //   imageRadius: 50,
+                            //   name: state.profileData?.name,
+                            //   imageFromUrl: state.profileData?.image,
+                            //   // imageFromFile: _file?.path,
+                            //   onImageRemoved: () {
+                            //     // setState(() {
+                            //     //   _file = null;
+                            //     // });
+                            //   },
+                            //   onImageSelected: (image) async {
+                            //     // setState(() {
+                            //     //   _file = image;
+                            //     // });
+                            //   },
+                            // ),
                             const SizedBox(height: 14),
                             Text(state.profileData?.name ?? '', style: context.hyphaTextTheme.mediumTitles),
                             const SizedBox(height: 4),
@@ -66,7 +71,7 @@ class ProfileView extends StatelessWidget {
                                 style: context.hyphaTextTheme.regular.copyWith(color: HyphaColors.lightBlue)),
                             const SizedBox(height: 24),
                             HyphaActionableCard(
-                              trailer: const Icon(Icons.edit),
+                              // trailer: const Icon(Icons.edit),
                               title: 'Bio',
                               subtitle: state.profileData?.bio ?? '',
                             ),
