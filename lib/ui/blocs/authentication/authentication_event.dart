@@ -9,5 +9,5 @@ class AuthenticationEvent with _$AuthenticationEvent {
 
   const factory AuthenticationEvent.authenticationLogoutRequested() = _AuthenticationLogoutRequested;
 
-  const factory AuthenticationEvent.onAuthenticatedDataChanged(UserProfileData data) = _OnAuthenticatedDataChanged;
+  const factory AuthenticationEvent.onUserProfileDataChanged(UserProfileData data) = _OnAuthenticatedDataChanged;
 }

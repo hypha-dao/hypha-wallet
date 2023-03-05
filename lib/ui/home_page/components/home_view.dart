@@ -5,6 +5,7 @@ import 'package:hypha_wallet/design/avatar_image/hypha_avatar_image.dart';
 import 'package:hypha_wallet/design/background/hypha_page_background.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 import 'package:hypha_wallet/ui/blocs/authentication/authentication_bloc.dart';
+import 'package:hypha_wallet/ui/bottom_navigation/interactor/bottom_navigation_bloc.dart';
 import 'package:hypha_wallet/ui/home_page/components/scanner_widget.dart';
 import 'package:hypha_wallet/ui/home_page/interactor/home_bloc.dart';
 
@@ -32,8 +33,11 @@ class HomeView extends StatelessWidget {
                       builder: (context, state) {
                         return HyphaAvatarImage(
                           imageRadius: 24,
-                          name: state.authenticatedData?.userName ?? '?',
-                          imageFromUrl: state.authenticatedData?.userImage,
+                          name: state.userProfileData?.userName ?? '?',
+                          imageFromUrl: state.userProfileData?.userImage,
+                          onTap: () {
+                            context.read<BottomNavigationBloc>().add(const BottomNavigationEvent.onPageSelected(2));
+                          },
                         );
                       },
                     ),

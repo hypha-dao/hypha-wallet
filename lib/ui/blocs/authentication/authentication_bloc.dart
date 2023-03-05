@@ -26,18 +26,17 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
     this._authRepository,
     this._appSharedPrefs,
     this._secureStorageService,
-  ) : super(const AuthenticationState.unknown()) {
+  ) : super(const AuthenticationState()) {
     on<_InitialAuthentication>(_initial);
     on<_AuthenticationStatusChanged>(_onAuthenticationStatusChanged);
     on<_AuthenticationLogoutRequested>(_onAuthenticationLogoutRequested);
-    on<_OnAuthenticatedDataChanged>(_onAuthenticatedDataChanged);
     _authenticationStatusSubscription = _authRepository.status.listen(
       (status) => add(AuthenticationEvent.authenticationStatusChanged(status)),
     );
 
     _authSubscription = _appSharedPrefs.watchProfile().listen((UserProfileData? profile) {
       if (profile != null) {
-        add(AuthenticationEvent.onAuthenticatedDataChanged(profile));
+        add(AuthenticationEvent.onUserProfileDataChanged(profile));
       }
     });
   }
@@ -54,13 +53,17 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
       final userProfileData = await _appSharedPrefs.getUserProfileData();
       final authData = await _secureStorageService.getUserAuthData();
       if (userProfileData != null && authData != null) {
-        emit(AuthenticationState.authenticated(userProfileData, authData));
+        emit(state.copyWith(
+          authStatus: AuthenticationStatus.authenticated,
+          userAuthData: authData,
+          userProfileData: userProfileData,
+        ));
       } else {
-        emit(const AuthenticationState.unAuthenticated());
+        emit(state.copyWith(authStatus: AuthenticationStatus.authenticated));
       }
     } catch (error, stacktrace) {
       LogHelper.e('Error during user sign-in status', error: error, stacktrace: stacktrace);
-      emit(const AuthenticationState.unAuthenticated());
+      emit(state.copyWith(authStatus: AuthenticationStatus.unauthenticated));
     }
   }
 
@@ -70,17 +73,23 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
   ) async {
     switch (event.status) {
       case AuthenticationStatus.unauthenticated:
-        return emit(const AuthenticationState.unAuthenticated());
+        return emit(state.copyWith(authStatus: AuthenticationStatus.unauthenticated));
       case AuthenticationStatus.authenticated:
         final profileData = await _appSharedPrefs.getUserProfileData();
         final authData = await _secureStorageService.getUserAuthData();
         if (profileData != null && authData != null) {
-          return emit(AuthenticationState.authenticated(profileData, authData));
+          return emit(
+            state.copyWith(
+              authStatus: AuthenticationStatus.authenticated,
+              userProfileData: profileData,
+              userAuthData: authData,
+            ),
+          );
         } else {
-          return emit(const AuthenticationState.unAuthenticated());
+          return emit(state.copyWith(authStatus: AuthenticationStatus.unauthenticated));
         }
       case AuthenticationStatus.unknown:
-        return emit(const AuthenticationState.unknown());
+        return emit(state.copyWith(authStatus: AuthenticationStatus.unknown));
     }
   }
 
@@ -89,11 +98,5 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
     Emitter<AuthenticationState> emit,
   ) async {
     await _authRepository.signOut();
-  }
-
-  FutureOr<void> _onAuthenticatedDataChanged(_OnAuthenticatedDataChanged event, Emitter<AuthenticationState> emit) {
-    if (state is _Authenticated) {
-      emit((state as _Authenticated).copyWith(authenticatedData: event.data));
-    }
   }
 }
