@@ -35,7 +35,7 @@ class HyphaSharedPrefs {
 
 extension SharedPrefsExtensions on HyphaSharedPrefs {
   /// Auth Data
-  Future<void> setUserProfileDataData(UserProfileData data) =>
+  Future<void> setUserProfileData(UserProfileData data) =>
       _prefs.setString(LocalStorageValue.authenticatedData.key, jsonEncode(data));
 
   Future<UserProfileData?> getUserProfileData() async {

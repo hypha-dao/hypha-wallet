@@ -19,4 +19,6 @@ Future<void> _registerServicesModule() async {
   _registerLazySingleton(() => EOSService(_getIt<EOSClient>(), _getIt<SecureStorageService>()));
 
   _registerLazySingleton<PermissionService>(() => PermissionServiceImplementation());
+
+  _registerLazySingleton<ProfileService>(() => ProfileService());
 }

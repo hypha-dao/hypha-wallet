@@ -8,6 +8,7 @@ class UserProfileData with _$UserProfileData {
   factory UserProfileData({
     required String accountName,
     @Default(null) String? userImage,
+    @Default(null) String? bio,
     required String userName,
   }) = _UserProfileData;
 

@@ -22,6 +22,7 @@ UserProfileData _$UserProfileDataFromJson(Map<String, dynamic> json) {
 mixin _$UserProfileData {
   String get accountName => throw _privateConstructorUsedError;
   String? get userImage => throw _privateConstructorUsedError;
+  String? get bio => throw _privateConstructorUsedError;
   String get userName => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -36,7 +37,8 @@ abstract class $UserProfileDataCopyWith<$Res> {
           UserProfileData value, $Res Function(UserProfileData) then) =
       _$UserProfileDataCopyWithImpl<$Res, UserProfileData>;
   @useResult
-  $Res call({String accountName, String? userImage, String userName});
+  $Res call(
+      {String accountName, String? userImage, String? bio, String userName});
 }
 
 /// @nodoc
@@ -54,6 +56,7 @@ class _$UserProfileDataCopyWithImpl<$Res, $Val extends UserProfileData>
   $Res call({
     Object? accountName = null,
     Object? userImage = freezed,
+    Object? bio = freezed,
     Object? userName = null,
   }) {
     return _then(_value.copyWith(
@@ -64,6 +67,10 @@ class _$UserProfileDataCopyWithImpl<$Res, $Val extends UserProfileData>
       userImage: freezed == userImage
           ? _value.userImage
           : userImage // ignore: cast_nullable_to_non_nullable
+              as String?,
+      bio: freezed == bio
+          ? _value.bio
+          : bio // ignore: cast_nullable_to_non_nullable
               as String?,
       userName: null == userName
           ? _value.userName
@@ -81,7 +88,8 @@ abstract class _$$_UserProfileDataCopyWith<$Res>
       __$$_UserProfileDataCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String accountName, String? userImage, String userName});
+  $Res call(
+      {String accountName, String? userImage, String? bio, String userName});
 }
 
 /// @nodoc
@@ -97,6 +105,7 @@ class __$$_UserProfileDataCopyWithImpl<$Res>
   $Res call({
     Object? accountName = null,
     Object? userImage = freezed,
+    Object? bio = freezed,
     Object? userName = null,
   }) {
     return _then(_$_UserProfileData(
@@ -107,6 +116,10 @@ class __$$_UserProfileDataCopyWithImpl<$Res>
       userImage: freezed == userImage
           ? _value.userImage
           : userImage // ignore: cast_nullable_to_non_nullable
+              as String?,
+      bio: freezed == bio
+          ? _value.bio
+          : bio // ignore: cast_nullable_to_non_nullable
               as String?,
       userName: null == userName
           ? _value.userName
@@ -122,6 +135,7 @@ class _$_UserProfileData implements _UserProfileData {
   _$_UserProfileData(
       {required this.accountName,
       this.userImage = null,
+      this.bio = null,
       required this.userName});
 
   factory _$_UserProfileData.fromJson(Map<String, dynamic> json) =>
@@ -133,11 +147,14 @@ class _$_UserProfileData implements _UserProfileData {
   @JsonKey()
   final String? userImage;
   @override
+  @JsonKey()
+  final String? bio;
+  @override
   final String userName;
 
   @override
   String toString() {
-    return 'UserProfileData(accountName: $accountName, userImage: $userImage, userName: $userName)';
+    return 'UserProfileData(accountName: $accountName, userImage: $userImage, bio: $bio, userName: $userName)';
   }
 
   @override
@@ -149,6 +166,7 @@ class _$_UserProfileData implements _UserProfileData {
                 other.accountName == accountName) &&
             (identical(other.userImage, userImage) ||
                 other.userImage == userImage) &&
+            (identical(other.bio, bio) || other.bio == bio) &&
             (identical(other.userName, userName) ||
                 other.userName == userName));
   }
@@ -156,7 +174,7 @@ class _$_UserProfileData implements _UserProfileData {
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, accountName, userImage, userName);
+      Object.hash(runtimeType, accountName, userImage, bio, userName);
 
   @JsonKey(ignore: true)
   @override
@@ -176,6 +194,7 @@ abstract class _UserProfileData implements UserProfileData {
   factory _UserProfileData(
       {required final String accountName,
       final String? userImage,
+      final String? bio,
       required final String userName}) = _$_UserProfileData;
 
   factory _UserProfileData.fromJson(Map<String, dynamic> json) =
@@ -185,6 +204,8 @@ abstract class _UserProfileData implements UserProfileData {
   String get accountName;
   @override
   String? get userImage;
+  @override
+  String? get bio;
   @override
   String get userName;
   @override

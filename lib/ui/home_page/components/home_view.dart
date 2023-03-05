@@ -28,9 +28,14 @@ class HomeView extends StatelessWidget {
                   padding: const EdgeInsets.only(right: 16, top: 16),
                   child: Align(
                     alignment: Alignment.centerRight,
-                    child: HyphaAvatarImage(
-                      imageRadius: 24,
-                      name: context.read<AuthenticationBloc>().state.authenticatedData?.userName ?? '?',
+                    child: BlocBuilder<AuthenticationBloc, AuthenticationState>(
+                      builder: (context, state) {
+                        return HyphaAvatarImage(
+                          imageRadius: 24,
+                          name: state.authenticatedData?.userName ?? '?',
+                          imageFromUrl: state.authenticatedData?.userImage,
+                        );
+                      },
                     ),
                   ),
                 ),

@@ -59,7 +59,7 @@ class AuthRepository {
   }
 
   void _saveUserData(UserProfileData userProfileData, UserAuthData userAuthData, bool shouldLoginAfter) {
-    _appSharedPrefs.setUserProfileDataData(userProfileData);
+    _appSharedPrefs.setUserProfileData(userProfileData);
     _secureStorageService.setUserAuthData(userAuthData);
 
     if (shouldLoginAfter) {

@@ -19,6 +19,7 @@ import 'package:hypha_wallet/core/network/api/transaction_history_service.dart';
 import 'package:hypha_wallet/core/network/api/user_account_service.dart';
 import 'package:hypha_wallet/core/network/networking_manager.dart';
 import 'package:hypha_wallet/core/network/repository/auth_repository.dart';
+import 'package:hypha_wallet/core/network/repository/profile_repository.dart';
 import 'package:hypha_wallet/core/network/repository/transaction_history_repository.dart';
 import 'package:hypha_wallet/core/network/repository/user_account_repository.dart';
 import 'package:hypha_wallet/core/shared_preferences/hypha_shared_prefs.dart';
