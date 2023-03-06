@@ -147,6 +147,7 @@ flutter:
    - assets/images/warning.png
    - assets/images/thumb_up.png
    - assets/images/shield.png
+   - assets/images/logos/dark/hypha_logo_composite.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

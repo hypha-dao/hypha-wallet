@@ -17,7 +17,7 @@ class ProfileData {
 
   factory ProfileData.fromJson(Map<String, dynamic> json) {
     final publicData = json['publicData'];
-    final name = publicData['name'];
+    final name = publicData['name'] ?? '';
     final account = json['eosAccount'];
     final image = json['avatarUrl'];
     final bio = publicData['bio'];
