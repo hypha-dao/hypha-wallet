@@ -38,6 +38,8 @@ Future _registerFirebaseModule() async {
         'endpoint': 'https://jungle4.dfuse.eosnation.io',
         'fastEndpoint': 'https://jungle4.dfuse.eosnation.io',
       }
-    })
+    }),
+    'accountCreatorEndpoint': 'http://34.236.29.152:9108',
+    'profileServiceEndpoint': 'http://34.236.29.152:9109',
   });
 }
