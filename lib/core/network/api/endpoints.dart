@@ -20,7 +20,7 @@ class Endpoints {
   // base url - read URL
   // network: default is Telos mainnet
   static String baseUrl({String? network}) {
-    final networkConfig = getNetworkConfig();
+    final networkConfig = getNetworkConfig(network: network);
     final endpoint = networkConfig['endpoint'];
     return endpoint;
   }
@@ -28,7 +28,7 @@ class Endpoints {
   // Node for push transactions - should be a fast server to prevent timeouts
   // network: default is Telos mainnet.
   static String pushTransactionNodeUrl({String? network}) {
-    final networkConfig = getNetworkConfig();
+    final networkConfig = getNetworkConfig(network: network);
     final endpoint = networkConfig['fastEndpoint'];
     return endpoint;
   }
