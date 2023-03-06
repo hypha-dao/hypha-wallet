@@ -16,7 +16,7 @@ class TransactionHistoryService {
       'limit': 100,
       'sort': 'desc',
     });
-    LogHelper.d('Result $res');
+    //LogHelper.d('Result $res');
     return res;
   }
 }

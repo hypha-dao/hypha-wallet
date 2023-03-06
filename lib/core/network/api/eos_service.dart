@@ -33,7 +33,7 @@ class EOSService {
     final UserAuthData? userAuthData = await secureStorageService.getUserAuthData();
 
     final eosClient = EOSClient(
-      baseUrl: Endpoints.pushTransactionNodeUrl,
+      baseUrl: Endpoints.pushTransactionNodeUrl(),
       privateKeys: [userAuthData!.eOSPrivateKey.toString()],
       version: 'v1',
     );

@@ -27,7 +27,7 @@ class UserAccountService {
     final requestBody = '{ "account_name": "$accountName" }';
     try {
       final res = await networkingManager.post(Endpoints.getAccount, data: requestBody);
-      LogHelper.d('Result $res');
+      //LogHelper.d('Result $res');
       return false;
     } catch (error) {
       return true;

@@ -1,11 +1,37 @@
+import 'dart:convert';
+
+import 'package:firebase_remote_config/firebase_remote_config.dart';
+
+enum Networks { telos, telosTestnet, eos, eosTestnet }
+
 class Endpoints {
   Endpoints._();
 
-  // base url - the load balancer takes care of available features on a given node, such as history, etc
-  static const String baseUrl = 'http://mainnet.telos.net';
+  static Map<String, dynamic> getNetworkConfig({String? network}) {
+    final remoteConfig = FirebaseRemoteConfig.instance;
+    network = network ?? Networks.telos.name;
+    final conf = json.decode(remoteConfig.getValue('networks').asString());
+    if (conf[network] == null) {
+      throw 'Unknown network: $network';
+    }
+    return conf[network];
+  }
 
-  // Node to push transactions - should be a fast server
-  static const String pushTransactionNodeUrl = 'http://telos.greymass.com';
+  // base url - read URL
+  // network: default is Telos mainnet
+  static String baseUrl({String? network}) {
+    final networkConfig = getNetworkConfig();
+    final endpoint = networkConfig['endpoint'];
+    return endpoint;
+  }
+
+  // Node for push transactions - should be a fast server to prevent timeouts
+  // network: default is Telos mainnet.
+  static String pushTransactionNodeUrl({String? network}) {
+    final networkConfig = getNetworkConfig();
+    final endpoint = networkConfig['fastEndpoint'];
+    return endpoint;
+  }
 
   static const String defaultV2EndpointUrl = 'https://api.telosfoundation.io';
 

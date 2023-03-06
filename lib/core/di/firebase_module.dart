@@ -14,4 +14,30 @@ Future _registerFirebaseModule() async {
   //
   // /// Remote Config
   _getIt.registerSingleton(FirebaseRemoteConfig.instance);
+
+  // not sure this should go here?
+  await FirebaseRemoteConfig.instance.setDefaults({
+    'networks': json.encode({
+      'telos': {
+        'name': 'Telos',
+        'endpoint': 'https://mainnet.telos.net',
+        'fastEndpoint': 'https://telos.greymass.com',
+      },
+      'telosTestnet': {
+        'name': 'Telos Testnet',
+        'endpoint': 'https://testnet.telos.net',
+        'fastEndpoint': 'https://testnet.telos.net',
+      },
+      'eos': {
+        'name': 'EOS',
+        'endpoint': 'https://eos.greymass.com',
+        'fastEndpoint': 'https://eos.greymass.com',
+      },
+      'eosTestnet': {
+        'name': 'Jungle4 Testnet',
+        'endpoint': 'https://jungle4.dfuse.eosnation.io',
+        'fastEndpoint': 'https://jungle4.dfuse.eosnation.io',
+      }
+    })
+  });
 }

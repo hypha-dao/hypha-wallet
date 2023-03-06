@@ -44,7 +44,8 @@ class SeedsESR {
 
 extension TelosSigningManager on SigningRequestManager {
   static SigningRequestManager from(String? uri) {
-    return SigningRequestManager.from(uri, options: defaultSigningRequestEncodingOptions(nodeUrl: Endpoints.baseUrl));
+    return SigningRequestManager.from(uri,
+        options: defaultSigningRequestEncodingOptions(nodeUrl: Endpoints.pushTransactionNodeUrl()));
   }
 
   Future<List<ESRAction>> fetchActions({String? account, String permission = 'active'}) async {
