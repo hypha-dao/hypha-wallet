@@ -11,10 +11,12 @@ import 'package:hypha_wallet/core/crypto/eosdart/eosdart.dart';
 SigningRequestEncodingOptions defaultSigningRequestEncodingOptions(
         {String nodeUrl = 'https://eos.eosn.io', String nodeVersion = 'v1'}) =>
     SigningRequestEncodingOptions(
-        textEncoder: DefaultTextEncoder(),
-        textDecoder: DefaultTextDecoder(),
-        zlib: DefaultZlibProvider(),
-        abiProvider: DefaultAbiProvider(GetIt.I.get<EOSClient>()));
+      textEncoder: DefaultTextEncoder(),
+      textDecoder: DefaultTextDecoder(),
+      zlib: DefaultZlibProvider(),
+      // TODO(n13): need to pass nodeUrl parameter into EOSClient here -
+      abiProvider: DefaultAbiProvider(GetIt.I.get<EOSClient>()),
+    );
 
 class DefaultZlibProvider implements ZlibProvider {
   @override
