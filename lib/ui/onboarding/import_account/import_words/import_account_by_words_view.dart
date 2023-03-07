@@ -67,6 +67,7 @@ class ImportAccountByWordsView extends StatelessWidget {
                         context.read<ImportAccountBloc>().add(ImportAccountEvent.onAccountSelected(data));
                       },
                     ),
+                    const SizedBox(height: 120),
                   ],
                 ),
               ),
