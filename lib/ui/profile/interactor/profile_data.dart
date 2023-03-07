@@ -1,6 +1,6 @@
 class ProfileData {
   final String? image;
-  final String name;
+  final String? name;
   final String account;
   final String? bio;
   final CryptoAccountData? bitCoinData;
