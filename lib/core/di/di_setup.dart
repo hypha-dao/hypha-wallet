@@ -84,9 +84,7 @@ Future<void> setupDependencies() async {
   // Firebase Services (Storage, Auth, etc)
   await _registerFirebaseModule();
 
-  // Remote config service w/ endpoint URLs etc
-  final rc = await RemoteConfigService.initialized();
-  _registerLazySingleton(() => rc);
+  _getIt.registerSingleton(await RemoteConfigService.initialized());
 
   // Shared Preferences
   await _registerSharedPreferencesModule();

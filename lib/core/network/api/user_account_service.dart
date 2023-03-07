@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:hypha_wallet/core/logging/log_helper.dart';
 import 'package:hypha_wallet/core/network/api/endpoints.dart';
 import 'package:hypha_wallet/core/network/networking_manager.dart';
 import 'package:image_picker/image_picker.dart';
