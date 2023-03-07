@@ -10,7 +10,11 @@ void _registerUseCasesModule() {
   _registerFactory(() => GenerateKeyFromRecoveryWordsUseCase(_getIt<CryptoAuthService>()));
   _registerFactory(() => FindAccountsUseCase(_getIt<EOSClient>(), _getIt<ProfileService>()));
   _registerFactory(() => ValidateKeyUseCase());
-  _registerFactory(() => SignTransactionUseCase(_getIt<EOSService>(), _getIt<HyphaSharedPrefs>()));
+  _registerFactory(() => SignTransactionUseCase(
+        _getIt<EOSService>(),
+        _getIt<HyphaSharedPrefs>(),
+        _getIt<SignTransactionCallbackService>(),
+      ));
   _registerFactory(
     () => GetTransactionHistoryUseCase(
       _getIt<TransactionHistoryRepository>(),

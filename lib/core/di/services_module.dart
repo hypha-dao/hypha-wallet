@@ -12,6 +12,7 @@ Future<void> _registerServicesModule() async {
   /// Services
   _registerLazySingleton(() => UserAccountService(networkingManager: _getIt<NetworkingManager>()));
   _registerLazySingleton(() => TransactionHistoryService(_getIt<NetworkingManager>()));
+  _registerLazySingleton(() => SignTransactionCallbackService(_getIt<NetworkingManager>()));
 
   _registerLazySingleton(() => CryptoAuthService());
 

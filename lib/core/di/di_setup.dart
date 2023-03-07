@@ -15,6 +15,7 @@ import 'package:hypha_wallet/core/local/services/secure_storage_service.dart';
 import 'package:hypha_wallet/core/logging/firebase_crash_reporting_tree.dart';
 import 'package:hypha_wallet/core/network/api/endpoints.dart';
 import 'package:hypha_wallet/core/network/api/eos_service.dart';
+import 'package:hypha_wallet/core/network/api/sign_transaction_callback_service.dart';
 import 'package:hypha_wallet/core/network/api/transaction_history_service.dart';
 import 'package:hypha_wallet/core/network/api/user_account_service.dart';
 import 'package:hypha_wallet/core/network/networking_manager.dart';
