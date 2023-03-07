@@ -1,9 +1,6 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:fimber/fimber.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
@@ -17,6 +14,7 @@ import 'package:hypha_wallet/core/local/services/secure_storage_service.dart';
 import 'package:hypha_wallet/core/logging/firebase_crash_reporting_tree.dart';
 import 'package:hypha_wallet/core/network/api/endpoints.dart';
 import 'package:hypha_wallet/core/network/api/eos_service.dart';
+import 'package:hypha_wallet/core/network/api/remote_config_serivice.dart';
 import 'package:hypha_wallet/core/network/api/transaction_history_service.dart';
 import 'package:hypha_wallet/core/network/api/user_account_service.dart';
 import 'package:hypha_wallet/core/network/networking_manager.dart';
@@ -85,6 +83,10 @@ Future<void> setupDependencies() async {
 
   // Firebase Services (Storage, Auth, etc)
   await _registerFirebaseModule();
+
+  // Remote config service w/ endpoint URLs etc
+  final rc = await RemoteConfigService.initialized();
+  _registerLazySingleton(() => rc);
 
   // Shared Preferences
   await _registerSharedPreferencesModule();
