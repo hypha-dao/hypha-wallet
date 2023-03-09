@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:dio/dio.dart';
+import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
+import 'package:hypha_wallet/core/error_handler/model/hypha_error_type.dart';
 import 'package:hypha_wallet/core/local/models/user_auth_data.dart';
 import 'package:hypha_wallet/core/local/services/secure_storage_service.dart';
 import 'package:hypha_wallet/core/logging/log_helper.dart';
@@ -8,6 +10,7 @@ import 'package:hypha_wallet/core/network/api/user_account_service.dart';
 import 'package:hypha_wallet/core/network/dio_exception.dart';
 import 'package:hypha_wallet/core/network/models/user_profile_data.dart';
 import 'package:hypha_wallet/core/shared_preferences/hypha_shared_prefs.dart';
+import 'package:hypha_wallet/ui/architecture/result/result.dart';
 import 'package:hypha_wallet/ui/blocs/deeplink/deeplink_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -21,30 +24,42 @@ class AuthRepository {
 
   AuthRepository(this._appSharedPrefs, this._userService, this._secureStorageService);
 
-  /// This stream will represent the source of truth for the user authentication.
-  Future<bool> createUserAccount({
+  Future<Result<bool, HyphaError>> createUserAccount({
     required String accountName,
-    required String userName,
     required UserAuthData userAuthData,
-    XFile? image,
     required InviteLinkData inviteLinkData,
+    required String userName,
+    XFile? image,
   }) async {
     try {
-      final Response response = await _userService.createUserAccount(
-        userName: userName,
+      /// 1 - Create blockchain account
+      print('creating account with ${userAuthData.eOSPrivateKey} ${userAuthData.publicKey.toString()}');
+      print("secret: ${inviteLinkData.code}");
+      print("network: ${inviteLinkData.chain}");
+      print("accountname: ${accountName}");
+
+      final response = await _userService.createUserAccount(
+        code: inviteLinkData.code,
+        network: inviteLinkData.chain,
         accountName: accountName,
-        image: image,
+        publicKey: userAuthData.publicKey.toString(),
       );
+
+      /// 2 - log into ppp service, upload name and image
+      /// [TBD]
 
       // TODO(gguij): Check if success, grab the user image from the service response
       _saveUserData(UserProfileData(accountName: accountName, userName: userName), userAuthData, false);
-      return response.data;
+      return response;
     } on DioError catch (e) {
+      print('DioError creating account');
+      print(e);
       final errorMessage = DioExceptions.fromDioError(e).toString();
-      throw errorMessage;
+      return Result.error(HyphaError(message: errorMessage, type: HyphaErrorType.api));
     }
   }
 
+  /// This stream will represent the source of truth for the user authentication.
   Stream<AuthenticationStatus> get status async* {
     yield* _controller.stream;
   }

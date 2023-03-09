@@ -58,7 +58,7 @@ class CreateAccountBloc extends Bloc<CreateAccountEvent, CreateAccountState> {
     final UserAuthData auth = _cryptoAuthService.createRandomPrivateKeyAndWords();
 
     /// Make call to create Account
-    final Hypha.Result<bool, HyphaError> result = await _createAccountUseCase.run(Input(
+    final Hypha.Result<bool, HyphaError> result = await _createAccountUseCase.run(CreateAccountInput(
       userAuthData: auth,
       accountName: state.userAccount!,
       userName: state.userName,
