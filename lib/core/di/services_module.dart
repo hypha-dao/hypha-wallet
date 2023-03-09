@@ -1,6 +1,10 @@
 part of 'di_setup.dart';
 
 Future<void> _registerServicesModule() async {
+  // Remote config service w/ endpoint URLs etc
+  final rc = await RemoteConfigService.initialized();
+  _registerLazySingleton(() => rc);
+
   /// DIO
   _registerLazySingleton(() => Dio());
   _registerLazySingleton(() => NetworkingManager(_getIt<RemoteConfigService>().baseUrl()));
