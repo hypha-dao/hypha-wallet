@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:async/async.dart';
 import 'package:dio/dio.dart' as dio;
-import 'package:get_it/get_it.dart';
 import 'package:hypha_wallet/core/crypto/eosdart/eosdart.dart';
 import 'package:hypha_wallet/core/crypto/seeds_esr/eos_transaction.dart';
 import 'package:hypha_wallet/core/local/models/user_auth_data.dart';
@@ -10,10 +9,10 @@ import 'package:hypha_wallet/core/local/services/secure_storage_service.dart';
 import 'package:hypha_wallet/core/network/api/remote_config_serivice.dart';
 
 class EOSService {
-  final EOSClient eosClient;
   final SecureStorageService secureStorageService;
+  final RemoteConfigService remoteConfigService;
 
-  EOSService(this.eosClient, this.secureStorageService);
+  EOSService(this.secureStorageService, this.remoteConfigService);
 
   Future<Result<dynamic>> sendTransaction({
     required EOSTransaction eosTransaction,
@@ -34,7 +33,7 @@ class EOSService {
     final UserAuthData? userAuthData = await secureStorageService.getUserAuthData();
 
     final eosClient = EOSClient(
-      baseUrl: GetIt.I<RemoteConfigService>().pushTransactionNodeUrl(),
+      baseUrl: remoteConfigService.pushTransactionNodeUrl(),
       privateKeys: [userAuthData!.eOSPrivateKey.toString()],
       version: 'v1',
     );
