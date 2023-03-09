@@ -11,7 +11,4 @@ Future _registerFirebaseModule() async {
   //
   // /// Auth
   // // _registerLazySingleton(() => firebaseAuth);
-  //
-  // /// Remote Config
-  _getIt.registerSingleton(FirebaseRemoteConfig.instance);
 }

@@ -4,7 +4,7 @@
 <dict>
 	<key>com.apple.developer.associated-domains</key>
 	<array>
-		<string>applinks:example.page.link</string>
+		<string>applinks:hyphawallet.page.link</string>
 	</array>
 </dict>
 </plist>

@@ -212,6 +212,9 @@ class SigningRequestManager {
 
     final signingRequest = SigningRequest.fromBinary(type(version)!, buf);
 
+    print("signingRequest.chainId ${signingRequest.chainId}");
+    // TODO - select network here
+
     RequestSignature? signature;
     if (buf.haveReadData()) {
       signature = RequestSignature.fromBinary(ESRConstants.signingRequestAbiType(version)['request_signature']!, buf);

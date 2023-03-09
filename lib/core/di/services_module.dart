@@ -3,7 +3,7 @@ part of 'di_setup.dart';
 Future<void> _registerServicesModule() async {
   /// DIO
   _registerLazySingleton(() => Dio());
-  _registerLazySingleton(() => NetworkingManager(Endpoints.baseUrl));
+  _registerLazySingleton(() => NetworkingManager(GetIt.I<RemoteConfigService>().baseUrl()));
 
   /// Secure Storage
   _registerLazySingleton(() => const FlutterSecureStorage());
@@ -15,7 +15,8 @@ Future<void> _registerServicesModule() async {
 
   _registerLazySingleton(() => CryptoAuthService());
 
-  _registerLazySingleton(() => EOSClient(baseUrl: Endpoints.baseUrl, version: 'v1'));
+  _registerLazySingleton(
+      () => EOSClient(baseUrl: GetIt.I<RemoteConfigService>().pushTransactionNodeUrl(), version: 'v1'));
   _registerLazySingleton(() => EOSService(_getIt<EOSClient>(), _getIt<SecureStorageService>()));
 
   _registerLazySingleton<PermissionService>(() => PermissionServiceImplementation());
