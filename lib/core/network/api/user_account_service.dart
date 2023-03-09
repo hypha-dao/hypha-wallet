@@ -1,19 +1,14 @@
 import 'package:get_it/get_it.dart';
-import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
-import 'package:hypha_wallet/core/error_handler/model/hypha_error_type.dart';
 import 'package:hypha_wallet/core/network/api/endpoints.dart';
 import 'package:hypha_wallet/core/network/api/remote_config_serivice.dart';
 import 'package:hypha_wallet/core/network/networking_manager.dart';
-import 'package:hypha_wallet/ui/architecture/result/result.dart';
-import 'package:image_picker/image_picker.dart';
 
-// TODO(Nik): these API calls need your help
 class UserAccountService {
   final NetworkingManager networkingManager;
 
   UserAccountService({required this.networkingManager});
 
-  Future<Result<bool, HyphaError>> createUserAccount({
+  Future<bool> createUserAccount({
     required String code,
     required String accountName,
     required String publicKey,
@@ -31,11 +26,12 @@ class UserAccountService {
       // ignore: unused_local_variable
       final res =
           await networkingManager.post(GetIt.I<RemoteConfigService>().accountCreatorEndpoint, data: requestBody);
-      return Result.value(true);
+      print('res: $res');
+      return true;
     } catch (error) {
       print('Error creating account');
       print(error);
-      return Result.error(HyphaError(message: 'Error creating account: $error', type: HyphaErrorType.api));
+      rethrow;
     }
   }
 

@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_single_quotes, unnecessary_brace_in_string_interps
+
 import 'dart:async';
 
 import 'package:dio/dio.dart';
@@ -24,7 +26,7 @@ class AuthRepository {
 
   AuthRepository(this._appSharedPrefs, this._userService, this._secureStorageService);
 
-  Future<Result<bool, HyphaError>> createUserAccount({
+  Future<bool> createUserAccount({
     required String accountName,
     required UserAuthData userAuthData,
     required InviteLinkData inviteLinkData,
@@ -50,12 +52,13 @@ class AuthRepository {
 
       // TODO(gguij): Check if success, grab the user image from the service response
       _saveUserData(UserProfileData(accountName: accountName, userName: userName), userAuthData, false);
-      return response;
+      return true;
     } on DioError catch (e) {
       print('DioError creating account');
       print(e);
-      final errorMessage = DioExceptions.fromDioError(e).toString();
-      return Result.error(HyphaError(message: errorMessage, type: HyphaErrorType.api));
+      rethrow;
+      // final errorMessage = DioExceptions.fromDioError(e).toString();
+      // return Result.error(HyphaError(message: errorMessage, type: HyphaErrorType.api));
     }
   }
 
