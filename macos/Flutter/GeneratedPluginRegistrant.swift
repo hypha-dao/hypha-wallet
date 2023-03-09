@@ -10,9 +10,9 @@ import firebase_crashlytics
 import firebase_remote_config
 import flutter_secure_storage_macos
 import mobile_scanner
-import path_provider_macos
+import path_provider_foundation
 import share_plus
-import shared_preferences_macos
+import shared_preferences_foundation
 
 func RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {
   FLTFirebaseCorePlugin.register(with: registry.registrar(forPlugin: "FLTFirebaseCorePlugin"))
