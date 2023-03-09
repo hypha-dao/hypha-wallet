@@ -3,7 +3,6 @@
 import 'dart:convert';
 import 'dart:typed_data';
 
-import 'package:get_it/get_it.dart';
 import 'package:hypha_wallet/core/crypto/dart_esr/src/models/request_signature.dart';
 import 'package:hypha_wallet/core/crypto/dart_esr/zlib/archive.dart';
 import 'package:hypha_wallet/core/crypto/eosdart/eosdart.dart';
@@ -14,8 +13,13 @@ SigningRequestEncodingOptions defaultSigningRequestEncodingOptions(
       textEncoder: DefaultTextEncoder(),
       textDecoder: DefaultTextDecoder(),
       zlib: DefaultZlibProvider(),
-      // TODO(n13): need to pass nodeUrl parameter into EOSClient here -
-      abiProvider: DefaultAbiProvider(GetIt.I.get<EOSClient>()),
+      abiProvider: DefaultAbiProvider(
+        EOSClient(
+          baseUrl: nodeUrl,
+          privateKeys: [],
+          version: 'v1',
+        ),
+      ),
     );
 
 class DefaultZlibProvider implements ZlibProvider {
@@ -71,14 +75,15 @@ class SigningRequestEncodingOptions {
 
   /// Optional signature provider, will be used to create a request signature if provided. */
   final SignatureProvider? signatureProvider;
+
   const SigningRequestEncodingOptions(
       {this.textEncoder, this.textDecoder, this.zlib, this.abiProvider, this.signatureProvider});
 }
 
 abstract class TextEncoder {
   /**
-     * Returns the result of running UTF-8's encoder.
-     */
+   * Returns the result of running UTF-8's encoder.
+   */
   Uint8List encode(String input);
 }
 
@@ -100,9 +105,9 @@ abstract class ZlibProvider {
 /// Interface that should be implemented by abi providers. */
 abstract class AbiProvider {
   /**
-     * Return a promise that resolves to an abi object for the given account name,
-     * e.g. the result of a rpc call to chain/get_abi.
-     */
+   * Return a promise that resolves to an abi object for the given account name,
+   * e.g. the result of a rpc call to chain/get_abi.
+   */
   Future<dynamic> getAbi(String? account);
 }
 

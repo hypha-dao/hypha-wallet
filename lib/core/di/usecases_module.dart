@@ -8,7 +8,7 @@ void _registerUseCasesModule() {
   _registerFactory(() => FetchProfileUseCase(_getIt<ProfileService>(), _getIt<HyphaSharedPrefs>()));
   _registerFactory(() => GenerateKeyFromSeedsPassportWordsUseCase(_getIt<CryptoAuthService>()));
   _registerFactory(() => GenerateKeyFromRecoveryWordsUseCase(_getIt<CryptoAuthService>()));
-  _registerFactory(() => FindAccountsUseCase(_getIt<EOSClient>(), _getIt<ProfileService>()));
+  _registerFactory(() => FindAccountsUseCase(_getIt<ProfileService>(), _getIt<RemoteConfigService>()));
   _registerFactory(() => ValidateKeyUseCase());
   _registerFactory(() => SignTransactionUseCase(_getIt<EOSService>(), _getIt<HyphaSharedPrefs>()));
   _registerFactory(
