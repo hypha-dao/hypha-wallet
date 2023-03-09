@@ -60,6 +60,8 @@ class ImportAccountBloc extends Bloc<ImportAccountEvent, ImportAccountState> {
       .replaceAll(RegExp('[ ]{2,}'), ' ')
       .replaceAll(' , ', ' ')
       .replaceAll(',', ' ')
+      .replaceAll(' ; ', ' ')
+      .replaceAll(';', ' ')
       .replaceAll('\n', ' ')
       .replaceAll(' - ', ' ')
       .replaceAll('-', ' ')

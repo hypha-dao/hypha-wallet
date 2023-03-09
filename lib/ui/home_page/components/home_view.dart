@@ -33,7 +33,7 @@ class HomeView extends StatelessWidget {
                       builder: (context, state) {
                         return HyphaAvatarImage(
                           imageRadius: 24,
-                          name: state.userProfileData?.userName ?? '?',
+                          name: state.userProfileData?.userName ?? state.userProfileData?.accountName,
                           imageFromUrl: state.userProfileData?.userImage,
                           onTap: () {
                             context.read<BottomNavigationBloc>().add(const BottomNavigationEvent.onPageSelected(2));

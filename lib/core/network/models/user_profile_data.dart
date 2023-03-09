@@ -9,7 +9,7 @@ class UserProfileData with _$UserProfileData {
     required String accountName,
     @Default(null) String? userImage,
     @Default(null) String? bio,
-    required String userName,
+    @Default(null) String? userName,
   }) = _UserProfileData;
 
   factory UserProfileData.fromJson(Map<String, dynamic> json) => _$UserProfileDataFromJson(json);
