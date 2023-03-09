@@ -30,6 +30,7 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
     on<_InitialAuthentication>(_initial);
     on<_AuthenticationStatusChanged>(_onAuthenticationStatusChanged);
     on<_AuthenticationLogoutRequested>(_onAuthenticationLogoutRequested);
+    on<_OnAuthenticatedDataChanged>(_onAuthenticatedDataChanged);
     _authenticationStatusSubscription = _authRepository.status.listen(
       (status) => add(AuthenticationEvent.authenticationStatusChanged(status)),
     );
@@ -98,5 +99,9 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
     Emitter<AuthenticationState> emit,
   ) async {
     await _authRepository.signOut();
+  }
+
+  FutureOr<void> _onAuthenticatedDataChanged(_OnAuthenticatedDataChanged event, Emitter<AuthenticationState> emit) {
+    emit(state.copyWith(userProfileData: event.data));
   }
 }
