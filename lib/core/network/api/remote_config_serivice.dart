@@ -69,6 +69,5 @@ class RemoteConfigService {
       'accountCreatorEndpoint': 'http://34.236.29.152:9108',
       'profileServiceEndpoint': 'http://34.236.29.152:9109',
     });
-    print("initialized OK");
   }
 }
