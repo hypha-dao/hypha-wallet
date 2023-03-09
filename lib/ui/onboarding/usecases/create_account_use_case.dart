@@ -1,4 +1,3 @@
-import 'package:get/get.dart';
 import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
 import 'package:hypha_wallet/core/local/models/user_auth_data.dart';
 import 'package:hypha_wallet/core/network/repository/auth_repository.dart';

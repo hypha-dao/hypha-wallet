@@ -7,7 +7,6 @@ import 'package:hypha_wallet/core/crypto/dart_esr/src/signing_request_manager.da
 import 'package:hypha_wallet/core/crypto/seeds_esr/eos_transaction.dart';
 import 'package:hypha_wallet/core/crypto/seeds_esr/scan_qr_code_result_data.dart';
 import 'package:hypha_wallet/core/logging/log_helper.dart';
-import 'package:hypha_wallet/core/network/api/endpoints.dart';
 import 'package:hypha_wallet/core/network/api/remote_config_serivice.dart';
 // import 'package:hypha_wallet/core/crypto/eosdart/src/models/action.dart';
 
