@@ -23,7 +23,7 @@ mixin _$UserProfileData {
   String get accountName => throw _privateConstructorUsedError;
   String? get userImage => throw _privateConstructorUsedError;
   String? get bio => throw _privateConstructorUsedError;
-  String get userName => throw _privateConstructorUsedError;
+  String? get userName => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -38,7 +38,7 @@ abstract class $UserProfileDataCopyWith<$Res> {
       _$UserProfileDataCopyWithImpl<$Res, UserProfileData>;
   @useResult
   $Res call(
-      {String accountName, String? userImage, String? bio, String userName});
+      {String accountName, String? userImage, String? bio, String? userName});
 }
 
 /// @nodoc
@@ -57,7 +57,7 @@ class _$UserProfileDataCopyWithImpl<$Res, $Val extends UserProfileData>
     Object? accountName = null,
     Object? userImage = freezed,
     Object? bio = freezed,
-    Object? userName = null,
+    Object? userName = freezed,
   }) {
     return _then(_value.copyWith(
       accountName: null == accountName
@@ -72,10 +72,10 @@ class _$UserProfileDataCopyWithImpl<$Res, $Val extends UserProfileData>
           ? _value.bio
           : bio // ignore: cast_nullable_to_non_nullable
               as String?,
-      userName: null == userName
+      userName: freezed == userName
           ? _value.userName
           : userName // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
@@ -89,7 +89,7 @@ abstract class _$$_UserProfileDataCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String accountName, String? userImage, String? bio, String userName});
+      {String accountName, String? userImage, String? bio, String? userName});
 }
 
 /// @nodoc
@@ -106,7 +106,7 @@ class __$$_UserProfileDataCopyWithImpl<$Res>
     Object? accountName = null,
     Object? userImage = freezed,
     Object? bio = freezed,
-    Object? userName = null,
+    Object? userName = freezed,
   }) {
     return _then(_$_UserProfileData(
       accountName: null == accountName
@@ -121,10 +121,10 @@ class __$$_UserProfileDataCopyWithImpl<$Res>
           ? _value.bio
           : bio // ignore: cast_nullable_to_non_nullable
               as String?,
-      userName: null == userName
+      userName: freezed == userName
           ? _value.userName
           : userName // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -136,7 +136,7 @@ class _$_UserProfileData implements _UserProfileData {
       {required this.accountName,
       this.userImage = null,
       this.bio = null,
-      required this.userName});
+      this.userName = null});
 
   factory _$_UserProfileData.fromJson(Map<String, dynamic> json) =>
       _$$_UserProfileDataFromJson(json);
@@ -150,7 +150,8 @@ class _$_UserProfileData implements _UserProfileData {
   @JsonKey()
   final String? bio;
   @override
-  final String userName;
+  @JsonKey()
+  final String? userName;
 
   @override
   String toString() {
@@ -195,7 +196,7 @@ abstract class _UserProfileData implements UserProfileData {
       {required final String accountName,
       final String? userImage,
       final String? bio,
-      required final String userName}) = _$_UserProfileData;
+      final String? userName}) = _$_UserProfileData;
 
   factory _UserProfileData.fromJson(Map<String, dynamic> json) =
       _$_UserProfileData.fromJson;
@@ -207,7 +208,7 @@ abstract class _UserProfileData implements UserProfileData {
   @override
   String? get bio;
   @override
-  String get userName;
+  String? get userName;
   @override
   @JsonKey(ignore: true)
   _$$_UserProfileDataCopyWith<_$_UserProfileData> get copyWith =>

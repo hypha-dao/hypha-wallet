@@ -23,7 +23,7 @@ class UserAccountList extends StatelessWidget {
               child: ListTile(
                 contentPadding: const EdgeInsets.all(14),
                 tileColor: context.isDarkTheme ? HyphaColors.lightBlack : HyphaColors.white,
-                title: Text(e.userName, style: context.hyphaTextTheme.smallTitles),
+                title: Text(e.userName ?? e.accountName, style: context.hyphaTextTheme.smallTitles),
                 leading: HyphaAvatarImage(
                   imageRadius: 24,
                   name: e.accountName.characters.first.capitalize,
