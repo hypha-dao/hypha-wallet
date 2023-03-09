@@ -23,5 +23,5 @@ Future<void> _registerServicesModule() async {
 
   _registerLazySingleton<PermissionService>(() => PermissionServiceImplementation());
 
-  _registerLazySingleton<ProfileService>(() => ProfileService());
+  _registerLazySingleton<ProfileService>(() => ProfileService(_getIt<RemoteConfigService>()));
 }

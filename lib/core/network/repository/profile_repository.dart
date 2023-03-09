@@ -1,4 +1,3 @@
-import 'package:get_it/get_it.dart';
 import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
 import 'package:hypha_wallet/core/error_handler/model/hypha_error_type.dart';
 import 'package:hypha_wallet/core/network/api/endpoints.dart';
@@ -8,10 +7,12 @@ import 'package:hypha_wallet/ui/architecture/result/result.dart';
 import 'package:hypha_wallet/ui/profile/interactor/profile_data.dart';
 
 class ProfileService extends NetworkingManager {
-  ProfileService() : super(GetIt.I<RemoteConfigService>().profileServiceEndpoint);
+  final RemoteConfigService _remoteConfigService;
+
+  ProfileService(this._remoteConfigService) : super(_remoteConfigService.profileServiceEndpoint);
 
   Future<Result<ProfileData, HyphaError>> getProfile(String accountName) async {
-    final url = '${GetIt.I<RemoteConfigService>().profileServiceEndpoint}${Endpoints.pppProfile}/$accountName';
+    final url = '${_remoteConfigService.profileServiceEndpoint}${Endpoints.pppProfile}/$accountName';
     final response = await get(url);
     if (response.statusCode == 200) {
       final map = Map<String, dynamic>.from(response.data);
