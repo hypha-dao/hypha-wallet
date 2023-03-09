@@ -14,14 +14,18 @@ class CreateAccountUseCase extends InputUseCase<Result<bool, HyphaError>, Create
 
   @override
   Future<Result<bool, HyphaError>> run(CreateAccountInput input) async {
-    final result = await _authRepository.createUserAccount(
-      accountName: input.accountName,
-      userAuthData: input.userAuthData,
-      inviteLinkData: input.inviteLinkData,
-      userName: input.userName,
-      image: input.image,
-    );
-    return result;
+    try {
+      final result = await _authRepository.createUserAccount(
+        accountName: input.accountName,
+        userAuthData: input.userAuthData,
+        inviteLinkData: input.inviteLinkData,
+        userName: input.userName,
+        image: input.image,
+      );
+      return Result.value(result);
+    } catch (error) {
+      return Result.error(HyphaError.api(error.toString()));
+    }
   }
 }
 
