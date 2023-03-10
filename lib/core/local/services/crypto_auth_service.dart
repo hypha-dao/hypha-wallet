@@ -23,7 +23,7 @@ class CryptoAuthService {
   }
 
   UserAuthData privateKeyFromSeedsGlobalPassportWords(List<String> words) {
-    return UserAuthData(createPrivateKeyFrom12WordsBip39(words), words);
+    return UserAuthData(createPrivateKeyFrom12WordsBip39SeedsGlobalPassport(words), words);
   }
 
   /// Creates a private key from 12 words list
@@ -41,7 +41,7 @@ class CryptoAuthService {
   /// Seeds Global Passport compatibility method - creates an EOS key the same
   /// way the SGP does, by first creating an ETH key, then deriving a child key,
   /// then creating an EOS key from the derived key.
-  EOSPrivateKey createPrivateKeyFrom12WordsBip39(List<String> words) {
+  EOSPrivateKey createPrivateKeyFrom12WordsBip39SeedsGlobalPassport(List<String> words) {
     assert(words.length == 12);
     final mnemonic = words.join(' ');
     // First, we create an ETH derived key - like the passport does
@@ -52,7 +52,8 @@ class CryptoAuthService {
   }
 
   /// Helper method to create an ETH key from a mnemonic
-  /// Note: the derivation path here is the same as Seeds Global Passport.
+  /// This is basically bip44 with a specific derivation path
+  /// used by Seeds Global Passport
   HDKey generateEthDerivedKeySeedsGlobalPassport(String mnemonic) {
     final HDKey hdkey = HDKey.fromMnemonic(mnemonic);
     const walletHdPath = "m/44'/60'/0'/0/1";
@@ -60,12 +61,13 @@ class CryptoAuthService {
     return childKey;
   }
 
-  // Create a seed as per Bip39 standard
+  // Create a private key from word seed as per Bip39 standard
   // then create EOS key from seed
+  // Minimum of 12 words must be provided.
   EOSPrivateKey createKeyBip39(List<String> words) {
-    assert(words.length == 12);
-    final mnemonic = words.join(' ');
-    final seedBuffer = bip39.mnemonicToSeed(mnemonic);
+    assert(words.length >= 12);
+    final String mnemonic = words.join(' ');
+    final Uint8List seedBuffer = bip39.mnemonicToSeed(mnemonic);
     return EOSPrivateKey.fromBuffer(seedBuffer);
   }
 }
