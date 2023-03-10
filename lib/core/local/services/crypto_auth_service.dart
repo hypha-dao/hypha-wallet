@@ -23,7 +23,7 @@ class CryptoAuthService {
   }
 
   UserAuthData privateKeyFromSeedsGlobalPassportWords(List<String> words) {
-    return UserAuthData(createPrivateKeyFrom12WordsBip39SeedsGlobalPassport(words), words);
+    return UserAuthData(createPrivateKeyFrom12WordsSeedsGlobalPassport(words), words);
   }
 
   /// Creates a private key from 12 words list
@@ -41,7 +41,8 @@ class CryptoAuthService {
   /// Seeds Global Passport compatibility method - creates an EOS key the same
   /// way the SGP does, by first creating an ETH key, then deriving a child key,
   /// then creating an EOS key from the derived key.
-  EOSPrivateKey createPrivateKeyFrom12WordsBip39SeedsGlobalPassport(List<String> words) {
+  /// It's following bip44 standard for key derivation.
+  EOSPrivateKey createPrivateKeyFrom12WordsSeedsGlobalPassport(List<String> words) {
     assert(words.length == 12);
     final mnemonic = words.join(' ');
     // First, we create an ETH derived key - like the passport does
