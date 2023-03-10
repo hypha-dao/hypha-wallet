@@ -1,8 +1,11 @@
+import 'dart:typed_data';
+
 import 'package:hdkey/hdkey.dart';
 import 'package:hypha_wallet/core/crypto/eosdart_ecc/src/key.dart';
 import 'package:hypha_wallet/core/local/models/user_auth_data.dart';
 import 'package:hypha_wallet/core/mnemonic_code/hex.dart';
 import 'package:hypha_wallet/core/mnemonic_code/mnemonic_code.dart';
+import 'package:bip39/bip39.dart' as bip39;
 
 const STRENGTH_FOR_TWELVE_WORDS = 16;
 
@@ -42,17 +45,27 @@ class CryptoAuthService {
     assert(words.length == 12);
     final mnemonic = words.join(' ');
     // First, we create an ETH derived key - like the passport does
-    final ethKey = generateEthDerivedKeyFromSeed(mnemonic);
+    final ethKey = generateEthDerivedKeySeedsGlobalPassport(mnemonic);
     // Then we create an EOS key from the ETH derived key
     final eosKey = EOSPrivateKey.fromBuffer(ethKey.privateKey);
     return eosKey;
   }
 
   /// Helper method to create an ETH key from a mnemonic
-  HDKey generateEthDerivedKeyFromSeed(String mnemonic) {
+  /// Note: the derivation path here is the same as Seeds Global Passport.
+  HDKey generateEthDerivedKeySeedsGlobalPassport(String mnemonic) {
     final HDKey hdkey = HDKey.fromMnemonic(mnemonic);
     const walletHdPath = "m/44'/60'/0'/0/1";
     final HDKey childKey = hdkey.derive(walletHdPath);
     return childKey;
+  }
+
+  // Create a seed as per Bip39 standard
+  // then create EOS key from seed
+  EOSPrivateKey createKeyBip39(List<String> words) {
+    assert(words.length == 12);
+    final mnemonic = words.join(' ');
+    final seedBuffer = bip39.mnemonicToSeed(mnemonic);
+    return EOSPrivateKey.fromBuffer(seedBuffer);
   }
 }
