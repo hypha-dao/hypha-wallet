@@ -1,11 +1,11 @@
 import 'dart:typed_data';
 
+import 'package:bip39/bip39.dart' as bip39;
 import 'package:hdkey/hdkey.dart';
 import 'package:hypha_wallet/core/crypto/eosdart_ecc/src/key.dart';
 import 'package:hypha_wallet/core/local/models/user_auth_data.dart';
 import 'package:hypha_wallet/core/mnemonic_code/hex.dart';
 import 'package:hypha_wallet/core/mnemonic_code/mnemonic_code.dart';
-import 'package:bip39/bip39.dart' as bip39;
 
 const STRENGTH_FOR_TWELVE_WORDS = 16;
 
