@@ -19,6 +19,7 @@ class SignTransactionUseCase extends InputUseCase<HResult.Result<String, HyphaEr
     final Result<dynamic> result = await eosService.sendTransaction(
       eosTransaction: input,
       accountName: userData?.accountName ?? '',
+      network: input.network,
     );
     if (result.isValue) {
       return HResult.Result.value(result.asValue!.value as String);
