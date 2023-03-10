@@ -14,9 +14,12 @@ class FindAccountsUseCase extends InputUseCase<Result<Iterable<UserProfileData>,
   FindAccountsUseCase(this._profileService, this.remoteConfigService);
 
   @override
-  Future<Result<Iterable<UserProfileData>, HyphaError>> run(String input) async {
+  Future<Result<Iterable<UserProfileData>, HyphaError>> run(String input, {Networks network = Networks.telos}) async {
+    /// TODO(n13)- change this to scan all known chains.
+    /// For this we need to find the correct PPP service for each chain, each chain uses a different PPP serivice
+    /// instance.
     final eosClient = EOSClient(
-      baseUrl: remoteConfigService.pushTransactionNodeUrl(),
+      baseUrl: remoteConfigService.pushTransactionNodeUrl(network: network),
       privateKeys: [],
       version: 'v1',
     );
