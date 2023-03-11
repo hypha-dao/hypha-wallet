@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:hypha_wallet/core/crypto/eosdart/eosdart.dart';
 import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
 import 'package:hypha_wallet/core/network/api/remote_config_serivice.dart';
@@ -15,6 +16,7 @@ class FindAccountsUseCase extends InputUseCase<Result<Iterable<UserProfileData>,
 
   @override
   Future<Result<Iterable<UserProfileData>, HyphaError>> run(String input) async {
+    print("load account ${remoteConfigService.pushTransactionNodeUrl()}");
     final eosClient = EOSClient(
       baseUrl: remoteConfigService.pushTransactionNodeUrl(),
       privateKeys: [],
@@ -30,7 +32,8 @@ class FindAccountsUseCase extends InputUseCase<Result<Iterable<UserProfileData>,
       final List<Result<ProfileData, HyphaError>> profiles = await Future.wait(futures);
 
       final List<UserProfileData> wtf = List.empty(growable: true);
-      for (final response in profiles) {
+
+      profiles.forEachIndexed((index, response) {
         if (response.isValue) {
           final ProfileData profileData = response.asValue!.value;
           wtf.add(UserProfileData(
@@ -39,8 +42,15 @@ class FindAccountsUseCase extends InputUseCase<Result<Iterable<UserProfileData>,
             userImage: profileData.image,
             bio: profileData.bio,
           ));
+        } else {
+          wtf.add(UserProfileData(
+            accountName: data.accountNames[index],
+            userName: null,
+            userImage: null,
+            bio: null,
+          ));
         }
-      }
+      });
 
       return Result.value(wtf);
     } else {

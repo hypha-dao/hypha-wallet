@@ -6,7 +6,8 @@ enum Networks { telos, telosTestnet, eos, eosTestnet }
 
 /// Encapsulates everything to do with remote configuration
 class RemoteConfigService {
-  RemoteConfigService();
+  // final Networks defaultNetwork = Networks.telos;
+  final Networks defaultNetwork = Networks.telosTestnet;
 
   static Future<RemoteConfigService> initialized() async {
     return RemoteConfigService()..setDefaults();
@@ -14,7 +15,7 @@ class RemoteConfigService {
 
   Map<String, dynamic> _getNetworkConfig({String? network}) {
     final remoteConfig = FirebaseRemoteConfig.instance;
-    network = network ?? Networks.telos.name;
+    network = network ?? defaultNetwork.name;
     final conf = json.decode(remoteConfig.getValue('networks').asString());
     if (conf[network] == null) {
       throw 'Unknown network: $network';
