@@ -6,8 +6,8 @@ enum Networks { telos, telosTestnet, eos, eosTestnet }
 
 /// Encapsulates everything to do with remote configuration
 class RemoteConfigService {
-  // final Networks defaultNetwork = Networks.telos;
-  final Networks defaultNetwork = Networks.telosTestnet;
+  final Networks defaultNetwork = Networks.telos;
+  // final Networks defaultNetwork = Networks.telosTestnet;
 
   static Future<RemoteConfigService> initialized() async {
     return RemoteConfigService()..setDefaults();

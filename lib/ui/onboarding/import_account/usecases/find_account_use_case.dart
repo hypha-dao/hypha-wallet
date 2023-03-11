@@ -16,9 +16,9 @@ class FindAccountsUseCase extends InputUseCase<Result<Iterable<UserProfileData>,
 
   @override
   Future<Result<Iterable<UserProfileData>, HyphaError>> run(String input) async {
-    print("load account ${remoteConfigService.pushTransactionNodeUrl()}");
+    print("load account ${remoteConfigService.baseUrl()}");
     final eosClient = EOSClient(
-      baseUrl: remoteConfigService.pushTransactionNodeUrl(),
+      baseUrl: remoteConfigService.baseUrl(),
       privateKeys: [],
       version: 'v1',
     );
