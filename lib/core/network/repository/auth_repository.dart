@@ -2,17 +2,12 @@
 
 import 'dart:async';
 
-import 'package:dio/dio.dart';
-import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
-import 'package:hypha_wallet/core/error_handler/model/hypha_error_type.dart';
 import 'package:hypha_wallet/core/local/models/user_auth_data.dart';
 import 'package:hypha_wallet/core/local/services/secure_storage_service.dart';
 import 'package:hypha_wallet/core/logging/log_helper.dart';
 import 'package:hypha_wallet/core/network/api/user_account_service.dart';
-import 'package:hypha_wallet/core/network/dio_exception.dart';
 import 'package:hypha_wallet/core/network/models/user_profile_data.dart';
 import 'package:hypha_wallet/core/shared_preferences/hypha_shared_prefs.dart';
-import 'package:hypha_wallet/ui/architecture/result/result.dart';
 import 'package:hypha_wallet/ui/blocs/deeplink/deeplink_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -35,11 +30,13 @@ class AuthRepository {
   }) async {
     try {
       /// 1 - Create blockchain account
-      print('creating account with ${userAuthData.eOSPrivateKey} ${userAuthData.publicKey.toString()}');
+      print(
+          'creating account with \nPrivate Key: ${userAuthData.eOSPrivateKey} \nPublic Key${userAuthData.publicKey.toString()}');
       print("secret: ${inviteLinkData.code}");
       print("network: ${inviteLinkData.chain}");
       print("accountname: ${accountName}");
 
+      // ignore: unused_local_variable
       final response = await _userService.createUserAccount(
         code: inviteLinkData.code,
         network: inviteLinkData.chain,
@@ -53,12 +50,10 @@ class AuthRepository {
       // TODO(gguij): Check if success, grab the user image from the service response
       _saveUserData(UserProfileData(accountName: accountName, userName: userName), userAuthData, false);
       return true;
-    } on DioError catch (e) {
-      print('DioError creating account');
+    } catch (e) {
+      print('DioError creating account $e');
       print(e);
       rethrow;
-      // final errorMessage = DioExceptions.fromDioError(e).toString();
-      // return Result.error(HyphaError(message: errorMessage, type: HyphaErrorType.api));
     }
   }
 

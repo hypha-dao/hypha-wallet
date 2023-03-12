@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hypha_wallet/core/network/api/endpoints.dart';
 import 'package:hypha_wallet/core/network/api/remote_config_serivice.dart';
@@ -19,18 +20,28 @@ class UserAccountService {
       "code": "$code",
       "accountName": "$accountName",
       "publicKey": "$publicKey",
-      "network": "$network",
+      "network": "$network"
     }''';
-
+    final url = GetIt.I<RemoteConfigService>().accountCreatorEndpoint + Endpoints.creteAccount;
     try {
       // ignore: unused_local_variable
-      final res =
-          await networkingManager.post(GetIt.I<RemoteConfigService>().accountCreatorEndpoint, data: requestBody);
-      print('res: $res');
+      final res = await networkingManager.post(url, data: requestBody);
+
+      // TODO(gguij): Not sure we need to handle the response - how to we parse status codes?
+      // print('res: $res');
+      // flutter: res: {"success":true}
+
       return true;
     } catch (error) {
       print('Error creating account');
       print(error);
+      if (error is DioError) {
+        final dioError = error;
+        print('message: ${dioError.message}');
+        print('status code: ${dioError.response?.statusCode}');
+        print('message: ${dioError.response?.statusMessage}');
+        print('dioError: $dioError');
+      }
       rethrow;
     }
   }
