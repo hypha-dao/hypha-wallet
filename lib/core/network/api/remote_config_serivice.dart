@@ -33,8 +33,8 @@ class RemoteConfigService {
 
   // Node for push transactions - should be a fast server to prevent timeouts
   // network: default is Telos mainnet.
-  String pushTransactionNodeUrl({String? network}) {
-    final networkConfig = _getNetworkConfig(network: network);
+  String pushTransactionNodeUrl({required Networks network}) {
+    final networkConfig = _getNetworkConfig(network: network.name);
     final endpoint = networkConfig['fastEndpoint'];
     return endpoint;
   }
