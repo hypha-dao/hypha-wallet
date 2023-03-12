@@ -216,7 +216,7 @@ class SigningRequestManager {
 
     // resolve network and abi provider -
     final network = HyphaSigningRequestManager.resolveNetwork(signingRequest.chainId);
-    print("network: $network");
+    // print('network: $network'); // TODO(NIK): Remove debug code
     final eosClientForAbi = GetIt.I.get<EOSService>().getEosClientForNetwork(network);
     final abiProvider = DefaultAbiProvider(eosClientForAbi);
 
