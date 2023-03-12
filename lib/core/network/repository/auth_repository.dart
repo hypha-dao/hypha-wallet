@@ -51,7 +51,7 @@ class AuthRepository {
       _saveUserData(UserProfileData(accountName: accountName, userName: userName), userAuthData, false);
       return true;
     } catch (e) {
-      print('DioError creating account $e');
+      print('Error creating account $e');
       print(e);
       rethrow;
     }
