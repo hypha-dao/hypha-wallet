@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:hypha_wallet/core/crypto/eosdart/eosdart.dart';
 import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
 import 'package:hypha_wallet/core/network/api/remote_config_serivice.dart';
@@ -19,7 +20,7 @@ class FindAccountsUseCase extends InputUseCase<Result<Iterable<UserProfileData>,
     /// For this we need to find the correct PPP service for each chain, each chain uses a different PPP serivice
     /// instance.
     final eosClient = EOSClient(
-      baseUrl: remoteConfigService.pushTransactionNodeUrl(network: network),
+      baseUrl: remoteConfigService.baseUrl(),
       privateKeys: [],
       version: 'v1',
     );
@@ -33,7 +34,8 @@ class FindAccountsUseCase extends InputUseCase<Result<Iterable<UserProfileData>,
       final List<Result<ProfileData, HyphaError>> profiles = await Future.wait(futures);
 
       final List<UserProfileData> wtf = List.empty(growable: true);
-      for (final response in profiles) {
+
+      profiles.forEachIndexed((index, response) {
         if (response.isValue) {
           final ProfileData profileData = response.asValue!.value;
           wtf.add(UserProfileData(
@@ -42,8 +44,15 @@ class FindAccountsUseCase extends InputUseCase<Result<Iterable<UserProfileData>,
             userImage: profileData.image,
             bio: profileData.bio,
           ));
+        } else {
+          wtf.add(UserProfileData(
+            accountName: data.accountNames[index],
+            userName: null,
+            userImage: null,
+            bio: null,
+          ));
         }
-      }
+      });
 
       return Result.value(wtf);
     } else {
