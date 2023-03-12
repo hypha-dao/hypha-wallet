@@ -30,11 +30,11 @@ class AuthRepository {
   }) async {
     try {
       /// 1 - Create blockchain account
-      print(
-          'creating account with \nPrivate Key: ${userAuthData.eOSPrivateKey} \nPublic Key${userAuthData.publicKey.toString()}');
-      print("secret: ${inviteLinkData.code}");
-      print("network: ${inviteLinkData.chain}");
-      print("accountname: ${accountName}");
+      // print(
+      //     'createUserAccount with \nPrivate Key: ${userAuthData.eOSPrivateKey} \nPublic Key${userAuthData.publicKey.toString()}');
+      // print("secret: ${inviteLinkData.code}");
+      // print("network: ${inviteLinkData.chain}");
+      // print("accountname: ${accountName}");
 
       // ignore: unused_local_variable
       final response = await _userService.createUserAccount(
