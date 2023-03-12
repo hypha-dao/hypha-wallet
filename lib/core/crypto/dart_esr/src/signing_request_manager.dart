@@ -6,7 +6,6 @@ import 'package:hypha_wallet/core/crypto/dart_esr/dart_esr.dart';
 import 'package:hypha_wallet/core/crypto/dart_esr/src/models/request_signature.dart';
 import 'package:hypha_wallet/core/crypto/dart_esr/src/utils/base64u.dart';
 import 'package:hypha_wallet/core/crypto/eosdart/eosdart.dart' as eosDart;
-import 'package:hypha_wallet/core/crypto/eosdart/src/client.dart';
 import 'package:hypha_wallet/core/network/api/eos_service.dart';
 import 'package:hypha_wallet/core/network/api/remote_config_serivice.dart';
 
