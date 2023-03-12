@@ -14,9 +14,18 @@ class EOSService {
 
   EOSService(this.secureStorageService, this.remoteConfigService);
 
+  EOSClient getEosClientForNetwork(Networks network, {List<String> privateKeys = const []}) {
+    return EOSClient(
+      baseUrl: remoteConfigService.pushTransactionNodeUrl(network: network),
+      privateKeys: privateKeys,
+      version: 'v1',
+    );
+  }
+
   Future<Result<dynamic>> sendTransaction({
     required EOSTransaction eosTransaction,
     required String accountName,
+    required Networks network,
   }) async {
     final actions = eosTransaction.actions.map((e) => e.toEosAction).toList();
 
@@ -33,7 +42,7 @@ class EOSService {
     final UserAuthData? userAuthData = await secureStorageService.getUserAuthData();
 
     final eosClient = EOSClient(
-      baseUrl: remoteConfigService.pushTransactionNodeUrl(),
+      baseUrl: remoteConfigService.pushTransactionNodeUrl(network: network),
       privateKeys: [userAuthData!.eOSPrivateKey.toString()],
       version: 'v1',
     );

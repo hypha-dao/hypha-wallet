@@ -7,7 +7,28 @@ import 'package:hypha_wallet/core/crypto/dart_esr/src/signing_request_abi.dart' 
 import 'package:hypha_wallet/core/crypto/dart_esr/src/signing_request_abi_v3.dart' as signing_request_v3_abis;
 import 'package:hypha_wallet/core/crypto/eosdart/eosdart.dart' as eosDart;
 
-enum ChainName { RESERVED, EOS, TELOS, EOS_JUNGLE2, KYLIN, WORBLI, BOS, MEETONE, INSIGHTS, BEOS, WAX, PROTON, FIO }
+/// Note: Only append at the end to this list since ESR is using the index of the chains as alias
+/// I don't think it's used much except for the first 2, EOS and TELOS, and in any case we don't
+/// currently support any of the other EOSIO networks anyway - we don't have the network endpoints etc.
+/// We only support EOS, TELOS, TELOS_TESTNET and EOS_JUNGLE4.
+///
+enum ChainName {
+  RESERVED,
+  EOS,
+  TELOS,
+  EOS_JUNGLE2,
+  KYLIN,
+  WORBLI,
+  BOS,
+  MEETONE,
+  INSIGHTS,
+  BEOS,
+  WAX,
+  PROTON,
+  FIO,
+  TELOS_TESTNET,
+  EOS_JUNGLE4,
+}
 
 class ESRConstants {
   static const int ProtocolVersion = 2;
@@ -50,5 +71,7 @@ class ESRConstants {
     ChainName.WAX: '1064487b3cd1a897ce03ae5b6a865651747e2e152090f99c1d19d44e01aea5a4',
     ChainName.PROTON: '384da888112027f0321850a169f737c33e53b388aad48b5adace4bab97f437e0',
     ChainName.FIO: '21dcae42c0182200e93f954a074011f9048a7624c6fe81d3c9541a614a88bd1c',
+    ChainName.TELOS_TESTNET: '1eaa0824707c8c16bd25145493bf062aecddfeb56c736f6ba6397f3195f33c9f',
+    ChainName.EOS_JUNGLE4: '73e4385a2708e6d7048834fbc1079f2fabb17b3c125b146af438971e90716c4d',
   };
 }

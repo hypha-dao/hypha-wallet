@@ -7,19 +7,20 @@ import 'package:hypha_wallet/core/crypto/dart_esr/src/models/request_signature.d
 import 'package:hypha_wallet/core/crypto/dart_esr/zlib/archive.dart';
 import 'package:hypha_wallet/core/crypto/eosdart/eosdart.dart';
 
-SigningRequestEncodingOptions defaultSigningRequestEncodingOptions(
-        {String nodeUrl = 'https://eos.eosn.io', String nodeVersion = 'v1'}) =>
+SigningRequestEncodingOptions defaultSigningRequestEncodingOptions({String? nodeUrl, String nodeVersion = 'v1'}) =>
     SigningRequestEncodingOptions(
       textEncoder: DefaultTextEncoder(),
       textDecoder: DefaultTextDecoder(),
       zlib: DefaultZlibProvider(),
-      abiProvider: DefaultAbiProvider(
-        EOSClient(
-          baseUrl: nodeUrl,
-          privateKeys: [],
-          version: 'v1',
-        ),
-      ),
+      abiProvider: nodeUrl == null
+          ? null
+          : DefaultAbiProvider(
+              EOSClient(
+                baseUrl: nodeUrl,
+                privateKeys: [],
+                version: 'v1',
+              ),
+            ),
     );
 
 class DefaultZlibProvider implements ZlibProvider {
