@@ -1,9 +1,5 @@
 import 'package:async/async.dart';
-import 'package:get_it/get_it.dart';
-import 'package:hypha_wallet/core/crypto/dart_esr/src/encoding_options.dart';
-import 'package:hypha_wallet/core/crypto/dart_esr/src/models/authorization.dart';
-import 'package:hypha_wallet/core/crypto/dart_esr/src/models/esr_action.dart';
-import 'package:hypha_wallet/core/crypto/dart_esr/src/signing_request_manager.dart';
+import 'package:hypha_wallet/core/crypto/dart_esr/dart_esr.dart';
 import 'package:hypha_wallet/core/crypto/seeds_esr/eos_transaction.dart';
 import 'package:hypha_wallet/core/crypto/seeds_esr/scan_qr_code_result_data.dart';
 import 'package:hypha_wallet/core/logging/log_helper.dart';
@@ -26,7 +22,14 @@ class SeedsESR {
   }
 
   Result<ScanQrCodeResultData> processResolvedRequest() {
-    final EOSTransaction eosTransaction = EOSTransaction.fromESRActionsList(actions);
+    Networks network;
+    try {
+      network = _resolveNetwork();
+    } catch (error) {
+      print('unable to resolve network: $error');
+      return ErrorResult(error);
+    }
+    final EOSTransaction eosTransaction = EOSTransaction.fromESRActionsList(actions, network);
     if (eosTransaction.isValid) {
       LogHelper.d('processResolvedRequest: Success QR');
       return ValueResult(ScanQrCodeResultData(transaction: eosTransaction, esr: this));
@@ -35,13 +38,17 @@ class SeedsESR {
       return ErrorResult('Unable to process this request');
     }
   }
+
+  /// Map ChainName or actual chain ID to our supported Network list
+  Networks _resolveNetwork() {
+    final List<dynamic> chainId = manager.signingRequest.chainId;
+    return HyphaSigningRequestManager.resolveNetwork(chainId);
+  }
 }
 
 extension TelosSigningManager on SigningRequestManager {
   static SigningRequestManager from(String? uri) {
-    return SigningRequestManager.from(uri,
-        options:
-            defaultSigningRequestEncodingOptions(nodeUrl: GetIt.I<RemoteConfigService>().pushTransactionNodeUrl()));
+    return SigningRequestManager.from(uri, options: defaultSigningRequestEncodingOptions());
   }
 
   Future<List<ESRAction>> fetchActions({String? account, String permission = 'active'}) async {
