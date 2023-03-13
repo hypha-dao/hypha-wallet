@@ -28,6 +28,8 @@ class SignTransactionPage extends StatelessWidget {
             );
           }, navigateToTransactionFailed: () {
             GetX.Get.off(() => const SignTransactionFailedPage(), transition: GetX.Transition.downToUp);
+          }, navigateAway: () {
+            GetX.Get.back();
           });
 
           context.read<SignTransactionBloc>().add(const SignTransactionEvent.clearPageCommand());

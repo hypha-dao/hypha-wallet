@@ -48,7 +48,7 @@ class SignTransactionBloc extends Bloc<SignTransactionEvent, SignTransactionStat
     // final result = await _signTransactionUseCase.run('MOCK DATA');
     // if (result.isValue) {
     // emit(state.copyWith(command: const PageCommand.navigateToTransactionFailed()));
-    emit(state.copyWith(command: const PageCommand.navigateToTransactionSuccess(SignSuccessTransactionType.rejected)));
+    emit(state.copyWith(command: const PageCommand.navigateAway()));
     // } else {
     //   emit(state.copyWith(command: const PageCommand.navigateToTransactionFailed()));
     // }

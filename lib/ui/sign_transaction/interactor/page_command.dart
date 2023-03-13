@@ -5,4 +5,5 @@ class PageCommand with _$PageCommand {
   const factory PageCommand.navigateToTransactionSuccess(SignSuccessTransactionType type) =
       _NavigateToTransactionSuccess;
   const factory PageCommand.navigateToTransactionFailed() = _NavigateToTransactionFailed;
+  const factory PageCommand.navigateAway() = _NavigateAway;
 }

@@ -8,8 +8,7 @@ import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.d
 import 'package:hypha_wallet/ui/bottom_navigation/hypha_bottom_navigation.dart';
 
 enum SignSuccessTransactionType {
-  approved('Approved'),
-  rejected('Rejected');
+  approved('Approved');
 
   const SignSuccessTransactionType(this.value);
 
@@ -19,8 +18,6 @@ enum SignSuccessTransactionType {
     switch (this) {
       case SignSuccessTransactionType.approved:
         return HyphaColors.success;
-      case SignSuccessTransactionType.rejected:
-        return HyphaColors.error;
     }
   }
 
@@ -28,8 +25,6 @@ enum SignSuccessTransactionType {
     switch (this) {
       case SignSuccessTransactionType.approved:
         return Icons.check;
-      case SignSuccessTransactionType.rejected:
-        return Icons.close;
     }
   }
 }
