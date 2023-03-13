@@ -14,7 +14,8 @@ Future<void> _registerServicesModule() async {
   _registerLazySingleton(() => SecureStorageService(_getIt<FlutterSecureStorage>()));
 
   /// Services
-  _registerLazySingleton(() => UserAccountService(networkingManager: _getIt<NetworkingManager>()));
+  _registerLazySingleton(() => UserAccountService(
+      networkingManager: _getIt<NetworkingManager>(), remoteConfigService: _getIt<RemoteConfigService>()));
   _registerLazySingleton(() => TransactionHistoryService(_getIt<NetworkingManager>()));
 
   _registerLazySingleton(() => CryptoAuthService());

@@ -6,8 +6,9 @@ import 'package:hypha_wallet/core/network/networking_manager.dart';
 
 class UserAccountService {
   final NetworkingManager networkingManager;
+  final RemoteConfigService remoteConfigService;
 
-  UserAccountService({required this.networkingManager});
+  UserAccountService({required this.networkingManager, required this.remoteConfigService});
 
   Future<bool> createUserAccount({
     required String code,
@@ -22,7 +23,7 @@ class UserAccountService {
       "publicKey": "$publicKey",
       "network": "$network"
     }''';
-    final url = GetIt.I<RemoteConfigService>().accountCreatorEndpoint + Endpoints.creteAccount;
+    final url = remoteConfigService.accountCreatorEndpoint + Endpoints.creteAccount;
     try {
       // ignore: unused_local_variable
       final res = await networkingManager.post(url, data: requestBody);
