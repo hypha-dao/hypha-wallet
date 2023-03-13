@@ -24,7 +24,7 @@ class SelectImportMethod extends StatelessWidget {
             children: [
               const SizedBox(height: 20),
               Text(
-                'Select your preferred method to import your account',
+                'Choose how you want to import your account',
                 style: context.hyphaTextTheme.regular.copyWith(color: HyphaColors.primaryBlu),
                 textAlign: TextAlign.center,
               ),
