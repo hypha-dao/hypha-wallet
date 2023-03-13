@@ -7,12 +7,22 @@ import 'package:hypha_wallet/design/buttons/hypha_app_button.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 import 'package:hypha_wallet/ui/onboarding/select_import_method.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class OnboardingPage extends StatelessWidget {
   const OnboardingPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    Future<void> _launchUrl() async {
+      const _url = 'https://dao.hypha.earth/';
+      if (!await launchUrl(Uri.parse(_url))) {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text('Error Launching URL. Please visit dao.hypha.earth'),
+        ));
+      }
+    }
+
     return HyphaPageBackground(
       withOpacity: false,
       child: Scaffold(
@@ -25,7 +35,7 @@ class OnboardingPage extends StatelessWidget {
               HyphaAppButton(
                 margin: const EdgeInsets.symmetric(horizontal: 45),
                 onPressed: () {
-                  // Get.to(() => const OnboardingPageWithLink(), transition: Transition.rightToLeft);
+                  _launchUrl();
                 },
                 title: 'Sign-Up',
                 buttonType: ButtonType.secondary,
