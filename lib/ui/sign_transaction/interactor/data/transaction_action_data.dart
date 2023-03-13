@@ -36,6 +36,16 @@ class TransactionDetailsData {
   }
 }
 
+const knownContractActions = {
+  'dao.hypha - cmntadd': 'Add a comment',
+  'dao.hypha - reactadd': 'Like a comment',
+  'dao.hypha - vote': 'Vote on a proposal',
+  'dao.hypha - propose': 'Publish your proposal to Staging',
+  'dao.hypha - proposepub': 'Publish your proposal on chain',
+  'dao.hypha - proposerem': 'Delete your proposal',
+  'husd.hypha - transfer': 'Redeem Cash Token',
+};
+
 class TransactionDetailsCardData {
   final Map<String, dynamic> params;
   final String contractAction;
@@ -50,4 +60,6 @@ class TransactionDetailsCardData {
     this.onTap,
     this.memo,
   });
+
+  String get userFriendlyContractAction => knownContractActions[contractAction] ?? contractAction;
 }

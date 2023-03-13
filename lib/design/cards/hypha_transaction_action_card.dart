@@ -78,7 +78,7 @@ class HyphaTransactionActionCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    data.contractAction,
+                    data.userFriendlyContractAction,
                     style: context.hyphaTextTheme.smallTitles,
                     maxLines: 2,
                   ),
