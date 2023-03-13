@@ -3,6 +3,7 @@ import 'package:hypha_wallet/core/crypto/eosdart_ecc/eosdart_ecc.dart';
 class UserAuthData {
   final EOSPrivateKey eOSPrivateKey;
   final List<String> words;
+  EOSPublicKey get publicKey => eOSPrivateKey.toEOSPublicKey();
 
   UserAuthData(this.eOSPrivateKey, this.words);
 

@@ -43,6 +43,7 @@ class RemoteConfigService {
   String get profileServiceEndpoint => FirebaseRemoteConfig.instance.getString('profileServiceEndpoint');
   String get accountCreatorEndpoint => FirebaseRemoteConfig.instance.getString('accountCreatorEndpoint');
 
+  // TODO(NIK): find the best endpoints for EOS
   Future<void> setDefaults() async {
     await FirebaseRemoteConfig.instance.setDefaults({
       'networks': json.encode({

@@ -134,7 +134,7 @@ class EditAccountBloc extends Bloc<EditAccountEvent, EditAccountState> {
 
     /// Make call to create Account
     emit(state.copyWith(command: const PageCommand.showLoadingDialog()));
-    final Hypha.Result<bool, HyphaError> result = await _createAccountUseCase.run(Input(
+    final Hypha.Result<bool, HyphaError> result = await _createAccountUseCase.run(CreateAccountInput(
       userAuthData: auth,
       accountName: state.userAccount!,
       userName: state.userName,
