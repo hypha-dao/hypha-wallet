@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:get_it/get_it.dart';
 import 'package:hypha_wallet/core/network/api/endpoints.dart';
 import 'package:hypha_wallet/core/network/api/remote_config_serivice.dart';
 import 'package:hypha_wallet/core/network/networking_manager.dart';
@@ -50,6 +49,7 @@ class UserAccountService {
   Future<bool> isUserAccountAvailable(String accountName) async {
     final requestBody = '{ "account_name": "$accountName" }';
     try {
+      // ignore: unused_local_variable
       final res = await networkingManager.post(Endpoints.getAccount, data: requestBody);
       return false;
     } catch (error) {
