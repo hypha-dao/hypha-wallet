@@ -5,14 +5,12 @@ import 'package:hypha_wallet/core/crypto/seeds_esr/scan_qr_code_result_data.dart
 class TransactionDetailsData {
   final String signingTitle;
   final List<TransactionDetailsCardData> cards;
-  final DateTime? expirationTime;
-  final String? blockNumber;
+  final DateTime expirationTime;
 
   TransactionDetailsData({
     required this.signingTitle,
     required this.cards,
-    this.expirationTime,
-    this.blockNumber,
+    required this.expirationTime,
   });
 
   factory TransactionDetailsData.fromQrCodeData(ScanQrCodeResultData data) {
@@ -20,12 +18,10 @@ class TransactionDetailsData {
     final expirationString = signRequestMap['expiration'];
     final expiration =
         expirationString != null ? DateTime.parse(expirationString) : DateTime.now().add(const Duration(minutes: 3));
-    final blockNumber = signRequestMap['ref_block_num'];
 
     return TransactionDetailsData(
       signingTitle: 'From ${data.esr.actions.first.account}',
       expirationTime: expiration,
-      blockNumber: blockNumber.toString(),
       cards: data.transaction.actions.map((EOSAction e) {
         final params = e.data.map((key, value) => MapEntry(key, value.toString()));
         return TransactionDetailsCardData(
