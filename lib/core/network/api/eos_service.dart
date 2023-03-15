@@ -6,7 +6,7 @@ import 'package:hypha_wallet/core/crypto/eosdart/eosdart.dart';
 import 'package:hypha_wallet/core/crypto/seeds_esr/eos_transaction.dart';
 import 'package:hypha_wallet/core/local/models/user_auth_data.dart';
 import 'package:hypha_wallet/core/local/services/secure_storage_service.dart';
-import 'package:hypha_wallet/core/network/api/remote_config_serivice.dart';
+import 'package:hypha_wallet/core/network/api/remote_config_service.dart';
 
 class EOSService {
   final SecureStorageService secureStorageService;

@@ -17,10 +17,11 @@ class RemoteConfigService {
     final remoteConfig = FirebaseRemoteConfig.instance;
     network = network ?? _defaultNetwork;
     final conf = json.decode(remoteConfig.getValue('networks').asString());
-    if (conf[network.name] == null) {
+    final networkFromConfig = conf[network.name];
+    if (networkFromConfig == null) {
       throw 'Unknown network: $network';
     }
-    return conf[network];
+    return networkFromConfig;
   }
 
   // base url - read URL
