@@ -4,20 +4,20 @@ import 'package:firebase_remote_config/firebase_remote_config.dart';
 
 enum Networks { telos, telosTestnet, eos, eosTestnet }
 
+const Networks _defaultNetwork = Networks.telos;
+// const Networks _defaultNetwork = Networks.telosTestnet;
+
 /// Encapsulates everything to do with remote configuration
 class RemoteConfigService {
-  final Networks defaultNetwork = Networks.telos;
-  // final Networks defaultNetwork = Networks.telosTestnet;
-
   static Future<RemoteConfigService> initialized() async {
     return RemoteConfigService()..setDefaults();
   }
 
-  Map<String, dynamic> _getNetworkConfig({String? network}) {
+  Map<String, dynamic> _getNetworkConfig({Networks? network}) {
     final remoteConfig = FirebaseRemoteConfig.instance;
-    network = network ?? defaultNetwork.name;
+    network = network ?? _defaultNetwork;
     final conf = json.decode(remoteConfig.getValue('networks').asString());
-    if (conf[network] == null) {
+    if (conf[network.name] == null) {
       throw 'Unknown network: $network';
     }
     return conf[network];
@@ -25,7 +25,7 @@ class RemoteConfigService {
 
   // base url - read URL
   // network: default is Telos mainnet
-  String baseUrl({String? network}) {
+  String baseUrl({Networks? network}) {
     final networkConfig = _getNetworkConfig(network: network);
     final endpoint = networkConfig['endpoint'];
     return endpoint;
@@ -34,7 +34,7 @@ class RemoteConfigService {
   // Node for push transactions - should be a fast server to prevent timeouts
   // network: default is Telos mainnet.
   String pushTransactionNodeUrl({required Networks network}) {
-    final networkConfig = _getNetworkConfig(network: network.name);
+    final networkConfig = _getNetworkConfig(network: network);
     final endpoint = networkConfig['fastEndpoint'];
     return endpoint;
   }
