@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:hypha_wallet/design/background/hypha_page_background.dart';
-import 'package:hypha_wallet/design/buttons/hypha_app_button.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/progress_indicator/hypha_progress_indicator.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
@@ -19,31 +18,31 @@ class ImportAccountByKeyView extends StatelessWidget {
       child: Scaffold(
         backgroundColor: HyphaColors.transparent,
         appBar: const OnboardingAppbar(title: 'Use your', subTitle: 'Private key'),
-        bottomNavigationBar: BlocBuilder<ImportAccountBloc, ImportAccountState>(
-          buildWhen: (previous, current) =>
-              previous.isPartialLoading != current.isPartialLoading ||
-              previous.isPrivateKeyValid != current.isPrivateKeyValid,
-          builder: (context, state) {
-            return HyphaAppButton(
-              margin: const EdgeInsets.only(left: 45, right: 45, bottom: 45, top: 16),
-              isLoading: state.isPartialLoading,
-              onPressed: state.isPrivateKeyValid
-                  ? () {
-                      context.read<ImportAccountBloc>().add(const ImportAccountEvent.onActionButtonTapped(false));
-                    }
-                  : null,
-              title: 'Find Account',
-              isActive: state.isPrivateKeyValid,
-            );
-          },
-        ),
+        // bottomNavigationBar: BlocBuilder<ImportAccountBloc, ImportAccountState>(
+        //   buildWhen: (previous, current) =>
+        //       previous.isPartialLoading != current.isPartialLoading ||
+        //       previous.isPrivateKeyValid != current.isPrivateKeyValid,
+        //   builder: (context, state) {
+        //     return HyphaAppButton(
+        //       margin: const EdgeInsets.only(left: 45, right: 45, bottom: 45, top: 16),
+        //       isLoading: state.isPartialLoading,
+        //       onPressed: state.isPrivateKeyValid
+        //           ? () {
+        //               context.read<ImportAccountBloc>().add(const ImportAccountEvent.onActionButtonTapped(false));
+        //             }
+        //           : null,
+        //       title: 'Find Account',
+        //       isActive: state.isPrivateKeyValid,
+        //     );
+        //   },
+        // ),
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 45),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const SizedBox(height: 20),
+                const SizedBox(height: 12),
                 Text(
                   'Enter your private key to import your Hypha Account',
                   style: context.hyphaTextTheme.regular.copyWith(color: HyphaColors.primaryBlu),
@@ -53,7 +52,7 @@ class ImportAccountByKeyView extends StatelessWidget {
                 TextField(
                   decoration: InputDecoration(
                     labelText: 'Private Key',
-                    labelStyle: context.textTheme.labelLarge?.copyWith(color: HyphaColors.midGrey),
+                    labelStyle: context.textTheme.labelLarge?.copyWith(color: HyphaColors.primaryBlu),
                     disabledBorder: const UnderlineInputBorder(borderSide: BorderSide(color: HyphaColors.primaryBlu)),
                     enabledBorder: const UnderlineInputBorder(borderSide: BorderSide(color: HyphaColors.primaryBlu)),
                   ),
