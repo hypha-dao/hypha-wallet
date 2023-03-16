@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:async/async.dart';
 import 'package:dio/dio.dart' as dio;
 import 'package:hypha_wallet/core/crypto/eosdart/eosdart.dart';
+import 'package:hypha_wallet/core/crypto/seeds_esr/eos_action.dart';
 import 'package:hypha_wallet/core/crypto/seeds_esr/eos_transaction.dart';
 import 'package:hypha_wallet/core/local/models/user_auth_data.dart';
 import 'package:hypha_wallet/core/local/services/secure_storage_service.dart';
@@ -20,6 +21,30 @@ class EOSService {
       privateKeys: privateKeys,
       version: 'v1',
     );
+  }
+
+  Future<Result<dynamic>> loginWithCode({
+    required String accountName,
+    required String loginCode,
+    required Networks network,
+  }) async {
+    final contractName = remoteConfigService.loginContract(network: network);
+    final actionName = remoteConfigService.loginAction(network: network);
+    final loginTransaction = EOSTransaction.fromAction(
+      account: contractName,
+      actionName: actionName,
+      data: {
+        'account_name': accountName,
+        'login_code': loginCode,
+      },
+      authorization: [
+        Authorization()
+          ..actor = accountName
+          ..permission = 'active'
+      ],
+      network: network,
+    );
+    return sendTransaction(eosTransaction: loginTransaction, accountName: accountName, network: network);
   }
 
   Future<Result<dynamic>> sendTransaction({

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hypha_wallet/core/network/api/amplify_service.dart';
 import 'package:hypha_wallet/design/avatar_image/hypha_avatar_image.dart';
+import 'package:hypha_wallet/design/avatar_image/hypha_editable_avatar_image.dart';
 import 'package:hypha_wallet/design/background/hypha_half_background.dart';
 import 'package:hypha_wallet/design/background/hypha_page_background.dart';
 import 'package:hypha_wallet/design/cards/hypha_actionable_card.dart';
@@ -40,29 +42,29 @@ class ProfileView extends StatelessWidget {
                       physics: const AlwaysScrollableScrollPhysics(),
                       children: [
                         const SizedBox(height: 80),
-                        Center(
-                          child: HyphaAvatarImage(
-                            imageRadius: 50,
-                            name: state.profileData?.name,
-                            imageFromUrl: state.profileData?.image,
-                          ),
-                        ),
-                        // HyphaEditableAvatarImage(
-                        //   imageRadius: 50,
-                        //   name: state.profileData?.name,
-                        //   imageFromUrl: state.profileData?.image,
-                        //   // imageFromFile: _file?.path,
-                        //   onImageRemoved: () {
-                        //     // setState(() {
-                        //     //   _file = null;
-                        //     // });
-                        //   },
-                        //   onImageSelected: (image) async {
-                        //     // setState(() {
-                        //     //   _file = image;
-                        //     // });
-                        //   },
+                        // Center(
+                        //   child: HyphaAvatarImage(
+                        //     imageRadius: 50,
+                        //     name: state.profileData?.name,
+                        //     imageFromUrl: state.profileData?.image,
+                        //   ),
                         // ),
+                        HyphaEditableAvatarImage(
+                          imageRadius: 50,
+                          name: state.profileData?.name,
+                          imageFromUrl: state.profileData?.image,
+                          // imageFromFile: _file?.path,
+                          onImageRemoved: () {
+                            // setState(() {
+                            //   _file = null;
+                            // });
+                          },
+                          onImageSelected: (image) async {
+                            // setState(() {
+                            //   _file = image;
+                            // });
+                          },
+                        ),
                         const SizedBox(height: 14),
                         Center(
                           child: Text(state.profileData?.name ?? '', style: context.hyphaTextTheme.mediumTitles),
@@ -79,7 +81,15 @@ class ProfileView extends StatelessWidget {
                           child: Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 24),
                             child: HyphaActionableCard(
-                              // trailer: const Icon(Icons.edit),
+                              trailer: const Icon(Icons.edit),
+                              onTap: () async {
+                                print("EDIT Tapped");
+                                final as = AmplifyService();
+                                if (state.profileData != null) {
+                                  final bool = as.loginUser(state.profileData!.account);
+                                  print("as created");
+                                }
+                              },
                               title: 'Bio',
                               subtitle: state.profileData?.bio ?? '',
                             ),

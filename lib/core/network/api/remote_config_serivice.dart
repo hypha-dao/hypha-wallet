@@ -39,6 +39,16 @@ class RemoteConfigService {
     return endpoint;
   }
 
+  String loginContract({Networks? network}) {
+    final networkConfig = _getNetworkConfig(network: network?.name);
+    return networkConfig['loginContract'];
+  }
+
+  String loginAction({Networks? network}) {
+    final networkConfig = _getNetworkConfig(network: network?.name);
+    return networkConfig['loginAction'];
+  }
+
   // PPP Profile Service Backend
   String get profileServiceEndpoint => FirebaseRemoteConfig.instance.getString('profileServiceEndpoint');
   String get accountCreatorEndpoint => FirebaseRemoteConfig.instance.getString('accountCreatorEndpoint');
@@ -51,21 +61,33 @@ class RemoteConfigService {
           'name': 'Telos',
           'endpoint': 'https://mainnet.telos.net',
           'fastEndpoint': 'https://telos.greymass.com',
+          'loginContract': 'eosio.login',
+          'loginAction': 'loginuser',
+          'logoutAction': 'deletelogin',
         },
         'telosTestnet': {
           'name': 'Telos Testnet',
           'endpoint': 'https://testnet.telos.net',
           'fastEndpoint': 'https://testnet.telos.net',
+          'loginContract': 'eosio.login',
+          'loginAction': 'loginuser',
+          'logoutAction': 'deletelogin',
         },
         'eos': {
           'name': 'EOS',
           'endpoint': 'https://eos.greymass.com',
           'fastEndpoint': 'https://eos.greymass.com',
+          'loginContract': 'eosio.login',
+          'loginAction': 'loginuser',
+          'logoutAction': 'deletelogin',
         },
         'eosTestnet': {
           'name': 'Jungle4 Testnet',
           'endpoint': 'https://jungle4.dfuse.eosnation.io',
           'fastEndpoint': 'https://jungle4.dfuse.eosnation.io',
+          'loginContract': 'eosio.login',
+          'loginAction': 'loginuser',
+          'logoutAction': 'deletelogin',
         }
       }),
       'accountCreatorEndpoint': 'http://34.236.29.152:9108',
