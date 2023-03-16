@@ -122,12 +122,12 @@ class ImportAccountBloc extends Bloc<ImportAccountEvent, ImportAccountState> {
   FutureOr<void> _findAccountByKey(_FindAccountByKey event, Emitter<ImportAccountState> emit) async {
     emit(state.copyWith(isPartialLoading: true));
     final String? publicKey = await _validateKeyUseCase.run(event.privateKey);
+    emit(state.copyWith(isPrivateKeyValid: true));
 
     if (publicKey == null || publicKey.isEmpty) {
       _errorHandlerManager.handlerError(HyphaError(message: 'Invalid Key', type: HyphaErrorType.generic));
       emit(state.copyWith(isPartialLoading: false, isPrivateKeyValid: false));
     } else {
-      emit(state.copyWith(isPartialLoading: false, isPrivateKeyValid: true));
       final results = await _findAccountsUseCase.run(publicKey);
 
       if (results.isValue) {
