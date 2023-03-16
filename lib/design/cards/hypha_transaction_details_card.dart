@@ -66,7 +66,7 @@ class HyphaTransactionDetailsCard extends StatelessWidget {
               const SizedBox(height: 16),
               const HyphaDivider(),
               const SizedBox(height: 22),
-              Text('Contract Action - ${data.actionName}', style: context.hyphaTextTheme.smallTitles),
+              Text('${data.actionName.capitalizeFirst}', style: context.hyphaTextTheme.smallTitles),
               const SizedBox(height: 22),
               const HyphaDivider(),
               const SizedBox(height: 22),
