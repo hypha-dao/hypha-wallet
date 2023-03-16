@@ -67,20 +67,10 @@ class HyphaAvatarImage extends StatelessWidget {
 
     return GestureDetector(
       onTap: onTap,
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(imageRadius * 2),
-          border: Border.all(
-            width: hasImage ? 2 : 1,
-            color: hasImage ? HyphaColors.white : HyphaColors.primaryBlu,
-            style: BorderStyle.solid,
-          ),
-        ),
-        child: CircleAvatar(
-          radius: imageRadius + (hasImage ? 2 : 1),
-          backgroundColor: HyphaColors.transparent,
-          child: image,
-        ),
+      child: CircleAvatar(
+        radius: imageRadius + (hasImage ? 2 : 1),
+        backgroundColor: HyphaColors.transparent,
+        child: image,
       ),
     );
   }
