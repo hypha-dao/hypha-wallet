@@ -60,7 +60,7 @@ class RemoteConfigService {
         },
         'eos': {
           'name': 'EOS',
-          'endpoint': 'https://eos.eosusa.io',
+          'endpoint': 'https://eos.greymass.com',
           'fastEndpoint': 'https://eos.greymass.com',
         },
         'eosTestnet': {
