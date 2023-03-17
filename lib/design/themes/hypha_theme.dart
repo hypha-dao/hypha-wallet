@@ -25,8 +25,8 @@ class HyphaTheme {
         elevation: 0,
         titleTextStyle: HyphaTextTheme.dark.smallTitles,
         systemOverlayStyle: const SystemUiOverlayStyle(
-          statusBarIconBrightness: Brightness.dark, // For Android (dark icons)
-          statusBarBrightness: Brightness.light, // For iOS (dark icons)
+          statusBarIconBrightness: Brightness.light, // For Android (light icons)
+          statusBarBrightness: Brightness.dark, // For iOS (light icons)
         ),
       ),
       bottomNavigationBarTheme: AppBottomNavigationTheme.bottomNavigationThemeData(darkColorScheme),
@@ -56,8 +56,8 @@ class HyphaTheme {
         titleTextStyle: HyphaTextTheme.light.smallTitles.copyWith(color: HyphaColors.black),
         systemOverlayStyle: const SystemUiOverlayStyle(
           // Status bar brightness (optional)
-          statusBarIconBrightness: Brightness.dark, // For Android (dark icons)
-          statusBarBrightness: Brightness.light, // For iOS (dark icons)
+          statusBarIconBrightness: Brightness.light, // For Android (light icons)
+          statusBarBrightness: Brightness.dark, // For iOS (light icons)
         ),
       ),
       bottomNavigationBarTheme: AppBottomNavigationTheme.bottomNavigationThemeData(lightColorScheme),

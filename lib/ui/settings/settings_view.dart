@@ -39,7 +39,7 @@ class SettingsView extends StatelessWidget {
                   icon: const Icon(HyphaIcons.moon),
                   title: 'Dark mode',
                   subtitle: 'Switch between Dark and Light mode',
-                  trailer: Switch.adaptive(
+                  trailer: Switch(
                     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     value: state.themeMode == ThemeMode.dark,
                     onChanged: (bool value) {

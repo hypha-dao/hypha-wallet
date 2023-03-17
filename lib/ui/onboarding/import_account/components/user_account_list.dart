@@ -19,10 +19,11 @@ class UserAccountList extends StatelessWidget {
       children: accounts
           .map(
             (e) => Padding(
-              padding: const EdgeInsets.only(top: 20),
+              padding: const EdgeInsets.only(top: 16),
               child: ListTile(
-                contentPadding: const EdgeInsets.all(14),
+                contentPadding: const EdgeInsets.all(8),
                 tileColor: context.isDarkTheme ? HyphaColors.lightBlack : HyphaColors.white,
+                dense: true,
                 title: Text(e.userName ?? e.accountName, style: context.hyphaTextTheme.smallTitles),
                 leading: HyphaAvatarImage(
                   imageRadius: 24,

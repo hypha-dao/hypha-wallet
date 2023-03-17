@@ -52,10 +52,22 @@ class HyphaSecretPhrase extends StatelessWidget {
                   },
                   keyboardType: TextInputType.visiblePassword,
                   decoration: InputDecoration(
+                    contentPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
                     floatingLabelBehavior: FloatingLabelBehavior.always,
-                    label: Text((index + 1).toString(), style: context.hyphaTextTheme.ralMediumLabel),
-                    border: const OutlineInputBorder(borderSide: BorderSide(color: HyphaColors.lightBlue)),
-                    enabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: HyphaColors.primaryBlu)),
+                    label: Text(
+                      (index + 1).toString(),
+                      style: context.hyphaTextTheme.ralMediumLabel.copyWith(
+                        color: HyphaColors.offWhite,
+                      ),
+                    ),
+                    border: const OutlineInputBorder(
+                      borderSide: BorderSide(color: HyphaColors.lightBlue),
+                      borderRadius: BorderRadius.all(Radius.circular(6)),
+                    ),
+                    enabledBorder: const OutlineInputBorder(
+                      borderSide: BorderSide(color: HyphaColors.primaryBlu),
+                      borderRadius: BorderRadius.all(Radius.circular(6)),
+                    ),
                   ),
                 );
               },

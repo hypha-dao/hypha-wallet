@@ -19,20 +19,20 @@ class HomeView extends StatelessWidget {
           previous.pageState != current.pageState || previous.isLoading != current.isLoading,
       builder: (context, state) {
         return HyphaPageBackground(
-          withOpacity: false,
+          withOpacity: true,
           child: Padding(
             padding: const EdgeInsets.all(24),
             child: Column(
               children: [
                 const SizedBox(height: 24),
                 Padding(
-                  padding: const EdgeInsets.only(right: 16, top: 16),
+                  padding: const EdgeInsets.only(top: 16),
                   child: Align(
                     alignment: Alignment.centerRight,
                     child: BlocBuilder<AuthenticationBloc, AuthenticationState>(
                       builder: (context, state) {
                         return HyphaAvatarImage(
-                          imageRadius: 24,
+                          imageRadius: 15,
                           name: state.userProfileData?.userName ?? state.userProfileData?.accountName,
                           imageFromUrl: state.userProfileData?.userImage,
                           onTap: () {

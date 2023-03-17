@@ -1,7 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:hypha_wallet/core/crypto/eosdart/eosdart.dart';
 import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
-import 'package:hypha_wallet/core/network/api/remote_config_serivice.dart';
+import 'package:hypha_wallet/core/network/api/remote_config_service.dart';
 import 'package:hypha_wallet/core/network/models/user_profile_data.dart';
 import 'package:hypha_wallet/core/network/repository/profile_repository.dart';
 import 'package:hypha_wallet/ui/architecture/interactor/base_usecase.dart';
@@ -20,13 +20,29 @@ class FindAccountsUseCase extends InputUseCase<Result<Iterable<UserProfileData>,
     // For this we need to find the correct PPP service for each chain, each chain uses a different PPP serivice
     // instance.
     final eosClient = EOSClient(
-      baseUrl: remoteConfigService.baseUrl(),
+      baseUrl: remoteConfigService.baseUrl(network: Networks.eos),
       privateKeys: [],
       version: 'v1',
     );
-    final result = await eosClient.getKeyAccounts(input);
-    if (result.isValue) {
-      final AccountNames data = result.asValue!.value;
+
+    final telosClient = EOSClient(
+      baseUrl: remoteConfigService.baseUrl(network: Networks.telos),
+      privateKeys: [],
+      version: 'v1',
+    );
+
+    final results = await Future.wait([eosClient.getKeyAccounts(input), telosClient.getKeyAccounts(input)]);
+    final eosResult = results[0];
+    final telosResult = results[1];
+
+    AccountNames? data;
+    if (eosResult.isValue) {
+      data = eosResult.asValue!.value;
+    } else if (telosResult.isValue) {
+      data = telosResult.asValue!.value;
+    }
+
+    if (data != null) {
       final Iterable<Future<Result<ProfileData, HyphaError>>> futures = data.accountNames.map(
         (accountName) => _profileService.getProfile(accountName),
       );
@@ -46,7 +62,7 @@ class FindAccountsUseCase extends InputUseCase<Result<Iterable<UserProfileData>,
           ));
         } else {
           wtf.add(UserProfileData(
-            accountName: data.accountNames[index],
+            accountName: data!.accountNames[index],
             userName: null,
             userImage: null,
             bio: null,

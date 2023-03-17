@@ -13,7 +13,7 @@ import 'package:hypha_wallet/core/local/services/secure_storage_service.dart';
 import 'package:hypha_wallet/core/logging/firebase_crash_reporting_tree.dart';
 import 'package:hypha_wallet/core/network/api/amplify_service.dart';
 import 'package:hypha_wallet/core/network/api/eos_service.dart';
-import 'package:hypha_wallet/core/network/api/remote_config_serivice.dart';
+import 'package:hypha_wallet/core/network/api/remote_config_service.dart';
 import 'package:hypha_wallet/core/network/api/transaction_history_service.dart';
 import 'package:hypha_wallet/core/network/api/user_account_service.dart';
 import 'package:hypha_wallet/core/network/networking_manager.dart';
