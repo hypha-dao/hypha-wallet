@@ -5,9 +5,6 @@ Future<void> _registerServicesModule() async {
   final remoteConfigService = await RemoteConfigService.initialized();
   _registerLazySingleton(() => remoteConfigService);
 
-  final amplifyService = await AmplifyService.initialized();
-  _registerLazySingleton(() => amplifyService);
-
   /// DIO
   _registerLazySingleton(() => Dio());
   _registerLazySingleton(() => NetworkingManager(_getIt<RemoteConfigService>().baseUrl()));
@@ -24,6 +21,9 @@ Future<void> _registerServicesModule() async {
   _registerLazySingleton(() => CryptoAuthService());
 
   _registerLazySingleton(() => EOSService(_getIt<SecureStorageService>(), _getIt<RemoteConfigService>()));
+
+  final amplifyService = AmplifyService(_getIt<EOSService>());
+  _registerLazySingleton(() => amplifyService);
 
   _registerLazySingleton<PermissionService>(() => PermissionServiceImplementation());
 

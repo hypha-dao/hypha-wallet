@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 import 'package:hypha_wallet/core/network/api/amplify_service.dart';
 import 'package:hypha_wallet/design/avatar_image/hypha_avatar_image.dart';
 import 'package:hypha_wallet/design/avatar_image/hypha_editable_avatar_image.dart';
@@ -84,10 +85,15 @@ class ProfileView extends StatelessWidget {
                               trailer: const Icon(Icons.edit),
                               onTap: () async {
                                 print("EDIT Tapped");
-                                final as = AmplifyService();
+                                final as = GetIt.I.get<AmplifyService>();
                                 if (state.profileData != null) {
-                                  final bool = as.loginUser(state.profileData!.account);
-                                  print("as created");
+                                  final success = await as.loginUser(state.profileData!.account);
+                                  if (success) {
+                                    final res = await as.getAuthUserAttributes();
+
+                                    final profileRes = await as.getProfile();
+                                  }
+                                  print('as created $success');
                                 }
                               },
                               title: 'Bio',

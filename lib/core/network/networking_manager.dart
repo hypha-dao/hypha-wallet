@@ -4,7 +4,7 @@ import 'package:hypha_wallet/core/network/api/endpoints.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class NetworkingManager extends DioForNative {
-  static final bool _isDebugNetworking = false;
+  static final bool _isDebugNetworking = true;
 
   NetworkingManager(String baseUrl) : super() {
     if (_isDebugNetworking) {

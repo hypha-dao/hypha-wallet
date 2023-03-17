@@ -51,7 +51,9 @@ class RemoteConfigService {
 
   // PPP Profile Service Backend
   String get profileServiceEndpoint => FirebaseRemoteConfig.instance.getString('profileServiceEndpoint');
+  String get awsProfileServiceEndpoint => FirebaseRemoteConfig.instance.getString('awsProfileServiceEndpoint');
   String get accountCreatorEndpoint => FirebaseRemoteConfig.instance.getString('accountCreatorEndpoint');
+  String get identityPoolId => 'us-east-1:58bf768c-7607-41eb-b512-78314549d61b';
 
   // TODO(NIK): find the best endpoints for EOS
   Future<void> setDefaults() async {
@@ -92,6 +94,7 @@ class RemoteConfigService {
       }),
       'accountCreatorEndpoint': 'http://34.236.29.152:9108',
       'profileServiceEndpoint': 'http://34.236.29.152:9109',
+      'awsProfileServiceEndpoint': 'https://ttac1sv2yj.execute-api.us-east-1.amazonaws.com/prod',
     });
   }
 }
