@@ -2,7 +2,7 @@ import 'package:amazon_cognito_identity_dart_2/cognito.dart';
 import 'package:amazon_cognito_identity_dart_2/sig_v4.dart';
 import 'package:dio/dio.dart';
 import 'package:hypha_wallet/core/network/api/eos_service.dart';
-import 'package:hypha_wallet/core/network/api/remote_config_serivice.dart';
+import 'package:hypha_wallet/core/network/api/remote_config_service.dart';
 import 'package:hypha_wallet/core/network/networking_manager.dart';
 
 /// Encapsulates everything to do with remote configuration
@@ -128,7 +128,9 @@ class AmplifyService {
   Future<dynamic> getProfile() async {
     final result = await _request(
       path: 'get-profile',
-      body: {'originAppId': 'BASE_APP'},
+      body: {
+        'originAppId': '__BASE_PROFILE',
+      },
     );
     print('get profile result $result');
     return result;

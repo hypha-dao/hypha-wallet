@@ -41,12 +41,12 @@ class RemoteConfigService {
   }
 
   String loginContract({Networks? network}) {
-    final networkConfig = _getNetworkConfig(network: network?.name);
+    final networkConfig = _getNetworkConfig(network: network);
     return networkConfig['loginContract'];
   }
 
   String loginAction({Networks? network}) {
-    final networkConfig = _getNetworkConfig(network: network?.name);
+    final networkConfig = _getNetworkConfig(network: network);
     return networkConfig['loginAction'];
   }
 
