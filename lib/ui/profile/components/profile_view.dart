@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:hypha_wallet/core/network/api/amplify_service.dart';
-import 'package:hypha_wallet/design/avatar_image/hypha_avatar_image.dart';
+import 'package:hypha_wallet/core/network/api/aws_amplify/amplify_service.dart';
 import 'package:hypha_wallet/design/avatar_image/hypha_editable_avatar_image.dart';
 import 'package:hypha_wallet/design/background/hypha_half_background.dart';
 import 'package:hypha_wallet/design/background/hypha_page_background.dart';
@@ -13,6 +12,7 @@ import 'package:hypha_wallet/ui/profile/components/crypto_currency_widget.dart';
 import 'package:hypha_wallet/ui/profile/interactor/profile_bloc.dart';
 import 'package:hypha_wallet/ui/shared/hypha_body_widget.dart';
 import 'package:hypha_wallet/ui/shared/hypha_error_view.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ProfileView extends StatelessWidget {
   const ProfileView({super.key});
@@ -53,17 +53,12 @@ class ProfileView extends StatelessWidget {
                         HyphaEditableAvatarImage(
                           imageRadius: 50,
                           name: state.profileData?.name,
-                          imageFromUrl: state.profileData?.image,
-                          // imageFromFile: _file?.path,
+                          imageFromUrl: state.profileData?.getAvatarUrl(),
                           onImageRemoved: () {
-                            // setState(() {
-                            //   _file = null;
-                            // });
+                            onImageRemoved();
                           },
                           onImageSelected: (image) async {
-                            // setState(() {
-                            //   _file = image;
-                            // });
+                            onImageSelected(image);
                           },
                         ),
                         const SizedBox(height: 14),
@@ -134,5 +129,15 @@ class ProfileView extends StatelessWidget {
         },
       ),
     );
+  }
+
+  Future<bool> onImageRemoved() async {
+    print('on image removed');
+    return true;
+  }
+
+  Future<bool> onImageSelected(XFile image) async {
+    print('on image selected');
+    return true;
   }
 }
