@@ -194,6 +194,7 @@ class AmplifyService {
       awsRegion: region,
       endpoint: awsLambdaEndpoint,
       path: path,
+      body: body,
       headers: headers,
       queryParams: queryParams,
     );

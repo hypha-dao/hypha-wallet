@@ -17,18 +17,18 @@ Future<dynamic> awsAuthenticatedRequest({
   required String path,
   Map<String, String>? headers,
   Map<String, String>? queryParams,
-  dynamic body,
+  Map<String, dynamic>? body,
 }) async {
-  // final credentials = CognitoCredentials('ap-southeast-1:xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx', userPool);
-  // await credentials.getAwsCredentials(session.getIdToken().getJwtToken());
-
   if (credentials.accessKeyId == null) {
     throw 'no access key - autenticate session first';
   }
   if (credentials.secretAccessKey == null) {
     throw 'no secretAccessKey - autenticate session first';
   }
-  // const endpoint = 'https://xxxx.execute-api.ap-southeast-1.amazonaws.com/dev';
+
+  if (!path.startsWith('/')) {
+    path = '/$path';
+  }
   final awsSigV4Client = AwsSigV4Client(credentials.accessKeyId!, credentials.secretAccessKey!, endpoint,
       sessionToken: credentials.sessionToken, region: awsRegion);
 
