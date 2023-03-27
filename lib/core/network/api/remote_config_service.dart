@@ -14,8 +14,6 @@ class RemoteConfigService {
   }
 
   Map<String, dynamic> _getMap(String param) {
-    print("map for $param: ${FirebaseRemoteConfig.instance.getValue(param).asString()}");
-
     return json.decode(FirebaseRemoteConfig.instance.getValue(param).asString());
   }
 
@@ -24,7 +22,6 @@ class RemoteConfigService {
   }
 
   Map<String, dynamic> _getNetworkConfig({Networks? network}) {
-    final remoteConfig = FirebaseRemoteConfig.instance;
     network = network ?? _defaultNetwork;
     final conf = _getMap('networks');
     final networkFromConfig = conf[network.name];

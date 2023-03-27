@@ -16,7 +16,6 @@ import 'package:hypha_wallet/ui/profile/usecases/set_bio_use_case.dart';
 import 'package:hypha_wallet/ui/profile/usecases/set_image_use_case.dart';
 import 'package:hypha_wallet/ui/profile/usecases/set_name_use_case.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart';
 
 part 'page_command.dart';
@@ -52,13 +51,8 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   }
 
   FutureOr<void> _setName(_SetName event, Emitter<ProfileState> emit) async {
-    print('set name to ${event.name}');
     emit(state.copyWith(pageState: PageState.loading));
-
     final result = await SetNameUseCase(GetIt.I.get<AmplifyService>()).run(event.name);
-
-    print("result $result");
-
     if (result.isValue) {
       emit(state.copyWith(pageState: PageState.success));
     } else {
@@ -68,14 +62,8 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   }
 
   FutureOr<void> _setBio(_SetBio event, Emitter<ProfileState> emit) async {
-    print("set bio to ${event.bio}");
-
     emit(state.copyWith(pageState: PageState.loading));
-
     final result = await SetBioUseCase(GetIt.I.get<AmplifyService>()).run(event.bio);
-
-    print("result $result");
-
     if (result.isValue) {
       emit(state.copyWith(pageState: PageState.success));
     } else {

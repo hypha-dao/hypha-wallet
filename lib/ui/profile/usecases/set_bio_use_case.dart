@@ -10,6 +10,7 @@ class SetBioUseCase {
   Future<Result<bool, HyphaError>> run(String name) async {
     try {
       print('set bio to $name');
+      // ignore: unused_local_variable
       final res = await _amplifyService.setBio(name);
       return Result.value(true);
     } catch (error) {

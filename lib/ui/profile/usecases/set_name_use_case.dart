@@ -9,9 +9,8 @@ class SetNameUseCase {
 
   Future<Result<bool, HyphaError>> run(String name) async {
     try {
-      print('set name to $name');
+      // ignore: unused_local_variable
       final res = await _amplifyService.setName(name);
-      print('set name res $res');
       return Result.value(true);
     } catch (error) {
       print('SetNameUseCase error $error');

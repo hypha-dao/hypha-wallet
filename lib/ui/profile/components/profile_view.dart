@@ -87,8 +87,10 @@ class ProfileView extends StatelessWidget {
                                 if (state.profileData != null) {
                                   final success = await as.loginUser(state.profileData!.account);
                                   if (success) {
+                                    // ignore: unused_local_variable
                                     final res = await as.getAuthUserAttributes();
 
+                                    // ignore: unused_local_variable
                                     final profileRes = await as.getProfile();
                                   }
                                   print('as created $success');

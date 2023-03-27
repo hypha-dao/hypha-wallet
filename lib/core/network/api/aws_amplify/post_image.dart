@@ -3,7 +3,6 @@ import 'dart:io';
 
 import 'package:amazon_cognito_identity_dart_2/cognito.dart';
 import 'package:amazon_cognito_identity_dart_2/sig_v4.dart';
-import 'package:async/async.dart';
 import 'package:http/http.dart' as http;
 import 'package:path/path.dart' as path;
 
@@ -82,7 +81,9 @@ Future<bool> postImage({
   final String _s3Endpoint = 'https://$s3Bucket.s3.amazonaws.com';
   final file = image;
 
-  final stream = http.ByteStream(DelegatingStream.typed(file.openRead()));
+  //final stream = http.ByteStream(DelegatingStream.typed(file.openRead()));
+  final stream = http.ByteStream(file.openRead())..cast();
+
   final length = await file.length();
 
   final uri = Uri.parse(_s3Endpoint);

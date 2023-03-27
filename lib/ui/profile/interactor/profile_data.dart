@@ -6,7 +6,7 @@ class ProfileData {
   final CryptoAccountData? bitCoinData;
   final CryptoAccountData? eosData;
   final String? s3Identity;
-  final String? avatarS3Key;
+  final String? avatar;
 
   ProfileData({
     required this.name,
@@ -16,10 +16,8 @@ class ProfileData {
     this.bitCoinData,
     this.eosData,
     this.s3Identity,
-    this.avatarS3Key,
-  }) {
-    print("getAvatarUrl: ${getAvatarUrl()}");
-  }
+    this.avatar,
+  });
 
   factory ProfileData.fromJson(Map<String, dynamic> json) {
     final publicData = json['publicData'];
@@ -52,6 +50,7 @@ class ProfileData {
     //  ethAddress: "0xeFAAA27a21768Cba31bb91988d8486a5212b388d",
     //  eosAccount: "illum1nation",
     //  defaultAddress: "eosaccount"
+    //  avatar: "illumination-1669189442183.png",
 
     final account = json['eosAccount'];
     final publicData = json['publicData'];
@@ -66,31 +65,27 @@ class ProfileData {
       avatarUrl: null,
       bio: bio,
       s3Identity: s3Identity,
-      avatarS3Key: avatar,
+      avatar: avatar,
     );
-
-    // us-east-1%3A2268a23d-8016-4ea9-bc85-7bf59ed86436
-    // flutter: ║                 s3Identity: "us-east-1:2268a23d-8016-4ea9-bc85-7bf59ed86436",
-    // flutter: ║                 avatar: "illumination-1669189442183.png",
   }
 
   String? getAvatarUrl() {
     if (avatarUrl != null) {
       return avatarUrl;
-    } else if (s3Identity != null && avatarS3Key != null) {
+    } else if (s3Identity != null && avatar != null) {
+      throw 'not yet implemented';
       // TODO(NIK): the below doesn't work, this URL doesn't work
-      final s3BucketName = 'ppp-service-prod-attachmentsbucket-1qc5rzodik7x6';
-      final userFolder = Uri.encodeComponent(s3Identity!);
-      final folder = 'protected';
-      final filename = avatarS3Key!;
-      final url = 'https://$s3BucketName.s3.amazonaws.com/$folder/$userFolder/$filename';
-      print('avatar URL = $url');
-      return url;
+      // to resolve an s3 avatar URL, some work is required.
+      // final s3BucketName = 'ppp-service-prod-attachmentsbucket-1qc5rzodik7x6';
+      // final userFolder = Uri.encodeComponent(s3Identity!);
+      // final folder = 'protected';
+      // final filename = avatarS3Key!;
+      // final url = 'https://$s3BucketName.s3.amazonaws.com/$folder/$userFolder/$filename';
+      // print('avatar URL = $url');
+      //return url;
     } else {
       return null;
     }
-
-    // https://ppp-service-prod-attachmentsbucket-1qc5rzodik7x6.s3.amazonaws.com/protected/us-east-1%3A0042f536-bb79-4b51-9cd4-f7f0edc144a8/daviddelserb-1666366102169.png
   }
 }
 
