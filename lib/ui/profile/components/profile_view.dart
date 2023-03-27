@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:hypha_wallet/core/extension/scope_functions.dart';
 import 'package:hypha_wallet/core/network/api/aws_amplify/amplify_service.dart';
 import 'package:hypha_wallet/design/avatar_image/hypha_editable_avatar_image.dart';
 import 'package:hypha_wallet/design/background/hypha_half_background.dart';
 import 'package:hypha_wallet/design/background/hypha_page_background.dart';
+import 'package:hypha_wallet/design/buttons/button_type.dart';
+import 'package:hypha_wallet/design/buttons/hypha_app_button.dart';
 import 'package:hypha_wallet/design/cards/hypha_actionable_card.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
@@ -79,7 +82,7 @@ class ProfileView extends StatelessWidget {
                             child: HyphaActionableCard(
                               trailer: const Icon(Icons.edit),
                               onTap: () async {
-                                print("EDIT Tapped");
+                                print('EDIT Tapped');
                                 final as = GetIt.I.get<AmplifyService>();
                                 if (state.profileData != null) {
                                   final success = await as.loginUser(state.profileData!.account);
@@ -118,7 +121,54 @@ class ProfileView extends StatelessWidget {
                             onTap: () {},
                             onChanged: (value) {},
                           ),
-                        ]
+                        ],
+                        HyphaAppButton(
+                          margin: const EdgeInsets.symmetric(horizontal: 24),
+                          onPressed: () {
+                            print('Set Profile Name button pressed');
+                            try {
+                              context.read<ProfileBloc>().add(const ProfileEvent.setName('Nikolaus H'));
+                            } catch (error) {
+                              print('error $error');
+                            }
+                          },
+                          title: 'Set Profile Name',
+                          buttonType: ButtonType.primary,
+                        ),
+                        const SizedBox(height: 24),
+                        HyphaAppButton(
+                          margin: const EdgeInsets.symmetric(horizontal: 24),
+                          onPressed: () {
+                            print('setBio button pressed');
+                            try {
+                              context
+                                  .read<ProfileBloc>()
+                                  .add(const ProfileEvent.setBio('Hypha DAO & Hypha Wallet Tech Lead.'));
+                            } catch (error) {
+                              print('error - $error');
+                            }
+                          },
+                          title: 'Set Bio',
+                          buttonType: ButtonType.primary,
+                        ),
+                        const SizedBox(height: 24),
+                        HyphaAppButton(
+                          margin: const EdgeInsets.symmetric(horizontal: 24),
+                          onPressed: () async {
+                            print('pick image');
+                            final XFile? image = await ImagePicker().pickImage(
+                              source: ImageSource.gallery,
+                              imageQuality: 1,
+                              maxHeight: 2000,
+                              maxWidth: 2000,
+                            );
+                            image?.let((it) {
+                              context.read<ProfileBloc>().add(ProfileEvent.setAvatarImage(it));
+                            });
+                          },
+                          title: 'Pick image',
+                          buttonType: ButtonType.primary,
+                        ),
                       ],
                     ),
                   ],
@@ -140,4 +190,5 @@ class ProfileView extends StatelessWidget {
     print('on image selected');
     return true;
   }
+
 }

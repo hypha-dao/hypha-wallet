@@ -39,6 +39,7 @@ class Policy {
   }) {
     final datetime = SigV4.generateDatetime();
     final expiration = DateTime.now().add(Duration(minutes: expiryMinutes)).toUtc().toString().split(' ').join('T');
+    print('expiration: $expiration');
     final cred = '$accessKeyId/${SigV4.buildCredentialScope(datetime, region, 's3')}';
     final p = Policy(key, bucket, datetime, expiration, cred, maxFileSize, sessionToken, region: region);
     return p;
@@ -71,15 +72,21 @@ class Policy {
 
 Future<bool> postImage({
   required CognitoCredentials credentials,
-  required XFile image,
-  required String s3Endpoint,
+  required File image,
   required String fileName,
   required String s3Region,
   required String s3Bucket,
   // required String s3IdentityKey,
 }) async {
   final _region = s3Region;
-  final _s3Endpoint = s3Endpoint;
+  // String _s3Endpoint = 'https://$s3Bucket.s3-$s3Region.amazonaws.com';
+  String _s3Endpoint = 'https://$s3Bucket.s3.$s3Region.amazonaws.com';
+
+  _s3Endpoint = 'https://ppp-service-prod-attachmentsbucket-1qc5rzodik7x6.s3.amazonaws.com';
+// https://ppp-service-prod-attachmentsbucket-1qc5rzodik7x6.s3.amazonaws.com/protected/us-east-1%3A0042f536-bb79-4b51-9cd4-f7f0edc144a8/daviddelserb-1666366102169.png
+// https://ppp-service-prod-attachmentsbucket-1qc5rzodik7x6.s3.amazonaws.com/protected/
+  print('post image: $fileName');
+  print('using endpoint: $_s3Endpoint');
 
   final file = image;
 
@@ -138,10 +145,11 @@ Future<bool> postImage({
   req.fields['x-amz-security-token'] = credentials.sessionToken!;
 
   try {
-    print('send request...');
+    print('send request... ${req.url}');
     final res = await req.send();
     // ignore: prefer_foreach
     await for (final value in res.stream.transform(utf8.decoder)) {
+      print('stream update...');
       print(value);
     }
     print('done.');

@@ -1,12 +1,11 @@
+import 'dart:io';
 import 'dart:ui';
 
 import 'package:amazon_cognito_identity_dart_2/cognito.dart';
-import 'package:amazon_cognito_identity_dart_2/sig_v4.dart';
-import 'package:dio/dio.dart';
 import 'package:hypha_wallet/core/network/api/aws_amplify/aws_authenticated_request.dart';
+import 'package:hypha_wallet/core/network/api/aws_amplify/post_image.dart';
 import 'package:hypha_wallet/core/network/api/eos_service.dart';
 import 'package:hypha_wallet/core/network/api/remote_config_service.dart';
-import 'package:hypha_wallet/core/network/networking_manager.dart';
 import 'package:hypha_wallet/ui/profile/interactor/profile_data.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -23,6 +22,8 @@ class AmplifyService {
   RemoteConfigService get remoteConfigService => eosService.remoteConfigService;
   String get awsLambdaEndpoint => remoteConfigService.awsProfileServiceEndpoint;
   String get awsLambdaRegion => remoteConfigService.pppRegion;
+  String get s3Bucket => remoteConfigService.pppS3Bucket;
+  String get s3Region => remoteConfigService.pppS3Region;
 
   AmplifyService(this.eosService);
 
@@ -213,104 +214,34 @@ class AmplifyService {
     return register({
       'publicData': {
         'bio': bio,
-        'drafts': [],
       },
       'appData': {},
     });
   }
 
-  Future<dynamic> setPicture(XFile image, String avatarImage) async {
+  Future<dynamic> setPicture(File image, String fileName) async {
     // TODO: upload image
-
-    return register({
-      'publicData': {
-        'avatarImage': avatarImage,
-      },
-      'appData': {},
-    });
-  }
-
-/**/
-
-// WED:
-// For just getting the URL simply reverse engineer the URL we get from PPP service
-// or even just use PPP service URL resolution
-
-  Future<dynamic> getObject(String key) async {
-    final _credentials = await getCredentials();
-
-    // https://ppp-service-prod-attachmentsbucket-1qc5rzodik7x6.s3.amazonaws.com/protected/us-east-1%3A2268a23d-8016-4ea9-bc85-7bf59ed86436/illumination-1579323169291.png
-    final host = 'ppp-service-prod-attachmentsbucket-1qc5rzodik7x6.s3.amazonaws.com';
-    final region = 'us-east-1';
-    final service = 's3';
-    // final key = 'my-s3-bucket/ap-southeast-1:xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/square-cinnamon.jpg';
-    final key = 'protected/us-east-1:2268a23d-8016-4ea9-bc85-7bf59ed86436/illumination-1579323169291.png';
-    final payload = SigV4.hashCanonicalRequest('');
-    final datetime = SigV4.generateDatetime();
-    // ignore: leading_newlines_in_multiline_strings
-    final canonicalRequest = '''GET
-${'/$key'.split('/').map((s) => Uri.encodeComponent(s)).join('/')}
-
-host:$host
-x-amz-content-sha256:$payload
-x-amz-date:$datetime
-x-amz-security-token:${_credentials.sessionToken}
-
-host;x-amz-content-sha256;x-amz-date;x-amz-security-token
-$payload''';
-    final credentialScope = SigV4.buildCredentialScope(datetime, region, service);
-    final stringToSign =
-        SigV4.buildStringToSign(datetime, credentialScope, SigV4.hashCanonicalRequest(canonicalRequest));
-    final signingKey = SigV4.calculateSigningKey(_credentials.secretAccessKey!, datetime, region, service);
-    final signature = SigV4.calculateSignature(signingKey, stringToSign);
-
-    final authorization = [
-      'AWS4-HMAC-SHA256 Credential=${_credentials.accessKeyId}/$credentialScope',
-      'SignedHeaders=host;x-amz-content-sha256;x-amz-date;x-amz-security-token',
-      'Signature=$signature',
-    ].join(',');
-
-    final uri = Uri.https(host, key);
-    // http.Response response;
+    print('post image....');
     try {
-      final networkingManager = NetworkingManager(uri.toString());
-      final response = await networkingManager.get(
-        uri.toString(),
-        options: Options(
-          headers: {
-            'Authorization': authorization,
-            'x-amz-content-sha256': payload,
-            'x-amz-date': datetime,
-            'x-amz-security-token': _credentials.sessionToken,
-          },
-        ),
+      final credentials = await getCredentials();
+
+      final res = await postImage(
+        credentials: credentials,
+        image: image,
+        fileName: fileName,
+        s3Region: s3Region,
+        s3Bucket: s3Bucket,
       );
-
-      // response = await http.get(uri, headers: {
-      //   'Authorization': authorization,
-      //   'x-amz-content-sha256': payload,
-      //   'x-amz-date': datetime,
-      //   'x-amz-security-token': _credentials.sessionToken,
-      // });
-      print("got res: $response");
-
-      // response body bytes contains url
-    } catch (e) {
-      print(e);
-      return;
+      print('post image finished: $res ');
+    } catch (error) {
+      print('Error posting image: $error');
+      print(error);
     }
-
-    //final file = File(path.join('/path/to/my/folder', 'square-cinnamon-downloaded.jpg'));
-
-    try {
-      // TODO - this downloads bytes.... we kinda just want a URL
-      // await file.writeAsBytes(response.bodyBytes);
-    } catch (e) {
-      print(e.toString());
-      return;
-    }
-
-    print('complete!');
+    // final res2 = register({
+    //   'publicData': {
+    //     'avatarImage': fileName,
+    //   },
+    //   'appData': {},
+    // });
   }
-  /**/
 }

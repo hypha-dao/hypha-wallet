@@ -78,6 +78,7 @@ class ProfileData {
     if (avatarUrl != null) {
       return avatarUrl;
     } else if (s3Identity != null && avatarS3Key != null) {
+      // TODO(NIK): the below doesn't work, this URL doesn't work
       final s3BucketName = 'ppp-service-prod-attachmentsbucket-1qc5rzodik7x6';
       final userFolder = Uri.encodeComponent(s3Identity!);
       final folder = 'protected';
