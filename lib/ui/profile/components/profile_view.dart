@@ -83,18 +83,6 @@ class ProfileView extends StatelessWidget {
                               trailer: const Icon(Icons.edit),
                               onTap: () async {
                                 print('EDIT Tapped');
-                                final as = GetIt.I.get<AmplifyService>();
-                                if (state.profileData != null) {
-                                  final success = await as.loginUser(state.profileData!.account);
-                                  if (success) {
-                                    // ignore: unused_local_variable
-                                    final res = await as.getAuthUserAttributes();
-
-                                    // ignore: unused_local_variable
-                                    final profileRes = await as.getProfile();
-                                  }
-                                  print('as created $success');
-                                }
                               },
                               title: 'Bio',
                               subtitle: state.profileData?.bio ?? '',
@@ -126,6 +114,30 @@ class ProfileView extends StatelessWidget {
                         ],
                         HyphaAppButton(
                           margin: const EdgeInsets.symmetric(horizontal: 24),
+                          onPressed: () async {
+                            print('Login');
+                            final as = GetIt.I.get<AmplifyService>();
+                            if (as.isConnected()) {
+                              print('Already logged in');
+                            }
+                            if (state.profileData != null) {
+                              final success = await as.loginUser(state.profileData!.account);
+                              if (success) {
+                                // ignore: unused_local_variable
+                                final res = await as.getAuthUserAttributes();
+
+                                // ignore: unused_local_variable
+                                final profileRes = await as.getProfile();
+                              }
+                              print('login success: $success');
+                            }
+                          },
+                          title: 'Login',
+                          buttonType: ButtonType.primary,
+                        ),
+                        const SizedBox(height: 5),
+                        HyphaAppButton(
+                          margin: const EdgeInsets.symmetric(horizontal: 24),
                           onPressed: () {
                             print('Set Profile Name button pressed');
                             try {
@@ -137,7 +149,7 @@ class ProfileView extends StatelessWidget {
                           title: 'Set Profile Name',
                           buttonType: ButtonType.primary,
                         ),
-                        const SizedBox(height: 24),
+                        const SizedBox(height: 5),
                         HyphaAppButton(
                           margin: const EdgeInsets.symmetric(horizontal: 24),
                           onPressed: () {
@@ -153,7 +165,7 @@ class ProfileView extends StatelessWidget {
                           title: 'Set Bio',
                           buttonType: ButtonType.primary,
                         ),
-                        const SizedBox(height: 24),
+                        const SizedBox(height: 5),
                         HyphaAppButton(
                           margin: const EdgeInsets.symmetric(horizontal: 24),
                           onPressed: () async {
