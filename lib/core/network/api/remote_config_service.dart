@@ -134,10 +134,3 @@ class RemoteConfigService {
     });
   }
 }
-
-// endpoint https://nfjlqism6i.execute-api.us-east-1.amazonaws.com/dev
-// originAppId hypha-dho
-// userPoolId us-east-1_BNGTP2fup
-// client id 6mufhii0pab2392b6muvtiv8k8
-// identity pool id us-east-1:b57a53c2-f77d-44d5-9656-15b40da6004d
-// region us-east-1
