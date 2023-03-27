@@ -68,7 +68,7 @@ class HyphaAppButton extends StatelessWidget {
     switch (buttonType) {
       case ButtonType.primary:
         child = Ink(
-          decoration: isActive ? BoxDecoration(color: HyphaColors.primaryBlu, borderRadius: borderRadius) : null,
+          decoration: isActive ? BoxDecoration(gradient: HyphaColors.gradientBlu, borderRadius: borderRadius) : null,
           child: body,
         );
         break;
