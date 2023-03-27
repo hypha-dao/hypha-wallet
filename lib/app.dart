@@ -18,7 +18,7 @@ import 'package:hypha_wallet/ui/settings/interactor/settings_bloc.dart';
 import 'package:hypha_wallet/ui/settings/save_key_page.dart';
 import 'package:hypha_wallet/ui/settings/save_words_page.dart';
 
-const kLogQuietMode = true;
+const kLogQuietMode = false;
 
 class HyphaApp extends StatelessWidget {
   const HyphaApp({super.key});
