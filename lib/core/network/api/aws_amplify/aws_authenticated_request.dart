@@ -4,11 +4,8 @@ import 'package:dio/dio.dart';
 import 'package:hypha_wallet/core/network/networking_manager.dart';
 
 ///
-/// Example parameters:
-///      headers: Map<String, String>.from({'header-1': 'one', 'header-2': 'two'}),
-///      queryParams: Map<String, String>.from({'tracking': 'x123'}),
-///      body: Map<String, dynamic>.from({'color': 'blue'}));
-
+/// Send an AWS authenticated request
+///
 Future<dynamic> awsAuthenticatedRequest({
   required CognitoCredentials credentials,
   required String awsRegion,
@@ -51,11 +48,11 @@ Future<dynamic> awsAuthenticatedRequest({
       queryParameters: signedRequest.queryParams,
       data: signedRequest.body,
     );
-    print(response.statusCode);
-    print(response.statusMessage);
-    print(response.statusMessage);
-    print('RES: ');
-    print(response.data);
+    // print(response.statusCode);
+    // print(response.statusMessage);
+    // print(response.statusMessage);
+    // print('RES: ');
+    // print(response.data);
     return response.data;
   } catch (error) {
     print('Call failed $path $error');
