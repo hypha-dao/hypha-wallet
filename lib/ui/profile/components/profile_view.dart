@@ -18,6 +18,7 @@ import 'package:hypha_wallet/ui/shared/hypha_error_view.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ProfileView extends StatelessWidget {
+  final bool kDebugProfileService = false; // Debug code until we have wired up ppp service.
   const ProfileView({super.key});
 
   @override
@@ -105,77 +106,79 @@ class ProfileView extends StatelessWidget {
                             onChanged: (value) {},
                           ),
                         ],
-                        HyphaAppButton(
-                          margin: const EdgeInsets.symmetric(horizontal: 24),
-                          onPressed: () async {
-                            print('Login');
-                            final as = GetIt.I.get<AmplifyService>();
-                            if (as.isConnected()) {
-                              print('Already logged in');
-                            }
-                            if (state.profileData != null) {
-                              final success = await as.loginUser(state.profileData!.account);
-                              if (success) {
-                                // ignore: unused_local_variable
-                                final res = await as.getAuthUserAttributes();
-
-                                // ignore: unused_local_variable
-                                final profileRes = await as.getProfile();
+                        if (kDebugProfileService) ...[
+                          HyphaAppButton(
+                            margin: const EdgeInsets.symmetric(horizontal: 24),
+                            onPressed: () async {
+                              print('Login');
+                              final as = GetIt.I.get<AmplifyService>();
+                              if (as.isConnected()) {
+                                print('Already logged in');
                               }
-                              print('login success: $success');
-                            }
-                          },
-                          title: 'Login',
-                          buttonType: ButtonType.primary,
-                        ),
-                        const SizedBox(height: 5),
-                        HyphaAppButton(
-                          margin: const EdgeInsets.symmetric(horizontal: 24),
-                          onPressed: () {
-                            print('Set Profile Name button pressed');
-                            try {
-                              context.read<ProfileBloc>().add(const ProfileEvent.setName('Nikolaus H'));
-                            } catch (error) {
-                              print('error $error');
-                            }
-                          },
-                          title: 'Set Profile Name',
-                          buttonType: ButtonType.primary,
-                        ),
-                        const SizedBox(height: 5),
-                        HyphaAppButton(
-                          margin: const EdgeInsets.symmetric(horizontal: 24),
-                          onPressed: () {
-                            print('setBio button pressed');
-                            try {
-                              context
-                                  .read<ProfileBloc>()
-                                  .add(const ProfileEvent.setBio('Hypha DAO & Hypha Wallet Tech Lead.'));
-                            } catch (error) {
-                              print('error - $error');
-                            }
-                          },
-                          title: 'Set Bio',
-                          buttonType: ButtonType.primary,
-                        ),
-                        const SizedBox(height: 5),
-                        HyphaAppButton(
-                          margin: const EdgeInsets.symmetric(horizontal: 24),
-                          onPressed: () async {
-                            print('pick image');
-                            final XFile? image = await ImagePicker().pickImage(
-                              source: ImageSource.gallery,
-                              imageQuality: 0,
-                              maxHeight: 2000,
-                              maxWidth: 2000,
-                            );
-                            image?.let((it) {
-                              context.read<ProfileBloc>().add(ProfileEvent.setAvatarImage(it));
-                            });
-                          },
-                          title: 'Pick image',
-                          buttonType: ButtonType.primary,
-                        ),
+                              if (state.profileData != null) {
+                                final success = await as.loginUser(state.profileData!.account);
+                                if (success) {
+                                  // ignore: unused_local_variable
+                                  final res = await as.getAuthUserAttributes();
+
+                                  // ignore: unused_local_variable
+                                  final profileRes = await as.getProfile();
+                                }
+                                print('login success: $success');
+                              }
+                            },
+                            title: 'Login',
+                            buttonType: ButtonType.primary,
+                          ),
+                          const SizedBox(height: 5),
+                          HyphaAppButton(
+                            margin: const EdgeInsets.symmetric(horizontal: 24),
+                            onPressed: () {
+                              print('Set Profile Name button pressed');
+                              try {
+                                context.read<ProfileBloc>().add(const ProfileEvent.setName('Nikolaus H'));
+                              } catch (error) {
+                                print('error $error');
+                              }
+                            },
+                            title: 'Set Profile Name',
+                            buttonType: ButtonType.primary,
+                          ),
+                          const SizedBox(height: 5),
+                          HyphaAppButton(
+                            margin: const EdgeInsets.symmetric(horizontal: 24),
+                            onPressed: () {
+                              print('setBio button pressed');
+                              try {
+                                context
+                                    .read<ProfileBloc>()
+                                    .add(const ProfileEvent.setBio('Hypha DAO & Hypha Wallet Tech Lead.'));
+                              } catch (error) {
+                                print('error - $error');
+                              }
+                            },
+                            title: 'Set Bio',
+                            buttonType: ButtonType.primary,
+                          ),
+                          const SizedBox(height: 5),
+                          HyphaAppButton(
+                            margin: const EdgeInsets.symmetric(horizontal: 24),
+                            onPressed: () async {
+                              print('pick image');
+                              final XFile? image = await ImagePicker().pickImage(
+                                source: ImageSource.gallery,
+                                imageQuality: 0,
+                                maxHeight: 2000,
+                                maxWidth: 2000,
+                              );
+                              image?.let((it) {
+                                context.read<ProfileBloc>().add(ProfileEvent.setAvatarImage(it));
+                              });
+                            },
+                            title: 'Pick image',
+                            buttonType: ButtonType.primary,
+                          ),
+                        ]
                       ],
                     ),
                   ],
