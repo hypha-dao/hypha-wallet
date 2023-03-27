@@ -46,13 +46,6 @@ class ProfileView extends StatelessWidget {
                       physics: const AlwaysScrollableScrollPhysics(),
                       children: [
                         const SizedBox(height: 80),
-                        // Center(
-                        //   child: HyphaAvatarImage(
-                        //     imageRadius: 50,
-                        //     name: state.profileData?.name,
-                        //     imageFromUrl: state.profileData?.image,
-                        //   ),
-                        // ),
                         HyphaEditableAvatarImage(
                           imageRadius: 50,
                           name: state.profileData?.name,
