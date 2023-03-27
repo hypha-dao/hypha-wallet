@@ -158,7 +158,7 @@ class ProfileView extends StatelessWidget {
                             print('pick image');
                             final XFile? image = await ImagePicker().pickImage(
                               source: ImageSource.gallery,
-                              imageQuality: 1,
+                              imageQuality: 0,
                               maxHeight: 2000,
                               maxWidth: 2000,
                             );
@@ -190,5 +190,4 @@ class ProfileView extends StatelessWidget {
     print('on image selected');
     return true;
   }
-
 }

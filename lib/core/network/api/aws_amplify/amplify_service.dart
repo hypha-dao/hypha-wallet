@@ -220,8 +220,6 @@ class AmplifyService {
   }
 
   Future<dynamic> setPicture(File image, String fileName) async {
-    // TODO: upload image
-    print('post image....');
     try {
       final credentials = await getCredentials();
 
@@ -233,15 +231,15 @@ class AmplifyService {
         s3Bucket: s3Bucket,
       );
       print('post image finished: $res ');
+      final res2 = register({
+        'publicData': {
+          'avatar': fileName,
+        },
+        'appData': {},
+      });
     } catch (error) {
       print('Error posting image: $error');
       print(error);
     }
-    // final res2 = register({
-    //   'publicData': {
-    //     'avatarImage': fileName,
-    //   },
-    //   'appData': {},
-    // });
   }
 }

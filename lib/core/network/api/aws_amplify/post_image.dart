@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:image_picker/image_picker.dart';
-import 'package:path/path.dart' as path;
-import 'package:async/async.dart';
-import 'package:http/http.dart' as http;
+
 import 'package:amazon_cognito_identity_dart_2/cognito.dart';
 import 'package:amazon_cognito_identity_dart_2/sig_v4.dart';
+import 'package:async/async.dart';
+import 'package:http/http.dart' as http;
+import 'package:path/path.dart' as path;
 
 class Policy {
   String expiration;
@@ -54,16 +54,16 @@ class Policy {
   String toString() {
     // Safe to remove the "acl" line if your bucket has no ACL permissions
     return '''
-    { "expiration": "${this.expiration}",
+    { "expiration": "$expiration",
       "conditions": [
-        {"bucket": "${this.bucket}"},
-        ["starts-with", "\$key", "${this.key}"],
+        {"bucket": "$bucket"},
+        ["starts-with", "\$key", "$key"],
         {"acl": "public-read"},
-        ["content-length-range", 1, ${this.maxFileSize}],
-        {"x-amz-credential": "${this.credential}"},
+        ["content-length-range", 1, $maxFileSize],
+        {"x-amz-credential": "$credential"},
         {"x-amz-algorithm": "AWS4-HMAC-SHA256"},
-        {"x-amz-date": "${this.datetime}" },
-        {"x-amz-security-token": "${this.sessionToken}" }
+        {"x-amz-date": "$datetime" },
+        {"x-amz-security-token": "$sessionToken" }
       ]
     }
     ''';
@@ -76,17 +76,12 @@ Future<bool> postImage({
   required String fileName,
   required String s3Region,
   required String s3Bucket,
-  // required String s3IdentityKey,
 }) async {
   final _region = s3Region;
-  // String _s3Endpoint = 'https://$s3Bucket.s3-$s3Region.amazonaws.com';
-  String _s3Endpoint = 'https://$s3Bucket.s3.$s3Region.amazonaws.com';
+  final String _s3Endpoint = 'https://$s3Bucket.s3.amazonaws.com';
 
-  _s3Endpoint = 'https://ppp-service-prod-attachmentsbucket-1qc5rzodik7x6.s3.amazonaws.com';
-// https://ppp-service-prod-attachmentsbucket-1qc5rzodik7x6.s3.amazonaws.com/protected/us-east-1%3A0042f536-bb79-4b51-9cd4-f7f0edc144a8/daviddelserb-1666366102169.png
-// https://ppp-service-prod-attachmentsbucket-1qc5rzodik7x6.s3.amazonaws.com/protected/
-  print('post image: $fileName');
-  print('using endpoint: $_s3Endpoint');
+  // print('post image: $fileName');
+  // print('using endpoint: $_s3Endpoint');
 
   final file = image;
 
@@ -111,14 +106,7 @@ Future<bool> postImage({
   }
 
   final String usrIdentityId = credentials.userIdentityId!;
-
-  // below example of actual key - using user identity s3IdentityKey
-  // usrIdentityId should match this in this case - maybe it's the same thing
-  // aws is a massive mess ;)
-  //  s3Identity: "us-east-1:2268a23d-8016-4ea9-bc85-7bf59ed86436",
-  //final key = 'protected/us-east-1:2268a23d-8016-4ea9-bc85-7bf59ed86436/illumination-1579323169291.png';
-
-  print('user identity ID $usrIdentityId');
+  // print('user identity ID $usrIdentityId');
 
   final String bucketKey = 'protected/$usrIdentityId/$fileName';
 
@@ -145,10 +133,10 @@ Future<bool> postImage({
   req.fields['x-amz-security-token'] = credentials.sessionToken!;
 
   try {
-    print('send request... ${req.url}');
     final res = await req.send();
     // ignore: prefer_foreach
     await for (final value in res.stream.transform(utf8.decoder)) {
+      // Note: The stream update seems to only trigger if there was an error uploading.
       print('stream update...');
       print(value);
     }
