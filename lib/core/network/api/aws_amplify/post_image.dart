@@ -7,6 +7,7 @@ import 'package:async/async.dart';
 import 'package:http/http.dart' as http;
 import 'package:path/path.dart' as path;
 
+// Note: This code based on the ewxample in amazon_cognito_identity_dart_2 flutter package
 class Policy {
   String expiration;
   String region;
@@ -39,7 +40,7 @@ class Policy {
   }) {
     final datetime = SigV4.generateDatetime();
     final expiration = DateTime.now().add(Duration(minutes: expiryMinutes)).toUtc().toString().split(' ').join('T');
-    print('expiration: $expiration');
+    // print('expiration: $expiration');
     final cred = '$accessKeyId/${SigV4.buildCredentialScope(datetime, region, 's3')}';
     final p = Policy(key, bucket, datetime, expiration, cred, maxFileSize, sessionToken, region: region);
     return p;
@@ -79,10 +80,6 @@ Future<bool> postImage({
 }) async {
   final _region = s3Region;
   final String _s3Endpoint = 'https://$s3Bucket.s3.amazonaws.com';
-
-  // print('post image: $fileName');
-  // print('using endpoint: $_s3Endpoint');
-
   final file = image;
 
   final stream = http.ByteStream(DelegatingStream.typed(file.openRead()));
@@ -106,8 +103,8 @@ Future<bool> postImage({
   }
 
   final String usrIdentityId = credentials.userIdentityId!;
-  // print('user identity ID $usrIdentityId');
 
+  // Note: The s3 bucket is set up like this - user identity is part of the file path
   final String bucketKey = 'protected/$usrIdentityId/$fileName';
 
   final policy = Policy.fromS3PresignedPost(
@@ -124,7 +121,7 @@ Future<bool> postImage({
 
   req.files.add(multipartFile);
   req.fields['key'] = policy.key;
-  req.fields['acl'] = 'public-read'; // Safe to remove this if your bucket has no ACL permissions
+  req.fields['acl'] = 'public-read';
   req.fields['X-Amz-Credential'] = policy.credential;
   req.fields['X-Amz-Algorithm'] = 'AWS4-HMAC-SHA256';
   req.fields['X-Amz-Date'] = policy.datetime;
@@ -140,10 +137,9 @@ Future<bool> postImage({
       print('stream update...');
       print(value);
     }
-    print('done.');
     return true;
   } catch (e) {
-    print(e.toString());
+    print('post image error: $e');
     rethrow;
   }
 }
