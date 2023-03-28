@@ -37,7 +37,7 @@ class OnboardingPage extends StatelessWidget {
                 onPressed: () {
                   _launchUrl();
                 },
-                title: 'Sign-Up',
+                title: 'Sign Up',
                 buttonType: ButtonType.secondary,
               ),
               const SizedBox(height: 20),

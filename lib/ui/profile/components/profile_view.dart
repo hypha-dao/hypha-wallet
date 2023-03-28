@@ -18,7 +18,7 @@ import 'package:hypha_wallet/ui/shared/hypha_error_view.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ProfileView extends StatelessWidget {
-  final bool kDebugProfileService = false; // Debug code until we have wired up ppp service.
+  final bool kDebugProfileService = true; // Debug code until we have wired up ppp service.
   const ProfileView({super.key});
 
   @override
@@ -107,6 +107,30 @@ class ProfileView extends StatelessWidget {
                           ),
                         ],
                         if (kDebugProfileService) ...[
+                          HyphaAppButton(
+                            margin: const EdgeInsets.symmetric(horizontal: 24),
+                            onPressed: () async {
+                              print('Login');
+                              final as = GetIt.I.get<AmplifyService>();
+                              if (as.isConnected()) {
+                                print('Already logged in');
+                              }
+                              if (state.profileData != null) {
+                                final success = await as.loginUser(state.profileData!.account);
+                                if (success) {
+                                  // ignore: unused_local_variable
+                                  final res = await as.getAuthUserAttributes();
+
+                                  // ignore: unused_local_variable
+                                  final profileRes = await as.getProfile();
+                                }
+                                print('login success: $success');
+                              }
+                            },
+                            title: 'Sign up',
+                            buttonType: ButtonType.primary,
+                          ),
+                          const SizedBox(height: 5),
                           HyphaAppButton(
                             margin: const EdgeInsets.symmetric(horizontal: 24),
                             onPressed: () async {
