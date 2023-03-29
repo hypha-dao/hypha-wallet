@@ -139,6 +139,7 @@ class AmplifyService {
       await eosService.loginWithCode(accountName: accountName, loginCode: loginCode, network: Networks.telos);
       print('return challenge $loginCode');
       session = await cognitoUser.sendCustomChallengeAnswer(loginCode);
+
       return true;
     } on CognitoUserConfirmationNecessaryException catch (e) {
       print('CognitoUserConfirmationNecessaryException $e');
@@ -169,16 +170,12 @@ class AmplifyService {
   /// register method is used to modify any user attributes such as name, bio, etc
   ///
   Future<dynamic> register(Map<String, dynamic> pppData) async {
-    final b = <String, dynamic>{
-      ...pppData,
-      'originAppId': remoteConfigService.pppOriginAppId,
-    };
-    print('register body: $b');
     final result = await _request(
       path: 'register',
       body: <String, dynamic>{
         ...pppData,
         'originAppId': remoteConfigService.pppOriginAppId,
+        'appData': {},
       },
     );
     return result;
@@ -199,9 +196,10 @@ class AmplifyService {
     Map<String, dynamic>? body,
     Map<String, String>? headers,
     Map<String, String>? queryParams,
+    CognitoCredentials? credentials,
   }) async {
     final String region = awsLambdaRegion;
-    final credentials = await getCredentials();
+    credentials ??= await getCredentials();
     return awsAuthenticatedRequest(
       credentials: credentials,
       awsRegion: region,
@@ -229,6 +227,37 @@ class AmplifyService {
       },
       'appData': {},
     });
+  }
+
+  Future<dynamic> setS3Identity(String s3Identity) async {
+    return register({
+      'publicData': {
+        's3Identity': s3Identity,
+      },
+      'appData': {},
+    });
+  }
+
+  Future<dynamic> initializeProfile(
+      {required String name, required String s3Identity, String? bio, String? avatar}) async {
+    return register({
+      'publicData': {
+        'name': name,
+        's3Identity': s3Identity,
+        if (bio != null) ...{
+          'bio': bio,
+        },
+        if (avatar != null) ...{
+          'avatar': avatar,
+        },
+      },
+      'appData': {},
+      'emailAddress': 'not-real-email-${getRandomString(10)}@notrealemailxxx1.io',
+    });
+  }
+
+  Future<dynamic> resolveImage() async {
+    final credentials = await getCredentials();
   }
 
   Future<dynamic> setPicture(File image, String fileName) async {
