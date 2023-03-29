@@ -38,10 +38,20 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   Future<void> _initial(_Initial event, Emitter<ProfileState> emit) async {
     emit(state.copyWith(pageState: PageState.loading));
     final UserProfileData? userData = await _appSharedPrefs.getUserProfileData();
-    final Result<ProfileData, HyphaError> result = await _fetchProfileUseCase.run(userData?.accountName ?? '');
-    if (result.isValue) {
-      emit(state.copyWith(pageState: PageState.success, profileData: result.asValue!.value));
+    if (userData != null) {
+      final Result<ProfileData, HyphaError> result = await _fetchProfileUseCase.run(userData.accountName);
+      if (result.isValue) {
+        emit(state.copyWith(pageState: PageState.success, profileData: result.asValue!.value));
+      } else {
+        // if loading fails, show saved user data.
+        final profileData = ProfileData(
+          name: userData.userName,
+          account: userData.accountName,
+        );
+        emit(state.copyWith(pageState: PageState.success, profileData: profileData));
+      }
     } else {
+      print('Error - no user data');
       emit(state.copyWith(pageState: PageState.failure));
     }
   }
