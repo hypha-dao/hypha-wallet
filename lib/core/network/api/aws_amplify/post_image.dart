@@ -138,7 +138,6 @@ Future<bool> postImage({
       print('stream update...');
       print(value);
     }
-    print("image upload done ${res.contentLength}");
     return true;
   } catch (e) {
     print('post image error: $e');

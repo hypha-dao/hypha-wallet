@@ -47,12 +47,19 @@ class AuthRepository {
         publicKey: userAuthData.publicKey.toString(),
       );
 
-      /// 2 - log into ppp service, upload name and image
-      print('create ppp account for $accountName');
-      final signupResult = await PPPSignUpUseCase(GetIt.I.get<AmplifyService>()).run(accountName);
-
       // TODO(gguij): Check if success, grab the user image from the service response
       _saveUserData(UserProfileData(accountName: accountName, userName: userName), userAuthData, false);
+
+      /// 2 - log into ppp service, upload name and image
+      print('create ppp account for $accountName');
+      // ignore: unused_local_variable
+      final signupResult = await PPPSignUpUseCase(GetIt.I.get<AmplifyService>()).run(accountName);
+
+      // [TBD] Login and call initialize - make login use case, init use case
+      // 3 - login
+      // 4 - call initialize - can already use image name
+      // 5 - upload image
+
       return true;
     } catch (e) {
       print('Error creating account $e');

@@ -71,14 +71,11 @@ class AmplifyService {
     }
     try {
       final randomPassword = getRandomString(20);
-      print("ranomd pass: $randomPassword");
-      print("length: ${randomPassword.length}");
       final result = await userPool.signUp(
         accountName,
         randomPassword,
         userAttributes: userAttributes,
       );
-      print('result: $result');
       return result;
     } catch (e) {
       print('_signUp error: $e');
@@ -254,10 +251,6 @@ class AmplifyService {
       'appData': {},
       'emailAddress': 'not-real-email-${getRandomString(10)}@notrealemailxxx1.io',
     });
-  }
-
-  Future<dynamic> resolveImage() async {
-    final credentials = await getCredentials();
   }
 
   Future<dynamic> setPicture(File image, String fileName) async {
