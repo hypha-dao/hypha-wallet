@@ -82,7 +82,7 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
                       : () {
                           Get.to(() => CreateAccountPage(_file, _controller.text), transition: Transition.rightToLeft);
                         },
-                  title: 'NEXT',
+                  title: 'Next',
                 ),
               ),
             ),

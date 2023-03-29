@@ -55,8 +55,8 @@ class ProfileData {
     final account = json['eosAccount'];
     final publicData = json['publicData'];
 
-    final String avatar = publicData['avatar'];
-    final String s3Identity = publicData['s3Identity'];
+    final avatar = publicData['avatar'];
+    final s3Identity = publicData['s3Identity'];
     final name = publicData['name'];
     final bio = publicData['bio'];
     return ProfileData(

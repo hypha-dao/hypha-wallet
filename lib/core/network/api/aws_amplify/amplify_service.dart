@@ -1,4 +1,6 @@
+import 'dart:convert';
 import 'dart:io';
+import 'dart:math';
 
 import 'package:amazon_cognito_identity_dart_2/cognito.dart';
 import 'package:hypha_wallet/core/network/api/aws_amplify/aws_authenticated_request.dart';
@@ -6,6 +8,12 @@ import 'package:hypha_wallet/core/network/api/aws_amplify/post_image.dart';
 import 'package:hypha_wallet/core/network/api/eos_service.dart';
 import 'package:hypha_wallet/core/network/api/remote_config_service.dart';
 import 'package:hypha_wallet/ui/profile/interactor/profile_data.dart';
+
+String getRandomString(int len) {
+  final random = Random.secure();
+  final values = List<int>.generate(len, (i) => random.nextInt(255));
+  return base64UrlEncode(values);
+}
 
 /// Encapsulates everything to do with remote configuration
 class AmplifyService {
@@ -43,7 +51,7 @@ class AmplifyService {
     return attributes;
   }
 
-  Future<dynamic> getAuthUser() async {
+  Future<List<CognitoUserAttribute>?> getUserAttributes() async {
     List<CognitoUserAttribute>? attributes;
     try {
       attributes = await cognitoUser?.getUserAttributes();
@@ -56,11 +64,42 @@ class AmplifyService {
     return attributes;
   }
 
-  Future<bool> loginUser(String accountName) async {
+  Future<dynamic> signUp(String accountName, {String? name}) async {
+    final List<AttributeArg> userAttributes = [];
+    if (name != null) {
+      userAttributes.add(AttributeArg(name: 'name', value: name));
+    }
+    try {
+      final randomPassword = getRandomString(20);
+      final result = await userPool.signUp(
+        accountName,
+        randomPassword,
+        userAttributes: userAttributes,
+      );
+      return result;
+    } catch (e) {
+      print('_signUp error: $e');
+      rethrow;
+    }
+  }
+
+  Future<bool> loginUser(String accountName, {bool isSignUp = false}) async {
     if (session?.isValid() ?? false) {
       print('already logged in');
       return true;
     }
+    if (isSignUp) {
+      try {
+        // ignore: unused_local_variable
+        final res = await signUp(accountName);
+        print('signup res: $res');
+      } catch (error) {
+        print('error signing up: $error');
+        // ignore user exists error
+        // throw other errors
+      }
+    }
+
     final cognitoUser = CognitoUser(
       accountName,
       userPool,
@@ -71,6 +110,7 @@ class AmplifyService {
       username: accountName,
       password: 'Password001',
     );
+
     try {
       session = await cognitoUser.initiateAuth(authDetails);
     } on CognitoUserNewPasswordRequiredException catch (e) {
@@ -96,6 +136,7 @@ class AmplifyService {
       await eosService.loginWithCode(accountName: accountName, loginCode: loginCode, network: Networks.telos);
       print('return challenge $loginCode');
       session = await cognitoUser.sendCustomChallengeAnswer(loginCode);
+
       return true;
     } on CognitoUserConfirmationNecessaryException catch (e) {
       print('CognitoUserConfirmationNecessaryException $e');
@@ -126,16 +167,12 @@ class AmplifyService {
   /// register method is used to modify any user attributes such as name, bio, etc
   ///
   Future<dynamic> register(Map<String, dynamic> pppData) async {
-    final b = <String, dynamic>{
-      ...pppData,
-      'originAppId': remoteConfigService.pppOriginAppId,
-    };
-    print('register body: $b');
     final result = await _request(
       path: 'register',
       body: <String, dynamic>{
         ...pppData,
         'originAppId': remoteConfigService.pppOriginAppId,
+        'appData': {},
       },
     );
     return result;
@@ -156,9 +193,10 @@ class AmplifyService {
     Map<String, dynamic>? body,
     Map<String, String>? headers,
     Map<String, String>? queryParams,
+    CognitoCredentials? credentials,
   }) async {
     final String region = awsLambdaRegion;
-    final credentials = await getCredentials();
+    credentials ??= await getCredentials();
     return awsAuthenticatedRequest(
       credentials: credentials,
       awsRegion: region,
@@ -185,6 +223,33 @@ class AmplifyService {
         'bio': bio,
       },
       'appData': {},
+    });
+  }
+
+  Future<dynamic> setS3Identity(String s3Identity) async {
+    return register({
+      'publicData': {
+        's3Identity': s3Identity,
+      },
+      'appData': {},
+    });
+  }
+
+  Future<dynamic> initializeProfile(
+      {required String name, required String s3Identity, String? bio, String? avatar}) async {
+    return register({
+      'publicData': {
+        'name': name,
+        's3Identity': s3Identity,
+        if (bio != null) ...{
+          'bio': bio,
+        },
+        if (avatar != null) ...{
+          'avatar': avatar,
+        },
+      },
+      'appData': {},
+      'emailAddress': 'not-real-email-${getRandomString(10)}@notrealemailxxx1.io',
     });
   }
 
