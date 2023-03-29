@@ -2,13 +2,16 @@
 
 import 'dart:async';
 
+import 'package:get_it/get_it.dart';
 import 'package:hypha_wallet/core/local/models/user_auth_data.dart';
 import 'package:hypha_wallet/core/local/services/secure_storage_service.dart';
 import 'package:hypha_wallet/core/logging/log_helper.dart';
+import 'package:hypha_wallet/core/network/api/aws_amplify/amplify_service.dart';
 import 'package:hypha_wallet/core/network/api/user_account_service.dart';
 import 'package:hypha_wallet/core/network/models/user_profile_data.dart';
 import 'package:hypha_wallet/core/shared_preferences/hypha_shared_prefs.dart';
 import 'package:hypha_wallet/ui/blocs/deeplink/deeplink_bloc.dart';
+import 'package:hypha_wallet/ui/profile/usecases/ppp_sign_up_use_case.dart';
 import 'package:image_picker/image_picker.dart';
 
 enum AuthenticationStatus { unknown, authenticated, unauthenticated }
@@ -44,11 +47,19 @@ class AuthRepository {
         publicKey: userAuthData.publicKey.toString(),
       );
 
-      /// 2 - log into ppp service, upload name and image
-      /// [TBD]
-
       // TODO(gguij): Check if success, grab the user image from the service response
       _saveUserData(UserProfileData(accountName: accountName, userName: userName), userAuthData, false);
+
+      /// 2 - log into ppp service, upload name and image
+      print('create ppp account for $accountName');
+      // ignore: unused_local_variable
+      final signupResult = await PPPSignUpUseCase(GetIt.I.get<AmplifyService>()).run(accountName);
+
+      // [TBD] Login and call initialize - make login use case, init use case
+      // 3 - login
+      // 4 - call initialize - can already use image name
+      // 5 - upload image
+
       return true;
     } catch (e) {
       print('Error creating account $e');

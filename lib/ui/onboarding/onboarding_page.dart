@@ -37,7 +37,7 @@ class OnboardingPage extends StatelessWidget {
                 onPressed: () {
                   _launchUrl();
                 },
-                title: 'Sign-Up',
+                title: 'Sign Up',
                 buttonType: ButtonType.secondary,
               ),
               const SizedBox(height: 20),
@@ -63,7 +63,7 @@ class OnboardingPage extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 54, right: 54),
                 child: Text(
-                  'If you already have an Hypha account please click “Import account” button and follow the steps. \n\nIf you don’t have an Hypha account yet, please click “Sign-up” button and proceed to dao.hypha.earth to create an account.',
+                  'If you already have an Hypha account please click “Import account” button and follow the steps. \n\nIf you don’t have an Hypha account yet, please click “Sign up” button and proceed to dao.hypha.earth to create an account.',
                   style: context.hyphaTextTheme.ralMediumBody.copyWith(color: HyphaColors.midGrey),
                   textAlign: TextAlign.center,
                 ),
