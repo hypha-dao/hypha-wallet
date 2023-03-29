@@ -74,30 +74,17 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
 
   FutureOr<void> _setAvatarImage(_SetAvatarImage event, Emitter<ProfileState> emit) async {
     emit(state.copyWith(pageState: PageState.loading));
-
-    // getting a directory path for saving
-    // final duplicateFilePath = (await getApplicationDocumentsDirectory()).path;
-    // final fileName = basename(event.image.path);
-    // final localPath = '$duplicateFilePath/$fileName';
-    // print('local file path: $localPath');
-    // await event.image.saveTo(localPath);
-    // final imageFile = File(localPath);
-
-    print('set avatar to ${event.image}');
-    print('local file path: ${event.image.path}');
     final File imageFile = File(event.image.path);
-    print('file size: ${imageFile.lengthSync()}');
     final fileExtension = extension(imageFile.path);
     final filename = 'avatar-${DateTime.now().toIso8601String()}$fileExtension';
-    // final filename = 'avatar-test$fileExtension'; // DEBUG
+    print('file size: ${imageFile.lengthSync()}');
     print('file name: $filename');
-
     final result = await SetImageUseCase(GetIt.I.get<AmplifyService>()).run(imageFile, filename);
 
     if (result.isValue) {
       emit(state.copyWith(pageState: PageState.success));
     } else {
-      // TODO(gguij): Error snack bar when set bio fails
+      // TODO(gguij): Error snack bar when set image fails
       print('Error setting avatar image: ${result.asError!.error}');
       emit(state.copyWith(pageState: PageState.failure));
     }
