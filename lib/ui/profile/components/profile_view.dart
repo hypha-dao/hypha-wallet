@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hypha_wallet/core/extension/scope_functions.dart';
 import 'package:hypha_wallet/core/network/api/aws_amplify/amplify_service.dart';
+import 'package:hypha_wallet/core/network/repository/profile_repository.dart';
 import 'package:hypha_wallet/design/avatar_image/hypha_editable_avatar_image.dart';
 import 'package:hypha_wallet/design/background/hypha_half_background.dart';
 import 'package:hypha_wallet/design/background/hypha_page_background.dart';
@@ -18,7 +19,7 @@ import 'package:hypha_wallet/ui/shared/hypha_error_view.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ProfileView extends StatelessWidget {
-  final bool kDebugProfileService = true; // Debug code until we have wired up ppp service.
+  final bool kDebugProfileService = false; // Debug code until we have wired up ppp service.
   const ProfileView({super.key});
 
   @override
@@ -141,17 +142,49 @@ class ProfileView extends StatelessWidget {
                               }
                               if (state.profileData != null) {
                                 final success = await as.loginUser(state.profileData!.account);
+                                print("login res: $success");
                                 if (success) {
                                   // ignore: unused_local_variable
                                   final res = await as.getAuthUserAttributes();
+                                  if (res != null) {
+                                    for (final attribute in res) {
+                                      print('attribute: ${attribute.name}: ${attribute.value}');
+                                    }
+                                  } else {
+                                    print("no user attributes.");
+                                  }
 
                                   // ignore: unused_local_variable
                                   final profileRes = await as.getProfile();
+                                  final profileService = GetIt.I.get<ProfileService>();
+
+                                  print('avatar: ${profileRes.avatar}');
+                                  if (profileRes.avatar != null) {
+                                    final creds = await as.getCredentials();
+                                    if (profileRes.s3Identity == null) {
+                                      print('init profile');
+                                      final registerRes = await as.initializeProfile(
+                                          name: profileRes.name!,
+                                          s3Identity: creds.userIdentityId!,
+                                          avatar: profileRes.avatar);
+
+                                      print('register result: $registerRes');
+                                    }
+
+                                    // init test
+
+                                    // print("user identity: ${creds.userIdentityId}");
+
+                                    // final url =
+                                    //     await profileService.getImageUrl(profileRes.avatar!, creds.userIdentityId!);
+
+                                    // Logger().d("url: $url");
+                                  }
                                 }
                                 print('login success: $success');
                               }
                             },
-                            title: 'Login',
+                            title: 'Login & Initialize',
                             buttonType: ButtonType.primary,
                           ),
                           const SizedBox(height: 5),
@@ -160,7 +193,7 @@ class ProfileView extends StatelessWidget {
                             onPressed: () {
                               print('Set Profile Name button pressed');
                               try {
-                                context.read<ProfileBloc>().add(const ProfileEvent.setName('Nikolaus H'));
+                                context.read<ProfileBloc>().add(const ProfileEvent.setName('Tester 001'));
                               } catch (error) {
                                 print('error $error');
                               }
