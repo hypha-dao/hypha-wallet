@@ -35,26 +35,8 @@ class ProfileData {
   }
 
   factory ProfileData.fromPPPDataJson(Map<String, dynamic> json) {
-    //      isVerified: 0,
-    //  customFields: []
-    //  btcAddress: "bc1qgfr6uwnknwxrjt67xsr9pnfkly97kxcm5rg9xh",
-    //  bio: "Seeds Smart Contracts. DHO Tech.",
-    //  timeZone: "Singapore Standard Time",
-    //  drafts:
-    //        avatar: "illumination-1669189442183.png",
-    //  tags: []
-    //  name: "Nikolaus Heger",
-    //  nickname: "illumination",
-    //  eosMemo: null,
-    //  s3Identity: "us-east-1:2268a23d-8016-4ea9-bc85-7bf59ed86436",
-    //  ethAddress: "0xeFAAA27a21768Cba31bb91988d8486a5212b388d",
-    //  eosAccount: "illum1nation",
-    //  defaultAddress: "eosaccount"
-    //  avatar: "illumination-1669189442183.png",
-
     final account = json['eosAccount'];
     final publicData = json['publicData'];
-
     final avatar = publicData['avatar'];
     final s3Identity = publicData['s3Identity'];
     final name = publicData['name'];

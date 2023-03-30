@@ -68,8 +68,8 @@ class HyphaEditableAvatarImage extends StatelessWidget {
     final XFile? image = await ImagePicker().pickImage(
       source: ImageSource.gallery,
       imageQuality: 0,
-      maxHeight: 2000,
-      maxWidth: 2000,
+      maxHeight: 1500,
+      maxWidth: 1500,
     );
     image?.let((it) => onImageSelected?.call(it));
   }

@@ -16,7 +16,6 @@ import 'package:hypha_wallet/ui/profile/usecases/set_bio_use_case.dart';
 import 'package:hypha_wallet/ui/profile/usecases/set_image_use_case.dart';
 import 'package:hypha_wallet/ui/profile/usecases/set_name_use_case.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:path/path.dart';
 
 part 'page_command.dart';
 part 'profile_bloc.freezed.dart';
@@ -84,12 +83,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
 
   FutureOr<void> _setAvatarImage(_SetAvatarImage event, Emitter<ProfileState> emit) async {
     emit(state.copyWith(pageState: PageState.loading));
-    final File imageFile = File(event.image.path);
-    final fileExtension = extension(imageFile.path);
-    final filename = 'avatar-${DateTime.now().toIso8601String()}$fileExtension';
-    print('file size: ${imageFile.lengthSync()}');
-    print('file name: $filename');
-    final result = await SetImageUseCase(GetIt.I.get<AmplifyService>()).run(imageFile, filename);
+    final result = await SetImageUseCase(GetIt.I.get<AmplifyService>()).run(event.image);
 
     if (result.isValue) {
       emit(state.copyWith(pageState: PageState.success));

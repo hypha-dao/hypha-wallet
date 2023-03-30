@@ -1,18 +1,27 @@
+// ignore_for_file: unused_local_variable
+
 import 'dart:io';
 
 import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
 import 'package:hypha_wallet/core/network/api/aws_amplify/amplify_service.dart';
 import 'package:hypha_wallet/ui/architecture/result/result.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:path/path.dart';
 
 class SetImageUseCase {
   final AmplifyService _amplifyService;
 
   SetImageUseCase(this._amplifyService);
 
-  Future<Result<bool, HyphaError>> run(File image, String fileName) async {
+  Future<Result<bool, HyphaError>> run(XFile image) async {
     try {
-      // ignore: unused_local_variable
-      final res = await _amplifyService.setPicture(image, fileName);
+      final File imageFile = File(image.path);
+      final fileExtension = extension(imageFile.path);
+      final filename = 'avatar-${DateTime.now().toIso8601String()}$fileExtension';
+      print('file size: ${imageFile.lengthSync()}');
+      print('file name: $filename');
+
+      final res = await _amplifyService.setPicture(imageFile, filename);
       return Result.value(true);
     } catch (error) {
       print('SetBioUseCase error $error');

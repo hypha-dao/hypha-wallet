@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_single_quotes, unnecessary_brace_in_string_interps
+// ignore_for_file: prefer_single_quotes, unnecessary_brace_in_string_interps, unused_local_variable
 
 import 'dart:async';
 
@@ -11,7 +11,10 @@ import 'package:hypha_wallet/core/network/api/user_account_service.dart';
 import 'package:hypha_wallet/core/network/models/user_profile_data.dart';
 import 'package:hypha_wallet/core/shared_preferences/hypha_shared_prefs.dart';
 import 'package:hypha_wallet/ui/blocs/deeplink/deeplink_bloc.dart';
+import 'package:hypha_wallet/ui/profile/usecases/initialize_profile_use_case.dart';
 import 'package:hypha_wallet/ui/profile/usecases/ppp_sign_up_use_case.dart';
+import 'package:hypha_wallet/ui/profile/usecases/profile_login_use_case.dart';
+import 'package:hypha_wallet/ui/profile/usecases/set_image_use_case.dart';
 import 'package:image_picker/image_picker.dart';
 
 enum AuthenticationStatus { unknown, authenticated, unauthenticated }
@@ -39,7 +42,6 @@ class AuthRepository {
       // print("network: ${inviteLinkData.chain}");
       // print("accountname: ${accountName}");
 
-      // ignore: unused_local_variable
       final response = await _userService.createUserAccount(
         code: inviteLinkData.code,
         network: inviteLinkData.chain,
@@ -52,13 +54,24 @@ class AuthRepository {
 
       /// 2 - log into ppp service, upload name and image
       print('create ppp account for $accountName');
-      // ignore: unused_local_variable
-      final signupResult = await PPPSignUpUseCase(GetIt.I.get<AmplifyService>()).run(accountName);
 
-      // [TBD] Login and call initialize - make login use case, init use case
-      // 3 - login
-      // 4 - call initialize - can already use image name
-      // 5 - upload image
+      final amplifyService = GetIt.I.get<AmplifyService>();
+
+      final signupResult = await PPPSignUpUseCase(amplifyService).run(accountName);
+
+      print("Signup success: ${signupResult.asValue?.value}");
+
+      final loginResult = await ProfileLoginUseCase(amplifyService).run(accountName);
+
+      print("Login success: ${loginResult.asValue?.value}");
+
+      final initializeProfileResult =
+          await InitializeProfileUseCase(amplifyService).run(accountName: accountName, name: userName);
+
+      if (image != null) {
+        print('uploading image...');
+        final setImageResult = await SetImageUseCase(amplifyService).run(image);
+      }
 
       return true;
     } catch (e) {

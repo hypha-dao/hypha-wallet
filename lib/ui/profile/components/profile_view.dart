@@ -55,9 +55,8 @@ class ProfileView extends StatelessWidget {
                           onImageRemoved: () {
                             onImageRemoved();
                           },
-                          onImageSelected: (image) async {
-                            onImageSelected(image);
-                          },
+                          onImageSelected: (image) async =>
+                              context.read<ProfileBloc>().add(ProfileEvent.setAvatarImage(image)),
                         ),
                         const SizedBox(height: 14),
                         Center(
@@ -249,12 +248,7 @@ class ProfileView extends StatelessWidget {
   }
 
   Future<bool> onImageRemoved() async {
-    print('on image removed');
-    return true;
-  }
-
-  Future<bool> onImageSelected(XFile image) async {
-    print('on image selected');
+    print('TBD implement on image removed');
     return true;
   }
 }
