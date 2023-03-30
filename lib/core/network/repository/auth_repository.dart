@@ -49,25 +49,34 @@ class AuthRepository {
         publicKey: userAuthData.publicKey.toString(),
       );
 
-      // TODO(gguij): Check if success, grab the user image from the service response
       _saveUserData(UserProfileData(accountName: accountName, userName: userName), userAuthData, false);
 
-      /// 2 - log into ppp service, upload name and image
-      print('create ppp account for $accountName');
+      /// TODO(gguij) Improve this UX process.
+      ///
+      /// The steps 2 - 5 below take a very long time, but could all be done in the background
+      /// I am also concerned that if one of these calls fail, we end up in a bad state.
+      /// 
+      /// As long as we successfully create an account, we are actually good to go
+      ///
+      /// To mitigate that, I would suggest we cache all this data, and have a retry mechanism that does it
+      /// all in the background. And tries again if it fails. 
 
+      print('create ppp account for $accountName');
       final amplifyService = GetIt.I.get<AmplifyService>();
 
+      /// 2 - sign up to ppp service
       final signupResult = await PPPSignUpUseCase(amplifyService).run(accountName);
-
       print("Signup success: ${signupResult.asValue?.value}");
 
+      /// 3 - log into ppp service - makes a blockchain transaction so this is really slow
       final loginResult = await ProfileLoginUseCase(amplifyService).run(accountName);
-
       print("Login success: ${loginResult.asValue?.value}");
 
+      /// 4 - initialize the profile with initial data - this can only be done when logged in.
       final initializeProfileResult =
           await InitializeProfileUseCase(amplifyService).run(accountName: accountName, name: userName);
 
+      /// 5 - Upload user image.
       if (image != null) {
         print('uploading image...');
         final setImageResult = await SetImageUseCase(amplifyService).run(image);
