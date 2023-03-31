@@ -45,6 +45,9 @@ import 'package:hypha_wallet/ui/onboarding/usecases/create_account_use_case.dart
 import 'package:hypha_wallet/ui/onboarding/usecases/find_available_account_use_case.dart';
 import 'package:hypha_wallet/ui/profile/interactor/profile_bloc.dart';
 import 'package:hypha_wallet/ui/profile/usecases/fetch_profile_use_case.dart';
+import 'package:hypha_wallet/ui/profile/usecases/set_bio_use_case.dart';
+import 'package:hypha_wallet/ui/profile/usecases/set_image_use_case.dart';
+import 'package:hypha_wallet/ui/profile/usecases/set_name_use_case.dart';
 import 'package:hypha_wallet/ui/settings/interactor/settings_bloc.dart';
 import 'package:hypha_wallet/ui/sign_transaction/interactor/sign_transaction_bloc.dart';
 import 'package:hypha_wallet/ui/sign_transaction/usecases/sign_transaction_use_case.dart';

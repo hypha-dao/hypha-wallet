@@ -17,4 +17,7 @@ void _registerUseCasesModule() {
       _getIt<HyphaSharedPrefs>(),
     ),
   );
+  _registerFactory(() => SetNameUseCase(_getIt<AmplifyService>()));
+  _registerFactory(() => SetImageUseCase(_getIt<AmplifyService>()));
+  _registerFactory(() => SetBioUseCase(_getIt<AmplifyService>()));
 }

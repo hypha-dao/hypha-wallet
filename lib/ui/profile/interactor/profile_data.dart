@@ -44,12 +44,23 @@ class ProfileData {
     return ProfileData(
       name: name,
       account: account,
-      avatarUrl: null,
+      avatarUrl: avatar,
       bio: bio,
       s3Identity: s3Identity,
       avatar: avatar,
     );
   }
+
+  ProfileData updateBio(String? bio) => ProfileData(
+        name: name,
+        account: account,
+        bio: bio,
+        avatar: avatar,
+        avatarUrl: avatarUrl,
+        bitCoinData: bitCoinData,
+        eosData: eosData,
+        s3Identity: s3Identity,
+      );
 
   String? getAvatarUrl() {
     return avatarUrl;
