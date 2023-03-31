@@ -25,42 +25,44 @@ class HyphaEditableAvatarImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.center,
-      children: [
-        HyphaAvatarImage(
-          imageRadius: imageRadius,
-          imageFromFile: imageFromFile,
-          imageFromUrl: imageFromUrl,
-          name: name,
-          onTap: () async {
-            await _selectImage();
-          },
-        ),
-        Positioned(
-          top: -10,
-          right: -10,
-          child: hasImage
-              ? IconButton(
-                  onPressed: () async {
-                    onImageRemoved?.call();
-                  },
-                  icon: const Icon(
-                    Icons.remove_circle,
-                    size: 32,
+    return Center(
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          HyphaAvatarImage(
+            imageRadius: imageRadius,
+            imageFromFile: imageFromFile,
+            imageFromUrl: imageFromUrl,
+            name: name,
+            onTap: () async {
+              await _selectImage();
+            },
+          ),
+          Positioned(
+            top: -10,
+            right: -10,
+            child: hasImage
+                ? IconButton(
+                    onPressed: () async {
+                      onImageRemoved?.call();
+                    },
+                    icon: const Icon(
+                      Icons.remove_circle,
+                      size: 32,
+                    ),
+                  )
+                : IconButton(
+                    onPressed: () async {
+                      await _selectImage();
+                    },
+                    icon: const Icon(
+                      Icons.add_circle,
+                      size: 32,
+                    ),
                   ),
-                )
-              : IconButton(
-                  onPressed: () async {
-                    await _selectImage();
-                  },
-                  icon: const Icon(
-                    Icons.add_circle,
-                    size: 32,
-                  ),
-                ),
-        )
-      ],
+          )
+        ],
+      ),
     );
   }
 

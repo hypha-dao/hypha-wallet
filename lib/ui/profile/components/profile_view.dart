@@ -80,6 +80,7 @@ class ProfileView extends StatelessWidget {
                               onTap: () async {
                                 showModalBottomSheet(
                                   isScrollControlled: true,
+                                  clipBehavior: Clip.hardEdge,
                                   context: context,
                                   builder: (modelContext) => FractionallySizedBox(
                                     heightFactor: UIConstants.bottomSheetHeightFraction,
@@ -283,6 +284,12 @@ class _EditBioBottomSheetState extends State<EditBioBottomSheet> {
   void dispose() {
     _controller.dispose();
     super.dispose();
+  }
+
+  @override
+  void initState() {
+    _controller.text = widget.profileBloc.state.profileData?.bio ?? '';
+    super.initState();
   }
 
   @override
