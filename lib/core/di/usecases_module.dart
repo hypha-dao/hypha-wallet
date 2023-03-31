@@ -20,4 +20,7 @@ void _registerUseCasesModule() {
   _registerFactory(() => SetNameUseCase(_getIt<AmplifyService>()));
   _registerFactory(() => SetImageUseCase(_getIt<AmplifyService>()));
   _registerFactory(() => SetBioUseCase(_getIt<AmplifyService>()));
+  _registerFactory(() => PPPSignUpUseCase(_getIt<AmplifyService>()));
+  _registerFactory(() => ProfileLoginUseCase(_getIt<AmplifyService>()));
+  _registerFactory(() => InitializeProfileUseCase(_getIt<AmplifyService>()));
 }

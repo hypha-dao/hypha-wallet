@@ -2,11 +2,9 @@
 
 import 'dart:async';
 
-import 'package:get_it/get_it.dart';
 import 'package:hypha_wallet/core/local/models/user_auth_data.dart';
 import 'package:hypha_wallet/core/local/services/secure_storage_service.dart';
 import 'package:hypha_wallet/core/logging/log_helper.dart';
-import 'package:hypha_wallet/core/network/api/aws_amplify/amplify_service.dart';
 import 'package:hypha_wallet/core/network/api/user_account_service.dart';
 import 'package:hypha_wallet/core/network/models/user_profile_data.dart';
 import 'package:hypha_wallet/core/shared_preferences/hypha_shared_prefs.dart';
@@ -23,9 +21,21 @@ class AuthRepository {
   final HyphaSharedPrefs _appSharedPrefs;
   final SecureStorageService _secureStorageService;
   final UserAccountService _userService;
+  final PPPSignUpUseCase _pPPSignUpUseCase;
+  final ProfileLoginUseCase _profileLoginUseCase;
+  final InitializeProfileUseCase _initializeProfileUseCase;
+  final SetImageUseCase _setImageUseCase;
   final _controller = StreamController<AuthenticationStatus>();
 
-  AuthRepository(this._appSharedPrefs, this._userService, this._secureStorageService);
+  AuthRepository(
+    this._appSharedPrefs,
+    this._userService,
+    this._secureStorageService,
+    this._pPPSignUpUseCase,
+    this._profileLoginUseCase,
+    this._initializeProfileUseCase,
+    this._setImageUseCase,
+  );
 
   Future<bool> createUserAccount({
     required String accountName,
@@ -55,31 +65,29 @@ class AuthRepository {
       ///
       /// The steps 2 - 5 below take a very long time, but could all be done in the background
       /// I am also concerned that if one of these calls fail, we end up in a bad state.
-      /// 
+      ///
       /// As long as we successfully create an account, we are actually good to go
       ///
       /// To mitigate that, I would suggest we cache all this data, and have a retry mechanism that does it
-      /// all in the background. And tries again if it fails. 
+      /// all in the background. And tries again if it fails.
 
       print('create ppp account for $accountName');
-      final amplifyService = GetIt.I.get<AmplifyService>();
 
       /// 2 - sign up to ppp service
-      final signupResult = await PPPSignUpUseCase(amplifyService).run(accountName);
+      final signupResult = await _pPPSignUpUseCase.run(accountName);
       print("Signup success: ${signupResult.asValue?.value}");
 
       /// 3 - log into ppp service - makes a blockchain transaction so this is really slow
-      final loginResult = await ProfileLoginUseCase(amplifyService).run(accountName);
+      final loginResult = await _profileLoginUseCase.run(accountName);
       print("Login success: ${loginResult.asValue?.value}");
 
       /// 4 - initialize the profile with initial data - this can only be done when logged in.
-      final initializeProfileResult =
-          await InitializeProfileUseCase(amplifyService).run(accountName: accountName, name: userName);
+      final initializeProfileResult = await _initializeProfileUseCase.run(accountName: accountName, name: userName);
 
       /// 5 - Upload user image.
       if (image != null) {
         print('uploading image...');
-        final setImageResult = await SetImageUseCase(amplifyService).run(image);
+        final setImageResult = await _setImageUseCase.run(image);
       }
 
       return true;
