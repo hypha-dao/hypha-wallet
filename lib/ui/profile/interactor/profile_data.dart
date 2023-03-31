@@ -52,22 +52,7 @@ class ProfileData {
   }
 
   String? getAvatarUrl() {
-    if (avatarUrl != null) {
-      return avatarUrl;
-    } else if (s3Identity != null && avatar != null) {
-      throw 'not yet implemented';
-      // TODO(NIK): the below doesn't work, this URL doesn't work
-      // to resolve an s3 avatar URL, some work is required.
-      // final s3BucketName = 'ppp-service-prod-attachmentsbucket-1qc5rzodik7x6';
-      // final userFolder = Uri.encodeComponent(s3Identity!);
-      // final folder = 'protected';
-      // final filename = avatarS3Key!;
-      // final url = 'https://$s3BucketName.s3.amazonaws.com/$folder/$userFolder/$filename';
-      // print('avatar URL = $url');
-      //return url;
-    } else {
-      return null;
-    }
+    return avatarUrl;
   }
 }
 
