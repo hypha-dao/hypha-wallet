@@ -167,6 +167,7 @@ class ProfileView extends StatelessWidget {
 
                                   // ignore: unused_local_variable
                                   final profileRes = await as.getProfile();
+                                  // ignore: unused_local_variable
                                   final profileService = GetIt.I.get<ProfileService>();
 
                                   print('avatar: ${profileRes.avatar}');

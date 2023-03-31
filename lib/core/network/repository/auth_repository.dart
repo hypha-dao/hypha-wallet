@@ -61,7 +61,7 @@ class AuthRepository {
 
       _saveUserData(UserProfileData(accountName: accountName, userName: userName), userAuthData, false);
 
-      /// TODO(gguij) Improve this UX process.
+      // TODO(gguij): Improve this UX process.
       ///
       /// The steps 2 - 5 below take a very long time, but could all be done in the background
       /// I am also concerned that if one of these calls fail, we end up in a bad state.
