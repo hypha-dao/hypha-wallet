@@ -55,7 +55,7 @@ class ProfileView extends StatelessWidget {
                           name: state.profileData?.name,
                           imageFromUrl: state.profileData?.getAvatarUrl(),
                           onImageRemoved: () {
-                            onImageRemoved();
+                            context.read<ProfileBloc>().add(ProfileEvent.onRemoveImageTapped());
                           },
                           onImageSelected: (image) async =>
                               context.read<ProfileBloc>().add(ProfileEvent.setAvatarImage(image)),
@@ -259,11 +259,6 @@ class ProfileView extends StatelessWidget {
         },
       ),
     );
-  }
-
-  Future<bool> onImageRemoved() async {
-    print('TBD implement on image removed');
-    return true;
   }
 }
 

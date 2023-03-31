@@ -10,6 +10,7 @@ import 'package:hypha_wallet/ui/architecture/interactor/page_states.dart';
 import 'package:hypha_wallet/ui/architecture/result/result.dart';
 import 'package:hypha_wallet/ui/profile/interactor/profile_data.dart';
 import 'package:hypha_wallet/ui/profile/usecases/fetch_profile_use_case.dart';
+import 'package:hypha_wallet/ui/profile/usecases/remove_avatar_use_case.dart';
 import 'package:hypha_wallet/ui/profile/usecases/set_bio_use_case.dart';
 import 'package:hypha_wallet/ui/profile/usecases/set_image_use_case.dart';
 import 'package:hypha_wallet/ui/profile/usecases/set_name_use_case.dart';
@@ -27,6 +28,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   final SetImageUseCase _setImageUseCase;
   final SetBioUseCase _setBioUseCase;
   final ErrorHandlerManager _errorHandlerManager;
+  final RemoveAvatarUseCase _removeAvatarUseCase;
 
   ProfileBloc(
     this._fetchProfileUseCase,
@@ -35,12 +37,14 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     this._setImageUseCase,
     this._setBioUseCase,
     this._errorHandlerManager,
+    this._removeAvatarUseCase,
   ) : super(const ProfileState()) {
     on<_Initial>(_initial);
     on<_OnRefresh>(_onRefresh);
     on<_SetName>(_setName);
     on<_SetBio>(_setBio);
     on<_SetAvatarImage>(_setAvatarImage);
+    on<_OnRemoveImageTapped>(_onRemoveImageTapped);
     on<_ClearPageCommand>((_, emit) => emit(state.copyWith(command: null)));
   }
 
@@ -100,7 +104,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   }
 
   FutureOr<void> _setAvatarImage(_SetAvatarImage event, Emitter<ProfileState> emit) async {
-    emit(state.copyWith(pageState: PageState.loading));
+    emit(state.copyWith(showUpdateImageLoading: true));
     final result = await _setImageUseCase.run(event.image);
 
     if (result.isValue) {
@@ -109,6 +113,21 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       // TODO(gguij): Error snack bar when set image fails
       print('Error setting avatar image: ${result.asError!.error}');
       emit(state.copyWith(pageState: PageState.failure));
+    }
+  }
+
+  FutureOr<void> _onRemoveImageTapped(_OnRemoveImageTapped event, Emitter<ProfileState> emit) async {
+    emit(state.copyWith(showUpdateImageLoading: true));
+    final result = await _removeAvatarUseCase.run(state.profileData!.account);
+    if (result.isValue) {
+      emit(
+        state.copyWith(
+          showUpdateImageLoading: false,
+          profileData: state.profileData?.removeAvatar(),
+        ),
+      );
+    } else {
+      _errorHandlerManager.handlerError(HyphaError.generic('Error Removing avatar, Please try again later'));
     }
   }
 }

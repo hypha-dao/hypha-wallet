@@ -24,9 +24,9 @@ class SetImageUseCase {
       final res = await _amplifyService.setPicture(imageFile, filename);
       return Result.value(true);
     } catch (error) {
-      print('SetBioUseCase error $error');
+      print('SetImageUseCase error $error');
       print(error);
-      return Result.error(HyphaError.api('SetBioUseCase error $error'));
+      return Result.error(HyphaError.api('SetImageUseCase error $error'));
     }
   }
 }

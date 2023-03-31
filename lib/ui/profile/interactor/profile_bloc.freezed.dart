@@ -288,6 +288,7 @@ mixin _$ProfileEvent {
     required TResult Function(String name) setName,
     required TResult Function(String bio) setBio,
     required TResult Function(XFile image) setAvatarImage,
+    required TResult Function() onRemoveImageTapped,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -298,6 +299,7 @@ mixin _$ProfileEvent {
     TResult? Function(String name)? setName,
     TResult? Function(String bio)? setBio,
     TResult? Function(XFile image)? setAvatarImage,
+    TResult? Function()? onRemoveImageTapped,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -308,6 +310,7 @@ mixin _$ProfileEvent {
     TResult Function(String name)? setName,
     TResult Function(String bio)? setBio,
     TResult Function(XFile image)? setAvatarImage,
+    TResult Function()? onRemoveImageTapped,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -319,6 +322,7 @@ mixin _$ProfileEvent {
     required TResult Function(_SetName value) setName,
     required TResult Function(_SetBio value) setBio,
     required TResult Function(_SetAvatarImage value) setAvatarImage,
+    required TResult Function(_OnRemoveImageTapped value) onRemoveImageTapped,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -329,6 +333,7 @@ mixin _$ProfileEvent {
     TResult? Function(_SetName value)? setName,
     TResult? Function(_SetBio value)? setBio,
     TResult? Function(_SetAvatarImage value)? setAvatarImage,
+    TResult? Function(_OnRemoveImageTapped value)? onRemoveImageTapped,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -339,6 +344,7 @@ mixin _$ProfileEvent {
     TResult Function(_SetName value)? setName,
     TResult Function(_SetBio value)? setBio,
     TResult Function(_SetAvatarImage value)? setAvatarImage,
+    TResult Function(_OnRemoveImageTapped value)? onRemoveImageTapped,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -405,6 +411,7 @@ class _$_Initial implements _Initial {
     required TResult Function(String name) setName,
     required TResult Function(String bio) setBio,
     required TResult Function(XFile image) setAvatarImage,
+    required TResult Function() onRemoveImageTapped,
   }) {
     return initial();
   }
@@ -418,6 +425,7 @@ class _$_Initial implements _Initial {
     TResult? Function(String name)? setName,
     TResult? Function(String bio)? setBio,
     TResult? Function(XFile image)? setAvatarImage,
+    TResult? Function()? onRemoveImageTapped,
   }) {
     return initial?.call();
   }
@@ -431,6 +439,7 @@ class _$_Initial implements _Initial {
     TResult Function(String name)? setName,
     TResult Function(String bio)? setBio,
     TResult Function(XFile image)? setAvatarImage,
+    TResult Function()? onRemoveImageTapped,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -448,6 +457,7 @@ class _$_Initial implements _Initial {
     required TResult Function(_SetName value) setName,
     required TResult Function(_SetBio value) setBio,
     required TResult Function(_SetAvatarImage value) setAvatarImage,
+    required TResult Function(_OnRemoveImageTapped value) onRemoveImageTapped,
   }) {
     return initial(this);
   }
@@ -461,6 +471,7 @@ class _$_Initial implements _Initial {
     TResult? Function(_SetName value)? setName,
     TResult? Function(_SetBio value)? setBio,
     TResult? Function(_SetAvatarImage value)? setAvatarImage,
+    TResult? Function(_OnRemoveImageTapped value)? onRemoveImageTapped,
   }) {
     return initial?.call(this);
   }
@@ -474,6 +485,7 @@ class _$_Initial implements _Initial {
     TResult Function(_SetName value)? setName,
     TResult Function(_SetBio value)? setBio,
     TResult Function(_SetAvatarImage value)? setAvatarImage,
+    TResult Function(_OnRemoveImageTapped value)? onRemoveImageTapped,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -531,6 +543,7 @@ class _$_OnRefresh implements _OnRefresh {
     required TResult Function(String name) setName,
     required TResult Function(String bio) setBio,
     required TResult Function(XFile image) setAvatarImage,
+    required TResult Function() onRemoveImageTapped,
   }) {
     return onRefresh();
   }
@@ -544,6 +557,7 @@ class _$_OnRefresh implements _OnRefresh {
     TResult? Function(String name)? setName,
     TResult? Function(String bio)? setBio,
     TResult? Function(XFile image)? setAvatarImage,
+    TResult? Function()? onRemoveImageTapped,
   }) {
     return onRefresh?.call();
   }
@@ -557,6 +571,7 @@ class _$_OnRefresh implements _OnRefresh {
     TResult Function(String name)? setName,
     TResult Function(String bio)? setBio,
     TResult Function(XFile image)? setAvatarImage,
+    TResult Function()? onRemoveImageTapped,
     required TResult orElse(),
   }) {
     if (onRefresh != null) {
@@ -574,6 +589,7 @@ class _$_OnRefresh implements _OnRefresh {
     required TResult Function(_SetName value) setName,
     required TResult Function(_SetBio value) setBio,
     required TResult Function(_SetAvatarImage value) setAvatarImage,
+    required TResult Function(_OnRemoveImageTapped value) onRemoveImageTapped,
   }) {
     return onRefresh(this);
   }
@@ -587,6 +603,7 @@ class _$_OnRefresh implements _OnRefresh {
     TResult? Function(_SetName value)? setName,
     TResult? Function(_SetBio value)? setBio,
     TResult? Function(_SetAvatarImage value)? setAvatarImage,
+    TResult? Function(_OnRemoveImageTapped value)? onRemoveImageTapped,
   }) {
     return onRefresh?.call(this);
   }
@@ -600,6 +617,7 @@ class _$_OnRefresh implements _OnRefresh {
     TResult Function(_SetName value)? setName,
     TResult Function(_SetBio value)? setBio,
     TResult Function(_SetAvatarImage value)? setAvatarImage,
+    TResult Function(_OnRemoveImageTapped value)? onRemoveImageTapped,
     required TResult orElse(),
   }) {
     if (onRefresh != null) {
@@ -657,6 +675,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     required TResult Function(String name) setName,
     required TResult Function(String bio) setBio,
     required TResult Function(XFile image) setAvatarImage,
+    required TResult Function() onRemoveImageTapped,
   }) {
     return clearPageCommand();
   }
@@ -670,6 +689,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     TResult? Function(String name)? setName,
     TResult? Function(String bio)? setBio,
     TResult? Function(XFile image)? setAvatarImage,
+    TResult? Function()? onRemoveImageTapped,
   }) {
     return clearPageCommand?.call();
   }
@@ -683,6 +703,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     TResult Function(String name)? setName,
     TResult Function(String bio)? setBio,
     TResult Function(XFile image)? setAvatarImage,
+    TResult Function()? onRemoveImageTapped,
     required TResult orElse(),
   }) {
     if (clearPageCommand != null) {
@@ -700,6 +721,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     required TResult Function(_SetName value) setName,
     required TResult Function(_SetBio value) setBio,
     required TResult Function(_SetAvatarImage value) setAvatarImage,
+    required TResult Function(_OnRemoveImageTapped value) onRemoveImageTapped,
   }) {
     return clearPageCommand(this);
   }
@@ -713,6 +735,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     TResult? Function(_SetName value)? setName,
     TResult? Function(_SetBio value)? setBio,
     TResult? Function(_SetAvatarImage value)? setAvatarImage,
+    TResult? Function(_OnRemoveImageTapped value)? onRemoveImageTapped,
   }) {
     return clearPageCommand?.call(this);
   }
@@ -726,6 +749,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     TResult Function(_SetName value)? setName,
     TResult Function(_SetBio value)? setBio,
     TResult Function(_SetAvatarImage value)? setAvatarImage,
+    TResult Function(_OnRemoveImageTapped value)? onRemoveImageTapped,
     required TResult orElse(),
   }) {
     if (clearPageCommand != null) {
@@ -808,6 +832,7 @@ class _$_SetName implements _SetName {
     required TResult Function(String name) setName,
     required TResult Function(String bio) setBio,
     required TResult Function(XFile image) setAvatarImage,
+    required TResult Function() onRemoveImageTapped,
   }) {
     return setName(name);
   }
@@ -821,6 +846,7 @@ class _$_SetName implements _SetName {
     TResult? Function(String name)? setName,
     TResult? Function(String bio)? setBio,
     TResult? Function(XFile image)? setAvatarImage,
+    TResult? Function()? onRemoveImageTapped,
   }) {
     return setName?.call(name);
   }
@@ -834,6 +860,7 @@ class _$_SetName implements _SetName {
     TResult Function(String name)? setName,
     TResult Function(String bio)? setBio,
     TResult Function(XFile image)? setAvatarImage,
+    TResult Function()? onRemoveImageTapped,
     required TResult orElse(),
   }) {
     if (setName != null) {
@@ -851,6 +878,7 @@ class _$_SetName implements _SetName {
     required TResult Function(_SetName value) setName,
     required TResult Function(_SetBio value) setBio,
     required TResult Function(_SetAvatarImage value) setAvatarImage,
+    required TResult Function(_OnRemoveImageTapped value) onRemoveImageTapped,
   }) {
     return setName(this);
   }
@@ -864,6 +892,7 @@ class _$_SetName implements _SetName {
     TResult? Function(_SetName value)? setName,
     TResult? Function(_SetBio value)? setBio,
     TResult? Function(_SetAvatarImage value)? setAvatarImage,
+    TResult? Function(_OnRemoveImageTapped value)? onRemoveImageTapped,
   }) {
     return setName?.call(this);
   }
@@ -877,6 +906,7 @@ class _$_SetName implements _SetName {
     TResult Function(_SetName value)? setName,
     TResult Function(_SetBio value)? setBio,
     TResult Function(_SetAvatarImage value)? setAvatarImage,
+    TResult Function(_OnRemoveImageTapped value)? onRemoveImageTapped,
     required TResult orElse(),
   }) {
     if (setName != null) {
@@ -963,6 +993,7 @@ class _$_SetBio implements _SetBio {
     required TResult Function(String name) setName,
     required TResult Function(String bio) setBio,
     required TResult Function(XFile image) setAvatarImage,
+    required TResult Function() onRemoveImageTapped,
   }) {
     return setBio(bio);
   }
@@ -976,6 +1007,7 @@ class _$_SetBio implements _SetBio {
     TResult? Function(String name)? setName,
     TResult? Function(String bio)? setBio,
     TResult? Function(XFile image)? setAvatarImage,
+    TResult? Function()? onRemoveImageTapped,
   }) {
     return setBio?.call(bio);
   }
@@ -989,6 +1021,7 @@ class _$_SetBio implements _SetBio {
     TResult Function(String name)? setName,
     TResult Function(String bio)? setBio,
     TResult Function(XFile image)? setAvatarImage,
+    TResult Function()? onRemoveImageTapped,
     required TResult orElse(),
   }) {
     if (setBio != null) {
@@ -1006,6 +1039,7 @@ class _$_SetBio implements _SetBio {
     required TResult Function(_SetName value) setName,
     required TResult Function(_SetBio value) setBio,
     required TResult Function(_SetAvatarImage value) setAvatarImage,
+    required TResult Function(_OnRemoveImageTapped value) onRemoveImageTapped,
   }) {
     return setBio(this);
   }
@@ -1019,6 +1053,7 @@ class _$_SetBio implements _SetBio {
     TResult? Function(_SetName value)? setName,
     TResult? Function(_SetBio value)? setBio,
     TResult? Function(_SetAvatarImage value)? setAvatarImage,
+    TResult? Function(_OnRemoveImageTapped value)? onRemoveImageTapped,
   }) {
     return setBio?.call(this);
   }
@@ -1032,6 +1067,7 @@ class _$_SetBio implements _SetBio {
     TResult Function(_SetName value)? setName,
     TResult Function(_SetBio value)? setBio,
     TResult Function(_SetAvatarImage value)? setAvatarImage,
+    TResult Function(_OnRemoveImageTapped value)? onRemoveImageTapped,
     required TResult orElse(),
   }) {
     if (setBio != null) {
@@ -1120,6 +1156,7 @@ class _$_SetAvatarImage implements _SetAvatarImage {
     required TResult Function(String name) setName,
     required TResult Function(String bio) setBio,
     required TResult Function(XFile image) setAvatarImage,
+    required TResult Function() onRemoveImageTapped,
   }) {
     return setAvatarImage(image);
   }
@@ -1133,6 +1170,7 @@ class _$_SetAvatarImage implements _SetAvatarImage {
     TResult? Function(String name)? setName,
     TResult? Function(String bio)? setBio,
     TResult? Function(XFile image)? setAvatarImage,
+    TResult? Function()? onRemoveImageTapped,
   }) {
     return setAvatarImage?.call(image);
   }
@@ -1146,6 +1184,7 @@ class _$_SetAvatarImage implements _SetAvatarImage {
     TResult Function(String name)? setName,
     TResult Function(String bio)? setBio,
     TResult Function(XFile image)? setAvatarImage,
+    TResult Function()? onRemoveImageTapped,
     required TResult orElse(),
   }) {
     if (setAvatarImage != null) {
@@ -1163,6 +1202,7 @@ class _$_SetAvatarImage implements _SetAvatarImage {
     required TResult Function(_SetName value) setName,
     required TResult Function(_SetBio value) setBio,
     required TResult Function(_SetAvatarImage value) setAvatarImage,
+    required TResult Function(_OnRemoveImageTapped value) onRemoveImageTapped,
   }) {
     return setAvatarImage(this);
   }
@@ -1176,6 +1216,7 @@ class _$_SetAvatarImage implements _SetAvatarImage {
     TResult? Function(_SetName value)? setName,
     TResult? Function(_SetBio value)? setBio,
     TResult? Function(_SetAvatarImage value)? setAvatarImage,
+    TResult? Function(_OnRemoveImageTapped value)? onRemoveImageTapped,
   }) {
     return setAvatarImage?.call(this);
   }
@@ -1189,6 +1230,7 @@ class _$_SetAvatarImage implements _SetAvatarImage {
     TResult Function(_SetName value)? setName,
     TResult Function(_SetBio value)? setBio,
     TResult Function(_SetAvatarImage value)? setAvatarImage,
+    TResult Function(_OnRemoveImageTapped value)? onRemoveImageTapped,
     required TResult orElse(),
   }) {
     if (setAvatarImage != null) {
@@ -1205,6 +1247,138 @@ abstract class _SetAvatarImage implements ProfileEvent {
   @JsonKey(ignore: true)
   _$$_SetAvatarImageCopyWith<_$_SetAvatarImage> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_OnRemoveImageTappedCopyWith<$Res> {
+  factory _$$_OnRemoveImageTappedCopyWith(_$_OnRemoveImageTapped value,
+          $Res Function(_$_OnRemoveImageTapped) then) =
+      __$$_OnRemoveImageTappedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_OnRemoveImageTappedCopyWithImpl<$Res>
+    extends _$ProfileEventCopyWithImpl<$Res, _$_OnRemoveImageTapped>
+    implements _$$_OnRemoveImageTappedCopyWith<$Res> {
+  __$$_OnRemoveImageTappedCopyWithImpl(_$_OnRemoveImageTapped _value,
+      $Res Function(_$_OnRemoveImageTapped) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_OnRemoveImageTapped implements _OnRemoveImageTapped {
+  const _$_OnRemoveImageTapped();
+
+  @override
+  String toString() {
+    return 'ProfileEvent.onRemoveImageTapped()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_OnRemoveImageTapped);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() onRefresh,
+    required TResult Function() clearPageCommand,
+    required TResult Function(String name) setName,
+    required TResult Function(String bio) setBio,
+    required TResult Function(XFile image) setAvatarImage,
+    required TResult Function() onRemoveImageTapped,
+  }) {
+    return onRemoveImageTapped();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? onRefresh,
+    TResult? Function()? clearPageCommand,
+    TResult? Function(String name)? setName,
+    TResult? Function(String bio)? setBio,
+    TResult? Function(XFile image)? setAvatarImage,
+    TResult? Function()? onRemoveImageTapped,
+  }) {
+    return onRemoveImageTapped?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? onRefresh,
+    TResult Function()? clearPageCommand,
+    TResult Function(String name)? setName,
+    TResult Function(String bio)? setBio,
+    TResult Function(XFile image)? setAvatarImage,
+    TResult Function()? onRemoveImageTapped,
+    required TResult orElse(),
+  }) {
+    if (onRemoveImageTapped != null) {
+      return onRemoveImageTapped();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_OnRefresh value) onRefresh,
+    required TResult Function(_ClearPageCommand value) clearPageCommand,
+    required TResult Function(_SetName value) setName,
+    required TResult Function(_SetBio value) setBio,
+    required TResult Function(_SetAvatarImage value) setAvatarImage,
+    required TResult Function(_OnRemoveImageTapped value) onRemoveImageTapped,
+  }) {
+    return onRemoveImageTapped(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_OnRefresh value)? onRefresh,
+    TResult? Function(_ClearPageCommand value)? clearPageCommand,
+    TResult? Function(_SetName value)? setName,
+    TResult? Function(_SetBio value)? setBio,
+    TResult? Function(_SetAvatarImage value)? setAvatarImage,
+    TResult? Function(_OnRemoveImageTapped value)? onRemoveImageTapped,
+  }) {
+    return onRemoveImageTapped?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_OnRefresh value)? onRefresh,
+    TResult Function(_ClearPageCommand value)? clearPageCommand,
+    TResult Function(_SetName value)? setName,
+    TResult Function(_SetBio value)? setBio,
+    TResult Function(_SetAvatarImage value)? setAvatarImage,
+    TResult Function(_OnRemoveImageTapped value)? onRemoveImageTapped,
+    required TResult orElse(),
+  }) {
+    if (onRemoveImageTapped != null) {
+      return onRemoveImageTapped(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _OnRemoveImageTapped implements ProfileEvent {
+  const factory _OnRemoveImageTapped() = _$_OnRemoveImageTapped;
 }
 
 /// @nodoc

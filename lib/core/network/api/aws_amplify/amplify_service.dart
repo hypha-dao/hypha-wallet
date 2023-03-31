@@ -226,6 +226,15 @@ class AmplifyService {
     });
   }
 
+  Future<dynamic> removeAvatar() async {
+    return register({
+      'publicData': {
+        'avatar': null,
+      },
+      'appData': {},
+    });
+  }
+
   Future<dynamic> setS3Identity(String s3Identity) async {
     return register({
       'publicData': {

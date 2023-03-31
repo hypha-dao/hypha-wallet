@@ -62,6 +62,17 @@ class ProfileData {
         s3Identity: s3Identity,
       );
 
+  ProfileData removeAvatar() => ProfileData(
+        name: name,
+        account: account,
+        bio: bio,
+        avatar: null,
+        avatarUrl: null,
+        bitCoinData: bitCoinData,
+        eosData: eosData,
+        s3Identity: s3Identity,
+      );
+
   String? getAvatarUrl() {
     return avatarUrl;
   }
