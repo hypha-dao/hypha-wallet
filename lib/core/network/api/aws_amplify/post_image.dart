@@ -81,7 +81,6 @@ Future<bool> postImage({
   final String _s3Endpoint = 'https://$s3Bucket.s3.amazonaws.com';
   final file = image;
 
-  //final stream = http.ByteStream(DelegatingStream.typed(file.openRead()));
   final stream = http.ByteStream(file.openRead())..cast();
 
   final length = await file.length();
