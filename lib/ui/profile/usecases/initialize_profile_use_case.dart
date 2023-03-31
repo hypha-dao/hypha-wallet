@@ -11,6 +11,7 @@ class InitializeProfileUseCase {
     try {
       if (_amplifyService.isConnected()) {
         final credentials = await _amplifyService.getCredentials();
+        // ignore: unused_local_variable
         final res = await _amplifyService.initializeProfile(name: name, s3Identity: credentials.userIdentityId!);
         return Result.value(true);
       } else {

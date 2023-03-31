@@ -5,6 +5,10 @@ void _registerRepositoriesModule() {
         _getIt<HyphaSharedPrefs>(),
         _getIt<UserAccountService>(),
         _getIt<SecureStorageService>(),
+        _getIt<PPPSignUpUseCase>(),
+        _getIt<ProfileLoginUseCase>(),
+        _getIt<InitializeProfileUseCase>(),
+        _getIt<SetImageUseCase>(),
       ));
   _registerLazySingleton(() => UserAccountRepository(userService: _getIt<UserAccountService>()));
 

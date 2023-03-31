@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hypha_wallet/core/extension/scope_functions.dart';
 import 'package:hypha_wallet/core/network/api/aws_amplify/amplify_service.dart';
@@ -16,6 +17,7 @@ import 'package:hypha_wallet/ui/profile/components/crypto_currency_widget.dart';
 import 'package:hypha_wallet/ui/profile/interactor/profile_bloc.dart';
 import 'package:hypha_wallet/ui/shared/hypha_body_widget.dart';
 import 'package:hypha_wallet/ui/shared/hypha_error_view.dart';
+import 'package:hypha_wallet/ui/shared/ui_constants.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ProfileView extends StatelessWidget {
@@ -76,9 +78,19 @@ class ProfileView extends StatelessWidget {
                             child: HyphaActionableCard(
                               trailer: const Icon(Icons.edit),
                               onTap: () async {
-                                print('EDIT Tapped');
+                                showModalBottomSheet(
+                                  isScrollControlled: true,
+                                  context: context,
+                                  builder: (modelContext) => FractionallySizedBox(
+                                    heightFactor: UIConstants.bottomSheetHeightFraction,
+                                    child: EditBioBottomSheet(profileBloc: BlocProvider.of<ProfileBloc>(context)),
+                                  ),
+                                  shape: const RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
+                                  ),
+                                );
                               },
-                              title: 'Bio',
+                              title: 'About you',
                               subtitle: state.profileData?.bio ?? '',
                             ),
                           ),
@@ -141,7 +153,7 @@ class ProfileView extends StatelessWidget {
                               }
                               if (state.profileData != null) {
                                 final success = await as.loginUser(state.profileData!.account);
-                                print("login res: $success");
+                                print('login res: $success');
                                 if (success) {
                                   // ignore: unused_local_variable
                                   final res = await as.getAuthUserAttributes();
@@ -150,11 +162,12 @@ class ProfileView extends StatelessWidget {
                                       print('attribute: ${attribute.name}: ${attribute.value}');
                                     }
                                   } else {
-                                    print("no user attributes.");
+                                    print('no user attributes.');
                                   }
 
                                   // ignore: unused_local_variable
                                   final profileRes = await as.getProfile();
+                                  // ignore: unused_local_variable
                                   final profileService = GetIt.I.get<ProfileService>();
 
                                   print('avatar: ${profileRes.avatar}');
@@ -250,5 +263,76 @@ class ProfileView extends StatelessWidget {
   Future<bool> onImageRemoved() async {
     print('TBD implement on image removed');
     return true;
+  }
+}
+
+class EditBioBottomSheet extends StatefulWidget {
+  final ProfileBloc profileBloc;
+
+  const EditBioBottomSheet({super.key, required this.profileBloc});
+
+  @override
+  State<EditBioBottomSheet> createState() => _EditBioBottomSheetState();
+}
+
+class _EditBioBottomSheetState extends State<EditBioBottomSheet> {
+  final TextEditingController _controller = TextEditingController();
+  bool showUpdateBioLoading = false;
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return HyphaPageBackground(
+      withGradient: true,
+      child: Padding(
+        padding: const EdgeInsets.all(24),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    Get.back(result: null);
+                  },
+                  icon: const Icon(Icons.close),
+                ),
+              ],
+            ),
+            const SizedBox(height: 50),
+            Text(
+              'Enter Bio',
+              style: Theme.of(context).textTheme.labelLarge,
+            ),
+            const SizedBox(height: 16),
+            TextField(
+              decoration: const InputDecoration(
+                labelText: 'Bio',
+                border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(8))),
+              ),
+              maxLines: 5,
+              autofocus: true,
+              controller: _controller,
+            ),
+            const SizedBox(height: 50),
+            HyphaAppButton(
+              title: 'submit',
+              isLoading: showUpdateBioLoading,
+              onPressed: () {
+                setState(() {
+                  showUpdateBioLoading = true;
+                });
+                widget.profileBloc.add(ProfileEvent.setBio(_controller.text));
+              },
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

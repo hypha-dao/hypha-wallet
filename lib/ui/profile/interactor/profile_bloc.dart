@@ -1,11 +1,9 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:get_it/get_it.dart';
+import 'package:hypha_wallet/core/error_handler/error_handler_manager.dart';
 import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
-import 'package:hypha_wallet/core/network/api/aws_amplify/amplify_service.dart';
 import 'package:hypha_wallet/core/network/models/user_profile_data.dart';
 import 'package:hypha_wallet/core/shared_preferences/hypha_shared_prefs.dart';
 import 'package:hypha_wallet/ui/architecture/interactor/page_states.dart';
@@ -25,13 +23,25 @@ part 'profile_state.dart';
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   final FetchProfileUseCase _fetchProfileUseCase;
   final HyphaSharedPrefs _appSharedPrefs;
+  final SetNameUseCase _setNameUseCase;
+  final SetImageUseCase _setImageUseCase;
+  final SetBioUseCase _setBioUseCase;
+  final ErrorHandlerManager _errorHandlerManager;
 
-  ProfileBloc(this._fetchProfileUseCase, this._appSharedPrefs) : super(const ProfileState()) {
+  ProfileBloc(
+    this._fetchProfileUseCase,
+    this._appSharedPrefs,
+    this._setNameUseCase,
+    this._setImageUseCase,
+    this._setBioUseCase,
+    this._errorHandlerManager,
+  ) : super(const ProfileState()) {
     on<_Initial>(_initial);
     on<_OnRefresh>(_onRefresh);
     on<_SetName>(_setName);
     on<_SetBio>(_setBio);
     on<_SetAvatarImage>(_setAvatarImage);
+    on<_ClearPageCommand>((_, emit) => emit(state.copyWith(command: null)));
   }
 
   Future<void> _initial(_Initial event, Emitter<ProfileState> emit) async {
@@ -61,7 +71,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
 
   FutureOr<void> _setName(_SetName event, Emitter<ProfileState> emit) async {
     emit(state.copyWith(pageState: PageState.loading));
-    final result = await SetNameUseCase(GetIt.I.get<AmplifyService>()).run(event.name);
+    final result = await _setNameUseCase.run(event.name);
     if (result.isValue) {
       emit(state.copyWith(pageState: PageState.success));
     } else {
@@ -71,19 +81,27 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   }
 
   FutureOr<void> _setBio(_SetBio event, Emitter<ProfileState> emit) async {
-    emit(state.copyWith(pageState: PageState.loading));
-    final result = await SetBioUseCase(GetIt.I.get<AmplifyService>()).run(event.bio);
+    emit(state.copyWith(showUpdateBioLoading: true));
+    final result = await _setBioUseCase.run(
+      SetBioUseCaseInput(accountName: state.profileData!.account, profileBio: event.bio),
+    );
     if (result.isValue) {
-      emit(state.copyWith(pageState: PageState.success));
+      emit(
+        state.copyWith(
+          command: const PageCommand.navigateBack(),
+          showUpdateBioLoading: false,
+          profileData: state.profileData?.updateBio(event.bio),
+        ),
+      );
     } else {
-      // TODO(gguij): Error snack bar when set bio fails
-      emit(state.copyWith(pageState: PageState.failure));
+      emit(state.copyWith(showUpdateBioLoading: false, command: const PageCommand.navigateBack()));
+      _errorHandlerManager.handlerError(HyphaError.generic('Error saving Bio, Please try again later'));
     }
   }
 
   FutureOr<void> _setAvatarImage(_SetAvatarImage event, Emitter<ProfileState> emit) async {
     emit(state.copyWith(pageState: PageState.loading));
-    final result = await SetImageUseCase(GetIt.I.get<AmplifyService>()).run(event.image);
+    final result = await _setImageUseCase.run(event.image);
 
     if (result.isValue) {
       emit(state.copyWith(pageState: PageState.success));

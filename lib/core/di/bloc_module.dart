@@ -18,7 +18,14 @@ void _registerBlocsModule() {
         _getIt<AuthRepository>(),
       ));
   _registerFactory(() => BottomNavigationBloc());
-  _registerFactory(() => ProfileBloc(_getIt<FetchProfileUseCase>(), _getIt<HyphaSharedPrefs>()));
+  _registerFactory(() => ProfileBloc(
+        _getIt<FetchProfileUseCase>(),
+        _getIt<HyphaSharedPrefs>(),
+        _getIt<SetNameUseCase>(),
+        _getIt<SetImageUseCase>(),
+        _getIt<SetBioUseCase>(),
+        _getIt<ErrorHandlerManager>(),
+      ));
   _registerFactoryWithParams<SignTransactionBloc, ScanQrCodeResultData, void>(
     (qrCodeData, _) => SignTransactionBloc(_getIt<SignTransactionUseCase>(), qrCodeData),
   );

@@ -19,32 +19,38 @@ mixin _$PageCommand {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() navigateToSuccess,
+    required TResult Function() navigateBack,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? navigateToSuccess,
+    TResult? Function()? navigateBack,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? navigateToSuccess,
+    TResult Function()? navigateBack,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_NavigateToSuccess value) navigateToSuccess,
+    required TResult Function(_NavigateBack value) navigateBack,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_NavigateToSuccess value)? navigateToSuccess,
+    TResult? Function(_NavigateBack value)? navigateBack,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_NavigateToSuccess value)? navigateToSuccess,
+    TResult Function(_NavigateBack value)? navigateBack,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -107,6 +113,7 @@ class _$_NavigateToSuccess implements _NavigateToSuccess {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() navigateToSuccess,
+    required TResult Function() navigateBack,
   }) {
     return navigateToSuccess();
   }
@@ -115,6 +122,7 @@ class _$_NavigateToSuccess implements _NavigateToSuccess {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? navigateToSuccess,
+    TResult? Function()? navigateBack,
   }) {
     return navigateToSuccess?.call();
   }
@@ -123,6 +131,7 @@ class _$_NavigateToSuccess implements _NavigateToSuccess {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? navigateToSuccess,
+    TResult Function()? navigateBack,
     required TResult orElse(),
   }) {
     if (navigateToSuccess != null) {
@@ -135,6 +144,7 @@ class _$_NavigateToSuccess implements _NavigateToSuccess {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_NavigateToSuccess value) navigateToSuccess,
+    required TResult Function(_NavigateBack value) navigateBack,
   }) {
     return navigateToSuccess(this);
   }
@@ -143,6 +153,7 @@ class _$_NavigateToSuccess implements _NavigateToSuccess {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_NavigateToSuccess value)? navigateToSuccess,
+    TResult? Function(_NavigateBack value)? navigateBack,
   }) {
     return navigateToSuccess?.call(this);
   }
@@ -151,6 +162,7 @@ class _$_NavigateToSuccess implements _NavigateToSuccess {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_NavigateToSuccess value)? navigateToSuccess,
+    TResult Function(_NavigateBack value)? navigateBack,
     required TResult orElse(),
   }) {
     if (navigateToSuccess != null) {
@@ -162,6 +174,108 @@ class _$_NavigateToSuccess implements _NavigateToSuccess {
 
 abstract class _NavigateToSuccess implements PageCommand {
   const factory _NavigateToSuccess() = _$_NavigateToSuccess;
+}
+
+/// @nodoc
+abstract class _$$_NavigateBackCopyWith<$Res> {
+  factory _$$_NavigateBackCopyWith(
+          _$_NavigateBack value, $Res Function(_$_NavigateBack) then) =
+      __$$_NavigateBackCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_NavigateBackCopyWithImpl<$Res>
+    extends _$PageCommandCopyWithImpl<$Res, _$_NavigateBack>
+    implements _$$_NavigateBackCopyWith<$Res> {
+  __$$_NavigateBackCopyWithImpl(
+      _$_NavigateBack _value, $Res Function(_$_NavigateBack) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_NavigateBack implements _NavigateBack {
+  const _$_NavigateBack();
+
+  @override
+  String toString() {
+    return 'PageCommand.navigateBack()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_NavigateBack);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() navigateToSuccess,
+    required TResult Function() navigateBack,
+  }) {
+    return navigateBack();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? navigateToSuccess,
+    TResult? Function()? navigateBack,
+  }) {
+    return navigateBack?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? navigateToSuccess,
+    TResult Function()? navigateBack,
+    required TResult orElse(),
+  }) {
+    if (navigateBack != null) {
+      return navigateBack();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_NavigateToSuccess value) navigateToSuccess,
+    required TResult Function(_NavigateBack value) navigateBack,
+  }) {
+    return navigateBack(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_NavigateToSuccess value)? navigateToSuccess,
+    TResult? Function(_NavigateBack value)? navigateBack,
+  }) {
+    return navigateBack?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_NavigateToSuccess value)? navigateToSuccess,
+    TResult Function(_NavigateBack value)? navigateBack,
+    required TResult orElse(),
+  }) {
+    if (navigateBack != null) {
+      return navigateBack(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _NavigateBack implements PageCommand {
+  const factory _NavigateBack() = _$_NavigateBack;
 }
 
 /// @nodoc
@@ -1098,6 +1212,9 @@ mixin _$ProfileState {
   PageState get pageState => throw _privateConstructorUsedError;
   PageCommand? get command => throw _privateConstructorUsedError;
   ProfileData? get profileData => throw _privateConstructorUsedError;
+  bool get showUpdateBioLoading => throw _privateConstructorUsedError;
+  bool get showUpdateImageLoading => throw _privateConstructorUsedError;
+  bool get showUpdateNameLoading => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ProfileStateCopyWith<ProfileState> get copyWith =>
@@ -1111,7 +1228,12 @@ abstract class $ProfileStateCopyWith<$Res> {
       _$ProfileStateCopyWithImpl<$Res, ProfileState>;
   @useResult
   $Res call(
-      {PageState pageState, PageCommand? command, ProfileData? profileData});
+      {PageState pageState,
+      PageCommand? command,
+      ProfileData? profileData,
+      bool showUpdateBioLoading,
+      bool showUpdateImageLoading,
+      bool showUpdateNameLoading});
 
   $PageCommandCopyWith<$Res>? get command;
 }
@@ -1132,6 +1254,9 @@ class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState>
     Object? pageState = null,
     Object? command = freezed,
     Object? profileData = freezed,
+    Object? showUpdateBioLoading = null,
+    Object? showUpdateImageLoading = null,
+    Object? showUpdateNameLoading = null,
   }) {
     return _then(_value.copyWith(
       pageState: null == pageState
@@ -1146,6 +1271,18 @@ class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState>
           ? _value.profileData
           : profileData // ignore: cast_nullable_to_non_nullable
               as ProfileData?,
+      showUpdateBioLoading: null == showUpdateBioLoading
+          ? _value.showUpdateBioLoading
+          : showUpdateBioLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      showUpdateImageLoading: null == showUpdateImageLoading
+          ? _value.showUpdateImageLoading
+          : showUpdateImageLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      showUpdateNameLoading: null == showUpdateNameLoading
+          ? _value.showUpdateNameLoading
+          : showUpdateNameLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 
@@ -1171,7 +1308,12 @@ abstract class _$$_ProfileStateCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {PageState pageState, PageCommand? command, ProfileData? profileData});
+      {PageState pageState,
+      PageCommand? command,
+      ProfileData? profileData,
+      bool showUpdateBioLoading,
+      bool showUpdateImageLoading,
+      bool showUpdateNameLoading});
 
   @override
   $PageCommandCopyWith<$Res>? get command;
@@ -1191,6 +1333,9 @@ class __$$_ProfileStateCopyWithImpl<$Res>
     Object? pageState = null,
     Object? command = freezed,
     Object? profileData = freezed,
+    Object? showUpdateBioLoading = null,
+    Object? showUpdateImageLoading = null,
+    Object? showUpdateNameLoading = null,
   }) {
     return _then(_$_ProfileState(
       pageState: null == pageState
@@ -1205,6 +1350,18 @@ class __$$_ProfileStateCopyWithImpl<$Res>
           ? _value.profileData
           : profileData // ignore: cast_nullable_to_non_nullable
               as ProfileData?,
+      showUpdateBioLoading: null == showUpdateBioLoading
+          ? _value.showUpdateBioLoading
+          : showUpdateBioLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      showUpdateImageLoading: null == showUpdateImageLoading
+          ? _value.showUpdateImageLoading
+          : showUpdateImageLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      showUpdateNameLoading: null == showUpdateNameLoading
+          ? _value.showUpdateNameLoading
+          : showUpdateNameLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -1213,7 +1370,12 @@ class __$$_ProfileStateCopyWithImpl<$Res>
 
 class _$_ProfileState extends _ProfileState {
   const _$_ProfileState(
-      {this.pageState = PageState.initial, this.command, this.profileData})
+      {this.pageState = PageState.initial,
+      this.command,
+      this.profileData,
+      this.showUpdateBioLoading = false,
+      this.showUpdateImageLoading = false,
+      this.showUpdateNameLoading = false})
       : super._();
 
   @override
@@ -1223,10 +1385,19 @@ class _$_ProfileState extends _ProfileState {
   final PageCommand? command;
   @override
   final ProfileData? profileData;
+  @override
+  @JsonKey()
+  final bool showUpdateBioLoading;
+  @override
+  @JsonKey()
+  final bool showUpdateImageLoading;
+  @override
+  @JsonKey()
+  final bool showUpdateNameLoading;
 
   @override
   String toString() {
-    return 'ProfileState(pageState: $pageState, command: $command, profileData: $profileData)';
+    return 'ProfileState(pageState: $pageState, command: $command, profileData: $profileData, showUpdateBioLoading: $showUpdateBioLoading, showUpdateImageLoading: $showUpdateImageLoading, showUpdateNameLoading: $showUpdateNameLoading)';
   }
 
   @override
@@ -1238,11 +1409,18 @@ class _$_ProfileState extends _ProfileState {
                 other.pageState == pageState) &&
             (identical(other.command, command) || other.command == command) &&
             (identical(other.profileData, profileData) ||
-                other.profileData == profileData));
+                other.profileData == profileData) &&
+            (identical(other.showUpdateBioLoading, showUpdateBioLoading) ||
+                other.showUpdateBioLoading == showUpdateBioLoading) &&
+            (identical(other.showUpdateImageLoading, showUpdateImageLoading) ||
+                other.showUpdateImageLoading == showUpdateImageLoading) &&
+            (identical(other.showUpdateNameLoading, showUpdateNameLoading) ||
+                other.showUpdateNameLoading == showUpdateNameLoading));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, pageState, command, profileData);
+  int get hashCode => Object.hash(runtimeType, pageState, command, profileData,
+      showUpdateBioLoading, showUpdateImageLoading, showUpdateNameLoading);
 
   @JsonKey(ignore: true)
   @override
@@ -1255,7 +1433,10 @@ abstract class _ProfileState extends ProfileState {
   const factory _ProfileState(
       {final PageState pageState,
       final PageCommand? command,
-      final ProfileData? profileData}) = _$_ProfileState;
+      final ProfileData? profileData,
+      final bool showUpdateBioLoading,
+      final bool showUpdateImageLoading,
+      final bool showUpdateNameLoading}) = _$_ProfileState;
   const _ProfileState._() : super._();
 
   @override
@@ -1264,6 +1445,12 @@ abstract class _ProfileState extends ProfileState {
   PageCommand? get command;
   @override
   ProfileData? get profileData;
+  @override
+  bool get showUpdateBioLoading;
+  @override
+  bool get showUpdateImageLoading;
+  @override
+  bool get showUpdateNameLoading;
   @override
   @JsonKey(ignore: true)
   _$$_ProfileStateCopyWith<_$_ProfileState> get copyWith =>
