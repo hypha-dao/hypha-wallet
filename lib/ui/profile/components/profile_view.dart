@@ -277,6 +277,7 @@ class EditBioBottomSheet extends StatefulWidget {
 
 class _EditBioBottomSheetState extends State<EditBioBottomSheet> {
   final TextEditingController _controller = TextEditingController();
+  bool showUpdateBioLoading = false;
 
   @override
   void dispose() {
@@ -319,20 +320,16 @@ class _EditBioBottomSheetState extends State<EditBioBottomSheet> {
               controller: _controller,
             ),
             const SizedBox(height: 50),
-            BlocProvider(
-              create: (context) => widget.profileBloc,
-              child: BlocBuilder<ProfileBloc, ProfileState>(
-                builder: (context, state) {
-                  return HyphaAppButton(
-                    title: 'submit',
-                    isLoading: state.showUpdateBioLoading,
-                    onPressed: () {
-                      widget.profileBloc.add(ProfileEvent.setBio(_controller.text));
-                    },
-                  );
-                },
-              ),
-            )
+            HyphaAppButton(
+              title: 'submit',
+              isLoading: showUpdateBioLoading,
+              onPressed: () {
+                setState(() {
+                  showUpdateBioLoading = true;
+                });
+                widget.profileBloc.add(ProfileEvent.setBio(_controller.text));
+              },
+            ),
           ],
         ),
       ),

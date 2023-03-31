@@ -41,6 +41,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     on<_SetName>(_setName);
     on<_SetBio>(_setBio);
     on<_SetAvatarImage>(_setAvatarImage);
+    on<_ClearPageCommand>((_, emit) => emit(state.copyWith(command: null)));
   }
 
   Future<void> _initial(_Initial event, Emitter<ProfileState> emit) async {
@@ -81,7 +82,9 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
 
   FutureOr<void> _setBio(_SetBio event, Emitter<ProfileState> emit) async {
     emit(state.copyWith(showUpdateBioLoading: true));
-    final result = await _setBioUseCase.run(event.bio);
+    final result = await _setBioUseCase.run(
+      SetBioUseCaseInput(accountName: state.profileData!.account, profileBio: event.bio),
+    );
     if (result.isValue) {
       emit(
         state.copyWith(
@@ -91,7 +94,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
         ),
       );
     } else {
-      emit(state.copyWith(showUpdateBioLoading: false));
+      emit(state.copyWith(showUpdateBioLoading: false, command: const PageCommand.navigateBack()));
       _errorHandlerManager.handlerError(HyphaError.generic('Error saving Bio, Please try again later'));
     }
   }
