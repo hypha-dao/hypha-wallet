@@ -28,4 +28,26 @@ class ProfileService extends NetworkingManager {
       return Result.error(HyphaError(type: HyphaErrorType.api, message: 'server error $error'));
     }
   }
+
+  ///
+  /// This method retrieves a URL to load an image from the S3 bucket
+  /// Uses custom access backend.
+  ///
+  Future<Result<String, HyphaError>> getImageUrl(String imageName, String s3Identity) async {
+    final url =
+        '${_remoteConfigService.profileServiceEndpoint}${Endpoints.pppGetImageUrl}/${Uri.encodeComponent(s3Identity)}/${Uri.encodeComponent(imageName)}';
+    try {
+      final response = await get(url);
+      if (response.statusCode == 200) {
+        return Result.value(response.toString());
+      } else {
+        print('getImageUrl status error: ${response.statusCode} ${response.statusMessage}');
+        return Result.error(HyphaError(type: HyphaErrorType.api, message: 'server error ${response.statusMessage}'));
+      }
+    } catch (error) {
+      // note: 500 status on get throws an error
+      print('getImageUrl error: $error');
+      return Result.error(HyphaError(type: HyphaErrorType.api, message: 'server error $error'));
+    }
+  }
 }

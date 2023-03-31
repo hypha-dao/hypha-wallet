@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hypha_wallet/app.dart';
 import 'package:hypha_wallet/core/logging/log_helper.dart';
 
 /// Custom [BlocObserver] which observes all bloc and cubit instances.
@@ -29,13 +30,13 @@ class DebugBlocObserver extends BlocObserver {
   @override
   void onEvent(Bloc bloc, Object? event) {
     super.onEvent(bloc, event);
-    LogHelper.d(event.toString());
+    if (!kLogQuietMode) LogHelper.d(event.toString());
   }
 
   @override
   void onTransition(Bloc bloc, Transition transition) {
     super.onTransition(bloc, transition);
-    LogHelper.d(transition.toString());
+    if (!kLogQuietMode) LogHelper.d(transition.toString());
   }
 
   @override

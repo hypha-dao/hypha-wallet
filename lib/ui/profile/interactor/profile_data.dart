@@ -1,32 +1,58 @@
 class ProfileData {
-  final String? image;
+  final String? avatarUrl;
   final String? name;
   final String account;
   final String? bio;
   final CryptoAccountData? bitCoinData;
   final CryptoAccountData? eosData;
+  final String? s3Identity;
+  final String? avatar;
 
   ProfileData({
-    this.image,
     required this.name,
     required this.account,
+    this.avatarUrl,
     this.bio,
     this.bitCoinData,
     this.eosData,
+    this.s3Identity,
+    this.avatar,
   });
 
   factory ProfileData.fromJson(Map<String, dynamic> json) {
     final publicData = json['publicData'];
     final name = publicData['name'];
     final account = json['eosAccount'];
-    final image = json['avatarUrl'];
+    final avatarUrl = json['avatarUrl'];
+    final bio = publicData['bio'];
+    print('url: $avatarUrl');
+    return ProfileData(
+      name: name,
+      account: account,
+      avatarUrl: avatarUrl,
+      bio: bio,
+    );
+  }
+
+  factory ProfileData.fromPPPDataJson(Map<String, dynamic> json) {
+    final account = json['eosAccount'];
+    final publicData = json['publicData'];
+    final avatar = publicData['avatar'];
+    final s3Identity = publicData['s3Identity'];
+    final name = publicData['name'];
     final bio = publicData['bio'];
     return ProfileData(
       name: name,
       account: account,
-      image: image,
+      avatarUrl: null,
       bio: bio,
+      s3Identity: s3Identity,
+      avatar: avatar,
     );
+  }
+
+  String? getAvatarUrl() {
+    return avatarUrl;
   }
 }
 

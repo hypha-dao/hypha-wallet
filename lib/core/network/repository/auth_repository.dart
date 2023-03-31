@@ -1,14 +1,20 @@
-// ignore_for_file: prefer_single_quotes, unnecessary_brace_in_string_interps
+// ignore_for_file: prefer_single_quotes, unnecessary_brace_in_string_interps, unused_local_variable
 
 import 'dart:async';
 
+import 'package:get_it/get_it.dart';
 import 'package:hypha_wallet/core/local/models/user_auth_data.dart';
 import 'package:hypha_wallet/core/local/services/secure_storage_service.dart';
 import 'package:hypha_wallet/core/logging/log_helper.dart';
+import 'package:hypha_wallet/core/network/api/aws_amplify/amplify_service.dart';
 import 'package:hypha_wallet/core/network/api/user_account_service.dart';
 import 'package:hypha_wallet/core/network/models/user_profile_data.dart';
 import 'package:hypha_wallet/core/shared_preferences/hypha_shared_prefs.dart';
 import 'package:hypha_wallet/ui/blocs/deeplink/deeplink_bloc.dart';
+import 'package:hypha_wallet/ui/profile/usecases/initialize_profile_use_case.dart';
+import 'package:hypha_wallet/ui/profile/usecases/ppp_sign_up_use_case.dart';
+import 'package:hypha_wallet/ui/profile/usecases/profile_login_use_case.dart';
+import 'package:hypha_wallet/ui/profile/usecases/set_image_use_case.dart';
 import 'package:image_picker/image_picker.dart';
 
 enum AuthenticationStatus { unknown, authenticated, unauthenticated }
@@ -36,7 +42,6 @@ class AuthRepository {
       // print("network: ${inviteLinkData.chain}");
       // print("accountname: ${accountName}");
 
-      // ignore: unused_local_variable
       final response = await _userService.createUserAccount(
         code: inviteLinkData.code,
         network: inviteLinkData.chain,
@@ -44,11 +49,39 @@ class AuthRepository {
         publicKey: userAuthData.publicKey.toString(),
       );
 
-      /// 2 - log into ppp service, upload name and image
-      /// [TBD]
-
-      // TODO(gguij): Check if success, grab the user image from the service response
       _saveUserData(UserProfileData(accountName: accountName, userName: userName), userAuthData, false);
+
+      /// TODO(gguij) Improve this UX process.
+      ///
+      /// The steps 2 - 5 below take a very long time, but could all be done in the background
+      /// I am also concerned that if one of these calls fail, we end up in a bad state.
+      /// 
+      /// As long as we successfully create an account, we are actually good to go
+      ///
+      /// To mitigate that, I would suggest we cache all this data, and have a retry mechanism that does it
+      /// all in the background. And tries again if it fails. 
+
+      print('create ppp account for $accountName');
+      final amplifyService = GetIt.I.get<AmplifyService>();
+
+      /// 2 - sign up to ppp service
+      final signupResult = await PPPSignUpUseCase(amplifyService).run(accountName);
+      print("Signup success: ${signupResult.asValue?.value}");
+
+      /// 3 - log into ppp service - makes a blockchain transaction so this is really slow
+      final loginResult = await ProfileLoginUseCase(amplifyService).run(accountName);
+      print("Login success: ${loginResult.asValue?.value}");
+
+      /// 4 - initialize the profile with initial data - this can only be done when logged in.
+      final initializeProfileResult =
+          await InitializeProfileUseCase(amplifyService).run(accountName: accountName, name: userName);
+
+      /// 5 - Upload user image.
+      if (image != null) {
+        print('uploading image...');
+        final setImageResult = await SetImageUseCase(amplifyService).run(image);
+      }
+
       return true;
     } catch (e) {
       print('Error creating account $e');

@@ -22,6 +22,30 @@ class EOSService {
     );
   }
 
+  Future<Result<dynamic>> loginWithCode({
+    required String accountName,
+    required String loginCode,
+    required Networks network,
+  }) async {
+    final contractName = remoteConfigService.loginContract(network: network);
+    final actionName = remoteConfigService.loginAction(network: network);
+    final loginTransaction = EOSTransaction.fromAction(
+      account: contractName,
+      actionName: actionName,
+      data: {
+        'account_name': accountName,
+        'login_code': loginCode,
+      },
+      authorization: [
+        Authorization()
+          ..actor = accountName
+          ..permission = 'active'
+      ],
+      network: network,
+    );
+    return sendTransaction(eosTransaction: loginTransaction, accountName: accountName, network: network);
+  }
+
   Future<Result<dynamic>> sendTransaction({
     required EOSTransaction eosTransaction,
     required String accountName,

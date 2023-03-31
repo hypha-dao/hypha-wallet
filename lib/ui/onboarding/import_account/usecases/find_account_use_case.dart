@@ -57,7 +57,7 @@ class FindAccountsUseCase extends InputUseCase<Result<Iterable<UserProfileData>,
           wtf.add(UserProfileData(
             accountName: profileData.account,
             userName: profileData.name,
-            userImage: profileData.image,
+            userImage: profileData.getAvatarUrl(),
             bio: profileData.bio,
           ));
         } else {

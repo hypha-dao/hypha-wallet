@@ -2,8 +2,8 @@ part of 'di_setup.dart';
 
 Future<void> _registerServicesModule() async {
   // Remote config service w/ endpoint URLs etc
-  final rc = await RemoteConfigService.initialized();
-  _registerLazySingleton(() => rc);
+  final remoteConfigService = await RemoteConfigService.initialized();
+  _registerLazySingleton(() => remoteConfigService);
 
   /// DIO
   _registerLazySingleton(() => Dio());
@@ -21,6 +21,9 @@ Future<void> _registerServicesModule() async {
   _registerLazySingleton(() => CryptoAuthService());
 
   _registerLazySingleton(() => EOSService(_getIt<SecureStorageService>(), _getIt<RemoteConfigService>()));
+
+  final amplifyService = AmplifyService(_getIt<EOSService>());
+  _registerLazySingleton(() => amplifyService);
 
   _registerLazySingleton<PermissionService>(() => PermissionServiceImplementation());
 

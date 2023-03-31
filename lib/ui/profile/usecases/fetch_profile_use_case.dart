@@ -23,7 +23,7 @@ class FetchProfileUseCase extends InputUseCase<Result<ProfileData, HyphaError>, 
           accountName: accountName,
           userName: profile.name,
           bio: profile.bio,
-          userImage: profile.image,
+          userImage: profile.getAvatarUrl(),
         ),
       );
     }
