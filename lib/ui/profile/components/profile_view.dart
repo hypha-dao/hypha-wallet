@@ -55,7 +55,7 @@ class ProfileView extends StatelessWidget {
                           name: state.profileData?.name,
                           imageFromUrl: state.profileData?.getAvatarUrl(),
                           onImageRemoved: () {
-                            context.read<ProfileBloc>().add(ProfileEvent.onRemoveImageTapped());
+                            context.read<ProfileBloc>().add(const ProfileEvent.onRemoveImageTapped());
                           },
                           onImageSelected: (image) async =>
                               context.read<ProfileBloc>().add(ProfileEvent.setAvatarImage(image)),
