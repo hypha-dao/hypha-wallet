@@ -8,4 +8,5 @@ class ProfileEvent with _$ProfileEvent {
   const factory ProfileEvent.setName(String name) = _SetName;
   const factory ProfileEvent.setBio(String bio) = _SetBio;
   const factory ProfileEvent.setAvatarImage(XFile image) = _SetAvatarImage;
+  const factory ProfileEvent.onRemoveImageTapped() = _OnRemoveImageTapped;
 }

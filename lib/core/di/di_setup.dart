@@ -48,6 +48,7 @@ import 'package:hypha_wallet/ui/profile/usecases/fetch_profile_use_case.dart';
 import 'package:hypha_wallet/ui/profile/usecases/initialize_profile_use_case.dart';
 import 'package:hypha_wallet/ui/profile/usecases/ppp_sign_up_use_case.dart';
 import 'package:hypha_wallet/ui/profile/usecases/profile_login_use_case.dart';
+import 'package:hypha_wallet/ui/profile/usecases/remove_avatar_use_case.dart';
 import 'package:hypha_wallet/ui/profile/usecases/set_bio_use_case.dart';
 import 'package:hypha_wallet/ui/profile/usecases/set_image_use_case.dart';
 import 'package:hypha_wallet/ui/profile/usecases/set_name_use_case.dart';

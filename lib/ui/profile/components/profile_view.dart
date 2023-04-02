@@ -55,7 +55,7 @@ class ProfileView extends StatelessWidget {
                           name: state.profileData?.name,
                           imageFromUrl: state.profileData?.getAvatarUrl(),
                           onImageRemoved: () {
-                            onImageRemoved();
+                            context.read<ProfileBloc>().add(const ProfileEvent.onRemoveImageTapped());
                           },
                           onImageSelected: (image) async =>
                               context.read<ProfileBloc>().add(ProfileEvent.setAvatarImage(image)),
@@ -80,6 +80,7 @@ class ProfileView extends StatelessWidget {
                               onTap: () async {
                                 showModalBottomSheet(
                                   isScrollControlled: true,
+                                  clipBehavior: Clip.hardEdge,
                                   context: context,
                                   builder: (modelContext) => FractionallySizedBox(
                                     heightFactor: UIConstants.bottomSheetHeightFraction,
@@ -259,11 +260,6 @@ class ProfileView extends StatelessWidget {
       ),
     );
   }
-
-  Future<bool> onImageRemoved() async {
-    print('TBD implement on image removed');
-    return true;
-  }
 }
 
 class EditBioBottomSheet extends StatefulWidget {
@@ -283,6 +279,12 @@ class _EditBioBottomSheetState extends State<EditBioBottomSheet> {
   void dispose() {
     _controller.dispose();
     super.dispose();
+  }
+
+  @override
+  void initState() {
+    _controller.text = widget.profileBloc.state.profileData?.bio ?? '';
+    super.initState();
   }
 
   @override

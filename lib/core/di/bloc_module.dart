@@ -25,6 +25,7 @@ void _registerBlocsModule() {
         _getIt<SetImageUseCase>(),
         _getIt<SetBioUseCase>(),
         _getIt<ErrorHandlerManager>(),
+        _getIt<RemoveAvatarUseCase>(),
       ));
   _registerFactoryWithParams<SignTransactionBloc, ScanQrCodeResultData, void>(
     (qrCodeData, _) => SignTransactionBloc(_getIt<SignTransactionUseCase>(), qrCodeData),
