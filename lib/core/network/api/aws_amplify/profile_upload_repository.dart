@@ -5,6 +5,13 @@ import 'package:hypha_wallet/ui/profile/usecases/ppp_sign_up_use_case.dart';
 import 'package:hypha_wallet/ui/profile/usecases/profile_login_use_case.dart';
 import 'package:hypha_wallet/ui/profile/usecases/set_image_use_case.dart';
 
+///
+/// Background upload of profile data
+/// Tries a total of 5 times to upload initial data
+/// Stores data in preferences
+///
+/// Allows continuation of upload when upload failed
+///
 class ProfileUploadRepository {
   final PPPSignUpUseCase _pPPSignUpUseCase;
   final ProfileLoginUseCase _profileLoginUseCase;
@@ -14,6 +21,7 @@ class ProfileUploadRepository {
   final HyphaSharedPrefs prefs;
   final maxTries = 5;
   var isProcessing = false;
+
   ProfileUploadRepository(
     this.prefs,
     this._pPPSignUpUseCase,
@@ -22,22 +30,37 @@ class ProfileUploadRepository {
     this._setImageUseCase,
   );
 
+  ///
+  /// Schedule a new data set for upload
+  /// - call start() after this
+  ///
   void scheduleUpload({required String accountName, required String userName, String? fileName}) async {
     final uploader = SignupData(accountName: accountName, userName: userName, fileName: fileName);
     prefs.setSignupDataUploader(uploader);
   }
 
+  ///
+  /// Whether or not there's failed upload
+  ///
+  Future<bool> pendingUpload() async {
+    final complete = await isComplete();
+    return isProcessing == false && complete == false;
+  }
+
+  ///
+  /// Start upload, if there's anything to upload
+  ///
   Future<void> start({int tries = 0}) async {
-    if (tries >= maxTries) {
-      print('permanent failure uploading: $tries');
-      isProcessing = false;
-      return;
-    }
     isProcessing = true;
     final signupData = await prefs.getSignupDataUploader();
     if (signupData != null) {
+      if (tries >= maxTries) {
+        print('permanent failure uploading: $tries');
+        isProcessing = false;
+        return;
+      }
       try {
-        await upload(signupData);
+        await _upload(signupData);
       } catch (error) {
         print('upload error - will try again $error');
       } finally {
@@ -54,7 +77,7 @@ class ProfileUploadRepository {
     }
   }
 
-  Future<bool> upload(SignupData data) async {
+  Future<bool> _upload(SignupData data) async {
     while (data.step < data.numSteps) {
       switch (data.step) {
         case 0:
@@ -90,6 +113,9 @@ class ProfileUploadRepository {
     return true;
   }
 
+  ///
+  /// returns true of the upload has completed successfully or has failed
+  ///
   Future<bool> isComplete() async {
     final signupData = await prefs.getSignupDataUploader();
     return signupData == null || signupData.isComplete();
@@ -120,14 +146,12 @@ class SignupData {
     final userName = jsonMap['userName'];
     final fileName = jsonMap['fileName'];
     final step = jsonMap['step'];
-    final stateMachine = SignupData(
+    return SignupData(
       accountName: accountName,
       userName: userName,
       fileName: fileName,
       step: step,
     );
-    stateMachine.step = step;
-    return stateMachine;
   }
 
   String toJsonString() {
