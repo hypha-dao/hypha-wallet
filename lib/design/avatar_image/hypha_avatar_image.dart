@@ -55,7 +55,7 @@ class HyphaAvatarImage extends StatelessWidget {
             name!.characters.first.toUpperCase(),
             style: context.hyphaTextTheme.regular.copyWith(
               color: HyphaColors.white,
-              fontSize: 36,
+              fontSize: imageRadius,
             ),
             textAlign: TextAlign.center,
           ),

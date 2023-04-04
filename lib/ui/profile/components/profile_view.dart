@@ -12,6 +12,7 @@ import 'package:hypha_wallet/design/buttons/button_type.dart';
 import 'package:hypha_wallet/design/buttons/hypha_app_button.dart';
 import 'package:hypha_wallet/design/cards/hypha_actionable_card.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
+import 'package:hypha_wallet/design/progress_indicator/hypha_partial_progress_indicator.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 import 'package:hypha_wallet/ui/profile/components/crypto_currency_widget.dart';
 import 'package:hypha_wallet/ui/profile/interactor/profile_bloc.dart';
@@ -50,15 +51,19 @@ class ProfileView extends StatelessWidget {
                       physics: const AlwaysScrollableScrollPhysics(),
                       children: [
                         const SizedBox(height: 80),
-                        HyphaEditableAvatarImage(
-                          imageRadius: 50,
-                          name: state.profileData?.name,
-                          imageFromUrl: state.profileData?.getAvatarUrl(),
-                          onImageRemoved: () {
-                            context.read<ProfileBloc>().add(const ProfileEvent.onRemoveImageTapped());
-                          },
-                          onImageSelected: (image) async =>
-                              context.read<ProfileBloc>().add(ProfileEvent.setAvatarImage(image)),
+                        HyphaPartialProgressIndicator(
+                          withBackground: false,
+                          isLoading: state.showUpdateImageLoading,
+                          child: HyphaEditableAvatarImage(
+                            imageRadius: 50,
+                            name: state.profileData?.name,
+                            imageFromUrl: state.profileData?.getAvatarUrl(),
+                            onImageRemoved: () {
+                              context.read<ProfileBloc>().add(const ProfileEvent.onRemoveImageTapped());
+                            },
+                            onImageSelected: (image) async =>
+                                context.read<ProfileBloc>().add(ProfileEvent.setAvatarImage(image)),
+                          ),
                         ),
                         const SizedBox(height: 14),
                         Center(
