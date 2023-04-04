@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:hypha_wallet/core/shared_preferences/hypha_shared_prefs.dart';
+import 'package:hypha_wallet/ui/architecture/result/result.dart';
 import 'package:hypha_wallet/ui/profile/usecases/initialize_profile_use_case.dart';
 import 'package:hypha_wallet/ui/profile/usecases/ppp_sign_up_use_case.dart';
 import 'package:hypha_wallet/ui/profile/usecases/profile_login_use_case.dart';
@@ -17,10 +18,11 @@ class ProfileUploadRepository {
   final ProfileLoginUseCase _profileLoginUseCase;
   final InitializeProfileUseCase _initializeProfileUseCase;
   final SetImageUseCase _setImageUseCase;
-
   final HyphaSharedPrefs prefs;
-  final maxTries = 5;
-  var isProcessing = false;
+
+  bool isProcessing = false;
+  int maxTries = 5;
+  Duration retryDelay = const Duration(seconds: 20);
 
   ProfileUploadRepository(
     this.prefs,
@@ -34,9 +36,9 @@ class ProfileUploadRepository {
   /// Schedule a new data set for upload
   /// - call start() after this
   ///
-  void scheduleUpload({required String accountName, required String userName, String? fileName}) async {
-    final uploader = SignupData(accountName: accountName, userName: userName, fileName: fileName);
-    prefs.setSignupDataUploader(uploader);
+  Future<void> scheduleUpload({required String accountName, required String userName, String? fileName}) async {
+    final data = SignupData(accountName: accountName, userName: userName, fileName: fileName);
+    await prefs.setSignupData(data);
   }
 
   ///
@@ -51,9 +53,9 @@ class ProfileUploadRepository {
   /// Start upload, if there's anything to upload
   ///
   Future<void> start({int tries = 0}) async {
-    isProcessing = true;
-    final signupData = await prefs.getSignupDataUploader();
+    final signupData = await prefs.getSignupData();
     if (signupData != null) {
+      isProcessing = true;
       if (tries >= maxTries) {
         print('permanent failure uploading: $tries');
         isProcessing = false;
@@ -65,16 +67,20 @@ class ProfileUploadRepository {
         print('upload error - will try again $error');
       } finally {
         if (signupData.isComplete()) {
-          prefs.setSignupDataUploader(null);
+          prefs.setSignupData(null);
           isProcessing = false;
         } else {
           print('not complete - try again in 20 seconds');
-          prefs.setSignupDataUploader(signupData);
+          prefs.setSignupData(signupData);
           final int retries = tries + 1;
-          Future.delayed(const Duration(seconds: 20), () => start(tries: retries));
+          Future.delayed(retryDelay, () => start(tries: retries));
         }
       }
     }
+  }
+
+  bool trueResult(Result res) {
+    return res.isValue && res.asValue!.value == true;
   }
 
   Future<bool> _upload(SignupData data) async {
@@ -83,27 +89,37 @@ class ProfileUploadRepository {
         case 0:
           final signupResult = await _pPPSignUpUseCase.run(data.accountName);
           print('Signup success: ${signupResult.asValue?.value}');
-          data.step++;
+          if (trueResult(signupResult)) {
+            data.step++;
+          }
           break;
 
         case 1:
           final loginResult = await _profileLoginUseCase.run(data.accountName);
           print('Login success: ${loginResult.asValue?.value}');
-          data.step++;
+          if (trueResult(loginResult)) {
+            data.step++;
+          }
           break;
 
         case 2:
           final initResult = await _initializeProfileUseCase.run(accountName: data.accountName, name: data.userName);
           print('initResult: ${initResult.asValue?.value}');
-          data.step++;
+          if (trueResult(initResult)) {
+            data.step++;
+          }
           break;
 
         case 3:
           if (data.fileName != null) {
             final setImageResult = await _setImageUseCase.runFileName(data.fileName!);
             print('setImageResult: ${setImageResult.asValue?.value}');
+            if (trueResult(setImageResult)) {
+              data.step++;
+            }
+          } else {
+            data.step++;
           }
-          data.step++;
           break;
 
         default:
@@ -117,7 +133,7 @@ class ProfileUploadRepository {
   /// returns true of the upload has completed successfully or has failed
   ///
   Future<bool> isComplete() async {
-    final signupData = await prefs.getSignupDataUploader();
+    final signupData = await prefs.getSignupData();
     return signupData == null || signupData.isComplete();
   }
 }

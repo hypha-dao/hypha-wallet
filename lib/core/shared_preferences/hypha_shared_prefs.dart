@@ -72,7 +72,7 @@ extension SharedPrefsExtensions on HyphaSharedPrefs {
     return await _prefs.getBool(LocalStorageValue.securityNotification.key) ?? true;
   }
 
-  Future<void> setSignupDataUploader(SignupData? data) async {
+  Future<void> setSignupData(SignupData? data) async {
     if (data != null) {
       final jsonString = data.toJsonString();
       return await _prefs.setString(LocalStorageValue.signupUploader.key, jsonString);
@@ -81,7 +81,7 @@ extension SharedPrefsExtensions on HyphaSharedPrefs {
     }
   }
 
-  Future<SignupData?> getSignupDataUploader() async {
+  Future<SignupData?> getSignupData() async {
     final jsonString = await _prefs.getString(LocalStorageValue.signupUploader.key);
     return jsonString == null ? null : SignupData.fromJsonString(jsonString);
   }
