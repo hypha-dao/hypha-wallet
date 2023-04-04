@@ -105,14 +105,19 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
 
   FutureOr<void> _setAvatarImage(_SetAvatarImage event, Emitter<ProfileState> emit) async {
     emit(state.copyWith(showUpdateImageLoading: true));
-    final result = await _setImageUseCase.run(event.image);
+    final result = await _setImageUseCase.run(event.image, state.profileData!.account);
 
     if (result.isValue) {
-      emit(state.copyWith(pageState: PageState.success));
+      emit(
+        state.copyWith(
+          showUpdateImageLoading: false,
+          // TODO(gguij): Nik, can we make this return the actual image URL?
+          // profileData: state.profileData?.updateImageAvatar(result.asValue!.value),
+        ),
+      );
     } else {
-      // TODO(gguij): Error snack bar when set image fails
-      print('Error setting avatar image: ${result.asError!.error}');
-      emit(state.copyWith(pageState: PageState.failure));
+      emit(state.copyWith(showUpdateImageLoading: false));
+      _errorHandlerManager.handlerError(HyphaError.generic('Error saving Image, Please try again later'));
     }
   }
 

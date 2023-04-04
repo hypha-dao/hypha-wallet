@@ -87,7 +87,7 @@ class AuthRepository {
       /// 5 - Upload user image.
       if (image != null) {
         print('uploading image...');
-        final setImageResult = await _setImageUseCase.run(image);
+        final setImageResult = await _setImageUseCase.run(image, accountName);
       }
 
       return true;
