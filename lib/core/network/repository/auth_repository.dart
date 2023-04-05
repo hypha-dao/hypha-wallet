@@ -52,8 +52,8 @@ class AuthRepository {
 
       _saveUserData(UserProfileData(accountName: accountName, userName: userName), userAuthData, false);
 
-      print('create ppp account for $accountName');
-      _uploadRepository.scheduleUpload(accountName: accountName, userName: userName, fileName: image?.path);
+      print('create ppp account for $accountName with image ${image?.path}');
+      await _uploadRepository.scheduleUpload(accountName: accountName, userName: userName, fileName: image?.path);
       _uploadRepository.start();
 
       return true;
