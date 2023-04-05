@@ -11,6 +11,7 @@ class ImportAccountState with _$ImportAccountState {
     @Default({}) final Map<int, String> userEnteredWords,
     @Default(null) final String? accountKey,
     @Default(false) final bool isPrivateKeyValid,
+    @Default(false) final bool showNoAccountsFound,
     @Default(false) bool isPartialLoading,
     @Default([]) List<UserProfileData> accounts,
   }) = _ImportAccountState;

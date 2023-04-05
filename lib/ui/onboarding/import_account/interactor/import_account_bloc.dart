@@ -99,6 +99,10 @@ class ImportAccountBloc extends Bloc<ImportAccountEvent, ImportAccountState> {
     final Map<int, String> enteredWords = Map.from(state.userEnteredWords);
     enteredWords[event.index] = event.word;
     emit(state.copyWith(userEnteredWords: enteredWords));
+
+    if (enteredWords.length == wordsMax) {
+      add(const ImportAccountEvent.onActionButtonTapped(true));
+    }
   }
 
   FutureOr<void> _onActionButtonTapped(_OnActionButtonTapped event, Emitter<ImportAccountState> emit) async {
@@ -133,15 +137,17 @@ class ImportAccountBloc extends Bloc<ImportAccountEvent, ImportAccountState> {
       if (results.isValue) {
         final Iterable<UserProfileData> accounts = results.asValue!.value;
         if (accounts.isEmpty) {
-          _errorHandlerManager.handlerError(HyphaError(message: 'No Accounts Found', type: HyphaErrorType.generic));
+          // _errorHandlerManager.handlerError(HyphaError(message: 'No Accounts Found', type: HyphaErrorType.generic));
+          emit(state.copyWith(showNoAccountsFound: true));
         } else {
-          emit(state.copyWith(accountKey: event.privateKey));
+          emit(state.copyWith(accountKey: event.privateKey, showNoAccountsFound: false));
         }
 
         emit(state.copyWith(isPartialLoading: false, accounts: accounts.toList()));
       } else {
         LogHelper.d(results.asError!.error.toString());
         _errorHandlerManager.handlerError(HyphaError(message: 'Error Loading accounts', type: HyphaErrorType.generic));
+        emit(state.copyWith(isPartialLoading: false, showNoAccountsFound: false));
       }
     }
   }
