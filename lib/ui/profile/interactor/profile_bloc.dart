@@ -108,13 +108,13 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     final result = await _setImageUseCase.run(event.image, state.profileData!.account);
 
     if (result.isValue) {
-      emit(
-        state.copyWith(
-          showUpdateImageLoading: false,
-          // TODO(gguij): Nik, can we make this return the actual image URL?
-          // profileData: state.profileData?.updateImageAvatar(result.asValue!.value),
-        ),
-      );
+      final Result<ProfileData, HyphaError> profileResult = await _fetchProfileUseCase.run(state.profileData!.account);
+      if (profileResult.isValue) {
+        final profile = profileResult.asValue!.value;
+        emit(state.copyWith(showUpdateImageLoading: false, profileData: profile));
+      } else {
+        emit(state.copyWith(showUpdateImageLoading: false));
+      }
     } else {
       emit(state.copyWith(showUpdateImageLoading: false));
       _errorHandlerManager.handlerError(HyphaError.generic('Error saving Image, Please try again later'));
