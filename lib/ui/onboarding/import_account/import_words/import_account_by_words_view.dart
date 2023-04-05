@@ -25,7 +25,7 @@ class ImportAccountByWordsView extends StatelessWidget {
               previous.isPrivateKeyValid != current.isPrivateKeyValid,
           builder: (context, state) {
             return HyphaAppButton(
-              margin: const EdgeInsets.only(left: 45, right: 45, bottom: 45, top: 16),
+              margin: const EdgeInsets.only(left: 45, right: 45, bottom: 24, top: 16),
               isLoading: state.isPartialLoading,
               onPressed: state.isPrivateKeyValid
                   ? () {

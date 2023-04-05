@@ -28,7 +28,7 @@ class OnboardingPage extends StatelessWidget {
       child: Scaffold(
         backgroundColor: HyphaColors.transparent,
         bottomNavigationBar: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 45),
+          padding: const EdgeInsets.symmetric(vertical: 24),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
