@@ -3,7 +3,6 @@
 import 'dart:io';
 import 'dart:ui';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
@@ -20,12 +19,14 @@ import 'package:hypha_wallet/ui/profile/usecases/profile_login_use_case.dart';
 import 'package:hypha_wallet/ui/profile/usecases/set_image_use_case.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:rx_shared_preferences/rx_shared_preferences.dart';
+import './mocks/mock_shared_preferences.dart';
 
 mixin MockUseCase {
   bool isFailing = false;
   bool error = false;
   bool wasCalled = false;
   int callCounter = 0;
+
   void Function(MockUseCase useCase, int callCounter)? onCall;
 
   Future<Result<bool, HyphaError>> genericRun() async {
@@ -87,10 +88,6 @@ class MockSetImageUseCase extends SetImageUseCase with MockUseCase {
 }
 
 void main() {
-  TestWidgetsFlutterBinding.ensureInitialized();
-  DartPluginRegistrant.ensureInitialized();
-  WidgetsFlutterBinding.ensureInitialized();
-
   final accountName = 'account11111';
   final name = 'Tester Test1';
   final fileName = 'somefile/somewhere.jpg';
@@ -101,17 +98,11 @@ void main() {
   late MockSetImageUseCase mockSetImageUseCase;
   late HyphaSharedPrefs prefs;
   late ProfileUploadRepository service;
-  late var allUseCases = [
-    mockSignupUseCase,
-    mockProfileLoginUseCase,
-    mockInitializeProfileUseCase,
-    mockSetImageUseCase,
-  ];
+  late List<MockUseCase> allUseCases;
 
-  setUpAll(() async {
-    print("CALL SETUP ");
-    await SharedPreferences.getInstance();
-    SharedPreferences.setMockInitialValues({});
+  setUp(() async {
+    TestWidgetsFlutterBinding.ensureInitialized();
+    DartPluginRegistrant.ensureInitialized();
 
     final mockAmplifyService =
         AmplifyService(EOSService(SecureStorageService(const FlutterSecureStorage()), RemoteConfigService()));
@@ -119,7 +110,7 @@ void main() {
     mockProfileLoginUseCase = MockProfileLoginUseCase(mockAmplifyService);
     mockInitializeProfileUseCase = MockInitializeProfileUseCase(mockAmplifyService);
     mockSetImageUseCase = MockSetImageUseCase(mockAmplifyService);
-    prefs = HyphaSharedPrefs(RxSharedPreferences.getInstance());
+    prefs = HyphaSharedPrefs(RxSharedPreferences(MockSharedPreferences()));
 
     service = ProfileUploadRepository(
       prefs,
@@ -130,6 +121,14 @@ void main() {
     );
 
     service.retryDelay = Duration(seconds: 0);
+
+    allUseCases = [
+      mockSignupUseCase,
+      mockProfileLoginUseCase,
+      mockInitializeProfileUseCase,
+      mockSetImageUseCase,
+    ];
+
     return true;
   });
 
@@ -146,6 +145,7 @@ void main() {
     expect(fileName, data.fileName);
 
     await service.start();
+    expect(await service.isComplete(), true);
     final data2 = await prefs.getSignupData();
     expect(data2, null);
   });
@@ -158,7 +158,7 @@ void main() {
     await service.start();
     final data2 = await prefs.getSignupData();
     expect(data2, null);
-    expect(service.isComplete(), true);
+    expect(await service.isComplete(), true);
     expect(service.isProcessing, false);
     for (final element in allUseCases) {
       expect(element.wasCalled, true);
@@ -172,18 +172,20 @@ void main() {
       fileName: fileName,
     );
     allUseCases[1].isFailing = true;
+    expect(allUseCases[2].wasCalled, false, reason: '2 was not called 1');
+
     await service.start();
 
     final data = await prefs.getSignupData();
     expect(data != null, true);
     expect(data!.step, 1);
     expect(data.isComplete(), false);
-    expect(service.isComplete(), false);
+    expect(await service.isComplete(), false);
 
     expect(allUseCases[0].wasCalled, true);
-    expect(allUseCases[1].wasCalled, true);
-    expect(allUseCases[2].wasCalled, false);
-    expect(allUseCases[3].wasCalled, false);
+    expect(allUseCases[1].wasCalled, true, reason: 'expect 1 to be called');
+    expect(allUseCases[2].wasCalled, false, reason: '2 should not have been called');
+    expect(allUseCases[3].wasCalled, false, reason: '3 was not called');
 
     // just reset the data
     allUseCases[0].wasCalled = false;
@@ -198,7 +200,7 @@ void main() {
     expect(allUseCases[1].wasCalled, true);
     expect(allUseCases[2].wasCalled, true);
     expect(allUseCases[3].wasCalled, true);
-    expect(service.isComplete(), true);
+    expect(await service.isComplete(), true);
   });
 
   test('Test upload that recovers at the 3rd time', () async {
@@ -225,9 +227,12 @@ void main() {
     };
     await service.start();
 
+    // wait for start to try a few times
+    await Future.delayed(Duration(milliseconds: 100));
+
     final data2 = await prefs.getSignupData();
     expect(data2, null);
-    expect(service.isComplete(), true);
+    expect(await service.isComplete(), true);
     expect(service.isProcessing, false);
     for (final element in allUseCases) {
       expect(element.wasCalled, true);

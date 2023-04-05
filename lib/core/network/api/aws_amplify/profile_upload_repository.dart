@@ -67,11 +67,11 @@ class ProfileUploadRepository {
         print('upload error - will try again $error');
       } finally {
         if (signupData.isComplete()) {
-          prefs.setSignupData(null);
+          await prefs.setSignupData(null);
           isProcessing = false;
         } else {
           print('not complete - try again in 20 seconds');
-          prefs.setSignupData(signupData);
+          await prefs.setSignupData(signupData);
           final int retries = tries + 1;
           Future.delayed(retryDelay, () => start(tries: retries));
         }
@@ -91,6 +91,8 @@ class ProfileUploadRepository {
           print('Signup success: ${signupResult.asValue?.value}');
           if (trueResult(signupResult)) {
             data.step++;
+          } else {
+            return false;
           }
           break;
 
@@ -99,6 +101,8 @@ class ProfileUploadRepository {
           print('Login success: ${loginResult.asValue?.value}');
           if (trueResult(loginResult)) {
             data.step++;
+          } else {
+            return false;
           }
           break;
 
@@ -107,6 +111,8 @@ class ProfileUploadRepository {
           print('initResult: ${initResult.asValue?.value}');
           if (trueResult(initResult)) {
             data.step++;
+          } else {
+            return false;
           }
           break;
 
@@ -116,6 +122,8 @@ class ProfileUploadRepository {
             print('setImageResult: ${setImageResult.asValue?.value}');
             if (trueResult(setImageResult)) {
               data.step++;
+            } else {
+              return false;
             }
           } else {
             data.step++;

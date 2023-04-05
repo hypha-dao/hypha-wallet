@@ -74,10 +74,9 @@ extension SharedPrefsExtensions on HyphaSharedPrefs {
 
   Future<void> setSignupData(SignupData? data) async {
     if (data != null) {
-      final jsonString = data.toJsonString();
-      return await _prefs.setString(LocalStorageValue.signupUploader.key, jsonString);
+      await _prefs.setString(LocalStorageValue.signupUploader.key, data.toJsonString());
     } else {
-      return await _prefs.remove(LocalStorageValue.signupUploader.key);
+      await _prefs.remove(LocalStorageValue.signupUploader.key);
     }
   }
 
