@@ -182,8 +182,8 @@ linter:
     #    # - type_annotate_public_apis # subset of always_specify_types
     type_init_formals: true
     # TODO(gguij): Turn unawaited_futures and unnecessary_await_in_return Review this
-    #    unawaited_futures: true
-    #    unnecessary_await_in_return: true
+    unawaited_futures: true
+    unnecessary_await_in_return: true
     unnecessary_brace_in_string_interps: true
     unnecessary_const: true
     #    # - unnecessary_final # conflicts with prefer_final_locals

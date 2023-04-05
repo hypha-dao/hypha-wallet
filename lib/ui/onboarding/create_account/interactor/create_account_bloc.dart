@@ -48,6 +48,7 @@ class CreateAccountBloc extends Bloc<CreateAccountEvent, CreateAccountState> {
       ));
     } else {
       emit(state.copyWith(command: const PageCommand.hideLoadingDialog()));
+      // ignore: unawaited_futures
       _errorHandlerManager.handlerError(result.asError!.error);
     }
   }
