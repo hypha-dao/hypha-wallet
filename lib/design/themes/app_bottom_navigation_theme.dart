@@ -11,7 +11,7 @@ class AppBottomNavigationTheme {
       showSelectedLabels: true,
       showUnselectedLabels: true,
       selectedItemColor: HyphaColors.lightBlue,
-      // unselectedItemColor: HyphaColors.darkBlue,
+      unselectedItemColor: HyphaColors.midGrey,
       landscapeLayout: BottomNavigationBarLandscapeLayout.centered,
       type: BottomNavigationBarType.fixed,
       // selectedLabelStyle: mindsetTextTheme.tiny,
