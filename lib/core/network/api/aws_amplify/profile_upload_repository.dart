@@ -76,6 +76,8 @@ class ProfileUploadRepository {
           Future.delayed(retryDelay, () => start(tries: retries));
         }
       }
+    } else {
+      print('error no signup data');
     }
   }
 
