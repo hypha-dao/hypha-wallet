@@ -63,6 +63,7 @@ class CreateAccountBloc extends Bloc<CreateAccountEvent, CreateAccountState> {
       accountName: state.userAccount!,
       userName: state.userName,
       inviteLinkData: event.inviteLinkData,
+      image: state.image,
     ));
 
     if (result.isValue) {
