@@ -15,9 +15,11 @@ class HyphaTheme {
     return baseTheme.copyWith(
       colorScheme: darkColorScheme,
       textTheme: mainTextTheme,
-      switchTheme: const SwitchThemeData(
-        trackColor: MaterialStatePropertyAll(HyphaColors.primaryBlu),
-        thumbColor: MaterialStatePropertyAll(HyphaColors.offWhite),
+      switchTheme: SwitchThemeData(
+        trackColor: MaterialStateProperty.resolveWith(
+          (states) => states.contains(MaterialState.selected) ? HyphaColors.primaryBlu : HyphaColors.midGrey,
+        ),
+        thumbColor: const MaterialStatePropertyAll(HyphaColors.offWhite),
       ),
       iconTheme: const IconThemeData(color: HyphaColors.white),
       appBarTheme: AppBarTheme(
@@ -53,7 +55,7 @@ class HyphaTheme {
       iconTheme: const IconThemeData(color: HyphaColors.black),
       appBarTheme: AppBarTheme(
         backgroundColor: HyphaColors.transparent,
-        iconTheme: const IconThemeData(color: HyphaColors.black),
+        iconTheme: const IconThemeData(color: HyphaColors.primaryBlu),
         elevation: 0,
         titleTextStyle: HyphaTextTheme.light.smallTitles.copyWith(color: HyphaColors.black),
         systemOverlayStyle: const SystemUiOverlayStyle(
