@@ -118,6 +118,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       }
     } else {
       emit(state.copyWith(showUpdateImageLoading: false));
+      // ignore: unawaited_futures
       _errorHandlerManager.handlerError(HyphaError.generic('Error saving Image, Please try again later'));
     }
   }
