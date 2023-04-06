@@ -149,7 +149,7 @@ class ImportAccountBloc extends Bloc<ImportAccountEvent, ImportAccountState> {
         LogHelper.d(results.asError!.error.toString());
         // ignore: unawaited_futures
         _errorHandlerManager.handlerError(HyphaError(message: 'Error Loading accounts', type: HyphaErrorType.generic));
-        emit(state.copyWith(isPartialLoading: false, showNoAccountsFound: false));
+        emit(state.copyWith(isPartialLoading: false));
       }
     }
   }
