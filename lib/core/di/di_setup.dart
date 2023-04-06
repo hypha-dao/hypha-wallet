@@ -12,6 +12,7 @@ import 'package:hypha_wallet/core/local/services/permission_service_implementati
 import 'package:hypha_wallet/core/local/services/secure_storage_service.dart';
 import 'package:hypha_wallet/core/logging/firebase_crash_reporting_tree.dart';
 import 'package:hypha_wallet/core/network/api/aws_amplify/amplify_service.dart';
+import 'package:hypha_wallet/core/network/api/aws_amplify/profile_upload_repository.dart';
 import 'package:hypha_wallet/core/network/api/eos_service.dart';
 import 'package:hypha_wallet/core/network/api/remote_config_service.dart';
 import 'package:hypha_wallet/core/network/api/transaction_history_service.dart';

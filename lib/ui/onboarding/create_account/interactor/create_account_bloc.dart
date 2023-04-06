@@ -48,6 +48,7 @@ class CreateAccountBloc extends Bloc<CreateAccountEvent, CreateAccountState> {
       ));
     } else {
       emit(state.copyWith(command: const PageCommand.hideLoadingDialog()));
+      // ignore: unawaited_futures
       _errorHandlerManager.handlerError(result.asError!.error);
     }
   }
@@ -63,11 +64,13 @@ class CreateAccountBloc extends Bloc<CreateAccountEvent, CreateAccountState> {
       accountName: state.userAccount!,
       userName: state.userName,
       inviteLinkData: event.inviteLinkData,
+      image: state.image,
     ));
 
     if (result.isValue) {
       emit(state.copyWith(command: const PageCommand.navigateToSuccess()));
     } else {
+      // ignore: unawaited_futures
       _errorHandlerManager.handlerError(result.asError!.error);
       emit(state.copyWith(command: const PageCommand.hideLoadingDialog()));
     }

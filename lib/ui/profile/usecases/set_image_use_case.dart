@@ -14,8 +14,17 @@ class SetImageUseCase {
   SetImageUseCase(this._amplifyService);
 
   Future<Result<bool, HyphaError>> run(XFile image) async {
+    final File imageFile = File(image.path);
+    return runFile(imageFile);
+  }
+
+  Future<Result<bool, HyphaError>> runFileName(String filePath) async {
+    final File imageFile = File(filePath);
+    return runFile(imageFile);
+  }
+
+  Future<Result<bool, HyphaError>> runFile(File imageFile) async {
     try {
-      final File imageFile = File(image.path);
       final fileExtension = extension(imageFile.path);
       final filename = 'avatar-${DateTime.now().toIso8601String()}$fileExtension';
       print('file size: ${imageFile.lengthSync()}');
