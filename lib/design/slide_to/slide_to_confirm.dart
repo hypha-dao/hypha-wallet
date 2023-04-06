@@ -182,6 +182,7 @@ class SlideActionState extends State<SlideAction> with TickerProviderStateMixin 
                                   } else if (_progress <= -0.3 || widget.onCancel == null) {
                                     await onActionTaken(widget.onCancel!);
                                   } else {
+                                    // ignore: unawaited_futures
                                     _cancelAnimation();
                                   }
                                 },
@@ -332,6 +333,7 @@ class SlideActionState extends State<SlideAction> with TickerProviderStateMixin 
         });
       }
     });
+    // ignore: unawaited_futures
     _cancelAnimationController.forward().orCancel;
   }
 

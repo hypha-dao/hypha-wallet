@@ -54,7 +54,7 @@ class AuthRepository {
 
       print('create ppp account for $accountName with image ${image?.path}');
       await _uploadRepository.scheduleUpload(accountName: accountName, userName: userName, fileName: image?.path);
-      _uploadRepository.start();
+      unawaited(_uploadRepository.start());
 
       return true;
     } catch (e) {

@@ -42,6 +42,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     } else {
       LogHelper.d('_onQRCodeScanned Error ${result.asError!.error}');
       emit(state.copyWith(isLoading: false));
+      // ignore: unawaited_futures
       _errorHandlerManager.handlerError(HyphaError(message: 'Error reading QR Code', type: HyphaErrorType.generic));
     }
   }

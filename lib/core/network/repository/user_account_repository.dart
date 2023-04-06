@@ -6,10 +6,10 @@ class UserAccountRepository {
   UserAccountRepository({required this.userService});
 
   Future<bool> isUserAccountAvailable(String userAccount) async {
-    return await userService.isUserAccountAvailable(userAccount);
+    return userService.isUserAccountAvailable(userAccount);
   }
 
   Future<String> findAvailableUserAccount(String fullName) async {
-    return await userService.findAvailableUserAccount(fullName);
+    return userService.findAvailableUserAccount(fullName);
   }
 }

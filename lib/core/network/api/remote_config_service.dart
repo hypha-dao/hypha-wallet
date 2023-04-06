@@ -10,7 +10,9 @@ const Networks _defaultNetwork = Networks.telos;
 /// Encapsulates everything to do with remote configuration
 class RemoteConfigService {
   static Future<RemoteConfigService> initialized() async {
-    return RemoteConfigService()..setDefaults();
+    final rc = RemoteConfigService();
+    await rc.setDefaults();
+    return rc;
   }
 
   Map<String, dynamic> _getMap(String param) {

@@ -6,12 +6,12 @@ import 'package:permission_handler/permission_handler.dart';
 class PermissionServiceImplementation implements PermissionService {
   @override
   Future<PermissionStatus> requestCameraPermission() async {
-    return await Permission.camera.request();
+    return Permission.camera.request();
   }
 
   @override
   Future<PermissionStatus> requestPhotosPermission() async {
-    return await Permission.photos.request();
+    return Permission.photos.request();
   }
 
   @override

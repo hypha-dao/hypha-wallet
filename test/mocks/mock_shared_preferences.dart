@@ -36,13 +36,11 @@ class MockSharedPreferences implements SharedPreferences {
 
   @override
   int? getInt(String key) {
-    // TODO: implement getInt
     throw UnimplementedError();
   }
 
   @override
   Set<String> getKeys() {
-    // TODO: implement getKeys
     throw UnimplementedError();
   }
 
@@ -53,13 +51,11 @@ class MockSharedPreferences implements SharedPreferences {
 
   @override
   List<String>? getStringList(String key) {
-    // TODO: implement getStringList
     throw UnimplementedError();
   }
 
   @override
   Future<void> reload() {
-    // TODO: implement reload
     throw UnimplementedError();
   }
 
@@ -72,19 +68,16 @@ class MockSharedPreferences implements SharedPreferences {
 
   @override
   Future<bool> setBool(String key, bool value) {
-    // TODO: implement setBool
     throw UnimplementedError();
   }
 
   @override
   Future<bool> setDouble(String key, double value) {
-    // TODO: implement setDouble
     throw UnimplementedError();
   }
 
   @override
   Future<bool> setInt(String key, int value) {
-    // TODO: implement setInt
     throw UnimplementedError();
   }
 
@@ -96,7 +89,6 @@ class MockSharedPreferences implements SharedPreferences {
 
   @override
   Future<bool> setStringList(String key, List<String> value) {
-    // TODO: implement setStringList
     throw UnimplementedError();
   }
 }

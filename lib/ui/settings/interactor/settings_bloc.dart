@@ -44,6 +44,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
 
   FutureOr<void> _onShowSettings(_OnShowSettings event, Emitter<SettingsState> emit) async {
     if (state.showSecurityNotification) {
+      // ignore: unawaited_futures
       _sharedPrefs.setShowSecurityNotification(false);
       final UserAuthData? authData = await _secureStorageService.getUserAuthData();
       final hasWords = authData?.words.isNotEmpty == true;
