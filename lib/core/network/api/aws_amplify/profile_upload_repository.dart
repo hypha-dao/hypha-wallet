@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:hypha_wallet/core/shared_preferences/hypha_shared_prefs.dart';
 import 'package:hypha_wallet/ui/architecture/result/result.dart';
 import 'package:hypha_wallet/ui/profile/usecases/initialize_profile_use_case.dart';
@@ -120,7 +121,7 @@ class ProfileUploadRepository {
 
         case 3:
           if (data.fileName != null) {
-            final setImageResult = await _setImageUseCase.runFileName(data.fileName!);
+            final setImageResult = await _setImageUseCase.runFileName(data.fileName!, data.accountName);
             print('setImageResult: ${setImageResult.asValue?.value}');
             if (trueResult(setImageResult)) {
               data.step++;

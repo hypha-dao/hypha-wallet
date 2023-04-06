@@ -106,14 +106,20 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
 
   FutureOr<void> _setAvatarImage(_SetAvatarImage event, Emitter<ProfileState> emit) async {
     emit(state.copyWith(showUpdateImageLoading: true));
-    final result = await _setImageUseCase.run(event.image);
+    final result = await _setImageUseCase.run(event.image, state.profileData!.account);
 
     if (result.isValue) {
-      emit(state.copyWith(pageState: PageState.success));
+      final Result<ProfileData, HyphaError> profileResult = await _fetchProfileUseCase.run(state.profileData!.account);
+      if (profileResult.isValue) {
+        final profile = profileResult.asValue!.value;
+        emit(state.copyWith(showUpdateImageLoading: false, profileData: profile));
+      } else {
+        emit(state.copyWith(showUpdateImageLoading: false));
+      }
     } else {
-      // TODO(gguij): Error snack bar when set image fails
-      print('Error setting avatar image: ${result.asError!.error}');
-      emit(state.copyWith(pageState: PageState.failure));
+      emit(state.copyWith(showUpdateImageLoading: false));
+      // ignore: unawaited_futures
+      _errorHandlerManager.handlerError(HyphaError.generic('Error saving Image, Please try again later'));
     }
   }
 

@@ -19,6 +19,7 @@ import 'package:hypha_wallet/ui/profile/usecases/profile_login_use_case.dart';
 import 'package:hypha_wallet/ui/profile/usecases/set_image_use_case.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:rx_shared_preferences/rx_shared_preferences.dart';
+
 import './mocks/mock_shared_preferences.dart';
 
 mixin MockUseCase {
@@ -70,19 +71,19 @@ class MockInitializeProfileUseCase extends InitializeProfileUseCase with MockUse
 }
 
 class MockSetImageUseCase extends SetImageUseCase with MockUseCase {
-  MockSetImageUseCase(super.amplifyService);
+  MockSetImageUseCase(super.amplifyService, super._profileLoginUseCase);
   @override
-  Future<Result<bool, HyphaError>> runFileName(String filePath) async {
+  Future<Result<bool, HyphaError>> runFileName(String filePath, String accountName) async {
     return genericRun();
   }
 
   @override
-  Future<Result<bool, HyphaError>> run(XFile image) async {
+  Future<Result<bool, HyphaError>> run(XFile image, String accountName) async {
     return genericRun();
   }
 
   @override
-  Future<Result<bool, HyphaError>> runFile(File imageFile) async {
+  Future<Result<bool, HyphaError>> runFile(File imageFile, String accountName) async {
     return genericRun();
   }
 }
@@ -109,7 +110,7 @@ void main() {
     mockSignupUseCase = MockSignupUseCase(mockAmplifyService);
     mockProfileLoginUseCase = MockProfileLoginUseCase(mockAmplifyService);
     mockInitializeProfileUseCase = MockInitializeProfileUseCase(mockAmplifyService);
-    mockSetImageUseCase = MockSetImageUseCase(mockAmplifyService);
+    mockSetImageUseCase = MockSetImageUseCase(mockAmplifyService, mockProfileLoginUseCase);
     prefs = HyphaSharedPrefs(RxSharedPreferences(MockSharedPreferences()));
 
     service = ProfileUploadRepository(

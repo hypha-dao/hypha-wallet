@@ -31,7 +31,7 @@ class BottomNavigationView extends StatelessWidget {
                 boxShadow: [
                   BoxShadow(
                     blurRadius: 20,
-                    color: Colors.black.withOpacity(.1),
+                    color: HyphaColors.lightBlue.withOpacity(.1),
                   )
                 ],
               ),
@@ -42,7 +42,7 @@ class BottomNavigationView extends StatelessWidget {
                 ),
                 clipBehavior: Clip.antiAlias,
                 child: Padding(
-                  padding: const EdgeInsets.only(bottom: 30, left: 30, right: 30, top: 16),
+                  padding: const EdgeInsets.only(bottom: 12, left: 30, right: 30, top: 12),
                   child: BottomNavigationBar(
                     elevation: 0,
                     backgroundColor: context.isDarkTheme ? HyphaColors.lightBlack : HyphaColors.white,
@@ -55,19 +55,20 @@ class BottomNavigationView extends StatelessWidget {
                     },
                     items: [
                       const BottomNavigationBarItem(
-                        icon: Padding(padding: EdgeInsets.only(bottom: 8), child: Icon(HyphaIcons.home_b)),
+                        icon: Padding(padding: EdgeInsets.only(bottom: 6), child: Icon(HyphaIcons.home_b, size: 20)),
                         label: 'Scan-QR',
                       ),
                       const BottomNavigationBarItem(
-                        icon: Padding(padding: EdgeInsets.only(bottom: 8), child: Icon(HyphaIcons.history_b)),
+                        icon: Padding(padding: EdgeInsets.only(bottom: 6), child: Icon(HyphaIcons.history_b, size: 20)),
                         label: 'History',
                       ),
                       const BottomNavigationBarItem(
-                        icon: Padding(padding: EdgeInsets.only(bottom: 8), child: Icon(HyphaIcons.profile_b)),
+                        icon: Padding(padding: EdgeInsets.only(bottom: 6), child: Icon(HyphaIcons.profile_b, size: 20)),
                         label: 'Profile',
                       ),
                       const BottomNavigationBarItem(
-                        icon: Padding(padding: EdgeInsets.only(bottom: 8), child: Icon(HyphaIcons.settings_b)),
+                        icon:
+                            Padding(padding: EdgeInsets.only(bottom: 6), child: Icon(HyphaIcons.settings_b, size: 20)),
                         label: 'Settings',
                       ),
                     ],

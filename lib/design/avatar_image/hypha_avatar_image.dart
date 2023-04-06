@@ -43,6 +43,23 @@ class HyphaAvatarImage extends StatelessWidget {
           width: imageRadius * 2,
           height: imageRadius * 2,
           fit: BoxFit.cover,
+          errorBuilder: (_, __, ___) {
+            return Container(
+              width: imageRadius * 2,
+              height: imageRadius * 2,
+              decoration: const BoxDecoration(gradient: HyphaColors.gradientBlu, shape: BoxShape.circle),
+              child: Center(
+                child: Text(
+                  name!.characters.first.toUpperCase(),
+                  style: context.hyphaTextTheme.regular.copyWith(
+                    color: HyphaColors.white,
+                    fontSize: imageRadius,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            );
+          },
         ),
       );
     } else if (name != null) {
@@ -55,7 +72,7 @@ class HyphaAvatarImage extends StatelessWidget {
             name!.characters.first.toUpperCase(),
             style: context.hyphaTextTheme.regular.copyWith(
               color: HyphaColors.white,
-              fontSize: 36,
+              fontSize: imageRadius,
             ),
             textAlign: TextAlign.center,
           ),
