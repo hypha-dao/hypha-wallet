@@ -59,7 +59,7 @@ extension SharedPrefsExtensions on HyphaSharedPrefs {
 
   Future<ThemeMode> getTheme() async {
     final String? theme = await _prefs.getString(LocalStorageValue.selectedTheme.key);
-    return ThemeMode.values.singleWhere((t) => t.name == theme, orElse: () => ThemeMode.system);
+    return ThemeMode.values.singleWhere((t) => t.name == theme, orElse: () => ThemeMode.dark);
   }
 
   /// Settings
