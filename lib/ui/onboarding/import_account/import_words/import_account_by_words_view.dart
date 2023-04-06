@@ -25,7 +25,7 @@ class ImportAccountByWordsView extends StatelessWidget {
               previous.isPrivateKeyValid != current.isPrivateKeyValid,
           builder: (context, state) {
             return HyphaAppButton(
-              margin: const EdgeInsets.only(left: 45, right: 45, bottom: 45, top: 16),
+              margin: const EdgeInsets.only(left: 45, right: 45, bottom: 24, top: 16),
               isLoading: state.isPartialLoading,
               onPressed: state.isPrivateKeyValid
                   ? () {
@@ -74,17 +74,34 @@ class ImportAccountByWordsView extends StatelessWidget {
                     },
                     child: Text(
                       'Paste Words',
-                      style: context.hyphaTextTheme.buttons.copyWith(color: HyphaColors.offWhite),
+                      style: context.hyphaTextTheme.buttons.copyWith(
+                        color: context.isDarkTheme ? HyphaColors.offWhite : HyphaColors.primaryBlu,
+                      ),
                     ),
                   ),
                 ),
                 BlocBuilder<ImportAccountBloc, ImportAccountState>(
-                  buildWhen: (p, c) => p.isPartialLoading != c.isPartialLoading || p.accounts != c.accounts,
+                  buildWhen: (p, c) =>
+                      p.isPartialLoading != c.isPartialLoading ||
+                      p.accounts != c.accounts ||
+                      p.showNoAccountsFound != c.showNoAccountsFound,
                   builder: (context, state) {
                     if (state.isPartialLoading) {
                       return const Padding(
                         padding: EdgeInsets.only(top: 60),
                         child: HyphaProgressIndicator(),
+                      );
+                    } else if (state.showNoAccountsFound) {
+                      return Padding(
+                        padding: const EdgeInsets.only(top: 16),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Icon(Icons.info_outline, color: HyphaColors.error),
+                            const SizedBox(width: 8),
+                            const Text('No accounts found'),
+                          ],
+                        ),
                       );
                     } else {
                       return UserAccountList(

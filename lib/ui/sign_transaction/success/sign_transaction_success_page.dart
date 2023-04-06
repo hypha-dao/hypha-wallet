@@ -58,7 +58,7 @@ class SignTransactionSuccessPage extends StatelessWidget {
       child: Scaffold(
         backgroundColor: HyphaColors.transparent,
         bottomNavigationBar: Padding(
-          padding: const EdgeInsets.only(left: 45, right: 45, bottom: 40),
+          padding: const EdgeInsets.only(left: 45, right: 45, bottom: 24),
           child: HyphaAppButton(
             onPressed: () {
               Get.offAll(() => const HyphaBottomNavigation());

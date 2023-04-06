@@ -1627,6 +1627,7 @@ mixin _$ImportAccountState {
   Map<int, String> get userEnteredWords => throw _privateConstructorUsedError;
   String? get accountKey => throw _privateConstructorUsedError;
   bool get isPrivateKeyValid => throw _privateConstructorUsedError;
+  bool get showNoAccountsFound => throw _privateConstructorUsedError;
   bool get isPartialLoading => throw _privateConstructorUsedError;
   List<UserProfileData> get accounts => throw _privateConstructorUsedError;
 
@@ -1648,6 +1649,7 @@ abstract class $ImportAccountStateCopyWith<$Res> {
       Map<int, String> userEnteredWords,
       String? accountKey,
       bool isPrivateKeyValid,
+      bool showNoAccountsFound,
       bool isPartialLoading,
       List<UserProfileData> accounts});
 
@@ -1673,6 +1675,7 @@ class _$ImportAccountStateCopyWithImpl<$Res, $Val extends ImportAccountState>
     Object? userEnteredWords = null,
     Object? accountKey = freezed,
     Object? isPrivateKeyValid = null,
+    Object? showNoAccountsFound = null,
     Object? isPartialLoading = null,
     Object? accounts = null,
   }) {
@@ -1700,6 +1703,10 @@ class _$ImportAccountStateCopyWithImpl<$Res, $Val extends ImportAccountState>
       isPrivateKeyValid: null == isPrivateKeyValid
           ? _value.isPrivateKeyValid
           : isPrivateKeyValid // ignore: cast_nullable_to_non_nullable
+              as bool,
+      showNoAccountsFound: null == showNoAccountsFound
+          ? _value.showNoAccountsFound
+          : showNoAccountsFound // ignore: cast_nullable_to_non_nullable
               as bool,
       isPartialLoading: null == isPartialLoading
           ? _value.isPartialLoading
@@ -1740,6 +1747,7 @@ abstract class _$$_ImportAccountStateCopyWith<$Res>
       Map<int, String> userEnteredWords,
       String? accountKey,
       bool isPrivateKeyValid,
+      bool showNoAccountsFound,
       bool isPartialLoading,
       List<UserProfileData> accounts});
 
@@ -1764,6 +1772,7 @@ class __$$_ImportAccountStateCopyWithImpl<$Res>
     Object? userEnteredWords = null,
     Object? accountKey = freezed,
     Object? isPrivateKeyValid = null,
+    Object? showNoAccountsFound = null,
     Object? isPartialLoading = null,
     Object? accounts = null,
   }) {
@@ -1792,6 +1801,10 @@ class __$$_ImportAccountStateCopyWithImpl<$Res>
           ? _value.isPrivateKeyValid
           : isPrivateKeyValid // ignore: cast_nullable_to_non_nullable
               as bool,
+      showNoAccountsFound: null == showNoAccountsFound
+          ? _value.showNoAccountsFound
+          : showNoAccountsFound // ignore: cast_nullable_to_non_nullable
+              as bool,
       isPartialLoading: null == isPartialLoading
           ? _value.isPartialLoading
           : isPartialLoading // ignore: cast_nullable_to_non_nullable
@@ -1814,6 +1827,7 @@ class _$_ImportAccountState extends _ImportAccountState {
       final Map<int, String> userEnteredWords = const {},
       this.accountKey = null,
       this.isPrivateKeyValid = false,
+      this.showNoAccountsFound = false,
       this.isPartialLoading = false,
       final List<UserProfileData> accounts = const []})
       : _userEnteredWords = userEnteredWords,
@@ -1845,6 +1859,9 @@ class _$_ImportAccountState extends _ImportAccountState {
   final bool isPrivateKeyValid;
   @override
   @JsonKey()
+  final bool showNoAccountsFound;
+  @override
+  @JsonKey()
   final bool isPartialLoading;
   final List<UserProfileData> _accounts;
   @override
@@ -1857,7 +1874,7 @@ class _$_ImportAccountState extends _ImportAccountState {
 
   @override
   String toString() {
-    return 'ImportAccountState(pageState: $pageState, accountImportType: $accountImportType, command: $command, userEnteredWords: $userEnteredWords, accountKey: $accountKey, isPrivateKeyValid: $isPrivateKeyValid, isPartialLoading: $isPartialLoading, accounts: $accounts)';
+    return 'ImportAccountState(pageState: $pageState, accountImportType: $accountImportType, command: $command, userEnteredWords: $userEnteredWords, accountKey: $accountKey, isPrivateKeyValid: $isPrivateKeyValid, showNoAccountsFound: $showNoAccountsFound, isPartialLoading: $isPartialLoading, accounts: $accounts)';
   }
 
   @override
@@ -1876,6 +1893,8 @@ class _$_ImportAccountState extends _ImportAccountState {
                 other.accountKey == accountKey) &&
             (identical(other.isPrivateKeyValid, isPrivateKeyValid) ||
                 other.isPrivateKeyValid == isPrivateKeyValid) &&
+            (identical(other.showNoAccountsFound, showNoAccountsFound) ||
+                other.showNoAccountsFound == showNoAccountsFound) &&
             (identical(other.isPartialLoading, isPartialLoading) ||
                 other.isPartialLoading == isPartialLoading) &&
             const DeepCollectionEquality().equals(other._accounts, _accounts));
@@ -1890,6 +1909,7 @@ class _$_ImportAccountState extends _ImportAccountState {
       const DeepCollectionEquality().hash(_userEnteredWords),
       accountKey,
       isPrivateKeyValid,
+      showNoAccountsFound,
       isPartialLoading,
       const DeepCollectionEquality().hash(_accounts));
 
@@ -1909,6 +1929,7 @@ abstract class _ImportAccountState extends ImportAccountState {
       final Map<int, String> userEnteredWords,
       final String? accountKey,
       final bool isPrivateKeyValid,
+      final bool showNoAccountsFound,
       final bool isPartialLoading,
       final List<UserProfileData> accounts}) = _$_ImportAccountState;
   const _ImportAccountState._() : super._();
@@ -1925,6 +1946,8 @@ abstract class _ImportAccountState extends ImportAccountState {
   String? get accountKey;
   @override
   bool get isPrivateKeyValid;
+  @override
+  bool get showNoAccountsFound;
   @override
   bool get isPartialLoading;
   @override

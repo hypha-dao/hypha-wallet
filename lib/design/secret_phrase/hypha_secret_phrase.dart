@@ -57,7 +57,7 @@ class HyphaSecretPhrase extends StatelessWidget {
                     label: Text(
                       (index + 1).toString(),
                       style: context.hyphaTextTheme.ralMediumLabel.copyWith(
-                        color: HyphaColors.offWhite,
+                        color: context.isDarkTheme ? HyphaColors.offWhite : HyphaColors.primaryBlu,
                       ),
                     ),
                     border: const OutlineInputBorder(

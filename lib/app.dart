@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
@@ -92,7 +94,7 @@ class HyphaAppView extends StatelessWidget {
               words,
               privateKey,
             ) async {
-              Get.bottomSheet(
+              unawaited(Get.bottomSheet(
                 FractionallySizedBox(
                   heightFactor: 0.95,
                   child: HyphaConfirmationPage(
@@ -117,7 +119,7 @@ class HyphaAppView extends StatelessWidget {
                 enableDrag: true,
                 clipBehavior: Clip.antiAliasWithSaveLayer,
                 isScrollControlled: true,
-              );
+              ));
 
               context.read<SettingsBloc>().add(const SettingsEvent.clearPageCommand());
             });

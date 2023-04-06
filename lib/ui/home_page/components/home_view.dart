@@ -32,7 +32,7 @@ class HomeView extends StatelessWidget {
                     child: BlocBuilder<AuthenticationBloc, AuthenticationState>(
                       builder: (context, state) {
                         return HyphaAvatarImage(
-                          imageRadius: 15,
+                          imageRadius: 24,
                           name: state.userProfileData?.userName ?? state.userProfileData?.accountName,
                           imageFromUrl: state.userProfileData?.userImage,
                           onTap: () {

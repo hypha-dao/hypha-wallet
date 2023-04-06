@@ -6,6 +6,8 @@ import 'package:hypha_wallet/design/progress_indicator/hypha_progress_indicator.
 /// It will use a screen to make sure the loading indicator works on top of any surface.
 class HyphaPartialProgressIndicator extends StatelessWidget {
   final bool isLoading;
+  final bool withBackground;
+
   final Widget child;
   final EdgeInsets padding;
 
@@ -13,6 +15,7 @@ class HyphaPartialProgressIndicator extends StatelessWidget {
     super.key,
     required this.isLoading,
     required this.child,
+    this.withBackground = true,
     this.padding = const EdgeInsets.all(24),
   });
 
@@ -26,7 +29,7 @@ class HyphaPartialProgressIndicator extends StatelessWidget {
           Container(
             padding: padding,
             decoration: BoxDecoration(
-              color: HyphaColors.black50,
+              color: withBackground ? HyphaColors.black50 : null,
               borderRadius: const BorderRadius.all(Radius.circular(8)),
             ),
             child: const HyphaProgressIndicator(),

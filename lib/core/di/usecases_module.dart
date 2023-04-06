@@ -18,7 +18,7 @@ void _registerUseCasesModule() {
     ),
   );
   _registerFactory(() => SetNameUseCase(_getIt<AmplifyService>()));
-  _registerFactory(() => SetImageUseCase(_getIt<AmplifyService>()));
+  _registerFactory(() => SetImageUseCase(_getIt<AmplifyService>(), _getIt<ProfileLoginUseCase>()));
   _registerFactory(() => SetBioUseCase(_getIt<AmplifyService>(), _getIt<ProfileLoginUseCase>()));
   _registerFactory(() => RemoveAvatarUseCase(_getIt<AmplifyService>(), _getIt<ProfileLoginUseCase>()));
   _registerFactory(() => PPPSignUpUseCase(_getIt<AmplifyService>()));
