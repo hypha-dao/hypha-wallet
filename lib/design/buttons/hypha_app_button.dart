@@ -48,7 +48,7 @@ class HyphaAppButton extends StatelessWidget {
           items.add(
             Text(
               title.toUpperCase(),
-              style: context.hyphaTextTheme.buttons.copyWith(color: textColor),
+              style: context.hyphaTextTheme.buttons.copyWith(color: textColor, fontWeight: FontWeight.w900),
             ),
           );
         }

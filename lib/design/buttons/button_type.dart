@@ -17,7 +17,7 @@ enum ButtonType {
             ? HyphaColors.lightBlack.withOpacity(isActive ? 1 : 0.40)
             : isActive
                 ? HyphaColors.white
-                : HyphaColors.primaryBlu.withOpacity(isActive ? 0 : 0.50);
+                : HyphaColors.primaryBlu.withOpacity(isActive ? 0 : 0.10);
       case ButtonType.tertiary:
         return isDarkTheme ? HyphaColors.white.withOpacity(isActive ? 0 : 0) : null;
     }
@@ -33,10 +33,10 @@ enum ButtonType {
             : HyphaColors.primaryBlu.withOpacity(isActive ? 1 : 0.20);
       case ButtonType.secondary:
         return isDarkTheme
-            ? HyphaColors.offWhite.withOpacity(isActive ? 1 : 0.20)
+            ? HyphaColors.offWhite.withOpacity(isActive ? 1 : 0.15)
             : isActive
                 ? HyphaColors.primaryBlu
-                : HyphaColors.offWhite.withOpacity(isActive ? 1 : 0.20);
+                : HyphaColors.offWhite;
     }
   }
 }
