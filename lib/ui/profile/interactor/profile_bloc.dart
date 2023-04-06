@@ -99,6 +99,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       );
     } else {
       emit(state.copyWith(showUpdateBioLoading: false, command: const PageCommand.navigateBack()));
+      // ignore: unawaited_futures
       _errorHandlerManager.handlerError(HyphaError.generic('Error saving Bio, Please try again later'));
     }
   }
@@ -132,6 +133,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
         ),
       );
     } else {
+      // ignore: unawaited_futures
       _errorHandlerManager.handlerError(HyphaError.generic('Error Removing avatar, Please try again later'));
     }
   }

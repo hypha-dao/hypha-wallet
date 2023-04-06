@@ -16,6 +16,16 @@ class SetImageUseCase {
   SetImageUseCase(this._amplifyService, this._profileLoginUseCase);
 
   Future<Result<bool, HyphaError>> run(XFile image, String accountName) async {
+    final File imageFile = File(image.path);
+    return runFile(imageFile, accountName);
+  }
+
+  Future<Result<bool, HyphaError>> runFileName(String filePath, String accountName) async {
+    final File imageFile = File(filePath);
+    return runFile(imageFile, accountName);
+  }
+
+  Future<Result<bool, HyphaError>> runFile(File image, String accountName) async {
     try {
       final Result<bool, HyphaError> loginResult = await _profileLoginUseCase.run(accountName);
 

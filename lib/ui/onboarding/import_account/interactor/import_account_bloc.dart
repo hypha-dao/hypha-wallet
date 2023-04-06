@@ -129,6 +129,7 @@ class ImportAccountBloc extends Bloc<ImportAccountEvent, ImportAccountState> {
     emit(state.copyWith(isPrivateKeyValid: true));
 
     if (publicKey == null || publicKey.isEmpty) {
+      // ignore: unawaited_futures
       _errorHandlerManager.handlerError(HyphaError(message: 'Invalid Key', type: HyphaErrorType.generic));
       emit(state.copyWith(isPartialLoading: false, isPrivateKeyValid: false));
     } else {
@@ -146,6 +147,7 @@ class ImportAccountBloc extends Bloc<ImportAccountEvent, ImportAccountState> {
         emit(state.copyWith(isPartialLoading: false, accounts: accounts.toList()));
       } else {
         LogHelper.d(results.asError!.error.toString());
+        // ignore: unawaited_futures
         _errorHandlerManager.handlerError(HyphaError(message: 'Error Loading accounts', type: HyphaErrorType.generic));
         emit(state.copyWith(isPartialLoading: false, showNoAccountsFound: false));
       }

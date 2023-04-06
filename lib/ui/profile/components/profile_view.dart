@@ -83,6 +83,7 @@ class ProfileView extends StatelessWidget {
                             child: HyphaActionableCard(
                               trailer: const Icon(Icons.edit),
                               onTap: () async {
+                                // ignore: unawaited_futures
                                 showModalBottomSheet(
                                   isScrollControlled: true,
                                   clipBehavior: Clip.hardEdge,

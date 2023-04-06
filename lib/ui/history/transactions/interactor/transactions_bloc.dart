@@ -28,6 +28,7 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
     if (result.isValue) {
       emit(state.copyWith(pageState: PageState.success, transactions: result.valueOrCrash));
     } else {
+      // ignore: unawaited_futures
       _errorHandlerManager.handlerError(result.asError!.error);
       emit(state.copyWith(pageState: PageState.failure));
     }

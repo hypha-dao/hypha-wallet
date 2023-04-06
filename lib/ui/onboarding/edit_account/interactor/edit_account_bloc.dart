@@ -79,7 +79,7 @@ class EditAccountBloc extends Bloc<EditAccountEvent, EditAccountState> {
   /// Check the new account availability
   FutureOr<void> _onAccountChange(_OnAccountChange event, Emitter<EditAccountState> emit) async {
     emit(state.copyWith(userAccount: event.value));
-    searchUserCancellable?.cancel();
+    await searchUserCancellable?.cancel();
     if (event.value.isEmpty) {
       add(const EditAccountEvent.initial());
     } else {
@@ -146,6 +146,7 @@ class EditAccountBloc extends Bloc<EditAccountEvent, EditAccountState> {
       emit(state.copyWith(command: const PageCommand.navigateToSuccess()));
     } else {
       emit(state.copyWith(command: const PageCommand.hideLoadingDialog()));
+      // ignore: unawaited_futures
       _errorHandlerManager.handlerError(result.asError!.error);
     }
   }

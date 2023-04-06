@@ -32,80 +32,82 @@ class SettingsView extends StatelessWidget {
               ),
               backgroundColor: HyphaColors.primaryBlu,
             ),
-            body: ListView(
-              padding: const EdgeInsets.all(22),
-              children: [
-                HyphaActionableCard(
-                  icon: const Icon(HyphaIcons.moon),
-                  title: 'Dark mode',
-                  subtitle: 'Switch between Dark and Light mode',
-                  trailer: Switch(
-                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    value: state.themeMode == ThemeMode.dark,
-                    onChanged: (bool value) {
-                      context.read<SettingsBloc>().add(const SettingsEvent.onThemeChanged());
+            body: SafeArea(
+              child: ListView(
+                padding: const EdgeInsets.all(22),
+                children: [
+                  HyphaActionableCard(
+                    icon: const Icon(HyphaIcons.moon),
+                    title: 'Dark mode',
+                    subtitle: 'Switch between Dark and Light mode',
+                    trailer: Switch(
+                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      value: state.themeMode == ThemeMode.dark,
+                      onChanged: (bool value) {
+                        context.read<SettingsBloc>().add(const SettingsEvent.onThemeChanged());
+                      },
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  BlocBuilder<AuthenticationBloc, AuthenticationState>(
+                    builder: (context, state) {
+                      return HyphaActionableCard(
+                        icon: const Icon(HyphaIcons.key),
+                        title: 'Backup private key',
+                        subtitle:
+                            'Your private key (and the 12 secret words) are the only way to retrieve your hypha account and funds',
+                        onTap: () {
+                          Get.to(() => SaveKeyPage(state.userAuthData!.eOSPrivateKey.toString()));
+                        },
+                      );
                     },
                   ),
-                ),
-                const SizedBox(height: 16),
-                BlocBuilder<AuthenticationBloc, AuthenticationState>(
-                  builder: (context, state) {
-                    return HyphaActionableCard(
-                      icon: const Icon(HyphaIcons.key),
-                      title: 'Backup private key',
-                      subtitle:
-                          'Your private key (and the 12 secret words) are the only way to retrieve your hypha account and funds',
-                      onTap: () {
-                        Get.to(() => SaveKeyPage(state.userAuthData!.eOSPrivateKey.toString()));
-                      },
-                    );
-                  },
-                ),
-                BlocBuilder<AuthenticationBloc, AuthenticationState>(
-                  builder: (context, state) {
-                    if (state.userAuthData?.words.isEmpty == true) {
-                      return const SizedBox.shrink();
-                    } else {
-                      return Column(
-                        children: [
-                          const SizedBox(height: 16),
-                          HyphaActionableCard(
-                            icon: const Icon(HyphaIcons.shield),
-                            title: 'Backup 12 words',
-                            subtitle:
-                                'The 12 secret words (and the private key) are the only way to retrieve your hypha account and funds',
-                            onTap: () {
-                              Get.to(() => SaveWordsPage(state.userAuthData!.words));
-                            },
+                  BlocBuilder<AuthenticationBloc, AuthenticationState>(
+                    builder: (context, state) {
+                      if (state.userAuthData?.words.isEmpty == true) {
+                        return const SizedBox.shrink();
+                      } else {
+                        return Column(
+                          children: [
+                            const SizedBox(height: 16),
+                            HyphaActionableCard(
+                              icon: const Icon(HyphaIcons.shield),
+                              title: 'Backup 12 words',
+                              subtitle:
+                                  'The 12 secret words (and the private key) are the only way to retrieve your hypha account and funds',
+                              onTap: () {
+                                Get.to(() => SaveWordsPage(state.userAuthData!.words));
+                              },
+                            ),
+                          ],
+                        );
+                      }
+                    },
+                  ),
+                  const SizedBox(height: 16),
+                  BlocBuilder<AuthenticationBloc, AuthenticationState>(
+                    builder: (context, AuthenticationState state) {
+                      return Card(
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                        color: context.isDarkMode ? HyphaColors.lightBlack : HyphaColors.white,
+                        child: InkWell(
+                          borderRadius: BorderRadius.circular(16),
+                          onTap: () async {
+                            await onLogoutTapped(context, state);
+                          },
+                          child: ListTile(
+                            leading: Icon(
+                              Icons.logout,
+                              color: context.isDarkTheme ? HyphaColors.white : HyphaColors.black,
+                            ),
+                            title: Text('Logout', style: context.hyphaTextTheme.smallTitles),
                           ),
-                        ],
-                      );
-                    }
-                  },
-                ),
-                const SizedBox(height: 16),
-                BlocBuilder<AuthenticationBloc, AuthenticationState>(
-                  builder: (context, AuthenticationState state) {
-                    return Card(
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-                      color: context.isDarkMode ? HyphaColors.lightBlack : HyphaColors.white,
-                      child: InkWell(
-                        borderRadius: BorderRadius.circular(16),
-                        onTap: () async {
-                          await onLogoutTapped(context, state);
-                        },
-                        child: ListTile(
-                          leading: Icon(
-                            Icons.logout,
-                            color: context.isDarkTheme ? HyphaColors.white : HyphaColors.black,
-                          ),
-                          title: Text('Logout', style: context.hyphaTextTheme.smallTitles),
                         ),
-                      ),
-                    );
-                  },
-                ),
-              ],
+                      );
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
         );

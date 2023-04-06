@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:hypha_wallet/core/network/api/aws_amplify/profile_upload_repository.dart';
 import 'package:hypha_wallet/core/network/models/user_profile_data.dart';
 import 'package:rx_shared_preferences/rx_shared_preferences.dart';
 
@@ -12,7 +13,10 @@ enum LocalStorageValue {
   selectedTheme('Qc_keyTheme', 0),
 
   /// Security Notification
-  securityNotification('Qc_keySecurity', 0);
+  securityNotification('Qc_keySecurity', 0),
+
+  /// Signup Uploader
+  signupUploader('Qc_signup_uploader', 0);
 
   final String _key;
   final int version;
@@ -66,5 +70,18 @@ extension SharedPrefsExtensions on HyphaSharedPrefs {
 
   Future<bool> getShowSecurityNotification() async {
     return await _prefs.getBool(LocalStorageValue.securityNotification.key) ?? true;
+  }
+
+  Future<void> setSignupData(SignupData? data) async {
+    if (data != null) {
+      await _prefs.setString(LocalStorageValue.signupUploader.key, data.toJsonString());
+    } else {
+      await _prefs.remove(LocalStorageValue.signupUploader.key);
+    }
+  }
+
+  Future<SignupData?> getSignupData() async {
+    final jsonString = await _prefs.getString(LocalStorageValue.signupUploader.key);
+    return jsonString == null ? null : SignupData.fromJsonString(jsonString);
   }
 }

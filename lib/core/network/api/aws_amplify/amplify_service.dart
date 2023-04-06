@@ -83,6 +83,13 @@ class AmplifyService {
     }
   }
 
+  Future<void> logout() async {
+    if (session?.isValid() ?? false) {
+      session?.invalidateToken();
+    }
+    session = null;
+  }
+
   Future<bool> loginUser(String accountName, {bool isSignUp = false}) async {
     if (session?.isValid() ?? false) {
       print('already logged in');
