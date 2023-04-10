@@ -17,7 +17,7 @@ class SignTransactionCallbackService {
     if (queryParameters[transactionIdQueryParameterName] == transactionIdReplacementString) {
       queryParameters[transactionIdQueryParameterName] = transactionId;
     }
-    final body = jsonEncode(uri.queryParameters);
+    final body = jsonEncode(queryParameters);
     final path = uri.replace(query: '');
 
     return _networkingManager.post(path.toString(), data: body);
