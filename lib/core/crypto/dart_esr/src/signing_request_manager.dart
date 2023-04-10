@@ -1,10 +1,13 @@
 import 'dart:typed_data';
 
 import 'package:crypto/crypto.dart';
+import 'package:get_it/get_it.dart';
 import 'package:hypha_wallet/core/crypto/dart_esr/dart_esr.dart';
 import 'package:hypha_wallet/core/crypto/dart_esr/src/models/request_signature.dart';
 import 'package:hypha_wallet/core/crypto/dart_esr/src/utils/base64u.dart';
 import 'package:hypha_wallet/core/crypto/eosdart/eosdart.dart' as eosDart;
+import 'package:hypha_wallet/core/network/api/eos_service.dart';
+import 'package:hypha_wallet/core/network/api/remote_config_service.dart';
 
 class SigningRequestManager {
   static eosDart.Type? type(int version) => ESRConstants.signingRequestAbiType(version)['signing_request'];
@@ -38,9 +41,8 @@ class SigningRequestManager {
   /// Create a new signing request. */
   static Future<SigningRequestManager> create(
     SigningRequestCreateArguments args, {
-    SigningRequestEncodingOptions? options,
+    required SigningRequestEncodingOptions options,
   }) async {
-    options ??= defaultSigningRequestEncodingOptions();
     final TextEncoder? textEncoder = (options.textEncoder ?? DefaultTextEncoder) as TextEncoder?;
     final TextDecoder? textDecoder = (options.textDecoder ?? TextDecoder) as TextDecoder?;
 
@@ -126,7 +128,7 @@ class SigningRequestManager {
 
   /// Creates an identity request. */
   static Future<SigningRequestManager> identity(SigningRequestCreateIdentityArguments args,
-      {SigningRequestEncodingOptions? options}) async {
+      {required SigningRequestEncodingOptions options}) async {
     final permission = Authorization();
     permission.actor = args.account != null || args.account!.isEmpty ? args.account : ESRConstants.PlaceholderName;
     permission.permission =
@@ -212,13 +214,20 @@ class SigningRequestManager {
 
     final signingRequest = SigningRequest.fromBinary(type(version)!, buf);
 
+    // resolve network and abi provider -
+    final network = HyphaSigningRequestManager.resolveNetwork(signingRequest.chainId);
+    // TODO(NIK): Remove debug code
+    // print('network: $network');
+    final eosClientForAbi = GetIt.I.get<EOSService>().getEosClientForNetwork(network);
+    final abiProvider = DefaultAbiProvider(eosClientForAbi);
+
     RequestSignature? signature;
     if (buf.haveReadData()) {
       signature = RequestSignature.fromBinary(ESRConstants.signingRequestAbiType(version)['request_signature']!, buf);
     }
 
     return SigningRequestManager(version, signingRequest, textEncoder as TextEncoder?, textDecoder as TextDecoder?,
-        zlib: options.zlib, abiProvider: options.abiProvider, signature: signature);
+        zlib: options.zlib, abiProvider: abiProvider, signature: signature);
   }
 
   /// Sign the request, mutating.
@@ -766,7 +775,7 @@ class SigningRequestUtils {
   }
 
   /// Resolve a chain id to a chain name alias, returns UNKNOWN (0x00) if the chain id has no alias. */
-  ChainName idToName(String chainId) {
+  static ChainName idToName(String chainId) {
     chainId = chainId.toLowerCase();
     ESRConstants.ChainIdLookup.containsValue(chainId);
     return ESRConstants.ChainIdLookup.keys.firstWhere((key) => ESRConstants.ChainIdLookup[key] == chainId);
@@ -778,5 +787,43 @@ class SigningRequestUtils {
       return ESRConstants.ChainIdLookup[chainName];
     }
     return ESRConstants.ChainIdLookup[ChainName.RESERVED];
+  }
+}
+
+extension HyphaSigningRequestManager on SigningRequestManager {
+  /// Convert the ESR standard's "chain_id" to our Network
+  /// Both signify a unique identifier for a chain
+  /// But we support fewer chains than ESR does.
+  /// Networks maps to remote config which contains the server node URLs we need
+  /// to use in order to access supported chains.
+  /// Returns: Network
+  /// throws: unsupported network when the chainID can't be parsed.
+  ///
+  static Networks resolveNetwork(List<dynamic> chainId) {
+    if (chainId[0] == 'chain_alias') {
+      // chain_alias officially only supports EOS mainnet, and Telos mainnet, as 1, and 2.
+      if (chainId[1] == 1) {
+        return Networks.eos;
+      } else if (chainId[1] == 2) {
+        return Networks.telos;
+      } else {
+        throw 'unsupported network alias ${chainId[1]}';
+      }
+    } else if (chainId[0] == 'chain_id') {
+      final ChainName name = SigningRequestUtils.idToName(chainId[1]);
+      switch (name) {
+        case ChainName.EOS:
+          return Networks.eos;
+        case ChainName.EOS_JUNGLE4:
+          return Networks.eosTestnet;
+        case ChainName.TELOS:
+          return Networks.telos;
+        case ChainName.TELOS_TESTNET:
+          return Networks.telosTestnet;
+        default:
+          throw 'unsupported network ${name.name}';
+      }
+    }
+    return Networks.eos;
   }
 }

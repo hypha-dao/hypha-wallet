@@ -7,27 +7,37 @@ import 'package:hypha_wallet/design/buttons/hypha_app_button.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 import 'package:hypha_wallet/ui/onboarding/select_import_method.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class OnboardingPage extends StatelessWidget {
   const OnboardingPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    Future<void> _launchUrl() async {
+      const _url = 'https://dao.hypha.earth/';
+      if (!await launchUrl(Uri.parse(_url))) {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text('Error Launching URL. Please visit dao.hypha.earth'),
+        ));
+      }
+    }
+
     return HyphaPageBackground(
       withOpacity: false,
       child: Scaffold(
         backgroundColor: HyphaColors.transparent,
         bottomNavigationBar: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 45),
+          padding: const EdgeInsets.symmetric(vertical: 24),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               HyphaAppButton(
                 margin: const EdgeInsets.symmetric(horizontal: 45),
                 onPressed: () {
-                  // Get.to(() => const OnboardingPageWithLink(), transition: Transition.rightToLeft);
+                  _launchUrl();
                 },
-                title: 'Sign-Up',
+                title: 'Sign Up',
                 buttonType: ButtonType.secondary,
               ),
               const SizedBox(height: 20),
@@ -53,7 +63,7 @@ class OnboardingPage extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 54, right: 54),
                 child: Text(
-                  'If you already have an Hypha account please click “Import account” button and follow the steps. \n\nIf you don’t have an Hypha account yet, please click “Sign-up” button and proceed to dao.hypha.earth to create an account.',
+                  'If you already have an Hypha account please click “Import account” button and follow the steps. \n\nIf you don’t have an Hypha account yet, please click “Sign up” button and proceed to dao.hypha.earth to create an account.',
                   style: context.hyphaTextTheme.ralMediumBody.copyWith(color: HyphaColors.midGrey),
                   textAlign: TextAlign.center,
                 ),

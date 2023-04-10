@@ -8,8 +8,7 @@ import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.d
 import 'package:hypha_wallet/ui/bottom_navigation/hypha_bottom_navigation.dart';
 
 enum SignSuccessTransactionType {
-  approved('Approved'),
-  rejected('Rejected');
+  approved('Approved');
 
   const SignSuccessTransactionType(this.value);
 
@@ -19,8 +18,6 @@ enum SignSuccessTransactionType {
     switch (this) {
       case SignSuccessTransactionType.approved:
         return HyphaColors.success;
-      case SignSuccessTransactionType.rejected:
-        return HyphaColors.error;
     }
   }
 
@@ -28,8 +25,6 @@ enum SignSuccessTransactionType {
     switch (this) {
       case SignSuccessTransactionType.approved:
         return Icons.check;
-      case SignSuccessTransactionType.rejected:
-        return Icons.close;
     }
   }
 }
@@ -63,7 +58,7 @@ class SignTransactionSuccessPage extends StatelessWidget {
       child: Scaffold(
         backgroundColor: HyphaColors.transparent,
         bottomNavigationBar: Padding(
-          padding: const EdgeInsets.only(left: 45, right: 45, bottom: 40),
+          padding: const EdgeInsets.only(left: 45, right: 45, bottom: 24),
           child: HyphaAppButton(
             onPressed: () {
               Get.offAll(() => const HyphaBottomNavigation());
@@ -80,7 +75,7 @@ class SignTransactionSuccessPage extends StatelessWidget {
                 Image.asset('assets/images/thumb_up.png', width: 240, height: 240),
                 Padding(
                   padding: const EdgeInsets.only(left: 45, right: 45, top: 16),
-                  child: Text('Completed!', textAlign: TextAlign.center, style: context.hyphaTextTheme.mediumTitles),
+                  child: Text('Well Done!', textAlign: TextAlign.center, style: context.hyphaTextTheme.mediumTitles),
                 ),
                 const SizedBox(height: 16),
                 Padding(padding: const EdgeInsets.only(left: 45, right: 45), child: successText),

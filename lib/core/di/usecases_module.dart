@@ -8,7 +8,7 @@ void _registerUseCasesModule() {
   _registerFactory(() => FetchProfileUseCase(_getIt<ProfileService>(), _getIt<HyphaSharedPrefs>()));
   _registerFactory(() => GenerateKeyFromSeedsPassportWordsUseCase(_getIt<CryptoAuthService>()));
   _registerFactory(() => GenerateKeyFromRecoveryWordsUseCase(_getIt<CryptoAuthService>()));
-  _registerFactory(() => FindAccountsUseCase(_getIt<EOSClient>(), _getIt<ProfileService>()));
+  _registerFactory(() => FindAccountsUseCase(_getIt<ProfileService>(), _getIt<RemoteConfigService>()));
   _registerFactory(() => ValidateKeyUseCase());
   _registerFactory(() => SignTransactionUseCase(
         _getIt<EOSService>(),
@@ -21,4 +21,11 @@ void _registerUseCasesModule() {
       _getIt<HyphaSharedPrefs>(),
     ),
   );
+  _registerFactory(() => SetNameUseCase(_getIt<AmplifyService>()));
+  _registerFactory(() => SetImageUseCase(_getIt<AmplifyService>(), _getIt<ProfileLoginUseCase>()));
+  _registerFactory(() => SetBioUseCase(_getIt<AmplifyService>(), _getIt<ProfileLoginUseCase>()));
+  _registerFactory(() => RemoveAvatarUseCase(_getIt<AmplifyService>(), _getIt<ProfileLoginUseCase>()));
+  _registerFactory(() => PPPSignUpUseCase(_getIt<AmplifyService>()));
+  _registerFactory(() => ProfileLoginUseCase(_getIt<AmplifyService>()));
+  _registerFactory(() => InitializeProfileUseCase(_getIt<AmplifyService>()));
 }

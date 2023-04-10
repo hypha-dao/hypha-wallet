@@ -21,6 +21,7 @@ mixin _$PageCommand {
     required TResult Function(SignSuccessTransactionType type)
         navigateToTransactionSuccess,
     required TResult Function() navigateToTransactionFailed,
+    required TResult Function() navigateAway,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -28,6 +29,7 @@ mixin _$PageCommand {
     TResult? Function(SignSuccessTransactionType type)?
         navigateToTransactionSuccess,
     TResult? Function()? navigateToTransactionFailed,
+    TResult? Function()? navigateAway,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,6 +37,7 @@ mixin _$PageCommand {
     TResult Function(SignSuccessTransactionType type)?
         navigateToTransactionSuccess,
     TResult Function()? navigateToTransactionFailed,
+    TResult Function()? navigateAway,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -44,6 +47,7 @@ mixin _$PageCommand {
         navigateToTransactionSuccess,
     required TResult Function(_NavigateToTransactionFailed value)
         navigateToTransactionFailed,
+    required TResult Function(_NavigateAway value) navigateAway,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -52,6 +56,7 @@ mixin _$PageCommand {
         navigateToTransactionSuccess,
     TResult? Function(_NavigateToTransactionFailed value)?
         navigateToTransactionFailed,
+    TResult? Function(_NavigateAway value)? navigateAway,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -60,6 +65,7 @@ mixin _$PageCommand {
         navigateToTransactionSuccess,
     TResult Function(_NavigateToTransactionFailed value)?
         navigateToTransactionFailed,
+    TResult Function(_NavigateAway value)? navigateAway,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -153,6 +159,7 @@ class _$_NavigateToTransactionSuccess implements _NavigateToTransactionSuccess {
     required TResult Function(SignSuccessTransactionType type)
         navigateToTransactionSuccess,
     required TResult Function() navigateToTransactionFailed,
+    required TResult Function() navigateAway,
   }) {
     return navigateToTransactionSuccess(type);
   }
@@ -163,6 +170,7 @@ class _$_NavigateToTransactionSuccess implements _NavigateToTransactionSuccess {
     TResult? Function(SignSuccessTransactionType type)?
         navigateToTransactionSuccess,
     TResult? Function()? navigateToTransactionFailed,
+    TResult? Function()? navigateAway,
   }) {
     return navigateToTransactionSuccess?.call(type);
   }
@@ -173,6 +181,7 @@ class _$_NavigateToTransactionSuccess implements _NavigateToTransactionSuccess {
     TResult Function(SignSuccessTransactionType type)?
         navigateToTransactionSuccess,
     TResult Function()? navigateToTransactionFailed,
+    TResult Function()? navigateAway,
     required TResult orElse(),
   }) {
     if (navigateToTransactionSuccess != null) {
@@ -188,6 +197,7 @@ class _$_NavigateToTransactionSuccess implements _NavigateToTransactionSuccess {
         navigateToTransactionSuccess,
     required TResult Function(_NavigateToTransactionFailed value)
         navigateToTransactionFailed,
+    required TResult Function(_NavigateAway value) navigateAway,
   }) {
     return navigateToTransactionSuccess(this);
   }
@@ -199,6 +209,7 @@ class _$_NavigateToTransactionSuccess implements _NavigateToTransactionSuccess {
         navigateToTransactionSuccess,
     TResult? Function(_NavigateToTransactionFailed value)?
         navigateToTransactionFailed,
+    TResult? Function(_NavigateAway value)? navigateAway,
   }) {
     return navigateToTransactionSuccess?.call(this);
   }
@@ -210,6 +221,7 @@ class _$_NavigateToTransactionSuccess implements _NavigateToTransactionSuccess {
         navigateToTransactionSuccess,
     TResult Function(_NavigateToTransactionFailed value)?
         navigateToTransactionFailed,
+    TResult Function(_NavigateAway value)? navigateAway,
     required TResult orElse(),
   }) {
     if (navigateToTransactionSuccess != null) {
@@ -273,6 +285,7 @@ class _$_NavigateToTransactionFailed implements _NavigateToTransactionFailed {
     required TResult Function(SignSuccessTransactionType type)
         navigateToTransactionSuccess,
     required TResult Function() navigateToTransactionFailed,
+    required TResult Function() navigateAway,
   }) {
     return navigateToTransactionFailed();
   }
@@ -283,6 +296,7 @@ class _$_NavigateToTransactionFailed implements _NavigateToTransactionFailed {
     TResult? Function(SignSuccessTransactionType type)?
         navigateToTransactionSuccess,
     TResult? Function()? navigateToTransactionFailed,
+    TResult? Function()? navigateAway,
   }) {
     return navigateToTransactionFailed?.call();
   }
@@ -293,6 +307,7 @@ class _$_NavigateToTransactionFailed implements _NavigateToTransactionFailed {
     TResult Function(SignSuccessTransactionType type)?
         navigateToTransactionSuccess,
     TResult Function()? navigateToTransactionFailed,
+    TResult Function()? navigateAway,
     required TResult orElse(),
   }) {
     if (navigateToTransactionFailed != null) {
@@ -308,6 +323,7 @@ class _$_NavigateToTransactionFailed implements _NavigateToTransactionFailed {
         navigateToTransactionSuccess,
     required TResult Function(_NavigateToTransactionFailed value)
         navigateToTransactionFailed,
+    required TResult Function(_NavigateAway value) navigateAway,
   }) {
     return navigateToTransactionFailed(this);
   }
@@ -319,6 +335,7 @@ class _$_NavigateToTransactionFailed implements _NavigateToTransactionFailed {
         navigateToTransactionSuccess,
     TResult? Function(_NavigateToTransactionFailed value)?
         navigateToTransactionFailed,
+    TResult? Function(_NavigateAway value)? navigateAway,
   }) {
     return navigateToTransactionFailed?.call(this);
   }
@@ -330,6 +347,7 @@ class _$_NavigateToTransactionFailed implements _NavigateToTransactionFailed {
         navigateToTransactionSuccess,
     TResult Function(_NavigateToTransactionFailed value)?
         navigateToTransactionFailed,
+    TResult Function(_NavigateAway value)? navigateAway,
     required TResult orElse(),
   }) {
     if (navigateToTransactionFailed != null) {
@@ -341,6 +359,123 @@ class _$_NavigateToTransactionFailed implements _NavigateToTransactionFailed {
 
 abstract class _NavigateToTransactionFailed implements PageCommand {
   const factory _NavigateToTransactionFailed() = _$_NavigateToTransactionFailed;
+}
+
+/// @nodoc
+abstract class _$$_NavigateAwayCopyWith<$Res> {
+  factory _$$_NavigateAwayCopyWith(
+          _$_NavigateAway value, $Res Function(_$_NavigateAway) then) =
+      __$$_NavigateAwayCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_NavigateAwayCopyWithImpl<$Res>
+    extends _$PageCommandCopyWithImpl<$Res, _$_NavigateAway>
+    implements _$$_NavigateAwayCopyWith<$Res> {
+  __$$_NavigateAwayCopyWithImpl(
+      _$_NavigateAway _value, $Res Function(_$_NavigateAway) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_NavigateAway implements _NavigateAway {
+  const _$_NavigateAway();
+
+  @override
+  String toString() {
+    return 'PageCommand.navigateAway()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_NavigateAway);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(SignSuccessTransactionType type)
+        navigateToTransactionSuccess,
+    required TResult Function() navigateToTransactionFailed,
+    required TResult Function() navigateAway,
+  }) {
+    return navigateAway();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(SignSuccessTransactionType type)?
+        navigateToTransactionSuccess,
+    TResult? Function()? navigateToTransactionFailed,
+    TResult? Function()? navigateAway,
+  }) {
+    return navigateAway?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(SignSuccessTransactionType type)?
+        navigateToTransactionSuccess,
+    TResult Function()? navigateToTransactionFailed,
+    TResult Function()? navigateAway,
+    required TResult orElse(),
+  }) {
+    if (navigateAway != null) {
+      return navigateAway();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_NavigateToTransactionSuccess value)
+        navigateToTransactionSuccess,
+    required TResult Function(_NavigateToTransactionFailed value)
+        navigateToTransactionFailed,
+    required TResult Function(_NavigateAway value) navigateAway,
+  }) {
+    return navigateAway(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_NavigateToTransactionSuccess value)?
+        navigateToTransactionSuccess,
+    TResult? Function(_NavigateToTransactionFailed value)?
+        navigateToTransactionFailed,
+    TResult? Function(_NavigateAway value)? navigateAway,
+  }) {
+    return navigateAway?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_NavigateToTransactionSuccess value)?
+        navigateToTransactionSuccess,
+    TResult Function(_NavigateToTransactionFailed value)?
+        navigateToTransactionFailed,
+    TResult Function(_NavigateAway value)? navigateAway,
+    required TResult orElse(),
+  }) {
+    if (navigateAway != null) {
+      return navigateAway(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _NavigateAway implements PageCommand {
+  const factory _NavigateAway() = _$_NavigateAway;
 }
 
 /// @nodoc

@@ -1,33 +1,56 @@
 import 'package:dio/dio.dart';
-import 'package:hypha_wallet/core/logging/log_helper.dart';
 import 'package:hypha_wallet/core/network/api/endpoints.dart';
+import 'package:hypha_wallet/core/network/api/remote_config_service.dart';
 import 'package:hypha_wallet/core/network/networking_manager.dart';
-import 'package:image_picker/image_picker.dart';
 
-// TODO(Nik): these API calls need your help
 class UserAccountService {
   final NetworkingManager networkingManager;
+  final RemoteConfigService remoteConfigService;
 
-  UserAccountService({required this.networkingManager});
+  UserAccountService({required this.networkingManager, required this.remoteConfigService});
 
-  Future<Response> createUserAccount({
+  Future<bool> createUserAccount({
+    required String code,
     required String accountName,
-    required String userName,
-    XFile? image,
+    required String publicKey,
+    required String network,
   }) async {
-    // TODO(Nik): these API calls need your help
-    return await Future.delayed(const Duration(seconds: 3))
-        .then((value) => Response(data: true, requestOptions: RequestOptions(path: 'MOCK')));
-    // return await dioClient.post(Endpoints.userAccountAvailable, data: {
-    //   'userAccount': userAccount,
-    // });
+    final requestBody = '''
+    { 
+      "code": "$code",
+      "accountName": "$accountName",
+      "publicKey": "$publicKey",
+      "network": "$network"
+    }''';
+    final url = remoteConfigService.accountCreatorEndpoint + Endpoints.creteAccount;
+    try {
+      // ignore: unused_local_variable
+      final res = await networkingManager.post(url, data: requestBody);
+
+      // TODO(gguij): Not sure we need to handle the response - how to we parse status codes?
+      // print('res: $res');
+      // flutter: res: {"success":true}
+
+      return true;
+    } catch (error) {
+      print('Error creating account');
+      print(error);
+      if (error is DioError) {
+        final dioError = error;
+        print('message: ${dioError.message}');
+        print('status code: ${dioError.response?.statusCode}');
+        print('message: ${dioError.response?.statusMessage}');
+        print('dioError: $dioError');
+      }
+      rethrow;
+    }
   }
 
   Future<bool> isUserAccountAvailable(String accountName) async {
     final requestBody = '{ "account_name": "$accountName" }';
     try {
+      // ignore: unused_local_variable
       final res = await networkingManager.post(Endpoints.getAccount, data: requestBody);
-      LogHelper.d('Result $res');
       return false;
     } catch (error) {
       return true;

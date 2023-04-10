@@ -62,7 +62,7 @@ class _ScannerWidgetState extends State<ScannerWidget> {
             height: Get.height * _heightFactor,
           ),
           ClipRRect(
-            borderRadius: BorderRadius.circular(30),
+            borderRadius: BorderRadius.circular(20),
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 300),
               curve: Curves.fastOutSlowIn,
@@ -118,14 +118,19 @@ class _ScannerWidgetState extends State<ScannerWidget> {
                     : Center(
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            widget.isLoading
-                                ? const SizedBox(height: 60, width: 60, child: CircularProgressIndicator())
-                                : const Icon(HyphaIcons.home_b, size: 80, color: HyphaColors.primaryBlu),
+                            SizedBox(
+                              width: 140,
+                              child: widget.isLoading
+                                  ? const SizedBox(height: 60, width: 60, child: CircularProgressIndicator())
+                                  : const Icon(HyphaIcons.bigqrscan, size: 60, color: HyphaColors.primaryBlu),
+                            ),
                             const SizedBox(height: 24),
                             Text(
                               widget.isLoading ? 'Loading Transaction' : 'Scan QR',
                               style: context.hyphaTextTheme.smallTitles.copyWith(color: HyphaColors.white),
+                              textAlign: TextAlign.center,
                             ),
                           ],
                         ),

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
@@ -17,6 +19,8 @@ import 'package:hypha_wallet/ui/settings/hypha_confirmation_page.dart';
 import 'package:hypha_wallet/ui/settings/interactor/settings_bloc.dart';
 import 'package:hypha_wallet/ui/settings/save_key_page.dart';
 import 'package:hypha_wallet/ui/settings/save_words_page.dart';
+
+const kLogQuietMode = false;
 
 class HyphaApp extends StatelessWidget {
   const HyphaApp({super.key});
@@ -90,7 +94,7 @@ class HyphaAppView extends StatelessWidget {
               words,
               privateKey,
             ) async {
-              Get.bottomSheet(
+              unawaited(Get.bottomSheet(
                 FractionallySizedBox(
                   heightFactor: 0.95,
                   child: HyphaConfirmationPage(
@@ -115,7 +119,7 @@ class HyphaAppView extends StatelessWidget {
                 enableDrag: true,
                 clipBehavior: Clip.antiAliasWithSaveLayer,
                 isScrollControlled: true,
-              );
+              ));
 
               context.read<SettingsBloc>().add(const SettingsEvent.clearPageCommand());
             });

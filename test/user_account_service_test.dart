@@ -1,11 +1,14 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:hypha_wallet/core/network/api/remote_config_service.dart';
 import 'package:hypha_wallet/core/network/api/user_account_service.dart';
 import 'package:hypha_wallet/core/network/networking_manager.dart';
 
 void main() {
   test('Name generator test from short name', () async {
     final mockNetworkingManager = NetworkingManager('https://foobar');
-    final service = UserAccountService(networkingManager: mockNetworkingManager);
+    final mockRemoteConfigService = RemoteConfigService();
+    final service =
+        UserAccountService(networkingManager: mockNetworkingManager, remoteConfigService: mockRemoteConfigService);
 
     final name = 'Foo Bar';
 
@@ -27,7 +30,9 @@ void main() {
   });
   test('Name generator test from long name', () async {
     final mockNetworkingManager = NetworkingManager('https://foobar');
-    final service = UserAccountService(networkingManager: mockNetworkingManager);
+    final mockRemoteConfigService = RemoteConfigService();
+    final service =
+        UserAccountService(networkingManager: mockNetworkingManager, remoteConfigService: mockRemoteConfigService);
 
     final name = 'The Remote Cuban';
 
@@ -49,7 +54,9 @@ void main() {
   });
   test('Name generator test from edge case name', () async {
     final mockNetworkingManager = NetworkingManager('https://foobar');
-    final service = UserAccountService(networkingManager: mockNetworkingManager);
+    final mockRemoteConfigService = RemoteConfigService();
+    final service =
+        UserAccountService(networkingManager: mockNetworkingManager, remoteConfigService: mockRemoteConfigService);
 
     final name = 'a1111111112';
 

@@ -14,6 +14,6 @@ class GetTransactionHistoryUseCase extends NoInputUseCase<Result<List<Transactio
   @override
   Future<Result<List<TransactionModel>, HyphaError>> run() async {
     final user = await _appSharedPrefs.getUserProfileData();
-    return await _repository.getTransactions(user!.accountName);
+    return _repository.getTransactions(user!.accountName);
   }
 }

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hypha_wallet/design/background/hypha_page_background.dart';
 import 'package:hypha_wallet/design/buttons/hypha_app_button.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
+import 'package:hypha_wallet/design/progress_indicator/hypha_progress_indicator.dart';
 import 'package:hypha_wallet/design/secret_phrase/hypha_secret_phrase.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 import 'package:hypha_wallet/ui/onboarding/components/onboarding_appbar.dart';
@@ -14,39 +15,47 @@ class ImportAccountByWordsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ImportAccountBloc, ImportAccountState>(
-      builder: (context, state) {
-        return HyphaPageBackground(
-          child: Scaffold(
-            backgroundColor: HyphaColors.transparent,
-            appBar: const OnboardingAppbar(title: 'Use your', subTitle: ' 12 Secret words'),
-            bottomNavigationBar: HyphaAppButton(
-              margin: const EdgeInsets.only(left: 45, right: 45, bottom: 45, top: 16),
+    return HyphaPageBackground(
+      child: Scaffold(
+        backgroundColor: HyphaColors.transparent,
+        appBar: const OnboardingAppbar(title: 'Use your', subTitle: ' 12 Secret words'),
+        bottomNavigationBar: BlocBuilder<ImportAccountBloc, ImportAccountState>(
+          buildWhen: (previous, current) =>
+              previous.isPartialLoading != current.isPartialLoading ||
+              previous.isPrivateKeyValid != current.isPrivateKeyValid,
+          builder: (context, state) {
+            return HyphaAppButton(
+              margin: const EdgeInsets.only(left: 45, right: 45, bottom: 24, top: 16),
               isLoading: state.isPartialLoading,
-              onPressed: state.areAllWordsEntered
+              onPressed: state.isPrivateKeyValid
                   ? () {
                       context.read<ImportAccountBloc>().add(const ImportAccountEvent.onActionButtonTapped(true));
                     }
                   : null,
-              title: 'Find Account',
-              isActive: state.areAllWordsEntered,
-            ),
-            body: SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 50),
-                      child: Text(
-                        'Enter your secret phrase to import your Hypha Account',
-                        style: context.hyphaTextTheme.regular.copyWith(color: HyphaColors.primaryBlu),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                    HyphaSecretPhrase(
+              title: 'Next',
+              isActive: state.isPrivateKeyValid,
+            );
+          },
+        ),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 24, right: 24, top: 8),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 50),
+                  child: Text(
+                    'Enter your secret phrase to import your Hypha Account',
+                    style: context.hyphaTextTheme.regular.copyWith(color: HyphaColors.primaryBlu),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                const SizedBox(height: 16),
+                BlocBuilder<ImportAccountBloc, ImportAccountState>(
+                  buildWhen: (p, c) => p.userEnteredWords != c.userEnteredWords,
+                  builder: (context, state) {
+                    return HyphaSecretPhrase(
                       words: state.userEnteredWords,
                       onSelected: (value) {
                         context.read<ImportAccountBloc>().add(ImportAccountEvent.onWordChanged(value.value, value.key));
@@ -54,27 +63,62 @@ class ImportAccountByWordsView extends StatelessWidget {
                       onChanged: (value) {
                         context.read<ImportAccountBloc>().add(ImportAccountEvent.onWordChanged(value.value, value.key));
                       },
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        context.read<ImportAccountBloc>().add(const ImportAccountEvent.onUserPastedWords());
-                      },
-                      child: Text('Paste Words', style: context.hyphaTextTheme.buttons),
-                    ),
-                    UserAccountList(
-                      accounts: state.accounts,
-                      onTap: (data) {
-                        context.read<ImportAccountBloc>().add(ImportAccountEvent.onAccountSelected(data));
-                      },
-                    ),
-                    const SizedBox(height: 120),
-                  ],
+                    );
+                  },
                 ),
-              ),
+                SizedBox(
+                  width: double.infinity,
+                  child: TextButton(
+                    onPressed: () {
+                      context.read<ImportAccountBloc>().add(const ImportAccountEvent.onUserPastedWords());
+                    },
+                    child: Text(
+                      'Paste Words',
+                      style: context.hyphaTextTheme.buttons.copyWith(
+                        color: context.isDarkTheme ? HyphaColors.offWhite : HyphaColors.primaryBlu,
+                      ),
+                    ),
+                  ),
+                ),
+                BlocBuilder<ImportAccountBloc, ImportAccountState>(
+                  buildWhen: (p, c) =>
+                      p.isPartialLoading != c.isPartialLoading ||
+                      p.accounts != c.accounts ||
+                      p.showNoAccountsFound != c.showNoAccountsFound,
+                  builder: (context, state) {
+                    if (state.isPartialLoading) {
+                      return const Padding(
+                        padding: EdgeInsets.only(top: 60),
+                        child: HyphaProgressIndicator(),
+                      );
+                    } else if (state.showNoAccountsFound) {
+                      return Padding(
+                        padding: const EdgeInsets.only(top: 16),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Icon(Icons.info_outline, color: HyphaColors.error),
+                            const SizedBox(width: 8),
+                            const Text('No accounts found'),
+                          ],
+                        ),
+                      );
+                    } else {
+                      return UserAccountList(
+                        accounts: state.accounts,
+                        onTap: (data) {
+                          context.read<ImportAccountBloc>().add(ImportAccountEvent.onAccountSelected(data));
+                        },
+                      );
+                    }
+                  },
+                ),
+                const SizedBox(height: 120),
+              ],
             ),
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 }

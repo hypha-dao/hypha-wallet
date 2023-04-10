@@ -6,17 +6,50 @@ import 'package:hypha_wallet/core/crypto/eosdart/eosdart.dart';
 import 'package:hypha_wallet/core/crypto/seeds_esr/eos_transaction.dart';
 import 'package:hypha_wallet/core/local/models/user_auth_data.dart';
 import 'package:hypha_wallet/core/local/services/secure_storage_service.dart';
-import 'package:hypha_wallet/core/network/api/endpoints.dart';
+import 'package:hypha_wallet/core/network/api/remote_config_service.dart';
 
 class EOSService {
-  final EOSClient eosClient;
   final SecureStorageService secureStorageService;
+  final RemoteConfigService remoteConfigService;
 
-  EOSService(this.eosClient, this.secureStorageService);
+  EOSService(this.secureStorageService, this.remoteConfigService);
+
+  EOSClient getEosClientForNetwork(Networks network, {List<String> privateKeys = const []}) {
+    return EOSClient(
+      baseUrl: remoteConfigService.pushTransactionNodeUrl(network: network),
+      privateKeys: privateKeys,
+      version: 'v1',
+    );
+  }
+
+  Future<Result<dynamic>> loginWithCode({
+    required String accountName,
+    required String loginCode,
+    required Networks network,
+  }) async {
+    final contractName = remoteConfigService.loginContract(network: network);
+    final actionName = remoteConfigService.loginAction(network: network);
+    final loginTransaction = EOSTransaction.fromAction(
+      account: contractName,
+      actionName: actionName,
+      data: {
+        'account_name': accountName,
+        'login_code': loginCode,
+      },
+      authorization: [
+        Authorization()
+          ..actor = accountName
+          ..permission = 'active'
+      ],
+      network: network,
+    );
+    return sendTransaction(eosTransaction: loginTransaction, accountName: accountName, network: network);
+  }
 
   Future<Result<dynamic>> sendTransaction({
     required EOSTransaction eosTransaction,
     required String accountName,
+    required Networks network,
   }) async {
     final actions = eosTransaction.actions.map((e) => e.toEosAction).toList();
 
@@ -33,7 +66,7 @@ class EOSService {
     final UserAuthData? userAuthData = await secureStorageService.getUserAuthData();
 
     final eosClient = EOSClient(
-      baseUrl: Endpoints.pushTransactionNodeUrl,
+      baseUrl: remoteConfigService.pushTransactionNodeUrl(network: network),
       privateKeys: [userAuthData!.eOSPrivateKey.toString()],
       version: 'v1',
     );

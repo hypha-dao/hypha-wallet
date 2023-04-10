@@ -19,32 +19,38 @@ mixin _$PageCommand {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() navigateToSuccess,
+    required TResult Function() navigateBack,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? navigateToSuccess,
+    TResult? Function()? navigateBack,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? navigateToSuccess,
+    TResult Function()? navigateBack,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_NavigateToSuccess value) navigateToSuccess,
+    required TResult Function(_NavigateBack value) navigateBack,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_NavigateToSuccess value)? navigateToSuccess,
+    TResult? Function(_NavigateBack value)? navigateBack,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_NavigateToSuccess value)? navigateToSuccess,
+    TResult Function(_NavigateBack value)? navigateBack,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -107,6 +113,7 @@ class _$_NavigateToSuccess implements _NavigateToSuccess {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() navigateToSuccess,
+    required TResult Function() navigateBack,
   }) {
     return navigateToSuccess();
   }
@@ -115,6 +122,7 @@ class _$_NavigateToSuccess implements _NavigateToSuccess {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? navigateToSuccess,
+    TResult? Function()? navigateBack,
   }) {
     return navigateToSuccess?.call();
   }
@@ -123,6 +131,7 @@ class _$_NavigateToSuccess implements _NavigateToSuccess {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? navigateToSuccess,
+    TResult Function()? navigateBack,
     required TResult orElse(),
   }) {
     if (navigateToSuccess != null) {
@@ -135,6 +144,7 @@ class _$_NavigateToSuccess implements _NavigateToSuccess {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_NavigateToSuccess value) navigateToSuccess,
+    required TResult Function(_NavigateBack value) navigateBack,
   }) {
     return navigateToSuccess(this);
   }
@@ -143,6 +153,7 @@ class _$_NavigateToSuccess implements _NavigateToSuccess {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_NavigateToSuccess value)? navigateToSuccess,
+    TResult? Function(_NavigateBack value)? navigateBack,
   }) {
     return navigateToSuccess?.call(this);
   }
@@ -151,6 +162,7 @@ class _$_NavigateToSuccess implements _NavigateToSuccess {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_NavigateToSuccess value)? navigateToSuccess,
+    TResult Function(_NavigateBack value)? navigateBack,
     required TResult orElse(),
   }) {
     if (navigateToSuccess != null) {
@@ -165,12 +177,118 @@ abstract class _NavigateToSuccess implements PageCommand {
 }
 
 /// @nodoc
+abstract class _$$_NavigateBackCopyWith<$Res> {
+  factory _$$_NavigateBackCopyWith(
+          _$_NavigateBack value, $Res Function(_$_NavigateBack) then) =
+      __$$_NavigateBackCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_NavigateBackCopyWithImpl<$Res>
+    extends _$PageCommandCopyWithImpl<$Res, _$_NavigateBack>
+    implements _$$_NavigateBackCopyWith<$Res> {
+  __$$_NavigateBackCopyWithImpl(
+      _$_NavigateBack _value, $Res Function(_$_NavigateBack) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_NavigateBack implements _NavigateBack {
+  const _$_NavigateBack();
+
+  @override
+  String toString() {
+    return 'PageCommand.navigateBack()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_NavigateBack);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() navigateToSuccess,
+    required TResult Function() navigateBack,
+  }) {
+    return navigateBack();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? navigateToSuccess,
+    TResult? Function()? navigateBack,
+  }) {
+    return navigateBack?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? navigateToSuccess,
+    TResult Function()? navigateBack,
+    required TResult orElse(),
+  }) {
+    if (navigateBack != null) {
+      return navigateBack();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_NavigateToSuccess value) navigateToSuccess,
+    required TResult Function(_NavigateBack value) navigateBack,
+  }) {
+    return navigateBack(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_NavigateToSuccess value)? navigateToSuccess,
+    TResult? Function(_NavigateBack value)? navigateBack,
+  }) {
+    return navigateBack?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_NavigateToSuccess value)? navigateToSuccess,
+    TResult Function(_NavigateBack value)? navigateBack,
+    required TResult orElse(),
+  }) {
+    if (navigateBack != null) {
+      return navigateBack(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _NavigateBack implements PageCommand {
+  const factory _NavigateBack() = _$_NavigateBack;
+}
+
+/// @nodoc
 mixin _$ProfileEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() onRefresh,
     required TResult Function() clearPageCommand,
+    required TResult Function(String name) setName,
+    required TResult Function(String bio) setBio,
+    required TResult Function(XFile image) setAvatarImage,
+    required TResult Function() onRemoveImageTapped,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -178,6 +296,10 @@ mixin _$ProfileEvent {
     TResult? Function()? initial,
     TResult? Function()? onRefresh,
     TResult? Function()? clearPageCommand,
+    TResult? Function(String name)? setName,
+    TResult? Function(String bio)? setBio,
+    TResult? Function(XFile image)? setAvatarImage,
+    TResult? Function()? onRemoveImageTapped,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -185,6 +307,10 @@ mixin _$ProfileEvent {
     TResult Function()? initial,
     TResult Function()? onRefresh,
     TResult Function()? clearPageCommand,
+    TResult Function(String name)? setName,
+    TResult Function(String bio)? setBio,
+    TResult Function(XFile image)? setAvatarImage,
+    TResult Function()? onRemoveImageTapped,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -193,6 +319,10 @@ mixin _$ProfileEvent {
     required TResult Function(_Initial value) initial,
     required TResult Function(_OnRefresh value) onRefresh,
     required TResult Function(_ClearPageCommand value) clearPageCommand,
+    required TResult Function(_SetName value) setName,
+    required TResult Function(_SetBio value) setBio,
+    required TResult Function(_SetAvatarImage value) setAvatarImage,
+    required TResult Function(_OnRemoveImageTapped value) onRemoveImageTapped,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -200,6 +330,10 @@ mixin _$ProfileEvent {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_OnRefresh value)? onRefresh,
     TResult? Function(_ClearPageCommand value)? clearPageCommand,
+    TResult? Function(_SetName value)? setName,
+    TResult? Function(_SetBio value)? setBio,
+    TResult? Function(_SetAvatarImage value)? setAvatarImage,
+    TResult? Function(_OnRemoveImageTapped value)? onRemoveImageTapped,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -207,6 +341,10 @@ mixin _$ProfileEvent {
     TResult Function(_Initial value)? initial,
     TResult Function(_OnRefresh value)? onRefresh,
     TResult Function(_ClearPageCommand value)? clearPageCommand,
+    TResult Function(_SetName value)? setName,
+    TResult Function(_SetBio value)? setBio,
+    TResult Function(_SetAvatarImage value)? setAvatarImage,
+    TResult Function(_OnRemoveImageTapped value)? onRemoveImageTapped,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -270,6 +408,10 @@ class _$_Initial implements _Initial {
     required TResult Function() initial,
     required TResult Function() onRefresh,
     required TResult Function() clearPageCommand,
+    required TResult Function(String name) setName,
+    required TResult Function(String bio) setBio,
+    required TResult Function(XFile image) setAvatarImage,
+    required TResult Function() onRemoveImageTapped,
   }) {
     return initial();
   }
@@ -280,6 +422,10 @@ class _$_Initial implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? onRefresh,
     TResult? Function()? clearPageCommand,
+    TResult? Function(String name)? setName,
+    TResult? Function(String bio)? setBio,
+    TResult? Function(XFile image)? setAvatarImage,
+    TResult? Function()? onRemoveImageTapped,
   }) {
     return initial?.call();
   }
@@ -290,6 +436,10 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? onRefresh,
     TResult Function()? clearPageCommand,
+    TResult Function(String name)? setName,
+    TResult Function(String bio)? setBio,
+    TResult Function(XFile image)? setAvatarImage,
+    TResult Function()? onRemoveImageTapped,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -304,6 +454,10 @@ class _$_Initial implements _Initial {
     required TResult Function(_Initial value) initial,
     required TResult Function(_OnRefresh value) onRefresh,
     required TResult Function(_ClearPageCommand value) clearPageCommand,
+    required TResult Function(_SetName value) setName,
+    required TResult Function(_SetBio value) setBio,
+    required TResult Function(_SetAvatarImage value) setAvatarImage,
+    required TResult Function(_OnRemoveImageTapped value) onRemoveImageTapped,
   }) {
     return initial(this);
   }
@@ -314,6 +468,10 @@ class _$_Initial implements _Initial {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_OnRefresh value)? onRefresh,
     TResult? Function(_ClearPageCommand value)? clearPageCommand,
+    TResult? Function(_SetName value)? setName,
+    TResult? Function(_SetBio value)? setBio,
+    TResult? Function(_SetAvatarImage value)? setAvatarImage,
+    TResult? Function(_OnRemoveImageTapped value)? onRemoveImageTapped,
   }) {
     return initial?.call(this);
   }
@@ -324,6 +482,10 @@ class _$_Initial implements _Initial {
     TResult Function(_Initial value)? initial,
     TResult Function(_OnRefresh value)? onRefresh,
     TResult Function(_ClearPageCommand value)? clearPageCommand,
+    TResult Function(_SetName value)? setName,
+    TResult Function(_SetBio value)? setBio,
+    TResult Function(_SetAvatarImage value)? setAvatarImage,
+    TResult Function(_OnRemoveImageTapped value)? onRemoveImageTapped,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -378,6 +540,10 @@ class _$_OnRefresh implements _OnRefresh {
     required TResult Function() initial,
     required TResult Function() onRefresh,
     required TResult Function() clearPageCommand,
+    required TResult Function(String name) setName,
+    required TResult Function(String bio) setBio,
+    required TResult Function(XFile image) setAvatarImage,
+    required TResult Function() onRemoveImageTapped,
   }) {
     return onRefresh();
   }
@@ -388,6 +554,10 @@ class _$_OnRefresh implements _OnRefresh {
     TResult? Function()? initial,
     TResult? Function()? onRefresh,
     TResult? Function()? clearPageCommand,
+    TResult? Function(String name)? setName,
+    TResult? Function(String bio)? setBio,
+    TResult? Function(XFile image)? setAvatarImage,
+    TResult? Function()? onRemoveImageTapped,
   }) {
     return onRefresh?.call();
   }
@@ -398,6 +568,10 @@ class _$_OnRefresh implements _OnRefresh {
     TResult Function()? initial,
     TResult Function()? onRefresh,
     TResult Function()? clearPageCommand,
+    TResult Function(String name)? setName,
+    TResult Function(String bio)? setBio,
+    TResult Function(XFile image)? setAvatarImage,
+    TResult Function()? onRemoveImageTapped,
     required TResult orElse(),
   }) {
     if (onRefresh != null) {
@@ -412,6 +586,10 @@ class _$_OnRefresh implements _OnRefresh {
     required TResult Function(_Initial value) initial,
     required TResult Function(_OnRefresh value) onRefresh,
     required TResult Function(_ClearPageCommand value) clearPageCommand,
+    required TResult Function(_SetName value) setName,
+    required TResult Function(_SetBio value) setBio,
+    required TResult Function(_SetAvatarImage value) setAvatarImage,
+    required TResult Function(_OnRemoveImageTapped value) onRemoveImageTapped,
   }) {
     return onRefresh(this);
   }
@@ -422,6 +600,10 @@ class _$_OnRefresh implements _OnRefresh {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_OnRefresh value)? onRefresh,
     TResult? Function(_ClearPageCommand value)? clearPageCommand,
+    TResult? Function(_SetName value)? setName,
+    TResult? Function(_SetBio value)? setBio,
+    TResult? Function(_SetAvatarImage value)? setAvatarImage,
+    TResult? Function(_OnRemoveImageTapped value)? onRemoveImageTapped,
   }) {
     return onRefresh?.call(this);
   }
@@ -432,6 +614,10 @@ class _$_OnRefresh implements _OnRefresh {
     TResult Function(_Initial value)? initial,
     TResult Function(_OnRefresh value)? onRefresh,
     TResult Function(_ClearPageCommand value)? clearPageCommand,
+    TResult Function(_SetName value)? setName,
+    TResult Function(_SetBio value)? setBio,
+    TResult Function(_SetAvatarImage value)? setAvatarImage,
+    TResult Function(_OnRemoveImageTapped value)? onRemoveImageTapped,
     required TResult orElse(),
   }) {
     if (onRefresh != null) {
@@ -486,6 +672,10 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     required TResult Function() initial,
     required TResult Function() onRefresh,
     required TResult Function() clearPageCommand,
+    required TResult Function(String name) setName,
+    required TResult Function(String bio) setBio,
+    required TResult Function(XFile image) setAvatarImage,
+    required TResult Function() onRemoveImageTapped,
   }) {
     return clearPageCommand();
   }
@@ -496,6 +686,10 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     TResult? Function()? initial,
     TResult? Function()? onRefresh,
     TResult? Function()? clearPageCommand,
+    TResult? Function(String name)? setName,
+    TResult? Function(String bio)? setBio,
+    TResult? Function(XFile image)? setAvatarImage,
+    TResult? Function()? onRemoveImageTapped,
   }) {
     return clearPageCommand?.call();
   }
@@ -506,6 +700,10 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     TResult Function()? initial,
     TResult Function()? onRefresh,
     TResult Function()? clearPageCommand,
+    TResult Function(String name)? setName,
+    TResult Function(String bio)? setBio,
+    TResult Function(XFile image)? setAvatarImage,
+    TResult Function()? onRemoveImageTapped,
     required TResult orElse(),
   }) {
     if (clearPageCommand != null) {
@@ -520,6 +718,10 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     required TResult Function(_Initial value) initial,
     required TResult Function(_OnRefresh value) onRefresh,
     required TResult Function(_ClearPageCommand value) clearPageCommand,
+    required TResult Function(_SetName value) setName,
+    required TResult Function(_SetBio value) setBio,
+    required TResult Function(_SetAvatarImage value) setAvatarImage,
+    required TResult Function(_OnRemoveImageTapped value) onRemoveImageTapped,
   }) {
     return clearPageCommand(this);
   }
@@ -530,6 +732,10 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_OnRefresh value)? onRefresh,
     TResult? Function(_ClearPageCommand value)? clearPageCommand,
+    TResult? Function(_SetName value)? setName,
+    TResult? Function(_SetBio value)? setBio,
+    TResult? Function(_SetAvatarImage value)? setAvatarImage,
+    TResult? Function(_OnRemoveImageTapped value)? onRemoveImageTapped,
   }) {
     return clearPageCommand?.call(this);
   }
@@ -540,6 +746,10 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     TResult Function(_Initial value)? initial,
     TResult Function(_OnRefresh value)? onRefresh,
     TResult Function(_ClearPageCommand value)? clearPageCommand,
+    TResult Function(_SetName value)? setName,
+    TResult Function(_SetBio value)? setBio,
+    TResult Function(_SetAvatarImage value)? setAvatarImage,
+    TResult Function(_OnRemoveImageTapped value)? onRemoveImageTapped,
     required TResult orElse(),
   }) {
     if (clearPageCommand != null) {
@@ -554,10 +764,631 @@ abstract class _ClearPageCommand implements ProfileEvent {
 }
 
 /// @nodoc
+abstract class _$$_SetNameCopyWith<$Res> {
+  factory _$$_SetNameCopyWith(
+          _$_SetName value, $Res Function(_$_SetName) then) =
+      __$$_SetNameCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String name});
+}
+
+/// @nodoc
+class __$$_SetNameCopyWithImpl<$Res>
+    extends _$ProfileEventCopyWithImpl<$Res, _$_SetName>
+    implements _$$_SetNameCopyWith<$Res> {
+  __$$_SetNameCopyWithImpl(_$_SetName _value, $Res Function(_$_SetName) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? name = null,
+  }) {
+    return _then(_$_SetName(
+      null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_SetName implements _SetName {
+  const _$_SetName(this.name);
+
+  @override
+  final String name;
+
+  @override
+  String toString() {
+    return 'ProfileEvent.setName(name: $name)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_SetName &&
+            (identical(other.name, name) || other.name == name));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, name);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_SetNameCopyWith<_$_SetName> get copyWith =>
+      __$$_SetNameCopyWithImpl<_$_SetName>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() onRefresh,
+    required TResult Function() clearPageCommand,
+    required TResult Function(String name) setName,
+    required TResult Function(String bio) setBio,
+    required TResult Function(XFile image) setAvatarImage,
+    required TResult Function() onRemoveImageTapped,
+  }) {
+    return setName(name);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? onRefresh,
+    TResult? Function()? clearPageCommand,
+    TResult? Function(String name)? setName,
+    TResult? Function(String bio)? setBio,
+    TResult? Function(XFile image)? setAvatarImage,
+    TResult? Function()? onRemoveImageTapped,
+  }) {
+    return setName?.call(name);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? onRefresh,
+    TResult Function()? clearPageCommand,
+    TResult Function(String name)? setName,
+    TResult Function(String bio)? setBio,
+    TResult Function(XFile image)? setAvatarImage,
+    TResult Function()? onRemoveImageTapped,
+    required TResult orElse(),
+  }) {
+    if (setName != null) {
+      return setName(name);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_OnRefresh value) onRefresh,
+    required TResult Function(_ClearPageCommand value) clearPageCommand,
+    required TResult Function(_SetName value) setName,
+    required TResult Function(_SetBio value) setBio,
+    required TResult Function(_SetAvatarImage value) setAvatarImage,
+    required TResult Function(_OnRemoveImageTapped value) onRemoveImageTapped,
+  }) {
+    return setName(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_OnRefresh value)? onRefresh,
+    TResult? Function(_ClearPageCommand value)? clearPageCommand,
+    TResult? Function(_SetName value)? setName,
+    TResult? Function(_SetBio value)? setBio,
+    TResult? Function(_SetAvatarImage value)? setAvatarImage,
+    TResult? Function(_OnRemoveImageTapped value)? onRemoveImageTapped,
+  }) {
+    return setName?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_OnRefresh value)? onRefresh,
+    TResult Function(_ClearPageCommand value)? clearPageCommand,
+    TResult Function(_SetName value)? setName,
+    TResult Function(_SetBio value)? setBio,
+    TResult Function(_SetAvatarImage value)? setAvatarImage,
+    TResult Function(_OnRemoveImageTapped value)? onRemoveImageTapped,
+    required TResult orElse(),
+  }) {
+    if (setName != null) {
+      return setName(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SetName implements ProfileEvent {
+  const factory _SetName(final String name) = _$_SetName;
+
+  String get name;
+  @JsonKey(ignore: true)
+  _$$_SetNameCopyWith<_$_SetName> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_SetBioCopyWith<$Res> {
+  factory _$$_SetBioCopyWith(_$_SetBio value, $Res Function(_$_SetBio) then) =
+      __$$_SetBioCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String bio});
+}
+
+/// @nodoc
+class __$$_SetBioCopyWithImpl<$Res>
+    extends _$ProfileEventCopyWithImpl<$Res, _$_SetBio>
+    implements _$$_SetBioCopyWith<$Res> {
+  __$$_SetBioCopyWithImpl(_$_SetBio _value, $Res Function(_$_SetBio) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? bio = null,
+  }) {
+    return _then(_$_SetBio(
+      null == bio
+          ? _value.bio
+          : bio // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_SetBio implements _SetBio {
+  const _$_SetBio(this.bio);
+
+  @override
+  final String bio;
+
+  @override
+  String toString() {
+    return 'ProfileEvent.setBio(bio: $bio)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_SetBio &&
+            (identical(other.bio, bio) || other.bio == bio));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, bio);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_SetBioCopyWith<_$_SetBio> get copyWith =>
+      __$$_SetBioCopyWithImpl<_$_SetBio>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() onRefresh,
+    required TResult Function() clearPageCommand,
+    required TResult Function(String name) setName,
+    required TResult Function(String bio) setBio,
+    required TResult Function(XFile image) setAvatarImage,
+    required TResult Function() onRemoveImageTapped,
+  }) {
+    return setBio(bio);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? onRefresh,
+    TResult? Function()? clearPageCommand,
+    TResult? Function(String name)? setName,
+    TResult? Function(String bio)? setBio,
+    TResult? Function(XFile image)? setAvatarImage,
+    TResult? Function()? onRemoveImageTapped,
+  }) {
+    return setBio?.call(bio);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? onRefresh,
+    TResult Function()? clearPageCommand,
+    TResult Function(String name)? setName,
+    TResult Function(String bio)? setBio,
+    TResult Function(XFile image)? setAvatarImage,
+    TResult Function()? onRemoveImageTapped,
+    required TResult orElse(),
+  }) {
+    if (setBio != null) {
+      return setBio(bio);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_OnRefresh value) onRefresh,
+    required TResult Function(_ClearPageCommand value) clearPageCommand,
+    required TResult Function(_SetName value) setName,
+    required TResult Function(_SetBio value) setBio,
+    required TResult Function(_SetAvatarImage value) setAvatarImage,
+    required TResult Function(_OnRemoveImageTapped value) onRemoveImageTapped,
+  }) {
+    return setBio(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_OnRefresh value)? onRefresh,
+    TResult? Function(_ClearPageCommand value)? clearPageCommand,
+    TResult? Function(_SetName value)? setName,
+    TResult? Function(_SetBio value)? setBio,
+    TResult? Function(_SetAvatarImage value)? setAvatarImage,
+    TResult? Function(_OnRemoveImageTapped value)? onRemoveImageTapped,
+  }) {
+    return setBio?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_OnRefresh value)? onRefresh,
+    TResult Function(_ClearPageCommand value)? clearPageCommand,
+    TResult Function(_SetName value)? setName,
+    TResult Function(_SetBio value)? setBio,
+    TResult Function(_SetAvatarImage value)? setAvatarImage,
+    TResult Function(_OnRemoveImageTapped value)? onRemoveImageTapped,
+    required TResult orElse(),
+  }) {
+    if (setBio != null) {
+      return setBio(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SetBio implements ProfileEvent {
+  const factory _SetBio(final String bio) = _$_SetBio;
+
+  String get bio;
+  @JsonKey(ignore: true)
+  _$$_SetBioCopyWith<_$_SetBio> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_SetAvatarImageCopyWith<$Res> {
+  factory _$$_SetAvatarImageCopyWith(
+          _$_SetAvatarImage value, $Res Function(_$_SetAvatarImage) then) =
+      __$$_SetAvatarImageCopyWithImpl<$Res>;
+  @useResult
+  $Res call({XFile image});
+}
+
+/// @nodoc
+class __$$_SetAvatarImageCopyWithImpl<$Res>
+    extends _$ProfileEventCopyWithImpl<$Res, _$_SetAvatarImage>
+    implements _$$_SetAvatarImageCopyWith<$Res> {
+  __$$_SetAvatarImageCopyWithImpl(
+      _$_SetAvatarImage _value, $Res Function(_$_SetAvatarImage) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? image = null,
+  }) {
+    return _then(_$_SetAvatarImage(
+      null == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as XFile,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_SetAvatarImage implements _SetAvatarImage {
+  const _$_SetAvatarImage(this.image);
+
+  @override
+  final XFile image;
+
+  @override
+  String toString() {
+    return 'ProfileEvent.setAvatarImage(image: $image)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_SetAvatarImage &&
+            (identical(other.image, image) || other.image == image));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, image);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_SetAvatarImageCopyWith<_$_SetAvatarImage> get copyWith =>
+      __$$_SetAvatarImageCopyWithImpl<_$_SetAvatarImage>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() onRefresh,
+    required TResult Function() clearPageCommand,
+    required TResult Function(String name) setName,
+    required TResult Function(String bio) setBio,
+    required TResult Function(XFile image) setAvatarImage,
+    required TResult Function() onRemoveImageTapped,
+  }) {
+    return setAvatarImage(image);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? onRefresh,
+    TResult? Function()? clearPageCommand,
+    TResult? Function(String name)? setName,
+    TResult? Function(String bio)? setBio,
+    TResult? Function(XFile image)? setAvatarImage,
+    TResult? Function()? onRemoveImageTapped,
+  }) {
+    return setAvatarImage?.call(image);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? onRefresh,
+    TResult Function()? clearPageCommand,
+    TResult Function(String name)? setName,
+    TResult Function(String bio)? setBio,
+    TResult Function(XFile image)? setAvatarImage,
+    TResult Function()? onRemoveImageTapped,
+    required TResult orElse(),
+  }) {
+    if (setAvatarImage != null) {
+      return setAvatarImage(image);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_OnRefresh value) onRefresh,
+    required TResult Function(_ClearPageCommand value) clearPageCommand,
+    required TResult Function(_SetName value) setName,
+    required TResult Function(_SetBio value) setBio,
+    required TResult Function(_SetAvatarImage value) setAvatarImage,
+    required TResult Function(_OnRemoveImageTapped value) onRemoveImageTapped,
+  }) {
+    return setAvatarImage(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_OnRefresh value)? onRefresh,
+    TResult? Function(_ClearPageCommand value)? clearPageCommand,
+    TResult? Function(_SetName value)? setName,
+    TResult? Function(_SetBio value)? setBio,
+    TResult? Function(_SetAvatarImage value)? setAvatarImage,
+    TResult? Function(_OnRemoveImageTapped value)? onRemoveImageTapped,
+  }) {
+    return setAvatarImage?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_OnRefresh value)? onRefresh,
+    TResult Function(_ClearPageCommand value)? clearPageCommand,
+    TResult Function(_SetName value)? setName,
+    TResult Function(_SetBio value)? setBio,
+    TResult Function(_SetAvatarImage value)? setAvatarImage,
+    TResult Function(_OnRemoveImageTapped value)? onRemoveImageTapped,
+    required TResult orElse(),
+  }) {
+    if (setAvatarImage != null) {
+      return setAvatarImage(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SetAvatarImage implements ProfileEvent {
+  const factory _SetAvatarImage(final XFile image) = _$_SetAvatarImage;
+
+  XFile get image;
+  @JsonKey(ignore: true)
+  _$$_SetAvatarImageCopyWith<_$_SetAvatarImage> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_OnRemoveImageTappedCopyWith<$Res> {
+  factory _$$_OnRemoveImageTappedCopyWith(_$_OnRemoveImageTapped value,
+          $Res Function(_$_OnRemoveImageTapped) then) =
+      __$$_OnRemoveImageTappedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_OnRemoveImageTappedCopyWithImpl<$Res>
+    extends _$ProfileEventCopyWithImpl<$Res, _$_OnRemoveImageTapped>
+    implements _$$_OnRemoveImageTappedCopyWith<$Res> {
+  __$$_OnRemoveImageTappedCopyWithImpl(_$_OnRemoveImageTapped _value,
+      $Res Function(_$_OnRemoveImageTapped) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_OnRemoveImageTapped implements _OnRemoveImageTapped {
+  const _$_OnRemoveImageTapped();
+
+  @override
+  String toString() {
+    return 'ProfileEvent.onRemoveImageTapped()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_OnRemoveImageTapped);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() onRefresh,
+    required TResult Function() clearPageCommand,
+    required TResult Function(String name) setName,
+    required TResult Function(String bio) setBio,
+    required TResult Function(XFile image) setAvatarImage,
+    required TResult Function() onRemoveImageTapped,
+  }) {
+    return onRemoveImageTapped();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? onRefresh,
+    TResult? Function()? clearPageCommand,
+    TResult? Function(String name)? setName,
+    TResult? Function(String bio)? setBio,
+    TResult? Function(XFile image)? setAvatarImage,
+    TResult? Function()? onRemoveImageTapped,
+  }) {
+    return onRemoveImageTapped?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? onRefresh,
+    TResult Function()? clearPageCommand,
+    TResult Function(String name)? setName,
+    TResult Function(String bio)? setBio,
+    TResult Function(XFile image)? setAvatarImage,
+    TResult Function()? onRemoveImageTapped,
+    required TResult orElse(),
+  }) {
+    if (onRemoveImageTapped != null) {
+      return onRemoveImageTapped();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_OnRefresh value) onRefresh,
+    required TResult Function(_ClearPageCommand value) clearPageCommand,
+    required TResult Function(_SetName value) setName,
+    required TResult Function(_SetBio value) setBio,
+    required TResult Function(_SetAvatarImage value) setAvatarImage,
+    required TResult Function(_OnRemoveImageTapped value) onRemoveImageTapped,
+  }) {
+    return onRemoveImageTapped(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_OnRefresh value)? onRefresh,
+    TResult? Function(_ClearPageCommand value)? clearPageCommand,
+    TResult? Function(_SetName value)? setName,
+    TResult? Function(_SetBio value)? setBio,
+    TResult? Function(_SetAvatarImage value)? setAvatarImage,
+    TResult? Function(_OnRemoveImageTapped value)? onRemoveImageTapped,
+  }) {
+    return onRemoveImageTapped?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_OnRefresh value)? onRefresh,
+    TResult Function(_ClearPageCommand value)? clearPageCommand,
+    TResult Function(_SetName value)? setName,
+    TResult Function(_SetBio value)? setBio,
+    TResult Function(_SetAvatarImage value)? setAvatarImage,
+    TResult Function(_OnRemoveImageTapped value)? onRemoveImageTapped,
+    required TResult orElse(),
+  }) {
+    if (onRemoveImageTapped != null) {
+      return onRemoveImageTapped(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _OnRemoveImageTapped implements ProfileEvent {
+  const factory _OnRemoveImageTapped() = _$_OnRemoveImageTapped;
+}
+
+/// @nodoc
 mixin _$ProfileState {
   PageState get pageState => throw _privateConstructorUsedError;
   PageCommand? get command => throw _privateConstructorUsedError;
   ProfileData? get profileData => throw _privateConstructorUsedError;
+  bool get showUpdateBioLoading => throw _privateConstructorUsedError;
+  bool get showUpdateImageLoading => throw _privateConstructorUsedError;
+  bool get showUpdateNameLoading => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ProfileStateCopyWith<ProfileState> get copyWith =>
@@ -571,7 +1402,12 @@ abstract class $ProfileStateCopyWith<$Res> {
       _$ProfileStateCopyWithImpl<$Res, ProfileState>;
   @useResult
   $Res call(
-      {PageState pageState, PageCommand? command, ProfileData? profileData});
+      {PageState pageState,
+      PageCommand? command,
+      ProfileData? profileData,
+      bool showUpdateBioLoading,
+      bool showUpdateImageLoading,
+      bool showUpdateNameLoading});
 
   $PageCommandCopyWith<$Res>? get command;
 }
@@ -592,6 +1428,9 @@ class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState>
     Object? pageState = null,
     Object? command = freezed,
     Object? profileData = freezed,
+    Object? showUpdateBioLoading = null,
+    Object? showUpdateImageLoading = null,
+    Object? showUpdateNameLoading = null,
   }) {
     return _then(_value.copyWith(
       pageState: null == pageState
@@ -606,6 +1445,18 @@ class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState>
           ? _value.profileData
           : profileData // ignore: cast_nullable_to_non_nullable
               as ProfileData?,
+      showUpdateBioLoading: null == showUpdateBioLoading
+          ? _value.showUpdateBioLoading
+          : showUpdateBioLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      showUpdateImageLoading: null == showUpdateImageLoading
+          ? _value.showUpdateImageLoading
+          : showUpdateImageLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      showUpdateNameLoading: null == showUpdateNameLoading
+          ? _value.showUpdateNameLoading
+          : showUpdateNameLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 
@@ -631,7 +1482,12 @@ abstract class _$$_ProfileStateCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {PageState pageState, PageCommand? command, ProfileData? profileData});
+      {PageState pageState,
+      PageCommand? command,
+      ProfileData? profileData,
+      bool showUpdateBioLoading,
+      bool showUpdateImageLoading,
+      bool showUpdateNameLoading});
 
   @override
   $PageCommandCopyWith<$Res>? get command;
@@ -651,6 +1507,9 @@ class __$$_ProfileStateCopyWithImpl<$Res>
     Object? pageState = null,
     Object? command = freezed,
     Object? profileData = freezed,
+    Object? showUpdateBioLoading = null,
+    Object? showUpdateImageLoading = null,
+    Object? showUpdateNameLoading = null,
   }) {
     return _then(_$_ProfileState(
       pageState: null == pageState
@@ -665,6 +1524,18 @@ class __$$_ProfileStateCopyWithImpl<$Res>
           ? _value.profileData
           : profileData // ignore: cast_nullable_to_non_nullable
               as ProfileData?,
+      showUpdateBioLoading: null == showUpdateBioLoading
+          ? _value.showUpdateBioLoading
+          : showUpdateBioLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      showUpdateImageLoading: null == showUpdateImageLoading
+          ? _value.showUpdateImageLoading
+          : showUpdateImageLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      showUpdateNameLoading: null == showUpdateNameLoading
+          ? _value.showUpdateNameLoading
+          : showUpdateNameLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -673,7 +1544,12 @@ class __$$_ProfileStateCopyWithImpl<$Res>
 
 class _$_ProfileState extends _ProfileState {
   const _$_ProfileState(
-      {this.pageState = PageState.initial, this.command, this.profileData})
+      {this.pageState = PageState.initial,
+      this.command,
+      this.profileData,
+      this.showUpdateBioLoading = false,
+      this.showUpdateImageLoading = false,
+      this.showUpdateNameLoading = false})
       : super._();
 
   @override
@@ -683,10 +1559,19 @@ class _$_ProfileState extends _ProfileState {
   final PageCommand? command;
   @override
   final ProfileData? profileData;
+  @override
+  @JsonKey()
+  final bool showUpdateBioLoading;
+  @override
+  @JsonKey()
+  final bool showUpdateImageLoading;
+  @override
+  @JsonKey()
+  final bool showUpdateNameLoading;
 
   @override
   String toString() {
-    return 'ProfileState(pageState: $pageState, command: $command, profileData: $profileData)';
+    return 'ProfileState(pageState: $pageState, command: $command, profileData: $profileData, showUpdateBioLoading: $showUpdateBioLoading, showUpdateImageLoading: $showUpdateImageLoading, showUpdateNameLoading: $showUpdateNameLoading)';
   }
 
   @override
@@ -698,11 +1583,18 @@ class _$_ProfileState extends _ProfileState {
                 other.pageState == pageState) &&
             (identical(other.command, command) || other.command == command) &&
             (identical(other.profileData, profileData) ||
-                other.profileData == profileData));
+                other.profileData == profileData) &&
+            (identical(other.showUpdateBioLoading, showUpdateBioLoading) ||
+                other.showUpdateBioLoading == showUpdateBioLoading) &&
+            (identical(other.showUpdateImageLoading, showUpdateImageLoading) ||
+                other.showUpdateImageLoading == showUpdateImageLoading) &&
+            (identical(other.showUpdateNameLoading, showUpdateNameLoading) ||
+                other.showUpdateNameLoading == showUpdateNameLoading));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, pageState, command, profileData);
+  int get hashCode => Object.hash(runtimeType, pageState, command, profileData,
+      showUpdateBioLoading, showUpdateImageLoading, showUpdateNameLoading);
 
   @JsonKey(ignore: true)
   @override
@@ -715,7 +1607,10 @@ abstract class _ProfileState extends ProfileState {
   const factory _ProfileState(
       {final PageState pageState,
       final PageCommand? command,
-      final ProfileData? profileData}) = _$_ProfileState;
+      final ProfileData? profileData,
+      final bool showUpdateBioLoading,
+      final bool showUpdateImageLoading,
+      final bool showUpdateNameLoading}) = _$_ProfileState;
   const _ProfileState._() : super._();
 
   @override
@@ -724,6 +1619,12 @@ abstract class _ProfileState extends ProfileState {
   PageCommand? get command;
   @override
   ProfileData? get profileData;
+  @override
+  bool get showUpdateBioLoading;
+  @override
+  bool get showUpdateImageLoading;
+  @override
+  bool get showUpdateNameLoading;
   @override
   @JsonKey(ignore: true)
   _$$_ProfileStateCopyWith<_$_ProfileState> get copyWith =>

@@ -18,12 +18,12 @@ class FetchProfileUseCase extends InputUseCase<Result<ProfileData, HyphaError>, 
     final Result<ProfileData, HyphaError> result = await _profileService.getProfile(accountName);
     if (result.isValue) {
       final ProfileData profile = result.asValue!.value;
-      _appSharedPrefs.setUserProfileData(
+      await _appSharedPrefs.setUserProfileData(
         UserProfileData(
           accountName: accountName,
           userName: profile.name,
           bio: profile.bio,
-          userImage: profile.image,
+          userImage: profile.getAvatarUrl(),
         ),
       );
     }

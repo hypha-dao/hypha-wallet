@@ -39,9 +39,9 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      const SizedBox(height: 80),
+                      const SizedBox(height: 50),
                       HyphaEditableAvatarImage(
-                        imageRadius: 60,
+                        imageRadius: 45,
                         imageFromFile: _file?.path,
                         onImageRemoved: () {
                           setState(() {
@@ -54,7 +54,7 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
                           });
                         },
                       ),
-                      const SizedBox(height: 80),
+                      const SizedBox(height: 12),
                       TextField(
                         decoration: const InputDecoration(labelText: 'Name'),
                         autofocus: true,
@@ -82,7 +82,7 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
                       : () {
                           Get.to(() => CreateAccountPage(_file, _controller.text), transition: Transition.rightToLeft);
                         },
-                  title: 'NEXT',
+                  title: 'Next',
                 ),
               ),
             ),

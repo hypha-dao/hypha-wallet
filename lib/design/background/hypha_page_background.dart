@@ -23,7 +23,7 @@ class HyphaPageBackground extends StatelessWidget {
         image: withGradient
             ? null
             : DecorationImage(
-                colorFilter: withOpacity ? ColorFilter.mode(opacityColor.withOpacity(0.85), BlendMode.darken) : null,
+                colorFilter: withOpacity ? ColorFilter.mode(opacityColor.withOpacity(0.60), BlendMode.darken) : null,
                 image: AssetImage(context.hyphaAssetTheme.backgroundTexture),
                 fit: BoxFit.cover,
               ),

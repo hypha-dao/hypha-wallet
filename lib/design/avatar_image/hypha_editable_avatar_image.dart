@@ -25,47 +25,54 @@ class HyphaEditableAvatarImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.center,
-      children: [
-        HyphaAvatarImage(
-          imageRadius: imageRadius,
-          imageFromFile: imageFromFile,
-          imageFromUrl: imageFromUrl,
-          name: name,
-          onTap: () async {
-            await _selectImage();
-          },
-        ),
-        Positioned(
-          top: -10,
-          right: -10,
-          child: hasImage
-              ? IconButton(
-                  onPressed: () async {
-                    onImageRemoved?.call();
-                  },
-                  icon: const Icon(
-                    Icons.remove_circle,
-                    size: 32,
+    return Center(
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          HyphaAvatarImage(
+            imageRadius: imageRadius,
+            imageFromFile: imageFromFile,
+            imageFromUrl: imageFromUrl,
+            name: name,
+            onTap: () async {
+              await _selectImage();
+            },
+          ),
+          Positioned(
+            top: -10,
+            right: -10,
+            child: hasImage
+                ? IconButton(
+                    onPressed: () async {
+                      onImageRemoved?.call();
+                    },
+                    icon: const Icon(
+                      Icons.remove_circle,
+                      size: 32,
+                    ),
+                  )
+                : IconButton(
+                    onPressed: () async {
+                      await _selectImage();
+                    },
+                    icon: const Icon(
+                      Icons.add_circle,
+                      size: 32,
+                    ),
                   ),
-                )
-              : IconButton(
-                  onPressed: () async {
-                    await _selectImage();
-                  },
-                  icon: const Icon(
-                    Icons.add_circle,
-                    size: 32,
-                  ),
-                ),
-        )
-      ],
+          )
+        ],
+      ),
     );
   }
 
   Future<void> _selectImage() async {
-    final XFile? image = await ImagePicker().pickImage(source: ImageSource.gallery);
+    final XFile? image = await ImagePicker().pickImage(
+      source: ImageSource.gallery,
+      imageQuality: 0,
+      maxHeight: 1500,
+      maxWidth: 1500,
+    );
     image?.let((it) => onImageSelected?.call(it));
   }
 }

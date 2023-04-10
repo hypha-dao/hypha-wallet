@@ -23,6 +23,7 @@ class SignTransactionUseCase extends InputUseCase<HResult.Result<String, HyphaEr
     final Result<dynamic> result = await eosService.sendTransaction(
       eosTransaction: input.eOSTransaction,
       accountName: userData?.accountName ?? '',
+      network: input.network,
     );
     if (result.isValue) {
       LogHelper.d('Callback Gery ' + input.callback.toString());

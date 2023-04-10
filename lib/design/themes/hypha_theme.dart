@@ -15,9 +15,11 @@ class HyphaTheme {
     return baseTheme.copyWith(
       colorScheme: darkColorScheme,
       textTheme: mainTextTheme,
-      switchTheme: const SwitchThemeData(
-        trackColor: MaterialStatePropertyAll(HyphaColors.primaryBlu),
-        thumbColor: MaterialStatePropertyAll(HyphaColors.offWhite),
+      switchTheme: SwitchThemeData(
+        trackColor: MaterialStateProperty.resolveWith(
+          (states) => states.contains(MaterialState.selected) ? HyphaColors.primaryBlu : HyphaColors.midGrey,
+        ),
+        thumbColor: const MaterialStatePropertyAll(HyphaColors.offWhite),
       ),
       iconTheme: const IconThemeData(color: HyphaColors.white),
       appBarTheme: AppBarTheme(
@@ -25,8 +27,8 @@ class HyphaTheme {
         elevation: 0,
         titleTextStyle: HyphaTextTheme.dark.smallTitles,
         systemOverlayStyle: const SystemUiOverlayStyle(
-          statusBarIconBrightness: Brightness.dark, // For Android (dark icons)
-          statusBarBrightness: Brightness.light, // For iOS (dark icons)
+          statusBarIconBrightness: Brightness.light, // For Android (light icons)
+          statusBarBrightness: Brightness.dark, // For iOS (light icons)
         ),
       ),
       bottomNavigationBarTheme: AppBottomNavigationTheme.bottomNavigationThemeData(darkColorScheme),
@@ -44,20 +46,22 @@ class HyphaTheme {
     return baseTheme.copyWith(
       colorScheme: lightColorScheme,
       textTheme: mainTextTheme,
-      switchTheme: const SwitchThemeData(
-        trackColor: MaterialStatePropertyAll(HyphaColors.primaryBlu),
-        thumbColor: MaterialStatePropertyAll(HyphaColors.offWhite),
+      switchTheme: SwitchThemeData(
+        trackColor: MaterialStateProperty.resolveWith(
+          (states) => states.contains(MaterialState.selected) ? HyphaColors.primaryBlu : HyphaColors.midGrey,
+        ),
+        thumbColor: const MaterialStatePropertyAll(HyphaColors.offWhite),
       ),
       iconTheme: const IconThemeData(color: HyphaColors.black),
       appBarTheme: AppBarTheme(
         backgroundColor: HyphaColors.transparent,
-        iconTheme: const IconThemeData(color: HyphaColors.black),
+        iconTheme: const IconThemeData(color: HyphaColors.primaryBlu),
         elevation: 0,
         titleTextStyle: HyphaTextTheme.light.smallTitles.copyWith(color: HyphaColors.black),
         systemOverlayStyle: const SystemUiOverlayStyle(
           // Status bar brightness (optional)
-          statusBarIconBrightness: Brightness.dark, // For Android (dark icons)
-          statusBarBrightness: Brightness.light, // For iOS (dark icons)
+          statusBarIconBrightness: Brightness.light, // For Android (light icons)
+          statusBarBrightness: Brightness.dark, // For iOS (light icons)
         ),
       ),
       bottomNavigationBarTheme: AppBottomNavigationTheme.bottomNavigationThemeData(lightColorScheme),
