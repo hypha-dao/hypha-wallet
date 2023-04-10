@@ -117,6 +117,14 @@ dependencies:
   firebase_dynamic_links: ^5.0.8
   amazon_cognito_identity_dart_2: ^3.2.0
 
+  flutter_launcher_icons: "^0.13.0"
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/ic_launcher.png"
+  min_sdk_android: 23 # android min sdk min:16, default 21
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
