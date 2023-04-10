@@ -44,7 +44,7 @@ class SignTransactionSuccessPage extends StatelessWidget {
         ),
         children: <TextSpan>[
           TextSpan(
-            text: 'The transaction was successfully',
+            text: 'Transaction ',
             style: context.hyphaTextTheme.regular.copyWith(color: HyphaColors.primaryBlu),
           ),
           const TextSpan(text: ' '),
@@ -75,7 +75,7 @@ class SignTransactionSuccessPage extends StatelessWidget {
                 Image.asset('assets/images/thumb_up.png', width: 240, height: 240),
                 Padding(
                   padding: const EdgeInsets.only(left: 45, right: 45, top: 16),
-                  child: Text('Well Done!', textAlign: TextAlign.center, style: context.hyphaTextTheme.mediumTitles),
+                  child: Text('Success!', textAlign: TextAlign.center, style: context.hyphaTextTheme.mediumTitles),
                 ),
                 const SizedBox(height: 16),
                 Padding(padding: const EdgeInsets.only(left: 45, right: 45), child: successText),
