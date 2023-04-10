@@ -34,7 +34,10 @@ class SignTransactionBloc extends Bloc<SignTransactionEvent, SignTransactionStat
 
   FutureOr<void> _onUserSlideCompleted(_OnUserSlideCompleted event, Emitter<SignTransactionState> emit) async {
     /// Show loading, sign transaction, navigate to success or show error
-    final result = await _signTransactionUseCase.run(state.qrCodeData.transaction);
+    final result = await _signTransactionUseCase.run(SignTransactionInput(
+      state.qrCodeData.transaction,
+      state.callback,
+    ));
     if (result.isValue) {
       emit(
           state.copyWith(command: const PageCommand.navigateToTransactionSuccess(SignSuccessTransactionType.approved)));

@@ -15,6 +15,7 @@ import 'package:hypha_wallet/core/network/api/aws_amplify/amplify_service.dart';
 import 'package:hypha_wallet/core/network/api/aws_amplify/profile_upload_repository.dart';
 import 'package:hypha_wallet/core/network/api/eos_service.dart';
 import 'package:hypha_wallet/core/network/api/remote_config_service.dart';
+import 'package:hypha_wallet/core/network/api/sign_transaction_callback_service.dart';
 import 'package:hypha_wallet/core/network/api/transaction_history_service.dart';
 import 'package:hypha_wallet/core/network/api/user_account_service.dart';
 import 'package:hypha_wallet/core/network/networking_manager.dart';
