@@ -48,13 +48,13 @@ class HyphaAppButton extends StatelessWidget {
           items.add(
             Text(
               title.toUpperCase(),
-              style: context.hyphaTextTheme.buttons.copyWith(color: textColor),
+              style: context.hyphaTextTheme.buttons.copyWith(color: textColor, fontWeight: FontWeight.w900),
             ),
           );
         }
 
         return Padding(
-          padding: const EdgeInsets.symmetric(vertical: 16),
+          padding: const EdgeInsets.symmetric(vertical: 12),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: isFullWidth ? MainAxisSize.max : MainAxisSize.min,
@@ -83,6 +83,8 @@ class HyphaAppButton extends StatelessWidget {
       child: MaterialButton(
         shape: RoundedRectangleBorder(borderRadius: borderRadius),
         padding: const EdgeInsets.all(0.0),
+        elevation: 0,
+        visualDensity: VisualDensity.compact,
         onPressed: () {
           onPressed?.call();
         },
