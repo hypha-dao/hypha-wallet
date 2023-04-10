@@ -21,7 +21,7 @@
     </queries>
 
    <application
-        android:label="hypha_wallet"
+        android:label="Hypha Wallet"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
