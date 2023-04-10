@@ -2,7 +2,6 @@ import 'package:async/async.dart';
 import 'package:hypha_wallet/core/crypto/seeds_esr/eos_transaction.dart';
 import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
 import 'package:hypha_wallet/core/extension/scope_functions.dart';
-import 'package:hypha_wallet/core/logging/log_helper.dart';
 import 'package:hypha_wallet/core/network/api/eos_service.dart';
 import 'package:hypha_wallet/core/network/api/sign_transaction_callback_service.dart';
 import 'package:hypha_wallet/core/network/models/user_profile_data.dart';
@@ -28,9 +27,11 @@ class SignTransactionUseCase extends InputUseCase<HResult.Result<String, HyphaEr
     if (result.isValue) {
       final transactionID = result.asValue!.value;
       try {
-        // ignore: unused_local_variable
         final callbackResponse =
             await input.callback?.let((it) async => signTransactionCallbackService.callTheCallback(it, transactionID));
+        if (callbackResponse?.statusCode != 200) {
+          print('callback failed with status ${callbackResponse?.statusCode} - ignored');
+        }
       } catch (error) {
         print('callback error: $error');
         print(error);
