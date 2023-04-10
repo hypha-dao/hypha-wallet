@@ -26,9 +26,15 @@ class SignTransactionUseCase extends InputUseCase<HResult.Result<String, HyphaEr
       network: input.eOSTransaction.network,
     );
     if (result.isValue) {
-      LogHelper.d('Callback Gery ${input.callback}');
-      await input.callback?.let((it) async => signTransactionCallbackService.callTheCallback(it));
-      print('callback called');
+      final transactionID = result.asValue!.value;
+      try {
+        // ignore: unused_local_variable
+        final callbackResponse =
+            await input.callback?.let((it) async => signTransactionCallbackService.callTheCallback(it, transactionID));
+      } catch (error) {
+        print('callback error: $error');
+        print(error);
+      }
       return HResult.Result.value(result.asValue!.value as String);
     } else {
       return HResult.Result.error(HyphaError.api('Error creating singing transaction'));
