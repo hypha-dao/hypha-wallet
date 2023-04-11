@@ -77,12 +77,14 @@ class SaveWordsPage extends StatelessWidget {
                 const SizedBox(height: 24),
                 Wrap(
                   children: words.mapIndexed((index, word) {
-                    return Card(
-                      margin: const EdgeInsets.all(8),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
+                    return Container(
+                      decoration: BoxDecoration(
+                        color: context.isDarkMode ? HyphaColors.lightBlack : HyphaColors.white,
+                        borderRadius: const BorderRadius.all(Radius.circular(20)),
+                        boxShadow:
+                            context.isDarkTheme ? HyphaColors.darkModeCardShadow : HyphaColors.lightModeCardShadow,
                       ),
-                      color: context.isDarkTheme ? HyphaColors.lightBlack : HyphaColors.white,
+                      margin: const EdgeInsets.all(8),
                       child: Padding(
                         padding: const EdgeInsets.only(left: 10, right: 10, top: 7, bottom: 7),
                         child: Row(

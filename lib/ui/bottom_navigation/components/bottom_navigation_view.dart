@@ -28,12 +28,8 @@ class BottomNavigationView extends StatelessWidget {
                   topRight: Radius.circular(_bottomBarRadius),
                   topLeft: Radius.circular(_bottomBarRadius),
                 ),
-                boxShadow: [
-                  BoxShadow(
-                    blurRadius: 22,
-                    color: context.isDarkTheme ? HyphaColors.lightBlack : HyphaColors.lightBlue.withOpacity(.1),
-                  )
-                ],
+                boxShadow:
+                    context.isDarkTheme ? HyphaColors.darkModeBottomMenuShadow : HyphaColors.lightModeBottomMenuShadow,
               ),
               child: ClipRRect(
                 borderRadius: const BorderRadius.only(
