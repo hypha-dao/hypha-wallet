@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:hypha_wallet/design/background/hypha_page_background.dart';
 import 'package:hypha_wallet/design/cards/hypha_actionable_card.dart';
+import 'package:hypha_wallet/design/hypha_card.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/icons/hypha_icons.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
@@ -87,9 +88,7 @@ class SettingsView extends StatelessWidget {
                   const SizedBox(height: 16),
                   BlocBuilder<AuthenticationBloc, AuthenticationState>(
                     builder: (context, AuthenticationState state) {
-                      return Card(
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-                        color: context.isDarkMode ? HyphaColors.lightBlack : HyphaColors.white,
+                      return HyphaCard(
                         child: InkWell(
                           borderRadius: BorderRadius.circular(16),
                           onTap: () async {

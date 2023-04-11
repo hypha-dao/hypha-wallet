@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_utils/src/extensions/context_extensions.dart';
 import 'package:hypha_wallet/design/dividers/hypha_divider.dart';
+import 'package:hypha_wallet/design/hypha_card.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 
@@ -26,11 +26,7 @@ class CryptoCurrencyWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
-      ),
-      color: context.isDarkMode ? HyphaColors.lightBlack : HyphaColors.white,
+    return HyphaCard(
       child: InkWell(
         borderRadius: BorderRadius.circular(16),
         onTap: onTap,

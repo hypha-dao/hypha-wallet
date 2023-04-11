@@ -43,4 +43,32 @@ class HyphaColors {
     end: Alignment.bottomCenter,
     colors: [offWhite, darkWhite],
   );
+
+  static List<BoxShadow> darkModeBottomMenuShadow = [
+    BoxShadow(
+      blurRadius: 22,
+      color: HyphaColors.black.withOpacity(.40),
+    )
+  ];
+
+  static List<BoxShadow> darkModeCardShadow = [
+    BoxShadow(
+      blurRadius: 16,
+      color: HyphaColors.black.withOpacity(.08),
+    )
+  ];
+
+  static List<BoxShadow> lightModeBottomMenuShadow = [
+    BoxShadow(
+      blurRadius: 22,
+      color: HyphaColors.boxShadow.withOpacity(.08),
+    )
+  ];
+
+  static List<BoxShadow> lightModeCardShadow = [
+    BoxShadow(
+      blurRadius: 16,
+      color: HyphaColors.boxShadow.withOpacity(.08),
+    )
+  ];
 }
