@@ -23,7 +23,7 @@ Future<void> _registerServicesModule() async {
 
   _registerLazySingleton(() => EOSService(_getIt<SecureStorageService>(), _getIt<RemoteConfigService>()));
 
-  final amplifyService = AmplifyService(_getIt<EOSService>());
+  final amplifyService = AmplifyService(_getIt<EOSService>(), _getIt<NetworkingManager>());
   _registerLazySingleton(() => amplifyService);
 
   _registerLazySingleton<PermissionService>(() => PermissionServiceImplementation());

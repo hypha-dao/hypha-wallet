@@ -25,7 +25,6 @@ class ProfileData {
     final account = json['eosAccount'];
     final avatarUrl = json['avatarUrl'];
     final bio = publicData['bio'];
-    print('url: $avatarUrl');
     return ProfileData(
       name: name,
       account: account,
