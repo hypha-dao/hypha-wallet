@@ -30,8 +30,8 @@ class BottomNavigationView extends StatelessWidget {
                 ),
                 boxShadow: [
                   BoxShadow(
-                    blurRadius: 20,
-                    color: HyphaColors.lightBlue.withOpacity(.1),
+                    blurRadius: 22,
+                    color: context.isDarkTheme ? HyphaColors.lightBlack : HyphaColors.lightBlue.withOpacity(.1),
                   )
                 ],
               ),
