@@ -51,24 +51,26 @@ class OnboardingPage extends StatelessWidget {
             ],
           ),
         ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const SizedBox(height: 110),
-              SvgPicture.asset(context.hyphaAssetTheme.hyphaLogoComposite, width: 80, height: 110),
-              const SizedBox(height: 78),
-              Text('Welcome', style: context.hyphaTextTheme.mediumTitles),
-              const SizedBox(height: 22),
-              Padding(
-                padding: const EdgeInsets.only(left: 54, right: 54),
-                child: Text(
-                  'If you already have an Hypha account please click “Import account” button and follow the steps. \n\nIf you don’t have an Hypha account yet, please click “Sign up” button and proceed to dao.hypha.earth to create an account.',
-                  style: context.hyphaTextTheme.ralMediumBody.copyWith(color: HyphaColors.midGrey),
-                  textAlign: TextAlign.center,
+        body: SafeArea(
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const SizedBox(height: 110),
+                SvgPicture.asset(context.hyphaAssetTheme.hyphaLogoComposite, width: 80, height: 110),
+                const SizedBox(height: 78),
+                Text('Welcome', style: context.hyphaTextTheme.mediumTitles),
+                const SizedBox(height: 22),
+                Padding(
+                  padding: const EdgeInsets.only(left: 54, right: 54),
+                  child: Text(
+                    'If you already have an Hypha account please click “Import account” button and follow the steps. \n\nIf you don’t have an Hypha account yet, please click “Sign up” button and proceed to dao.hypha.earth to create an account.',
+                    style: context.hyphaTextTheme.ralMediumBody.copyWith(color: HyphaColors.midGrey),
+                    textAlign: TextAlign.center,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
