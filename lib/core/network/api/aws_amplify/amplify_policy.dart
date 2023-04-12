@@ -1,4 +1,4 @@
-// Note: This code based on the ewxample in amazon_cognito_identity_dart_2 flutter package
+// Note: This code based on the example in amazon_cognito_identity_dart_2 flutter package
 import 'dart:convert';
 
 import 'package:amazon_cognito_identity_dart_2/sig_v4.dart';
