@@ -11,6 +11,7 @@ import 'package:hypha_wallet/core/network/api/aws_amplify/amplify_service.dart';
 import 'package:hypha_wallet/core/network/api/aws_amplify/profile_upload_repository.dart';
 import 'package:hypha_wallet/core/network/api/eos_service.dart';
 import 'package:hypha_wallet/core/network/api/remote_config_service.dart';
+import 'package:hypha_wallet/core/network/networking_manager.dart';
 import 'package:hypha_wallet/core/shared_preferences/hypha_shared_prefs.dart';
 import 'package:hypha_wallet/ui/architecture/result/result.dart';
 import 'package:hypha_wallet/ui/profile/usecases/initialize_profile_use_case.dart';
@@ -105,8 +106,8 @@ void main() {
     TestWidgetsFlutterBinding.ensureInitialized();
     DartPluginRegistrant.ensureInitialized();
 
-    final mockAmplifyService =
-        AmplifyService(EOSService(SecureStorageService(const FlutterSecureStorage()), RemoteConfigService()));
+    final mockAmplifyService = AmplifyService(
+        EOSService(SecureStorageService(const FlutterSecureStorage()), RemoteConfigService()), NetworkingManager(''));
     mockSignupUseCase = MockSignupUseCase(mockAmplifyService);
     mockProfileLoginUseCase = MockProfileLoginUseCase(mockAmplifyService);
     mockInitializeProfileUseCase = MockInitializeProfileUseCase(mockAmplifyService);

@@ -3,10 +3,13 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:amazon_cognito_identity_dart_2/cognito.dart';
+import 'package:amazon_cognito_identity_dart_2/sig_v4.dart';
+import 'package:dio/dio.dart';
+import 'package:hypha_wallet/core/network/api/aws_amplify/amplify_policy.dart';
 import 'package:hypha_wallet/core/network/api/aws_amplify/aws_authenticated_request.dart';
-import 'package:hypha_wallet/core/network/api/aws_amplify/post_image.dart';
 import 'package:hypha_wallet/core/network/api/eos_service.dart';
 import 'package:hypha_wallet/core/network/api/remote_config_service.dart';
+import 'package:hypha_wallet/core/network/networking_manager.dart';
 import 'package:hypha_wallet/ui/profile/interactor/profile_data.dart';
 
 String getRandomString(int len) {
@@ -18,6 +21,8 @@ String getRandomString(int len) {
 /// Encapsulates everything to do with remote configuration
 class AmplifyService {
   final EOSService eosService;
+  final NetworkingManager networkingManager;
+
   CognitoUserPool get userPool => CognitoUserPool(
         remoteConfigService.userPoolId,
         remoteConfigService.clientId,
@@ -31,7 +36,7 @@ class AmplifyService {
   String get s3Bucket => remoteConfigService.pppS3Bucket;
   String get s3Region => remoteConfigService.pppS3Region;
 
-  AmplifyService(this.eosService);
+  AmplifyService(this.eosService, this.networkingManager);
 
   bool isConnected() {
     return session != null && session!.isValid();
@@ -273,7 +278,7 @@ class AmplifyService {
     try {
       final credentials = await getCredentials();
 
-      final res = await postImage(
+      final res = await _postImage(
         credentials: credentials,
         image: image,
         fileName: fileName,
@@ -293,6 +298,72 @@ class AmplifyService {
     } catch (error) {
       print('Error posting image: $error');
       print(error);
+    }
+  }
+
+  Future<bool> _postImage({
+    required CognitoCredentials credentials,
+    required File image,
+    required String fileName,
+    required String s3Region,
+    required String s3Bucket,
+  }) async {
+    final _region = s3Region;
+    final String _s3Endpoint = 'https://$s3Bucket.s3.amazonaws.com';
+    final file = image;
+
+    final length = await file.length();
+    final uri = Uri.parse(_s3Endpoint);
+
+    if (credentials.userIdentityId == null) {
+      throw 'No user identity userIdentityId';
+    }
+    if (credentials.accessKeyId == null) {
+      throw 'No accessKeyId (not logged in)';
+    }
+    if (credentials.secretAccessKey == null) {
+      throw 'No secretAccessKey (not logged in)';
+    }
+    if (credentials.sessionToken == null) {
+      throw 'No sessionToken (not logged in)';
+    }
+
+    final String usrIdentityId = credentials.userIdentityId!;
+
+    // Note: The s3 bucket is set up like this - user identity is part of the file path
+    final String bucketKey = 'protected/$usrIdentityId/$fileName';
+
+    final policy = Policy.fromS3PresignedPost(
+      bucketKey,
+      s3Bucket,
+      15,
+      credentials.accessKeyId!,
+      length,
+      credentials.sessionToken!,
+      region: _region,
+    );
+    final key = SigV4.calculateSigningKey(credentials.secretAccessKey!, policy.datetime, _region, 's3');
+    final signature = SigV4.calculateSignature(key, policy.encode());
+
+    final formData = FormData.fromMap({
+      'file': await MultipartFile.fromFile(file.path, filename: fileName),
+      'key': policy.key,
+      'acl': 'public-read',
+      'X-Amz-Credential': policy.credential,
+      'X-Amz-Algorithm': 'AWS4-HMAC-SHA256',
+      'X-Amz-Date': policy.datetime,
+      'Policy': policy.encode(),
+      'X-Amz-Signature': signature,
+      'x-amz-security-token': credentials.sessionToken
+    });
+
+    try {
+      // ignore: unused_local_variable
+      final res = await networkingManager.post(uri.toString(), data: formData);
+      return true;
+    } catch (e) {
+      print('post image error: $e');
+      rethrow;
     }
   }
 }
