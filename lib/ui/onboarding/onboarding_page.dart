@@ -27,28 +27,30 @@ class OnboardingPage extends StatelessWidget {
       withOpacity: false,
       child: Scaffold(
         backgroundColor: HyphaColors.transparent,
-        bottomNavigationBar: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 24),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              HyphaAppButton(
-                margin: const EdgeInsets.symmetric(horizontal: 45),
-                onPressed: () {
-                  _launchUrl();
-                },
-                title: 'Sign Up',
-                buttonType: ButtonType.secondary,
-              ),
-              const SizedBox(height: 20),
-              HyphaAppButton(
-                margin: const EdgeInsets.symmetric(horizontal: 45),
-                onPressed: () {
-                  Get.to(() => const SelectImportMethod(), transition: Transition.rightToLeft);
-                },
-                title: 'Import Account',
-              ),
-            ],
+        bottomNavigationBar: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 24),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                HyphaAppButton(
+                  margin: const EdgeInsets.symmetric(horizontal: 45),
+                  onPressed: () {
+                    _launchUrl();
+                  },
+                  title: 'Sign Up',
+                  buttonType: ButtonType.secondary,
+                ),
+                const SizedBox(height: 20),
+                HyphaAppButton(
+                  margin: const EdgeInsets.symmetric(horizontal: 45),
+                  onPressed: () {
+                    Get.to(() => const SelectImportMethod(), transition: Transition.rightToLeft);
+                  },
+                  title: 'Import Account',
+                ),
+              ],
+            ),
           ),
         ),
         body: SafeArea(
