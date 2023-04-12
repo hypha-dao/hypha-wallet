@@ -35,7 +35,6 @@ class Policy {
   }) {
     final datetime = SigV4.generateDatetime();
     final expiration = DateTime.now().add(Duration(minutes: expiryMinutes)).toUtc().toString().split(' ').join('T');
-    // print('expiration: $expiration');
     final cred = '$accessKeyId/${SigV4.buildCredentialScope(datetime, region, 's3')}';
     final p = Policy(key, bucket, datetime, expiration, cred, maxFileSize, sessionToken, region: region);
     return p;
