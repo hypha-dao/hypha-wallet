@@ -69,27 +69,29 @@ class SignTransactionSuccessPage extends StatelessWidget {
         body: Stack(
           children: [
             const HyphaHalfBackground(showTopBar: false),
-            Column(
-              children: [
-                const SizedBox(height: 80),
-                Image.asset('assets/images/thumb_up.png', width: 240, height: 240),
-                Padding(
-                  padding: const EdgeInsets.only(left: 45, right: 45, top: 16),
-                  child: Text('Success!', textAlign: TextAlign.center, style: context.hyphaTextTheme.mediumTitles),
-                ),
-                const SizedBox(height: 16),
-                Padding(padding: const EdgeInsets.only(left: 45, right: 45), child: successText),
-                const SizedBox(height: 46),
-                Container(
-                  padding: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: transactionType.iconBackgroundColor,
+            Center(
+              child: Column(
+                children: [
+                  const SizedBox(height: 80),
+                  Image.asset('assets/images/thumb_up.png', width: 240, height: 240),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 45, right: 45, top: 16),
+                    child: Text('Success!', textAlign: TextAlign.center, style: context.hyphaTextTheme.mediumTitles),
                   ),
-                  child: Icon(transactionType.icon, size: 24),
-                ),
-                const SizedBox(height: 16),
-              ],
+                  const SizedBox(height: 16),
+                  Padding(padding: const EdgeInsets.only(left: 45, right: 45), child: successText),
+                  const SizedBox(height: 46),
+                  Container(
+                    padding: const EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: transactionType.iconBackgroundColor,
+                    ),
+                    child: Icon(transactionType.icon, size: 24),
+                  ),
+                  const SizedBox(height: 16),
+                ],
+              ),
             ),
           ],
         ),
