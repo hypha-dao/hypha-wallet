@@ -43,4 +43,5 @@ class HyphaIcons {
   static const IconData settings_b = IconData(0xe80e, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData wallet_b = IconData(0xe80f, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData bigqrscan = IconData(0xe810, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData qr_big_squared = IconData(0xe811, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }
