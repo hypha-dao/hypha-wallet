@@ -120,12 +120,9 @@ class _ScannerWidgetState extends State<ScannerWidget> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            SizedBox(
-                              width: 140,
-                              child: widget.isLoading
-                                  ? const SizedBox(height: 60, width: 60, child: CircularProgressIndicator())
-                                  : const Icon(HyphaIcons.bigqrscan, size: 60, color: HyphaColors.primaryBlu),
-                            ),
+                            widget.isLoading
+                                ? const SizedBox(height: 60, width: 60, child: CircularProgressIndicator())
+                                : const Icon(HyphaIcons.qr_big_squared, size: 60, color: HyphaColors.primaryBlu),
                             const SizedBox(height: 24),
                             Text(
                               widget.isLoading ? 'Loading Transaction' : 'Scan QR',
