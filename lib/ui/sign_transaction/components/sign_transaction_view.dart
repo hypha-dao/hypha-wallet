@@ -79,20 +79,22 @@ class _Slider extends StatelessWidget {
       child: Builder(
         builder: (context) {
           final GlobalKey<SlideActionState> _key = GlobalKey();
-          return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: SlideAction(
-              outerColor: context.isDarkTheme ? HyphaColors.lightBlack : HyphaColors.white,
-              key: _key,
-              onSubmit: () {
-                context.read<SignTransactionBloc>().add(const SignTransactionEvent.onUserSlideCompleted());
-              },
-              onCancel: () {
-                context.read<SignTransactionBloc>().add(const SignTransactionEvent.onUserSlideCanceled());
-              },
-              alignment: Alignment.center,
-              submittedIcon: const CircularProgressIndicator(),
-              child: Text('Slide to Sign', style: context.hyphaTextTheme.ralMediumSmallNote),
+          return SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SlideAction(
+                outerColor: context.isDarkTheme ? HyphaColors.lightBlack : HyphaColors.white,
+                key: _key,
+                onSubmit: () {
+                  context.read<SignTransactionBloc>().add(const SignTransactionEvent.onUserSlideCompleted());
+                },
+                onCancel: () {
+                  context.read<SignTransactionBloc>().add(const SignTransactionEvent.onUserSlideCanceled());
+                },
+                alignment: Alignment.center,
+                submittedIcon: const CircularProgressIndicator(),
+                child: Text('Slide to Sign', style: context.hyphaTextTheme.ralMediumSmallNote),
+              ),
             ),
           );
         },
