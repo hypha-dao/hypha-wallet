@@ -67,4 +67,23 @@ class SigningRequest {
     LogHelper.d('SigningRequest.fromBinary $deserializedData');
     return SigningRequest.fromJson(deserializedData);
   }
+
+  // return expiration for this signing request - can be null
+  DateTime? getExpiration() {
+    if (req.length > 1) {
+      final signRequestMap = req[1];
+      if (signRequestMap is Map) {
+        final expirationString = signRequestMap['expiration'];
+        if (expirationString != null) {
+          try {
+            final expirationDate = DateTime.parse(expirationString);
+            return expirationDate;
+          } catch (parseError) {
+            print('unable to parse date object: $expirationString');
+          }
+        }
+      }
+    }
+    return null;
+  }
 }
