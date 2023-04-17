@@ -15,53 +15,55 @@ class SignTransactionView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<SignTransactionBloc, SignTransactionState>(
       builder: (context, state) {
-        return DecoratedBox(
-          decoration: BoxDecoration(
-            gradient: context.isDarkTheme ? HyphaColors.gradientBlack : HyphaColors.gradientWhite,
-            borderRadius: const BorderRadius.vertical(top: Radius.circular(30)),
-          ),
-          child: Column(
-            children: [
-              _Header('Signing request', state.transactionDetailsData.signingTitle),
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      const SizedBox(height: 8),
-                      ...state.transactionDetailsData.cards
-                          .map(
-                            (e) => Padding(
-                              padding: const EdgeInsets.all(22),
-                              child: HyphaTransactionActionCard(data: e),
-                            ),
-                          )
-                          .toList(),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 30),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'This transaction expires in ',
-                              style: context.hyphaTextTheme.ralMediumSmallNote.copyWith(color: HyphaColors.midGrey),
-                            ),
-                            CountDownText(
-                              due: state.transactionDetailsData.expirationTime,
-                              finishedText: 'Expired',
-                              showLabel: true,
-                              longDateName: false,
-                              style: context.hyphaTextTheme.ralMediumSmallNote.copyWith(color: HyphaColors.midGrey),
-                            ),
-                          ],
-                        ),
-                      )
-                    ],
+        return SafeArea(
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              gradient: context.isDarkTheme ? HyphaColors.gradientBlack : HyphaColors.gradientWhite,
+              borderRadius: const BorderRadius.vertical(top: Radius.circular(30)),
+            ),
+            child: Column(
+              children: [
+                _Header('Signing request', state.transactionDetailsData.signingTitle),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        const SizedBox(height: 8),
+                        ...state.transactionDetailsData.cards
+                            .map(
+                              (e) => Padding(
+                                padding: const EdgeInsets.all(22),
+                                child: HyphaTransactionActionCard(data: e),
+                              ),
+                            )
+                            .toList(),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 30),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'This transaction expires in ',
+                                style: context.hyphaTextTheme.ralMediumSmallNote.copyWith(color: HyphaColors.midGrey),
+                              ),
+                              CountDownText(
+                                due: state.transactionDetailsData.expirationTime,
+                                finishedText: 'Expired',
+                                showLabel: true,
+                                longDateName: false,
+                                style: context.hyphaTextTheme.ralMediumSmallNote.copyWith(color: HyphaColors.midGrey),
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              const _Slider(),
-              const SizedBox(height: 8),
-            ],
+                const _Slider(),
+                const SizedBox(height: 8),
+              ],
+            ),
           ),
         );
       },
@@ -79,22 +81,20 @@ class _Slider extends StatelessWidget {
       child: Builder(
         builder: (context) {
           final GlobalKey<SlideActionState> _key = GlobalKey();
-          return SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: SlideAction(
-                outerColor: context.isDarkTheme ? HyphaColors.lightBlack : HyphaColors.white,
-                key: _key,
-                onSubmit: () {
-                  context.read<SignTransactionBloc>().add(const SignTransactionEvent.onUserSlideCompleted());
-                },
-                onCancel: () {
-                  context.read<SignTransactionBloc>().add(const SignTransactionEvent.onUserSlideCanceled());
-                },
-                alignment: Alignment.center,
-                submittedIcon: const CircularProgressIndicator(),
-                child: Text('Slide to Sign', style: context.hyphaTextTheme.ralMediumSmallNote),
-              ),
+          return Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: SlideAction(
+              outerColor: context.isDarkTheme ? HyphaColors.lightBlack : HyphaColors.white,
+              key: _key,
+              onSubmit: () {
+                context.read<SignTransactionBloc>().add(const SignTransactionEvent.onUserSlideCompleted());
+              },
+              onCancel: () {
+                context.read<SignTransactionBloc>().add(const SignTransactionEvent.onUserSlideCanceled());
+              },
+              alignment: Alignment.center,
+              submittedIcon: const CircularProgressIndicator(),
+              child: Text('Slide to Sign', style: context.hyphaTextTheme.ralMediumSmallNote),
             ),
           );
         },
