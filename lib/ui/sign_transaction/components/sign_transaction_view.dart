@@ -15,55 +15,53 @@ class SignTransactionView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<SignTransactionBloc, SignTransactionState>(
       builder: (context, state) {
-        return SafeArea(
-          child: DecoratedBox(
-            decoration: BoxDecoration(
-              gradient: context.isDarkTheme ? HyphaColors.gradientBlack : HyphaColors.gradientWhite,
-              borderRadius: const BorderRadius.vertical(top: Radius.circular(30)),
-            ),
-            child: Column(
-              children: [
-                _Header('Signing request', state.transactionDetailsData.signingTitle),
-                Expanded(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        const SizedBox(height: 8),
-                        ...state.transactionDetailsData.cards
-                            .map(
-                              (e) => Padding(
-                                padding: const EdgeInsets.all(22),
-                                child: HyphaTransactionActionCard(data: e),
-                              ),
-                            )
-                            .toList(),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 30),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'This transaction expires in ',
-                                style: context.hyphaTextTheme.ralMediumSmallNote.copyWith(color: HyphaColors.midGrey),
-                              ),
-                              CountDownText(
-                                due: state.transactionDetailsData.expirationTime,
-                                finishedText: 'Expired',
-                                showLabel: true,
-                                longDateName: false,
-                                style: context.hyphaTextTheme.ralMediumSmallNote.copyWith(color: HyphaColors.midGrey),
-                              ),
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
+        return DecoratedBox(
+          decoration: BoxDecoration(
+            gradient: context.isDarkTheme ? HyphaColors.gradientBlack : HyphaColors.gradientWhite,
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(30)),
+          ),
+          child: Column(
+            children: [
+              _Header('Signing request', state.transactionDetailsData.signingTitle),
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 8),
+                      ...state.transactionDetailsData.cards
+                          .map(
+                            (e) => Padding(
+                              padding: const EdgeInsets.all(22),
+                              child: HyphaTransactionActionCard(data: e),
+                            ),
+                          )
+                          .toList(),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 30),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'This transaction expires in ',
+                              style: context.hyphaTextTheme.ralMediumSmallNote.copyWith(color: HyphaColors.midGrey),
+                            ),
+                            CountDownText(
+                              due: state.transactionDetailsData.expirationTime,
+                              finishedText: 'Expired',
+                              showLabel: true,
+                              longDateName: false,
+                              style: context.hyphaTextTheme.ralMediumSmallNote.copyWith(color: HyphaColors.midGrey),
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
                   ),
                 ),
-                const _Slider(),
-                const SizedBox(height: 8),
-              ],
-            ),
+              ),
+              const SafeArea(child: _Slider()),
+              const SizedBox(height: 8),
+            ],
           ),
         );
       },
