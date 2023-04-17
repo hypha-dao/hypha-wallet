@@ -14,10 +14,8 @@ class TransactionDetailsData {
   });
 
   factory TransactionDetailsData.fromQrCodeData(ScanQrCodeResultData data) {
-    final signRequestMap = data.esr.manager.signingRequest.req[1] as Map;
-    final expirationString = signRequestMap['expiration'];
     final expiration =
-        expirationString != null ? DateTime.parse(expirationString) : DateTime.now().add(const Duration(minutes: 3));
+        data.esr.manager.signingRequest.getExpiration() ?? DateTime.now().add(const Duration(minutes: 5));
 
     return TransactionDetailsData(
       signingTitle: 'From ${data.esr.actions.first.account}',
