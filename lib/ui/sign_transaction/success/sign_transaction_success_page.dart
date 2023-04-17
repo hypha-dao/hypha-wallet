@@ -57,13 +57,17 @@ class SignTransactionSuccessPage extends StatelessWidget {
       withGradient: true,
       child: Scaffold(
         backgroundColor: HyphaColors.transparent,
-        bottomNavigationBar: Padding(
-          padding: const EdgeInsets.only(left: 45, right: 45, bottom: 24),
-          child: HyphaAppButton(
-            onPressed: () {
-              Get.offAll(() => const HyphaBottomNavigation());
-            },
-            title: 'Close',
+        bottomNavigationBar: SafeArea(
+          child: Padding(
+            // TODO(gguji): We need a standard bottom offset for bottom UX elements - ideally HyphaBottomNavBar class takes a child element
+            // and does the right thing with safe area and offset.
+            padding: const EdgeInsets.only(left: 45, right: 45, bottom: 16),
+            child: HyphaAppButton(
+              onPressed: () {
+                Get.offAll(() => const HyphaBottomNavigation());
+              },
+              title: 'Close',
+            ),
           ),
         ),
         body: Stack(
