@@ -34,14 +34,16 @@ class SignTransactionFailedPage extends StatelessWidget {
       withGradient: true,
       child: Scaffold(
         backgroundColor: HyphaColors.transparent,
-        bottomNavigationBar: Padding(
-          padding: const EdgeInsets.only(left: 45, right: 45, bottom: 24),
-          child: HyphaAppButton(
-            buttonType: ButtonType.secondary,
-            onPressed: () {
-              Get.offAll(() => const HyphaBottomNavigation());
-            },
-            title: 'Close',
+        bottomNavigationBar: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 45, right: 45, bottom: 16),
+            child: HyphaAppButton(
+              buttonType: ButtonType.secondary,
+              onPressed: () {
+                Get.offAll(() => const HyphaBottomNavigation());
+              },
+              title: 'Close',
+            ),
           ),
         ),
         body: Stack(
