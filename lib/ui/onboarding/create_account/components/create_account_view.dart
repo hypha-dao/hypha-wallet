@@ -4,6 +4,7 @@ import 'package:get/get.dart' as Get;
 import 'package:hypha_wallet/core/extension/scope_functions.dart';
 import 'package:hypha_wallet/design/avatar_image/hypha_avatar_image.dart';
 import 'package:hypha_wallet/design/background/hypha_page_background.dart';
+import 'package:hypha_wallet/design/bottom_component/hypha_safe_bottom_navigation_bar.dart';
 import 'package:hypha_wallet/design/buttons/hypha_app_button.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
@@ -24,9 +25,8 @@ class CreateAccountView extends StatelessWidget {
           child: Scaffold(
             backgroundColor: HyphaColors.transparent,
             appBar: const OnboardingAppbar(title: 'Create your', subTitle: 'Hypha Account'),
-            bottomNavigationBar: SafeArea(
+            bottomNavigationBar: HyphaSafeBottomNavigationBar(
               child: HyphaAppButton(
-                margin: const EdgeInsets.symmetric(horizontal: 45, vertical: 40),
                 onPressed: () {
                   context
                       .read<DeeplinkBloc>()

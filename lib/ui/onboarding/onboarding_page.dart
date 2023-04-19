@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:hypha_wallet/design/background/hypha_page_background.dart';
+import 'package:hypha_wallet/design/bottom_component/hypha_safe_bottom_navigation_bar.dart';
 import 'package:hypha_wallet/design/buttons/button_type.dart';
 import 'package:hypha_wallet/design/buttons/hypha_app_button.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
@@ -27,30 +28,25 @@ class OnboardingPage extends StatelessWidget {
       withOpacity: false,
       child: Scaffold(
         backgroundColor: HyphaColors.transparent,
-        bottomNavigationBar: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 24),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                HyphaAppButton(
-                  margin: const EdgeInsets.symmetric(horizontal: 45),
-                  onPressed: () {
-                    _launchUrl();
-                  },
-                  title: 'Sign Up',
-                  buttonType: ButtonType.secondary,
-                ),
-                const SizedBox(height: 20),
-                HyphaAppButton(
-                  margin: const EdgeInsets.symmetric(horizontal: 45),
-                  onPressed: () {
-                    Get.to(() => const SelectImportMethod(), transition: Transition.rightToLeft);
-                  },
-                  title: 'Import Account',
-                ),
-              ],
-            ),
+        bottomNavigationBar: HyphaSafeBottomNavigationBar(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              HyphaAppButton(
+                onPressed: () {
+                  _launchUrl();
+                },
+                title: 'Sign Up',
+                buttonType: ButtonType.secondary,
+              ),
+              const SizedBox(height: 20),
+              HyphaAppButton(
+                onPressed: () {
+                  Get.to(() => const SelectImportMethod(), transition: Transition.rightToLeft);
+                },
+                title: 'Import Account',
+              ),
+            ],
           ),
         ),
         body: SafeArea(

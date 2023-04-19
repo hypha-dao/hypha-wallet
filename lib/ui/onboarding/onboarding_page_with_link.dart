@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:hypha_wallet/design/background/hypha_page_background.dart';
+import 'package:hypha_wallet/design/bottom_component/hypha_safe_bottom_navigation_bar.dart';
 import 'package:hypha_wallet/design/buttons/hypha_app_button.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
@@ -15,9 +16,8 @@ class OnboardingPageWithLink extends StatelessWidget {
     return HyphaPageBackground(
       child: Scaffold(
         backgroundColor: HyphaColors.transparent,
-        bottomNavigationBar: SafeArea(
+        bottomNavigationBar: HyphaSafeBottomNavigationBar(
           child: HyphaAppButton(
-            margin: const EdgeInsets.symmetric(horizontal: 45, vertical: 40),
             onPressed: () {
               Get.to(() => const CreateProfilePage(), transition: Transition.rightToLeft);
             },

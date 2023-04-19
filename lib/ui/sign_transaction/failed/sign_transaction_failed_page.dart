@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hypha_wallet/design/background/hypha_half_background.dart';
 import 'package:hypha_wallet/design/background/hypha_page_background.dart';
+import 'package:hypha_wallet/design/bottom_component/hypha_safe_bottom_navigation_bar.dart';
 import 'package:hypha_wallet/design/buttons/button_type.dart';
 import 'package:hypha_wallet/design/buttons/hypha_app_button.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
@@ -34,16 +35,13 @@ class SignTransactionFailedPage extends StatelessWidget {
       withGradient: true,
       child: Scaffold(
         backgroundColor: HyphaColors.transparent,
-        bottomNavigationBar: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.only(left: 45, right: 45, bottom: 16),
-            child: HyphaAppButton(
-              buttonType: ButtonType.secondary,
-              onPressed: () {
-                Get.offAll(() => const HyphaBottomNavigation());
-              },
-              title: 'Close',
-            ),
+        bottomNavigationBar: HyphaSafeBottomNavigationBar(
+          child: HyphaAppButton(
+            buttonType: ButtonType.secondary,
+            onPressed: () {
+              Get.offAll(() => const HyphaBottomNavigation());
+            },
+            title: 'Close',
           ),
         ),
         body: Stack(
