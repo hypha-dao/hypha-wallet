@@ -6,6 +6,7 @@ import 'package:get/get.dart' as Get;
 import 'package:hypha_wallet/core/extension/scope_functions.dart';
 import 'package:hypha_wallet/design/avatar_image/hypha_avatar_image.dart';
 import 'package:hypha_wallet/design/background/hypha_page_background.dart';
+import 'package:hypha_wallet/design/bottom_component/hypha_safe_bottom_navigation_bar.dart';
 import 'package:hypha_wallet/design/buttons/hypha_app_button.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
@@ -46,19 +47,20 @@ class _EditAccountViewState extends State<EditAccountView> {
           child: Scaffold(
             backgroundColor: HyphaColors.transparent,
             appBar: const OnboardingAppbar(title: 'Create your', subTitle: 'Hypha Account'),
-            bottomNavigationBar: HyphaAppButton(
-              margin: const EdgeInsets.symmetric(horizontal: 45, vertical: 40),
-              isActive: state.isNextButtonAvailable,
-              onPressed: state.isNextButtonAvailable
-                  ? () {
-                      context
-                          .read<DeeplinkBloc>()
-                          .state
-                          .inviteLinkData
-                          ?.let((it) => context.read<EditAccountBloc>().add(EditAccountEvent.onNextPressed(it)));
-                    }
-                  : null,
-              title: 'Next',
+            bottomNavigationBar: HyphaSafeBottomNavigationBar(
+              child: HyphaAppButton(
+                isActive: state.isNextButtonAvailable,
+                onPressed: state.isNextButtonAvailable
+                    ? () {
+                        context
+                            .read<DeeplinkBloc>()
+                            .state
+                            .inviteLinkData
+                            ?.let((it) => context.read<EditAccountBloc>().add(EditAccountEvent.onNextPressed(it)));
+                      }
+                    : null,
+                title: 'Next',
+              ),
             ),
             body: SingleChildScrollView(
               child: HyphaBodyWidget(

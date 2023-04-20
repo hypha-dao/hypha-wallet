@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hypha_wallet/design/background/hypha_page_background.dart';
+import 'package:hypha_wallet/design/bottom_component/hypha_safe_bottom_navigation_bar.dart';
 import 'package:hypha_wallet/design/buttons/hypha_app_button.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/progress_indicator/hypha_progress_indicator.dart';
@@ -24,16 +25,17 @@ class ImportAccountByWordsView extends StatelessWidget {
               previous.isPartialLoading != current.isPartialLoading ||
               previous.isPrivateKeyValid != current.isPrivateKeyValid,
           builder: (context, state) {
-            return HyphaAppButton(
-              margin: const EdgeInsets.only(left: 45, right: 45, bottom: 24, top: 16),
-              isLoading: state.isPartialLoading,
-              onPressed: state.isPrivateKeyValid
-                  ? () {
-                      context.read<ImportAccountBloc>().add(const ImportAccountEvent.onActionButtonTapped(true));
-                    }
-                  : null,
-              title: 'Next',
-              isActive: state.isPrivateKeyValid,
+            return HyphaSafeBottomNavigationBar(
+              child: HyphaAppButton(
+                isLoading: state.isPartialLoading,
+                onPressed: state.isPrivateKeyValid
+                    ? () {
+                        context.read<ImportAccountBloc>().add(const ImportAccountEvent.onActionButtonTapped(true));
+                      }
+                    : null,
+                title: 'Next',
+                isActive: state.isPrivateKeyValid,
+              ),
             );
           },
         ),
