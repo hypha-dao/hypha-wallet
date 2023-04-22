@@ -4,7 +4,8 @@ import 'package:hypha_wallet/design/hypha_colors.dart';
 enum ButtonType {
   primary,
   secondary,
-  tertiary;
+  tertiary,
+  danger;
 
   Color? appButtonColor(bool isActive, bool isDarkTheme) {
     switch (this) {
@@ -20,6 +21,8 @@ enum ButtonType {
                 : HyphaColors.primaryBlu.withOpacity(isActive ? 0 : 0.10);
       case ButtonType.tertiary:
         return isDarkTheme ? HyphaColors.white.withOpacity(isActive ? 0 : 0) : null;
+      case ButtonType.danger:
+        return isDarkTheme ? HyphaColors.error.withOpacity(isActive ? 1 : 0.6) : null;
     }
   }
 
@@ -37,6 +40,8 @@ enum ButtonType {
             : isActive
                 ? HyphaColors.primaryBlu
                 : HyphaColors.offWhite;
+      case ButtonType.danger:
+        return HyphaColors.offWhite.withOpacity(isActive ? 1 : 0.20);
     }
   }
 }

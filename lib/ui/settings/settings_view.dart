@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:hypha_wallet/design/background/hypha_half_background.dart';
 import 'package:hypha_wallet/design/background/hypha_page_background.dart';
+import 'package:hypha_wallet/design/buttons/button_type.dart';
 import 'package:hypha_wallet/design/cards/hypha_actionable_card.dart';
 import 'package:hypha_wallet/design/hypha_card.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
@@ -105,6 +107,21 @@ class SettingsView extends StatelessWidget {
                       );
                     },
                   ),
+                  const SizedBox(height: 60),
+                  InkWell(
+                    onTap: () async {
+                      print("delete tapped");
+                      await onDeleteTapped(context);
+                    },
+                    child: Text('Delete Hypha Account',
+                        textAlign: TextAlign.center,
+                        style: context.hyphaTextTheme.ralMediumBody.copyWith(
+                          color: HyphaColors.midGrey,
+                          decoration: TextDecoration.underline,
+                          fontSize: 14,
+                        )),
+                  ),
+                  const SizedBox(height: 60),
                 ],
               ),
             ),
@@ -147,7 +164,49 @@ class SettingsView extends StatelessWidget {
       ),
     );
 
+// we log out here if the above view returns true.
+
+// maybe ths can just show another one that renders different
     if (result == true) {
+      context.read<AuthenticationBloc>().add(const AuthenticationEvent.authenticationLogoutRequested());
+    }
+  }
+
+  Future<void> onDeleteTapped(BuildContext context) async {
+    final bool? result = await showModalBottomSheet(
+      isScrollControlled: true,
+      context: context,
+      clipBehavior: Clip.antiAliasWithSaveLayer,
+      builder: (context) => FractionallySizedBox(
+        heightFactor: UIConstants.bottomSheetHeightFraction,
+        child: HyphaConfirmationPage(
+          title: 'Delete Hypha Account',
+          subtitle: 'Irreversible action',
+          rationale:
+              'Are you sure you want to delete the Hypha Account? This action is irreversible and you will lose all the informations connected to the account.',
+          image: 'assets/images/warning.png',
+          primaryButtonText: 'CANCEL',
+          primaryButtonCallback: () {
+            Get.back(result: false);
+          },
+          primaryButtonType: ButtonType.danger,
+          secondaryButtonText: 'DELETE ACCOUNT',
+          secondaryButtonCallback: () {
+            Get.back(result: true);
+          },
+          halfBackground: const HyphaHalfBackground(backgroundColor: HyphaColors.error, showTopBar: false),
+          subtitleColor: HyphaColors.error,
+        ),
+      ),
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
+      ),
+    );
+
+    if (result == true) {
+      print("delete account!!");
+            context.read<SettingsBloc>().add(SettingsEvent.onSecureAccountTapped());
+
       context.read<AuthenticationBloc>().add(const AuthenticationEvent.authenticationLogoutRequested());
     }
   }

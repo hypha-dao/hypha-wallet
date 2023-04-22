@@ -22,6 +22,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     on<_OnThemeChanged>(_onThemeChanged);
     on<_ClearPageCommand>((_, emit) => emit(state.copyWith(command: null)));
     on<_OnSecureAccountTapped>(_onSecureAccountTapped);
+    on<_OnDeleteAccountTapped>(_onDeleteAccountTapped);
     on<_OnShowSettings>(_onShowSettings);
   }
 
@@ -38,6 +39,11 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
   }
 
   FutureOr<void> _onSecureAccountTapped(_OnSecureAccountTapped event, Emitter<SettingsState> emit) {
+    _sharedPrefs.setShowSecurityNotification(false);
+    emit(state.copyWith(showSecurityNotification: false));
+  }
+
+  FutureOr<void> _onDeleteAccountTapped(_OnDeleteAccountTapped event, Emitter<SettingsState> emit) {
     _sharedPrefs.setShowSecurityNotification(false);
     emit(state.copyWith(showSecurityNotification: false));
   }

@@ -6,5 +6,6 @@ class SettingsEvent with _$SettingsEvent {
   const factory SettingsEvent.onThemeChanged() = _OnThemeChanged;
   const factory SettingsEvent.clearPageCommand() = _ClearPageCommand;
   const factory SettingsEvent.onSecureAccountTapped() = _OnSecureAccountTapped;
+  const factory SettingsEvent.onDeleteAccountTapped() = _OnDeleteAccountTapped;
   const factory SettingsEvent.onShowSettings() = _OnShowSettings;
 }
