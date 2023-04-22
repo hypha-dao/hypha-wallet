@@ -89,14 +89,17 @@ class AmplifyService {
   }
 
   Future<void> logout() async {
-    if (session?.isValid() ?? false) {
-      session?.invalidateToken();
+    if (session != null) {
+      if (session!.isValid()) {
+        session?.invalidateToken();
+      }
+      session = null;
     }
-    session = null;
+    cognitoUser = null;
   }
 
   Future<bool> loginUser(String accountName, {bool isSignUp = false}) async {
-    if (session?.isValid() ?? false) {
+    if (session != null && session!.isValid()) {
       print('already logged in');
       return true;
     }
@@ -245,6 +248,20 @@ class AmplifyService {
       },
       'appData': {},
     });
+  }
+
+  Future<bool> deleteAccount() async {
+    if (cognitoUser == null) {
+      throw 'Log in before calling deleteAccount';
+    }
+    bool userDeleted = false;
+    try {
+      userDeleted = await cognitoUser!.deleteUser();
+    } catch (e) {
+      print(e);
+    }
+    print(userDeleted);
+    return userDeleted;
   }
 
   Future<dynamic> setS3Identity(String s3Identity) async {
