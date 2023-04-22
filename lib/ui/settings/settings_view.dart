@@ -99,7 +99,7 @@ class SettingsView extends StatelessWidget {
                               Icons.logout,
                               color: context.isDarkTheme ? HyphaColors.white : HyphaColors.black,
                             ),
-                            title: Text('Logout', style: context.hyphaTextTheme.smallTitles),
+                            title: Text('Log out', style: context.hyphaTextTheme.smallTitles),
                           ),
                         ),
                       );
@@ -123,12 +123,12 @@ class SettingsView extends StatelessWidget {
       builder: (context) => FractionallySizedBox(
         heightFactor: UIConstants.bottomSheetHeightFraction,
         child: HyphaConfirmationPage(
-          title: 'Log-out',
-          subtitle: 'Are you sure you want to log-out your account?',
+          title: 'Log out',
+          subtitle: 'Are you sure you want to log out of your account?',
           rationale:
               'By logging out you will disconnect your blockchain account from the app. In order to access your account again you will need to import it by using your private key.',
           image: 'assets/images/signout.png',
-          primaryButtonText: 'YES LOG-OUT',
+          primaryButtonText: 'LOG OUT',
           primaryButtonCallback: () {
             Get.back(result: true);
           },
