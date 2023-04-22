@@ -110,7 +110,6 @@ class SettingsView extends StatelessWidget {
                   const SizedBox(height: 60),
                   InkWell(
                     onTap: () async {
-                      print("delete tapped");
                       await onDeleteTapped(context);
                     },
                     child: Text('Delete Hypha Account',
@@ -164,9 +163,6 @@ class SettingsView extends StatelessWidget {
       ),
     );
 
-// we log out here if the above view returns true.
-
-// maybe ths can just show another one that renders different
     if (result == true) {
       context.read<AuthenticationBloc>().add(const AuthenticationEvent.authenticationLogoutRequested());
     }
@@ -205,7 +201,7 @@ class SettingsView extends StatelessWidget {
 
     if (result == true) {
       print("delete account!!");
-            context.read<SettingsBloc>().add(SettingsEvent.onSecureAccountTapped());
+      context.read<SettingsBloc>().add(const SettingsEvent.onDeleteAccountTapped());
 
       context.read<AuthenticationBloc>().add(const AuthenticationEvent.authenticationLogoutRequested());
     }
