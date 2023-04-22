@@ -46,6 +46,15 @@ class EOSService {
     return sendTransaction(eosTransaction: loginTransaction, accountName: accountName, network: network);
   }
 
+  Future<Result<dynamic>> deleteBlockchainAccount({
+    required String accountName,
+    required Networks network,
+  }) async {
+    throw 'TBD - implement this';
+    // final action = createChangePermissionsAction(accountName, 'owner', ['keys'], ['accounts']);
+    // return sendTransaction(eosTransaction: action, accountName: accountName, network: network);
+  }
+
   Future<Result<dynamic>> sendTransaction({
     required EOSTransaction eosTransaction,
     required String accountName,
@@ -103,6 +112,76 @@ class EOSService {
       print('stack: $s');
     }
     return ErrorResult(error);
+  }
+
+  Map<String, dynamic> createChangePermissionsAction(
+    String account,
+    String permission,
+    List<String> keys,
+    List<String> accounts,
+  ) {
+    assert(permission == 'active' || permission == 'owner', 'permission must be active or owner');
+    final parent = permission == 'owner' ? '' : 'owner';
+
+    final List<Map<String, dynamic>> accountPermissions = accounts
+        .map(
+          (acct) => {
+            'permission': {
+              'actor': acct,
+              'permission': permission,
+            },
+            'weight': 1
+          },
+        )
+        .toList();
+
+    final List<Map<String, dynamic>> keyPermissions = keys
+        .map(
+          (key) => {
+            'key': key,
+            'weight': 1,
+          },
+        )
+        .toList();
+
+    const threshold = 1;
+
+    print('creating $threshold out of ${accountPermissions.length} permissions for @$permission');
+
+    accountPermissions.sort(
+      (a, b) => (a['permission']['actor'] as String).compareTo(b['permission']['actor']),
+    );
+    keyPermissions.sort(
+      (a, b) => (a['key'] as String).compareTo(b['key']),
+    );
+
+    final auth = {
+      'threshold': threshold,
+      'waits': [],
+      'accounts': accountPermissions,
+      'keys': keyPermissions,
+    };
+
+    final action = {
+      'account': 'eosio',
+      'name': 'updateauth',
+      'authorization': [
+        {
+          'actor': account,
+          'permission': 'owner',
+        }
+      ],
+      'data': {
+        'account': account,
+        'permission': permission,
+        'parent': parent,
+        'auth': auth,
+      },
+    };
+
+    print('action to be proposed: $action');
+
+    return action;
   }
 }
 
