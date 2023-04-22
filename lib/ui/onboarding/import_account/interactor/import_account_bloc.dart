@@ -57,21 +57,29 @@ class ImportAccountBloc extends Bloc<ImportAccountEvent, ImportAccountState> {
   }
 
   List<String> _formatPastedString(String clipData) => clipData
-      .replaceAll(RegExp('[ ]{2,}'), ' ')
-      .replaceAll(' , ', ' ')
-      .replaceAll(',', ' ')
-      .replaceAll(' ; ', ' ')
-      .replaceAll(';', ' ')
-      .replaceAll('\n', ' ')
-      .replaceAll(' - ', ' ')
-      .replaceAll('-', ' ')
-      .split(' ');
+      .toLowerCase()
+      .replaceAll(RegExp('[^a-z]'), ' ')
+      .split(' ')
+      .where((word) => word.trim().length > 1)
+      .toList();
+
+  void _error(String s) {
+    _errorHandlerManager.handlerError(HyphaError(message: s, type: HyphaErrorType.generic));
+  }
 
   Future<void> _onUserPastedWords(_OnUserPastedWords event, Emitter<ImportAccountState> emit) async {
     final clipData = await _getClipboardData();
     final List<String> words = _formatPastedString(clipData);
     // No data in the clipboard, just return
     if (words.isEmpty) {
+      return;
+    }
+    if (words.length > 12) {
+      _error('Too many words: ${words.length}. Please paste exactly 12 words.');
+      return;
+    }
+    if (words.length < 12) {
+      _error('Too few words: ${words.length}. Please paste exactly 12 words.');
       return;
     }
 

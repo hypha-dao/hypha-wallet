@@ -72,6 +72,7 @@ class ImportAccountByWordsView extends StatelessWidget {
                   width: double.infinity,
                   child: TextButton(
                     onPressed: () {
+                      FocusScope.of(context).unfocus();
                       context.read<ImportAccountBloc>().add(const ImportAccountEvent.onUserPastedWords());
                     },
                     child: Text(
