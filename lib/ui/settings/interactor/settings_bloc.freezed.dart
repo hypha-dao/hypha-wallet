@@ -422,6 +422,7 @@ mixin _$SettingsEvent {
     required TResult Function() onThemeChanged,
     required TResult Function() clearPageCommand,
     required TResult Function() onSecureAccountTapped,
+    required TResult Function() onDeleteAccountTapped,
     required TResult Function() onShowSettings,
   }) =>
       throw _privateConstructorUsedError;
@@ -431,6 +432,7 @@ mixin _$SettingsEvent {
     TResult? Function()? onThemeChanged,
     TResult? Function()? clearPageCommand,
     TResult? Function()? onSecureAccountTapped,
+    TResult? Function()? onDeleteAccountTapped,
     TResult? Function()? onShowSettings,
   }) =>
       throw _privateConstructorUsedError;
@@ -440,6 +442,7 @@ mixin _$SettingsEvent {
     TResult Function()? onThemeChanged,
     TResult Function()? clearPageCommand,
     TResult Function()? onSecureAccountTapped,
+    TResult Function()? onDeleteAccountTapped,
     TResult Function()? onShowSettings,
     required TResult orElse(),
   }) =>
@@ -451,6 +454,8 @@ mixin _$SettingsEvent {
     required TResult Function(_ClearPageCommand value) clearPageCommand,
     required TResult Function(_OnSecureAccountTapped value)
         onSecureAccountTapped,
+    required TResult Function(_OnDeleteAccountTapped value)
+        onDeleteAccountTapped,
     required TResult Function(_OnShowSettings value) onShowSettings,
   }) =>
       throw _privateConstructorUsedError;
@@ -460,6 +465,7 @@ mixin _$SettingsEvent {
     TResult? Function(_OnThemeChanged value)? onThemeChanged,
     TResult? Function(_ClearPageCommand value)? clearPageCommand,
     TResult? Function(_OnSecureAccountTapped value)? onSecureAccountTapped,
+    TResult? Function(_OnDeleteAccountTapped value)? onDeleteAccountTapped,
     TResult? Function(_OnShowSettings value)? onShowSettings,
   }) =>
       throw _privateConstructorUsedError;
@@ -469,6 +475,7 @@ mixin _$SettingsEvent {
     TResult Function(_OnThemeChanged value)? onThemeChanged,
     TResult Function(_ClearPageCommand value)? clearPageCommand,
     TResult Function(_OnSecureAccountTapped value)? onSecureAccountTapped,
+    TResult Function(_OnDeleteAccountTapped value)? onDeleteAccountTapped,
     TResult Function(_OnShowSettings value)? onShowSettings,
     required TResult orElse(),
   }) =>
@@ -534,6 +541,7 @@ class _$_Initial implements _Initial {
     required TResult Function() onThemeChanged,
     required TResult Function() clearPageCommand,
     required TResult Function() onSecureAccountTapped,
+    required TResult Function() onDeleteAccountTapped,
     required TResult Function() onShowSettings,
   }) {
     return initial();
@@ -546,6 +554,7 @@ class _$_Initial implements _Initial {
     TResult? Function()? onThemeChanged,
     TResult? Function()? clearPageCommand,
     TResult? Function()? onSecureAccountTapped,
+    TResult? Function()? onDeleteAccountTapped,
     TResult? Function()? onShowSettings,
   }) {
     return initial?.call();
@@ -558,6 +567,7 @@ class _$_Initial implements _Initial {
     TResult Function()? onThemeChanged,
     TResult Function()? clearPageCommand,
     TResult Function()? onSecureAccountTapped,
+    TResult Function()? onDeleteAccountTapped,
     TResult Function()? onShowSettings,
     required TResult orElse(),
   }) {
@@ -575,6 +585,8 @@ class _$_Initial implements _Initial {
     required TResult Function(_ClearPageCommand value) clearPageCommand,
     required TResult Function(_OnSecureAccountTapped value)
         onSecureAccountTapped,
+    required TResult Function(_OnDeleteAccountTapped value)
+        onDeleteAccountTapped,
     required TResult Function(_OnShowSettings value) onShowSettings,
   }) {
     return initial(this);
@@ -587,6 +599,7 @@ class _$_Initial implements _Initial {
     TResult? Function(_OnThemeChanged value)? onThemeChanged,
     TResult? Function(_ClearPageCommand value)? clearPageCommand,
     TResult? Function(_OnSecureAccountTapped value)? onSecureAccountTapped,
+    TResult? Function(_OnDeleteAccountTapped value)? onDeleteAccountTapped,
     TResult? Function(_OnShowSettings value)? onShowSettings,
   }) {
     return initial?.call(this);
@@ -599,6 +612,7 @@ class _$_Initial implements _Initial {
     TResult Function(_OnThemeChanged value)? onThemeChanged,
     TResult Function(_ClearPageCommand value)? clearPageCommand,
     TResult Function(_OnSecureAccountTapped value)? onSecureAccountTapped,
+    TResult Function(_OnDeleteAccountTapped value)? onDeleteAccountTapped,
     TResult Function(_OnShowSettings value)? onShowSettings,
     required TResult orElse(),
   }) {
@@ -655,6 +669,7 @@ class _$_OnThemeChanged implements _OnThemeChanged {
     required TResult Function() onThemeChanged,
     required TResult Function() clearPageCommand,
     required TResult Function() onSecureAccountTapped,
+    required TResult Function() onDeleteAccountTapped,
     required TResult Function() onShowSettings,
   }) {
     return onThemeChanged();
@@ -667,6 +682,7 @@ class _$_OnThemeChanged implements _OnThemeChanged {
     TResult? Function()? onThemeChanged,
     TResult? Function()? clearPageCommand,
     TResult? Function()? onSecureAccountTapped,
+    TResult? Function()? onDeleteAccountTapped,
     TResult? Function()? onShowSettings,
   }) {
     return onThemeChanged?.call();
@@ -679,6 +695,7 @@ class _$_OnThemeChanged implements _OnThemeChanged {
     TResult Function()? onThemeChanged,
     TResult Function()? clearPageCommand,
     TResult Function()? onSecureAccountTapped,
+    TResult Function()? onDeleteAccountTapped,
     TResult Function()? onShowSettings,
     required TResult orElse(),
   }) {
@@ -696,6 +713,8 @@ class _$_OnThemeChanged implements _OnThemeChanged {
     required TResult Function(_ClearPageCommand value) clearPageCommand,
     required TResult Function(_OnSecureAccountTapped value)
         onSecureAccountTapped,
+    required TResult Function(_OnDeleteAccountTapped value)
+        onDeleteAccountTapped,
     required TResult Function(_OnShowSettings value) onShowSettings,
   }) {
     return onThemeChanged(this);
@@ -708,6 +727,7 @@ class _$_OnThemeChanged implements _OnThemeChanged {
     TResult? Function(_OnThemeChanged value)? onThemeChanged,
     TResult? Function(_ClearPageCommand value)? clearPageCommand,
     TResult? Function(_OnSecureAccountTapped value)? onSecureAccountTapped,
+    TResult? Function(_OnDeleteAccountTapped value)? onDeleteAccountTapped,
     TResult? Function(_OnShowSettings value)? onShowSettings,
   }) {
     return onThemeChanged?.call(this);
@@ -720,6 +740,7 @@ class _$_OnThemeChanged implements _OnThemeChanged {
     TResult Function(_OnThemeChanged value)? onThemeChanged,
     TResult Function(_ClearPageCommand value)? clearPageCommand,
     TResult Function(_OnSecureAccountTapped value)? onSecureAccountTapped,
+    TResult Function(_OnDeleteAccountTapped value)? onDeleteAccountTapped,
     TResult Function(_OnShowSettings value)? onShowSettings,
     required TResult orElse(),
   }) {
@@ -776,6 +797,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     required TResult Function() onThemeChanged,
     required TResult Function() clearPageCommand,
     required TResult Function() onSecureAccountTapped,
+    required TResult Function() onDeleteAccountTapped,
     required TResult Function() onShowSettings,
   }) {
     return clearPageCommand();
@@ -788,6 +810,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     TResult? Function()? onThemeChanged,
     TResult? Function()? clearPageCommand,
     TResult? Function()? onSecureAccountTapped,
+    TResult? Function()? onDeleteAccountTapped,
     TResult? Function()? onShowSettings,
   }) {
     return clearPageCommand?.call();
@@ -800,6 +823,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     TResult Function()? onThemeChanged,
     TResult Function()? clearPageCommand,
     TResult Function()? onSecureAccountTapped,
+    TResult Function()? onDeleteAccountTapped,
     TResult Function()? onShowSettings,
     required TResult orElse(),
   }) {
@@ -817,6 +841,8 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     required TResult Function(_ClearPageCommand value) clearPageCommand,
     required TResult Function(_OnSecureAccountTapped value)
         onSecureAccountTapped,
+    required TResult Function(_OnDeleteAccountTapped value)
+        onDeleteAccountTapped,
     required TResult Function(_OnShowSettings value) onShowSettings,
   }) {
     return clearPageCommand(this);
@@ -829,6 +855,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     TResult? Function(_OnThemeChanged value)? onThemeChanged,
     TResult? Function(_ClearPageCommand value)? clearPageCommand,
     TResult? Function(_OnSecureAccountTapped value)? onSecureAccountTapped,
+    TResult? Function(_OnDeleteAccountTapped value)? onDeleteAccountTapped,
     TResult? Function(_OnShowSettings value)? onShowSettings,
   }) {
     return clearPageCommand?.call(this);
@@ -841,6 +868,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     TResult Function(_OnThemeChanged value)? onThemeChanged,
     TResult Function(_ClearPageCommand value)? clearPageCommand,
     TResult Function(_OnSecureAccountTapped value)? onSecureAccountTapped,
+    TResult Function(_OnDeleteAccountTapped value)? onDeleteAccountTapped,
     TResult Function(_OnShowSettings value)? onShowSettings,
     required TResult orElse(),
   }) {
@@ -897,6 +925,7 @@ class _$_OnSecureAccountTapped implements _OnSecureAccountTapped {
     required TResult Function() onThemeChanged,
     required TResult Function() clearPageCommand,
     required TResult Function() onSecureAccountTapped,
+    required TResult Function() onDeleteAccountTapped,
     required TResult Function() onShowSettings,
   }) {
     return onSecureAccountTapped();
@@ -909,6 +938,7 @@ class _$_OnSecureAccountTapped implements _OnSecureAccountTapped {
     TResult? Function()? onThemeChanged,
     TResult? Function()? clearPageCommand,
     TResult? Function()? onSecureAccountTapped,
+    TResult? Function()? onDeleteAccountTapped,
     TResult? Function()? onShowSettings,
   }) {
     return onSecureAccountTapped?.call();
@@ -921,6 +951,7 @@ class _$_OnSecureAccountTapped implements _OnSecureAccountTapped {
     TResult Function()? onThemeChanged,
     TResult Function()? clearPageCommand,
     TResult Function()? onSecureAccountTapped,
+    TResult Function()? onDeleteAccountTapped,
     TResult Function()? onShowSettings,
     required TResult orElse(),
   }) {
@@ -938,6 +969,8 @@ class _$_OnSecureAccountTapped implements _OnSecureAccountTapped {
     required TResult Function(_ClearPageCommand value) clearPageCommand,
     required TResult Function(_OnSecureAccountTapped value)
         onSecureAccountTapped,
+    required TResult Function(_OnDeleteAccountTapped value)
+        onDeleteAccountTapped,
     required TResult Function(_OnShowSettings value) onShowSettings,
   }) {
     return onSecureAccountTapped(this);
@@ -950,6 +983,7 @@ class _$_OnSecureAccountTapped implements _OnSecureAccountTapped {
     TResult? Function(_OnThemeChanged value)? onThemeChanged,
     TResult? Function(_ClearPageCommand value)? clearPageCommand,
     TResult? Function(_OnSecureAccountTapped value)? onSecureAccountTapped,
+    TResult? Function(_OnDeleteAccountTapped value)? onDeleteAccountTapped,
     TResult? Function(_OnShowSettings value)? onShowSettings,
   }) {
     return onSecureAccountTapped?.call(this);
@@ -962,6 +996,7 @@ class _$_OnSecureAccountTapped implements _OnSecureAccountTapped {
     TResult Function(_OnThemeChanged value)? onThemeChanged,
     TResult Function(_ClearPageCommand value)? clearPageCommand,
     TResult Function(_OnSecureAccountTapped value)? onSecureAccountTapped,
+    TResult Function(_OnDeleteAccountTapped value)? onDeleteAccountTapped,
     TResult Function(_OnShowSettings value)? onShowSettings,
     required TResult orElse(),
   }) {
@@ -974,6 +1009,134 @@ class _$_OnSecureAccountTapped implements _OnSecureAccountTapped {
 
 abstract class _OnSecureAccountTapped implements SettingsEvent {
   const factory _OnSecureAccountTapped() = _$_OnSecureAccountTapped;
+}
+
+/// @nodoc
+abstract class _$$_OnDeleteAccountTappedCopyWith<$Res> {
+  factory _$$_OnDeleteAccountTappedCopyWith(_$_OnDeleteAccountTapped value,
+          $Res Function(_$_OnDeleteAccountTapped) then) =
+      __$$_OnDeleteAccountTappedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_OnDeleteAccountTappedCopyWithImpl<$Res>
+    extends _$SettingsEventCopyWithImpl<$Res, _$_OnDeleteAccountTapped>
+    implements _$$_OnDeleteAccountTappedCopyWith<$Res> {
+  __$$_OnDeleteAccountTappedCopyWithImpl(_$_OnDeleteAccountTapped _value,
+      $Res Function(_$_OnDeleteAccountTapped) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_OnDeleteAccountTapped implements _OnDeleteAccountTapped {
+  const _$_OnDeleteAccountTapped();
+
+  @override
+  String toString() {
+    return 'SettingsEvent.onDeleteAccountTapped()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_OnDeleteAccountTapped);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() onThemeChanged,
+    required TResult Function() clearPageCommand,
+    required TResult Function() onSecureAccountTapped,
+    required TResult Function() onDeleteAccountTapped,
+    required TResult Function() onShowSettings,
+  }) {
+    return onDeleteAccountTapped();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? onThemeChanged,
+    TResult? Function()? clearPageCommand,
+    TResult? Function()? onSecureAccountTapped,
+    TResult? Function()? onDeleteAccountTapped,
+    TResult? Function()? onShowSettings,
+  }) {
+    return onDeleteAccountTapped?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? onThemeChanged,
+    TResult Function()? clearPageCommand,
+    TResult Function()? onSecureAccountTapped,
+    TResult Function()? onDeleteAccountTapped,
+    TResult Function()? onShowSettings,
+    required TResult orElse(),
+  }) {
+    if (onDeleteAccountTapped != null) {
+      return onDeleteAccountTapped();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_OnThemeChanged value) onThemeChanged,
+    required TResult Function(_ClearPageCommand value) clearPageCommand,
+    required TResult Function(_OnSecureAccountTapped value)
+        onSecureAccountTapped,
+    required TResult Function(_OnDeleteAccountTapped value)
+        onDeleteAccountTapped,
+    required TResult Function(_OnShowSettings value) onShowSettings,
+  }) {
+    return onDeleteAccountTapped(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_OnThemeChanged value)? onThemeChanged,
+    TResult? Function(_ClearPageCommand value)? clearPageCommand,
+    TResult? Function(_OnSecureAccountTapped value)? onSecureAccountTapped,
+    TResult? Function(_OnDeleteAccountTapped value)? onDeleteAccountTapped,
+    TResult? Function(_OnShowSettings value)? onShowSettings,
+  }) {
+    return onDeleteAccountTapped?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_OnThemeChanged value)? onThemeChanged,
+    TResult Function(_ClearPageCommand value)? clearPageCommand,
+    TResult Function(_OnSecureAccountTapped value)? onSecureAccountTapped,
+    TResult Function(_OnDeleteAccountTapped value)? onDeleteAccountTapped,
+    TResult Function(_OnShowSettings value)? onShowSettings,
+    required TResult orElse(),
+  }) {
+    if (onDeleteAccountTapped != null) {
+      return onDeleteAccountTapped(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _OnDeleteAccountTapped implements SettingsEvent {
+  const factory _OnDeleteAccountTapped() = _$_OnDeleteAccountTapped;
 }
 
 /// @nodoc
@@ -1018,6 +1181,7 @@ class _$_OnShowSettings implements _OnShowSettings {
     required TResult Function() onThemeChanged,
     required TResult Function() clearPageCommand,
     required TResult Function() onSecureAccountTapped,
+    required TResult Function() onDeleteAccountTapped,
     required TResult Function() onShowSettings,
   }) {
     return onShowSettings();
@@ -1030,6 +1194,7 @@ class _$_OnShowSettings implements _OnShowSettings {
     TResult? Function()? onThemeChanged,
     TResult? Function()? clearPageCommand,
     TResult? Function()? onSecureAccountTapped,
+    TResult? Function()? onDeleteAccountTapped,
     TResult? Function()? onShowSettings,
   }) {
     return onShowSettings?.call();
@@ -1042,6 +1207,7 @@ class _$_OnShowSettings implements _OnShowSettings {
     TResult Function()? onThemeChanged,
     TResult Function()? clearPageCommand,
     TResult Function()? onSecureAccountTapped,
+    TResult Function()? onDeleteAccountTapped,
     TResult Function()? onShowSettings,
     required TResult orElse(),
   }) {
@@ -1059,6 +1225,8 @@ class _$_OnShowSettings implements _OnShowSettings {
     required TResult Function(_ClearPageCommand value) clearPageCommand,
     required TResult Function(_OnSecureAccountTapped value)
         onSecureAccountTapped,
+    required TResult Function(_OnDeleteAccountTapped value)
+        onDeleteAccountTapped,
     required TResult Function(_OnShowSettings value) onShowSettings,
   }) {
     return onShowSettings(this);
@@ -1071,6 +1239,7 @@ class _$_OnShowSettings implements _OnShowSettings {
     TResult? Function(_OnThemeChanged value)? onThemeChanged,
     TResult? Function(_ClearPageCommand value)? clearPageCommand,
     TResult? Function(_OnSecureAccountTapped value)? onSecureAccountTapped,
+    TResult? Function(_OnDeleteAccountTapped value)? onDeleteAccountTapped,
     TResult? Function(_OnShowSettings value)? onShowSettings,
   }) {
     return onShowSettings?.call(this);
@@ -1083,6 +1252,7 @@ class _$_OnShowSettings implements _OnShowSettings {
     TResult Function(_OnThemeChanged value)? onThemeChanged,
     TResult Function(_ClearPageCommand value)? clearPageCommand,
     TResult Function(_OnSecureAccountTapped value)? onSecureAccountTapped,
+    TResult Function(_OnDeleteAccountTapped value)? onDeleteAccountTapped,
     TResult Function(_OnShowSettings value)? onShowSettings,
     required TResult orElse(),
   }) {

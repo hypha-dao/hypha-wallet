@@ -7,6 +7,7 @@ class ProfileData {
   final CryptoAccountData? eosData;
   final String? s3Identity;
   final String? avatar;
+  final bool? deleted;
 
   ProfileData({
     required this.name,
@@ -17,19 +18,22 @@ class ProfileData {
     this.eosData,
     this.s3Identity,
     this.avatar,
+    this.deleted,
   });
 
   factory ProfileData.fromJson(Map<String, dynamic> json) {
-    final publicData = json['publicData'];
-    final name = publicData['name'];
     final account = json['eosAccount'];
     final avatarUrl = json['avatarUrl'];
+    final publicData = json['publicData'];
+    final name = publicData['name'];
     final bio = publicData['bio'];
+    final deleted = publicData['deleted'];
     return ProfileData(
       name: name,
       account: account,
       avatarUrl: avatarUrl,
       bio: bio,
+      deleted: deleted,
     );
   }
 
@@ -40,6 +44,7 @@ class ProfileData {
     final s3Identity = publicData['s3Identity'];
     final name = publicData['name'];
     final bio = publicData['bio'];
+    final deleted = publicData['deleted'];
     return ProfileData(
       name: name,
       account: account,
@@ -47,6 +52,7 @@ class ProfileData {
       bio: bio,
       s3Identity: s3Identity,
       avatar: avatar,
+      deleted: deleted,
     );
   }
 

@@ -14,6 +14,7 @@ void _registerRepositoriesModule() {
         _getIt<UserAccountService>(),
         _getIt<SecureStorageService>(),
         _getIt<ProfileUploadRepository>(),
+        _getIt<AmplifyService>(),
       ));
 
   _registerLazySingleton(() => UserAccountRepository(userService: _getIt<UserAccountService>()));

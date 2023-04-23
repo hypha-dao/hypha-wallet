@@ -6,7 +6,8 @@ void _registerBlocsModule() {
       () => AuthenticationBloc(_getIt<AuthRepository>(), _getIt<HyphaSharedPrefs>(), _getIt<SecureStorageService>()));
   _registerFactory(() => DeeplinkBloc());
   _registerFactory(() => ErrorHandlerBloc(_getIt<ErrorHandlerManager>()));
-  _registerFactory(() => SettingsBloc(_getIt<HyphaSharedPrefs>(), _getIt<SecureStorageService>()));
+  _registerFactory(
+      () => SettingsBloc(_getIt<HyphaSharedPrefs>(), _getIt<SecureStorageService>(), _getIt<DeleteAccountUseCase>()));
 
   /// Views Blocs
   _registerFactory(() => HomeBloc(_getIt<ParseQRCodeUseCase>(), _getIt<ErrorHandlerManager>()));

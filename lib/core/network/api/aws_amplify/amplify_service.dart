@@ -89,14 +89,17 @@ class AmplifyService {
   }
 
   Future<void> logout() async {
-    if (session?.isValid() ?? false) {
-      session?.invalidateToken();
+    if (session != null) {
+      if (session!.isValid()) {
+        session?.invalidateToken();
+      }
+      session = null;
     }
-    session = null;
+    cognitoUser = null;
   }
 
   Future<bool> loginUser(String accountName, {bool isSignUp = false}) async {
-    if (session?.isValid() ?? false) {
+    if (session != null && session!.isValid()) {
       print('already logged in');
       return true;
     }
@@ -112,11 +115,11 @@ class AmplifyService {
       }
     }
 
-    final cognitoUser = CognitoUser(
+    cognitoUser = CognitoUser(
       accountName,
       userPool,
     );
-    cognitoUser.authenticationFlowType = 'CUSTOM_AUTH';
+    cognitoUser!.authenticationFlowType = 'CUSTOM_AUTH';
 
     final authDetails = AuthenticationDetails(
       username: accountName,
@@ -124,7 +127,7 @@ class AmplifyService {
     );
 
     try {
-      session = await cognitoUser.initiateAuth(authDetails);
+      session = await cognitoUser!.initiateAuth(authDetails);
     } on CognitoUserNewPasswordRequiredException catch (e) {
       print('CognitoUserNewPasswordRequiredException $e');
       // handle New Password challenge
@@ -147,7 +150,9 @@ class AmplifyService {
       final loginCode = e.challengeParameters['loginCode'];
       await eosService.loginWithCode(accountName: accountName, loginCode: loginCode, network: Networks.telos);
       print('return challenge $loginCode');
-      session = await cognitoUser.sendCustomChallengeAnswer(loginCode);
+      session = await cognitoUser!.sendCustomChallengeAnswer(loginCode);
+
+      print('logged in: ${session?.isValid()}');
 
       return true;
     } on CognitoUserConfirmationNecessaryException catch (e) {
@@ -245,6 +250,31 @@ class AmplifyService {
       },
       'appData': {},
     });
+  }
+
+  Future<bool> deleteAccount() async {
+    if (cognitoUser == null) {
+      throw 'Log in before calling deleteAccount';
+    }
+    bool userDeleted = false;
+    try {
+      // delete all user personal data - needed for our public access get account service
+      await register({
+        'publicData': {
+          'avatar': null,
+          'bio': null,
+          'name': null,
+          'deleted': true,
+        },
+        'appData': {},
+      });
+      // delete the user
+      userDeleted = await cognitoUser!.deleteUser();
+    } catch (e) {
+      print(e);
+    }
+    print('Deleted account: $userDeleted');
+    return userDeleted;
   }
 
   Future<dynamic> setS3Identity(String s3Identity) async {

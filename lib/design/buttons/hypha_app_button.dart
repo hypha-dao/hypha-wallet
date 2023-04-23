@@ -74,6 +74,7 @@ class HyphaAppButton extends StatelessWidget {
         break;
       case ButtonType.secondary:
       case ButtonType.tertiary:
+      case ButtonType.danger:
         child = body;
         break;
     }

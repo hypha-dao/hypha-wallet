@@ -12,8 +12,11 @@ class HyphaConfirmationPage extends StatelessWidget {
   final String image;
   final String primaryButtonText;
   final VoidCallback primaryButtonCallback;
+  final ButtonType? primaryButtonType;
   final String? secondaryButtonText;
   final VoidCallback? secondaryButtonCallback;
+  final HyphaHalfBackground? halfBackground;
+  final Color? subtitleColor;
 
   const HyphaConfirmationPage({
     super.key,
@@ -23,8 +26,11 @@ class HyphaConfirmationPage extends StatelessWidget {
     required this.image,
     required this.primaryButtonText,
     required this.primaryButtonCallback,
+    this.primaryButtonType,
     this.secondaryButtonText,
     this.secondaryButtonCallback,
+    this.halfBackground,
+    this.subtitleColor,
   });
 
   @override
@@ -33,53 +39,60 @@ class HyphaConfirmationPage extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: context.isDarkTheme ? HyphaColors.gradientBlack : HyphaColors.gradientWhite,
       ),
-      child: Stack(
-        children: [
-          const HyphaHalfBackground(showTopBar: true),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 45, vertical: 22),
-            child: Column(
-              children: [
-                Expanded(
-                  child: Column(
-                    children: [
-                      const SizedBox(height: 8),
-                      Image.asset(image, width: 200, height: 200),
-                      Text(title, style: context.hyphaTextTheme.mediumTitles),
-                      const SizedBox(height: 8),
-                      Text(
-                        subtitle,
-                        style: context.hyphaTextTheme.regular.copyWith(color: HyphaColors.primaryBlu),
-                        textAlign: TextAlign.center,
-                      ),
-                      if (rationale != null) ...[
+      child: SafeArea(
+        child: Stack(
+          children: [
+            halfBackground ?? const HyphaHalfBackground(showTopBar: true),
+            Padding(
+              padding: const EdgeInsets.only(left: 45, right: 45, top: 22, bottom: 12),
+              child: Column(
+                children: [
+                  Expanded(
+                    child: Column(
+                      children: [
+                        const SizedBox(height: 8),
+                        Image.asset(image, width: 200, height: 200),
+                        Text(title, style: context.hyphaTextTheme.mediumTitles),
                         const SizedBox(height: 8),
                         Text(
-                          rationale!,
-                          style: context.hyphaTextTheme.ralMediumBody.copyWith(color: HyphaColors.midGrey),
+                          subtitle,
+                          style:
+                              context.hyphaTextTheme.regular.copyWith(color: subtitleColor ?? HyphaColors.primaryBlu),
                           textAlign: TextAlign.center,
                         ),
-                      ]
-                    ],
+                        if (rationale != null) ...[
+                          const SizedBox(height: 8),
+                          Text(
+                            rationale!,
+                            style: context.hyphaTextTheme.ralMediumBody.copyWith(color: HyphaColors.midGrey),
+                            textAlign: TextAlign.center,
+                          ),
+                        ]
+                      ],
+                    ),
                   ),
-                ),
-                Column(
-                  children: [
-                    if (secondaryButtonText != null) ...[
+                  Column(
+                    children: [
+                      if (secondaryButtonText != null) ...[
+                        HyphaAppButton(
+                          title: secondaryButtonText!,
+                          buttonType: ButtonType.secondary,
+                          onPressed: secondaryButtonCallback,
+                        ),
+                        const SizedBox(height: 16),
+                      ],
                       HyphaAppButton(
-                        title: secondaryButtonText!,
-                        buttonType: ButtonType.secondary,
-                        onPressed: secondaryButtonCallback,
+                        title: primaryButtonText,
+                        onPressed: primaryButtonCallback,
+                        buttonType: primaryButtonType ?? ButtonType.primary,
                       ),
-                      const SizedBox(height: 16),
                     ],
-                    HyphaAppButton(title: primaryButtonText, onPressed: primaryButtonCallback),
-                  ],
-                )
-              ],
+                  )
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
