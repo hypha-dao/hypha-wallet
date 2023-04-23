@@ -115,11 +115,11 @@ class AmplifyService {
       }
     }
 
-    final cognitoUser = CognitoUser(
+    cognitoUser = CognitoUser(
       accountName,
       userPool,
     );
-    cognitoUser.authenticationFlowType = 'CUSTOM_AUTH';
+    cognitoUser!.authenticationFlowType = 'CUSTOM_AUTH';
 
     final authDetails = AuthenticationDetails(
       username: accountName,
@@ -127,7 +127,7 @@ class AmplifyService {
     );
 
     try {
-      session = await cognitoUser.initiateAuth(authDetails);
+      session = await cognitoUser!.initiateAuth(authDetails);
     } on CognitoUserNewPasswordRequiredException catch (e) {
       print('CognitoUserNewPasswordRequiredException $e');
       // handle New Password challenge
@@ -150,7 +150,9 @@ class AmplifyService {
       final loginCode = e.challengeParameters['loginCode'];
       await eosService.loginWithCode(accountName: accountName, loginCode: loginCode, network: Networks.telos);
       print('return challenge $loginCode');
-      session = await cognitoUser.sendCustomChallengeAnswer(loginCode);
+      session = await cognitoUser!.sendCustomChallengeAnswer(loginCode);
+
+      print('logged in: ${session?.isValid()}');
 
       return true;
     } on CognitoUserConfirmationNecessaryException catch (e) {
@@ -256,11 +258,22 @@ class AmplifyService {
     }
     bool userDeleted = false;
     try {
+      // delete all user personal data
+      await register({
+        'publicData': {
+          'avatar': null,
+          'bio': null,
+          'name': null,
+          'deleted': true,
+        },
+        'appData': {},
+      });
+      // delete the user
       userDeleted = await cognitoUser!.deleteUser();
     } catch (e) {
       print(e);
     }
-    print(userDeleted);
+    print('Deleted account: $userDeleted');
     return userDeleted;
   }
 

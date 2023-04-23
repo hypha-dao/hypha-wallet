@@ -5,6 +5,7 @@ import 'dart:async';
 import 'package:hypha_wallet/core/local/models/user_auth_data.dart';
 import 'package:hypha_wallet/core/local/services/secure_storage_service.dart';
 import 'package:hypha_wallet/core/logging/log_helper.dart';
+import 'package:hypha_wallet/core/network/api/aws_amplify/amplify_service.dart';
 import 'package:hypha_wallet/core/network/api/aws_amplify/profile_upload_repository.dart';
 import 'package:hypha_wallet/core/network/api/user_account_service.dart';
 import 'package:hypha_wallet/core/network/models/user_profile_data.dart';
@@ -19,6 +20,7 @@ class AuthRepository {
   final SecureStorageService _secureStorageService;
   final UserAccountService _userService;
   final ProfileUploadRepository _uploadRepository;
+  final AmplifyService _amplifyService;
   final _controller = StreamController<AuthenticationStatus>();
 
   AuthRepository(
@@ -26,6 +28,7 @@ class AuthRepository {
     this._userService,
     this._secureStorageService,
     this._uploadRepository,
+    this._amplifyService,
   );
 
   Future<bool> createUserAccount({
@@ -91,13 +94,14 @@ class AuthRepository {
     return _controller.add(AuthenticationStatus.authenticated);
   }
 
-  Future<void> signOut() async {
+  Future<void> logOut() async {
     LogHelper.d('Clearing User Data');
 
     try {
       /// Clear Profile and Key
       await _appSharedPrefs.clear();
       await _secureStorageService.clearAllData();
+      await _amplifyService.logout();
     } catch (error, stacktrace) {
       LogHelper.e('Error clearing user data', error: error, stacktrace: stacktrace);
     }
