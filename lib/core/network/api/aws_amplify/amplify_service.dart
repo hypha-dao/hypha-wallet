@@ -258,7 +258,7 @@ class AmplifyService {
     }
     bool userDeleted = false;
     try {
-      // delete all user personal data
+      // delete all user personal data - needed for our public access get account service
       await register({
         'publicData': {
           'avatar': null,

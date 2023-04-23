@@ -53,7 +53,6 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     if (accountName != null) {
       await _deleteAccountUseCase.run(accountName);
     }
-    // TODO - log out user
     emit(state.copyWith(pageState: PageState.success));
   }
 

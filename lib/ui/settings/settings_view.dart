@@ -8,7 +8,6 @@ import 'package:hypha_wallet/design/cards/hypha_actionable_card.dart';
 import 'package:hypha_wallet/design/hypha_card.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/icons/hypha_icons.dart';
-import 'package:hypha_wallet/design/progress_indicator/hypha_progress_indicator.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 import 'package:hypha_wallet/ui/blocs/authentication/authentication_bloc.dart';
 import 'package:hypha_wallet/ui/settings/hypha_confirmation_page.dart';
@@ -27,6 +26,7 @@ class SettingsView extends StatelessWidget {
       builder: (context, SettingsState state) {
         return HyphaBodyWidget(
           pageState: state.pageState,
+          // ignore: use_colored_box
           loading: (context) => Container(
             color: Theme.of(context).colorScheme.background,
             child: Center(
@@ -224,10 +224,7 @@ class SettingsView extends StatelessWidget {
     );
 
     if (result == true) {
-      print("delete account!!");
       context.read<SettingsBloc>().add(const SettingsEvent.onDeleteAccountTapped());
-
-      //context.read<AuthenticationBloc>().add(const AuthenticationEvent.authenticationLogoutRequested());
     }
   }
 }
