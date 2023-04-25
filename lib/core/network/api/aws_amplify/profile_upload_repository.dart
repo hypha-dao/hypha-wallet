@@ -121,7 +121,7 @@ class ProfileUploadRepository {
 
         case 3:
           if (data.fileName != null) {
-            final setImageResult = await _setImageUseCase.runFileName(data.fileName!, data.accountName);
+            final setImageResult = await _setImageUseCase.runFileName(data.fileName!);
             print('setImageResult: ${setImageResult.asValue?.value}');
             if (trueResult(setImageResult)) {
               data.step++;

@@ -25,6 +25,8 @@ void _registerBlocsModule() {
         _getIt<SetNameUseCase>(),
         _getIt<SetImageUseCase>(),
         _getIt<SetBioUseCase>(),
+        _getIt<ProfileLoginUseCase>(),
+        _getIt<InitializeProfileUseCase>(),
         _getIt<ErrorHandlerManager>(),
         _getIt<RemoveAvatarUseCase>(),
       ));

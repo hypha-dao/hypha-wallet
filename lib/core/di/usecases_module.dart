@@ -22,9 +22,9 @@ void _registerUseCasesModule() {
     ),
   );
   _registerFactory(() => SetNameUseCase(_getIt<AmplifyService>()));
-  _registerFactory(() => SetImageUseCase(_getIt<AmplifyService>(), _getIt<ProfileLoginUseCase>()));
-  _registerFactory(() => SetBioUseCase(_getIt<AmplifyService>(), _getIt<ProfileLoginUseCase>()));
-  _registerFactory(() => RemoveAvatarUseCase(_getIt<AmplifyService>(), _getIt<ProfileLoginUseCase>()));
+  _registerFactory(() => SetImageUseCase(_getIt<AmplifyService>()));
+  _registerFactory(() => SetBioUseCase(_getIt<AmplifyService>()));
+  _registerFactory(() => RemoveAvatarUseCase(_getIt<AmplifyService>()));
   _registerFactory(() => DeleteAccountUseCase(_getIt<AmplifyService>(), _getIt<AuthRepository>()));
   _registerFactory(() => PPPSignUpUseCase(_getIt<AmplifyService>()));
   _registerFactory(() => ProfileLoginUseCase(_getIt<AmplifyService>()));

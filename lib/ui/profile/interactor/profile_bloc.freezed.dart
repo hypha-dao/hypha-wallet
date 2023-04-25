@@ -1386,6 +1386,7 @@ mixin _$ProfileState {
   PageState get pageState => throw _privateConstructorUsedError;
   PageCommand? get command => throw _privateConstructorUsedError;
   ProfileData? get profileData => throw _privateConstructorUsedError;
+  bool get doesNotHaveProfile => throw _privateConstructorUsedError;
   bool get showUpdateBioLoading => throw _privateConstructorUsedError;
   bool get showUpdateImageLoading => throw _privateConstructorUsedError;
   bool get showUpdateNameLoading => throw _privateConstructorUsedError;
@@ -1405,6 +1406,7 @@ abstract class $ProfileStateCopyWith<$Res> {
       {PageState pageState,
       PageCommand? command,
       ProfileData? profileData,
+      bool doesNotHaveProfile,
       bool showUpdateBioLoading,
       bool showUpdateImageLoading,
       bool showUpdateNameLoading});
@@ -1428,6 +1430,7 @@ class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState>
     Object? pageState = null,
     Object? command = freezed,
     Object? profileData = freezed,
+    Object? doesNotHaveProfile = null,
     Object? showUpdateBioLoading = null,
     Object? showUpdateImageLoading = null,
     Object? showUpdateNameLoading = null,
@@ -1445,6 +1448,10 @@ class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState>
           ? _value.profileData
           : profileData // ignore: cast_nullable_to_non_nullable
               as ProfileData?,
+      doesNotHaveProfile: null == doesNotHaveProfile
+          ? _value.doesNotHaveProfile
+          : doesNotHaveProfile // ignore: cast_nullable_to_non_nullable
+              as bool,
       showUpdateBioLoading: null == showUpdateBioLoading
           ? _value.showUpdateBioLoading
           : showUpdateBioLoading // ignore: cast_nullable_to_non_nullable
@@ -1485,6 +1492,7 @@ abstract class _$$_ProfileStateCopyWith<$Res>
       {PageState pageState,
       PageCommand? command,
       ProfileData? profileData,
+      bool doesNotHaveProfile,
       bool showUpdateBioLoading,
       bool showUpdateImageLoading,
       bool showUpdateNameLoading});
@@ -1507,6 +1515,7 @@ class __$$_ProfileStateCopyWithImpl<$Res>
     Object? pageState = null,
     Object? command = freezed,
     Object? profileData = freezed,
+    Object? doesNotHaveProfile = null,
     Object? showUpdateBioLoading = null,
     Object? showUpdateImageLoading = null,
     Object? showUpdateNameLoading = null,
@@ -1524,6 +1533,10 @@ class __$$_ProfileStateCopyWithImpl<$Res>
           ? _value.profileData
           : profileData // ignore: cast_nullable_to_non_nullable
               as ProfileData?,
+      doesNotHaveProfile: null == doesNotHaveProfile
+          ? _value.doesNotHaveProfile
+          : doesNotHaveProfile // ignore: cast_nullable_to_non_nullable
+              as bool,
       showUpdateBioLoading: null == showUpdateBioLoading
           ? _value.showUpdateBioLoading
           : showUpdateBioLoading // ignore: cast_nullable_to_non_nullable
@@ -1547,6 +1560,7 @@ class _$_ProfileState extends _ProfileState {
       {this.pageState = PageState.initial,
       this.command,
       this.profileData,
+      this.doesNotHaveProfile = false,
       this.showUpdateBioLoading = false,
       this.showUpdateImageLoading = false,
       this.showUpdateNameLoading = false})
@@ -1561,6 +1575,9 @@ class _$_ProfileState extends _ProfileState {
   final ProfileData? profileData;
   @override
   @JsonKey()
+  final bool doesNotHaveProfile;
+  @override
+  @JsonKey()
   final bool showUpdateBioLoading;
   @override
   @JsonKey()
@@ -1571,7 +1588,7 @@ class _$_ProfileState extends _ProfileState {
 
   @override
   String toString() {
-    return 'ProfileState(pageState: $pageState, command: $command, profileData: $profileData, showUpdateBioLoading: $showUpdateBioLoading, showUpdateImageLoading: $showUpdateImageLoading, showUpdateNameLoading: $showUpdateNameLoading)';
+    return 'ProfileState(pageState: $pageState, command: $command, profileData: $profileData, doesNotHaveProfile: $doesNotHaveProfile, showUpdateBioLoading: $showUpdateBioLoading, showUpdateImageLoading: $showUpdateImageLoading, showUpdateNameLoading: $showUpdateNameLoading)';
   }
 
   @override
@@ -1584,6 +1601,8 @@ class _$_ProfileState extends _ProfileState {
             (identical(other.command, command) || other.command == command) &&
             (identical(other.profileData, profileData) ||
                 other.profileData == profileData) &&
+            (identical(other.doesNotHaveProfile, doesNotHaveProfile) ||
+                other.doesNotHaveProfile == doesNotHaveProfile) &&
             (identical(other.showUpdateBioLoading, showUpdateBioLoading) ||
                 other.showUpdateBioLoading == showUpdateBioLoading) &&
             (identical(other.showUpdateImageLoading, showUpdateImageLoading) ||
@@ -1593,8 +1612,15 @@ class _$_ProfileState extends _ProfileState {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, pageState, command, profileData,
-      showUpdateBioLoading, showUpdateImageLoading, showUpdateNameLoading);
+  int get hashCode => Object.hash(
+      runtimeType,
+      pageState,
+      command,
+      profileData,
+      doesNotHaveProfile,
+      showUpdateBioLoading,
+      showUpdateImageLoading,
+      showUpdateNameLoading);
 
   @JsonKey(ignore: true)
   @override
@@ -1608,6 +1634,7 @@ abstract class _ProfileState extends ProfileState {
       {final PageState pageState,
       final PageCommand? command,
       final ProfileData? profileData,
+      final bool doesNotHaveProfile,
       final bool showUpdateBioLoading,
       final bool showUpdateImageLoading,
       final bool showUpdateNameLoading}) = _$_ProfileState;
@@ -1619,6 +1646,8 @@ abstract class _ProfileState extends ProfileState {
   PageCommand? get command;
   @override
   ProfileData? get profileData;
+  @override
+  bool get doesNotHaveProfile;
   @override
   bool get showUpdateBioLoading;
   @override

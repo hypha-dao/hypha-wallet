@@ -216,8 +216,6 @@ class SigningRequestManager {
 
     // resolve network and abi provider -
     final network = HyphaSigningRequestManager.resolveNetwork(signingRequest.chainId);
-    // TODO(NIK): Remove debug code
-    // print('network: $network');
     final eosClientForAbi = GetIt.I.get<EOSService>().getEosClientForNetwork(network);
     final abiProvider = DefaultAbiProvider(eosClientForAbi);
 
@@ -693,8 +691,7 @@ class ResolvedSigningRequest {
   }
 
   ResolvedCallback getCallback(List<String> signatures, {int? blockNum}) {
-    // TODO(n13): ResolvedSigningRequest getCallback 'not implemented yet'
-    throw 'not implemented yet';
+    throw 'not implemented.';
   }
 }
 
