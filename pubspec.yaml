@@ -110,6 +110,9 @@ dependencies:
   # encrypt stored data
   flutter_secure_storage: ^7.0.1
 
+  # Crop image after selecting it from picker
+  image_cropper: ^3.0.3
+
   # Firebase
   firebase_core: ^2.4.0
   firebase_crashlytics: ^3.0.7

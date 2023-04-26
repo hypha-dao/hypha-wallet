@@ -19,6 +19,7 @@ import 'package:hypha_wallet/ui/profile/interactor/profile_bloc.dart';
 import 'package:hypha_wallet/ui/shared/hypha_body_widget.dart';
 import 'package:hypha_wallet/ui/shared/hypha_error_view.dart';
 import 'package:hypha_wallet/ui/shared/ui_constants.dart';
+import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ProfileView extends StatelessWidget {
@@ -61,8 +62,29 @@ class ProfileView extends StatelessWidget {
                             onImageRemoved: () {
                               context.read<ProfileBloc>().add(const ProfileEvent.onRemoveImageTapped());
                             },
-                            onImageSelected: (image) async =>
-                                context.read<ProfileBloc>().add(ProfileEvent.setAvatarImage(image)),
+                            onImageSelected: (image) async {
+                              final CroppedFile? croppedFile = await ImageCropper().cropImage(
+                                sourcePath: image.path,
+                                aspectRatioPresets: [
+                                  CropAspectRatioPreset.square,
+                                ],
+                                uiSettings: [
+                                  AndroidUiSettings(
+                                    toolbarTitle: 'Crop Image',
+                                    toolbarColor: HyphaColors.primaryBlu,
+                                    toolbarWidgetColor: Colors.white,
+                                    initAspectRatio: CropAspectRatioPreset.original,
+                                    lockAspectRatio: false,
+                                  ),
+                                  IOSUiSettings(title: 'Crop Image'),
+                                ],
+                              );
+
+                              /// Send event with image after cropping it.
+                              croppedFile?.let(
+                                (it) => context.read<ProfileBloc>().add(ProfileEvent.setAvatarImage(XFile(it.path))),
+                              );
+                            },
                           ),
                         ),
                         const SizedBox(height: 14),
