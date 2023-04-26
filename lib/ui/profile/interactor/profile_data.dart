@@ -67,6 +67,17 @@ class ProfileData {
         s3Identity: s3Identity,
       );
 
+  ProfileData updateName(String? name) => ProfileData(
+        name: name,
+        account: account,
+        bio: bio,
+        avatar: avatar,
+        avatarUrl: avatarUrl,
+        bitCoinData: bitCoinData,
+        eosData: eosData,
+        s3Identity: s3Identity,
+      );
+
   ProfileData updateImageAvatar(String avatar) => ProfileData(
         name: name,
         account: account,
