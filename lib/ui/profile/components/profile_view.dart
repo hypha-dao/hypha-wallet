@@ -12,7 +12,6 @@ import 'package:hypha_wallet/design/progress_indicator/hypha_partial_progress_in
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 import 'package:hypha_wallet/ui/profile/components/crypto_currency_widget.dart';
 import 'package:hypha_wallet/ui/profile/components/profile_edit_menu_bottom_sheet.dart';
-import 'package:hypha_wallet/ui/profile/components/profile_test_code_nik_stuff_pls_delete.dart';
 import 'package:hypha_wallet/ui/profile/interactor/profile_bloc.dart';
 import 'package:hypha_wallet/ui/shared/hypha_body_widget.dart';
 import 'package:hypha_wallet/ui/shared/hypha_error_view.dart';
@@ -149,7 +148,6 @@ class ProfileView extends StatelessWidget {
                             onChanged: (value) {},
                           ),
                         ],
-                        if (kDebugProfileService) ...testCode(state, context.read<ProfileBloc>())
                       ],
                     ),
                   ],
