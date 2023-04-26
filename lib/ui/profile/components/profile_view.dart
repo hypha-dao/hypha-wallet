@@ -67,10 +67,6 @@ class ProfileView extends StatelessWidget {
                                 sourcePath: image.path,
                                 aspectRatioPresets: [
                                   CropAspectRatioPreset.square,
-                                  CropAspectRatioPreset.ratio3x2,
-                                  CropAspectRatioPreset.original,
-                                  CropAspectRatioPreset.ratio4x3,
-                                  CropAspectRatioPreset.ratio16x9
                                 ],
                                 uiSettings: [
                                   AndroidUiSettings(
@@ -80,9 +76,7 @@ class ProfileView extends StatelessWidget {
                                     initAspectRatio: CropAspectRatioPreset.original,
                                     lockAspectRatio: false,
                                   ),
-                                  IOSUiSettings(
-                                    title: 'Crop Image',
-                                  ),
+                                  IOSUiSettings(title: 'Crop Image'),
                                 ],
                               );
 
