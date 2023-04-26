@@ -16,7 +16,6 @@ import 'package:hypha_wallet/ui/profile/components/profile_test_code_nik_stuff_p
 import 'package:hypha_wallet/ui/profile/interactor/profile_bloc.dart';
 import 'package:hypha_wallet/ui/shared/hypha_body_widget.dart';
 import 'package:hypha_wallet/ui/shared/hypha_error_view.dart';
-import 'package:hypha_wallet/ui/shared/ui_constants.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -122,22 +121,6 @@ class ProfileView extends StatelessWidget {
                           child: Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 24),
                             child: HyphaActionableCard(
-                              trailer: const Icon(Icons.edit),
-                              onTap: () async {
-                                // ignore: unawaited_futures
-                                showModalBottomSheet(
-                                  isScrollControlled: true,
-                                  clipBehavior: Clip.hardEdge,
-                                  context: context,
-                                  builder: (modelContext) => FractionallySizedBox(
-                                    heightFactor: UIConstants.bottomSheetHeightFraction,
-                                    child: EditBioBottomSheet(profileBloc: BlocProvider.of<ProfileBloc>(context)),
-                                  ),
-                                  shape: const RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
-                                  ),
-                                );
-                              },
                               title: 'About you',
                               subtitle: state.profileData?.bio ?? '',
                             ),
