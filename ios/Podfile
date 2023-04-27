@@ -40,6 +40,11 @@ post_install do |installer|
     # Start of the permission_handler configuration
         target.build_configurations.each do |config|
 
+          # Force all pod deployment targets to the main app deployment
+          # target. This fixes pods that have too low a deployment target which 
+          # cause bugs in newer Xcode versions.
+          config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.0'
+
           #  Preprocessor definitions can be found in: https://github.com/Baseflow/flutter-permission-handler/blob/master/permission_handler_apple/ios/Classes/PermissionHandlerEnums.h
           config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] ||= [
             '$(inherited)',
