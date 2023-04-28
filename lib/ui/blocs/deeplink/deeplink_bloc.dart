@@ -11,19 +11,11 @@ part 'deeplink_state.dart';
 part 'page_command.dart';
 
 class DeeplinkBloc extends Bloc<DeeplinkEvent, DeeplinkState> {
-  StreamSubscription? _linkStreamSubscription;
-
   DeeplinkBloc() : super(const DeeplinkState()) {
     initDynamicLinks();
 
     on<_IncomingFirebaseDeepLink>(_incomingFirebaseDeepLink);
     on<_ClearPageCommand>((_, emit) => emit(state.copyWith(command: null)));
-  }
-
-  @override
-  Future<void> close() {
-    _linkStreamSubscription?.cancel();
-    return super.close();
   }
 
   Future<void> initDynamicLinks() async {

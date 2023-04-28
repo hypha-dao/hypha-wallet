@@ -12,6 +12,7 @@ import 'package:hypha_wallet/design/themes/hypha_theme.dart';
 import 'package:hypha_wallet/ui/blocs/authentication/authentication_bloc.dart';
 import 'package:hypha_wallet/ui/blocs/deeplink/deeplink_bloc.dart';
 import 'package:hypha_wallet/ui/blocs/error_handler/error_handler_bloc.dart';
+import 'package:hypha_wallet/ui/blocs/push_notifications/push_notifications_bloc.dart';
 import 'package:hypha_wallet/ui/bottom_navigation/hypha_bottom_navigation.dart';
 import 'package:hypha_wallet/ui/onboarding/onboarding_page.dart';
 import 'package:hypha_wallet/ui/onboarding/onboarding_page_with_link.dart';
@@ -19,6 +20,7 @@ import 'package:hypha_wallet/ui/settings/hypha_confirmation_page.dart';
 import 'package:hypha_wallet/ui/settings/interactor/settings_bloc.dart';
 import 'package:hypha_wallet/ui/settings/save_key_page.dart';
 import 'package:hypha_wallet/ui/settings/save_words_page.dart';
+import 'package:hypha_wallet/ui/sign_transaction/sign_transaction_page.dart';
 
 const kLogQuietMode = false;
 
@@ -38,6 +40,7 @@ class HyphaApp extends StatelessWidget {
         ),
         BlocProvider<DeeplinkBloc>(create: (_) => GetIt.I.get<DeeplinkBloc>()),
         BlocProvider<ErrorHandlerBloc>(create: (_) => GetIt.I.get<ErrorHandlerBloc>()),
+        BlocProvider<PushNotificationsBloc>(create: (_) => GetIt.I.get<PushNotificationsBloc>()),
       ],
       child: const HyphaAppView(),
     );
@@ -82,6 +85,18 @@ class HyphaAppView extends StatelessWidget {
           },
         ),
 
+        BlocListener<PushNotificationsBloc, PushNotificationsState>(
+          listenWhen: (previous, current) => previous.command != current.command,
+          listener: (context, state) {
+            state.command?.when(
+              navigateToSignTransaction: (data) => Get.offAll(
+                () => SignTransactionPage(qrCodeData: data),
+              ),
+            );
+
+            context.read<PushNotificationsBloc>().add(const PushNotificationsEvent.clearPageCommand());
+          },
+        ),
         BlocListener<SettingsBloc, SettingsState>(
           listenWhen: (previous, current) => current.command != null,
           listener: (context, state) {
