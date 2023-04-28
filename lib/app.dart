@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
+import 'package:hypha_wallet/core/crypto/seeds_esr/scan_qr_code_result_data.dart';
 import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
 import 'package:hypha_wallet/core/extension/scope_functions.dart';
 import 'package:hypha_wallet/core/logging/log_helper.dart';
@@ -20,6 +21,7 @@ import 'package:hypha_wallet/ui/settings/hypha_confirmation_page.dart';
 import 'package:hypha_wallet/ui/settings/interactor/settings_bloc.dart';
 import 'package:hypha_wallet/ui/settings/save_key_page.dart';
 import 'package:hypha_wallet/ui/settings/save_words_page.dart';
+import 'package:hypha_wallet/ui/shared/ui_constants.dart';
 import 'package:hypha_wallet/ui/sign_transaction/sign_transaction_page.dart';
 
 const kLogQuietMode = false;
@@ -87,12 +89,19 @@ class HyphaAppView extends StatelessWidget {
 
         BlocListener<PushNotificationsBloc, PushNotificationsState>(
           listenWhen: (previous, current) => previous.command != current.command,
-          listener: (context, state) {
-            state.command?.when(
-              navigateToSignTransaction: (data) => Get.offAll(
-                () => SignTransactionPage(qrCodeData: data),
-              ),
-            );
+          listener: (_, state) {
+            state.command?.when(navigateToSignTransaction: (ScanQrCodeResultData data) {
+              Get.bottomSheet(
+                FractionallySizedBox(
+                  heightFactor: UIConstants.bottomSheetHeightFraction,
+                  child: SignTransactionPage(qrCodeData: data),
+                ),
+                isScrollControlled: true,
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
+                ),
+              );
+            });
 
             context.read<PushNotificationsBloc>().add(const PushNotificationsEvent.clearPageCommand());
           },

@@ -236,32 +236,38 @@ mixin _$PushNotificationsEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() clearPageCommand,
+    required TResult Function(RemoteMessage message) onMessageReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? clearPageCommand,
+    TResult? Function(RemoteMessage message)? onMessageReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? clearPageCommand,
+    TResult Function(RemoteMessage message)? onMessageReceived,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ClearPageCommand value) clearPageCommand,
+    required TResult Function(_OnMessageReceived value) onMessageReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ClearPageCommand value)? clearPageCommand,
+    TResult? Function(_OnMessageReceived value)? onMessageReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ClearPageCommand value)? clearPageCommand,
+    TResult Function(_OnMessageReceived value)? onMessageReceived,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -325,6 +331,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() clearPageCommand,
+    required TResult Function(RemoteMessage message) onMessageReceived,
   }) {
     return clearPageCommand();
   }
@@ -333,6 +340,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? clearPageCommand,
+    TResult? Function(RemoteMessage message)? onMessageReceived,
   }) {
     return clearPageCommand?.call();
   }
@@ -341,6 +349,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? clearPageCommand,
+    TResult Function(RemoteMessage message)? onMessageReceived,
     required TResult orElse(),
   }) {
     if (clearPageCommand != null) {
@@ -353,6 +362,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ClearPageCommand value) clearPageCommand,
+    required TResult Function(_OnMessageReceived value) onMessageReceived,
   }) {
     return clearPageCommand(this);
   }
@@ -361,6 +371,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ClearPageCommand value)? clearPageCommand,
+    TResult? Function(_OnMessageReceived value)? onMessageReceived,
   }) {
     return clearPageCommand?.call(this);
   }
@@ -369,6 +380,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ClearPageCommand value)? clearPageCommand,
+    TResult Function(_OnMessageReceived value)? onMessageReceived,
     required TResult orElse(),
   }) {
     if (clearPageCommand != null) {
@@ -380,6 +392,141 @@ class _$_ClearPageCommand implements _ClearPageCommand {
 
 abstract class _ClearPageCommand implements PushNotificationsEvent {
   const factory _ClearPageCommand() = _$_ClearPageCommand;
+}
+
+/// @nodoc
+abstract class _$$_OnMessageReceivedCopyWith<$Res> {
+  factory _$$_OnMessageReceivedCopyWith(_$_OnMessageReceived value,
+          $Res Function(_$_OnMessageReceived) then) =
+      __$$_OnMessageReceivedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({RemoteMessage message});
+}
+
+/// @nodoc
+class __$$_OnMessageReceivedCopyWithImpl<$Res>
+    extends _$PushNotificationsEventCopyWithImpl<$Res, _$_OnMessageReceived>
+    implements _$$_OnMessageReceivedCopyWith<$Res> {
+  __$$_OnMessageReceivedCopyWithImpl(
+      _$_OnMessageReceived _value, $Res Function(_$_OnMessageReceived) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = null,
+  }) {
+    return _then(_$_OnMessageReceived(
+      null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as RemoteMessage,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_OnMessageReceived implements _OnMessageReceived {
+  const _$_OnMessageReceived(this.message);
+
+  @override
+  final RemoteMessage message;
+
+  @override
+  String toString() {
+    return 'PushNotificationsEvent.onMessageReceived(message: $message)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_OnMessageReceived &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, message);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_OnMessageReceivedCopyWith<_$_OnMessageReceived> get copyWith =>
+      __$$_OnMessageReceivedCopyWithImpl<_$_OnMessageReceived>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() clearPageCommand,
+    required TResult Function(RemoteMessage message) onMessageReceived,
+  }) {
+    return onMessageReceived(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? clearPageCommand,
+    TResult? Function(RemoteMessage message)? onMessageReceived,
+  }) {
+    return onMessageReceived?.call(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? clearPageCommand,
+    TResult Function(RemoteMessage message)? onMessageReceived,
+    required TResult orElse(),
+  }) {
+    if (onMessageReceived != null) {
+      return onMessageReceived(message);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ClearPageCommand value) clearPageCommand,
+    required TResult Function(_OnMessageReceived value) onMessageReceived,
+  }) {
+    return onMessageReceived(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ClearPageCommand value)? clearPageCommand,
+    TResult? Function(_OnMessageReceived value)? onMessageReceived,
+  }) {
+    return onMessageReceived?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ClearPageCommand value)? clearPageCommand,
+    TResult Function(_OnMessageReceived value)? onMessageReceived,
+    required TResult orElse(),
+  }) {
+    if (onMessageReceived != null) {
+      return onMessageReceived(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _OnMessageReceived implements PushNotificationsEvent {
+  const factory _OnMessageReceived(final RemoteMessage message) =
+      _$_OnMessageReceived;
+
+  RemoteMessage get message;
+  @JsonKey(ignore: true)
+  _$$_OnMessageReceivedCopyWith<_$_OnMessageReceived> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

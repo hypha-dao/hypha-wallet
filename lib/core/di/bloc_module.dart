@@ -57,5 +57,5 @@ void _registerBlocsModule() {
     ),
   );
 
-  _registerFactory(() => PushNotificationsBloc(_getIt<FirebasePushNotifications>()));
+  _registerFactory(() => PushNotificationsBloc(_getIt<FirebasePushNotifications>(), _getIt<ParseQRCodeUseCase>()));
 }
