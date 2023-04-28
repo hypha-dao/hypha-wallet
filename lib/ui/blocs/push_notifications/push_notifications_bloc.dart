@@ -32,20 +32,6 @@ class PushNotificationsBloc extends Bloc<PushNotificationsEvent, PushNotificatio
       print('Message data: ${message.data}');
       add(PushNotificationsEvent.onMessageReceived(message));
     });
-
-    // final PendingDynamicLinkData? initialLink = await FirebaseDynamicLinks.instance.getInitialLink();
-    //
-    // if (initialLink != null) {
-    //   LogHelper.d('initial link: ${initialLink.link}');
-    //   add(DeeplinkEvent.incomingFirebaseDeepLink(initialLink.link));
-    // }
-    //
-    // FirebaseDynamicLinks.instance.onLink.listen((PendingDynamicLinkData dynamicLinkData) {
-    //   LogHelper.d('received link: ${dynamicLinkData.link}');
-    //   add(DeeplinkEvent.incomingFirebaseDeepLink(dynamicLinkData.link));
-    // }).onError((error) {
-    //   LogHelper.e('Deep link error: $error');
-    // });
   }
 
   FutureOr<void> _onMessageReceived(_OnMessageReceived event, Emitter<PushNotificationsState> emit) async {
@@ -61,9 +47,6 @@ class PushNotificationsBloc extends Bloc<PushNotificationsEvent, PushNotificatio
         emit(state.copyWith(command: PageCommand.navigateToSignTransaction(value)));
       } else {
         LogHelper.d('_onQRCodeScanned Error ${result!.asError!.error}');
-        // emit(state.copyWith(isLoading: false));
-        // ignore: unawaited_futures
-        // _errorHandlerManager.handlerError(HyphaError(message: 'Error reading QR Code', type: HyphaErrorType.generic));
       }
     }
 
