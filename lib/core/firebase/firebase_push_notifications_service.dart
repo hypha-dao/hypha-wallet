@@ -1,29 +1,34 @@
+import 'dart:async';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:hypha_wallet/core/logging/log_helper.dart';
 
-class FirebasePushNotifications {
-  const FirebasePushNotifications._();
+class FirebasePushNotificationsService {
+  final _onTokenRefreshStream = StreamController<String>();
 
-  factory FirebasePushNotifications.init() {
-    FirebaseMessaging.instance.getToken().then((value) {
-      // TODO(gguij): Send token to server
-      LogHelper.d('Firebase Device Token: $value');
-    });
+  FirebasePushNotificationsService._();
 
-    FirebaseMessaging.instance.onTokenRefresh.listen((fcmToken) {
-      // TODO(Gguij): If necessary send token to application server.
-
-      // Note: This callback is fired at each app startup and whenever a new
-      // token is generated.
+  FirebasePushNotificationsService.init() {
+    FirebaseMessaging.instance.onTokenRefresh.listen((String fcmToken) {
+      _onTokenRefreshStream.add(fcmToken);
     }).onError((err) {
       LogHelper.d('Error getting firebase device token');
       LogHelper.e(err.toString());
     });
 
     FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  }
 
-    return const FirebasePushNotifications._();
+  /// This stream will fire when the firebase token changes.
+  Stream<String> get onFCMTokenRefresh async* {
+    yield* _onTokenRefreshStream.stream;
+  }
+
+  void dispose() => _onTokenRefreshStream.close();
+
+  Future<String?> getDeviceToken() {
+    return FirebaseMessaging.instance.getToken();
   }
 
   void registerToOnMessage(listener) {

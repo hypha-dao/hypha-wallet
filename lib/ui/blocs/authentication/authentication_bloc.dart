@@ -2,6 +2,9 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:hypha_wallet/core/extension/scope_functions.dart';
+import 'package:hypha_wallet/core/firebase/firebase_database_service.dart';
+import 'package:hypha_wallet/core/firebase/firebase_push_notifications_service.dart';
 import 'package:hypha_wallet/core/local/models/user_auth_data.dart';
 import 'package:hypha_wallet/core/local/services/secure_storage_service.dart';
 import 'package:hypha_wallet/core/logging/log_helper.dart';
@@ -19,21 +22,31 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
   final AuthRepository _authRepository;
   final HyphaSharedPrefs _appSharedPrefs;
   final SecureStorageService _secureStorageService;
+  final FirebasePushNotificationsService _firebasePushNotificationsService;
+  final FirebaseDatabaseService _firebaseDatabaseService;
   late StreamSubscription<AuthenticationStatus> _authenticationStatusSubscription;
+  late StreamSubscription<String> _firebaseFCMTokenSubscription;
   late StreamSubscription<UserProfileData?> _authSubscription;
 
   AuthenticationBloc(
     this._authRepository,
     this._appSharedPrefs,
     this._secureStorageService,
+    this._firebasePushNotificationsService,
+    this._firebaseDatabaseService,
   ) : super(const AuthenticationState()) {
     on<_InitialAuthentication>(_initial);
     on<_AuthenticationStatusChanged>(_onAuthenticationStatusChanged);
     on<_AuthenticationLogoutRequested>(_onAuthenticationLogoutRequested);
     on<_OnAuthenticatedDataChanged>(_onAuthenticatedDataChanged);
+    on<_OnFCMTokenChanged>(_onFCMTokenChanged);
     _authenticationStatusSubscription = _authRepository.status.listen(
       (status) => add(AuthenticationEvent.authenticationStatusChanged(status)),
     );
+
+    _firebaseFCMTokenSubscription = _firebasePushNotificationsService.onFCMTokenRefresh.listen((event) {
+      add(AuthenticationEvent.onFCMTokenChanged(event));
+    });
 
     _authSubscription = _appSharedPrefs.watchProfile().listen((UserProfileData? profile) {
       if (profile != null) {
@@ -46,6 +59,7 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
   Future<void> close() {
     _authenticationStatusSubscription.cancel();
     _authSubscription.cancel();
+    _firebaseFCMTokenSubscription.cancel();
     return super.close();
   }
 
@@ -98,10 +112,19 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
     _AuthenticationLogoutRequested event,
     Emitter<AuthenticationState> emit,
   ) async {
-    await _authRepository.logOut();
+    await state.userProfileData?.accountName.let((it) => _authRepository.logOut(it));
   }
 
   FutureOr<void> _onAuthenticatedDataChanged(_OnAuthenticatedDataChanged event, Emitter<AuthenticationState> emit) {
     emit(state.copyWith(userProfileData: event.data));
+  }
+
+  FutureOr<void> _onFCMTokenChanged(_OnFCMTokenChanged event, Emitter<AuthenticationState> emit) {
+    state.userProfileData?.let(
+      (self) => _firebaseDatabaseService.saveDeviceToken(
+        deviceToken: event.token,
+        accountName: self.accountName,
+      ),
+    );
   }
 }

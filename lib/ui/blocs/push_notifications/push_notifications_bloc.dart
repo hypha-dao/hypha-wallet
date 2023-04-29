@@ -5,7 +5,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hypha_wallet/core/crypto/seeds_esr/scan_qr_code_result_data.dart';
 import 'package:hypha_wallet/core/extension/scope_functions.dart';
-import 'package:hypha_wallet/core/firebase/firebase_push_notifications.dart';
+import 'package:hypha_wallet/core/firebase/firebase_push_notifications_service.dart';
 import 'package:hypha_wallet/core/logging/log_helper.dart';
 import 'package:hypha_wallet/ui/home_page/usecases/parse_qr_code_use_case.dart';
 
@@ -15,7 +15,7 @@ part 'push_notifications_event.dart';
 part 'push_notifications_state.dart';
 
 class PushNotificationsBloc extends Bloc<PushNotificationsEvent, PushNotificationsState> {
-  final FirebasePushNotifications firebasePushNotifications;
+  final FirebasePushNotificationsService firebasePushNotifications;
   final ParseQRCodeUseCase parseQRCodeUseCase;
 
   PushNotificationsBloc(this.firebasePushNotifications, this.parseQRCodeUseCase)

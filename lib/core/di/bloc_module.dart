@@ -2,8 +2,13 @@ part of 'di_setup.dart';
 
 void _registerBlocsModule() {
   /// Global Blocs
-  _registerFactory(
-      () => AuthenticationBloc(_getIt<AuthRepository>(), _getIt<HyphaSharedPrefs>(), _getIt<SecureStorageService>()));
+  _registerFactory(() => AuthenticationBloc(
+        _getIt<AuthRepository>(),
+        _getIt<HyphaSharedPrefs>(),
+        _getIt<SecureStorageService>(),
+        _getIt<FirebasePushNotificationsService>(),
+        _getIt<FirebaseDatabaseService>(),
+      ));
   _registerFactory(() => DeeplinkBloc());
   _registerFactory(() => ErrorHandlerBloc(_getIt<ErrorHandlerManager>()));
   _registerFactory(
@@ -57,5 +62,6 @@ void _registerBlocsModule() {
     ),
   );
 
-  _registerFactory(() => PushNotificationsBloc(_getIt<FirebasePushNotifications>(), _getIt<ParseQRCodeUseCase>()));
+  _registerFactory(
+      () => PushNotificationsBloc(_getIt<FirebasePushNotificationsService>(), _getIt<ParseQRCodeUseCase>()));
 }
