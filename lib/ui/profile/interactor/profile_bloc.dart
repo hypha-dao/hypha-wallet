@@ -74,13 +74,20 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   }
 
   FutureOr<void> _setName(_SetName event, Emitter<ProfileState> emit) async {
-    emit(state.copyWith(pageState: PageState.loading));
+    emit(state.copyWith(showUpdateBioLoading: true));
     final result = await _setNameUseCase.run(event.name);
     if (result.isValue) {
-      emit(state.copyWith(pageState: PageState.success));
+      emit(
+        state.copyWith(
+          command: const PageCommand.navigateBack(),
+          showUpdateBioLoading: false,
+          profileData: state.profileData?.updateName(event.name),
+        ),
+      );
     } else {
-      // TODO(gguij): Error snack bar when set name fails
-      emit(state.copyWith(pageState: PageState.failure));
+      emit(state.copyWith(showUpdateBioLoading: false, command: const PageCommand.navigateBack()));
+      // ignore: unawaited_futures
+      _errorHandlerManager.handlerError(HyphaError.generic('Error saving Name, Please try again later'));
     }
   }
 
