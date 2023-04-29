@@ -120,7 +120,7 @@ class AuthRepository {
       await _secureStorageService.clearAllData();
       await _amplifyService.logout();
 
-      /// Get firebase device token and save to firebase
+      /// Get firebase device token and remove to firebase
       await _firebasePushNotificationsService.getDeviceToken().then(
             (String? value) => value?.let((it) {
               _firebaseDatabaseService.removeDeviceToken(it, accountName);
