@@ -79,7 +79,7 @@ dependencies:
 
   # Json Serial
   json_serializable: ^6.5.4
-  json_annotation: ^4.7.0
+  json_annotation: ^4.8.0
 
   # image picker
   image_picker: ^0.8.6
@@ -118,7 +118,11 @@ dependencies:
   firebase_crashlytics: ^3.0.7
   firebase_remote_config: ^3.0.7
   firebase_dynamic_links: ^5.0.8
+  firebase_messaging: ^14.4.1
+
+  # Amazon stuff for profile... Weak sauce
   amazon_cognito_identity_dart_2: ^3.2.0
+
 
 dev_dependencies:
   flutter_test:
