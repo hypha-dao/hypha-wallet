@@ -18,6 +18,8 @@ class ProfileService extends NetworkingManager {
       if (response.statusCode == 200) {
         final map = Map<String, dynamic>.from(response.data);
         return Result.value(ProfileData.fromJson(map));
+      } else if (response.statusCode == 404) {
+        return Result.error(HyphaError.notFound('No user account'));
       } else {
         print('get profile status error: ${response.statusCode} ${response.statusMessage}');
         return Result.error(HyphaError(type: HyphaErrorType.api, message: 'server error ${response.statusMessage}'));

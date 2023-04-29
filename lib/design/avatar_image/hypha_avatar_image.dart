@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
@@ -69,7 +70,7 @@ class HyphaAvatarImage extends StatelessWidget {
         decoration: const BoxDecoration(gradient: HyphaColors.gradientBlu, shape: BoxShape.circle),
         child: Center(
           child: Text(
-            name!.characters.first.toUpperCase(),
+            name?.characters.firstOrNull?.toUpperCase() ?? '',
             style: context.hyphaTextTheme.regular.copyWith(
               color: HyphaColors.white,
               fontSize: imageRadius,

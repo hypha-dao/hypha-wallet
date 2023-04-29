@@ -51,6 +51,7 @@ class ErrorHandlerBloc extends Bloc<ErrorHandlerEvent, ErrorHandlerState> {
         }
         break;
       case HyphaErrorType.api:
+      case HyphaErrorType.notFound:
       case HyphaErrorType.unknown:
         emit(state.copyWith(pageCommand: PageCommand.showErrorMessage(hyphaError.message)));
         break;

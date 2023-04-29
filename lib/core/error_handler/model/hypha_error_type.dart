@@ -4,6 +4,7 @@ enum HyphaErrorType {
   tokenExpired,
   appVersionNotSupported,
   api,
+  notFound,
   custom,
   generic,
   unknown,

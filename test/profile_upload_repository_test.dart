@@ -58,7 +58,7 @@ class MockSignupUseCase extends PPPSignUpUseCase with MockUseCase {
 class MockProfileLoginUseCase extends ProfileLoginUseCase with MockUseCase {
   MockProfileLoginUseCase(super.amplifyService);
   @override
-  Future<Result<bool, HyphaError>> run(String accountName) async {
+  Future<Result<bool, HyphaError>> run(String accountName, {bool signUp = false}) async {
     return genericRun();
   }
 }
@@ -72,19 +72,19 @@ class MockInitializeProfileUseCase extends InitializeProfileUseCase with MockUse
 }
 
 class MockSetImageUseCase extends SetImageUseCase with MockUseCase {
-  MockSetImageUseCase(super.amplifyService, super._profileLoginUseCase);
+  MockSetImageUseCase(super.amplifyService);
   @override
-  Future<Result<bool, HyphaError>> runFileName(String filePath, String accountName) async {
+  Future<Result<bool, HyphaError>> runFileName(String filePath) async {
     return genericRun();
   }
 
   @override
-  Future<Result<bool, HyphaError>> run(XFile image, String accountName) async {
+  Future<Result<bool, HyphaError>> run(XFile image) async {
     return genericRun();
   }
 
   @override
-  Future<Result<bool, HyphaError>> runFile(File imageFile, String accountName) async {
+  Future<Result<bool, HyphaError>> runFile(File imageFile) async {
     return genericRun();
   }
 }
@@ -111,7 +111,7 @@ void main() {
     mockSignupUseCase = MockSignupUseCase(mockAmplifyService);
     mockProfileLoginUseCase = MockProfileLoginUseCase(mockAmplifyService);
     mockInitializeProfileUseCase = MockInitializeProfileUseCase(mockAmplifyService);
-    mockSetImageUseCase = MockSetImageUseCase(mockAmplifyService, mockProfileLoginUseCase);
+    mockSetImageUseCase = MockSetImageUseCase(mockAmplifyService);
     prefs = HyphaSharedPrefs(RxSharedPreferences(MockSharedPreferences()));
 
     service = ProfileUploadRepository(

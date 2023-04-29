@@ -8,6 +8,8 @@ class HyphaError {
   final String? actionText;
   final Function? action;
 
+  bool get isNotFoundError => type == HyphaErrorType.notFound;
+
   HyphaError({
     required this.message,
     required this.type,
@@ -21,6 +23,8 @@ class HyphaError {
   factory HyphaError.api(String message) => HyphaError(message: message, type: HyphaErrorType.api);
 
   factory HyphaError.generic(String message) => HyphaError(message: message, type: HyphaErrorType.generic);
+
+  factory HyphaError.notFound(String message) => HyphaError(message: message, type: HyphaErrorType.notFound);
 
   factory HyphaError.unknown(String? message) {
     return HyphaError(message: message ?? 'Unknown Error', type: HyphaErrorType.unknown);
