@@ -4,7 +4,6 @@ import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hypha_wallet/core/error_handler/error_handler_manager.dart';
 import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
-import 'package:hypha_wallet/core/error_handler/model/hypha_error_type.dart';
 import 'package:hypha_wallet/core/network/models/user_profile_data.dart';
 import 'package:hypha_wallet/core/shared_preferences/hypha_shared_prefs.dart';
 import 'package:hypha_wallet/ui/architecture/interactor/page_states.dart';
@@ -66,7 +65,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
         final error = result.asError!.error;
         // if loading fails, show saved user data.
         final profileData = ProfileData(
-          name: userData.userName ?? '',
+          name: userData.userName,
           account: userData.accountName,
         );
         emit(state.copyWith(

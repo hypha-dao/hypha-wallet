@@ -10,7 +10,7 @@ class ProfileData {
   final bool? deleted;
 
   ProfileData({
-    required this.name,
+    this.name,
     required this.account,
     this.avatarUrl,
     this.bio,
