@@ -19,7 +19,7 @@ class DeleteAccountUseCase {
 
       if (res) {
         /// 2 - logout and delete local data
-        await _authRepository.logOut();
+        await _authRepository.logOut(accountName);
       }
 
       return Result.value(res);

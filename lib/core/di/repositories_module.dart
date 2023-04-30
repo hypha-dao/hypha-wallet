@@ -15,6 +15,8 @@ void _registerRepositoriesModule() {
         _getIt<SecureStorageService>(),
         _getIt<ProfileUploadRepository>(),
         _getIt<AmplifyService>(),
+        _getIt<FirebasePushNotificationsService>(),
+        _getIt<FirebaseDatabaseService>(),
       ));
 
   _registerLazySingleton(() => UserAccountRepository(userService: _getIt<UserAccountService>()));

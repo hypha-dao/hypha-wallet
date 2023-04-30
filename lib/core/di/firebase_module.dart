@@ -6,7 +6,10 @@ Future _registerFirebaseModule() async {
   // /// Core
   _registerLazySingleton(() => Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform));
 
-  final init = FirebasePushNotifications.init();
+  final firebaseDatabase = FirebaseDatabaseService.init();
+  _getIt.registerLazySingleton(() => firebaseDatabase);
+
+  final init = FirebasePushNotificationsService.init();
   _getIt.registerLazySingleton(() => init);
 
   //

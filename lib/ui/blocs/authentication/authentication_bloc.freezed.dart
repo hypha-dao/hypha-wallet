@@ -21,6 +21,7 @@ mixin _$AuthenticationEvent {
     required TResult Function() initial,
     required TResult Function(AuthenticationStatus status)
         authenticationStatusChanged,
+    required TResult Function(String token) onFCMTokenChanged,
     required TResult Function() authenticationLogoutRequested,
     required TResult Function(UserProfileData data) onUserProfileDataChanged,
   }) =>
@@ -29,6 +30,7 @@ mixin _$AuthenticationEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function(AuthenticationStatus status)? authenticationStatusChanged,
+    TResult? Function(String token)? onFCMTokenChanged,
     TResult? Function()? authenticationLogoutRequested,
     TResult? Function(UserProfileData data)? onUserProfileDataChanged,
   }) =>
@@ -37,6 +39,7 @@ mixin _$AuthenticationEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(AuthenticationStatus status)? authenticationStatusChanged,
+    TResult Function(String token)? onFCMTokenChanged,
     TResult Function()? authenticationLogoutRequested,
     TResult Function(UserProfileData data)? onUserProfileDataChanged,
     required TResult orElse(),
@@ -47,6 +50,7 @@ mixin _$AuthenticationEvent {
     required TResult Function(_InitialAuthentication value) initial,
     required TResult Function(_AuthenticationStatusChanged value)
         authenticationStatusChanged,
+    required TResult Function(_OnFCMTokenChanged value) onFCMTokenChanged,
     required TResult Function(_AuthenticationLogoutRequested value)
         authenticationLogoutRequested,
     required TResult Function(_OnAuthenticatedDataChanged value)
@@ -58,6 +62,7 @@ mixin _$AuthenticationEvent {
     TResult? Function(_InitialAuthentication value)? initial,
     TResult? Function(_AuthenticationStatusChanged value)?
         authenticationStatusChanged,
+    TResult? Function(_OnFCMTokenChanged value)? onFCMTokenChanged,
     TResult? Function(_AuthenticationLogoutRequested value)?
         authenticationLogoutRequested,
     TResult? Function(_OnAuthenticatedDataChanged value)?
@@ -69,6 +74,7 @@ mixin _$AuthenticationEvent {
     TResult Function(_InitialAuthentication value)? initial,
     TResult Function(_AuthenticationStatusChanged value)?
         authenticationStatusChanged,
+    TResult Function(_OnFCMTokenChanged value)? onFCMTokenChanged,
     TResult Function(_AuthenticationLogoutRequested value)?
         authenticationLogoutRequested,
     TResult Function(_OnAuthenticatedDataChanged value)?
@@ -137,6 +143,7 @@ class _$_InitialAuthentication implements _InitialAuthentication {
     required TResult Function() initial,
     required TResult Function(AuthenticationStatus status)
         authenticationStatusChanged,
+    required TResult Function(String token) onFCMTokenChanged,
     required TResult Function() authenticationLogoutRequested,
     required TResult Function(UserProfileData data) onUserProfileDataChanged,
   }) {
@@ -148,6 +155,7 @@ class _$_InitialAuthentication implements _InitialAuthentication {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function(AuthenticationStatus status)? authenticationStatusChanged,
+    TResult? Function(String token)? onFCMTokenChanged,
     TResult? Function()? authenticationLogoutRequested,
     TResult? Function(UserProfileData data)? onUserProfileDataChanged,
   }) {
@@ -159,6 +167,7 @@ class _$_InitialAuthentication implements _InitialAuthentication {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(AuthenticationStatus status)? authenticationStatusChanged,
+    TResult Function(String token)? onFCMTokenChanged,
     TResult Function()? authenticationLogoutRequested,
     TResult Function(UserProfileData data)? onUserProfileDataChanged,
     required TResult orElse(),
@@ -175,6 +184,7 @@ class _$_InitialAuthentication implements _InitialAuthentication {
     required TResult Function(_InitialAuthentication value) initial,
     required TResult Function(_AuthenticationStatusChanged value)
         authenticationStatusChanged,
+    required TResult Function(_OnFCMTokenChanged value) onFCMTokenChanged,
     required TResult Function(_AuthenticationLogoutRequested value)
         authenticationLogoutRequested,
     required TResult Function(_OnAuthenticatedDataChanged value)
@@ -189,6 +199,7 @@ class _$_InitialAuthentication implements _InitialAuthentication {
     TResult? Function(_InitialAuthentication value)? initial,
     TResult? Function(_AuthenticationStatusChanged value)?
         authenticationStatusChanged,
+    TResult? Function(_OnFCMTokenChanged value)? onFCMTokenChanged,
     TResult? Function(_AuthenticationLogoutRequested value)?
         authenticationLogoutRequested,
     TResult? Function(_OnAuthenticatedDataChanged value)?
@@ -203,6 +214,7 @@ class _$_InitialAuthentication implements _InitialAuthentication {
     TResult Function(_InitialAuthentication value)? initial,
     TResult Function(_AuthenticationStatusChanged value)?
         authenticationStatusChanged,
+    TResult Function(_OnFCMTokenChanged value)? onFCMTokenChanged,
     TResult Function(_AuthenticationLogoutRequested value)?
         authenticationLogoutRequested,
     TResult Function(_OnAuthenticatedDataChanged value)?
@@ -291,6 +303,7 @@ class _$_AuthenticationStatusChanged implements _AuthenticationStatusChanged {
     required TResult Function() initial,
     required TResult Function(AuthenticationStatus status)
         authenticationStatusChanged,
+    required TResult Function(String token) onFCMTokenChanged,
     required TResult Function() authenticationLogoutRequested,
     required TResult Function(UserProfileData data) onUserProfileDataChanged,
   }) {
@@ -302,6 +315,7 @@ class _$_AuthenticationStatusChanged implements _AuthenticationStatusChanged {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function(AuthenticationStatus status)? authenticationStatusChanged,
+    TResult? Function(String token)? onFCMTokenChanged,
     TResult? Function()? authenticationLogoutRequested,
     TResult? Function(UserProfileData data)? onUserProfileDataChanged,
   }) {
@@ -313,6 +327,7 @@ class _$_AuthenticationStatusChanged implements _AuthenticationStatusChanged {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(AuthenticationStatus status)? authenticationStatusChanged,
+    TResult Function(String token)? onFCMTokenChanged,
     TResult Function()? authenticationLogoutRequested,
     TResult Function(UserProfileData data)? onUserProfileDataChanged,
     required TResult orElse(),
@@ -329,6 +344,7 @@ class _$_AuthenticationStatusChanged implements _AuthenticationStatusChanged {
     required TResult Function(_InitialAuthentication value) initial,
     required TResult Function(_AuthenticationStatusChanged value)
         authenticationStatusChanged,
+    required TResult Function(_OnFCMTokenChanged value) onFCMTokenChanged,
     required TResult Function(_AuthenticationLogoutRequested value)
         authenticationLogoutRequested,
     required TResult Function(_OnAuthenticatedDataChanged value)
@@ -343,6 +359,7 @@ class _$_AuthenticationStatusChanged implements _AuthenticationStatusChanged {
     TResult? Function(_InitialAuthentication value)? initial,
     TResult? Function(_AuthenticationStatusChanged value)?
         authenticationStatusChanged,
+    TResult? Function(_OnFCMTokenChanged value)? onFCMTokenChanged,
     TResult? Function(_AuthenticationLogoutRequested value)?
         authenticationLogoutRequested,
     TResult? Function(_OnAuthenticatedDataChanged value)?
@@ -357,6 +374,7 @@ class _$_AuthenticationStatusChanged implements _AuthenticationStatusChanged {
     TResult Function(_InitialAuthentication value)? initial,
     TResult Function(_AuthenticationStatusChanged value)?
         authenticationStatusChanged,
+    TResult Function(_OnFCMTokenChanged value)? onFCMTokenChanged,
     TResult Function(_AuthenticationLogoutRequested value)?
         authenticationLogoutRequested,
     TResult Function(_OnAuthenticatedDataChanged value)?
@@ -378,6 +396,168 @@ abstract class _AuthenticationStatusChanged implements AuthenticationEvent {
   @JsonKey(ignore: true)
   _$$_AuthenticationStatusChangedCopyWith<_$_AuthenticationStatusChanged>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_OnFCMTokenChangedCopyWith<$Res> {
+  factory _$$_OnFCMTokenChangedCopyWith(_$_OnFCMTokenChanged value,
+          $Res Function(_$_OnFCMTokenChanged) then) =
+      __$$_OnFCMTokenChangedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String token});
+}
+
+/// @nodoc
+class __$$_OnFCMTokenChangedCopyWithImpl<$Res>
+    extends _$AuthenticationEventCopyWithImpl<$Res, _$_OnFCMTokenChanged>
+    implements _$$_OnFCMTokenChangedCopyWith<$Res> {
+  __$$_OnFCMTokenChangedCopyWithImpl(
+      _$_OnFCMTokenChanged _value, $Res Function(_$_OnFCMTokenChanged) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? token = null,
+  }) {
+    return _then(_$_OnFCMTokenChanged(
+      null == token
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_OnFCMTokenChanged implements _OnFCMTokenChanged {
+  const _$_OnFCMTokenChanged(this.token);
+
+  @override
+  final String token;
+
+  @override
+  String toString() {
+    return 'AuthenticationEvent.onFCMTokenChanged(token: $token)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_OnFCMTokenChanged &&
+            (identical(other.token, token) || other.token == token));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, token);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_OnFCMTokenChangedCopyWith<_$_OnFCMTokenChanged> get copyWith =>
+      __$$_OnFCMTokenChangedCopyWithImpl<_$_OnFCMTokenChanged>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function(AuthenticationStatus status)
+        authenticationStatusChanged,
+    required TResult Function(String token) onFCMTokenChanged,
+    required TResult Function() authenticationLogoutRequested,
+    required TResult Function(UserProfileData data) onUserProfileDataChanged,
+  }) {
+    return onFCMTokenChanged(token);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function(AuthenticationStatus status)? authenticationStatusChanged,
+    TResult? Function(String token)? onFCMTokenChanged,
+    TResult? Function()? authenticationLogoutRequested,
+    TResult? Function(UserProfileData data)? onUserProfileDataChanged,
+  }) {
+    return onFCMTokenChanged?.call(token);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(AuthenticationStatus status)? authenticationStatusChanged,
+    TResult Function(String token)? onFCMTokenChanged,
+    TResult Function()? authenticationLogoutRequested,
+    TResult Function(UserProfileData data)? onUserProfileDataChanged,
+    required TResult orElse(),
+  }) {
+    if (onFCMTokenChanged != null) {
+      return onFCMTokenChanged(token);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_InitialAuthentication value) initial,
+    required TResult Function(_AuthenticationStatusChanged value)
+        authenticationStatusChanged,
+    required TResult Function(_OnFCMTokenChanged value) onFCMTokenChanged,
+    required TResult Function(_AuthenticationLogoutRequested value)
+        authenticationLogoutRequested,
+    required TResult Function(_OnAuthenticatedDataChanged value)
+        onUserProfileDataChanged,
+  }) {
+    return onFCMTokenChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_InitialAuthentication value)? initial,
+    TResult? Function(_AuthenticationStatusChanged value)?
+        authenticationStatusChanged,
+    TResult? Function(_OnFCMTokenChanged value)? onFCMTokenChanged,
+    TResult? Function(_AuthenticationLogoutRequested value)?
+        authenticationLogoutRequested,
+    TResult? Function(_OnAuthenticatedDataChanged value)?
+        onUserProfileDataChanged,
+  }) {
+    return onFCMTokenChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_InitialAuthentication value)? initial,
+    TResult Function(_AuthenticationStatusChanged value)?
+        authenticationStatusChanged,
+    TResult Function(_OnFCMTokenChanged value)? onFCMTokenChanged,
+    TResult Function(_AuthenticationLogoutRequested value)?
+        authenticationLogoutRequested,
+    TResult Function(_OnAuthenticatedDataChanged value)?
+        onUserProfileDataChanged,
+    required TResult orElse(),
+  }) {
+    if (onFCMTokenChanged != null) {
+      return onFCMTokenChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _OnFCMTokenChanged implements AuthenticationEvent {
+  const factory _OnFCMTokenChanged(final String token) = _$_OnFCMTokenChanged;
+
+  String get token;
+  @JsonKey(ignore: true)
+  _$$_OnFCMTokenChangedCopyWith<_$_OnFCMTokenChanged> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -426,6 +606,7 @@ class _$_AuthenticationLogoutRequested
     required TResult Function() initial,
     required TResult Function(AuthenticationStatus status)
         authenticationStatusChanged,
+    required TResult Function(String token) onFCMTokenChanged,
     required TResult Function() authenticationLogoutRequested,
     required TResult Function(UserProfileData data) onUserProfileDataChanged,
   }) {
@@ -437,6 +618,7 @@ class _$_AuthenticationLogoutRequested
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function(AuthenticationStatus status)? authenticationStatusChanged,
+    TResult? Function(String token)? onFCMTokenChanged,
     TResult? Function()? authenticationLogoutRequested,
     TResult? Function(UserProfileData data)? onUserProfileDataChanged,
   }) {
@@ -448,6 +630,7 @@ class _$_AuthenticationLogoutRequested
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(AuthenticationStatus status)? authenticationStatusChanged,
+    TResult Function(String token)? onFCMTokenChanged,
     TResult Function()? authenticationLogoutRequested,
     TResult Function(UserProfileData data)? onUserProfileDataChanged,
     required TResult orElse(),
@@ -464,6 +647,7 @@ class _$_AuthenticationLogoutRequested
     required TResult Function(_InitialAuthentication value) initial,
     required TResult Function(_AuthenticationStatusChanged value)
         authenticationStatusChanged,
+    required TResult Function(_OnFCMTokenChanged value) onFCMTokenChanged,
     required TResult Function(_AuthenticationLogoutRequested value)
         authenticationLogoutRequested,
     required TResult Function(_OnAuthenticatedDataChanged value)
@@ -478,6 +662,7 @@ class _$_AuthenticationLogoutRequested
     TResult? Function(_InitialAuthentication value)? initial,
     TResult? Function(_AuthenticationStatusChanged value)?
         authenticationStatusChanged,
+    TResult? Function(_OnFCMTokenChanged value)? onFCMTokenChanged,
     TResult? Function(_AuthenticationLogoutRequested value)?
         authenticationLogoutRequested,
     TResult? Function(_OnAuthenticatedDataChanged value)?
@@ -492,6 +677,7 @@ class _$_AuthenticationLogoutRequested
     TResult Function(_InitialAuthentication value)? initial,
     TResult Function(_AuthenticationStatusChanged value)?
         authenticationStatusChanged,
+    TResult Function(_OnFCMTokenChanged value)? onFCMTokenChanged,
     TResult Function(_AuthenticationLogoutRequested value)?
         authenticationLogoutRequested,
     TResult Function(_OnAuthenticatedDataChanged value)?
@@ -591,6 +777,7 @@ class _$_OnAuthenticatedDataChanged implements _OnAuthenticatedDataChanged {
     required TResult Function() initial,
     required TResult Function(AuthenticationStatus status)
         authenticationStatusChanged,
+    required TResult Function(String token) onFCMTokenChanged,
     required TResult Function() authenticationLogoutRequested,
     required TResult Function(UserProfileData data) onUserProfileDataChanged,
   }) {
@@ -602,6 +789,7 @@ class _$_OnAuthenticatedDataChanged implements _OnAuthenticatedDataChanged {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function(AuthenticationStatus status)? authenticationStatusChanged,
+    TResult? Function(String token)? onFCMTokenChanged,
     TResult? Function()? authenticationLogoutRequested,
     TResult? Function(UserProfileData data)? onUserProfileDataChanged,
   }) {
@@ -613,6 +801,7 @@ class _$_OnAuthenticatedDataChanged implements _OnAuthenticatedDataChanged {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(AuthenticationStatus status)? authenticationStatusChanged,
+    TResult Function(String token)? onFCMTokenChanged,
     TResult Function()? authenticationLogoutRequested,
     TResult Function(UserProfileData data)? onUserProfileDataChanged,
     required TResult orElse(),
@@ -629,6 +818,7 @@ class _$_OnAuthenticatedDataChanged implements _OnAuthenticatedDataChanged {
     required TResult Function(_InitialAuthentication value) initial,
     required TResult Function(_AuthenticationStatusChanged value)
         authenticationStatusChanged,
+    required TResult Function(_OnFCMTokenChanged value) onFCMTokenChanged,
     required TResult Function(_AuthenticationLogoutRequested value)
         authenticationLogoutRequested,
     required TResult Function(_OnAuthenticatedDataChanged value)
@@ -643,6 +833,7 @@ class _$_OnAuthenticatedDataChanged implements _OnAuthenticatedDataChanged {
     TResult? Function(_InitialAuthentication value)? initial,
     TResult? Function(_AuthenticationStatusChanged value)?
         authenticationStatusChanged,
+    TResult? Function(_OnFCMTokenChanged value)? onFCMTokenChanged,
     TResult? Function(_AuthenticationLogoutRequested value)?
         authenticationLogoutRequested,
     TResult? Function(_OnAuthenticatedDataChanged value)?
@@ -657,6 +848,7 @@ class _$_OnAuthenticatedDataChanged implements _OnAuthenticatedDataChanged {
     TResult Function(_InitialAuthentication value)? initial,
     TResult Function(_AuthenticationStatusChanged value)?
         authenticationStatusChanged,
+    TResult Function(_OnFCMTokenChanged value)? onFCMTokenChanged,
     TResult Function(_AuthenticationLogoutRequested value)?
         authenticationLogoutRequested,
     TResult Function(_OnAuthenticatedDataChanged value)?
