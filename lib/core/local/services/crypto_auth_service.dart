@@ -62,13 +62,32 @@ class CryptoAuthService {
     return childKey;
   }
 
-  // Create a private key from word seed as per Bip39 standard
-  // then create EOS key from seed
+  EOSPrivateKey createPrivateKeyFromWordsEOS(List<String> words) {
+    assert(words.length >= 12);
+    final mnemonic = words.join(' ');
+    // First, we create an ETH derived key for EOS
+    final ethKey = generateEthDerivedKeyEOS(mnemonic);
+    // Then we create an EOS key from the ETH derived key
+    final eosKey = EOSPrivateKey.fromBuffer(ethKey.privateKey);
+    return eosKey;
+  }
+
+  HDKey generateEthDerivedKeyEOS(String mnemonic) {
+    // Bip 44: https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki
+    // Coin type for EOS 194: https://github.com/satoshilabs/slips/blob/master/slip-0044.md
+    // Reference: https://iancoleman.io/bip39/
+    final HDKey hdkey = HDKey.fromMnemonic(mnemonic);
+    const walletHdPath = "m/44'/194'/0'/0/0";
+    final HDKey childKey = hdkey.derive(walletHdPath);
+    return childKey;
+  }
+
+  // Create a private key from word seed as per Bip39
   // Minimum of 12 words must be provided.
   EOSPrivateKey createKeyBip39(List<String> words) {
     assert(words.length >= 12);
     final String mnemonic = words.join(' ');
-    final Uint8List seedBuffer = bip39.mnemonicToSeed(mnemonic);
-    return EOSPrivateKey.fromBuffer(seedBuffer);
+    final String seed = bip39.mnemonicToSeedHex(mnemonic);
+    return EOSPrivateKey.fromSeed(seed);
   }
 }
