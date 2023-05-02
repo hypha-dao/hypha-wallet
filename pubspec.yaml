@@ -123,6 +123,7 @@ dependencies:
 
   # Amazon stuff for profile... Weak sauce
   amazon_cognito_identity_dart_2: ^3.2.0
+  app_links: ^3.4.2
 
 
 dev_dependencies:
