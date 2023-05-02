@@ -1,5 +1,3 @@
-import 'dart:typed_data';
-
 import 'package:bip39/bip39.dart' as bip39;
 import 'package:hdkey/hdkey.dart';
 import 'package:hypha_wallet/core/crypto/eosdart_ecc/src/key.dart';

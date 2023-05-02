@@ -3,7 +3,9 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:hypha_wallet/core/crypto/seeds_esr/scan_qr_code_result_data.dart';
 import 'package:hypha_wallet/core/logging/log_helper.dart';
+import 'package:hypha_wallet/ui/home_page/usecases/parse_qr_code_use_case.dart';
 
 part 'deeplink_bloc.freezed.dart';
 part 'deeplink_event.dart';
@@ -11,10 +13,12 @@ part 'deeplink_state.dart';
 part 'page_command.dart';
 
 class DeeplinkBloc extends Bloc<DeeplinkEvent, DeeplinkState> {
-  DeeplinkBloc() : super(const DeeplinkState()) {
+  final ParseQRCodeUseCase _parseQRCodeUseCase;
+  DeeplinkBloc(this._parseQRCodeUseCase) : super(const DeeplinkState()) {
     initDynamicLinks();
 
     on<_IncomingFirebaseDeepLink>(_incomingFirebaseDeepLink);
+    on<_IncomingESRLink>(_incomingESRLink);
     on<_ClearPageCommand>((_, emit) => emit(state.copyWith(command: null)));
   }
 
@@ -52,6 +56,21 @@ class DeeplinkBloc extends Bloc<DeeplinkEvent, DeeplinkState> {
           command: const PageCommand.navigateToCreateAccount(),
         ),
       );
+    }
+  }
+
+  Future<void> _incomingESRLink(_IncomingESRLink event, Emitter<DeeplinkState> emit) async {
+    // final useCase = GetIt.I.get<ParseQRCodeUseCase>();
+    final result = await _parseQRCodeUseCase.run(ParseESRLinkInput(esrLink: event.link));
+    if (result.isValue) {
+      emit(
+        state.copyWith(
+          command: PageCommand.navigateToSignTransaction(result.asValue!.value),
+        ),
+      );
+    } else {
+      print('error: ${result.asError!.error}');
+      print(result.asError!.error);
     }
   }
 }

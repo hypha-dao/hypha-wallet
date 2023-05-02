@@ -78,11 +78,12 @@ class HyphaAppView extends StatelessWidget {
           listenWhen: (previous, current) => previous.command != current.command,
           listener: (context, state) {
             state.command?.when(
-              navigateToCreateAccount: () => Get.offAll(
-                () => const OnboardingPageWithLink(),
-              ),
-            );
-
+                navigateToCreateAccount: () => Get.offAll(
+                      () => const OnboardingPageWithLink(),
+                    ),
+                navigateToSignTransaction: (ScanQrCodeResultData data) {
+                  _showSignTransactionBottomSheet(data);
+                });
             context.read<DeeplinkBloc>().add(const DeeplinkEvent.clearPageCommand());
           },
         ),
@@ -91,16 +92,7 @@ class HyphaAppView extends StatelessWidget {
           listenWhen: (previous, current) => previous.command != current.command,
           listener: (_, state) {
             state.command?.when(navigateToSignTransaction: (ScanQrCodeResultData data) {
-              Get.bottomSheet(
-                FractionallySizedBox(
-                  heightFactor: UIConstants.bottomSheetHeightFraction,
-                  child: SignTransactionPage(qrCodeData: data),
-                ),
-                isScrollControlled: true,
-                shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
-                ),
-              );
+              _showSignTransactionBottomSheet(data);
             });
 
             context.read<PushNotificationsBloc>().add(const PushNotificationsEvent.clearPageCommand());
@@ -200,6 +192,19 @@ class HyphaAppView extends StatelessWidget {
             home: const SizedBox.shrink(),
           );
         },
+      ),
+    );
+  }
+
+  void _showSignTransactionBottomSheet(ScanQrCodeResultData data) {
+    Get.bottomSheet(
+      FractionallySizedBox(
+        heightFactor: UIConstants.bottomSheetHeightFraction,
+        child: SignTransactionPage(qrCodeData: data),
+      ),
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
       ),
     );
   }

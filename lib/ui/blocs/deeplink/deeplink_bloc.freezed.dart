@@ -19,18 +19,21 @@ mixin _$DeeplinkEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Uri link) incomingFirebaseDeepLink,
+    required TResult Function(String link) incomingESRLink,
     required TResult Function() clearPageCommand,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Uri link)? incomingFirebaseDeepLink,
+    TResult? Function(String link)? incomingESRLink,
     TResult? Function()? clearPageCommand,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Uri link)? incomingFirebaseDeepLink,
+    TResult Function(String link)? incomingESRLink,
     TResult Function()? clearPageCommand,
     required TResult orElse(),
   }) =>
@@ -39,6 +42,7 @@ mixin _$DeeplinkEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_IncomingFirebaseDeepLink value)
         incomingFirebaseDeepLink,
+    required TResult Function(_IncomingESRLink value) incomingESRLink,
     required TResult Function(_ClearPageCommand value) clearPageCommand,
   }) =>
       throw _privateConstructorUsedError;
@@ -46,12 +50,14 @@ mixin _$DeeplinkEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_IncomingFirebaseDeepLink value)?
         incomingFirebaseDeepLink,
+    TResult? Function(_IncomingESRLink value)? incomingESRLink,
     TResult? Function(_ClearPageCommand value)? clearPageCommand,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_IncomingFirebaseDeepLink value)? incomingFirebaseDeepLink,
+    TResult Function(_IncomingESRLink value)? incomingESRLink,
     TResult Function(_ClearPageCommand value)? clearPageCommand,
     required TResult orElse(),
   }) =>
@@ -143,6 +149,7 @@ class _$_IncomingFirebaseDeepLink implements _IncomingFirebaseDeepLink {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Uri link) incomingFirebaseDeepLink,
+    required TResult Function(String link) incomingESRLink,
     required TResult Function() clearPageCommand,
   }) {
     return incomingFirebaseDeepLink(link);
@@ -152,6 +159,7 @@ class _$_IncomingFirebaseDeepLink implements _IncomingFirebaseDeepLink {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Uri link)? incomingFirebaseDeepLink,
+    TResult? Function(String link)? incomingESRLink,
     TResult? Function()? clearPageCommand,
   }) {
     return incomingFirebaseDeepLink?.call(link);
@@ -161,6 +169,7 @@ class _$_IncomingFirebaseDeepLink implements _IncomingFirebaseDeepLink {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Uri link)? incomingFirebaseDeepLink,
+    TResult Function(String link)? incomingESRLink,
     TResult Function()? clearPageCommand,
     required TResult orElse(),
   }) {
@@ -175,6 +184,7 @@ class _$_IncomingFirebaseDeepLink implements _IncomingFirebaseDeepLink {
   TResult map<TResult extends Object?>({
     required TResult Function(_IncomingFirebaseDeepLink value)
         incomingFirebaseDeepLink,
+    required TResult Function(_IncomingESRLink value) incomingESRLink,
     required TResult Function(_ClearPageCommand value) clearPageCommand,
   }) {
     return incomingFirebaseDeepLink(this);
@@ -185,6 +195,7 @@ class _$_IncomingFirebaseDeepLink implements _IncomingFirebaseDeepLink {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_IncomingFirebaseDeepLink value)?
         incomingFirebaseDeepLink,
+    TResult? Function(_IncomingESRLink value)? incomingESRLink,
     TResult? Function(_ClearPageCommand value)? clearPageCommand,
   }) {
     return incomingFirebaseDeepLink?.call(this);
@@ -194,6 +205,7 @@ class _$_IncomingFirebaseDeepLink implements _IncomingFirebaseDeepLink {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_IncomingFirebaseDeepLink value)? incomingFirebaseDeepLink,
+    TResult Function(_IncomingESRLink value)? incomingESRLink,
     TResult Function(_ClearPageCommand value)? clearPageCommand,
     required TResult orElse(),
   }) {
@@ -212,6 +224,147 @@ abstract class _IncomingFirebaseDeepLink implements DeeplinkEvent {
   @JsonKey(ignore: true)
   _$$_IncomingFirebaseDeepLinkCopyWith<_$_IncomingFirebaseDeepLink>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_IncomingESRLinkCopyWith<$Res> {
+  factory _$$_IncomingESRLinkCopyWith(
+          _$_IncomingESRLink value, $Res Function(_$_IncomingESRLink) then) =
+      __$$_IncomingESRLinkCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String link});
+}
+
+/// @nodoc
+class __$$_IncomingESRLinkCopyWithImpl<$Res>
+    extends _$DeeplinkEventCopyWithImpl<$Res, _$_IncomingESRLink>
+    implements _$$_IncomingESRLinkCopyWith<$Res> {
+  __$$_IncomingESRLinkCopyWithImpl(
+      _$_IncomingESRLink _value, $Res Function(_$_IncomingESRLink) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? link = null,
+  }) {
+    return _then(_$_IncomingESRLink(
+      null == link
+          ? _value.link
+          : link // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_IncomingESRLink implements _IncomingESRLink {
+  const _$_IncomingESRLink(this.link);
+
+  @override
+  final String link;
+
+  @override
+  String toString() {
+    return 'DeeplinkEvent.incomingESRLink(link: $link)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_IncomingESRLink &&
+            (identical(other.link, link) || other.link == link));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, link);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_IncomingESRLinkCopyWith<_$_IncomingESRLink> get copyWith =>
+      __$$_IncomingESRLinkCopyWithImpl<_$_IncomingESRLink>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Uri link) incomingFirebaseDeepLink,
+    required TResult Function(String link) incomingESRLink,
+    required TResult Function() clearPageCommand,
+  }) {
+    return incomingESRLink(link);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Uri link)? incomingFirebaseDeepLink,
+    TResult? Function(String link)? incomingESRLink,
+    TResult? Function()? clearPageCommand,
+  }) {
+    return incomingESRLink?.call(link);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Uri link)? incomingFirebaseDeepLink,
+    TResult Function(String link)? incomingESRLink,
+    TResult Function()? clearPageCommand,
+    required TResult orElse(),
+  }) {
+    if (incomingESRLink != null) {
+      return incomingESRLink(link);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_IncomingFirebaseDeepLink value)
+        incomingFirebaseDeepLink,
+    required TResult Function(_IncomingESRLink value) incomingESRLink,
+    required TResult Function(_ClearPageCommand value) clearPageCommand,
+  }) {
+    return incomingESRLink(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_IncomingFirebaseDeepLink value)?
+        incomingFirebaseDeepLink,
+    TResult? Function(_IncomingESRLink value)? incomingESRLink,
+    TResult? Function(_ClearPageCommand value)? clearPageCommand,
+  }) {
+    return incomingESRLink?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_IncomingFirebaseDeepLink value)? incomingFirebaseDeepLink,
+    TResult Function(_IncomingESRLink value)? incomingESRLink,
+    TResult Function(_ClearPageCommand value)? clearPageCommand,
+    required TResult orElse(),
+  }) {
+    if (incomingESRLink != null) {
+      return incomingESRLink(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _IncomingESRLink implements DeeplinkEvent {
+  const factory _IncomingESRLink(final String link) = _$_IncomingESRLink;
+
+  String get link;
+  @JsonKey(ignore: true)
+  _$$_IncomingESRLinkCopyWith<_$_IncomingESRLink> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -253,6 +406,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Uri link) incomingFirebaseDeepLink,
+    required TResult Function(String link) incomingESRLink,
     required TResult Function() clearPageCommand,
   }) {
     return clearPageCommand();
@@ -262,6 +416,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Uri link)? incomingFirebaseDeepLink,
+    TResult? Function(String link)? incomingESRLink,
     TResult? Function()? clearPageCommand,
   }) {
     return clearPageCommand?.call();
@@ -271,6 +426,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Uri link)? incomingFirebaseDeepLink,
+    TResult Function(String link)? incomingESRLink,
     TResult Function()? clearPageCommand,
     required TResult orElse(),
   }) {
@@ -285,6 +441,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
   TResult map<TResult extends Object?>({
     required TResult Function(_IncomingFirebaseDeepLink value)
         incomingFirebaseDeepLink,
+    required TResult Function(_IncomingESRLink value) incomingESRLink,
     required TResult Function(_ClearPageCommand value) clearPageCommand,
   }) {
     return clearPageCommand(this);
@@ -295,6 +452,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_IncomingFirebaseDeepLink value)?
         incomingFirebaseDeepLink,
+    TResult? Function(_IncomingESRLink value)? incomingESRLink,
     TResult? Function(_ClearPageCommand value)? clearPageCommand,
   }) {
     return clearPageCommand?.call(this);
@@ -304,6 +462,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_IncomingFirebaseDeepLink value)? incomingFirebaseDeepLink,
+    TResult Function(_IncomingESRLink value)? incomingESRLink,
     TResult Function(_ClearPageCommand value)? clearPageCommand,
     required TResult orElse(),
   }) {
@@ -476,16 +635,20 @@ mixin _$PageCommand {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() navigateToCreateAccount,
+    required TResult Function(ScanQrCodeResultData data)
+        navigateToSignTransaction,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? navigateToCreateAccount,
+    TResult? Function(ScanQrCodeResultData data)? navigateToSignTransaction,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? navigateToCreateAccount,
+    TResult Function(ScanQrCodeResultData data)? navigateToSignTransaction,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -493,16 +656,22 @@ mixin _$PageCommand {
   TResult map<TResult extends Object?>({
     required TResult Function(_NavigateToCreateAccount value)
         navigateToCreateAccount,
+    required TResult Function(_ESRLinkNavigateToSignTransaction value)
+        navigateToSignTransaction,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_NavigateToCreateAccount value)? navigateToCreateAccount,
+    TResult? Function(_ESRLinkNavigateToSignTransaction value)?
+        navigateToSignTransaction,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_NavigateToCreateAccount value)? navigateToCreateAccount,
+    TResult Function(_ESRLinkNavigateToSignTransaction value)?
+        navigateToSignTransaction,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -566,6 +735,8 @@ class _$_NavigateToCreateAccount implements _NavigateToCreateAccount {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() navigateToCreateAccount,
+    required TResult Function(ScanQrCodeResultData data)
+        navigateToSignTransaction,
   }) {
     return navigateToCreateAccount();
   }
@@ -574,6 +745,7 @@ class _$_NavigateToCreateAccount implements _NavigateToCreateAccount {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? navigateToCreateAccount,
+    TResult? Function(ScanQrCodeResultData data)? navigateToSignTransaction,
   }) {
     return navigateToCreateAccount?.call();
   }
@@ -582,6 +754,7 @@ class _$_NavigateToCreateAccount implements _NavigateToCreateAccount {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? navigateToCreateAccount,
+    TResult Function(ScanQrCodeResultData data)? navigateToSignTransaction,
     required TResult orElse(),
   }) {
     if (navigateToCreateAccount != null) {
@@ -595,6 +768,8 @@ class _$_NavigateToCreateAccount implements _NavigateToCreateAccount {
   TResult map<TResult extends Object?>({
     required TResult Function(_NavigateToCreateAccount value)
         navigateToCreateAccount,
+    required TResult Function(_ESRLinkNavigateToSignTransaction value)
+        navigateToSignTransaction,
   }) {
     return navigateToCreateAccount(this);
   }
@@ -603,6 +778,8 @@ class _$_NavigateToCreateAccount implements _NavigateToCreateAccount {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_NavigateToCreateAccount value)? navigateToCreateAccount,
+    TResult? Function(_ESRLinkNavigateToSignTransaction value)?
+        navigateToSignTransaction,
   }) {
     return navigateToCreateAccount?.call(this);
   }
@@ -611,6 +788,8 @@ class _$_NavigateToCreateAccount implements _NavigateToCreateAccount {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_NavigateToCreateAccount value)? navigateToCreateAccount,
+    TResult Function(_ESRLinkNavigateToSignTransaction value)?
+        navigateToSignTransaction,
     required TResult orElse(),
   }) {
     if (navigateToCreateAccount != null) {
@@ -622,4 +801,149 @@ class _$_NavigateToCreateAccount implements _NavigateToCreateAccount {
 
 abstract class _NavigateToCreateAccount implements PageCommand {
   const factory _NavigateToCreateAccount() = _$_NavigateToCreateAccount;
+}
+
+/// @nodoc
+abstract class _$$_ESRLinkNavigateToSignTransactionCopyWith<$Res> {
+  factory _$$_ESRLinkNavigateToSignTransactionCopyWith(
+          _$_ESRLinkNavigateToSignTransaction value,
+          $Res Function(_$_ESRLinkNavigateToSignTransaction) then) =
+      __$$_ESRLinkNavigateToSignTransactionCopyWithImpl<$Res>;
+  @useResult
+  $Res call({ScanQrCodeResultData data});
+}
+
+/// @nodoc
+class __$$_ESRLinkNavigateToSignTransactionCopyWithImpl<$Res>
+    extends _$PageCommandCopyWithImpl<$Res, _$_ESRLinkNavigateToSignTransaction>
+    implements _$$_ESRLinkNavigateToSignTransactionCopyWith<$Res> {
+  __$$_ESRLinkNavigateToSignTransactionCopyWithImpl(
+      _$_ESRLinkNavigateToSignTransaction _value,
+      $Res Function(_$_ESRLinkNavigateToSignTransaction) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? data = null,
+  }) {
+    return _then(_$_ESRLinkNavigateToSignTransaction(
+      null == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as ScanQrCodeResultData,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_ESRLinkNavigateToSignTransaction
+    implements _ESRLinkNavigateToSignTransaction {
+  const _$_ESRLinkNavigateToSignTransaction(this.data);
+
+  @override
+  final ScanQrCodeResultData data;
+
+  @override
+  String toString() {
+    return 'PageCommand.navigateToSignTransaction(data: $data)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_ESRLinkNavigateToSignTransaction &&
+            (identical(other.data, data) || other.data == data));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, data);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_ESRLinkNavigateToSignTransactionCopyWith<
+          _$_ESRLinkNavigateToSignTransaction>
+      get copyWith => __$$_ESRLinkNavigateToSignTransactionCopyWithImpl<
+          _$_ESRLinkNavigateToSignTransaction>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() navigateToCreateAccount,
+    required TResult Function(ScanQrCodeResultData data)
+        navigateToSignTransaction,
+  }) {
+    return navigateToSignTransaction(data);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? navigateToCreateAccount,
+    TResult? Function(ScanQrCodeResultData data)? navigateToSignTransaction,
+  }) {
+    return navigateToSignTransaction?.call(data);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? navigateToCreateAccount,
+    TResult Function(ScanQrCodeResultData data)? navigateToSignTransaction,
+    required TResult orElse(),
+  }) {
+    if (navigateToSignTransaction != null) {
+      return navigateToSignTransaction(data);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_NavigateToCreateAccount value)
+        navigateToCreateAccount,
+    required TResult Function(_ESRLinkNavigateToSignTransaction value)
+        navigateToSignTransaction,
+  }) {
+    return navigateToSignTransaction(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_NavigateToCreateAccount value)? navigateToCreateAccount,
+    TResult? Function(_ESRLinkNavigateToSignTransaction value)?
+        navigateToSignTransaction,
+  }) {
+    return navigateToSignTransaction?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_NavigateToCreateAccount value)? navigateToCreateAccount,
+    TResult Function(_ESRLinkNavigateToSignTransaction value)?
+        navigateToSignTransaction,
+    required TResult orElse(),
+  }) {
+    if (navigateToSignTransaction != null) {
+      return navigateToSignTransaction(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ESRLinkNavigateToSignTransaction implements PageCommand {
+  const factory _ESRLinkNavigateToSignTransaction(
+      final ScanQrCodeResultData data) = _$_ESRLinkNavigateToSignTransaction;
+
+  ScanQrCodeResultData get data;
+  @JsonKey(ignore: true)
+  _$$_ESRLinkNavigateToSignTransactionCopyWith<
+          _$_ESRLinkNavigateToSignTransaction>
+      get copyWith => throw _privateConstructorUsedError;
 }

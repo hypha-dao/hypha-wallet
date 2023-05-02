@@ -8,15 +8,15 @@ import 'package:hypha_wallet/core/shared_preferences/hypha_shared_prefs.dart';
 import 'package:hypha_wallet/ui/architecture/interactor/base_usecase.dart';
 import 'package:hypha_wallet/ui/architecture/result/result.dart' as HResult;
 
-class ParseQRCodeUseCase extends InputUseCase<HResult.Result<ScanQrCodeResultData, HyphaError>, ParseQrCodeInput> {
+class ParseQRCodeUseCase extends InputUseCase<HResult.Result<ScanQrCodeResultData, HyphaError>, ParseESRLinkInput> {
   final HyphaSharedPrefs _appSharedPrefs;
   ParseQRCodeUseCase(this._appSharedPrefs);
 
   @override
-  Future<HResult.Result<ScanQrCodeResultData, HyphaError>> run(ParseQrCodeInput input) async {
+  Future<HResult.Result<ScanQrCodeResultData, HyphaError>> run(ParseESRLinkInput input) async {
     final UserProfileData? userData = await _appSharedPrefs.getUserProfileData();
     final qrCodeValidationResult =
-        await _validateQrCode(accountName: userData?.accountName ?? '', scanResult: input.scanResult);
+        await _validateQrCode(accountName: userData?.accountName ?? '', scanResult: input.esrLink);
 
     if (qrCodeValidationResult.isValue) {
       return HResult.Result.value(qrCodeValidationResult.asValue!.value);
@@ -49,8 +49,8 @@ Future<Result<ScanQrCodeResultData>> _validateQrCode({required String scanResult
   }
 }
 
-class ParseQrCodeInput {
-  final String scanResult;
+class ParseESRLinkInput {
+  final String esrLink;
 
-  ParseQrCodeInput({required this.scanResult});
+  ParseESRLinkInput({required this.esrLink});
 }
