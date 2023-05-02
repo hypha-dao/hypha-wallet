@@ -34,52 +34,42 @@ class DeeplinkBloc extends Bloc<DeeplinkEvent, DeeplinkState> {
   }
 
   Future<void> initDynamicLinks() async {
-    /// Handle Firebase links - these don't react to ESR links but we check just in case
-    // final PendingDynamicLinkData? initialDeepLink = await FirebaseDynamicLinks.instance.getInitialLink();
+    // Handle initial firebase links - such as post install
+    final PendingDynamicLinkData? initialDeepLink = await FirebaseDynamicLinks.instance.getInitialLink();
 
-    // if (initialDeepLink != null) {
-    //   LogHelper.d('initial link: ${initialDeepLink.link}');
-    //   if (!initialDeepLink.link.isEsr()) {
-    //     _debugShowMessage('initial firebase link: ${initialDeepLink.link}');
-    //     add(DeeplinkEvent.incomingFirebaseDeepLink(initialDeepLink.link));
-    //   } else {
-    //     _debugShowMessage('initial esr link: ${initialDeepLink.link}');
-    //   }
-    // }
+    if (initialDeepLink != null) {
+      LogHelper.d('initial deep link: ${initialDeepLink.link}');
+      if (!initialDeepLink.link.isEsr()) {
+        add(DeeplinkEvent.incomingFirebaseDeepLink(initialDeepLink.link));
+      }
+    }
 
+    // Handle initial ESR links
     final initialUriString = await _appLinks.getInitialAppLinkString();
     if (initialUriString != null) {
       if (SigningRequestManager.isValidESRScheme(initialUriString)) {
         add(DeeplinkEvent.incomingESRLink(initialUriString));
-      } else {
-        final uri = Uri.parse(initialUriString);
-        add(DeeplinkEvent.incomingFirebaseDeepLink(uri));
       }
     }
 
+    // Listen to ESR links
     _linkSubscription = _appLinks.stringLinkStream.listen((uriString) {
       // Note: We must listen to strings, not Uris; Uri parsing loses case
       // and ESR signing requests are case sensitive.
       if (SigningRequestManager.isValidESRScheme(uriString)) {
-        print('>>> esr link detected: $uriString');
-        _debugShowMessage('esr link detected: $uriString');
+        LogHelper.d('esr link detected: $uriString');
         add(DeeplinkEvent.incomingESRLink(uriString));
-      } else {
-        //_debugShowMessage('Not ESR: $uriString');
-        print('non esr link: $uriString');
       }
     }, onError: (error) {
       print('link subscription error $error');
     });
 
+    // Listen to Firebase deep links
     FirebaseDynamicLinks.instance.onLink.listen((PendingDynamicLinkData dynamicLinkData) {
-      LogHelper.d('received link: ${dynamicLinkData.link}');
+      LogHelper.d('received deep link: ${dynamicLinkData.link}');
 
       if (!dynamicLinkData.link.isEsr()) {
-        _debugShowMessage('deep link: ${dynamicLinkData.link}');
         add(DeeplinkEvent.incomingFirebaseDeepLink(dynamicLinkData.link));
-      } else {
-        _debugShowMessage('ESR link: ${dynamicLinkData.link}');
       }
     }).onError((error) {
       LogHelper.e('Deep link error: $error');
