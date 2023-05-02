@@ -95,7 +95,6 @@ class DeeplinkBloc extends Bloc<DeeplinkEvent, DeeplinkState> {
   }
 
   Future<void> _incomingESRLink(_IncomingESRLink event, Emitter<DeeplinkState> emit) async {
-    // final useCase = GetIt.I.get<ParseQRCodeUseCase>();
     final result = await _parseQRCodeUseCase.run(ParseESRLinkInput(esrLink: event.link));
     if (result.isValue) {
       emit(
