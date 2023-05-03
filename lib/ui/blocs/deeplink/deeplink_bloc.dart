@@ -99,8 +99,7 @@ class DeeplinkBloc extends Bloc<DeeplinkEvent, DeeplinkState> {
         ),
       );
     } else {
-      print('error: ${result.asError!.error}');
-      print(result.asError!.error);
+      LogHelper.e('error: ${result.asError!.error}');
     }
   }
 }
