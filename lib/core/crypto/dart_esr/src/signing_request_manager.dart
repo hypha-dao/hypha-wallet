@@ -185,21 +185,23 @@ class SigningRequestManager {
   }
 
   /// Creates a signing request from encoded `esr:` uri string. */
-  factory SigningRequestManager.from(String? uri, {required SigningRequestEncodingOptions options}) {
+  factory SigningRequestManager.from(String? uri,
+      {required SigningRequestEncodingOptions options, EOSService? eosService}) {
     if (uri is! String) {
       throw 'Invalid request uri';
     }
-    final splitUri = uri.split(':');
-    final scheme = splitUri[0];
-    final path = splitUri[1];
-    if (scheme != 'esr' && scheme != 'web+esr') {
+    if (!isValidESRScheme(uri)) {
       throw 'Invalid scheme';
     }
+    final splitUri = uri.split(':');
+    final path = splitUri[1];
+
     final data = Base64u().decode(path.startsWith('//') ? path.substring(2) : path);
-    return SigningRequestManager.fromData(data, options: options);
+    return SigningRequestManager.fromData(data, options: options, eosService: eosService);
   }
 
-  factory SigningRequestManager.fromData(Uint8List data, {required SigningRequestEncodingOptions options}) {
+  factory SigningRequestManager.fromData(Uint8List data,
+      {required SigningRequestEncodingOptions options, EOSService? eosService}) {
     final header = data.first;
     final version = header & ~(1 << 7);
     if (!(version == ESRConstants.ProtocolVersion || version == ESRConstants.ProtocolVersion3)) {
@@ -221,10 +223,9 @@ class SigningRequestManager {
     final signingRequest = SigningRequest.fromBinary(type(version)!, buf);
 
     // resolve network and abi provider -
+    eosService ??= GetIt.I.get<EOSService>();
     final network = HyphaSigningRequestManager.resolveNetwork(signingRequest.chainId);
-    // TODO(NIK): Remove debug code
-    // print('network: $network');
-    final eosClientForAbi = GetIt.I.get<EOSService>().getEosClientForNetwork(network);
+    final eosClientForAbi = eosService.getEosClientForNetwork(network);
     final abiProvider = DefaultAbiProvider(eosClientForAbi);
 
     RequestSignature? signature;

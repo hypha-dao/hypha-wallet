@@ -1,4 +1,5 @@
 import 'package:async/async.dart';
+import 'package:hypha_wallet/core/crypto/dart_esr/dart_esr.dart';
 import 'package:hypha_wallet/core/crypto/seeds_esr/scan_qr_code_result_data.dart';
 import 'package:hypha_wallet/core/crypto/seeds_esr/seeds_esr.dart';
 import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
@@ -30,9 +31,7 @@ Future<Result<ScanQrCodeResultData>> _validateQrCode({required String scanResult
   if (scanResult.isEmpty) {
     return Result.error(HyphaError.generic("We don't recognize this QR Code"));
   } else {
-    final splitUri = scanResult.split(':');
-    final scheme = splitUri[0];
-    if (scheme != 'esr' && scheme != 'web+esr') {
+    if (!SigningRequestManager.isValidESRScheme(scanResult)) {
       print(' _validateQrCode : Invalid QR code');
       return Result.error(HyphaError.generic("We don't recognize this QR Code"));
     }
