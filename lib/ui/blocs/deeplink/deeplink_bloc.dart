@@ -29,10 +29,6 @@ class DeeplinkBloc extends Bloc<DeeplinkEvent, DeeplinkState> {
     on<_ClearPageCommand>((_, emit) => emit(state.copyWith(command: null)));
   }
 
-  void _debugShowMessage(String message) {
-    Get.showSnackbar(GetSnackBar(message: message, duration: const Duration(seconds: 5)));
-  }
-
   Future<void> initDynamicLinks() async {
     // Handle initial firebase links - such as post install
     final PendingDynamicLinkData? initialDeepLink = await FirebaseDynamicLinks.instance.getInitialLink();
