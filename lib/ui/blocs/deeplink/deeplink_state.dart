@@ -11,7 +11,7 @@ class DeeplinkState with _$DeeplinkState {
 class InviteLinkData {
   final String code;
   final String chain;
-  final String dao;
+  final String? dao;
 
-  InviteLinkData({required this.code, required this.chain, required this.dao});
+  InviteLinkData({required this.code, required this.chain, this.dao});
 }

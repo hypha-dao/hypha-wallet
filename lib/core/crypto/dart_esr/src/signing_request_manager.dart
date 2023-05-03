@@ -178,6 +178,12 @@ class SigningRequestManager {
     return SigningRequestManager.fromData(buf.asUint8List(), options: options);
   }
 
+  static bool isValidESRScheme(String uri) {
+    final splitUri = uri.split(':');
+    final scheme = splitUri[0];
+    return scheme == 'esr' || scheme == 'web+esr';
+  }
+
   /// Creates a signing request from encoded `esr:` uri string. */
   factory SigningRequestManager.from(String? uri, {required SigningRequestEncodingOptions options}) {
     if (uri is! String) {
