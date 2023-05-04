@@ -46,7 +46,7 @@
                 <category android:name="android.intent.category.DEFAULT"/>
                 <category android:name="android.intent.category.BROWSABLE"/>
                 <data
-                    android:host="earth.hypha"
+                    android:host="hyphawallet.page.link"
                     android:scheme="https"/>
             </intent-filter>
 
