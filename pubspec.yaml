@@ -120,6 +120,7 @@ dependencies:
   firebase_dynamic_links: ^5.0.8
   firebase_messaging: ^14.4.1
   cloud_firestore: ^4.5.3
+  firebase_analytics: ^10.2.1
 
   # Amazon stuff for profile... Weak sauce
   amazon_cognito_identity_dart_2: ^3.2.0

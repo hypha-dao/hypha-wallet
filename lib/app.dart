@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
@@ -51,6 +52,9 @@ class HyphaApp extends StatelessWidget {
 
 class HyphaAppView extends StatelessWidget {
   const HyphaAppView({super.key});
+
+  static FirebaseAnalytics analytics = FirebaseAnalytics.instance;
+  static FirebaseAnalyticsObserver observer = FirebaseAnalyticsObserver(analytics: analytics);
 
   @override
   Widget build(BuildContext context) {
@@ -189,6 +193,7 @@ class HyphaAppView extends StatelessWidget {
             darkTheme: HyphaTheme.darkTheme,
             theme: HyphaTheme.lightTheme,
             themeMode: state.themeMode,
+            navigatorObservers: <NavigatorObserver>[observer],
             home: const SizedBox.shrink(),
           );
         },

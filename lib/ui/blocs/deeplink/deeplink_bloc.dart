@@ -37,6 +37,7 @@ class DeeplinkBloc extends Bloc<DeeplinkEvent, DeeplinkState> {
   Future<void> initDynamicLinks() async {
     // Handle initial firebase links - such as post install
     final PendingDynamicLinkData? initialDeepLink = await FirebaseDynamicLinks.instance.getInitialLink();
+    LogHelper.d('initDynamicLinks initialDeepLink: - $initialDeepLink');
 
     if (initialDeepLink != null) {
       LogHelper.d('initial deep link: ${initialDeepLink.link}');
