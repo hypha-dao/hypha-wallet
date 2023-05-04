@@ -44,7 +44,7 @@ class PushNotificationsBloc extends Bloc<PushNotificationsEvent, PushNotificatio
     if (notificationTypeId == 'incoming_transaction') {
       final String? incomingTransaction = message.notification?.body;
       final result = await incomingTransaction?.let(
-        (it) async => parseQRCodeUseCase.run(ParseQrCodeInput(scanResult: it)),
+        (it) async => parseQRCodeUseCase.run(ParseESRLinkInput(esrLink: it)),
       );
 
       if (result?.isValue == true) {

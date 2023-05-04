@@ -33,7 +33,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     }
 
     emit(state.copyWith(isLoading: true));
-    final result = await _parseQRCodeUseCase.run(ParseQrCodeInput(scanResult: event.value));
+    final result = await _parseQRCodeUseCase.run(ParseESRLinkInput(esrLink: event.value));
 
     if (result.isValue) {
       final ScanQrCodeResultData value = result.asValue!.value;

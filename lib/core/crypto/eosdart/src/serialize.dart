@@ -616,7 +616,9 @@ deserializeStruct(Type self, SerialBuffer buffer, {SerializerState? state, allow
       }
     }
     return result;
-  } catch (e) {
+  } catch (e, s) {
+    print('deserializeStruct error $e');
+    print('deserializeStruct error stack: $s');
     throw e;
   }
 }
