@@ -4,7 +4,6 @@ import 'package:app_links/app_links.dart';
 import 'package:bloc/bloc.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:get/get.dart';
 import 'package:hypha_wallet/core/crypto/dart_esr/dart_esr.dart';
 import 'package:hypha_wallet/core/crypto/seeds_esr/scan_qr_code_result_data.dart';
 import 'package:hypha_wallet/core/logging/log_helper.dart';
@@ -32,6 +31,7 @@ class DeeplinkBloc extends Bloc<DeeplinkEvent, DeeplinkState> {
   Future<void> initDynamicLinks() async {
     // Handle initial firebase links - such as post install
     final PendingDynamicLinkData? initialDeepLink = await FirebaseDynamicLinks.instance.getInitialLink();
+    LogHelper.d('initDynamicLinks initialDeepLink: - $initialDeepLink');
 
     if (initialDeepLink != null) {
       LogHelper.d('initial deep link: ${initialDeepLink.link}');
