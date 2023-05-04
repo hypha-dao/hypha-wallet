@@ -36,10 +36,16 @@ class PushNotificationsBloc extends Bloc<PushNotificationsEvent, PushNotificatio
 
   FutureOr<void> _onMessageReceived(_OnMessageReceived event, Emitter<PushNotificationsState> emit) async {
     final message = event.message;
-    if (message.data.containsKey('incoming_transaction')) {
+    String? notificationTypeId;
+    if (message.data.containsKey('notification_type_id')) {
+      notificationTypeId = message.data['notification_type_id'];
+    }
+
+    if (notificationTypeId == 'incoming_transaction') {
       final String? incomingTransaction = message.notification?.body;
-      final result = await incomingTransaction
-          ?.let((it) async => parseQRCodeUseCase.run(ParseESRLinkInput(esrLink: incomingTransaction)));
+      final result = await incomingTransaction?.let(
+        (it) async => parseQRCodeUseCase.run(ParseESRLinkInput(esrLink: it)),
+      );
 
       if (result?.isValue == true) {
         final ScanQrCodeResultData value = result!.asValue!.value;
