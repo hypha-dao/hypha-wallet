@@ -82,9 +82,7 @@ class HyphaAppView extends StatelessWidget {
           listenWhen: (previous, current) => previous.command != current.command,
           listener: (context, state) {
             state.command?.when(
-                navigateToCreateAccount: () => Get.offAll(
-                      () => const OnboardingPageWithLink(),
-                    ),
+                navigateToCreateAccount: () => Get.offAll(() => const OnboardingPageWithLink()),
                 navigateToSignTransaction: (ScanQrCodeResultData data) {
                   _showSignTransactionBottomSheet(data);
                 });
@@ -194,7 +192,7 @@ class HyphaAppView extends StatelessWidget {
             theme: HyphaTheme.lightTheme,
             themeMode: state.themeMode,
             navigatorObservers: <NavigatorObserver>[observer],
-            home: const SizedBox.shrink(),
+            home: const OnboardingPage(),
           );
         },
       ),

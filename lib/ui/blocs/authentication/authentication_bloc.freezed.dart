@@ -996,7 +996,7 @@ class __$$_AuthenticationStateCopyWithImpl<$Res>
 
 class _$_AuthenticationState implements _AuthenticationState {
   const _$_AuthenticationState(
-      {this.authStatus = AuthenticationStatus.unknown,
+      {this.authStatus = AuthenticationStatus.unauthenticated,
       this.userProfileData,
       this.userAuthData});
 
