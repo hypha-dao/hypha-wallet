@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
@@ -8,6 +7,7 @@ import 'package:get_it/get_it.dart';
 import 'package:hypha_wallet/core/crypto/seeds_esr/scan_qr_code_result_data.dart';
 import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
 import 'package:hypha_wallet/core/extension/scope_functions.dart';
+import 'package:hypha_wallet/core/firebase/firebase_analytics_service.dart';
 import 'package:hypha_wallet/core/logging/log_helper.dart';
 import 'package:hypha_wallet/core/network/repository/auth_repository.dart';
 import 'package:hypha_wallet/design/themes/hypha_theme.dart';
@@ -52,9 +52,6 @@ class HyphaApp extends StatelessWidget {
 
 class HyphaAppView extends StatelessWidget {
   const HyphaAppView({super.key});
-
-  static FirebaseAnalytics analytics = FirebaseAnalytics.instance;
-  static FirebaseAnalyticsObserver observer = FirebaseAnalyticsObserver(analytics: analytics);
 
   @override
   Widget build(BuildContext context) {
@@ -191,7 +188,7 @@ class HyphaAppView extends StatelessWidget {
             darkTheme: HyphaTheme.darkTheme,
             theme: HyphaTheme.lightTheme,
             themeMode: state.themeMode,
-            navigatorObservers: <NavigatorObserver>[observer],
+            navigatorObservers: <NavigatorObserver>[GetIt.I.get<FirebaseAnalyticsService>().firebaseObserver],
             home: const OnboardingPage(),
           );
         },

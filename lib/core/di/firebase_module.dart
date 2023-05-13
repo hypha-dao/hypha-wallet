@@ -9,6 +9,9 @@ Future _registerFirebaseModule() async {
   final firebaseDatabase = FirebaseDatabaseService.init();
   _getIt.registerLazySingleton(() => firebaseDatabase);
 
+  final firebaseAnalytics = FirebaseAnalyticsService.init();
+  _getIt.registerLazySingleton(() => firebaseAnalytics);
+
   final init = FirebasePushNotificationsService.init();
   _getIt.registerLazySingleton(() => init);
 
