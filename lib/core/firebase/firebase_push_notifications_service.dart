@@ -7,8 +7,6 @@ import 'package:hypha_wallet/core/logging/log_helper.dart';
 class FirebasePushNotificationsService {
   final _onTokenRefreshStream = StreamController<String>();
 
-  FirebasePushNotificationsService._();
-
   FirebasePushNotificationsService.init() {
     FirebaseMessaging.instance.onTokenRefresh.listen((String fcmToken) {
       _onTokenRefreshStream.add(fcmToken);
