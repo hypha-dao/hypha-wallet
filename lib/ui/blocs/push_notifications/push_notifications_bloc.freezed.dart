@@ -236,19 +236,22 @@ mixin _$PushNotificationsEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() clearPageCommand,
-    required TResult Function(RemoteMessage message) onMessageReceived,
+    required TResult Function(RemoteMessage message, bool isBackground)
+        onMessageReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? clearPageCommand,
-    TResult? Function(RemoteMessage message)? onMessageReceived,
+    TResult? Function(RemoteMessage message, bool isBackground)?
+        onMessageReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? clearPageCommand,
-    TResult Function(RemoteMessage message)? onMessageReceived,
+    TResult Function(RemoteMessage message, bool isBackground)?
+        onMessageReceived,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -331,7 +334,8 @@ class _$_ClearPageCommand implements _ClearPageCommand {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() clearPageCommand,
-    required TResult Function(RemoteMessage message) onMessageReceived,
+    required TResult Function(RemoteMessage message, bool isBackground)
+        onMessageReceived,
   }) {
     return clearPageCommand();
   }
@@ -340,7 +344,8 @@ class _$_ClearPageCommand implements _ClearPageCommand {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? clearPageCommand,
-    TResult? Function(RemoteMessage message)? onMessageReceived,
+    TResult? Function(RemoteMessage message, bool isBackground)?
+        onMessageReceived,
   }) {
     return clearPageCommand?.call();
   }
@@ -349,7 +354,8 @@ class _$_ClearPageCommand implements _ClearPageCommand {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? clearPageCommand,
-    TResult Function(RemoteMessage message)? onMessageReceived,
+    TResult Function(RemoteMessage message, bool isBackground)?
+        onMessageReceived,
     required TResult orElse(),
   }) {
     if (clearPageCommand != null) {
@@ -400,7 +406,7 @@ abstract class _$$_OnMessageReceivedCopyWith<$Res> {
           $Res Function(_$_OnMessageReceived) then) =
       __$$_OnMessageReceivedCopyWithImpl<$Res>;
   @useResult
-  $Res call({RemoteMessage message});
+  $Res call({RemoteMessage message, bool isBackground});
 }
 
 /// @nodoc
@@ -415,12 +421,17 @@ class __$$_OnMessageReceivedCopyWithImpl<$Res>
   @override
   $Res call({
     Object? message = null,
+    Object? isBackground = null,
   }) {
     return _then(_$_OnMessageReceived(
       null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as RemoteMessage,
+      null == isBackground
+          ? _value.isBackground
+          : isBackground // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -428,14 +439,16 @@ class __$$_OnMessageReceivedCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_OnMessageReceived implements _OnMessageReceived {
-  const _$_OnMessageReceived(this.message);
+  const _$_OnMessageReceived(this.message, this.isBackground);
 
   @override
   final RemoteMessage message;
+  @override
+  final bool isBackground;
 
   @override
   String toString() {
-    return 'PushNotificationsEvent.onMessageReceived(message: $message)';
+    return 'PushNotificationsEvent.onMessageReceived(message: $message, isBackground: $isBackground)';
   }
 
   @override
@@ -443,11 +456,13 @@ class _$_OnMessageReceived implements _OnMessageReceived {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_OnMessageReceived &&
-            (identical(other.message, message) || other.message == message));
+            (identical(other.message, message) || other.message == message) &&
+            (identical(other.isBackground, isBackground) ||
+                other.isBackground == isBackground));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, message);
+  int get hashCode => Object.hash(runtimeType, message, isBackground);
 
   @JsonKey(ignore: true)
   @override
@@ -460,29 +475,32 @@ class _$_OnMessageReceived implements _OnMessageReceived {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() clearPageCommand,
-    required TResult Function(RemoteMessage message) onMessageReceived,
+    required TResult Function(RemoteMessage message, bool isBackground)
+        onMessageReceived,
   }) {
-    return onMessageReceived(message);
+    return onMessageReceived(message, isBackground);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? clearPageCommand,
-    TResult? Function(RemoteMessage message)? onMessageReceived,
+    TResult? Function(RemoteMessage message, bool isBackground)?
+        onMessageReceived,
   }) {
-    return onMessageReceived?.call(message);
+    return onMessageReceived?.call(message, isBackground);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? clearPageCommand,
-    TResult Function(RemoteMessage message)? onMessageReceived,
+    TResult Function(RemoteMessage message, bool isBackground)?
+        onMessageReceived,
     required TResult orElse(),
   }) {
     if (onMessageReceived != null) {
-      return onMessageReceived(message);
+      return onMessageReceived(message, isBackground);
     }
     return orElse();
   }
@@ -520,10 +538,12 @@ class _$_OnMessageReceived implements _OnMessageReceived {
 }
 
 abstract class _OnMessageReceived implements PushNotificationsEvent {
-  const factory _OnMessageReceived(final RemoteMessage message) =
+  const factory _OnMessageReceived(
+          final RemoteMessage message, final bool isBackground) =
       _$_OnMessageReceived;
 
   RemoteMessage get message;
+  bool get isBackground;
   @JsonKey(ignore: true)
   _$$_OnMessageReceivedCopyWith<_$_OnMessageReceived> get copyWith =>
       throw _privateConstructorUsedError;
