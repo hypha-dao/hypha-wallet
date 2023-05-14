@@ -15,8 +15,8 @@ class Endpoints {
   static const String creteAccount = '/createAccount';
 
   // receiveTimeout
-  static const int receiveTimeout = 15000;
+  static const Duration receiveTimeout = Duration(seconds: 15);
 
   // connectTimeout
-  static const int connectionTimeout = 15000;
+  static const Duration connectionTimeout = Duration(seconds: 15);
 }
