@@ -100,7 +100,7 @@ dependencies:
   url_launcher: ^6.1.10
 
   # Fonts
-  google_fonts: ^3.0.1
+  google_fonts: ^4.0.4
 
   # formatting
   intl: ^0.18.0
