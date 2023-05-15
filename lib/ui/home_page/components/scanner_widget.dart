@@ -78,13 +78,12 @@ class _ScannerWidgetState extends State<ScannerWidget> {
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(30),
                               child: MobileScanner(
-                                allowDuplicates: false,
                                 controller: MobileScannerController(
                                   facing: CameraFacing.back,
                                   torchEnabled: false,
                                 ),
-                                onDetect: (barcode, args) {
-                                  if (barcode.rawValue == null) {
+                                onDetect: (BarcodeCapture barcode) {
+                                  if (barcode.raw == null) {
                                     LogHelper.d('Failed to scan Barcode');
                                     context.read<ErrorHandlerBloc>().add(
                                           ErrorHandlerEvent.onError(
@@ -95,7 +94,7 @@ class _ScannerWidgetState extends State<ScannerWidget> {
                                           ),
                                         );
                                   } else {
-                                    final String code = barcode.rawValue!;
+                                    final String code = barcode.raw!;
                                     LogHelper.d('Barcode found! $code');
                                     hideScanner();
                                     context.read<HomeBloc>().add(HomeEvent.onQRCodeScanned(code));
