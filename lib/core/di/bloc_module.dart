@@ -15,7 +15,11 @@ void _registerBlocsModule() {
       () => SettingsBloc(_getIt<HyphaSharedPrefs>(), _getIt<SecureStorageService>(), _getIt<DeleteAccountUseCase>()));
 
   /// Views Blocs
-  _registerFactory(() => HomeBloc(_getIt<ParseQRCodeUseCase>(), _getIt<ErrorHandlerManager>()));
+  _registerFactory(() => HomeBloc(
+        _getIt<ParseQRCodeUseCase>(),
+        _getIt<ErrorHandlerManager>(),
+        _getIt<FirebasePushNotificationsService>(),
+      ));
   _registerFactory(() => ImportAccountBloc(
         _getIt<GenerateKeyFromRecoveryWordsUseCase>(),
         _getIt<ValidateKeyUseCase>(),
