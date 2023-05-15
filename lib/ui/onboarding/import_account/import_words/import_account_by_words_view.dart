@@ -95,14 +95,14 @@ class ImportAccountByWordsView extends StatelessWidget {
                         child: HyphaProgressIndicator(),
                       );
                     } else if (state.showNoAccountsFound) {
-                      return Padding(
-                        padding: const EdgeInsets.only(top: 16),
+                      return const Padding(
+                        padding: EdgeInsets.only(top: 16),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Icon(Icons.info_outline, color: HyphaColors.error),
-                            const SizedBox(width: 8),
-                            const Text('No accounts found'),
+                            Icon(Icons.info_outline, color: HyphaColors.error),
+                            SizedBox(width: 8),
+                            Text('No accounts found'),
                           ],
                         ),
                       );
