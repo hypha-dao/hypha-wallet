@@ -1,23 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
-import 'package:hypha_wallet/core/extension/scope_functions.dart';
-import 'package:hypha_wallet/design/avatar_image/hypha_editable_avatar_image.dart';
-import 'package:hypha_wallet/design/background/hypha_half_background.dart';
+import 'package:hypha_wallet/design/avatar_image/hypha_avatar_image.dart';
 import 'package:hypha_wallet/design/background/hypha_page_background.dart';
-import 'package:hypha_wallet/design/buttons/hypha_app_button.dart';
-import 'package:hypha_wallet/design/cards/hypha_actionable_card.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
-import 'package:hypha_wallet/design/progress_indicator/hypha_partial_progress_indicator.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
-import 'package:hypha_wallet/ui/profile/components/crypto_currency_widget.dart';
-import 'package:hypha_wallet/ui/profile/components/profile_edit_menu_bottom_sheet.dart';
-import 'package:hypha_wallet/ui/profile/interactor/profile_bloc.dart';
+import 'package:hypha_wallet/ui/blocs/authentication/authentication_bloc.dart';
 import 'package:hypha_wallet/ui/shared/hypha_body_widget.dart';
 import 'package:hypha_wallet/ui/shared/hypha_error_view.dart';
+import 'package:hypha_wallet/ui/shared/listview_with_all_separators.dart';
+import 'package:hypha_wallet/ui/wallet/components/wallet_token_widget.dart';
 import 'package:hypha_wallet/ui/wallet/interactor/wallet_bloc.dart';
-import 'package:image_cropper/image_cropper.dart';
-import 'package:image_picker/image_picker.dart';
 
 class WalletView extends StatelessWidget {
   const WalletView({super.key});
@@ -25,7 +17,7 @@ class WalletView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return HyphaPageBackground(
-      withGradient: true,
+      withOpacity: false,
       child: BlocBuilder<WalletBloc, WalletState>(
         builder: (context, state) {
           return RefreshIndicator(
@@ -42,27 +34,46 @@ class WalletView extends StatelessWidget {
               success: (value) => Scaffold(
                 appBar: AppBar(
                   backgroundColor: Colors.transparent,
-                  actions: [
-                    IconButton(
-                        onPressed: () {
-                          showModalBottomSheet(
-                            isScrollControlled: true,
-                            clipBehavior: Clip.hardEdge,
-                            context: context,
-                            builder: (modelContext) => Wrap(children: [
-                              ProfileEditMenuBottomSheet(profileBloc: BlocProvider.of<ProfileBloc>(context))
-                            ]),
-                            shape: const RoundedRectangleBorder(
-                              borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
-                            ),
+                  title: Row(
+                    children: [
+                      BlocBuilder<AuthenticationBloc, AuthenticationState>(
+                        builder: (context, state) {
+                          return HyphaAvatarImage(
+                            imageRadius: 17,
+                            imageFromUrl: state.userProfileData?.userImage,
+                            name: state.userProfileData?.userName,
                           );
                         },
-                        icon: const Icon(Icons.edit))
+                      ),
+                      const SizedBox(width: 12),
+                      Text('Wallet', style: context.hyphaTextTheme.bigTitles),
+                    ],
+                  ),
+                  titleSpacing: 28,
+                ),
+                backgroundColor: HyphaColors.transparent,
+                body: Column(
+                  children: [
+                    const SizedBox(height: 20),
+                    SizedBox(
+                      height: 150,
+                      child: ListViewWithAllSeparators(
+                        scrollDirection: Axis.horizontal,
+                        items: state.tokens,
+                        physics: const ClampingScrollPhysics(),
+                        cacheExtent: MediaQuery.of(context).size.height * 2,
+                        separatorBuilder: (_, int index) {
+                          if (state.tokens.isEmpty) return const SizedBox.shrink();
+                          if (index == 0) return const SizedBox(width: 28);
+                          return const SizedBox(width: 16);
+                        },
+                        itemBuilder: (_, item, __) {
+                          return WalletTokenWidget(token: item);
+                        },
+                      ),
+                    )
                   ],
                 ),
-                extendBodyBehindAppBar: true,
-                backgroundColor: HyphaColors.transparent,
-                body: Text('Hello'),
               ),
             ),
           );
