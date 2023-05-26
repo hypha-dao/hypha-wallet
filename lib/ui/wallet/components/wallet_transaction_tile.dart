@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hypha_wallet/core/logging/log_helper.dart';
 import 'package:hypha_wallet/design/avatar_image/hypha_avatar_image.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
-import 'package:hypha_wallet/ui/sign_transaction/interactor/data/transaction_action_data.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 class WalletTransactionTile extends StatelessWidget {
