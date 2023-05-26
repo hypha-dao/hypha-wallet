@@ -57,6 +57,9 @@ dependencies:
   # Async Code. Cancellable futures, etc
   async: ^2.9.0
 
+  # Pretty dates and times
+  timeago: ^3.4.0
+
   # equality
   equatable: ^2.0.5
 

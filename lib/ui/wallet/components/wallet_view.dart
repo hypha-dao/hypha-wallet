@@ -83,7 +83,7 @@ class WalletView extends StatelessWidget {
                     Flexible(
                       child: DecoratedBox(
                         decoration: BoxDecoration(
-                          color: context.isDarkMode ? HyphaColors.lightBlack : HyphaColors.white,
+                          color: context.isDarkMode ? HyphaColors.lightBlack : HyphaColors.offWhite,
                           borderRadius: const BorderRadius.only(
                             topLeft: Radius.circular(28),
                             topRight: Radius.circular(28),
@@ -95,23 +95,43 @@ class WalletView extends StatelessWidget {
                           shrinkWrap: true,
                           itemBuilder: (context, index) {
                             final TransactionModel item = state.recentTransactions[index];
-                            return WalletTransactionTile(
-                              data: TransactionDetailsCardData(
-                                contractAction: item.actionName,
-                                params: item.data,
-                                timestamp: item.timestamp,
-                                memo: item.data['memo'],
-                                onTap: () {
-                                  GetX.Get.to(
-                                    TransactionDetailsPage(transactionModel: item),
-                                    transition: GetX.Transition.rightToLeft,
-                                  );
-                                },
-                              ),
-                            );
+                            if (item is TransactionRedeem) {
+                              return WalletTransactionTile(
+                                name: item.actionName,
+                                amount: item.amount,
+                                isReceived: true,
+                                time: item.timestamp,
+                                tokenImage: 'token image',
+                                tokenName: item.symbol,
+                                userProfileImage: null,
+                              );
+                            } else if (item is TransactionTransfer) {
+                              return WalletTransactionTile(
+                                name: item.actionName,
+                                amount: item.amount.toString(),
+                                isReceived: true,
+                                time: item.timestamp,
+                                tokenImage: 'token image',
+                                tokenName: item.symbol,
+                                userProfileImage: null,
+                              );
+                            } else {
+                              return WalletTransactionTile(
+                                name: item.actionName,
+                                amount: '???',
+                                isReceived: true,
+                                time: item.timestamp,
+                                tokenImage: 'token image',
+                                tokenName: '???',
+                                userProfileImage: null,
+                              );
+                            }
                           },
                           separatorBuilder: (BuildContext context, int index) {
-                            return const SizedBox(height: 16);
+                            return Container(
+                              height: 16,
+                              color: context.isDarkMode ? HyphaColors.lightBlack : HyphaColors.offWhite,
+                            );
                           },
                           itemCount: state.recentTransactions.length,
                         ),

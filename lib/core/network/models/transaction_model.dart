@@ -163,10 +163,10 @@ DateTime parseTimestamp(String timestamp) {
 class TransactionTransfer extends TransactionModel {
   String get from => data['from'];
 
-  String get to => data['from'];
+  String get to => data['to'];
 
   /// 3175.00
-  String get amount => data['amount'];
+  num get amount => data['amount'];
 
   /// HUSD
   String get symbol => data['symbol'];
@@ -188,7 +188,9 @@ class TransactionRedeem extends TransactionModel {
   String get requestor => data['requestor'];
 
   /// 3175.00 HUSD Beware of this...
-  String get amount => data['amount'];
+  String get amount => (data['amount'] as String).split(' ').first;
+
+  String get symbol => (data['amount'] as String).split(' ')[1];
 
   const TransactionRedeem({
     required super.data,
