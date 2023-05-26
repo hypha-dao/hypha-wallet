@@ -2,7 +2,12 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:hypha_wallet/core/error_handler/error_handler_manager.dart';
+import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
+import 'package:hypha_wallet/core/network/models/transaction_model.dart';
 import 'package:hypha_wallet/ui/architecture/interactor/page_states.dart';
+import 'package:hypha_wallet/ui/architecture/result/result.dart';
+import 'package:hypha_wallet/ui/history/transactions/usecases/get_transaction_history_use_case.dart';
 import 'package:hypha_wallet/ui/wallet/data/token_data.dart';
 
 part 'page_command.dart';
@@ -25,12 +30,29 @@ const tokens = [
 ];
 
 class WalletBloc extends Bloc<WalletEvent, WalletState> {
-  WalletBloc() : super(const WalletState()) {
+  final GetTransactionHistoryUseCase _getTransactionHistoryUseCase;
+  final ErrorHandlerManager _errorHandlerManager;
+
+  WalletBloc(this._getTransactionHistoryUseCase, this._errorHandlerManager) : super(const WalletState()) {
     on<_Initial>(_initial);
     on<_ClearPageCommand>((_, emit) => emit(state.copyWith(command: null)));
   }
 
   Future<void> _initial(_Initial event, Emitter<WalletState> emit) async {
-    emit(state.copyWith(pageState: PageState.success, tokens: tokens));
+    emit(state.copyWith(pageState: PageState.loading));
+    final Result<List<TransactionModel>, HyphaError> result = await _getTransactionHistoryUseCase.run();
+    if (result.isValue) {
+      emit(state.copyWith(
+        pageState: PageState.success,
+        recentTransactions: result.valueOrCrash
+            .where((TransactionModel element) => element is TransactionRedeem || element is TransactionTransfer)
+            .toList(),
+        tokens: tokens,
+      ));
+    } else {
+      // ignore: unawaited_futures
+      _errorHandlerManager.handlerError(result.asError!.error);
+      emit(state.copyWith(pageState: PageState.failure));
+    }
   }
 }

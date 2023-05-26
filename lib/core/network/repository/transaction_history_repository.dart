@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
+import 'package:hypha_wallet/core/logging/log_helper.dart';
 import 'package:hypha_wallet/core/network/api/transaction_history_service.dart';
 import 'package:hypha_wallet/core/network/dio_exception.dart';
 import 'package:hypha_wallet/core/network/models/transaction_model.dart';
@@ -18,6 +19,9 @@ class TransactionHistoryRepository {
     } on DioError catch (e) {
       final errorMessage = DioExceptions.fromDioError(e).toString();
       return Result.error(HyphaError.api(errorMessage));
+    } catch (e) {
+      LogHelper.e(e.toString());
+      return Result.error(HyphaError.generic('Error parsing data from transaction history'));
     }
   }
 }

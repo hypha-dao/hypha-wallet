@@ -558,6 +558,8 @@ mixin _$WalletState {
   PageState get pageState => throw _privateConstructorUsedError;
   PageCommand? get command => throw _privateConstructorUsedError;
   List<TokenData> get tokens => throw _privateConstructorUsedError;
+  List<TransactionModel> get recentTransactions =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $WalletStateCopyWith<WalletState> get copyWith =>
@@ -571,7 +573,10 @@ abstract class $WalletStateCopyWith<$Res> {
       _$WalletStateCopyWithImpl<$Res, WalletState>;
   @useResult
   $Res call(
-      {PageState pageState, PageCommand? command, List<TokenData> tokens});
+      {PageState pageState,
+      PageCommand? command,
+      List<TokenData> tokens,
+      List<TransactionModel> recentTransactions});
 
   $PageCommandCopyWith<$Res>? get command;
 }
@@ -592,6 +597,7 @@ class _$WalletStateCopyWithImpl<$Res, $Val extends WalletState>
     Object? pageState = null,
     Object? command = freezed,
     Object? tokens = null,
+    Object? recentTransactions = null,
   }) {
     return _then(_value.copyWith(
       pageState: null == pageState
@@ -606,6 +612,10 @@ class _$WalletStateCopyWithImpl<$Res, $Val extends WalletState>
           ? _value.tokens
           : tokens // ignore: cast_nullable_to_non_nullable
               as List<TokenData>,
+      recentTransactions: null == recentTransactions
+          ? _value.recentTransactions
+          : recentTransactions // ignore: cast_nullable_to_non_nullable
+              as List<TransactionModel>,
     ) as $Val);
   }
 
@@ -631,7 +641,10 @@ abstract class _$$_WalletStateCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {PageState pageState, PageCommand? command, List<TokenData> tokens});
+      {PageState pageState,
+      PageCommand? command,
+      List<TokenData> tokens,
+      List<TransactionModel> recentTransactions});
 
   @override
   $PageCommandCopyWith<$Res>? get command;
@@ -651,6 +664,7 @@ class __$$_WalletStateCopyWithImpl<$Res>
     Object? pageState = null,
     Object? command = freezed,
     Object? tokens = null,
+    Object? recentTransactions = null,
   }) {
     return _then(_$_WalletState(
       pageState: null == pageState
@@ -665,6 +679,10 @@ class __$$_WalletStateCopyWithImpl<$Res>
           ? _value._tokens
           : tokens // ignore: cast_nullable_to_non_nullable
               as List<TokenData>,
+      recentTransactions: null == recentTransactions
+          ? _value._recentTransactions
+          : recentTransactions // ignore: cast_nullable_to_non_nullable
+              as List<TransactionModel>,
     ));
   }
 }
@@ -675,8 +693,10 @@ class _$_WalletState extends _WalletState {
   const _$_WalletState(
       {this.pageState = PageState.initial,
       this.command,
-      final List<TokenData> tokens = const []})
+      final List<TokenData> tokens = const [],
+      final List<TransactionModel> recentTransactions = const []})
       : _tokens = tokens,
+        _recentTransactions = recentTransactions,
         super._();
 
   @override
@@ -693,9 +713,19 @@ class _$_WalletState extends _WalletState {
     return EqualUnmodifiableListView(_tokens);
   }
 
+  final List<TransactionModel> _recentTransactions;
+  @override
+  @JsonKey()
+  List<TransactionModel> get recentTransactions {
+    if (_recentTransactions is EqualUnmodifiableListView)
+      return _recentTransactions;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_recentTransactions);
+  }
+
   @override
   String toString() {
-    return 'WalletState(pageState: $pageState, command: $command, tokens: $tokens)';
+    return 'WalletState(pageState: $pageState, command: $command, tokens: $tokens, recentTransactions: $recentTransactions)';
   }
 
   @override
@@ -706,12 +736,18 @@ class _$_WalletState extends _WalletState {
             (identical(other.pageState, pageState) ||
                 other.pageState == pageState) &&
             (identical(other.command, command) || other.command == command) &&
-            const DeepCollectionEquality().equals(other._tokens, _tokens));
+            const DeepCollectionEquality().equals(other._tokens, _tokens) &&
+            const DeepCollectionEquality()
+                .equals(other._recentTransactions, _recentTransactions));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, pageState, command,
-      const DeepCollectionEquality().hash(_tokens));
+  int get hashCode => Object.hash(
+      runtimeType,
+      pageState,
+      command,
+      const DeepCollectionEquality().hash(_tokens),
+      const DeepCollectionEquality().hash(_recentTransactions));
 
   @JsonKey(ignore: true)
   @override
@@ -724,7 +760,8 @@ abstract class _WalletState extends WalletState {
   const factory _WalletState(
       {final PageState pageState,
       final PageCommand? command,
-      final List<TokenData> tokens}) = _$_WalletState;
+      final List<TokenData> tokens,
+      final List<TransactionModel> recentTransactions}) = _$_WalletState;
   const _WalletState._() : super._();
 
   @override
@@ -733,6 +770,8 @@ abstract class _WalletState extends WalletState {
   PageCommand? get command;
   @override
   List<TokenData> get tokens;
+  @override
+  List<TransactionModel> get recentTransactions;
   @override
   @JsonKey(ignore: true)
   _$$_WalletStateCopyWith<_$_WalletState> get copyWith =>

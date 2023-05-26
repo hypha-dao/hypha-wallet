@@ -8,5 +8,6 @@ class WalletState with _$WalletState {
     @Default(PageState.initial) PageState pageState,
     PageCommand? command,
     @Default([]) List<TokenData> tokens,
+    @Default([]) List<TransactionModel> recentTransactions,
   }) = _WalletState;
 }
