@@ -6,8 +6,15 @@ class HyphaPageBackground extends StatelessWidget {
   final bool withOpacity;
   final bool withGradient;
   final Widget child;
+  final String? backgroundTexture;
 
-  const HyphaPageBackground({super.key, required this.child, this.withOpacity = true, this.withGradient = false});
+  const HyphaPageBackground({
+    super.key,
+    required this.child,
+    this.withOpacity = true,
+    this.withGradient = false,
+    this.backgroundTexture,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +31,7 @@ class HyphaPageBackground extends StatelessWidget {
             ? null
             : DecorationImage(
                 colorFilter: withOpacity ? ColorFilter.mode(opacityColor.withOpacity(0.60), BlendMode.darken) : null,
-                image: AssetImage(context.hyphaAssetTheme.backgroundTexture),
+                image: AssetImage(backgroundTexture ?? context.hyphaAssetTheme.backgroundTexture),
                 fit: BoxFit.cover,
               ),
       ),

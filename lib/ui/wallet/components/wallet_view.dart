@@ -20,6 +20,7 @@ class WalletView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return HyphaPageBackground(
+      backgroundTexture: 'assets/images/graphics/wallet_background.png',
       withOpacity: false,
       child: BlocBuilder<WalletBloc, WalletState>(
         builder: (context, state) {
