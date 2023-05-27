@@ -1,4 +1,6 @@
 import 'package:equatable/equatable.dart';
+import 'package:hypha_wallet/core/extension/scope_functions.dart';
+import 'package:hypha_wallet/core/logging/log_helper.dart';
 
 sealed class TransactionModel extends Equatable {
   final DateTime timestamp;
@@ -32,9 +34,12 @@ sealed class TransactionModel extends Equatable {
     final actor = act['authorization'].first['actor'];
     final transactionId = json['trx_id'];
 
-    if(account != 'dao.hypha') {
-      throw Exception('Account is $account but its must be dao.hypha. Action: $actionName');
-    }
+    // if (account != 'dao.hypha') {
+    //   'Account is $account but its must be dao.hypha Action: $actionName'.also((it) {
+    //     LogHelper.e(it);
+    //     throw Exception(it);
+    //   });
+    // }
 
     switch (actionName) {
       case 'transfer':
