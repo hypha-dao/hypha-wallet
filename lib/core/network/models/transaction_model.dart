@@ -1,6 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:hypha_wallet/core/extension/scope_functions.dart';
-import 'package:hypha_wallet/core/logging/log_helper.dart';
 
 sealed class TransactionModel extends Equatable {
   final DateTime timestamp;
