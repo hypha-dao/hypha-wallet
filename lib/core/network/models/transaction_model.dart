@@ -32,6 +32,10 @@ sealed class TransactionModel extends Equatable {
     final actor = act['authorization'].first['actor'];
     final transactionId = json['trx_id'];
 
+    if(account != 'dao.hypha') {
+      throw Exception('Account is $account but its must be dao.hypha. Action: $actionName');
+    }
+
     switch (actionName) {
       case 'transfer':
         {
