@@ -62,6 +62,7 @@ import 'package:hypha_wallet/ui/settings/interactor/settings_bloc.dart';
 import 'package:hypha_wallet/ui/settings/usecases/delete_account_use_case.dart';
 import 'package:hypha_wallet/ui/sign_transaction/interactor/sign_transaction_bloc.dart';
 import 'package:hypha_wallet/ui/sign_transaction/usecases/sign_transaction_use_case.dart';
+import 'package:hypha_wallet/ui/wallet/interactor/wallet_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:rx_shared_preferences/rx_shared_preferences.dart';
 

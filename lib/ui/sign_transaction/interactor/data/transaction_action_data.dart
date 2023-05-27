@@ -58,4 +58,12 @@ class TransactionDetailsCardData {
   });
 
   String get userFriendlyContractAction => knownContractActions[contractAction] ?? contractAction;
+  String? get requestor => params['requestor'];
+  String? get amount => params['amount'];
+  String? get from => params['from'];
+
+  @override
+  String toString() {
+    return 'params: $params\n contractAction: $contractAction \n timestamp: ${timestamp.toString()} \n memo: $memo';
+  }
 }

@@ -45,6 +45,12 @@ void _registerBlocsModule() {
         _getIt<ErrorHandlerManager>(),
       ));
   _registerFactory(() => TransactionDetailBloc());
+
+  _registerFactory(() => WalletBloc(
+        _getIt<GetTransactionHistoryUseCase>(),
+        _getIt<ErrorHandlerManager>(),
+      ));
+
   _registerFactoryWithParams<CreateAccountBloc, XFile?, String>(
     (image, userName) => CreateAccountBloc(
       _getIt<CryptoAuthService>(),

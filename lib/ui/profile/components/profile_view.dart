@@ -19,7 +19,6 @@ import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ProfileView extends StatelessWidget {
-  final bool kDebugProfileService = false; // Debug code until we have wired up ppp service.
   const ProfileView({super.key});
 
   @override

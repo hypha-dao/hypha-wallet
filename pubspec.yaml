@@ -41,7 +41,7 @@ dependencies:
   get: ^4.6.5
 
   # State Management
-  flutter_bloc: ^8.1.1
+  flutter_bloc: ^8.1.3
 
   # Logging
   fimber: ^0.6.6
@@ -56,6 +56,9 @@ dependencies:
 
   # Async Code. Cancellable futures, etc
   async: ^2.9.0
+
+  # Pretty dates and times
+  timeago: ^3.4.0
 
   # equality
   equatable: ^2.0.5
