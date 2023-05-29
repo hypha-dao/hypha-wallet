@@ -4,6 +4,7 @@ import 'package:get/get.dart' as GetX;
 import 'package:hypha_wallet/core/network/models/transaction_model.dart';
 import 'package:hypha_wallet/design/avatar_image/hypha_avatar_image.dart';
 import 'package:hypha_wallet/design/background/hypha_page_background.dart';
+import 'package:hypha_wallet/design/hypha_card.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 import 'package:hypha_wallet/ui/blocs/authentication/authentication_bloc.dart';
@@ -78,63 +79,7 @@ class WalletView extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 24),
-                    Flexible(
-                      child: DecoratedBox(
-                        decoration: BoxDecoration(
-                          color: context.isDarkMode ? HyphaColors.lightBlack : HyphaColors.offWhite,
-                          borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(28),
-                            topRight: Radius.circular(28),
-                          ),
-                          boxShadow:
-                              context.isDarkMode ? HyphaColors.darkModeCardShadow : HyphaColors.lightModeCardShadow,
-                        ),
-                        child: ListView.separated(
-                          shrinkWrap: true,
-                          itemBuilder: (context, index) {
-                            final TransactionModel item = state.recentTransactions[index];
-                            if (item is TransactionRedeem) {
-                              return WalletTransactionTile(
-                                name: item.actionName,
-                                amount: item.amount,
-                                isReceived: true,
-                                time: item.timestamp,
-                                tokenImage: 'token image',
-                                tokenName: item.symbol,
-                                userProfileImage: null,
-                              );
-                            } else if (item is TransactionTransfer) {
-                              return WalletTransactionTile(
-                                name: item.actionName,
-                                amount: item.amount.toString(),
-                                isReceived: true,
-                                time: item.timestamp,
-                                tokenImage: 'token image',
-                                tokenName: item.symbol,
-                                userProfileImage: null,
-                              );
-                            } else {
-                              return WalletTransactionTile(
-                                name: item.actionName,
-                                amount: '???',
-                                isReceived: true,
-                                time: item.timestamp,
-                                tokenImage: 'token image',
-                                tokenName: '???',
-                                userProfileImage: null,
-                              );
-                            }
-                          },
-                          separatorBuilder: (BuildContext context, int index) {
-                            return Container(
-                              height: 16,
-                              color: context.isDarkMode ? HyphaColors.lightBlack : HyphaColors.offWhite,
-                            );
-                          },
-                          itemCount: state.recentTransactions.length,
-                        ),
-                      ),
-                    ),
+                    const _RecentTransactionsView(),
                   ],
                 ),
               ),
@@ -142,6 +87,84 @@ class WalletView extends StatelessWidget {
           );
         },
       ),
+    );
+  }
+}
+
+class _RecentTransactionsView extends StatelessWidget {
+  const _RecentTransactionsView();
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<WalletBloc, WalletState>(
+      builder: (context, state) {
+        return Expanded(
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              color: context.isDarkMode ? HyphaColors.lightBlack : HyphaColors.offWhite,
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(28),
+                topRight: Radius.circular(28),
+              ),
+              boxShadow: context.isDarkMode ? HyphaColors.darkModeCardShadow : HyphaColors.lightModeCardShadow,
+            ),
+            child: state.recentTransactions.isNotEmpty
+                ? ListView.separated(
+                    shrinkWrap: true,
+                    itemBuilder: (context, index) {
+                      final TransactionModel item = state.recentTransactions[index];
+                      if (item is TransactionRedeem) {
+                        return WalletTransactionTile(
+                          name: item.actionName,
+                          amount: item.amount,
+                          isReceived: true,
+                          time: item.timestamp,
+                          tokenImage: 'token image',
+                          tokenName: item.symbol,
+                          userProfileImage: null,
+                        );
+                      } else if (item is TransactionTransfer) {
+                        return WalletTransactionTile(
+                          name: item.actionName,
+                          amount: item.amount.toString(),
+                          isReceived: true,
+                          time: item.timestamp,
+                          tokenImage: 'token image',
+                          tokenName: item.symbol,
+                          userProfileImage: null,
+                        );
+                      } else {
+                        return WalletTransactionTile(
+                          name: item.actionName,
+                          amount: '???',
+                          isReceived: true,
+                          time: item.timestamp,
+                          tokenImage: 'token image',
+                          tokenName: '???',
+                          userProfileImage: null,
+                        );
+                      }
+                    },
+                    separatorBuilder: (BuildContext context, int index) {
+                      return Container(
+                        height: 16,
+                        color: context.isDarkMode ? HyphaColors.lightBlack : HyphaColors.offWhite,
+                      );
+                    },
+                    itemCount: state.recentTransactions.length,
+                  )
+                : Container(
+                    padding: const EdgeInsets.all(24),
+                    width: double.infinity,
+                    child: HyphaCard(
+                        child: Padding(
+                      padding: const EdgeInsets.all(24),
+                      child: Text('You haven’t done any transaction yet',
+                          style: context.hyphaTextTheme.ralMediumSmallNote),
+                    ))),
+          ),
+        );
+      },
     );
   }
 }

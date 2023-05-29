@@ -32,117 +32,13 @@ sealed class TransactionModel extends Equatable {
     final actor = act['authorization'].first['actor'];
     final transactionId = json['trx_id'];
 
-    switch (actionName) {
-      case 'transfer':
-        {
-          return TransactionTransfer(
-            account: account,
-            actionName: actionName,
-            blockNumber: blockNumber,
-            data: data,
-            timestamp: timestamp,
-            actor: actor,
-            transactionId: transactionId,
-          );
-        }
-      case 'redeem':
-        {
-          return TransactionRedeem(
-            account: account,
-            actionName: actionName,
-            blockNumber: blockNumber,
-            data: data,
-            timestamp: timestamp,
-            actor: actor,
-            transactionId: transactionId,
-          );
-        }
-      case 'cmntadd':
-        {
-          return TransactionCommentAdd(
-            account: account,
-            actionName: actionName,
-            blockNumber: blockNumber,
-            data: data,
-            timestamp: timestamp,
-            actor: actor,
-            transactionId: transactionId,
-          );
-        }
-      case 'vote':
-        {
-          return TransactionVote(
-            account: account,
-            actionName: actionName,
-            blockNumber: blockNumber,
-            data: data,
-            timestamp: timestamp,
-            actor: actor,
-            transactionId: transactionId,
-          );
-        }
-      case 'claimnextper':
-        {
-          return TransactionClaimNextPer(
-            account: account,
-            actionName: actionName,
-            blockNumber: blockNumber,
-            data: data,
-            timestamp: timestamp,
-            actor: actor,
-            transactionId: transactionId,
-          );
-        }
-      case 'propose':
-        {
-          return TransactionPropose(
-            account: account,
-            actionName: actionName,
-            blockNumber: blockNumber,
-            data: data,
-            timestamp: timestamp,
-            actor: actor,
-            transactionId: transactionId,
-          );
-        }
-      case 'reactadd':
-        {
-          return TransactionReactionAdd(
-            account: account,
-            actionName: actionName,
-            blockNumber: blockNumber,
-            data: data,
-            timestamp: timestamp,
-            actor: actor,
-            transactionId: transactionId,
-          );
-        }
-      case 'loginuser':
-        {
-          return TransactionLogInUser(
-            account: account,
-            actionName: actionName,
-            blockNumber: blockNumber,
-            data: data,
-            timestamp: timestamp,
-            actor: actor,
-            transactionId: transactionId,
-          );
-        }
-      case 'proposepub':
-        {
-          return TransactionProposePub(
-            account: account,
-            actionName: actionName,
-            blockNumber: blockNumber,
-            data: data,
-            timestamp: timestamp,
-            actor: actor,
-            transactionId: transactionId,
-          );
-        }
-      default:
-        return TransactionUnknown(
+    // TODO(gguij): Move these constants where they belong
+    const daoAccount = 'dao.hypha';
+    const eosioLoginAccount = 'eosio.login';
+
+    // parse known transactions
+    return switch (actionName) {
+      'transfer' => TransactionTransfer(
           account: account,
           actionName: actionName,
           blockNumber: blockNumber,
@@ -150,8 +46,89 @@ sealed class TransactionModel extends Equatable {
           timestamp: timestamp,
           actor: actor,
           transactionId: transactionId,
-        );
-    }
+        ),
+      'redeem' when account == daoAccount => TransactionRedeem(
+          account: account,
+          actionName: actionName,
+          blockNumber: blockNumber,
+          data: data,
+          timestamp: timestamp,
+          actor: actor,
+          transactionId: transactionId,
+        ),
+      'cmntadd' when account == daoAccount => TransactionCommentAdd(
+          account: account,
+          actionName: actionName,
+          blockNumber: blockNumber,
+          data: data,
+          timestamp: timestamp,
+          actor: actor,
+          transactionId: transactionId,
+        ),
+      'vote' when account == daoAccount => TransactionVote(
+          account: account,
+          actionName: actionName,
+          blockNumber: blockNumber,
+          data: data,
+          timestamp: timestamp,
+          actor: actor,
+          transactionId: transactionId,
+        ),
+      'claimnextper' when account == daoAccount => TransactionClaimNextPer(
+          account: account,
+          actionName: actionName,
+          blockNumber: blockNumber,
+          data: data,
+          timestamp: timestamp,
+          actor: actor,
+          transactionId: transactionId,
+        ),
+      'propose' when account == daoAccount => TransactionPropose(
+          account: account,
+          actionName: actionName,
+          blockNumber: blockNumber,
+          data: data,
+          timestamp: timestamp,
+          actor: actor,
+          transactionId: transactionId,
+        ),
+      'reactadd' when account == daoAccount => TransactionReactionAdd(
+          account: account,
+          actionName: actionName,
+          blockNumber: blockNumber,
+          data: data,
+          timestamp: timestamp,
+          actor: actor,
+          transactionId: transactionId,
+        ),
+      'loginuser' when account == eosioLoginAccount => TransactionLogInUser(
+          account: account,
+          actionName: actionName,
+          blockNumber: blockNumber,
+          data: data,
+          timestamp: timestamp,
+          actor: actor,
+          transactionId: transactionId,
+        ),
+      'proposepub' when account == daoAccount => TransactionProposePub(
+          account: account,
+          actionName: actionName,
+          blockNumber: blockNumber,
+          data: data,
+          timestamp: timestamp,
+          actor: actor,
+          transactionId: transactionId,
+        ),
+      _ => TransactionUnknown(
+          account: account,
+          actionName: actionName,
+          blockNumber: blockNumber,
+          data: data,
+          timestamp: timestamp,
+          actor: actor,
+          transactionId: transactionId,
+        ),
+    };
   }
 }
 
