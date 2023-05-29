@@ -9,6 +9,7 @@ import 'package:hypha_wallet/ui/architecture/interactor/page_states.dart';
 import 'package:hypha_wallet/ui/architecture/result/result.dart';
 import 'package:hypha_wallet/ui/history/transactions/usecases/get_transaction_history_use_case.dart';
 import 'package:hypha_wallet/ui/wallet/data/token_data.dart';
+import 'package:hypha_wallet/ui/wallet/usecases/get_user_tokens_use_case.dart';
 
 part 'page_command.dart';
 
@@ -32,8 +33,13 @@ const tokens = [
 class WalletBloc extends Bloc<WalletEvent, WalletState> {
   final GetTransactionHistoryUseCase _getTransactionHistoryUseCase;
   final ErrorHandlerManager _errorHandlerManager;
+  final GetUserTokensUseCase _getUserTokensUseCase;
 
-  WalletBloc(this._getTransactionHistoryUseCase, this._errorHandlerManager) : super(const WalletState()) {
+  WalletBloc(
+    this._getTransactionHistoryUseCase,
+    this._errorHandlerManager,
+    this._getUserTokensUseCase,
+  ) : super(const WalletState()) {
     on<_Initial>(_initial);
     on<_ClearPageCommand>((_, emit) => emit(state.copyWith(command: null)));
   }
@@ -41,13 +47,22 @@ class WalletBloc extends Bloc<WalletEvent, WalletState> {
   Future<void> _initial(_Initial event, Emitter<WalletState> emit) async {
     emit(state.copyWith(pageState: PageState.loading));
     final Result<List<TransactionModel>, HyphaError> result = await _getTransactionHistoryUseCase.run();
+    final List<String> tokens = await _getUserTokensUseCase.run();
+    final List<TokenData> viewTokens = tokens
+        .map((String e) => TokenData(
+              image: 'https://picsum.photos/200',
+              amount: 1,
+              name: e,
+            ))
+        .toList();
+
     if (result.isValue) {
       emit(state.copyWith(
         pageState: PageState.success,
         recentTransactions: result.valueOrCrash
             .where((TransactionModel element) => element is TransactionRedeem || element is TransactionTransfer)
             .toList(),
-        tokens: tokens,
+        tokens: viewTokens,
       ));
     } else {
       // ignore: unawaited_futures

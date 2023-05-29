@@ -11,8 +11,10 @@ import 'package:hypha_wallet/ui/blocs/authentication/authentication_bloc.dart';
 import 'package:hypha_wallet/ui/shared/hypha_body_widget.dart';
 import 'package:hypha_wallet/ui/shared/hypha_error_view.dart';
 import 'package:hypha_wallet/ui/shared/listview_with_all_separators.dart';
+import 'package:hypha_wallet/ui/wallet/components/wallet_add_token_widget.dart';
 import 'package:hypha_wallet/ui/wallet/components/wallet_token_widget.dart';
 import 'package:hypha_wallet/ui/wallet/components/wallet_transaction_tile.dart';
+import 'package:hypha_wallet/ui/wallet/data/token_data.dart';
 import 'package:hypha_wallet/ui/wallet/interactor/wallet_bloc.dart';
 
 class WalletView extends StatelessWidget {
@@ -25,6 +27,7 @@ class WalletView extends StatelessWidget {
       withOpacity: false,
       child: BlocBuilder<WalletBloc, WalletState>(
         builder: (context, state) {
+          final List<TokenData> tokens = state.tokens + [const TokenData(amount: 0, name: 'FAKE', image: 'FAKE')];
           return RefreshIndicator(
             onRefresh: () async {
               context.read<WalletBloc>().add(const WalletEvent.onRefresh());
@@ -65,16 +68,26 @@ class WalletView extends StatelessWidget {
                       height: 150,
                       child: ListViewWithAllSeparators(
                         scrollDirection: Axis.horizontal,
-                        items: state.tokens,
+                        items: tokens,
                         physics: const ClampingScrollPhysics(),
                         cacheExtent: MediaQuery.of(context).size.height * 2,
                         separatorBuilder: (_, int index) {
-                          if (state.tokens.isEmpty) return const SizedBox.shrink();
+                          if (tokens.isEmpty) return const SizedBox.shrink();
                           if (index == 0) return const SizedBox(width: 28);
                           return const SizedBox(width: 16);
                         },
                         itemBuilder: (_, item, __) {
-                          return WalletTokenWidget(token: item);
+                          return item.name == 'FAKE'
+                              ? WalletAddTokenWidget(
+                                  token: item,
+                                  onTap: () {
+                                    // TODO(gguij): Nav to settings tokens
+                                  })
+                              : WalletTokenWidget(
+                                  token: item,
+                                  onTap: () {
+                                    // TODO(gguij): Nav to token details
+                                  });
                         },
                       ),
                     ),

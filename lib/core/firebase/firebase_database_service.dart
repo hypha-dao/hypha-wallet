@@ -42,7 +42,7 @@ class FirebaseDatabaseService {
   }
 
   /// Crypto token selected by the user
-  Future<void> saveToken({required String tokenSymbol, required String accountName}){
+  Future<void> saveToken({required String tokenSymbol, required String accountName}) {
     final db = FirebaseFirestore.instance;
 
     final token = <String, dynamic>{
@@ -58,7 +58,7 @@ class FirebaseDatabaseService {
   }
 
   /// Crypto token selected by the user
-  Future<void> removeToken({required String tokenSymbol, required String accountName}){
+  Future<void> removeToken({required String tokenSymbol, required String accountName}) {
     final db = FirebaseFirestore.instance;
 
     final token = <String, dynamic>{
@@ -71,5 +71,16 @@ class FirebaseDatabaseService {
         .doc(accountName)
         .set(token)
         .onError((e, _) => LogHelper.d('Error writing document: $e'));
+  }
+
+  /// Crypto token selected by the user
+  Future<List<String>> getTokens({required String accountName}) async {
+    final db = FirebaseFirestore.instance;
+
+    final DocumentSnapshot<Map<String, dynamic>> user = await db.collection('users').doc(accountName).get();
+
+    final List<String> tokens = user.data()?['userTokens'] ?? [];
+
+    return tokens;
   }
 }
