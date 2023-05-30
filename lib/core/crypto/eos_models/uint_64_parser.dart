@@ -1,5 +1,7 @@
 import 'dart:typed_data';
 
+/// parse int in big endiand and little endian encodings
+/// Hypha, 2023
 class Uint64Parser {
   final int value;
 

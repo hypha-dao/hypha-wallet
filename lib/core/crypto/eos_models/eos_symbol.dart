@@ -1,5 +1,7 @@
 import 'dart:typed_data';
 
+/// Parse EOSIO Symbol type to/from int
+/// by Hypha, 2023
 class EosSymbol {
   final int value;
 
