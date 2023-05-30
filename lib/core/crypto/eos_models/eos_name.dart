@@ -2,6 +2,7 @@ import 'dart:typed_data';
 
 import 'package:hypha_wallet/core/crypto/eos_models/uint_64_parser.dart';
 
+/// EOS name type parses to and from string
 class EosName {
   int value;
 
