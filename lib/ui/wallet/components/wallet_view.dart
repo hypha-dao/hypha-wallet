@@ -128,7 +128,7 @@ class _RecentTransactionsView extends StatelessWidget {
                       final TransactionModel item = state.recentTransactions[index];
                       if (item is TransactionRedeem) {
                         return WalletTransactionTile(
-                          name: item.actionName,
+                          name: item.account,
                           amount: item.amount,
                           isReceived: true,
                           time: item.timestamp,
@@ -138,7 +138,7 @@ class _RecentTransactionsView extends StatelessWidget {
                         );
                       } else if (item is TransactionTransfer) {
                         return WalletTransactionTile(
-                          name: item.actionName,
+                          name: item.account,
                           amount: item.amount.toString(),
                           isReceived: true,
                           time: item.timestamp,
@@ -148,7 +148,7 @@ class _RecentTransactionsView extends StatelessWidget {
                         );
                       } else {
                         return WalletTransactionTile(
-                          name: item.actionName,
+                          name: item.account,
                           amount: '???',
                           isReceived: true,
                           time: item.timestamp,

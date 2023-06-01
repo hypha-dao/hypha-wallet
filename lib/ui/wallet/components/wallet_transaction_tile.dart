@@ -33,7 +33,7 @@ class WalletTransactionTile extends StatelessWidget {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         title: Text(name, style: context.hyphaTextTheme.reducedTitles),
         subtitle: Text(timeago.format(time), style: context.hyphaTextTheme.ralMediumLabel),
-        leading: HyphaAvatarImage(imageFromUrl: userProfileImage, imageRadius: 16, name: name),
+        leading: HyphaAvatarImage(imageFromUrl: userProfileImage, imageRadius: 18, name: name),
         tileColor: context.isDarkTheme ? HyphaColors.lightBlack : HyphaColors.lightBlue,
         trailing: Column(
           mainAxisSize: MainAxisSize.min,
