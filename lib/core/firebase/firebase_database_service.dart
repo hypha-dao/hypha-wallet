@@ -78,8 +78,8 @@ class FirebaseDatabaseService {
     final db = FirebaseFirestore.instance;
 
     final DocumentSnapshot<Map<String, dynamic>> user = await db.collection('users').doc(accountName).get();
-
-    final List<String> tokens = user.data()?['userTokens'] ?? [];
+    
+    final List<String> tokens = List<String>.from(user.data()?['userTokens'] ?? []);
 
     return tokens;
   }
