@@ -26,7 +26,7 @@ class WalletAddTokenWidget extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Icon(Icons.add_outlined, size: 30),
+              const Icon(Icons.add_outlined, size: 30, color: Colors.white),
               const SizedBox(height: 32),
               Text('Add', style: context.hyphaTextTheme.regular.copyWith(color: Colors.white)),
               Text('Tokens', style: context.hyphaTextTheme.regular.copyWith(color: Colors.white)),

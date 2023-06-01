@@ -47,14 +47,19 @@ class WalletView extends StatelessWidget {
                       BlocBuilder<AuthenticationBloc, AuthenticationState>(
                         builder: (context, state) {
                           return HyphaAvatarImage(
-                            imageRadius: 17,
+                            imageRadius: 19,
                             imageFromUrl: state.userProfileData?.userImage,
                             name: state.userProfileData?.userName,
                           );
                         },
                       ),
                       const SizedBox(width: 12),
-                      Text('Wallet', style: context.hyphaTextTheme.bigTitles),
+                      Text(
+                        'Wallet',
+                        style: context.hyphaTextTheme.bigTitles.copyWith(
+                          color: context.isDarkMode ? HyphaColors.black : HyphaColors.white,
+                        ),
+                      ),
                     ],
                   ),
                   titleSpacing: 28,
@@ -114,7 +119,8 @@ class _RecentTransactionsView extends StatelessWidget {
         return Expanded(
           child: DecoratedBox(
             decoration: BoxDecoration(
-              color: context.isDarkMode ? HyphaColors.lightBlack : HyphaColors.offWhite,
+              color: context.isDarkMode ? null : HyphaColors.offWhite,
+              gradient: context.isDarkMode ? HyphaColors.gradientBlack : null,
               borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(28),
                 topRight: Radius.circular(28),
@@ -122,59 +128,72 @@ class _RecentTransactionsView extends StatelessWidget {
               boxShadow: context.isDarkMode ? HyphaColors.darkModeCardShadow : HyphaColors.lightModeCardShadow,
             ),
             child: state.recentTransactions.isNotEmpty
-                ? ListView.separated(
-                    shrinkWrap: true,
-                    itemBuilder: (context, index) {
-                      final TransactionModel item = state.recentTransactions[index];
-                      if (item is TransactionRedeem) {
-                        return WalletTransactionTile(
-                          name: item.account,
-                          amount: item.amount,
-                          isReceived: true,
-                          time: item.timestamp,
-                          tokenImage: 'token image',
-                          tokenName: item.symbol,
-                          userProfileImage: null,
+                ? Padding(
+                    padding: const EdgeInsets.only(top: 24),
+                    child: ListViewWithAllSeparators(
+                      shrinkWrap: true,
+                      itemBuilder: (context, item, index) {
+                        if (item is TransactionRedeem) {
+                          return WalletTransactionTile(
+                            name: item.account,
+                            amount: item.amount,
+                            isReceived: true,
+                            time: item.timestamp,
+                            tokenImage: 'token image',
+                            tokenName: item.symbol,
+                            userProfileImage: null,
+                          );
+                        } else if (item is TransactionTransfer) {
+                          return WalletTransactionTile(
+                            name: item.account,
+                            amount: item.amount.toString(),
+                            isReceived: true,
+                            time: item.timestamp,
+                            tokenImage: 'token image',
+                            tokenName: item.symbol,
+                            userProfileImage: null,
+                          );
+                        } else {
+                          return WalletTransactionTile(
+                            name: item.account,
+                            amount: '???',
+                            isReceived: true,
+                            time: item.timestamp,
+                            tokenImage: 'token image',
+                            tokenName: '???',
+                            userProfileImage: null,
+                          );
+                        }
+                      },
+                      separatorBuilder: (BuildContext context, int index) {
+                        if (index == 0) {
+                          return Padding(
+                            padding: const EdgeInsets.only(left: 26, top: 0, bottom: 16),
+                            child: Text('Recent transactions',
+                                style: context.hyphaTextTheme.ralMediumBody.copyWith(
+                                  color: HyphaColors.midGrey,
+                                )),
+                          );
+                        }
+                        return Container(
+                          height: 16,
+                          color: context.isDarkMode ? HyphaColors.transparent : HyphaColors.offWhite,
                         );
-                      } else if (item is TransactionTransfer) {
-                        return WalletTransactionTile(
-                          name: item.account,
-                          amount: item.amount.toString(),
-                          isReceived: true,
-                          time: item.timestamp,
-                          tokenImage: 'token image',
-                          tokenName: item.symbol,
-                          userProfileImage: null,
-                        );
-                      } else {
-                        return WalletTransactionTile(
-                          name: item.account,
-                          amount: '???',
-                          isReceived: true,
-                          time: item.timestamp,
-                          tokenImage: 'token image',
-                          tokenName: '???',
-                          userProfileImage: null,
-                        );
-                      }
-                    },
-                    separatorBuilder: (BuildContext context, int index) {
-                      return Container(
-                        height: 16,
-                        color: context.isDarkMode ? HyphaColors.lightBlack : HyphaColors.offWhite,
-                      );
-                    },
-                    itemCount: state.recentTransactions.length,
+                      },
+                      items: state.recentTransactions,
+                    ),
                   )
                 : Container(
                     padding: const EdgeInsets.all(24),
                     width: double.infinity,
                     child: HyphaCard(
-                        child: Padding(
-                      padding: const EdgeInsets.all(24),
-                      child: Text('You haven’t done any transaction yet',
-                          style: context.hyphaTextTheme.ralMediumSmallNote),
-                    ))),
+                      child: Padding(
+                        padding: const EdgeInsets.all(24),
+                        child: Text('You haven’t done any transaction yet',
+                            style: context.hyphaTextTheme.ralMediumSmallNote),
+                      ),
+                    ),
+                  ),
           ),
         );
       },
