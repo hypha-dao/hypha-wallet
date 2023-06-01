@@ -27,7 +27,14 @@ class WalletView extends StatelessWidget {
       withOpacity: false,
       child: BlocBuilder<WalletBloc, WalletState>(
         builder: (context, state) {
-          final List<TokenData> tokens = state.tokens + [const TokenData(amount: 0, name: 'FAKE', image: 'FAKE')];
+          final List<TokenData> tokens = state.tokens +
+              [
+                const TokenData(
+                  amount: 0,
+                  name: 'ADD TOKEN',
+                  image: 'ADD TOKEN',
+                )
+              ];
           return RefreshIndicator(
             onRefresh: () async {
               context.read<WalletBloc>().add(const WalletEvent.onRefresh());
@@ -82,7 +89,7 @@ class WalletView extends StatelessWidget {
                           return const SizedBox(width: 16);
                         },
                         itemBuilder: (_, item, __) {
-                          return item.name == 'FAKE'
+                          return item.name == 'ADD TOKEN'
                               ? WalletAddTokenWidget(
                                   token: item,
                                   onTap: () {
