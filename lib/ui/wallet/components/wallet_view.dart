@@ -16,7 +16,7 @@ import 'package:hypha_wallet/ui/token_settings/token_settings_page.dart';
 import 'package:hypha_wallet/ui/wallet/components/wallet_add_token_widget.dart';
 import 'package:hypha_wallet/ui/wallet/components/wallet_token_widget.dart';
 import 'package:hypha_wallet/ui/wallet/components/wallet_transaction_tile.dart';
-import 'package:hypha_wallet/ui/wallet/data/token_data.dart';
+import 'package:hypha_wallet/ui/wallet/data/wallet_token_data.dart';
 import 'package:hypha_wallet/ui/wallet/interactor/wallet_bloc.dart';
 
 class WalletView extends StatelessWidget {
@@ -29,12 +29,15 @@ class WalletView extends StatelessWidget {
       withOpacity: false,
       child: BlocBuilder<WalletBloc, WalletState>(
         builder: (context, state) {
-          final List<TokenData> tokens = state.tokens +
+          final List<WalletTokenData> tokens = state.tokens +
               [
-                const TokenData(
-                  amount: 0,
+                const WalletTokenData(
+                  10,
                   name: 'ADD TOKEN',
                   image: 'ADD TOKEN',
+                  contract: 'ADD TOKEN',
+                  id: 'ADD TOKEN',
+                  symbol: 'ADD TOKEN',
                 )
               ];
           return RefreshIndicator(

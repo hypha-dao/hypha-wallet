@@ -1,10 +1,10 @@
 import 'package:hypha_wallet/core/firebase/firebase_token_data.dart';
 
-class SettingsTokenData extends FirebaseTokenData {
-  final bool selected;
+class WalletTokenData extends FirebaseTokenData {
+  final double userOwnedAmount;
 
-  const SettingsTokenData(
-    this.selected, {
+  const WalletTokenData(
+    this.userOwnedAmount, {
     required super.image,
     required super.name,
     required super.contract,

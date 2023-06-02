@@ -7,7 +7,7 @@ class WalletState with _$WalletState {
   const factory WalletState({
     @Default(PageState.initial) PageState pageState,
     PageCommand? command,
-    @Default([]) List<TokenData> tokens,
+    @Default([]) List<WalletTokenData> tokens,
     @Default([]) List<TransactionModel> recentTransactions,
   }) = _WalletState;
 }

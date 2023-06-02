@@ -1,10 +1,10 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
-import 'package:hypha_wallet/ui/wallet/data/token_data.dart';
+import 'package:hypha_wallet/ui/wallet/data/wallet_token_data.dart';
 
 class WalletAddTokenWidget extends StatelessWidget {
-  final TokenData token;
+  final WalletTokenData token;
   final GestureTapCallback? onTap;
 
   const WalletAddTokenWidget({super.key, required this.token, this.onTap});

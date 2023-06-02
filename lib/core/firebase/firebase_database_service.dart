@@ -85,20 +85,33 @@ class FirebaseDatabaseService {
     return tokens;
   }
 
+  /// Crypto token selected by the user listen
+  Stream<List<String>> getUserTokensLive({required String accountName}) {
+    final db = FirebaseFirestore.instance;
+
+    return db
+        .collection('users')
+        .doc(accountName)
+        .snapshots()
+        .map((DocumentSnapshot<Map<String, dynamic>> event) => List<String>.from(event.data()?['userTokens'] ?? []));
+  }
+
   /// Get all tokens
   Future<List<FirebaseTokenData>> getAllTokens() async {
     final db = FirebaseFirestore.instance;
 
     final tokens = await db.collection('tokens').get();
-    final mappedTokens = tokens.docs.map(
-      (QueryDocumentSnapshot<Map<String, dynamic>> token) => FirebaseTokenData(
-        image: token.data()['image'],
-        name: token.data()['name'],
-        contract: token.data()['contract'],
-        symbol: token.data()['symbol'],
-        id: token.data()['id'],
-      ),
-    ).toList();
+    final mappedTokens = tokens.docs
+        .map(
+          (QueryDocumentSnapshot<Map<String, dynamic>> token) => FirebaseTokenData(
+            image: token.data()['image'],
+            name: token.data()['name'],
+            contract: token.data()['contract'],
+            symbol: token.data()['symbol'],
+            id: token.data()['id'],
+          ),
+        )
+        .toList();
 
     return mappedTokens;
   }
