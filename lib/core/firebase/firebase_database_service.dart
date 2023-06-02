@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:hypha_wallet/core/firebase/firebase_token_data.dart';
 import 'package:hypha_wallet/core/logging/log_helper.dart';
 
 class FirebaseDatabaseService {
@@ -42,39 +43,39 @@ class FirebaseDatabaseService {
   }
 
   /// Crypto token selected by the user
-  Future<void> saveToken({required String tokenSymbol, required String accountName}) {
+  Future<void> saveTokenToUser({required String tokenId, required String accountName}) {
     final db = FirebaseFirestore.instance;
 
     final token = <String, dynamic>{
-      'userTokens': FieldValue.arrayUnion([tokenSymbol]),
+      'userTokens': FieldValue.arrayUnion([tokenId]),
       'lastEdit': Timestamp.now(),
     };
 
     return db
         .collection('users')
         .doc(accountName)
-        .set(token)
+        .update(token)
         .onError((e, _) => LogHelper.d('Error writing document: $e'));
   }
 
   /// Crypto token selected by the user
-  Future<void> removeToken({required String tokenSymbol, required String accountName}) {
+  Future<void> removeTokenFromUser({required String tokenId, required String accountName}) {
     final db = FirebaseFirestore.instance;
 
     final token = <String, dynamic>{
-      'userTokens': FieldValue.arrayRemove([tokenSymbol]),
+      'userTokens': FieldValue.arrayRemove([tokenId]),
       'lastEdit': Timestamp.now(),
     };
 
     return db
         .collection('users')
         .doc(accountName)
-        .set(token)
+        .update(token)
         .onError((e, _) => LogHelper.d('Error writing document: $e'));
   }
 
   /// Crypto token selected by the user
-  Future<List<String>> getTokens({required String accountName}) async {
+  Future<List<String>> getUserTokens({required String accountName}) async {
     final db = FirebaseFirestore.instance;
 
     final DocumentSnapshot<Map<String, dynamic>> user = await db.collection('users').doc(accountName).get();
@@ -82,5 +83,23 @@ class FirebaseDatabaseService {
     final List<String> tokens = List<String>.from(user.data()?['userTokens'] ?? []);
 
     return tokens;
+  }
+
+  /// Get all tokens
+  Future<List<FirebaseTokenData>> getAllTokens() async {
+    final db = FirebaseFirestore.instance;
+
+    final tokens = await db.collection('tokens').get();
+    final mappedTokens = tokens.docs.map(
+      (QueryDocumentSnapshot<Map<String, dynamic>> token) => FirebaseTokenData(
+        image: token.data()['image'],
+        name: token.data()['name'],
+        contract: token.data()['contract'],
+        symbol: token.data()['symbol'],
+        id: token.data()['id'],
+      ),
+    ).toList();
+
+    return mappedTokens;
   }
 }

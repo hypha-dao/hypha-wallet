@@ -52,6 +52,12 @@ void _registerBlocsModule() {
         _getIt<GetUserTokensUseCase>(),
       ));
 
+  _registerFactory(() => TokensSettingsBloc(
+        _getIt<GetAllTokensUseCase>(),
+        _getIt<RemoveTokenFromUserUseCase>(),
+        _getIt<AddTokenToUserUseCase>(),
+      ));
+
   _registerFactoryWithParams<CreateAccountBloc, XFile?, String>(
     (image, userName) => CreateAccountBloc(
       _getIt<CryptoAuthService>(),

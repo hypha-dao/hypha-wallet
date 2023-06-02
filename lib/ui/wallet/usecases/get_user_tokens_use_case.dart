@@ -9,6 +9,6 @@ class GetUserTokensUseCase {
 
   Future<List<String>> run() async {
     final user = await _appSharedPrefs.getUserProfileData();
-    return _database.getTokens(accountName: user!.accountName);
+    return _database.getUserTokens(accountName: user!.accountName);
   }
 }
