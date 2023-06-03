@@ -49,6 +49,13 @@ void _registerBlocsModule() {
   _registerFactory(() => WalletBloc(
         _getIt<GetTransactionHistoryUseCase>(),
         _getIt<ErrorHandlerManager>(),
+        _getIt<GetUserTokensUseCase>(),
+      ));
+
+  _registerFactory(() => TokensSettingsBloc(
+        _getIt<GetAllTokensUseCase>(),
+        _getIt<RemoveTokenFromUserUseCase>(),
+        _getIt<AddTokenToUserUseCase>(),
       ));
 
   _registerFactoryWithParams<CreateAccountBloc, XFile?, String>(

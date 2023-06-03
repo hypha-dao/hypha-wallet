@@ -1,5 +1,7 @@
 import 'package:equatable/equatable.dart';
 
+const _daoAccount = 'dao.hypha';
+const _eosioLoginAccount = 'eosio.login';
 sealed class TransactionModel extends Equatable {
   final DateTime timestamp;
   final String account;
@@ -32,10 +34,6 @@ sealed class TransactionModel extends Equatable {
     final actor = act['authorization'].first['actor'];
     final transactionId = json['trx_id'];
 
-    // TODO(gguij): Move these constants where they belong
-    const daoAccount = 'dao.hypha';
-    const eosioLoginAccount = 'eosio.login';
-
     // parse known transactions
     return switch (actionName) {
       'transfer' => TransactionTransfer(
@@ -47,7 +45,7 @@ sealed class TransactionModel extends Equatable {
           actor: actor,
           transactionId: transactionId,
         ),
-      'redeem' when account == daoAccount => TransactionRedeem(
+      'redeem' when account == _daoAccount => TransactionRedeem(
           account: account,
           actionName: actionName,
           blockNumber: blockNumber,
@@ -56,7 +54,7 @@ sealed class TransactionModel extends Equatable {
           actor: actor,
           transactionId: transactionId,
         ),
-      'cmntadd' when account == daoAccount => TransactionCommentAdd(
+      'cmntadd' when account == _daoAccount => TransactionCommentAdd(
           account: account,
           actionName: actionName,
           blockNumber: blockNumber,
@@ -65,7 +63,7 @@ sealed class TransactionModel extends Equatable {
           actor: actor,
           transactionId: transactionId,
         ),
-      'vote' when account == daoAccount => TransactionVote(
+      'vote' when account == _daoAccount => TransactionVote(
           account: account,
           actionName: actionName,
           blockNumber: blockNumber,
@@ -74,7 +72,7 @@ sealed class TransactionModel extends Equatable {
           actor: actor,
           transactionId: transactionId,
         ),
-      'claimnextper' when account == daoAccount => TransactionClaimNextPer(
+      'claimnextper' when account == _daoAccount => TransactionClaimNextPer(
           account: account,
           actionName: actionName,
           blockNumber: blockNumber,
@@ -83,7 +81,7 @@ sealed class TransactionModel extends Equatable {
           actor: actor,
           transactionId: transactionId,
         ),
-      'propose' when account == daoAccount => TransactionPropose(
+      'propose' when account == _daoAccount => TransactionPropose(
           account: account,
           actionName: actionName,
           blockNumber: blockNumber,
@@ -92,7 +90,7 @@ sealed class TransactionModel extends Equatable {
           actor: actor,
           transactionId: transactionId,
         ),
-      'reactadd' when account == daoAccount => TransactionReactionAdd(
+      'reactadd' when account == _daoAccount => TransactionReactionAdd(
           account: account,
           actionName: actionName,
           blockNumber: blockNumber,
@@ -101,7 +99,7 @@ sealed class TransactionModel extends Equatable {
           actor: actor,
           transactionId: transactionId,
         ),
-      'loginuser' when account == eosioLoginAccount => TransactionLogInUser(
+      'loginuser' when account == _eosioLoginAccount => TransactionLogInUser(
           account: account,
           actionName: actionName,
           blockNumber: blockNumber,
@@ -110,7 +108,7 @@ sealed class TransactionModel extends Equatable {
           actor: actor,
           transactionId: transactionId,
         ),
-      'proposepub' when account == daoAccount => TransactionProposePub(
+      'proposepub' when account == _daoAccount => TransactionProposePub(
           account: account,
           actionName: actionName,
           blockNumber: blockNumber,
