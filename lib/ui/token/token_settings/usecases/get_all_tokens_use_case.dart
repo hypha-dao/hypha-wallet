@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:hypha_wallet/core/firebase/firebase_database_service.dart';
 import 'package:hypha_wallet/core/firebase/firebase_token_data.dart';
 import 'package:hypha_wallet/core/shared_preferences/hypha_shared_prefs.dart';
-import 'package:hypha_wallet/ui/token_settings/data/settings_token_data.dart';
+import 'package:hypha_wallet/ui/token/token_settings/data/settings_token_data.dart';
 
 class GetAllTokensUseCase {
   final FirebaseDatabaseService _database;

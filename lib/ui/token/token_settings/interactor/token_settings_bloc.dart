@@ -3,10 +3,11 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hypha_wallet/ui/architecture/interactor/page_states.dart';
-import 'package:hypha_wallet/ui/token_settings/data/settings_token_data.dart';
-import 'package:hypha_wallet/ui/token_settings/usecases/add_token_to_user_use_case.dart';
-import 'package:hypha_wallet/ui/token_settings/usecases/get_all_tokens_use_case.dart';
-import 'package:hypha_wallet/ui/token_settings/usecases/remove_token_from_user_use_case.dart';
+import 'package:hypha_wallet/ui/token/token_settings/data/settings_token_data.dart';
+import 'package:hypha_wallet/ui/token/token_settings/usecases/add_token_to_user_use_case.dart';
+import 'package:hypha_wallet/ui/token/token_settings/usecases/get_all_tokens_use_case.dart';
+import 'package:hypha_wallet/ui/token/token_settings/usecases/remove_token_from_user_use_case.dart';
+
 
 part 'page_command.dart';
 

@@ -12,7 +12,7 @@ import 'package:hypha_wallet/ui/blocs/authentication/authentication_bloc.dart';
 import 'package:hypha_wallet/ui/shared/hypha_body_widget.dart';
 import 'package:hypha_wallet/ui/shared/hypha_error_view.dart';
 import 'package:hypha_wallet/ui/shared/listview_with_all_separators.dart';
-import 'package:hypha_wallet/ui/token_settings/token_settings_page.dart';
+import 'package:hypha_wallet/ui/token/token_settings/token_settings_page.dart';
 import 'package:hypha_wallet/ui/wallet/components/wallet_add_token_widget.dart';
 import 'package:hypha_wallet/ui/wallet/components/wallet_token_widget.dart';
 import 'package:hypha_wallet/ui/wallet/components/wallet_transaction_tile.dart';
