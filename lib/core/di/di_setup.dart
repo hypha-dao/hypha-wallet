@@ -62,6 +62,8 @@ import 'package:hypha_wallet/ui/settings/interactor/settings_bloc.dart';
 import 'package:hypha_wallet/ui/settings/usecases/delete_account_use_case.dart';
 import 'package:hypha_wallet/ui/sign_transaction/interactor/sign_transaction_bloc.dart';
 import 'package:hypha_wallet/ui/sign_transaction/usecases/sign_transaction_use_case.dart';
+import 'package:hypha_wallet/ui/token/token_details/interactor/token_details_bloc.dart';
+import 'package:hypha_wallet/ui/wallet/data/wallet_token_data.dart';
 import 'package:hypha_wallet/ui/token/token_settings/interactor/token_settings_bloc.dart';
 import 'package:hypha_wallet/ui/token/token_settings/usecases/add_token_to_user_use_case.dart';
 import 'package:hypha_wallet/ui/token/token_settings/usecases/get_all_tokens_use_case.dart';

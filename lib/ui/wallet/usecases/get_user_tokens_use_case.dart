@@ -19,7 +19,8 @@ class GetUserTokensUseCase {
           .where((element) => userTokens.contains(element.id))
           .map(
             (e) => WalletTokenData(
-              10,
+              userOwnedAmount: 10, // TODO(gguij): We need to fetch this data
+              selected: true,
               image: e.image,
               name: e.name,
               contract: e.contract,

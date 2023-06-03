@@ -12,6 +12,7 @@ import 'package:hypha_wallet/ui/blocs/authentication/authentication_bloc.dart';
 import 'package:hypha_wallet/ui/shared/hypha_body_widget.dart';
 import 'package:hypha_wallet/ui/shared/hypha_error_view.dart';
 import 'package:hypha_wallet/ui/shared/listview_with_all_separators.dart';
+import 'package:hypha_wallet/ui/token/token_details/token_details_page.dart';
 import 'package:hypha_wallet/ui/token/token_settings/token_settings_page.dart';
 import 'package:hypha_wallet/ui/wallet/components/wallet_add_token_widget.dart';
 import 'package:hypha_wallet/ui/wallet/components/wallet_token_widget.dart';
@@ -32,7 +33,7 @@ class WalletView extends StatelessWidget {
           final List<WalletTokenData> tokens = state.tokens +
               [
                 const WalletTokenData(
-                  10,
+                  selected: true,
                   name: 'ADD TOKEN',
                   image: 'ADD TOKEN',
                   contract: 'ADD TOKEN',
@@ -112,7 +113,7 @@ class _UserTokensList extends StatelessWidget {
           if (index == 0) return const SizedBox(width: 28);
           return const SizedBox(width: 16);
         },
-        itemBuilder: (_, item, __) {
+        itemBuilder: (_, WalletTokenData item, __) {
           return item.name == 'ADD TOKEN'
               ? WalletAddTokenWidget(
                   token: item,
@@ -122,7 +123,7 @@ class _UserTokensList extends StatelessWidget {
               : WalletTokenWidget(
                   token: item,
                   onTap: () {
-                    // TODO(gguij): Nav to token details
+                    Get.to(() => TokensDetailsPage(data: item));
                   });
         },
       ),
