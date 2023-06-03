@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:hypha_wallet/core/firebase/firebase_database_service.dart';
 import 'package:hypha_wallet/ui/architecture/interactor/page_states.dart';
 import 'package:hypha_wallet/ui/token_settings/data/settings_token_data.dart';
 import 'package:hypha_wallet/ui/token_settings/usecases/add_token_to_user_use_case.dart';
