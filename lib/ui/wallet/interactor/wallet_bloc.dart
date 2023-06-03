@@ -8,7 +8,6 @@ import 'package:hypha_wallet/core/network/models/transaction_model.dart';
 import 'package:hypha_wallet/ui/architecture/interactor/page_states.dart';
 import 'package:hypha_wallet/ui/architecture/result/result.dart';
 import 'package:hypha_wallet/ui/history/transactions/usecases/get_transaction_history_use_case.dart';
-import 'package:hypha_wallet/ui/token_settings/data/settings_token_data.dart';
 import 'package:hypha_wallet/ui/wallet/data/wallet_token_data.dart';
 import 'package:hypha_wallet/ui/wallet/usecases/get_user_tokens_use_case.dart';
 

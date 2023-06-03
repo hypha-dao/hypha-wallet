@@ -68,9 +68,7 @@ class WalletView extends StatelessWidget {
                       const SizedBox(width: 12),
                       Text(
                         'Wallet',
-                        style: context.hyphaTextTheme.bigTitles.copyWith(
-                          color: context.isDarkMode ? HyphaColors.black : HyphaColors.white,
-                        ),
+                        style: context.hyphaTextTheme.bigTitles.copyWith(color: HyphaColors.white),
                       ),
                     ],
                   ),
@@ -81,33 +79,7 @@ class WalletView extends StatelessWidget {
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     const SizedBox(height: 20),
-                    SizedBox(
-                      height: 150,
-                      child: ListViewWithAllSeparators(
-                        scrollDirection: Axis.horizontal,
-                        items: tokens,
-                        physics: const ClampingScrollPhysics(),
-                        cacheExtent: MediaQuery.of(context).size.height * 2,
-                        separatorBuilder: (_, int index) {
-                          if (tokens.isEmpty) return const SizedBox.shrink();
-                          if (index == 0) return const SizedBox(width: 28);
-                          return const SizedBox(width: 16);
-                        },
-                        itemBuilder: (_, item, __) {
-                          return item.name == 'ADD TOKEN'
-                              ? WalletAddTokenWidget(
-                                  token: item,
-                                  onTap: () {
-                                    Get.to(() => const TokensSettingsPage());
-                                  })
-                              : WalletTokenWidget(
-                                  token: item,
-                                  onTap: () {
-                                    // TODO(gguij): Nav to token details
-                                  });
-                        },
-                      ),
-                    ),
+                    _UserTokensList(tokens: tokens),
                     const SizedBox(height: 24),
                     const _RecentTransactionsView(),
                   ],
@@ -115,6 +87,43 @@ class WalletView extends StatelessWidget {
               ),
             ),
           );
+        },
+      ),
+    );
+  }
+}
+
+class _UserTokensList extends StatelessWidget {
+  const _UserTokensList({required this.tokens});
+
+  final List<WalletTokenData> tokens;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 150,
+      child: ListViewWithAllSeparators(
+        scrollDirection: Axis.horizontal,
+        items: tokens,
+        physics: const ClampingScrollPhysics(),
+        cacheExtent: MediaQuery.of(context).size.height * 2,
+        separatorBuilder: (_, int index) {
+          if (tokens.isEmpty) return const SizedBox.shrink();
+          if (index == 0) return const SizedBox(width: 28);
+          return const SizedBox(width: 16);
+        },
+        itemBuilder: (_, item, __) {
+          return item.name == 'ADD TOKEN'
+              ? WalletAddTokenWidget(
+                  token: item,
+                  onTap: () {
+                    Get.to(() => const TokensSettingsPage());
+                  })
+              : WalletTokenWidget(
+                  token: item,
+                  onTap: () {
+                    // TODO(gguij): Nav to token details
+                  });
         },
       ),
     );
