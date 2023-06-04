@@ -1073,6 +1073,7 @@ mixin _$TokenDetailsState {
   PageState get pageState => throw _privateConstructorUsedError;
   PageCommand? get command => throw _privateConstructorUsedError;
   WalletTokenData get token => throw _privateConstructorUsedError;
+  bool get loadingTransaction => throw _privateConstructorUsedError;
   List<TransactionModel> get recentTransactions =>
       throw _privateConstructorUsedError;
 
@@ -1091,6 +1092,7 @@ abstract class $TokenDetailsStateCopyWith<$Res> {
       {PageState pageState,
       PageCommand? command,
       WalletTokenData token,
+      bool loadingTransaction,
       List<TransactionModel> recentTransactions});
 
   $PageCommandCopyWith<$Res>? get command;
@@ -1112,6 +1114,7 @@ class _$TokenDetailsStateCopyWithImpl<$Res, $Val extends TokenDetailsState>
     Object? pageState = null,
     Object? command = freezed,
     Object? token = null,
+    Object? loadingTransaction = null,
     Object? recentTransactions = null,
   }) {
     return _then(_value.copyWith(
@@ -1127,6 +1130,10 @@ class _$TokenDetailsStateCopyWithImpl<$Res, $Val extends TokenDetailsState>
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
               as WalletTokenData,
+      loadingTransaction: null == loadingTransaction
+          ? _value.loadingTransaction
+          : loadingTransaction // ignore: cast_nullable_to_non_nullable
+              as bool,
       recentTransactions: null == recentTransactions
           ? _value.recentTransactions
           : recentTransactions // ignore: cast_nullable_to_non_nullable
@@ -1159,6 +1166,7 @@ abstract class _$$_TokenDetailsStateCopyWith<$Res>
       {PageState pageState,
       PageCommand? command,
       WalletTokenData token,
+      bool loadingTransaction,
       List<TransactionModel> recentTransactions});
 
   @override
@@ -1179,6 +1187,7 @@ class __$$_TokenDetailsStateCopyWithImpl<$Res>
     Object? pageState = null,
     Object? command = freezed,
     Object? token = null,
+    Object? loadingTransaction = null,
     Object? recentTransactions = null,
   }) {
     return _then(_$_TokenDetailsState(
@@ -1194,6 +1203,10 @@ class __$$_TokenDetailsStateCopyWithImpl<$Res>
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
               as WalletTokenData,
+      loadingTransaction: null == loadingTransaction
+          ? _value.loadingTransaction
+          : loadingTransaction // ignore: cast_nullable_to_non_nullable
+              as bool,
       recentTransactions: null == recentTransactions
           ? _value._recentTransactions
           : recentTransactions // ignore: cast_nullable_to_non_nullable
@@ -1209,6 +1222,7 @@ class _$_TokenDetailsState extends _TokenDetailsState {
       {this.pageState = PageState.initial,
       this.command,
       required this.token,
+      this.loadingTransaction = true,
       final List<TransactionModel> recentTransactions = const []})
       : _recentTransactions = recentTransactions,
         super._();
@@ -1220,6 +1234,9 @@ class _$_TokenDetailsState extends _TokenDetailsState {
   final PageCommand? command;
   @override
   final WalletTokenData token;
+  @override
+  @JsonKey()
+  final bool loadingTransaction;
   final List<TransactionModel> _recentTransactions;
   @override
   @JsonKey()
@@ -1232,7 +1249,7 @@ class _$_TokenDetailsState extends _TokenDetailsState {
 
   @override
   String toString() {
-    return 'TokenDetailsState(pageState: $pageState, command: $command, token: $token, recentTransactions: $recentTransactions)';
+    return 'TokenDetailsState(pageState: $pageState, command: $command, token: $token, loadingTransaction: $loadingTransaction, recentTransactions: $recentTransactions)';
   }
 
   @override
@@ -1244,12 +1261,19 @@ class _$_TokenDetailsState extends _TokenDetailsState {
                 other.pageState == pageState) &&
             (identical(other.command, command) || other.command == command) &&
             (identical(other.token, token) || other.token == token) &&
+            (identical(other.loadingTransaction, loadingTransaction) ||
+                other.loadingTransaction == loadingTransaction) &&
             const DeepCollectionEquality()
                 .equals(other._recentTransactions, _recentTransactions));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, pageState, command, token,
+  int get hashCode => Object.hash(
+      runtimeType,
+      pageState,
+      command,
+      token,
+      loadingTransaction,
       const DeepCollectionEquality().hash(_recentTransactions));
 
   @JsonKey(ignore: true)
@@ -1265,6 +1289,7 @@ abstract class _TokenDetailsState extends TokenDetailsState {
       {final PageState pageState,
       final PageCommand? command,
       required final WalletTokenData token,
+      final bool loadingTransaction,
       final List<TransactionModel> recentTransactions}) = _$_TokenDetailsState;
   const _TokenDetailsState._() : super._();
 
@@ -1274,6 +1299,8 @@ abstract class _TokenDetailsState extends TokenDetailsState {
   PageCommand? get command;
   @override
   WalletTokenData get token;
+  @override
+  bool get loadingTransaction;
   @override
   List<TransactionModel> get recentTransactions;
   @override

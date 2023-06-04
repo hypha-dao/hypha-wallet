@@ -8,6 +8,7 @@ class TokenDetailsState with _$TokenDetailsState {
     @Default(PageState.initial) PageState pageState,
     PageCommand? command,
     required WalletTokenData token,
+    @Default(true) bool loadingTransaction,
     @Default([]) List<TransactionModel> recentTransactions,
   }) = _TokenDetailsState;
 }

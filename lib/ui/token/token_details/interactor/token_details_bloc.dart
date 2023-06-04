@@ -36,6 +36,7 @@ class TokenDetailsBloc extends Bloc<TokenDetailsEvent, TokenDetailsState> {
 
   Future<void> _initial(_Initial event, Emitter<TokenDetailsState> emit) async {
     emit(state.copyWith(pageState: PageState.loading));
+
   }
 
   FutureOr<void> _addTokenToUser(_AddTokenToUser event, Emitter<TokenDetailsState> emit) async {

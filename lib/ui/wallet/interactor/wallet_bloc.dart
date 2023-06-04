@@ -34,20 +34,22 @@ class WalletBloc extends Bloc<WalletEvent, WalletState> {
   }
 
   Future<void> _initial(_Initial event, Emitter<WalletState> emit) async {
-    emit(state.copyWith(pageState: PageState.loading));
-    final Result<List<TransactionModel>, HyphaError> result = await _getTransactionHistoryUseCase.run();
-    if (result.isValue) {
-      emit(state.copyWith(
-        pageState: PageState.success,
-        recentTransactions: result.valueOrCrash
-            .where((TransactionModel element) => element is TransactionRedeem || element is TransactionTransfer)
-            .toList(),
-      ));
-    } else {
-      // ignore: unawaited_futures
-      _errorHandlerManager.handlerError(result.asError!.error);
-      emit(state.copyWith(pageState: PageState.failure));
-    }
+    emit(state.copyWith(pageState: PageState.success, loadingTransaction: true));
+    unawaited(_getTransactionHistoryUseCase.run().then((result) {
+      if (result.isValue) {
+        emit(state.copyWith(
+          pageState: PageState.success,
+          recentTransactions: result.valueOrCrash
+              .where((TransactionModel element) => element is TransactionRedeem || element is TransactionTransfer)
+              .toList(),
+          loadingTransaction: false,
+        ));
+      } else {
+        // ignore: unawaited_futures
+        _errorHandlerManager.handlerError(result.asError!.error);
+        emit(state.copyWith(loadingTransaction: false));
+      }
+    }));
 
     final Stream<List<WalletTokenData>> tokens = await _getUserTokensUseCase.run();
     await emit.forEach(tokens, onData: (data) {

@@ -7,6 +7,7 @@ class HyphaPageBackground extends StatelessWidget {
   final bool withGradient;
   final Widget child;
   final String? backgroundTexture;
+  final LinearGradient? gradient;
 
   const HyphaPageBackground({
     super.key,
@@ -14,6 +15,7 @@ class HyphaPageBackground extends StatelessWidget {
     this.withOpacity = true,
     this.withGradient = false,
     this.backgroundTexture,
+    this.gradient,
   });
 
   @override
@@ -25,7 +27,7 @@ class HyphaPageBackground extends StatelessWidget {
         gradient: withGradient
             ? context.isDarkTheme
                 ? HyphaColors.gradientBlack
-                : HyphaColors.gradientWhite
+                : gradient ?? HyphaColors.gradientWhite
             : null,
         image: withGradient
             ? null
