@@ -1,4 +1,4 @@
-import 'package:hypha_wallet/core/network/api/user_account_service.dart';
+import 'package:hypha_wallet/core/network/api/services/user_account_service.dart';
 
 class UserAccountRepository {
   final UserAccountService userService;

@@ -8,7 +8,7 @@ import 'package:dio/dio.dart';
 import 'package:hypha_wallet/core/network/api/aws_amplify/amplify_policy.dart';
 import 'package:hypha_wallet/core/network/api/aws_amplify/aws_authenticated_request.dart';
 import 'package:hypha_wallet/core/network/api/eos_service.dart';
-import 'package:hypha_wallet/core/network/api/remote_config_service.dart';
+import 'package:hypha_wallet/core/network/api/services/remote_config_service.dart';
 import 'package:hypha_wallet/core/network/networking_manager.dart';
 import 'package:hypha_wallet/ui/profile/interactor/profile_data.dart';
 

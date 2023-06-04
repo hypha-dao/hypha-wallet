@@ -10,6 +10,7 @@ class Endpoints {
   // EOS node REST API
   static const String getAccount = '/v1/chain/get_account';
   static const String getTransactionHistory = '/v2/history/get_actions';
+  static const String getCurrencyBalance = '/v1/chain/get_currency_balance';
 
   // Account Creator REST API
   static const String creteAccount = '/createAccount';

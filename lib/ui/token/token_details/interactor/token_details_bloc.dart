@@ -2,7 +2,9 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:hypha_wallet/core/logging/log_helper.dart';
 import 'package:hypha_wallet/core/network/models/transaction_model.dart';
+import 'package:hypha_wallet/core/network/repository/balance_repository.dart';
 import 'package:hypha_wallet/ui/architecture/interactor/page_states.dart';
 import 'package:hypha_wallet/ui/wallet/data/wallet_token_data.dart';
 import 'package:hypha_wallet/ui/token/token_settings/usecases/add_token_to_user_use_case.dart';
@@ -20,10 +22,12 @@ part 'token_details_state.dart';
 class TokenDetailsBloc extends Bloc<TokenDetailsEvent, TokenDetailsState> {
   final AddTokenToUserUseCase _addTokenToUserUseCase;
   final RemoveTokenFromUserUseCase _removeTokenFromUserUseCase;
+  final BalanceRepository _balanceRepository;
 
   TokenDetailsBloc(
     this._removeTokenFromUserUseCase,
     this._addTokenToUserUseCase,
+    this._balanceRepository,
     WalletTokenData tokenData,
   ) : super(TokenDetailsState(token: tokenData)) {
     on<_Initial>(_initial);
@@ -36,6 +40,10 @@ class TokenDetailsBloc extends Bloc<TokenDetailsEvent, TokenDetailsState> {
 
   Future<void> _initial(_Initial event, Emitter<TokenDetailsState> emit) async {
     emit(state.copyWith(pageState: PageState.loading));
+
+    // TODO(gguij): dont use hard coded
+    var result = _balanceRepository.getTransactions(userAccount: 'theremotecub', tokenContract: 'dao.hypha', symbol: 'HVOICE');
+    LogHelper.d('result' + result.toString());
 
   }
 
