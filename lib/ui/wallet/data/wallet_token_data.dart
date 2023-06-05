@@ -13,4 +13,16 @@ class WalletTokenData extends FirebaseTokenData {
     required super.symbol,
     required super.id,
   });
+
+  WalletTokenData withUserOwnedAmount(double userOwnedAmount) {
+    return WalletTokenData(
+      selected: selected,
+      image: image,
+      name: name,
+      contract: contract,
+      symbol: symbol,
+      id: id,
+      userOwnedAmount: userOwnedAmount,
+    );
+  }
 }

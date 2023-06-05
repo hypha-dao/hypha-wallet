@@ -7,10 +7,12 @@ import 'package:hypha_wallet/design/background/hypha_page_background.dart';
 import 'package:hypha_wallet/design/buttons/button_type.dart';
 import 'package:hypha_wallet/design/buttons/hypha_app_button.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
+import 'package:hypha_wallet/design/progress_indicator/hypha_progress_indicator.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 import 'package:hypha_wallet/ui/onboarding/components/onboarding_appbar.dart';
 import 'package:hypha_wallet/ui/shared/listview_with_all_separators.dart';
 import 'package:hypha_wallet/ui/token/token_details/interactor/token_details_bloc.dart';
+import 'package:hypha_wallet/ui/wallet/components/recent_transactions_view.dart';
 import 'package:hypha_wallet/ui/wallet/components/recent_transactions_widget.dart';
 import 'package:hypha_wallet/ui/wallet/components/wallet_transaction_tile.dart';
 import 'package:hypha_wallet/ui/wallet/data/wallet_token_data.dart';
@@ -28,7 +30,8 @@ class TokenDetailsView extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
-            title: Text(data.name, style: context.hyphaTextTheme.smallTitles.copyWith(color: Colors.white))),
+          title: Text(data.name, style: context.hyphaTextTheme.smallTitles.copyWith(color: Colors.white)),
+        ),
         body: BlocBuilder<TokenDetailsBloc, TokenDetailsState>(
           builder: (context, state) {
             return Column(
@@ -37,16 +40,24 @@ class TokenDetailsView extends StatelessWidget {
                 const SizedBox(height: 16),
                 Text(
                   'Balance',
-                  style: context.hyphaTextTheme.ralMediumLabel.copyWith(
+                  style: context.hyphaTextTheme.ralBold.copyWith(
                     color: context.isDarkMode ? HyphaColors.primaryBlu : HyphaColors.white,
                   ),
                 ),
-                const SizedBox(height: 6),
-                Text(
-                  data.userOwnedAmount?.toString() ?? 0.toString(),
-                  style: context.hyphaTextTheme.bigTitles.copyWith(
-                    color: HyphaColors.white,
-                  ),
+                BlocBuilder<TokenDetailsBloc, TokenDetailsState>(
+                  builder: (context, state) {
+                    return Visibility(
+                      visible: !state.loadingTokenBalance,
+                      replacement: const Padding(
+                        padding: EdgeInsets.only(top: 14, bottom: 16),
+                        child: HyphaProgressIndicator(height: 24, width: 24, strokeWidth: 1, color: Colors.white),
+                      ),
+                      child: Text(
+                        state.token.userOwnedAmount?.toString() ?? 0.toString(),
+                        style: context.hyphaTextTheme.popsExtraLargeAndLight.copyWith(color: HyphaColors.white),
+                      ),
+                    );
+                  },
                 ),
                 const SizedBox(height: 24),
                 Padding(
@@ -72,9 +83,14 @@ class TokenDetailsView extends StatelessWidget {
                     ],
                   ),
                 ),
-                RecentTransactionsWidget(
-                  loadingTransaction: state.loadingTransaction,
-                  recentTransactions: state.recentTransactions,
+                const SizedBox(height: 24),
+                BlocBuilder<TokenDetailsBloc, TokenDetailsState>(
+                  builder: (context, state) {
+                    return RecentTransactionsView(
+                      loadingTransaction: state.loadingTransaction,
+                      recentTransactions: state.recentTransactions,
+                    );
+                  },
                 ),
               ],
             );

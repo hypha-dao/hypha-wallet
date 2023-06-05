@@ -10,5 +10,6 @@ class TokenDetailsState with _$TokenDetailsState {
     required WalletTokenData token,
     @Default(true) bool loadingTransaction,
     @Default([]) List<TransactionModel> recentTransactions,
+    @Default(true) bool loadingTokenBalance,
   }) = _TokenDetailsState;
 }

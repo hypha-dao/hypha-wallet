@@ -20,7 +20,6 @@ Future<void> _registerServicesModule() async {
   _registerLazySingleton(() => TokenService(_getIt<NetworkingManager>()));
   _registerLazySingleton(() => HyphaMemberService(_getIt<NetworkingManager>()));
   _registerLazySingleton(() => SignTransactionCallbackService(_getIt<NetworkingManager>()));
-  _registerLazySingleton(() => BalanceService(_getIt<NetworkingManager>()));
 
   _registerLazySingleton(() => CryptoAuthService());
 

@@ -2,12 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart' as GetX;
 import 'package:get/get.dart';
-import 'package:hypha_wallet/core/network/models/transaction_model.dart';
 import 'package:hypha_wallet/design/avatar_image/hypha_avatar_image.dart';
 import 'package:hypha_wallet/design/background/hypha_page_background.dart';
-import 'package:hypha_wallet/design/hypha_card.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
-import 'package:hypha_wallet/design/progress_indicator/hypha_progress_indicator.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 import 'package:hypha_wallet/ui/blocs/authentication/authentication_bloc.dart';
 import 'package:hypha_wallet/ui/shared/hypha_body_widget.dart';
@@ -15,10 +12,9 @@ import 'package:hypha_wallet/ui/shared/hypha_error_view.dart';
 import 'package:hypha_wallet/ui/shared/listview_with_all_separators.dart';
 import 'package:hypha_wallet/ui/token/token_details/token_details_page.dart';
 import 'package:hypha_wallet/ui/token/token_settings/token_settings_page.dart';
-import 'package:hypha_wallet/ui/wallet/components/recent_transactions_widget.dart';
+import 'package:hypha_wallet/ui/wallet/components/recent_transactions_view.dart';
 import 'package:hypha_wallet/ui/wallet/components/wallet_add_token_widget.dart';
 import 'package:hypha_wallet/ui/wallet/components/wallet_token_widget.dart';
-import 'package:hypha_wallet/ui/wallet/components/wallet_transaction_tile.dart';
 import 'package:hypha_wallet/ui/wallet/data/wallet_token_data.dart';
 import 'package:hypha_wallet/ui/wallet/interactor/wallet_bloc.dart';
 
@@ -84,7 +80,14 @@ class WalletView extends StatelessWidget {
                     const SizedBox(height: 20),
                     _UserTokensList(tokens: tokens),
                     const SizedBox(height: 24),
-                    const _RecentTransactionsView(),
+                    BlocBuilder<WalletBloc, WalletState>(
+                      builder: (context, state) {
+                        return RecentTransactionsView(
+                          loadingTransaction: state.loadingTransaction,
+                          recentTransactions: state.recentTransactions,
+                        );
+                      },
+                    ),
                   ],
                 ),
               ),
@@ -129,35 +132,6 @@ class _UserTokensList extends StatelessWidget {
                   });
         },
       ),
-    );
-  }
-}
-
-class _RecentTransactionsView extends StatelessWidget {
-  const _RecentTransactionsView();
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<WalletBloc, WalletState>(
-      builder: (context, state) {
-        return Expanded(
-          child: DecoratedBox(
-            decoration: BoxDecoration(
-              color: context.isDarkMode ? null : HyphaColors.offWhite,
-              gradient: context.isDarkMode ? HyphaColors.gradientBlack : null,
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(28),
-                topRight: Radius.circular(28),
-              ),
-              boxShadow: context.isDarkMode ? HyphaColors.darkModeCardShadow : HyphaColors.lightModeCardShadow,
-            ),
-            child: RecentTransactionsWidget(
-              loadingTransaction: state.loadingTransaction,
-              recentTransactions: state.recentTransactions,
-            ),
-          ),
-        );
-      },
     );
   }
 }

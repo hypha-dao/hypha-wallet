@@ -11,10 +11,12 @@ class HyphaTextTheme extends ThemeExtension<HyphaTextTheme> {
   final TextStyle reducedTitles;
   final TextStyle ralMediumBody;
   final TextStyle ralMediumLabel;
+  final TextStyle ralBold;
   final TextStyle ralInput;
   final TextStyle ralMediumSmallNote;
   final TextStyle buttons;
   final TextStyle regular;
+  final TextStyle popsExtraLargeAndLight;
 
   const HyphaTextTheme({
     required this.bigTitles,
@@ -27,6 +29,8 @@ class HyphaTextTheme extends ThemeExtension<HyphaTextTheme> {
     required this.ralMediumSmallNote,
     required this.buttons,
     required this.regular,
+    required this.popsExtraLargeAndLight,
+    required this.ralBold,
   });
 
   @override
@@ -41,6 +45,8 @@ class HyphaTextTheme extends ThemeExtension<HyphaTextTheme> {
     TextStyle? ralMediumSmallNote,
     TextStyle? buttons,
     TextStyle? regular,
+    TextStyle? popsExtraLargeAndLight,
+    TextStyle? ralBold,
   }) {
     return HyphaTextTheme(
       bigTitles: bigTitles ?? this.bigTitles,
@@ -53,6 +59,8 @@ class HyphaTextTheme extends ThemeExtension<HyphaTextTheme> {
       ralMediumSmallNote: ralMediumSmallNote ?? this.ralMediumSmallNote,
       buttons: buttons ?? this.buttons,
       regular: regular ?? this.regular,
+      popsExtraLargeAndLight: popsExtraLargeAndLight ?? this.popsExtraLargeAndLight,
+      ralBold: ralBold ?? this.ralBold,
     );
   }
 
@@ -72,6 +80,8 @@ class HyphaTextTheme extends ThemeExtension<HyphaTextTheme> {
       ralMediumSmallNote: TextStyle.lerp(ralMediumSmallNote, other.ralMediumSmallNote, t)!,
       buttons: TextStyle.lerp(buttons, other.buttons, t)!,
       regular: TextStyle.lerp(regular, other.regular, t)!,
+      popsExtraLargeAndLight: TextStyle.lerp(popsExtraLargeAndLight, other.popsExtraLargeAndLight, t)!,
+      ralBold: TextStyle.lerp(ralBold, other.ralBold, t)!,
     );
   }
 
@@ -95,6 +105,8 @@ class HyphaTextTheme extends ThemeExtension<HyphaTextTheme> {
     ),
     buttons: baseFontPop.copyWith(fontWeight: FontWeight.bold, fontSize: 14, height: 1.5, letterSpacing: 1.5),
     regular: baseFontPop.copyWith(fontWeight: FontWeight.w500, fontSize: 16, height: 1.37),
+    popsExtraLargeAndLight: baseFontPop.copyWith(fontSize: 36),
+    ralBold: baseFontRal.copyWith(fontWeight: FontWeight.bold, fontSize: 12),
   );
 
   static final baseFontPop = GoogleFonts.poppins();
@@ -122,5 +134,7 @@ class HyphaTextTheme extends ThemeExtension<HyphaTextTheme> {
       letterSpacing: 1.5,
     ),
     regular: baseFontPop.copyWith(fontWeight: FontWeight.w500, fontSize: 16, height: 1.37),
+    popsExtraLargeAndLight: baseFontPop.copyWith(fontSize: 36),
+    ralBold: baseFontRal.copyWith(fontWeight: FontWeight.bold, fontSize: 12),
   );
 }

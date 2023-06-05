@@ -62,7 +62,9 @@ void _registerBlocsModule() {
     (tokenData, _) => TokenDetailsBloc(
       _getIt<RemoveTokenFromUserUseCase>(),
       _getIt<AddTokenToUserUseCase>(),
-      _getIt<BalanceRepository>(),
+      _getIt<GetTokenBalanceUseCase>(),
+      _getIt<GetTransactionHistoryUseCase>(),
+      _getIt<ErrorHandlerManager>(),
       tokenData,
     ),
   );
