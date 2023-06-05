@@ -13,7 +13,7 @@ class Endpoints {
   static const String getCurrencyBalance = '/v1/chain/get_currency_balance';
 
   // Account Creator REST API
-  static const String creteAccount = '/createAccount';
+  static const String createAccount = '/createAccount';
 
   // receiveTimeout
   static const Duration receiveTimeout = Duration(seconds: 15);

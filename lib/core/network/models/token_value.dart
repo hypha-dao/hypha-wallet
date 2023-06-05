@@ -12,6 +12,10 @@ class TokenValue {
     return TokenValue(amount, tokenModel);
   }
 
+  TokenValue withAmount(double amount) {
+    return TokenValue(amount, tokenModel);
+  }
+
   /// Return a blockchain compatible string for this value
   ///
   /// e.g. if amount = 4.91 and token precision is 2, symbol is HYPHA
