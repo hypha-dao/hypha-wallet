@@ -23,7 +23,6 @@ class TokenService {
       }''';
       final res = await networkingManager.post(Endpoints.getCurrencyBalance, data: requestBody);
       final tokenString = res.data[0];
-      print("token string: $tokenString");
       return Result.value(TokenValue.fromString(tokenString, tokenContract));
     } catch (error) {
       return Result.error(HyphaError.fromError(error));
