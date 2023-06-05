@@ -6,7 +6,9 @@ import 'package:hypha_wallet/core/crypto/eosdart/eosdart.dart';
 import 'package:hypha_wallet/core/crypto/seeds_esr/eos_transaction.dart';
 import 'package:hypha_wallet/core/local/models/user_auth_data.dart';
 import 'package:hypha_wallet/core/local/services/secure_storage_service.dart';
+import 'package:hypha_wallet/core/network/api/endpoints.dart';
 import 'package:hypha_wallet/core/network/api/remote_config_service.dart';
+import 'package:hypha_wallet/core/network/models/token_value.dart';
 
 class EOSService {
   final SecureStorageService secureStorageService;
@@ -44,6 +46,34 @@ class EOSService {
       network: network,
     );
     return sendTransaction(eosTransaction: loginTransaction, accountName: accountName, network: network);
+  }
+
+  Future<Result<dynamic>> transferTokens({
+    required String fromAccount,
+    required String toAccount,
+    required TokenValue tokenValue,
+    String memo = '',
+    required Networks network,
+  }) async {
+    final contractName = tokenValue.tokenModel.contract;
+    final actionName = 'transfer';
+    final transferTransaction = EOSTransaction.fromAction(
+      account: contractName,
+      actionName: actionName,
+      data: {
+        'from': fromAccount,
+        'to': toAccount,
+        'quantity': tokenValue.asFormattedString(),
+        'memo': memo,
+      },
+      authorization: [
+        Authorization()
+          ..actor = fromAccount
+          ..permission = 'active'
+      ],
+      network: network,
+    );
+    return sendTransaction(eosTransaction: transferTransaction, accountName: fromAccount, network: network);
   }
 
   Future<Result<dynamic>> deleteBlockchainAccount({

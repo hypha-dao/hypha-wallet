@@ -22,7 +22,7 @@ class UserAccountService {
       "publicKey": "$publicKey",
       "network": "$network"
     }''';
-    final url = remoteConfigService.accountCreatorEndpoint + Endpoints.creteAccount;
+    final url = remoteConfigService.accountCreatorEndpoint + Endpoints.createAccount;
     try {
       // ignore: unused_local_variable
       final res = await networkingManager.post(url, data: requestBody);
