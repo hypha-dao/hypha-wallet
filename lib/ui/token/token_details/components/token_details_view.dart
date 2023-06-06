@@ -53,7 +53,7 @@ class TokenDetailsView extends StatelessWidget {
                         child: HyphaProgressIndicator(height: 24, width: 24, strokeWidth: 1, color: Colors.white),
                       ),
                       child: Text(
-                        state.token.userOwnedAmount?.toString() ?? 'N/A',
+                        state.token.userOwnedAmount?.toString() ?? 'n/a',
                         style: context.hyphaTextTheme.popsExtraLargeAndLight.copyWith(color: HyphaColors.white),
                       ),
                     );
