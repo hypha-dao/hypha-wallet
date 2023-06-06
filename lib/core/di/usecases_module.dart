@@ -25,7 +25,13 @@ void _registerUseCasesModule() {
   _registerFactory(() => GetTokenBalanceUseCase(_getIt<HyphaSharedPrefs>(), _getIt<TokenService>()));
   _registerFactory(() => AddTokenToUserUseCase(_getIt<FirebaseDatabaseService>(), _getIt<HyphaSharedPrefs>()));
   _registerFactory(() => RemoveTokenFromUserUseCase(_getIt<FirebaseDatabaseService>(), _getIt<HyphaSharedPrefs>()));
-  _registerFactory(() => GetUserTokensUseCase(_getIt<FirebaseDatabaseService>(), _getIt<HyphaSharedPrefs>()));
+  _registerFactory(
+    () => GetUserTokensUseCase(
+      _getIt<FirebaseDatabaseService>(),
+      _getIt<HyphaSharedPrefs>(),
+      _getIt<TokenService>(),
+    ),
+  );
   _registerFactory(() => SetNameUseCase(_getIt<AmplifyService>()));
   _registerFactory(() => SetImageUseCase(_getIt<AmplifyService>(), _getIt<ProfileLoginUseCase>()));
   _registerFactory(() => SetBioUseCase(_getIt<AmplifyService>(), _getIt<ProfileLoginUseCase>()));
