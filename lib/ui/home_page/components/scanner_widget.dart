@@ -1,4 +1,4 @@
-import 'dart:ui';
+isimport 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -78,12 +78,13 @@ class _ScannerWidgetState extends State<ScannerWidget> {
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(30),
                               child: MobileScanner(
+                                allowDuplicates: false,
                                 controller: MobileScannerController(
                                   facing: CameraFacing.back,
                                   torchEnabled: false,
                                 ),
-                                onDetect: (BarcodeCapture barcode) {
-                                  if (barcode.raw == null) {
+                                onDetect: (barcode, args) {
+                                  if (barcode.rawValue == null) {
                                     LogHelper.d('Failed to scan Barcode');
                                     context.read<ErrorHandlerBloc>().add(
                                           ErrorHandlerEvent.onError(
@@ -94,7 +95,7 @@ class _ScannerWidgetState extends State<ScannerWidget> {
                                           ),
                                         );
                                   } else {
-                                    final String code = barcode.raw!;
+                                    final String code = barcode.rawValue!;
                                     LogHelper.d('Barcode found! $code');
                                     hideScanner();
                                     context.read<HomeBloc>().add(HomeEvent.onQRCodeScanned(code));
