@@ -14,7 +14,7 @@ class TokenModel {
     final numberString = components[0];
     final symbol = components[1];
     final decimals = numberString.split('.');
-    assert(decimals.length == 2, 'Invalid symbol string');
+    assert(decimals.length == 2, 'Invalid decimals string');
 
     final precision = decimals[1].length;
     return TokenModel(SymbolModel(symbol, precision), contract);

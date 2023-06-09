@@ -10,7 +10,7 @@ import 'package:hypha_wallet/core/local/services/secure_storage_service.dart';
 import 'package:hypha_wallet/core/logging/log_helper.dart';
 import 'package:hypha_wallet/core/network/api/aws_amplify/amplify_service.dart';
 import 'package:hypha_wallet/core/network/api/aws_amplify/profile_upload_repository.dart';
-import 'package:hypha_wallet/core/network/api/user_account_service.dart';
+import 'package:hypha_wallet/core/network/api/services/user_account_service.dart';
 import 'package:hypha_wallet/core/network/models/user_profile_data.dart';
 import 'package:hypha_wallet/core/shared_preferences/hypha_shared_prefs.dart';
 import 'package:hypha_wallet/ui/blocs/deeplink/deeplink_bloc.dart';

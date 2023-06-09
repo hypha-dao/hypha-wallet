@@ -3,7 +3,7 @@ import 'package:hypha_wallet/core/crypto/seeds_esr/eos_transaction.dart';
 import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
 import 'package:hypha_wallet/core/extension/scope_functions.dart';
 import 'package:hypha_wallet/core/network/api/eos_service.dart';
-import 'package:hypha_wallet/core/network/api/sign_transaction_callback_service.dart';
+import 'package:hypha_wallet/core/network/api/services/sign_transaction_callback_service.dart';
 import 'package:hypha_wallet/core/network/models/user_profile_data.dart';
 import 'package:hypha_wallet/core/shared_preferences/hypha_shared_prefs.dart';
 import 'package:hypha_wallet/ui/architecture/interactor/base_usecase.dart';

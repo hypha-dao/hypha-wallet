@@ -6,7 +6,7 @@ import 'package:hypha_wallet/design/hypha_card.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 import 'package:hypha_wallet/ui/onboarding/components/onboarding_appbar.dart';
-import 'package:hypha_wallet/ui/token_settings/interactor/token_settings_bloc.dart';
+import 'package:hypha_wallet/ui/token/token_settings/interactor/token_settings_bloc.dart';
 
 class TokensSettingsView extends StatelessWidget {
   const TokensSettingsView({super.key});

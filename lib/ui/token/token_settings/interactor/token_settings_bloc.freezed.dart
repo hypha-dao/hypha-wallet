@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'wallet_bloc.dart';
+part of 'token_settings_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -165,64 +165,70 @@ abstract class _NavigateTo implements PageCommand {
 }
 
 /// @nodoc
-mixin _$WalletEvent {
+mixin _$TokensSettingsEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() onRefresh,
     required TResult Function() clearPageCommand,
+    required TResult Function(WalletTokenData token) addTokenToUser,
+    required TResult Function(WalletTokenData token) removeTokenToUser,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? onRefresh,
     TResult? Function()? clearPageCommand,
+    TResult? Function(WalletTokenData token)? addTokenToUser,
+    TResult? Function(WalletTokenData token)? removeTokenToUser,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? onRefresh,
     TResult Function()? clearPageCommand,
+    TResult Function(WalletTokenData token)? addTokenToUser,
+    TResult Function(WalletTokenData token)? removeTokenToUser,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_OnRefresh value) onRefresh,
     required TResult Function(_ClearPageCommand value) clearPageCommand,
+    required TResult Function(_AddTokenToUser value) addTokenToUser,
+    required TResult Function(_RemoveTokenToUser value) removeTokenToUser,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_OnRefresh value)? onRefresh,
     TResult? Function(_ClearPageCommand value)? clearPageCommand,
+    TResult? Function(_AddTokenToUser value)? addTokenToUser,
+    TResult? Function(_RemoveTokenToUser value)? removeTokenToUser,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_OnRefresh value)? onRefresh,
     TResult Function(_ClearPageCommand value)? clearPageCommand,
+    TResult Function(_AddTokenToUser value)? addTokenToUser,
+    TResult Function(_RemoveTokenToUser value)? removeTokenToUser,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $WalletEventCopyWith<$Res> {
-  factory $WalletEventCopyWith(
-          WalletEvent value, $Res Function(WalletEvent) then) =
-      _$WalletEventCopyWithImpl<$Res, WalletEvent>;
+abstract class $TokensSettingsEventCopyWith<$Res> {
+  factory $TokensSettingsEventCopyWith(
+          TokensSettingsEvent value, $Res Function(TokensSettingsEvent) then) =
+      _$TokensSettingsEventCopyWithImpl<$Res, TokensSettingsEvent>;
 }
 
 /// @nodoc
-class _$WalletEventCopyWithImpl<$Res, $Val extends WalletEvent>
-    implements $WalletEventCopyWith<$Res> {
-  _$WalletEventCopyWithImpl(this._value, this._then);
+class _$TokensSettingsEventCopyWithImpl<$Res, $Val extends TokensSettingsEvent>
+    implements $TokensSettingsEventCopyWith<$Res> {
+  _$TokensSettingsEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -239,7 +245,7 @@ abstract class _$$_InitialCopyWith<$Res> {
 
 /// @nodoc
 class __$$_InitialCopyWithImpl<$Res>
-    extends _$WalletEventCopyWithImpl<$Res, _$_Initial>
+    extends _$TokensSettingsEventCopyWithImpl<$Res, _$_Initial>
     implements _$$_InitialCopyWith<$Res> {
   __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
       : super(_value, _then);
@@ -252,7 +258,7 @@ class _$_Initial implements _Initial {
 
   @override
   String toString() {
-    return 'WalletEvent.initial()';
+    return 'TokensSettingsEvent.initial()';
   }
 
   @override
@@ -268,8 +274,9 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() onRefresh,
     required TResult Function() clearPageCommand,
+    required TResult Function(WalletTokenData token) addTokenToUser,
+    required TResult Function(WalletTokenData token) removeTokenToUser,
   }) {
     return initial();
   }
@@ -278,8 +285,9 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? onRefresh,
     TResult? Function()? clearPageCommand,
+    TResult? Function(WalletTokenData token)? addTokenToUser,
+    TResult? Function(WalletTokenData token)? removeTokenToUser,
   }) {
     return initial?.call();
   }
@@ -288,8 +296,9 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? onRefresh,
     TResult Function()? clearPageCommand,
+    TResult Function(WalletTokenData token)? addTokenToUser,
+    TResult Function(WalletTokenData token)? removeTokenToUser,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -302,8 +311,9 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_OnRefresh value) onRefresh,
     required TResult Function(_ClearPageCommand value) clearPageCommand,
+    required TResult Function(_AddTokenToUser value) addTokenToUser,
+    required TResult Function(_RemoveTokenToUser value) removeTokenToUser,
   }) {
     return initial(this);
   }
@@ -312,8 +322,9 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_OnRefresh value)? onRefresh,
     TResult? Function(_ClearPageCommand value)? clearPageCommand,
+    TResult? Function(_AddTokenToUser value)? addTokenToUser,
+    TResult? Function(_RemoveTokenToUser value)? removeTokenToUser,
   }) {
     return initial?.call(this);
   }
@@ -322,8 +333,9 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_OnRefresh value)? onRefresh,
     TResult Function(_ClearPageCommand value)? clearPageCommand,
+    TResult Function(_AddTokenToUser value)? addTokenToUser,
+    TResult Function(_RemoveTokenToUser value)? removeTokenToUser,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -333,116 +345,8 @@ class _$_Initial implements _Initial {
   }
 }
 
-abstract class _Initial implements WalletEvent {
+abstract class _Initial implements TokensSettingsEvent {
   const factory _Initial() = _$_Initial;
-}
-
-/// @nodoc
-abstract class _$$_OnRefreshCopyWith<$Res> {
-  factory _$$_OnRefreshCopyWith(
-          _$_OnRefresh value, $Res Function(_$_OnRefresh) then) =
-      __$$_OnRefreshCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_OnRefreshCopyWithImpl<$Res>
-    extends _$WalletEventCopyWithImpl<$Res, _$_OnRefresh>
-    implements _$$_OnRefreshCopyWith<$Res> {
-  __$$_OnRefreshCopyWithImpl(
-      _$_OnRefresh _value, $Res Function(_$_OnRefresh) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$_OnRefresh implements _OnRefresh {
-  const _$_OnRefresh();
-
-  @override
-  String toString() {
-    return 'WalletEvent.onRefresh()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_OnRefresh);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() onRefresh,
-    required TResult Function() clearPageCommand,
-  }) {
-    return onRefresh();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? onRefresh,
-    TResult? Function()? clearPageCommand,
-  }) {
-    return onRefresh?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? onRefresh,
-    TResult Function()? clearPageCommand,
-    required TResult orElse(),
-  }) {
-    if (onRefresh != null) {
-      return onRefresh();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_OnRefresh value) onRefresh,
-    required TResult Function(_ClearPageCommand value) clearPageCommand,
-  }) {
-    return onRefresh(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_OnRefresh value)? onRefresh,
-    TResult? Function(_ClearPageCommand value)? clearPageCommand,
-  }) {
-    return onRefresh?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_OnRefresh value)? onRefresh,
-    TResult Function(_ClearPageCommand value)? clearPageCommand,
-    required TResult orElse(),
-  }) {
-    if (onRefresh != null) {
-      return onRefresh(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _OnRefresh implements WalletEvent {
-  const factory _OnRefresh() = _$_OnRefresh;
 }
 
 /// @nodoc
@@ -454,7 +358,7 @@ abstract class _$$_ClearPageCommandCopyWith<$Res> {
 
 /// @nodoc
 class __$$_ClearPageCommandCopyWithImpl<$Res>
-    extends _$WalletEventCopyWithImpl<$Res, _$_ClearPageCommand>
+    extends _$TokensSettingsEventCopyWithImpl<$Res, _$_ClearPageCommand>
     implements _$$_ClearPageCommandCopyWith<$Res> {
   __$$_ClearPageCommandCopyWithImpl(
       _$_ClearPageCommand _value, $Res Function(_$_ClearPageCommand) _then)
@@ -468,7 +372,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
 
   @override
   String toString() {
-    return 'WalletEvent.clearPageCommand()';
+    return 'TokensSettingsEvent.clearPageCommand()';
   }
 
   @override
@@ -484,8 +388,9 @@ class _$_ClearPageCommand implements _ClearPageCommand {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() onRefresh,
     required TResult Function() clearPageCommand,
+    required TResult Function(WalletTokenData token) addTokenToUser,
+    required TResult Function(WalletTokenData token) removeTokenToUser,
   }) {
     return clearPageCommand();
   }
@@ -494,8 +399,9 @@ class _$_ClearPageCommand implements _ClearPageCommand {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? onRefresh,
     TResult? Function()? clearPageCommand,
+    TResult? Function(WalletTokenData token)? addTokenToUser,
+    TResult? Function(WalletTokenData token)? removeTokenToUser,
   }) {
     return clearPageCommand?.call();
   }
@@ -504,8 +410,9 @@ class _$_ClearPageCommand implements _ClearPageCommand {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? onRefresh,
     TResult Function()? clearPageCommand,
+    TResult Function(WalletTokenData token)? addTokenToUser,
+    TResult Function(WalletTokenData token)? removeTokenToUser,
     required TResult orElse(),
   }) {
     if (clearPageCommand != null) {
@@ -518,8 +425,9 @@ class _$_ClearPageCommand implements _ClearPageCommand {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_OnRefresh value) onRefresh,
     required TResult Function(_ClearPageCommand value) clearPageCommand,
+    required TResult Function(_AddTokenToUser value) addTokenToUser,
+    required TResult Function(_RemoveTokenToUser value) removeTokenToUser,
   }) {
     return clearPageCommand(this);
   }
@@ -528,8 +436,9 @@ class _$_ClearPageCommand implements _ClearPageCommand {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_OnRefresh value)? onRefresh,
     TResult? Function(_ClearPageCommand value)? clearPageCommand,
+    TResult? Function(_AddTokenToUser value)? addTokenToUser,
+    TResult? Function(_RemoveTokenToUser value)? removeTokenToUser,
   }) {
     return clearPageCommand?.call(this);
   }
@@ -538,8 +447,9 @@ class _$_ClearPageCommand implements _ClearPageCommand {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_OnRefresh value)? onRefresh,
     TResult Function(_ClearPageCommand value)? clearPageCommand,
+    TResult Function(_AddTokenToUser value)? addTokenToUser,
+    TResult Function(_RemoveTokenToUser value)? removeTokenToUser,
     required TResult orElse(),
   }) {
     if (clearPageCommand != null) {
@@ -549,44 +459,332 @@ class _$_ClearPageCommand implements _ClearPageCommand {
   }
 }
 
-abstract class _ClearPageCommand implements WalletEvent {
+abstract class _ClearPageCommand implements TokensSettingsEvent {
   const factory _ClearPageCommand() = _$_ClearPageCommand;
 }
 
 /// @nodoc
-mixin _$WalletState {
-  PageState get pageState => throw _privateConstructorUsedError;
-  PageCommand? get command => throw _privateConstructorUsedError;
-  bool get loadingTransaction => throw _privateConstructorUsedError;
-  List<WalletTokenData> get tokens => throw _privateConstructorUsedError;
-  List<TransactionModel> get recentTransactions =>
-      throw _privateConstructorUsedError;
+abstract class _$$_AddTokenToUserCopyWith<$Res> {
+  factory _$$_AddTokenToUserCopyWith(
+          _$_AddTokenToUser value, $Res Function(_$_AddTokenToUser) then) =
+      __$$_AddTokenToUserCopyWithImpl<$Res>;
+  @useResult
+  $Res call({WalletTokenData token});
+}
+
+/// @nodoc
+class __$$_AddTokenToUserCopyWithImpl<$Res>
+    extends _$TokensSettingsEventCopyWithImpl<$Res, _$_AddTokenToUser>
+    implements _$$_AddTokenToUserCopyWith<$Res> {
+  __$$_AddTokenToUserCopyWithImpl(
+      _$_AddTokenToUser _value, $Res Function(_$_AddTokenToUser) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? token = null,
+  }) {
+    return _then(_$_AddTokenToUser(
+      null == token
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
+              as WalletTokenData,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_AddTokenToUser implements _AddTokenToUser {
+  const _$_AddTokenToUser(this.token);
+
+  @override
+  final WalletTokenData token;
+
+  @override
+  String toString() {
+    return 'TokensSettingsEvent.addTokenToUser(token: $token)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_AddTokenToUser &&
+            (identical(other.token, token) || other.token == token));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, token);
 
   @JsonKey(ignore: true)
-  $WalletStateCopyWith<WalletState> get copyWith =>
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_AddTokenToUserCopyWith<_$_AddTokenToUser> get copyWith =>
+      __$$_AddTokenToUserCopyWithImpl<_$_AddTokenToUser>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() clearPageCommand,
+    required TResult Function(WalletTokenData token) addTokenToUser,
+    required TResult Function(WalletTokenData token) removeTokenToUser,
+  }) {
+    return addTokenToUser(token);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? clearPageCommand,
+    TResult? Function(WalletTokenData token)? addTokenToUser,
+    TResult? Function(WalletTokenData token)? removeTokenToUser,
+  }) {
+    return addTokenToUser?.call(token);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? clearPageCommand,
+    TResult Function(WalletTokenData token)? addTokenToUser,
+    TResult Function(WalletTokenData token)? removeTokenToUser,
+    required TResult orElse(),
+  }) {
+    if (addTokenToUser != null) {
+      return addTokenToUser(token);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_ClearPageCommand value) clearPageCommand,
+    required TResult Function(_AddTokenToUser value) addTokenToUser,
+    required TResult Function(_RemoveTokenToUser value) removeTokenToUser,
+  }) {
+    return addTokenToUser(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_ClearPageCommand value)? clearPageCommand,
+    TResult? Function(_AddTokenToUser value)? addTokenToUser,
+    TResult? Function(_RemoveTokenToUser value)? removeTokenToUser,
+  }) {
+    return addTokenToUser?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_ClearPageCommand value)? clearPageCommand,
+    TResult Function(_AddTokenToUser value)? addTokenToUser,
+    TResult Function(_RemoveTokenToUser value)? removeTokenToUser,
+    required TResult orElse(),
+  }) {
+    if (addTokenToUser != null) {
+      return addTokenToUser(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AddTokenToUser implements TokensSettingsEvent {
+  const factory _AddTokenToUser(final WalletTokenData token) =
+      _$_AddTokenToUser;
+
+  WalletTokenData get token;
+  @JsonKey(ignore: true)
+  _$$_AddTokenToUserCopyWith<_$_AddTokenToUser> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $WalletStateCopyWith<$Res> {
-  factory $WalletStateCopyWith(
-          WalletState value, $Res Function(WalletState) then) =
-      _$WalletStateCopyWithImpl<$Res, WalletState>;
+abstract class _$$_RemoveTokenToUserCopyWith<$Res> {
+  factory _$$_RemoveTokenToUserCopyWith(_$_RemoveTokenToUser value,
+          $Res Function(_$_RemoveTokenToUser) then) =
+      __$$_RemoveTokenToUserCopyWithImpl<$Res>;
+  @useResult
+  $Res call({WalletTokenData token});
+}
+
+/// @nodoc
+class __$$_RemoveTokenToUserCopyWithImpl<$Res>
+    extends _$TokensSettingsEventCopyWithImpl<$Res, _$_RemoveTokenToUser>
+    implements _$$_RemoveTokenToUserCopyWith<$Res> {
+  __$$_RemoveTokenToUserCopyWithImpl(
+      _$_RemoveTokenToUser _value, $Res Function(_$_RemoveTokenToUser) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? token = null,
+  }) {
+    return _then(_$_RemoveTokenToUser(
+      null == token
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
+              as WalletTokenData,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_RemoveTokenToUser implements _RemoveTokenToUser {
+  const _$_RemoveTokenToUser(this.token);
+
+  @override
+  final WalletTokenData token;
+
+  @override
+  String toString() {
+    return 'TokensSettingsEvent.removeTokenToUser(token: $token)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_RemoveTokenToUser &&
+            (identical(other.token, token) || other.token == token));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, token);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_RemoveTokenToUserCopyWith<_$_RemoveTokenToUser> get copyWith =>
+      __$$_RemoveTokenToUserCopyWithImpl<_$_RemoveTokenToUser>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() clearPageCommand,
+    required TResult Function(WalletTokenData token) addTokenToUser,
+    required TResult Function(WalletTokenData token) removeTokenToUser,
+  }) {
+    return removeTokenToUser(token);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? clearPageCommand,
+    TResult? Function(WalletTokenData token)? addTokenToUser,
+    TResult? Function(WalletTokenData token)? removeTokenToUser,
+  }) {
+    return removeTokenToUser?.call(token);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? clearPageCommand,
+    TResult Function(WalletTokenData token)? addTokenToUser,
+    TResult Function(WalletTokenData token)? removeTokenToUser,
+    required TResult orElse(),
+  }) {
+    if (removeTokenToUser != null) {
+      return removeTokenToUser(token);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_ClearPageCommand value) clearPageCommand,
+    required TResult Function(_AddTokenToUser value) addTokenToUser,
+    required TResult Function(_RemoveTokenToUser value) removeTokenToUser,
+  }) {
+    return removeTokenToUser(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_ClearPageCommand value)? clearPageCommand,
+    TResult? Function(_AddTokenToUser value)? addTokenToUser,
+    TResult? Function(_RemoveTokenToUser value)? removeTokenToUser,
+  }) {
+    return removeTokenToUser?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_ClearPageCommand value)? clearPageCommand,
+    TResult Function(_AddTokenToUser value)? addTokenToUser,
+    TResult Function(_RemoveTokenToUser value)? removeTokenToUser,
+    required TResult orElse(),
+  }) {
+    if (removeTokenToUser != null) {
+      return removeTokenToUser(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _RemoveTokenToUser implements TokensSettingsEvent {
+  const factory _RemoveTokenToUser(final WalletTokenData token) =
+      _$_RemoveTokenToUser;
+
+  WalletTokenData get token;
+  @JsonKey(ignore: true)
+  _$$_RemoveTokenToUserCopyWith<_$_RemoveTokenToUser> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$TokensSettingsState {
+  PageState get pageState => throw _privateConstructorUsedError;
+  PageCommand? get command => throw _privateConstructorUsedError;
+  List<WalletTokenData> get tokens => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $TokensSettingsStateCopyWith<TokensSettingsState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $TokensSettingsStateCopyWith<$Res> {
+  factory $TokensSettingsStateCopyWith(
+          TokensSettingsState value, $Res Function(TokensSettingsState) then) =
+      _$TokensSettingsStateCopyWithImpl<$Res, TokensSettingsState>;
   @useResult
   $Res call(
       {PageState pageState,
       PageCommand? command,
-      bool loadingTransaction,
-      List<WalletTokenData> tokens,
-      List<TransactionModel> recentTransactions});
+      List<WalletTokenData> tokens});
 
   $PageCommandCopyWith<$Res>? get command;
 }
 
 /// @nodoc
-class _$WalletStateCopyWithImpl<$Res, $Val extends WalletState>
-    implements $WalletStateCopyWith<$Res> {
-  _$WalletStateCopyWithImpl(this._value, this._then);
+class _$TokensSettingsStateCopyWithImpl<$Res, $Val extends TokensSettingsState>
+    implements $TokensSettingsStateCopyWith<$Res> {
+  _$TokensSettingsStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -598,9 +796,7 @@ class _$WalletStateCopyWithImpl<$Res, $Val extends WalletState>
   $Res call({
     Object? pageState = null,
     Object? command = freezed,
-    Object? loadingTransaction = null,
     Object? tokens = null,
-    Object? recentTransactions = null,
   }) {
     return _then(_value.copyWith(
       pageState: null == pageState
@@ -611,18 +807,10 @@ class _$WalletStateCopyWithImpl<$Res, $Val extends WalletState>
           ? _value.command
           : command // ignore: cast_nullable_to_non_nullable
               as PageCommand?,
-      loadingTransaction: null == loadingTransaction
-          ? _value.loadingTransaction
-          : loadingTransaction // ignore: cast_nullable_to_non_nullable
-              as bool,
       tokens: null == tokens
           ? _value.tokens
           : tokens // ignore: cast_nullable_to_non_nullable
               as List<WalletTokenData>,
-      recentTransactions: null == recentTransactions
-          ? _value.recentTransactions
-          : recentTransactions // ignore: cast_nullable_to_non_nullable
-              as List<TransactionModel>,
     ) as $Val);
   }
 
@@ -640,30 +828,28 @@ class _$WalletStateCopyWithImpl<$Res, $Val extends WalletState>
 }
 
 /// @nodoc
-abstract class _$$_WalletStateCopyWith<$Res>
-    implements $WalletStateCopyWith<$Res> {
-  factory _$$_WalletStateCopyWith(
-          _$_WalletState value, $Res Function(_$_WalletState) then) =
-      __$$_WalletStateCopyWithImpl<$Res>;
+abstract class _$$_TokensSettingsStateCopyWith<$Res>
+    implements $TokensSettingsStateCopyWith<$Res> {
+  factory _$$_TokensSettingsStateCopyWith(_$_TokensSettingsState value,
+          $Res Function(_$_TokensSettingsState) then) =
+      __$$_TokensSettingsStateCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
       {PageState pageState,
       PageCommand? command,
-      bool loadingTransaction,
-      List<WalletTokenData> tokens,
-      List<TransactionModel> recentTransactions});
+      List<WalletTokenData> tokens});
 
   @override
   $PageCommandCopyWith<$Res>? get command;
 }
 
 /// @nodoc
-class __$$_WalletStateCopyWithImpl<$Res>
-    extends _$WalletStateCopyWithImpl<$Res, _$_WalletState>
-    implements _$$_WalletStateCopyWith<$Res> {
-  __$$_WalletStateCopyWithImpl(
-      _$_WalletState _value, $Res Function(_$_WalletState) _then)
+class __$$_TokensSettingsStateCopyWithImpl<$Res>
+    extends _$TokensSettingsStateCopyWithImpl<$Res, _$_TokensSettingsState>
+    implements _$$_TokensSettingsStateCopyWith<$Res> {
+  __$$_TokensSettingsStateCopyWithImpl(_$_TokensSettingsState _value,
+      $Res Function(_$_TokensSettingsState) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -671,11 +857,9 @@ class __$$_WalletStateCopyWithImpl<$Res>
   $Res call({
     Object? pageState = null,
     Object? command = freezed,
-    Object? loadingTransaction = null,
     Object? tokens = null,
-    Object? recentTransactions = null,
   }) {
-    return _then(_$_WalletState(
+    return _then(_$_TokensSettingsState(
       pageState: null == pageState
           ? _value.pageState
           : pageState // ignore: cast_nullable_to_non_nullable
@@ -684,33 +868,22 @@ class __$$_WalletStateCopyWithImpl<$Res>
           ? _value.command
           : command // ignore: cast_nullable_to_non_nullable
               as PageCommand?,
-      loadingTransaction: null == loadingTransaction
-          ? _value.loadingTransaction
-          : loadingTransaction // ignore: cast_nullable_to_non_nullable
-              as bool,
       tokens: null == tokens
           ? _value._tokens
           : tokens // ignore: cast_nullable_to_non_nullable
               as List<WalletTokenData>,
-      recentTransactions: null == recentTransactions
-          ? _value._recentTransactions
-          : recentTransactions // ignore: cast_nullable_to_non_nullable
-              as List<TransactionModel>,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_WalletState extends _WalletState {
-  const _$_WalletState(
+class _$_TokensSettingsState extends _TokensSettingsState {
+  const _$_TokensSettingsState(
       {this.pageState = PageState.initial,
       this.command,
-      this.loadingTransaction = true,
-      final List<WalletTokenData> tokens = const [],
-      final List<TransactionModel> recentTransactions = const []})
+      final List<WalletTokenData> tokens = const []})
       : _tokens = tokens,
-        _recentTransactions = recentTransactions,
         super._();
 
   @override
@@ -718,9 +891,6 @@ class _$_WalletState extends _WalletState {
   final PageState pageState;
   @override
   final PageCommand? command;
-  @override
-  @JsonKey()
-  final bool loadingTransaction;
   final List<WalletTokenData> _tokens;
   @override
   @JsonKey()
@@ -730,73 +900,49 @@ class _$_WalletState extends _WalletState {
     return EqualUnmodifiableListView(_tokens);
   }
 
-  final List<TransactionModel> _recentTransactions;
-  @override
-  @JsonKey()
-  List<TransactionModel> get recentTransactions {
-    if (_recentTransactions is EqualUnmodifiableListView)
-      return _recentTransactions;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_recentTransactions);
-  }
-
   @override
   String toString() {
-    return 'WalletState(pageState: $pageState, command: $command, loadingTransaction: $loadingTransaction, tokens: $tokens, recentTransactions: $recentTransactions)';
+    return 'TokensSettingsState(pageState: $pageState, command: $command, tokens: $tokens)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_WalletState &&
+            other is _$_TokensSettingsState &&
             (identical(other.pageState, pageState) ||
                 other.pageState == pageState) &&
             (identical(other.command, command) || other.command == command) &&
-            (identical(other.loadingTransaction, loadingTransaction) ||
-                other.loadingTransaction == loadingTransaction) &&
-            const DeepCollectionEquality().equals(other._tokens, _tokens) &&
-            const DeepCollectionEquality()
-                .equals(other._recentTransactions, _recentTransactions));
+            const DeepCollectionEquality().equals(other._tokens, _tokens));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      pageState,
-      command,
-      loadingTransaction,
-      const DeepCollectionEquality().hash(_tokens),
-      const DeepCollectionEquality().hash(_recentTransactions));
+  int get hashCode => Object.hash(runtimeType, pageState, command,
+      const DeepCollectionEquality().hash(_tokens));
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_WalletStateCopyWith<_$_WalletState> get copyWith =>
-      __$$_WalletStateCopyWithImpl<_$_WalletState>(this, _$identity);
+  _$$_TokensSettingsStateCopyWith<_$_TokensSettingsState> get copyWith =>
+      __$$_TokensSettingsStateCopyWithImpl<_$_TokensSettingsState>(
+          this, _$identity);
 }
 
-abstract class _WalletState extends WalletState {
-  const factory _WalletState(
+abstract class _TokensSettingsState extends TokensSettingsState {
+  const factory _TokensSettingsState(
       {final PageState pageState,
       final PageCommand? command,
-      final bool loadingTransaction,
-      final List<WalletTokenData> tokens,
-      final List<TransactionModel> recentTransactions}) = _$_WalletState;
-  const _WalletState._() : super._();
+      final List<WalletTokenData> tokens}) = _$_TokensSettingsState;
+  const _TokensSettingsState._() : super._();
 
   @override
   PageState get pageState;
   @override
   PageCommand? get command;
   @override
-  bool get loadingTransaction;
-  @override
   List<WalletTokenData> get tokens;
   @override
-  List<TransactionModel> get recentTransactions;
-  @override
   @JsonKey(ignore: true)
-  _$$_WalletStateCopyWith<_$_WalletState> get copyWith =>
+  _$$_TokensSettingsStateCopyWith<_$_TokensSettingsState> get copyWith =>
       throw _privateConstructorUsedError;
 }
