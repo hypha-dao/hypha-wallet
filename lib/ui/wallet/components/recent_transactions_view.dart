@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart' as GetX;
 import 'package:get/get.dart';
 import 'package:hypha_wallet/core/network/models/transaction_model.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/ui/wallet/components/recent_transactions_widget.dart';
-import 'package:hypha_wallet/ui/wallet/interactor/wallet_bloc.dart';
 
 class RecentTransactionsView extends StatelessWidget {
   final bool loadingTransaction;

@@ -3,25 +3,19 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hypha_wallet/core/error_handler/error_handler_manager.dart';
-import 'package:hypha_wallet/core/logging/log_helper.dart';
-import 'package:hypha_wallet/core/network/api/services/token_service.dart';
 import 'package:hypha_wallet/core/network/models/token_value.dart';
 import 'package:hypha_wallet/core/network/models/transaction_model.dart';
 import 'package:hypha_wallet/ui/architecture/interactor/page_states.dart';
 import 'package:hypha_wallet/ui/architecture/result/result.dart';
 import 'package:hypha_wallet/ui/history/transactions/usecases/get_transaction_history_use_case.dart';
 import 'package:hypha_wallet/ui/token/token_details/usecases/get_token_balance_use_case.dart';
-import 'package:hypha_wallet/ui/wallet/data/wallet_token_data.dart';
 import 'package:hypha_wallet/ui/token/token_settings/usecases/add_token_to_user_use_case.dart';
-import 'package:hypha_wallet/ui/token/token_settings/usecases/get_all_tokens_use_case.dart';
 import 'package:hypha_wallet/ui/token/token_settings/usecases/remove_token_from_user_use_case.dart';
+import 'package:hypha_wallet/ui/wallet/data/wallet_token_data.dart';
 
 part 'page_command.dart';
-
 part 'token_details_bloc.freezed.dart';
-
 part 'token_details_event.dart';
-
 part 'token_details_state.dart';
 
 class TokenDetailsBloc extends Bloc<TokenDetailsEvent, TokenDetailsState> {

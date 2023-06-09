@@ -1,5 +1,4 @@
 import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
-import 'package:hypha_wallet/core/firebase/firebase_database_service.dart';
 import 'package:hypha_wallet/core/network/api/services/token_service.dart';
 import 'package:hypha_wallet/core/network/models/token_value.dart';
 import 'package:hypha_wallet/core/shared_preferences/hypha_shared_prefs.dart';

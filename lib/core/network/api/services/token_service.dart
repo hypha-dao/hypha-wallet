@@ -1,4 +1,5 @@
-import 'package:dio/src/response.dart';
+
+import 'package:dio/dio.dart';
 import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
 import 'package:hypha_wallet/core/logging/log_helper.dart';
 import 'package:hypha_wallet/core/network/api/endpoints.dart';

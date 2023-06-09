@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hypha_wallet/ui/token/token_details/components/token_details_view.dart';
 import 'package:hypha_wallet/ui/token/token_details/interactor/token_details_bloc.dart';
-import 'package:hypha_wallet/ui/token/token_settings/components/token_settings_view.dart';
 import 'package:hypha_wallet/ui/wallet/data/wallet_token_data.dart';
 
 class TokensDetailsPage extends StatelessWidget {
