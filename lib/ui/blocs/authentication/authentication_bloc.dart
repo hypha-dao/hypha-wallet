@@ -115,8 +115,13 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
     await state.userProfileData?.accountName.let((it) => _authRepository.logOut(it));
   }
 
-  FutureOr<void> _onAuthenticatedDataChanged(_OnAuthenticatedDataChanged event, Emitter<AuthenticationState> emit) {
+  FutureOr<void> _onAuthenticatedDataChanged(
+      _OnAuthenticatedDataChanged event, Emitter<AuthenticationState> emit) async {
     emit(state.copyWith(userProfileData: event.data));
+    final token = await _firebasePushNotificationsService.getDeviceToken();
+    if (token != null) {
+      add(_OnFCMTokenChanged(token));
+    }
   }
 
   FutureOr<void> _onFCMTokenChanged(_OnFCMTokenChanged event, Emitter<AuthenticationState> emit) {
