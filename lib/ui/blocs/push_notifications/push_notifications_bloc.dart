@@ -34,6 +34,26 @@ class PushNotificationsBloc extends Bloc<PushNotificationsEvent, PushNotificatio
       print('Message data: ${message.data}');
       add(PushNotificationsEvent.onMessageReceived(message, false));
     });
+
+    await setupInteractedMessage();
+  }
+
+  Future<void> setupInteractedMessage() async {
+    // Get any messages which caused the application to open from a terminated state.
+    final RemoteMessage? initialMessage = await FirebaseMessaging.instance.getInitialMessage();
+
+    if (initialMessage != null) {
+      _handleMessage(initialMessage);
+    }
+
+    // Also handle any interaction when the app is in the background via a Stream listener
+    FirebaseMessaging.onMessageOpenedApp.listen(_handleMessage);
+  }
+
+  void _handleMessage(RemoteMessage message) {
+    print('Got a message whilst in the onMessageOpenedApp or opened from terminated!');
+    print('Message data: ${message.data}');
+    add(PushNotificationsEvent.onMessageReceived(message, false));
   }
 
   FutureOr<void> _onMessageReceived(_OnMessageReceived event, Emitter<PushNotificationsState> emit) async {
