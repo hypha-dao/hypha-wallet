@@ -22,7 +22,7 @@ class FirebaseDatabaseService {
     return db
         .collection('users')
         .doc(accountName)
-        .set(user)
+        .update(user)
         .onError((e, _) => LogHelper.d('Error writing document: $e'));
   }
 

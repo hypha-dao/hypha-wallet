@@ -28,69 +28,68 @@ class TokenDetailsView extends StatelessWidget {
         appBar: AppBar(
           title: Text(data.name, style: context.hyphaTextTheme.smallTitles.copyWith(color: Colors.white)),
         ),
-        body: BlocBuilder<TokenDetailsBloc, TokenDetailsState>(
-          builder: (context, state) {
-            return Column(
-              children: [
-                HyphaAvatarImage(imageRadius: 40, name: data.name, imageFromUrl: data.image),
-                const SizedBox(height: 16),
-                Text(
-                  'Balance',
-                  style: context.hyphaTextTheme.ralBold.copyWith(
-                    color: context.isDarkMode ? HyphaColors.primaryBlu : HyphaColors.white,
+        body: Column(
+          children: [
+            HyphaAvatarImage(imageRadius: 40, name: data.name, imageFromUrl: data.image),
+            const SizedBox(height: 16),
+            Text(
+              'Balance',
+              style: context.hyphaTextTheme.ralBold.copyWith(
+                color: context.isDarkMode ? HyphaColors.primaryBlu : HyphaColors.white,
+              ),
+            ),
+            BlocBuilder<TokenDetailsBloc, TokenDetailsState>(
+              builder: (context, state) {
+                return Visibility(
+                  visible: !state.loadingTokenBalance,
+                  replacement: const Padding(
+                    padding: EdgeInsets.only(top: 14, bottom: 16),
+                    child: HyphaProgressIndicator(height: 24, width: 24, strokeWidth: 1, color: Colors.white),
                   ),
-                ),
-                BlocBuilder<TokenDetailsBloc, TokenDetailsState>(
-                  builder: (context, state) {
-                    return Visibility(
-                      visible: !state.loadingTokenBalance,
-                      replacement: const Padding(
-                        padding: EdgeInsets.only(top: 14, bottom: 16),
-                        child: HyphaProgressIndicator(height: 24, width: 24, strokeWidth: 1, color: Colors.white),
-                      ),
-                      child: Text(
-                        state.token.userOwnedAmount?.toString() ?? 'n/a',
-                        style: context.hyphaTextTheme.popsExtraLargeAndLight.copyWith(color: HyphaColors.white),
-                      ),
-                    );
-                  },
-                ),
-                const SizedBox(height: 24),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        child: HyphaAppButton(
-                          title: 'Receive',
-                          onPressed: () {},
-                          buttonType: ButtonType.secondary,
-                        ),
-                      ),
-                      const SizedBox(width: 22),
-                      Expanded(
-                        child: HyphaAppButton(
-                          title: 'Send',
-                          buttonType: ButtonType.primary,
-                          onPressed: () {},
-                        ),
-                      ),
-                    ],
+                  child: Text(
+                    state.token.userOwnedAmount?.toString() ?? 'n/a',
+                    style: context.hyphaTextTheme.popsExtraLargeAndLight.copyWith(color: HyphaColors.white),
                   ),
-                ),
-                const SizedBox(height: 24),
-                BlocBuilder<TokenDetailsBloc, TokenDetailsState>(
-                  builder: (context, state) {
-                    return RecentTransactionsView(
-                      loadingTransaction: state.loadingTransaction,
-                      recentTransactions: state.recentTransactions,
-                    );
-                  },
-                ),
-              ],
-            );
-          },
+                );
+              },
+            ),
+            const SizedBox(height: 24),
+            // Padding(
+            //   padding: const EdgeInsets.symmetric(horizontal: 24),
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.center,
+            //     children: [
+            //       Expanded(
+            //         child: HyphaAppButton(
+            //           title: 'Receive',
+            //           onPressed: () {},
+            //           buttonType: ButtonType.secondary,
+            //         ),
+            //       ),
+            //       const SizedBox(width: 22),
+            //       Expanded(
+            //         child: HyphaAppButton(
+            //           title: 'Send',
+            //           buttonType: ButtonType.primary,
+            //           onPressed: () {},
+            //         ),
+            //       ),
+            //     ],
+            //   ),
+            // ),
+            const SizedBox(height: 24),
+            BlocBuilder<TokenDetailsBloc, TokenDetailsState>(
+              buildWhen: (previous, current) =>
+                  previous.loadingTransaction != current.loadingTransaction ||
+                  previous.recentTransactions != current.recentTransactions,
+              builder: (context, state) {
+                return RecentTransactionsView(
+                  loadingTransaction: state.loadingTransaction,
+                  recentTransactions: state.recentTransactions,
+                );
+              },
+            ),
+          ],
         ),
       ),
     );
