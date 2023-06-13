@@ -6,8 +6,6 @@ enum Networks { telos, telosTestnet, eos, eosTestnet }
 
 const Networks _defaultNetwork = Networks.telos;
 
-const signUpEnabledFeatureFlagKey = 'sign_up_enabled';
-
 /// Encapsulates everything to do with remote configuration
 class RemoteConfigService {
   static Future<RemoteConfigService> initialized() async {
@@ -60,9 +58,7 @@ class RemoteConfigService {
     return networkConfig['loginAction'];
   }
 
-  bool featureFlagSignUpEnabled() {
-    return FirebaseRemoteConfig.instance.getValue(signUpEnabledFeatureFlagKey).asBool();
-  }
+  bool get isSignUpEnabled => FirebaseRemoteConfig.instance.getBool('sign_up_enabled');
 
   // PPP Profile Service Backend
   String get profileServiceEndpoint => FirebaseRemoteConfig.instance.getString('profileServiceEndpoint');
