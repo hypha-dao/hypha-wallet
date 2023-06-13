@@ -58,7 +58,7 @@ class RemoteConfigService {
     return networkConfig['loginAction'];
   }
 
-  bool get isSignUpEnabled => FirebaseRemoteConfig.instance.getBool('sign_up_enabled');
+  bool get isSignUpEnabled => FirebaseRemoteConfig.instance.getBool('signUpEnabled');
 
   // PPP Profile Service Backend
   String get profileServiceEndpoint => FirebaseRemoteConfig.instance.getString('profileServiceEndpoint');
@@ -134,6 +134,7 @@ class RemoteConfigService {
         'pppOriginAppId': '9b833d70-46f6-11ea-a689-e5b7f4a9b462',
         'region': 'us-east-1',
       }),
+      'signUpEnabled': false,
     });
   }
 }
