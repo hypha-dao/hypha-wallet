@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:get_it/get_it.dart';
+import 'package:hypha_wallet/core/network/api/services/remote_config_service.dart';
 import 'package:hypha_wallet/design/background/hypha_page_background.dart';
 import 'package:hypha_wallet/design/bottom_component/hypha_safe_bottom_navigation_bar.dart';
 import 'package:hypha_wallet/design/buttons/button_type.dart';
@@ -32,13 +34,14 @@ class OnboardingPage extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              HyphaAppButton(
-                onPressed: () {
-                  _launchUrl();
-                },
-                title: 'Sign Up',
-                buttonType: ButtonType.secondary,
-              ),
+              if (GetIt.I.get<RemoteConfigService>().featureFlagSignUpEnabled())
+                HyphaAppButton(
+                  onPressed: () {
+                    _launchUrl();
+                  },
+                  title: 'Sign Up',
+                  buttonType: ButtonType.secondary,
+                ),
               const SizedBox(height: 20),
               HyphaAppButton(
                 onPressed: () {

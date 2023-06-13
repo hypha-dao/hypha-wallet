@@ -5,7 +5,8 @@ import 'package:firebase_remote_config/firebase_remote_config.dart';
 enum Networks { telos, telosTestnet, eos, eosTestnet }
 
 const Networks _defaultNetwork = Networks.telos;
-// const Networks _defaultNetwork = Networks.telosTestnet;
+
+const signUpEnabledFeatureFlagKey = 'sign_up_enabled';
 
 /// Encapsulates everything to do with remote configuration
 class RemoteConfigService {
@@ -57,6 +58,10 @@ class RemoteConfigService {
   String loginAction({Networks? network}) {
     final networkConfig = _getNetworkConfig(network: network);
     return networkConfig['loginAction'];
+  }
+
+  bool featureFlagSignUpEnabled() {
+    return FirebaseRemoteConfig.instance.getValue(signUpEnabledFeatureFlagKey).asBool();
   }
 
   // PPP Profile Service Backend
