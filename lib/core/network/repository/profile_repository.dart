@@ -11,7 +11,7 @@ class ProfileService extends NetworkingManager {
 
   ProfileService(this._remoteConfigService) : super(_remoteConfigService.profileServiceEndpoint);
 
-  Future<Result<ProfileData, HyphaError>> getProfile(String accountName) async {
+  Future<Result<ProfileData, HyphaError>> getProfile(String accountName, {Networks network = Networks.telos}) async {
     final url = '${_remoteConfigService.profileServiceEndpoint}${Endpoints.pppProfile}/$accountName';
     try {
       final response = await get(url);

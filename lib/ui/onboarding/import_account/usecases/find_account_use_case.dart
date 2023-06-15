@@ -8,6 +8,13 @@ import 'package:hypha_wallet/ui/architecture/interactor/base_usecase.dart';
 import 'package:hypha_wallet/ui/architecture/result/result.dart';
 import 'package:hypha_wallet/ui/profile/interactor/profile_data.dart';
 
+class NetworkAccount {
+  final String accountName;
+  final Networks network;
+
+  NetworkAccount(this.accountName, this.network);
+}
+
 class FindAccountsUseCase extends InputUseCase<Result<Iterable<UserProfileData>, HyphaError>, String> {
   final ProfileService _profileService;
   final RemoteConfigService remoteConfigService;
@@ -30,21 +37,40 @@ class FindAccountsUseCase extends InputUseCase<Result<Iterable<UserProfileData>,
       privateKeys: [],
       version: 'v1',
     );
+    final telosTestnetClient = EOSClient(
+      baseUrl: remoteConfigService.baseUrl(network: Networks.telosTestnet),
+      privateKeys: [],
+      version: 'v1',
+    );
 
-    final results = await Future.wait([eosClient.getKeyAccounts(input), telosClient.getKeyAccounts(input)]);
+    final results = await Future.wait(
+        [eosClient.getKeyAccounts(input), telosClient.getKeyAccounts(input), telosTestnetClient.getKeyAccounts(input)]);
     final eosResult = results[0];
     final telosResult = results[1];
+    final telosTestnetResult = results[2];
 
-    AccountNames? data;
+    final networkAccounts = <NetworkAccount>[];
     if (eosResult.isValue) {
-      data = eosResult.asValue!.value;
-    } else if (telosResult.isValue) {
-      data = telosResult.asValue!.value;
+      for (final element in eosResult.asValue!.value.accountNames) {
+        networkAccounts.add(NetworkAccount(element, Networks.eos));
+      }
+    }
+    if (telosResult.isValue) {
+      for (final element in telosResult.asValue!.value.accountNames) {
+        networkAccounts.add(NetworkAccount(element, Networks.telos));
+      }
+    }
+    if (telosTestnetResult.isValue) {
+      for (final element in telosTestnetResult.asValue!.value.accountNames) {
+        networkAccounts.add(NetworkAccount(element, Networks.telosTestnet));
+      }
     }
 
-    if (data != null) {
-      final Iterable<Future<Result<ProfileData, HyphaError>>> futures = data.accountNames.map(
-        (accountName) => _profileService.getProfile(accountName),
+    print('networkAccounts ${networkAccounts.length}');
+
+    if (networkAccounts.isNotEmpty) {
+      final Iterable<Future<Result<ProfileData, HyphaError>>> futures = networkAccounts.map(
+        (account) => _profileService.getProfile(account.accountName, network: account.network),
       );
 
       final List<Result<ProfileData, HyphaError>> profiles = await Future.wait(futures);
@@ -52,6 +78,7 @@ class FindAccountsUseCase extends InputUseCase<Result<Iterable<UserProfileData>,
       final List<UserProfileData> wtf = List.empty(growable: true);
 
       profiles.forEachIndexed((index, response) {
+        print('indexed ${index} ${response.isValue}');
         if (response.isValue) {
           final ProfileData profileData = response.asValue!.value;
           wtf.add(UserProfileData(
@@ -61,8 +88,9 @@ class FindAccountsUseCase extends InputUseCase<Result<Iterable<UserProfileData>,
             bio: profileData.bio,
           ));
         } else {
+          print('adding ${networkAccounts[index].accountName}');
           wtf.add(UserProfileData(
-            accountName: data!.accountNames[index],
+            accountName: networkAccounts[index].accountName,
             userName: null,
             userImage: null,
             bio: null,
