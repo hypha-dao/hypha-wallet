@@ -33,6 +33,11 @@ class CreateAccountSuccessPage extends StatelessWidget {
           bottomNavigationBar: HyphaSafeBottomNavigationBar(
             child: HyphaAppButton(
               onPressed: () {
+                /// This is a hack: Fixes an issue where the user is already signed in and scans a sign up QR or link
+                /// This hack forces a state refresh. 
+                context.read<AuthenticationBloc>().add(
+                      const AuthenticationEvent.authenticationStatusChanged(AuthenticationStatus.unknown),
+                    );
                 context.read<AuthenticationBloc>().add(
                       const AuthenticationEvent.authenticationStatusChanged(AuthenticationStatus.authenticated),
                     );
