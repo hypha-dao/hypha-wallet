@@ -185,8 +185,11 @@ class SigningRequestManager {
   }
 
   /// Creates a signing request from encoded `esr:` uri string. */
-  factory SigningRequestManager.from(String? uri,
-      {required SigningRequestEncodingOptions options, EOSService? eosService}) {
+  factory SigningRequestManager.from(
+    String? uri, {
+    required SigningRequestEncodingOptions options,
+    EOSService? eosService,
+  }) {
     if (uri is! String) {
       throw 'Invalid request uri';
     }

@@ -42,17 +42,24 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     }
 
     emit(state.copyWith(isLoading: true));
-    final result = await _parseQRCodeUseCase.run(ParseESRLinkInput(esrLink: event.value));
+    try {
+      final result = await _parseQRCodeUseCase.run(ParseESRLinkInput(esrLink: event.value));
+      if (result.isValue) {
+        final ScanQrCodeResultData value = result.asValue!.value;
 
-    if (result.isValue) {
-      final ScanQrCodeResultData value = result.asValue!.value;
-
-      emit(state.copyWith(command: PageCommand.navigateToTransactionDetails(value), isLoading: false));
-    } else {
-      LogHelper.d('_onQRCodeScanned Error ${result.asError!.error}');
+        emit(state.copyWith(command: PageCommand.navigateToTransactionDetails(value), isLoading: false));
+      } else {
+        LogHelper.d('_onQRCodeScanned Error ${result.asError!.error}');
+        emit(state.copyWith(isLoading: false));
+        // ignore: unawaited_futures
+        _errorHandlerManager.handlerError(HyphaError(message: 'Error reading QR Code', type: HyphaErrorType.generic));
+      }
+    } catch (e) {
+      LogHelper.e('Error parsing Scanned QR code');
+      LogHelper.e(e.toString());
       emit(state.copyWith(isLoading: false));
       // ignore: unawaited_futures
-      _errorHandlerManager.handlerError(HyphaError(message: 'Error reading QR Code', type: HyphaErrorType.generic));
+      _errorHandlerManager.handlerError(HyphaError(message: 'Invalid QR Code', type: HyphaErrorType.generic));
     }
   }
 }
