@@ -107,7 +107,7 @@ class _UserTokensList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 150,
+      height: 151,
       child: ListViewWithAllSeparators(
         scrollDirection: Axis.horizontal,
         items: tokens,
