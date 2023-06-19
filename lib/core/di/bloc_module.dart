@@ -90,6 +90,12 @@ void _registerBlocsModule() {
     ),
   );
 
+  _registerFactoryWithParams<SendBloc, UserProfileData, void>(
+        (pageParams, _) => SendBloc(
+      pageParams,
+    ),
+  );
+
   _registerFactory(
     () => PushNotificationsBloc(
       _getIt<FirebasePushNotificationsService>(),
