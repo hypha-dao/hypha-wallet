@@ -23,6 +23,7 @@ import 'package:hypha_wallet/core/network/api/services/sign_transaction_callback
 import 'package:hypha_wallet/core/network/api/services/token_service.dart';
 import 'package:hypha_wallet/core/network/api/services/transaction_history_service.dart';
 import 'package:hypha_wallet/core/network/api/services/user_account_service.dart';
+import 'package:hypha_wallet/core/network/models/user_profile_data.dart';
 import 'package:hypha_wallet/core/network/networking_manager.dart';
 import 'package:hypha_wallet/core/network/repository/auth_repository.dart';
 import 'package:hypha_wallet/core/network/repository/profile_repository.dart';
@@ -60,6 +61,7 @@ import 'package:hypha_wallet/ui/profile/usecases/remove_avatar_use_case.dart';
 import 'package:hypha_wallet/ui/profile/usecases/set_bio_use_case.dart';
 import 'package:hypha_wallet/ui/profile/usecases/set_image_use_case.dart';
 import 'package:hypha_wallet/ui/profile/usecases/set_name_use_case.dart';
+import 'package:hypha_wallet/ui/send/interactor/send_bloc.dart';
 import 'package:hypha_wallet/ui/settings/interactor/settings_bloc.dart';
 import 'package:hypha_wallet/ui/settings/usecases/delete_account_use_case.dart';
 import 'package:hypha_wallet/ui/sign_transaction/interactor/sign_transaction_bloc.dart';
