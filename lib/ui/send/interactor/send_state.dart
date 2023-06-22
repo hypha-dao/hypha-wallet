@@ -8,5 +8,6 @@ class SendState with _$SendState {
     @Default(PageState.initial) PageState pageState,
     PageCommand? command,
     required UserProfileData receiverUser,
+    required WalletTokenData tokenData,
   }) = _SendState;
 }

@@ -90,10 +90,8 @@ void _registerBlocsModule() {
     ),
   );
 
-  _registerFactoryWithParams<SendBloc, UserProfileData, void>(
-        (pageParams, _) => SendBloc(
-      pageParams,
-    ),
+  _registerFactoryWithParams<SendBloc, UserProfileData, WalletTokenData>(
+    (pageParams, tokenData) => SendBloc(pageParams, tokenData),
   );
 
   _registerFactory(

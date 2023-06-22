@@ -557,6 +557,7 @@ mixin _$SendState {
   PageState get pageState => throw _privateConstructorUsedError;
   PageCommand? get command => throw _privateConstructorUsedError;
   UserProfileData get receiverUser => throw _privateConstructorUsedError;
+  WalletTokenData get tokenData => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SendStateCopyWith<SendState> get copyWith =>
@@ -571,7 +572,8 @@ abstract class $SendStateCopyWith<$Res> {
   $Res call(
       {PageState pageState,
       PageCommand? command,
-      UserProfileData receiverUser});
+      UserProfileData receiverUser,
+      WalletTokenData tokenData});
 
   $PageCommandCopyWith<$Res>? get command;
   $UserProfileDataCopyWith<$Res> get receiverUser;
@@ -593,6 +595,7 @@ class _$SendStateCopyWithImpl<$Res, $Val extends SendState>
     Object? pageState = null,
     Object? command = freezed,
     Object? receiverUser = null,
+    Object? tokenData = null,
   }) {
     return _then(_value.copyWith(
       pageState: null == pageState
@@ -607,6 +610,10 @@ class _$SendStateCopyWithImpl<$Res, $Val extends SendState>
           ? _value.receiverUser
           : receiverUser // ignore: cast_nullable_to_non_nullable
               as UserProfileData,
+      tokenData: null == tokenData
+          ? _value.tokenData
+          : tokenData // ignore: cast_nullable_to_non_nullable
+              as WalletTokenData,
     ) as $Val);
   }
 
@@ -641,7 +648,8 @@ abstract class _$$_SendStateCopyWith<$Res> implements $SendStateCopyWith<$Res> {
   $Res call(
       {PageState pageState,
       PageCommand? command,
-      UserProfileData receiverUser});
+      UserProfileData receiverUser,
+      WalletTokenData tokenData});
 
   @override
   $PageCommandCopyWith<$Res>? get command;
@@ -663,6 +671,7 @@ class __$$_SendStateCopyWithImpl<$Res>
     Object? pageState = null,
     Object? command = freezed,
     Object? receiverUser = null,
+    Object? tokenData = null,
   }) {
     return _then(_$_SendState(
       pageState: null == pageState
@@ -677,6 +686,10 @@ class __$$_SendStateCopyWithImpl<$Res>
           ? _value.receiverUser
           : receiverUser // ignore: cast_nullable_to_non_nullable
               as UserProfileData,
+      tokenData: null == tokenData
+          ? _value.tokenData
+          : tokenData // ignore: cast_nullable_to_non_nullable
+              as WalletTokenData,
     ));
   }
 }
@@ -687,7 +700,8 @@ class _$_SendState extends _SendState {
   const _$_SendState(
       {this.pageState = PageState.initial,
       this.command,
-      required this.receiverUser})
+      required this.receiverUser,
+      required this.tokenData})
       : super._();
 
   @override
@@ -697,10 +711,12 @@ class _$_SendState extends _SendState {
   final PageCommand? command;
   @override
   final UserProfileData receiverUser;
+  @override
+  final WalletTokenData tokenData;
 
   @override
   String toString() {
-    return 'SendState(pageState: $pageState, command: $command, receiverUser: $receiverUser)';
+    return 'SendState(pageState: $pageState, command: $command, receiverUser: $receiverUser, tokenData: $tokenData)';
   }
 
   @override
@@ -712,12 +728,14 @@ class _$_SendState extends _SendState {
                 other.pageState == pageState) &&
             (identical(other.command, command) || other.command == command) &&
             (identical(other.receiverUser, receiverUser) ||
-                other.receiverUser == receiverUser));
+                other.receiverUser == receiverUser) &&
+            (identical(other.tokenData, tokenData) ||
+                other.tokenData == tokenData));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, pageState, command, receiverUser);
+      Object.hash(runtimeType, pageState, command, receiverUser, tokenData);
 
   @JsonKey(ignore: true)
   @override
@@ -730,7 +748,8 @@ abstract class _SendState extends SendState {
   const factory _SendState(
       {final PageState pageState,
       final PageCommand? command,
-      required final UserProfileData receiverUser}) = _$_SendState;
+      required final UserProfileData receiverUser,
+      required final WalletTokenData tokenData}) = _$_SendState;
   const _SendState._() : super._();
 
   @override
@@ -739,6 +758,8 @@ abstract class _SendState extends SendState {
   PageCommand? get command;
   @override
   UserProfileData get receiverUser;
+  @override
+  WalletTokenData get tokenData;
   @override
   @JsonKey(ignore: true)
   _$$_SendStateCopyWith<_$_SendState> get copyWith =>
