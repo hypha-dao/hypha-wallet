@@ -15,7 +15,7 @@ class FirebaseDatabaseService {
 
     final user = <String, dynamic>{
       'accountName': accountName,
-      'deviceToken': FieldValue.arrayUnion([deviceToken]),
+      'deviceTokens': FieldValue.arrayUnion([deviceToken]),
       'lastEdit': Timestamp.now(),
     };
 
@@ -31,7 +31,7 @@ class FirebaseDatabaseService {
     final db = FirebaseFirestore.instance;
 
     final user = <String, dynamic>{
-      'deviceToken': FieldValue.arrayRemove([deviceToken]),
+      'deviceTokens': FieldValue.arrayRemove([deviceToken]),
       'lastEdit': Timestamp.now(),
     };
 

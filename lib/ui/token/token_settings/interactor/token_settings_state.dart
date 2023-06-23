@@ -7,6 +7,6 @@ class TokensSettingsState with _$TokensSettingsState {
   const factory TokensSettingsState({
     @Default(PageState.initial) PageState pageState,
     PageCommand? command,
-    @Default([]) List<SettingsTokenData> tokens,
+    @Default([]) List<WalletTokenData> tokens,
   }) = _TokensSettingsState;
 }

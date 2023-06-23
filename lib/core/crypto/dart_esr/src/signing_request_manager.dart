@@ -7,7 +7,7 @@ import 'package:hypha_wallet/core/crypto/dart_esr/src/models/request_signature.d
 import 'package:hypha_wallet/core/crypto/dart_esr/src/utils/base64u.dart';
 import 'package:hypha_wallet/core/crypto/eosdart/eosdart.dart' as eosDart;
 import 'package:hypha_wallet/core/network/api/eos_service.dart';
-import 'package:hypha_wallet/core/network/api/remote_config_service.dart';
+import 'package:hypha_wallet/core/network/api/services/remote_config_service.dart';
 
 class SigningRequestManager {
   static eosDart.Type? type(int version) => ESRConstants.signingRequestAbiType(version)['signing_request'];
