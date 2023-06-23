@@ -14,6 +14,8 @@ class WalletTokenData extends FirebaseTokenData {
     required super.id,
   });
 
+  String get ownedAmountAndSymbol => '${userOwnedAmount?.toString() ?? '0'} $symbol';
+
   WalletTokenData withUserOwnedAmount(double userOwnedAmount) {
     return WalletTokenData(
       selected: selected,

@@ -2,13 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:hypha_wallet/core/network/models/transaction_model.dart';
+import 'package:hypha_wallet/core/network/models/user_profile_data.dart';
 import 'package:hypha_wallet/design/avatar_image/hypha_avatar_image.dart';
 import 'package:hypha_wallet/design/background/hypha_page_background.dart';
+import 'package:hypha_wallet/design/buttons/button_type.dart';
+import 'package:hypha_wallet/design/buttons/hypha_app_button.dart';
+
 // import 'package:hypha_wallet/design/buttons/button_type.dart';
 // import 'package:hypha_wallet/design/buttons/hypha_app_button.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/progress_indicator/hypha_progress_indicator.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
+import 'package:hypha_wallet/ui/send/send_page.dart';
 import 'package:hypha_wallet/ui/token/token_details/interactor/token_details_bloc.dart';
 import 'package:hypha_wallet/ui/wallet/components/recent_transactions_view.dart';
 import 'package:hypha_wallet/ui/wallet/data/wallet_token_data.dart';
@@ -54,29 +59,44 @@ class TokenDetailsView extends StatelessWidget {
               },
             ),
             const SizedBox(height: 24),
-            // Padding(
-            //   padding: const EdgeInsets.symmetric(horizontal: 24),
-            //   child: Row(
-            //     mainAxisAlignment: MainAxisAlignment.center,
-            //     children: [
-            //       Expanded(
-            //         child: HyphaAppButton(
-            //           title: 'Receive',
-            //           onPressed: () {},
-            //           buttonType: ButtonType.secondary,
-            //         ),
-            //       ),
-            //       const SizedBox(width: 22),
-            //       Expanded(
-            //         child: HyphaAppButton(
-            //           title: 'Send',
-            //           buttonType: ButtonType.primary,
-            //           onPressed: () {},
-            //         ),
-            //       ),
-            //     ],
-            //   ),
-            // ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: HyphaAppButton(
+                      title: 'Receive',
+                      onPressed: () {},
+                      buttonType: ButtonType.secondary,
+                    ),
+                  ),
+                  const SizedBox(width: 22),
+                  Expanded(
+                    child: BlocBuilder<TokenDetailsBloc, TokenDetailsState>(
+                      builder: (context, state) {
+                        return HyphaAppButton(
+                          title: 'Send',
+                          buttonType: ButtonType.primary,
+                          onPressed: () {
+                            Get.to(
+                              () => SendPage(
+                                tokenData: state.token,
+                                receiverUser: UserProfileData(
+                                    accountName: 'illumination',
+                                    bio: 'Sup Yo',
+                                    userName: 'Nik Fury',
+                                    userImage: 'https://picsum.photos/200'),
+                              ),
+                            );
+                          },
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ),
             const SizedBox(height: 24),
             BlocBuilder<TokenDetailsBloc, TokenDetailsState>(
               buildWhen: (previous, current) =>
