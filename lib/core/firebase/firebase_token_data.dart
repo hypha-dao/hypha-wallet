@@ -4,6 +4,7 @@ class FirebaseTokenData {
   final String contract;
   final String symbol;
   final String id;
+  final num precision;
 
   const FirebaseTokenData({
     required this.image,
@@ -11,5 +12,6 @@ class FirebaseTokenData {
     required this.contract,
     required this.symbol,
     required this.id,
+    required this.precision,
   });
 }

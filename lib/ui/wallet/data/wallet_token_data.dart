@@ -12,6 +12,7 @@ class WalletTokenData extends FirebaseTokenData {
     required super.contract,
     required super.symbol,
     required super.id,
+    required super.precision,
   });
 
   String get ownedAmountAndSymbol => '${userOwnedAmount?.toString() ?? '0'} $symbol';
@@ -25,6 +26,7 @@ class WalletTokenData extends FirebaseTokenData {
       symbol: symbol,
       id: id,
       userOwnedAmount: userOwnedAmount,
+      precision: precision,
     );
   }
 }
