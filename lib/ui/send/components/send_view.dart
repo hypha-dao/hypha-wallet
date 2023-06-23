@@ -8,6 +8,7 @@ import 'package:hypha_wallet/design/buttons/hypha_app_button.dart';
 import 'package:hypha_wallet/design/hypha_card.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
+import 'package:hypha_wallet/ui/send/data/amount_percentage.dart';
 import 'package:hypha_wallet/ui/send/interactor/send_bloc.dart';
 
 class SendView extends StatelessWidget {
@@ -37,18 +38,23 @@ class SendView extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 24),
           child: Column(
             children: [
-              Text(
-                '0',
-                textAlign: TextAlign.center,
-                style: context.hyphaTextTheme.popsExtraLargeAndLight,
+              BlocBuilder<SendBloc, SendState>(
+                buildWhen: (p, c) => p.userEnteredAmount != c.userEnteredAmount,
+                builder: (context, state) {
+                  return Text(
+                    state.userEnteredAmount,
+                    textAlign: TextAlign.center,
+                    style: context.hyphaTextTheme.popsExtraLargeAndLight,
+                  );
+                },
               ),
               const _AvailableBalanceWidget(),
               const _ToUserRow(),
-              const SizedBox(height: 20),
+              const SizedBox(height: 24),
               const _MemoField(),
-              const SizedBox(height: 20),
+              const SizedBox(height: 24),
               const _PercentagesWidget(),
-              const SizedBox(height: 20),
+              const SizedBox(height: 24),
               const _NumberKeyboardGrid(),
             ],
           ),
@@ -76,7 +82,7 @@ class _NumberKeyboardGrid extends StatelessWidget {
           _ => index.toString(),
         };
         return Padding(
-          padding:  EdgeInsets.only(top: 8, bottom: 8, left: index % 3 == 0 ? 0: 8, right: index % 3 == 2 ? 0: 8),
+          padding: EdgeInsets.only(top: 8, bottom: 8, left: index % 3 == 0 ? 0 : 8, right: index % 3 == 2 ? 0 : 8),
           child: HyphaCard(
             borderRadius: BorderRadius.circular(14),
             child: Center(
@@ -103,24 +109,29 @@ class _PercentagesWidget extends StatelessWidget {
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          decoration('min', context),
-          decoration('25%', context),
-          decoration('50%', context),
-          decoration('75%', context),
-          decoration('max', context),
+          percentageButton('10%', context, AmountPercentage.ten),
+          percentageButton('25%', context, AmountPercentage.twentyFive),
+          percentageButton('50%', context, AmountPercentage.fifty),
+          percentageButton('75%', context, AmountPercentage.seventyFive),
+          percentageButton('max', context, AmountPercentage.max),
         ],
       ),
     );
   }
 
-  Widget decoration(String text, BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 4),
-      decoration: BoxDecoration(
-        border: Border.all(color: HyphaColors.primaryBlu),
-        borderRadius: const BorderRadius.all(Radius.circular(5)),
+  Widget percentageButton(String text, BuildContext context, AmountPercentage percentage) {
+    return GestureDetector(
+      onTap: () {
+        context.read<SendBloc>().add(SendEvent.onPercentageTapped(percentage));
+      },
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 4),
+        decoration: BoxDecoration(
+          border: Border.all(color: HyphaColors.primaryBlu),
+          borderRadius: const BorderRadius.all(Radius.circular(5)),
+        ),
+        child: Text(text, style: context.hyphaTextTheme.regular.copyWith(color: HyphaColors.primaryBlu)),
       ),
-      child: Text(text, style: context.hyphaTextTheme.regular.copyWith(color: HyphaColors.primaryBlu)),
     );
   }
 }
@@ -130,7 +141,7 @@ class _MemoField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  HyphaCard(
+    return HyphaCard(
       child: Row(
         mainAxisSize: MainAxisSize.max,
         children: [
@@ -152,6 +163,7 @@ class _ToUserRow extends StatelessWidget {
     return BlocBuilder<SendBloc, SendState>(
       builder: (context, state) {
         return ListTile(
+          contentPadding: EdgeInsets.zero,
           leading: HyphaAvatarImage(
             imageRadius: 20,
             name: state.receiverUser.userName,
@@ -179,6 +191,7 @@ class _AvailableBalanceWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<SendBloc, SendState>(
       builder: (context, state) {
+
         return Column(
           children: [
             Text(
