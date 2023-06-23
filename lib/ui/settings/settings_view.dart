@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
@@ -26,8 +27,7 @@ class SettingsView extends StatelessWidget {
       builder: (context, SettingsState state) {
         return HyphaBodyWidget(
           pageState: state.pageState,
-          // ignore: use_colored_box
-          loading: (context) => Container(
+          loading: (context) => ColoredBox(
             color: Theme.of(context).colorScheme.background,
             child: Center(
               child: SafeArea(
@@ -144,6 +144,12 @@ class SettingsView extends StatelessWidget {
                           )),
                     ),
                     const SizedBox(height: 60),
+                    Text('App Version: ${state.version}' ),
+                    Text('Build Number: ${state.buildNumber}' ),
+                    if(kDebugMode)...[
+                      Text('App: ${state.appName}' ),
+                      Text('Package: ${state.packageName}' ),
+                    ]
                   ],
                 ),
               ),

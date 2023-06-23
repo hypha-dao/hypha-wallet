@@ -5,13 +5,18 @@ import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hypha_wallet/core/local/models/user_auth_data.dart';
 import 'package:hypha_wallet/core/local/services/secure_storage_service.dart';
+import 'package:hypha_wallet/core/logging/log_helper.dart';
 import 'package:hypha_wallet/core/shared_preferences/hypha_shared_prefs.dart';
 import 'package:hypha_wallet/ui/architecture/interactor/page_states.dart';
 import 'package:hypha_wallet/ui/settings/usecases/delete_account_use_case.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 part 'page_command.dart';
+
 part 'settings_bloc.freezed.dart';
+
 part 'settings_event.dart';
+
 part 'settings_state.dart';
 
 class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
@@ -33,8 +38,22 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     final theme = await _sharedPrefs.getTheme();
     final bool showSecurityNotification = await _sharedPrefs.getShowSecurityNotification();
 
+    final PackageInfo packageInfo = await PackageInfo.fromPlatform();
+
+    final String appName = packageInfo.appName;
+    final String packageName = packageInfo.packageName;
+    final String version = packageInfo.version;
+    final String buildNumber = packageInfo.buildNumber;
+
     emit(state.copyWith(
-        themeMode: theme, showSecurityNotification: showSecurityNotification, pageState: PageState.success));
+      themeMode: theme,
+      showSecurityNotification: showSecurityNotification,
+      pageState: PageState.success,
+      appName: appName,
+      buildNumber: buildNumber,
+      version: version,
+      packageName: packageName,
+    ));
   }
 
   void _onThemeChanged(_OnThemeChanged event, Emitter<SettingsState> emit) {
