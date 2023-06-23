@@ -8,8 +8,8 @@ enum KeypadKey {
   seven(7),
   eight(8),
   nine(9),
-  ten(10),
   dot(-1),
+  zero(0),
   delete(-2);
 
   const KeypadKey(this.value);

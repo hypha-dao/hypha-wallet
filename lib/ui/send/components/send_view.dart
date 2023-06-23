@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hypha_wallet/design/avatar_image/hypha_avatar_image.dart';
@@ -9,6 +10,7 @@ import 'package:hypha_wallet/design/hypha_card.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 import 'package:hypha_wallet/ui/send/data/amount_percentage.dart';
+import 'package:hypha_wallet/ui/send/data/keypad_key.dart';
 import 'package:hypha_wallet/ui/send/interactor/send_bloc.dart';
 
 class SendView extends StatelessWidget {
@@ -70,31 +72,34 @@ class _NumberKeyboardGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.count(
-      crossAxisCount: 3,
-      shrinkWrap: true,
-      childAspectRatio: 1.8,
-      physics: const NeverScrollableScrollPhysics(),
-      children: List.generate(12, (index) {
-        final text = switch (index + 1) {
-          10 => '.',
-          11 => '0',
-          12 => '<-',
-          _ => index.toString(),
-        };
-        return Padding(
-          padding: EdgeInsets.only(top: 8, bottom: 8, left: index % 3 == 0 ? 0 : 8, right: index % 3 == 2 ? 0 : 8),
-          child: HyphaCard(
-            borderRadius: BorderRadius.circular(14),
-            child: Center(
-              child: Text(
-                text,
-                style: context.hyphaTextTheme.mediumTitles,
+        crossAxisCount: 3,
+        shrinkWrap: true,
+        childAspectRatio: 1.8,
+        physics: const NeverScrollableScrollPhysics(),
+        children: KeypadKey.values.mapIndexed((index, element) {
+          final text = switch (element) {
+            KeypadKey.dot => '.',
+            KeypadKey.delete => '<-',
+            _ => element.value.toString(),
+          };
+          return GestureDetector(
+            onTap: () {
+              context.read<SendBloc>().add(SendEvent.onKeypadTapped(element));
+            },
+            child: Padding(
+              padding: EdgeInsets.only(top: 8, bottom: 8, left: index % 3 == 0 ? 0 : 8, right: index % 3 == 2 ? 0 : 8),
+              child: HyphaCard(
+                borderRadius: BorderRadius.circular(14),
+                child: Center(
+                  child: Text(
+                    text,
+                    style: context.hyphaTextTheme.mediumTitles,
+                  ),
+                ),
               ),
             ),
-          ),
-        );
-      }),
-    );
+          );
+        }).toList());
   }
 }
 
@@ -191,7 +196,6 @@ class _AvailableBalanceWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<SendBloc, SendState>(
       builder: (context, state) {
-
         return Column(
           children: [
             Text(

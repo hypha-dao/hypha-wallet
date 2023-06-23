@@ -23,6 +23,7 @@ class SendBloc extends Bloc<SendEvent, SendState> {
   ) : super(SendState(receiverUser: receiverUser, tokenData: tokenData)) {
     on<_Initial>(_initial);
     on<_OnPercentageTapped>(_onPercentageTapped);
+    on<_OnKeypadTapped>(_onKeypadTapped);
     on<_ClearPageCommand>((_, emit) => emit(state.copyWith(command: null)));
   }
 
@@ -30,6 +31,11 @@ class SendBloc extends Bloc<SendEvent, SendState> {
 
   FutureOr<void> _onPercentageTapped(_OnPercentageTapped event, Emitter<SendState> emit) {
     final newValue = (state.tokenData.userOwnedAmount ?? 0) * event.amountPercentage.value;
+    emit(state.copyWith(userEnteredAmount: newValue.toString()));
+  }
+
+  FutureOr<void> _onKeypadTapped(_OnKeypadTapped event, Emitter<SendState> emit) {
+    final newValue = state.userEnteredAmount + event.amountPercentage.value.toString();
     emit(state.copyWith(userEnteredAmount: newValue.toString()));
   }
 }
