@@ -71,6 +71,8 @@ class TokenService {
       final res = await networkingManager.post(Endpoints.getTableScopes, data: requestBody);
       final List<Map<String, dynamic>> list = List<Map<String, dynamic>>.from(res.data['rows']);
       final tokenSymbolScopes = List<TokenSymbolScope>.from(list.map((e) {
+        /// This converts a name type into an int type and subsequently converts 
+        /// the int type into a symbol. Like magic. 
         final scope = e['scope'];
         final eosName = EosName.from(scope);
         final eosSymbol = EosSymbol(eosName.value);
