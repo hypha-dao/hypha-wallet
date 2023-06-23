@@ -1273,6 +1273,10 @@ mixin _$SettingsState {
   ThemeMode get themeMode => throw _privateConstructorUsedError;
   bool get showSecurityNotification => throw _privateConstructorUsedError;
   bool get hasWords => throw _privateConstructorUsedError;
+  String? get appName => throw _privateConstructorUsedError;
+  String? get packageName => throw _privateConstructorUsedError;
+  String? get buildNumber => throw _privateConstructorUsedError;
+  String? get version => throw _privateConstructorUsedError;
   PageCommand? get command => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -1291,6 +1295,10 @@ abstract class $SettingsStateCopyWith<$Res> {
       ThemeMode themeMode,
       bool showSecurityNotification,
       bool hasWords,
+      String? appName,
+      String? packageName,
+      String? buildNumber,
+      String? version,
       PageCommand? command});
 
   $PageCommandCopyWith<$Res>? get command;
@@ -1313,6 +1321,10 @@ class _$SettingsStateCopyWithImpl<$Res, $Val extends SettingsState>
     Object? themeMode = null,
     Object? showSecurityNotification = null,
     Object? hasWords = null,
+    Object? appName = freezed,
+    Object? packageName = freezed,
+    Object? buildNumber = freezed,
+    Object? version = freezed,
     Object? command = freezed,
   }) {
     return _then(_value.copyWith(
@@ -1332,6 +1344,22 @@ class _$SettingsStateCopyWithImpl<$Res, $Val extends SettingsState>
           ? _value.hasWords
           : hasWords // ignore: cast_nullable_to_non_nullable
               as bool,
+      appName: freezed == appName
+          ? _value.appName
+          : appName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      packageName: freezed == packageName
+          ? _value.packageName
+          : packageName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      buildNumber: freezed == buildNumber
+          ? _value.buildNumber
+          : buildNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      version: freezed == version
+          ? _value.version
+          : version // ignore: cast_nullable_to_non_nullable
+              as String?,
       command: freezed == command
           ? _value.command
           : command // ignore: cast_nullable_to_non_nullable
@@ -1365,6 +1393,10 @@ abstract class _$$_SettingsStateCopyWith<$Res>
       ThemeMode themeMode,
       bool showSecurityNotification,
       bool hasWords,
+      String? appName,
+      String? packageName,
+      String? buildNumber,
+      String? version,
       PageCommand? command});
 
   @override
@@ -1386,6 +1418,10 @@ class __$$_SettingsStateCopyWithImpl<$Res>
     Object? themeMode = null,
     Object? showSecurityNotification = null,
     Object? hasWords = null,
+    Object? appName = freezed,
+    Object? packageName = freezed,
+    Object? buildNumber = freezed,
+    Object? version = freezed,
     Object? command = freezed,
   }) {
     return _then(_$_SettingsState(
@@ -1405,6 +1441,22 @@ class __$$_SettingsStateCopyWithImpl<$Res>
           ? _value.hasWords
           : hasWords // ignore: cast_nullable_to_non_nullable
               as bool,
+      appName: freezed == appName
+          ? _value.appName
+          : appName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      packageName: freezed == packageName
+          ? _value.packageName
+          : packageName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      buildNumber: freezed == buildNumber
+          ? _value.buildNumber
+          : buildNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      version: freezed == version
+          ? _value.version
+          : version // ignore: cast_nullable_to_non_nullable
+              as String?,
       command: freezed == command
           ? _value.command
           : command // ignore: cast_nullable_to_non_nullable
@@ -1421,6 +1473,10 @@ class _$_SettingsState implements _SettingsState {
       this.themeMode = ThemeMode.dark,
       this.showSecurityNotification = true,
       this.hasWords = false,
+      this.appName,
+      this.packageName,
+      this.buildNumber,
+      this.version,
       this.command});
 
   @override
@@ -1436,11 +1492,19 @@ class _$_SettingsState implements _SettingsState {
   @JsonKey()
   final bool hasWords;
   @override
+  final String? appName;
+  @override
+  final String? packageName;
+  @override
+  final String? buildNumber;
+  @override
+  final String? version;
+  @override
   final PageCommand? command;
 
   @override
   String toString() {
-    return 'SettingsState(pageState: $pageState, themeMode: $themeMode, showSecurityNotification: $showSecurityNotification, hasWords: $hasWords, command: $command)';
+    return 'SettingsState(pageState: $pageState, themeMode: $themeMode, showSecurityNotification: $showSecurityNotification, hasWords: $hasWords, appName: $appName, packageName: $packageName, buildNumber: $buildNumber, version: $version, command: $command)';
   }
 
   @override
@@ -1457,12 +1521,27 @@ class _$_SettingsState implements _SettingsState {
                 other.showSecurityNotification == showSecurityNotification) &&
             (identical(other.hasWords, hasWords) ||
                 other.hasWords == hasWords) &&
+            (identical(other.appName, appName) || other.appName == appName) &&
+            (identical(other.packageName, packageName) ||
+                other.packageName == packageName) &&
+            (identical(other.buildNumber, buildNumber) ||
+                other.buildNumber == buildNumber) &&
+            (identical(other.version, version) || other.version == version) &&
             (identical(other.command, command) || other.command == command));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, pageState, themeMode,
-      showSecurityNotification, hasWords, command);
+  int get hashCode => Object.hash(
+      runtimeType,
+      pageState,
+      themeMode,
+      showSecurityNotification,
+      hasWords,
+      appName,
+      packageName,
+      buildNumber,
+      version,
+      command);
 
   @JsonKey(ignore: true)
   @override
@@ -1477,6 +1556,10 @@ abstract class _SettingsState implements SettingsState {
       final ThemeMode themeMode,
       final bool showSecurityNotification,
       final bool hasWords,
+      final String? appName,
+      final String? packageName,
+      final String? buildNumber,
+      final String? version,
       final PageCommand? command}) = _$_SettingsState;
 
   @override
@@ -1487,6 +1570,14 @@ abstract class _SettingsState implements SettingsState {
   bool get showSecurityNotification;
   @override
   bool get hasWords;
+  @override
+  String? get appName;
+  @override
+  String? get packageName;
+  @override
+  String? get buildNumber;
+  @override
+  String? get version;
   @override
   PageCommand? get command;
   @override

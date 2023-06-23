@@ -132,6 +132,8 @@ dependencies:
   # Dotted outline container
   dotted_border: ^2.0.0+3
 
+  # Get the app version
+  package_info_plus: ^4.0.2
 
 dev_dependencies:
   flutter_test:
