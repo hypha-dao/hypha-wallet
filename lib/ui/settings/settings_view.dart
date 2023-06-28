@@ -26,8 +26,7 @@ class SettingsView extends StatelessWidget {
       builder: (context, SettingsState state) {
         return HyphaBodyWidget(
           pageState: state.pageState,
-          // ignore: use_colored_box
-          loading: (context) => Container(
+          loading: (context) => ColoredBox(
             color: Theme.of(context).colorScheme.background,
             child: Center(
               child: SafeArea(
@@ -131,19 +130,39 @@ class SettingsView extends StatelessWidget {
                       },
                     ),
                     const SizedBox(height: 60),
+                    Text(
+                      'Hypha Wallet Version: ${state.version}',
+                      style: context.hyphaTextTheme.ralMediumBody.copyWith(
+                        color: HyphaColors.midGrey,
+                        decoration: TextDecoration.underline,
+                        fontSize: 14,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    Text(
+                      'Build Number: ${state.buildNumber}',
+                      style: context.hyphaTextTheme.ralMediumBody.copyWith(
+                        color: HyphaColors.midGrey,
+                        decoration: TextDecoration.underline,
+                        fontSize: 14,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 24),
                     InkWell(
                       onTap: () async {
                         await onDeleteTapped(context);
                       },
-                      child: Text('Delete Hypha Account',
-                          textAlign: TextAlign.center,
-                          style: context.hyphaTextTheme.ralMediumBody.copyWith(
-                            color: HyphaColors.midGrey,
-                            decoration: TextDecoration.underline,
-                            fontSize: 14,
-                          )),
+                      child: Text(
+                        'Delete Hypha Account',
+                        textAlign: TextAlign.center,
+                        style: context.hyphaTextTheme.ralMediumBody.copyWith(
+                          color: HyphaColors.midGrey,
+                          decoration: TextDecoration.underline,
+                          fontSize: 14,
+                        ),
+                      ),
                     ),
-                    const SizedBox(height: 60),
                   ],
                 ),
               ),
