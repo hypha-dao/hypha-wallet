@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
@@ -131,25 +130,39 @@ class SettingsView extends StatelessWidget {
                       },
                     ),
                     const SizedBox(height: 60),
+                    Text(
+                      'Hypha Wallet Version: ${state.version}',
+                      style: context.hyphaTextTheme.ralMediumBody.copyWith(
+                        color: HyphaColors.midGrey,
+                        decoration: TextDecoration.underline,
+                        fontSize: 14,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    Text(
+                      'Build Number: ${state.buildNumber}',
+                      style: context.hyphaTextTheme.ralMediumBody.copyWith(
+                        color: HyphaColors.midGrey,
+                        decoration: TextDecoration.underline,
+                        fontSize: 14,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 24),
                     InkWell(
                       onTap: () async {
                         await onDeleteTapped(context);
                       },
-                      child: Text('Delete Hypha Account',
-                          textAlign: TextAlign.center,
-                          style: context.hyphaTextTheme.ralMediumBody.copyWith(
-                            color: HyphaColors.midGrey,
-                            decoration: TextDecoration.underline,
-                            fontSize: 14,
-                          )),
+                      child: Text(
+                        'Delete Hypha Account',
+                        textAlign: TextAlign.center,
+                        style: context.hyphaTextTheme.ralMediumBody.copyWith(
+                          color: HyphaColors.midGrey,
+                          decoration: TextDecoration.underline,
+                          fontSize: 14,
+                        ),
+                      ),
                     ),
-                    const SizedBox(height: 60),
-                    Text('App Version: ${state.version}' ),
-                    Text('Build Number: ${state.buildNumber}' ),
-                    if(kDebugMode)...[
-                      Text('App: ${state.appName}' ),
-                      Text('Package: ${state.packageName}' ),
-                    ]
                   ],
                 ),
               ),
