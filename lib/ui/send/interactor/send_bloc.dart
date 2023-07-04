@@ -28,13 +28,14 @@ class SendBloc extends Bloc<SendEvent, SendState> {
   }
 
   Future<void> _initial(_Initial event, Emitter<SendState> emit) async {
-    var precision = state.tokenData.precision;
-    var initialValue = '0.';
-    for(int i = 0; i< precision; i++) {
-      initialValue + '0';
-    }
+    // TODO(gguij): Continue here
+    // final precision = state.tokenData.precision;
+    // final initialValue = '0.';
+    // for(int i = 0; i< precision; i++) {
+    //   initialValue + '0';
+    // }
 
-    emit(state.copyWith(userEnteredAmount: initialValue));
+    // emit(state.copyWith(userEnteredAmount: initialValue));
   }
 
   FutureOr<void> _onPercentageTapped(_OnPercentageTapped event, Emitter<SendState> emit) {
