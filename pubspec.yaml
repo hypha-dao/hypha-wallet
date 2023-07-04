@@ -81,8 +81,8 @@ dependencies:
   hdkey: ^0.0.1
 
   # Json Serial
-  json_serializable: ^6.5.4
-  json_annotation: ^4.8.0
+  json_serializable: ^6.7.0
+  json_annotation: ^4.8.1
 
   # image picker
   image_picker: ^0.8.6
