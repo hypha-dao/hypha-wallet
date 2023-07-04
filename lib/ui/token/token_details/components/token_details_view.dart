@@ -59,44 +59,44 @@ class TokenDetailsView extends StatelessWidget {
               },
             ),
             const SizedBox(height: 24),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Expanded(
-                    child: HyphaAppButton(
-                      title: 'Receive',
-                      onPressed: () {},
-                      buttonType: ButtonType.secondary,
-                    ),
-                  ),
-                  const SizedBox(width: 22),
-                  Expanded(
-                    child: BlocBuilder<TokenDetailsBloc, TokenDetailsState>(
-                      builder: (context, state) {
-                        return HyphaAppButton(
-                          title: 'Send',
-                          buttonType: ButtonType.primary,
-                          onPressed: () {
-                            Get.to(
-                              () => SendPage(
-                                tokenData: state.token,
-                                receiverUser: UserProfileData(
-                                    accountName: 'illumination',
-                                    bio: 'Sup Yo',
-                                    userName: 'Nik Fury',
-                                    userImage: 'https://picsum.photos/200'),
-                              ),
-                            );
-                          },
-                        );
-                      },
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            // Padding(
+            //   padding: const EdgeInsets.symmetric(horizontal: 24),
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.center,
+            //     children: [
+            //       Expanded(
+            //         child: HyphaAppButton(
+            //           title: 'Receive',
+            //           onPressed: () {},
+            //           buttonType: ButtonType.secondary,
+            //         ),
+            //       ),
+            //       const SizedBox(width: 22),
+            //       Expanded(
+            //         child: BlocBuilder<TokenDetailsBloc, TokenDetailsState>(
+            //           builder: (context, state) {
+            //             return HyphaAppButton(
+            //               title: 'Send',
+            //               buttonType: ButtonType.primary,
+            //               onPressed: () {
+            //                 Get.to(
+            //                   () => SendPage(
+            //                     tokenData: state.token,
+            //                     receiverUser: UserProfileData(
+            //                         accountName: 'illumination',
+            //                         bio: 'Sup Yo',
+            //                         userName: 'Nik Fury',
+            //                         userImage: 'https://picsum.photos/200'),
+            //                   ),
+            //                 );
+            //               },
+            //             );
+            //           },
+            //         ),
+            //       ),
+            //     ],
+            //   ),
+            // ),
             const SizedBox(height: 24),
             BlocBuilder<TokenDetailsBloc, TokenDetailsState>(
               buildWhen: (previous, current) =>
