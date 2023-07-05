@@ -11,6 +11,7 @@ class RemoteConfigService {
   static Future<RemoteConfigService> initialized() async {
     final rc = RemoteConfigService();
     await rc.setDefaults();
+    await FirebaseRemoteConfig.instance.fetchAndActivate();
     return rc;
   }
 
@@ -82,7 +83,7 @@ class RemoteConfigService {
         'telos': {
           'name': 'Telos',
           'endpoint': 'https://mainnet.telos.net',
-          'fastEndpoint': 'https://telos.greymass.com',
+          'fastEndpoint': 'https://mainnet.telos.net',
           'loginContract': 'eosio.login',
           'loginAction': 'loginuser',
           'logoutAction': 'deletelogin',
@@ -135,6 +136,9 @@ class RemoteConfigService {
         'region': 'us-east-1',
       }),
       'signUpEnabled': false,
+    });
+    FirebaseRemoteConfig.instance.onConfigUpdated.listen((event) async {
+      await FirebaseRemoteConfig.instance.activate();
     });
   }
 }
