@@ -5,6 +5,8 @@ part 'user_profile_data.g.dart';
 
 @freezed
 class UserProfileData with _$UserProfileData {
+  const UserProfileData._();
+
   factory UserProfileData({
     required String accountName,
     @Default(null) String? userImage,
@@ -13,4 +15,6 @@ class UserProfileData with _$UserProfileData {
   }) = _UserProfileData;
 
   factory UserProfileData.fromJson(Map<String, dynamic> json) => _$UserProfileDataFromJson(json);
+
+  String get userNameOrAccount  => userName != null ? userName! : accountName;
 }

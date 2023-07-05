@@ -91,7 +91,7 @@ void _registerBlocsModule() {
   );
 
   _registerFactoryWithParams<SendBloc, UserProfileData, void>(
-        (pageParams, _) => SendBloc(
+    (pageParams, _) => SendBloc(
       pageParams,
     ),
   );
@@ -103,4 +103,6 @@ void _registerBlocsModule() {
       _getIt<FirebaseAnalyticsService>(),
     ),
   );
+
+  _registerFactory(() => SearchUserBloc());
 }

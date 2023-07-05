@@ -131,12 +131,13 @@ class __$$_UserProfileDataCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_UserProfileData implements _UserProfileData {
+class _$_UserProfileData extends _UserProfileData {
   _$_UserProfileData(
       {required this.accountName,
       this.userImage = null,
       this.bio = null,
-      this.userName = null});
+      this.userName = null})
+      : super._();
 
   factory _$_UserProfileData.fromJson(Map<String, dynamic> json) =>
       _$$_UserProfileDataFromJson(json);
@@ -191,12 +192,13 @@ class _$_UserProfileData implements _UserProfileData {
   }
 }
 
-abstract class _UserProfileData implements UserProfileData {
+abstract class _UserProfileData extends UserProfileData {
   factory _UserProfileData(
       {required final String accountName,
       final String? userImage,
       final String? bio,
       final String? userName}) = _$_UserProfileData;
+  _UserProfileData._() : super._();
 
   factory _UserProfileData.fromJson(Map<String, dynamic> json) =
       _$_UserProfileData.fromJson;

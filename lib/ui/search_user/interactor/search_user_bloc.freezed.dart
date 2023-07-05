@@ -171,6 +171,8 @@ mixin _$SearchUserEvent {
     required TResult Function() initial,
     required TResult Function() onRefresh,
     required TResult Function() clearPageCommand,
+    required TResult Function(String query) onSearchQueryChanged,
+    required TResult Function() onClearIconTapped,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -178,6 +180,8 @@ mixin _$SearchUserEvent {
     TResult? Function()? initial,
     TResult? Function()? onRefresh,
     TResult? Function()? clearPageCommand,
+    TResult? Function(String query)? onSearchQueryChanged,
+    TResult? Function()? onClearIconTapped,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -185,6 +189,8 @@ mixin _$SearchUserEvent {
     TResult Function()? initial,
     TResult Function()? onRefresh,
     TResult Function()? clearPageCommand,
+    TResult Function(String query)? onSearchQueryChanged,
+    TResult Function()? onClearIconTapped,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -193,6 +199,8 @@ mixin _$SearchUserEvent {
     required TResult Function(_Initial value) initial,
     required TResult Function(_OnRefresh value) onRefresh,
     required TResult Function(_ClearPageCommand value) clearPageCommand,
+    required TResult Function(_OnSearchQueryChanged value) onSearchQueryChanged,
+    required TResult Function(_OnClearIconTapped value) onClearIconTapped,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -200,6 +208,8 @@ mixin _$SearchUserEvent {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_OnRefresh value)? onRefresh,
     TResult? Function(_ClearPageCommand value)? clearPageCommand,
+    TResult? Function(_OnSearchQueryChanged value)? onSearchQueryChanged,
+    TResult? Function(_OnClearIconTapped value)? onClearIconTapped,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -207,6 +217,8 @@ mixin _$SearchUserEvent {
     TResult Function(_Initial value)? initial,
     TResult Function(_OnRefresh value)? onRefresh,
     TResult Function(_ClearPageCommand value)? clearPageCommand,
+    TResult Function(_OnSearchQueryChanged value)? onSearchQueryChanged,
+    TResult Function(_OnClearIconTapped value)? onClearIconTapped,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -270,6 +282,8 @@ class _$_Initial implements _Initial {
     required TResult Function() initial,
     required TResult Function() onRefresh,
     required TResult Function() clearPageCommand,
+    required TResult Function(String query) onSearchQueryChanged,
+    required TResult Function() onClearIconTapped,
   }) {
     return initial();
   }
@@ -280,6 +294,8 @@ class _$_Initial implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? onRefresh,
     TResult? Function()? clearPageCommand,
+    TResult? Function(String query)? onSearchQueryChanged,
+    TResult? Function()? onClearIconTapped,
   }) {
     return initial?.call();
   }
@@ -290,6 +306,8 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? onRefresh,
     TResult Function()? clearPageCommand,
+    TResult Function(String query)? onSearchQueryChanged,
+    TResult Function()? onClearIconTapped,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -304,6 +322,8 @@ class _$_Initial implements _Initial {
     required TResult Function(_Initial value) initial,
     required TResult Function(_OnRefresh value) onRefresh,
     required TResult Function(_ClearPageCommand value) clearPageCommand,
+    required TResult Function(_OnSearchQueryChanged value) onSearchQueryChanged,
+    required TResult Function(_OnClearIconTapped value) onClearIconTapped,
   }) {
     return initial(this);
   }
@@ -314,6 +334,8 @@ class _$_Initial implements _Initial {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_OnRefresh value)? onRefresh,
     TResult? Function(_ClearPageCommand value)? clearPageCommand,
+    TResult? Function(_OnSearchQueryChanged value)? onSearchQueryChanged,
+    TResult? Function(_OnClearIconTapped value)? onClearIconTapped,
   }) {
     return initial?.call(this);
   }
@@ -324,6 +346,8 @@ class _$_Initial implements _Initial {
     TResult Function(_Initial value)? initial,
     TResult Function(_OnRefresh value)? onRefresh,
     TResult Function(_ClearPageCommand value)? clearPageCommand,
+    TResult Function(_OnSearchQueryChanged value)? onSearchQueryChanged,
+    TResult Function(_OnClearIconTapped value)? onClearIconTapped,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -378,6 +402,8 @@ class _$_OnRefresh implements _OnRefresh {
     required TResult Function() initial,
     required TResult Function() onRefresh,
     required TResult Function() clearPageCommand,
+    required TResult Function(String query) onSearchQueryChanged,
+    required TResult Function() onClearIconTapped,
   }) {
     return onRefresh();
   }
@@ -388,6 +414,8 @@ class _$_OnRefresh implements _OnRefresh {
     TResult? Function()? initial,
     TResult? Function()? onRefresh,
     TResult? Function()? clearPageCommand,
+    TResult? Function(String query)? onSearchQueryChanged,
+    TResult? Function()? onClearIconTapped,
   }) {
     return onRefresh?.call();
   }
@@ -398,6 +426,8 @@ class _$_OnRefresh implements _OnRefresh {
     TResult Function()? initial,
     TResult Function()? onRefresh,
     TResult Function()? clearPageCommand,
+    TResult Function(String query)? onSearchQueryChanged,
+    TResult Function()? onClearIconTapped,
     required TResult orElse(),
   }) {
     if (onRefresh != null) {
@@ -412,6 +442,8 @@ class _$_OnRefresh implements _OnRefresh {
     required TResult Function(_Initial value) initial,
     required TResult Function(_OnRefresh value) onRefresh,
     required TResult Function(_ClearPageCommand value) clearPageCommand,
+    required TResult Function(_OnSearchQueryChanged value) onSearchQueryChanged,
+    required TResult Function(_OnClearIconTapped value) onClearIconTapped,
   }) {
     return onRefresh(this);
   }
@@ -422,6 +454,8 @@ class _$_OnRefresh implements _OnRefresh {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_OnRefresh value)? onRefresh,
     TResult? Function(_ClearPageCommand value)? clearPageCommand,
+    TResult? Function(_OnSearchQueryChanged value)? onSearchQueryChanged,
+    TResult? Function(_OnClearIconTapped value)? onClearIconTapped,
   }) {
     return onRefresh?.call(this);
   }
@@ -432,6 +466,8 @@ class _$_OnRefresh implements _OnRefresh {
     TResult Function(_Initial value)? initial,
     TResult Function(_OnRefresh value)? onRefresh,
     TResult Function(_ClearPageCommand value)? clearPageCommand,
+    TResult Function(_OnSearchQueryChanged value)? onSearchQueryChanged,
+    TResult Function(_OnClearIconTapped value)? onClearIconTapped,
     required TResult orElse(),
   }) {
     if (onRefresh != null) {
@@ -486,6 +522,8 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     required TResult Function() initial,
     required TResult Function() onRefresh,
     required TResult Function() clearPageCommand,
+    required TResult Function(String query) onSearchQueryChanged,
+    required TResult Function() onClearIconTapped,
   }) {
     return clearPageCommand();
   }
@@ -496,6 +534,8 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     TResult? Function()? initial,
     TResult? Function()? onRefresh,
     TResult? Function()? clearPageCommand,
+    TResult? Function(String query)? onSearchQueryChanged,
+    TResult? Function()? onClearIconTapped,
   }) {
     return clearPageCommand?.call();
   }
@@ -506,6 +546,8 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     TResult Function()? initial,
     TResult Function()? onRefresh,
     TResult Function()? clearPageCommand,
+    TResult Function(String query)? onSearchQueryChanged,
+    TResult Function()? onClearIconTapped,
     required TResult orElse(),
   }) {
     if (clearPageCommand != null) {
@@ -520,6 +562,8 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     required TResult Function(_Initial value) initial,
     required TResult Function(_OnRefresh value) onRefresh,
     required TResult Function(_ClearPageCommand value) clearPageCommand,
+    required TResult Function(_OnSearchQueryChanged value) onSearchQueryChanged,
+    required TResult Function(_OnClearIconTapped value) onClearIconTapped,
   }) {
     return clearPageCommand(this);
   }
@@ -530,6 +574,8 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_OnRefresh value)? onRefresh,
     TResult? Function(_ClearPageCommand value)? clearPageCommand,
+    TResult? Function(_OnSearchQueryChanged value)? onSearchQueryChanged,
+    TResult? Function(_OnClearIconTapped value)? onClearIconTapped,
   }) {
     return clearPageCommand?.call(this);
   }
@@ -540,6 +586,8 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     TResult Function(_Initial value)? initial,
     TResult Function(_OnRefresh value)? onRefresh,
     TResult Function(_ClearPageCommand value)? clearPageCommand,
+    TResult Function(_OnSearchQueryChanged value)? onSearchQueryChanged,
+    TResult Function(_OnClearIconTapped value)? onClearIconTapped,
     required TResult orElse(),
   }) {
     if (clearPageCommand != null) {
@@ -554,8 +602,284 @@ abstract class _ClearPageCommand implements SearchUserEvent {
 }
 
 /// @nodoc
+abstract class _$$_OnSearchQueryChangedCopyWith<$Res> {
+  factory _$$_OnSearchQueryChangedCopyWith(_$_OnSearchQueryChanged value,
+          $Res Function(_$_OnSearchQueryChanged) then) =
+      __$$_OnSearchQueryChangedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String query});
+}
+
+/// @nodoc
+class __$$_OnSearchQueryChangedCopyWithImpl<$Res>
+    extends _$SearchUserEventCopyWithImpl<$Res, _$_OnSearchQueryChanged>
+    implements _$$_OnSearchQueryChangedCopyWith<$Res> {
+  __$$_OnSearchQueryChangedCopyWithImpl(_$_OnSearchQueryChanged _value,
+      $Res Function(_$_OnSearchQueryChanged) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? query = null,
+  }) {
+    return _then(_$_OnSearchQueryChanged(
+      null == query
+          ? _value.query
+          : query // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_OnSearchQueryChanged implements _OnSearchQueryChanged {
+  const _$_OnSearchQueryChanged(this.query);
+
+  @override
+  final String query;
+
+  @override
+  String toString() {
+    return 'SearchUserEvent.onSearchQueryChanged(query: $query)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_OnSearchQueryChanged &&
+            (identical(other.query, query) || other.query == query));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, query);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_OnSearchQueryChangedCopyWith<_$_OnSearchQueryChanged> get copyWith =>
+      __$$_OnSearchQueryChangedCopyWithImpl<_$_OnSearchQueryChanged>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() onRefresh,
+    required TResult Function() clearPageCommand,
+    required TResult Function(String query) onSearchQueryChanged,
+    required TResult Function() onClearIconTapped,
+  }) {
+    return onSearchQueryChanged(query);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? onRefresh,
+    TResult? Function()? clearPageCommand,
+    TResult? Function(String query)? onSearchQueryChanged,
+    TResult? Function()? onClearIconTapped,
+  }) {
+    return onSearchQueryChanged?.call(query);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? onRefresh,
+    TResult Function()? clearPageCommand,
+    TResult Function(String query)? onSearchQueryChanged,
+    TResult Function()? onClearIconTapped,
+    required TResult orElse(),
+  }) {
+    if (onSearchQueryChanged != null) {
+      return onSearchQueryChanged(query);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_OnRefresh value) onRefresh,
+    required TResult Function(_ClearPageCommand value) clearPageCommand,
+    required TResult Function(_OnSearchQueryChanged value) onSearchQueryChanged,
+    required TResult Function(_OnClearIconTapped value) onClearIconTapped,
+  }) {
+    return onSearchQueryChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_OnRefresh value)? onRefresh,
+    TResult? Function(_ClearPageCommand value)? clearPageCommand,
+    TResult? Function(_OnSearchQueryChanged value)? onSearchQueryChanged,
+    TResult? Function(_OnClearIconTapped value)? onClearIconTapped,
+  }) {
+    return onSearchQueryChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_OnRefresh value)? onRefresh,
+    TResult Function(_ClearPageCommand value)? clearPageCommand,
+    TResult Function(_OnSearchQueryChanged value)? onSearchQueryChanged,
+    TResult Function(_OnClearIconTapped value)? onClearIconTapped,
+    required TResult orElse(),
+  }) {
+    if (onSearchQueryChanged != null) {
+      return onSearchQueryChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _OnSearchQueryChanged implements SearchUserEvent {
+  const factory _OnSearchQueryChanged(final String query) =
+      _$_OnSearchQueryChanged;
+
+  String get query;
+  @JsonKey(ignore: true)
+  _$$_OnSearchQueryChangedCopyWith<_$_OnSearchQueryChanged> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_OnClearIconTappedCopyWith<$Res> {
+  factory _$$_OnClearIconTappedCopyWith(_$_OnClearIconTapped value,
+          $Res Function(_$_OnClearIconTapped) then) =
+      __$$_OnClearIconTappedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_OnClearIconTappedCopyWithImpl<$Res>
+    extends _$SearchUserEventCopyWithImpl<$Res, _$_OnClearIconTapped>
+    implements _$$_OnClearIconTappedCopyWith<$Res> {
+  __$$_OnClearIconTappedCopyWithImpl(
+      _$_OnClearIconTapped _value, $Res Function(_$_OnClearIconTapped) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_OnClearIconTapped implements _OnClearIconTapped {
+  const _$_OnClearIconTapped();
+
+  @override
+  String toString() {
+    return 'SearchUserEvent.onClearIconTapped()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_OnClearIconTapped);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() onRefresh,
+    required TResult Function() clearPageCommand,
+    required TResult Function(String query) onSearchQueryChanged,
+    required TResult Function() onClearIconTapped,
+  }) {
+    return onClearIconTapped();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? onRefresh,
+    TResult? Function()? clearPageCommand,
+    TResult? Function(String query)? onSearchQueryChanged,
+    TResult? Function()? onClearIconTapped,
+  }) {
+    return onClearIconTapped?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? onRefresh,
+    TResult Function()? clearPageCommand,
+    TResult Function(String query)? onSearchQueryChanged,
+    TResult Function()? onClearIconTapped,
+    required TResult orElse(),
+  }) {
+    if (onClearIconTapped != null) {
+      return onClearIconTapped();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_OnRefresh value) onRefresh,
+    required TResult Function(_ClearPageCommand value) clearPageCommand,
+    required TResult Function(_OnSearchQueryChanged value) onSearchQueryChanged,
+    required TResult Function(_OnClearIconTapped value) onClearIconTapped,
+  }) {
+    return onClearIconTapped(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_OnRefresh value)? onRefresh,
+    TResult? Function(_ClearPageCommand value)? clearPageCommand,
+    TResult? Function(_OnSearchQueryChanged value)? onSearchQueryChanged,
+    TResult? Function(_OnClearIconTapped value)? onClearIconTapped,
+  }) {
+    return onClearIconTapped?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_OnRefresh value)? onRefresh,
+    TResult Function(_ClearPageCommand value)? clearPageCommand,
+    TResult Function(_OnSearchQueryChanged value)? onSearchQueryChanged,
+    TResult Function(_OnClearIconTapped value)? onClearIconTapped,
+    required TResult orElse(),
+  }) {
+    if (onClearIconTapped != null) {
+      return onClearIconTapped(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _OnClearIconTapped implements SearchUserEvent {
+  const factory _OnClearIconTapped() = _$_OnClearIconTapped;
+}
+
+/// @nodoc
 mixin _$SearchUserState {
   PageState get pageState => throw _privateConstructorUsedError;
+  List<UserProfileData> get users => throw _privateConstructorUsedError;
+  String get searchQuery => throw _privateConstructorUsedError;
+  bool get showClearIcon => throw _privateConstructorUsedError;
   PageCommand? get command => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -569,7 +893,12 @@ abstract class $SearchUserStateCopyWith<$Res> {
           SearchUserState value, $Res Function(SearchUserState) then) =
       _$SearchUserStateCopyWithImpl<$Res, SearchUserState>;
   @useResult
-  $Res call({PageState pageState, PageCommand? command});
+  $Res call(
+      {PageState pageState,
+      List<UserProfileData> users,
+      String searchQuery,
+      bool showClearIcon,
+      PageCommand? command});
 
   $PageCommandCopyWith<$Res>? get command;
 }
@@ -588,6 +917,9 @@ class _$SearchUserStateCopyWithImpl<$Res, $Val extends SearchUserState>
   @override
   $Res call({
     Object? pageState = null,
+    Object? users = null,
+    Object? searchQuery = null,
+    Object? showClearIcon = null,
     Object? command = freezed,
   }) {
     return _then(_value.copyWith(
@@ -595,6 +927,18 @@ class _$SearchUserStateCopyWithImpl<$Res, $Val extends SearchUserState>
           ? _value.pageState
           : pageState // ignore: cast_nullable_to_non_nullable
               as PageState,
+      users: null == users
+          ? _value.users
+          : users // ignore: cast_nullable_to_non_nullable
+              as List<UserProfileData>,
+      searchQuery: null == searchQuery
+          ? _value.searchQuery
+          : searchQuery // ignore: cast_nullable_to_non_nullable
+              as String,
+      showClearIcon: null == showClearIcon
+          ? _value.showClearIcon
+          : showClearIcon // ignore: cast_nullable_to_non_nullable
+              as bool,
       command: freezed == command
           ? _value.command
           : command // ignore: cast_nullable_to_non_nullable
@@ -623,7 +967,12 @@ abstract class _$$_SearchUserStateCopyWith<$Res>
       __$$_SearchUserStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({PageState pageState, PageCommand? command});
+  $Res call(
+      {PageState pageState,
+      List<UserProfileData> users,
+      String searchQuery,
+      bool showClearIcon,
+      PageCommand? command});
 
   @override
   $PageCommandCopyWith<$Res>? get command;
@@ -641,6 +990,9 @@ class __$$_SearchUserStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? pageState = null,
+    Object? users = null,
+    Object? searchQuery = null,
+    Object? showClearIcon = null,
     Object? command = freezed,
   }) {
     return _then(_$_SearchUserState(
@@ -648,6 +1000,18 @@ class __$$_SearchUserStateCopyWithImpl<$Res>
           ? _value.pageState
           : pageState // ignore: cast_nullable_to_non_nullable
               as PageState,
+      users: null == users
+          ? _value._users
+          : users // ignore: cast_nullable_to_non_nullable
+              as List<UserProfileData>,
+      searchQuery: null == searchQuery
+          ? _value.searchQuery
+          : searchQuery // ignore: cast_nullable_to_non_nullable
+              as String,
+      showClearIcon: null == showClearIcon
+          ? _value.showClearIcon
+          : showClearIcon // ignore: cast_nullable_to_non_nullable
+              as bool,
       command: freezed == command
           ? _value.command
           : command // ignore: cast_nullable_to_non_nullable
@@ -659,18 +1023,39 @@ class __$$_SearchUserStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_SearchUserState extends _SearchUserState {
-  const _$_SearchUserState({this.pageState = PageState.initial, this.command})
-      : super._();
+  const _$_SearchUserState(
+      {this.pageState = PageState.initial,
+      final List<UserProfileData> users = const [],
+      this.searchQuery = '',
+      this.showClearIcon = false,
+      this.command})
+      : _users = users,
+        super._();
 
   @override
   @JsonKey()
   final PageState pageState;
+  final List<UserProfileData> _users;
+  @override
+  @JsonKey()
+  List<UserProfileData> get users {
+    if (_users is EqualUnmodifiableListView) return _users;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_users);
+  }
+
+  @override
+  @JsonKey()
+  final String searchQuery;
+  @override
+  @JsonKey()
+  final bool showClearIcon;
   @override
   final PageCommand? command;
 
   @override
   String toString() {
-    return 'SearchUserState(pageState: $pageState, command: $command)';
+    return 'SearchUserState(pageState: $pageState, users: $users, searchQuery: $searchQuery, showClearIcon: $showClearIcon, command: $command)';
   }
 
   @override
@@ -680,11 +1065,22 @@ class _$_SearchUserState extends _SearchUserState {
             other is _$_SearchUserState &&
             (identical(other.pageState, pageState) ||
                 other.pageState == pageState) &&
+            const DeepCollectionEquality().equals(other._users, _users) &&
+            (identical(other.searchQuery, searchQuery) ||
+                other.searchQuery == searchQuery) &&
+            (identical(other.showClearIcon, showClearIcon) ||
+                other.showClearIcon == showClearIcon) &&
             (identical(other.command, command) || other.command == command));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, pageState, command);
+  int get hashCode => Object.hash(
+      runtimeType,
+      pageState,
+      const DeepCollectionEquality().hash(_users),
+      searchQuery,
+      showClearIcon,
+      command);
 
   @JsonKey(ignore: true)
   @override
@@ -696,11 +1092,20 @@ class _$_SearchUserState extends _SearchUserState {
 abstract class _SearchUserState extends SearchUserState {
   const factory _SearchUserState(
       {final PageState pageState,
+      final List<UserProfileData> users,
+      final String searchQuery,
+      final bool showClearIcon,
       final PageCommand? command}) = _$_SearchUserState;
   const _SearchUserState._() : super._();
 
   @override
   PageState get pageState;
+  @override
+  List<UserProfileData> get users;
+  @override
+  String get searchQuery;
+  @override
+  bool get showClearIcon;
   @override
   PageCommand? get command;
   @override

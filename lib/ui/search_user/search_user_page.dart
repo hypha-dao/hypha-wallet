@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hypha_wallet/core/network/models/user_profile_data.dart';
+import 'package:hypha_wallet/ui/search_user/components/search_user_view.dart';
 import 'package:hypha_wallet/ui/search_user/interactor/search_user_bloc.dart';
 import 'package:hypha_wallet/ui/send/components/send_view.dart';
 
@@ -19,7 +20,7 @@ class SearchUserPage extends StatelessWidget {
         listener: (context, state) {
           context.read<SearchUserBloc>().add(const SearchUserEvent.clearPageCommand());
         },
-        child: const SendView(),
+        child: const SearchUserView(),
       ),
     );
   }
