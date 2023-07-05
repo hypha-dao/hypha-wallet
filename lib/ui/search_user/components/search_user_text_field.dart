@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/ui/architecture/interactor/page_states.dart';
 import 'package:hypha_wallet/ui/search_user/interactor/search_user_bloc.dart';
@@ -13,10 +14,6 @@ class SearchUserTextField extends StatefulWidget {
 
 class _SearchUserTextFieldState extends State<SearchUserTextField> {
   final TextEditingController _controller = TextEditingController();
-  final _searchBorder = const OutlineInputBorder(
-    borderRadius: BorderRadius.all(Radius.circular(8)),
-    borderSide: BorderSide(color: HyphaColors.primaryBlu, width: 2.0),
-  );
 
   @override
   void dispose() {
@@ -26,6 +23,10 @@ class _SearchUserTextFieldState extends State<SearchUserTextField> {
 
   @override
   Widget build(BuildContext context) {
+    final _searchBorder =  OutlineInputBorder(
+      borderRadius: const BorderRadius.all(Radius.circular(24)),
+      borderSide: BorderSide(color: context.isDarkMode ? HyphaColors.lightBlack : HyphaColors.white, width: 1),
+    );
     return TextField(
       autofocus: true,
       autocorrect: false,
@@ -56,6 +57,8 @@ class _SearchUserTextFieldState extends State<SearchUserTextField> {
         ),
         enabledBorder: _searchBorder,
         focusedBorder: _searchBorder,
+        filled: true,
+        fillColor: context.isDarkMode ? HyphaColors.lightBlack : HyphaColors.white,
         border: const OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(8))),
         hintText: 'Search...',
       ),

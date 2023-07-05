@@ -17,27 +17,16 @@ class SearchUserView extends StatelessWidget {
   Widget build(BuildContext context) {
     return HyphaPageBackground(
         withOpacity: false,
+        withGradient: true,
         child: Scaffold(
           appBar: AppBar(title: Text(pageTitle)),
+          backgroundColor: Colors.transparent,
           body: Column(
             children: [
               const Padding(
-                padding: EdgeInsets.only(right: 16, left: 16, top: 10),
+                padding: EdgeInsets.only(right: 24, left: 24, top: 10),
                 child: SearchUserTextField(),
               ),
-              if ('title' != null)
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Column(
-                      children: [
-                        const SizedBox(height: 20),
-                        Text('Gery Title', style: context.textTheme.labelLarge),
-                      ],
-                    ),
-                  ),
-                ),
               const SizedBox(height: 16),
               BlocBuilder<SearchUserBloc, SearchUserState>(
                 builder: (_, state) {
@@ -47,7 +36,7 @@ class SearchUserView extends StatelessWidget {
                     case PageState.success:
                       if (state.pageState == PageState.success && state.users.isEmpty) {
                         return const Padding(
-                          padding: EdgeInsets.all(16.0),
+                          padding: EdgeInsets.all(24),
                           child: Center(child: Text('No Users Found')),
                         );
                       } else {

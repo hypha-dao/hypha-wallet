@@ -76,9 +76,7 @@ class TokenDetailsView extends StatelessWidget {
                           buttonType: ButtonType.primary,
                           onPressed: () async {
                             final result = await Get.to(
-                              () => SearchUserPage(
-                                pageTitle: 'Send ${state.token.name}',
-                              ),
+                              () => SearchUserPage(pageTitle: 'Send ${state.token.name}'),
                             );
                             if (result != null) {
                               /// User selected, Navigate to send
