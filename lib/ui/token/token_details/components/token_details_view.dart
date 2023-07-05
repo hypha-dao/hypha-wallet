@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:hypha_wallet/core/network/models/transaction_model.dart';
 import 'package:hypha_wallet/design/avatar_image/hypha_avatar_image.dart';
 import 'package:hypha_wallet/design/background/hypha_page_background.dart';
+
 // import 'package:hypha_wallet/design/buttons/button_type.dart';
 // import 'package:hypha_wallet/design/buttons/hypha_app_button.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
@@ -68,10 +69,25 @@ class TokenDetailsView extends StatelessWidget {
             //       ),
             //       const SizedBox(width: 22),
             //       Expanded(
-            //         child: HyphaAppButton(
-            //           title: 'Send',
-            //           buttonType: ButtonType.primary,
-            //           onPressed: () {},
+            //         child: BlocBuilder<TokenDetailsBloc, TokenDetailsState>(
+            //           builder: (context, state) {
+            //             return HyphaAppButton(
+            //               title: 'Send',
+            //               buttonType: ButtonType.primary,
+            //               onPressed: () {
+            //                 Get.to(
+            //                   () => SendPage(
+            //                     tokenData: state.token,
+            //                     receiverUser: UserProfileData(
+            //                         accountName: 'illumination',
+            //                         bio: 'Sup Yo',
+            //                         userName: 'Nik Fury',
+            //                         userImage: 'https://picsum.photos/200'),
+            //                   ),
+            //                 );
+            //               },
+            //             );
+            //           },
             //         ),
             //       ),
             //     ],

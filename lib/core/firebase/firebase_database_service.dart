@@ -109,6 +109,7 @@ class FirebaseDatabaseService {
             contract: token.data()['contract'],
             symbol: token.data()['symbol'],
             id: token.data()['id'],
+            precision: token.data()['precision'],
           ),
         )
         .toList();

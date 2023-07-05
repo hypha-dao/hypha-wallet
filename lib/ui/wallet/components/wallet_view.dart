@@ -37,6 +37,7 @@ class WalletView extends StatelessWidget {
                   contract: 'ADD TOKEN',
                   id: 'ADD TOKEN',
                   symbol: 'ADD TOKEN',
+                  precision: 2,
                 )
               ];
           return RefreshIndicator(

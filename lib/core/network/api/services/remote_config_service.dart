@@ -11,6 +11,7 @@ class RemoteConfigService {
   static Future<RemoteConfigService> initialized() async {
     final rc = RemoteConfigService();
     await rc.setDefaults();
+    await FirebaseRemoteConfig.instance.fetchAndActivate();
     return rc;
   }
 
@@ -48,6 +49,12 @@ class RemoteConfigService {
     return endpoint;
   }
 
+  String graphQLEndpoint({required Networks network}) {
+    final networkConfig = _getNetworkConfig(network: network);
+    final endpoint = networkConfig['graphQlEndpoint'];
+    return endpoint;
+  }
+
   String loginContract({Networks? network}) {
     final networkConfig = _getNetworkConfig(network: network);
     return networkConfig['loginContract'];
@@ -82,10 +89,11 @@ class RemoteConfigService {
         'telos': {
           'name': 'Telos',
           'endpoint': 'https://mainnet.telos.net',
-          'fastEndpoint': 'https://telos.greymass.com',
+          'fastEndpoint': 'https://mainnet.telos.net',
           'loginContract': 'eosio.login',
           'loginAction': 'loginuser',
           'logoutAction': 'deletelogin',
+          'graphQlEndpoint': 'https://alpha-dhomn.tekit.io/graphql'
         },
         'telosTestnet': {
           'name': 'Telos Testnet',
@@ -94,6 +102,7 @@ class RemoteConfigService {
           'loginContract': 'eosio.login',
           'loginAction': 'loginuser',
           'logoutAction': 'deletelogin',
+          'graphQlEndpoint': 'https://alpha-stts.tekit.io/graphql'
         },
         'eos': {
           'name': 'EOS',
@@ -102,6 +111,7 @@ class RemoteConfigService {
           'loginContract': 'eosio.login',
           'loginAction': 'loginuser',
           'logoutAction': 'deletelogin',
+          'graphQlEndpoint': ''
         },
         'eosTestnet': {
           'name': 'Jungle4 Testnet',
@@ -110,6 +120,7 @@ class RemoteConfigService {
           'loginContract': 'eosio.login',
           'loginAction': 'loginuser',
           'logoutAction': 'deletelogin',
+          'graphQlEndpoint': ''
         }
       }),
       'accountCreatorEndpoint': 'http://34.236.29.152:9108',
@@ -135,6 +146,9 @@ class RemoteConfigService {
         'region': 'us-east-1',
       }),
       'signUpEnabled': false,
+    });
+    FirebaseRemoteConfig.instance.onConfigUpdated.listen((event) async {
+      await FirebaseRemoteConfig.instance.activate();
     });
   }
 }

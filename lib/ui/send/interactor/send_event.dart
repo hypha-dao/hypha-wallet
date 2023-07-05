@@ -5,5 +5,6 @@ class SendEvent with _$SendEvent {
   const factory SendEvent.initial() = _Initial;
   const factory SendEvent.onRefresh() = _OnRefresh;
   const factory SendEvent.clearPageCommand() = _ClearPageCommand;
-
+  const factory SendEvent.onPercentageTapped(AmountPercentage amountPercentage) = _OnPercentageTapped;
+  const factory SendEvent.onKeypadTapped(KeypadKey amountPercentage) = _OnKeypadTapped;
 }

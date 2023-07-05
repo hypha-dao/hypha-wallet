@@ -134,8 +134,7 @@ class SettingsView extends StatelessWidget {
                       'Hypha Wallet Version: ${state.version}',
                       style: context.hyphaTextTheme.ralMediumBody.copyWith(
                         color: HyphaColors.midGrey,
-                        decoration: TextDecoration.underline,
-                        fontSize: 14,
+                        fontSize: 12,
                       ),
                       textAlign: TextAlign.center,
                     ),
@@ -143,8 +142,7 @@ class SettingsView extends StatelessWidget {
                       'Build Number: ${state.buildNumber}',
                       style: context.hyphaTextTheme.ralMediumBody.copyWith(
                         color: HyphaColors.midGrey,
-                        decoration: TextDecoration.underline,
-                        fontSize: 14,
+                        fontSize: 12,
                       ),
                       textAlign: TextAlign.center,
                     ),

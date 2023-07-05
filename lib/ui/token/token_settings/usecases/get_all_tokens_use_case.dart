@@ -26,6 +26,7 @@ class GetAllTokensUseCase {
               contract: e.contract,
               symbol: e.symbol,
               id: e.id,
+              precision: e.precision,
             ),
           )
           .toList();

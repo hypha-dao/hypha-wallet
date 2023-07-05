@@ -46,7 +46,7 @@ class BottomNavigationView extends StatelessWidget {
                     currentIndex: state.selectedPage,
                     onTap: (int index) {
                       BlocProvider.of<BottomNavigationBloc>(context).add(BottomNavigationEvent.onPageSelected(index));
-                      if (index == 4) {
+                      if (index == 3) {
                         BlocProvider.of<SettingsBloc>(context).add(const SettingsEvent.onShowSettings());
                       }
                     },
@@ -55,10 +55,10 @@ class BottomNavigationView extends StatelessWidget {
                         icon: Padding(padding: EdgeInsets.only(bottom: 6), child: Icon(HyphaIcons.home_b, size: 20)),
                         label: 'Scan-QR',
                       ),
-                      const BottomNavigationBarItem(
-                        icon: Padding(padding: EdgeInsets.only(bottom: 6), child: Icon(HyphaIcons.wallet_b, size: 20)),
-                        label: 'Wallet',
-                      ),
+                      // const BottomNavigationBarItem(
+                      //   icon: Padding(padding: EdgeInsets.only(bottom: 6), child: Icon(HyphaIcons.wallet_b, size: 20)),
+                      //   label: 'Wallet',
+                      // ),
                       const BottomNavigationBarItem(
                         icon: Padding(padding: EdgeInsets.only(bottom: 6), child: Icon(HyphaIcons.history_b, size: 20)),
                         label: 'History',
@@ -81,7 +81,7 @@ class BottomNavigationView extends StatelessWidget {
               index: state.selectedPage,
               children: [
                 const HomePage(),
-                const WalletPage(),
+                // const WalletPage(),
                 const TransactionsPage(),
                 const ProfilePage(),
                 const SettingsPage(),

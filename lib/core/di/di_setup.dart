@@ -23,6 +23,7 @@ import 'package:hypha_wallet/core/network/api/services/sign_transaction_callback
 import 'package:hypha_wallet/core/network/api/services/token_service.dart';
 import 'package:hypha_wallet/core/network/api/services/transaction_history_service.dart';
 import 'package:hypha_wallet/core/network/api/services/user_account_service.dart';
+import 'package:hypha_wallet/core/network/api/services/dao_service.dart';
 import 'package:hypha_wallet/core/network/models/user_profile_data.dart';
 import 'package:hypha_wallet/core/network/networking_manager.dart';
 import 'package:hypha_wallet/core/network/repository/auth_repository.dart';
