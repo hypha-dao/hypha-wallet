@@ -48,6 +48,12 @@ class RemoteConfigService {
     return endpoint;
   }
 
+  String graphQLEndpoint({required Networks network}) {
+    final networkConfig = _getNetworkConfig(network: network);
+    final endpoint = networkConfig['graphQlEndpoint'];
+    return endpoint;
+  }
+
   String loginContract({Networks? network}) {
     final networkConfig = _getNetworkConfig(network: network);
     return networkConfig['loginContract'];
@@ -86,6 +92,7 @@ class RemoteConfigService {
           'loginContract': 'eosio.login',
           'loginAction': 'loginuser',
           'logoutAction': 'deletelogin',
+          'graphQlEndpoint': 'https://alpha-dhomn.tekit.io/graphql'
         },
         'telosTestnet': {
           'name': 'Telos Testnet',
@@ -94,6 +101,7 @@ class RemoteConfigService {
           'loginContract': 'eosio.login',
           'loginAction': 'loginuser',
           'logoutAction': 'deletelogin',
+          'graphQlEndpoint': 'https://alpha-stts.tekit.io/graphql'
         },
         'eos': {
           'name': 'EOS',
@@ -102,6 +110,7 @@ class RemoteConfigService {
           'loginContract': 'eosio.login',
           'loginAction': 'loginuser',
           'logoutAction': 'deletelogin',
+          'graphQlEndpoint': ''
         },
         'eosTestnet': {
           'name': 'Jungle4 Testnet',
@@ -110,6 +119,7 @@ class RemoteConfigService {
           'loginContract': 'eosio.login',
           'loginAction': 'loginuser',
           'logoutAction': 'deletelogin',
+          'graphQlEndpoint': ''
         }
       }),
       'accountCreatorEndpoint': 'http://34.236.29.152:9108',
