@@ -137,5 +137,8 @@ class RemoteConfigService {
       }),
       'signUpEnabled': false,
     });
+    FirebaseRemoteConfig.instance.onConfigUpdated.listen((event) async {
+      await FirebaseRemoteConfig.instance.activate();
+    });
   }
 }
