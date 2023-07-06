@@ -3,18 +3,18 @@ import 'package:get/get.dart';
 import 'package:hypha_wallet/design/background/hypha_page_background.dart';
 import 'package:hypha_wallet/design/buttons/hypha_app_button.dart';
 
-class EditBioBottomSheet extends StatefulWidget {
+class TextRequestBottomSheet extends StatefulWidget {
   final String title;
   final String? initialText;
   final Function(String? text) onPressed;
 
-  const EditBioBottomSheet({super.key, required this.title, required this.onPressed, this.initialText});
+  const TextRequestBottomSheet({super.key, required this.title, required this.onPressed, this.initialText});
 
   @override
-  State<EditBioBottomSheet> createState() => _EditBioBottomSheetState();
+  State<TextRequestBottomSheet> createState() => _TextRequestBottomSheetState();
 }
 
-class _EditBioBottomSheetState extends State<EditBioBottomSheet> {
+class _TextRequestBottomSheetState extends State<TextRequestBottomSheet> {
   final TextEditingController _controller = TextEditingController();
   bool showUpdateBioLoading = false;
 
@@ -51,14 +51,14 @@ class _EditBioBottomSheetState extends State<EditBioBottomSheet> {
             ),
             const SizedBox(height: 50),
             Text(
-              'Enter Bio',
+              widget.title,
               style: Theme.of(context).textTheme.labelLarge,
             ),
             const SizedBox(height: 16),
             TextField(
-              decoration: const InputDecoration(
-                labelText: 'Bio',
-                border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(8))),
+              decoration: InputDecoration(
+                labelText: widget.title,
+                border: const OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(8))),
               ),
               maxLines: 5,
               autofocus: true,

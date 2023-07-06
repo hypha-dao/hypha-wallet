@@ -163,8 +163,8 @@ class _MemoField extends StatelessWidget {
               builder: (modelContext) =>
                   FractionallySizedBox(
                     heightFactor: UIConstants.bottomSheetHeightFraction,
-                    child: EditBioBottomSheet(
-                        title: 'Enter Bio',
+                    child: TextRequestBottomSheet(
+                        title: 'Enter Memo',
                         initialText: state.memo ?? '',
                         onPressed: (String? text) {
                           context.read<SendBloc>().add(SendEvent.onMemoEntered(text));

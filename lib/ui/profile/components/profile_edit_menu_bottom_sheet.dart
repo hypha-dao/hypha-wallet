@@ -47,7 +47,7 @@ class ProfileEditMenuBottomSheet extends StatelessWidget {
                   context: context,
                   builder: (modelContext) => FractionallySizedBox(
                     heightFactor: UIConstants.bottomSheetHeightFraction,
-                    child: EditBioBottomSheet(
+                    child: TextRequestBottomSheet(
                         title: 'Enter Bio',
                         initialText: profileBloc.state.profileData?.bio ?? '',
                         onPressed: (String? text) {
