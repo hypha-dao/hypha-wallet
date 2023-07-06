@@ -8,6 +8,7 @@ class SendState with _$SendState {
     @Default(PageState.initial) PageState pageState,
     PageCommand? command,
     @Default(null) String? userEnteredAmount,
+    @Default(null) String? memo,
     required UserProfileData receiverUser,
     required WalletTokenData tokenData,
   }) = _SendState;

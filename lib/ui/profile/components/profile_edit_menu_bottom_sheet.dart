@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:hypha_wallet/core/extension/scope_functions.dart';
 import 'package:hypha_wallet/design/background/hypha_page_background.dart';
 import 'package:hypha_wallet/ui/profile/components/edit_name_bottom_sheet.dart';
-import 'package:hypha_wallet/ui/profile/components/profile_view.dart';
 import 'package:hypha_wallet/ui/profile/interactor/profile_bloc.dart';
+import 'package:hypha_wallet/ui/shared/components/text_request_bottom_sheet.dart';
 import 'package:hypha_wallet/ui/shared/ui_constants.dart';
 
 class ProfileEditMenuBottomSheet extends StatelessWidget {
@@ -46,7 +47,12 @@ class ProfileEditMenuBottomSheet extends StatelessWidget {
                   context: context,
                   builder: (modelContext) => FractionallySizedBox(
                     heightFactor: UIConstants.bottomSheetHeightFraction,
-                    child: EditBioBottomSheet(profileBloc: profileBloc),
+                    child: EditBioBottomSheet(
+                        title: 'Enter Bio',
+                        initialText: profileBloc.state.profileData?.bio ?? '',
+                        onPressed: (String? text) {
+                          text?.let((it) => profileBloc.add(ProfileEvent.setBio(it)));
+                        }),
                   ),
                   shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.vertical(top: Radius.circular(30)),

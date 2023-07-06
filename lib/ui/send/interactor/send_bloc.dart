@@ -24,22 +24,15 @@ class SendBloc extends Bloc<SendEvent, SendState> {
     on<_Initial>(_initial);
     on<_OnPercentageTapped>(_onPercentageTapped);
     on<_OnKeypadTapped>(_onKeypadTapped);
+    on<_OnMemoEntered>(_onMemoEntered);
     on<_ClearPageCommand>((_, emit) => emit(state.copyWith(command: null)));
   }
 
-  Future<void> _initial(_Initial event, Emitter<SendState> emit) async {
-    // final precision = state.tokenData.precision;
-    // var initialValue = '0.';
-    // for(int i = 0; i< precision; i++) {
-    //   initialValue += '0';
-    // }
-    //
-    // emit(state.copyWith(userEnteredAmount: initialValue));
-  }
+  Future<void> _initial(_Initial event, Emitter<SendState> emit) async {}
 
   FutureOr<void> _onPercentageTapped(_OnPercentageTapped event, Emitter<SendState> emit) {
     final newValue = (state.tokenData.userOwnedAmount ?? 0) * event.amountPercentage.value;
-    emit(state.copyWith(userEnteredAmount: newValue.toString()));
+    emit(state.copyWith(userEnteredAmount: newValue.toStringAsFixed(state.tokenData.precision)));
   }
 
   FutureOr<void> _onKeypadTapped(_OnKeypadTapped event, Emitter<SendState> emit) {
@@ -61,10 +54,14 @@ class SendBloc extends Bloc<SendEvent, SendState> {
   }
 
   String? addValue(KeypadKey tappedKey, String? userEnteredAmount) {
-    if(tappedKey == KeypadKey.dot && userEnteredAmount?.contains('.') == true) {
+    if (tappedKey == KeypadKey.dot && userEnteredAmount?.contains('.') == true) {
       return userEnteredAmount;
     }
 
     return userEnteredAmount != null ? userEnteredAmount + tappedKey.value : tappedKey.value;
+  }
+
+  FutureOr<void> _onMemoEntered(_OnMemoEntered event, Emitter<SendState> emit) {
+    emit(state.copyWith(memo: event.memo));
   }
 }

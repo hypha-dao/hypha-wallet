@@ -1,6 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:hypha_wallet/design/avatar_image/hypha_avatar_image.dart';
 import 'package:hypha_wallet/design/background/hypha_page_background.dart';
 import 'package:hypha_wallet/design/bottom_component/hypha_safe_bottom_navigation_bar.dart';
@@ -12,6 +13,8 @@ import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.d
 import 'package:hypha_wallet/ui/send/data/amount_percentage.dart';
 import 'package:hypha_wallet/ui/send/data/keypad_key.dart';
 import 'package:hypha_wallet/ui/send/interactor/send_bloc.dart';
+import 'package:hypha_wallet/ui/shared/components/text_request_bottom_sheet.dart';
+import 'package:hypha_wallet/ui/shared/ui_constants.dart';
 
 class SendView extends StatelessWidget {
   const SendView({super.key});
@@ -146,16 +149,49 @@ class _MemoField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return HyphaCard(
-      child: Row(
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(16),
-            child: Text('Memo (optional)', style: context.hyphaTextTheme.regular.copyWith(color: HyphaColors.midGrey)),
+    return BlocBuilder<SendBloc, SendState>(
+      buildWhen: (previous, current) => previous.memo != current.memo,
+      builder: (context, state) {
+        return GestureDetector(
+          onTap: () {
+            showModalBottomSheet(
+              isScrollControlled: true,
+              clipBehavior: Clip.hardEdge,
+              context: context,
+              builder: (modelContext) => FractionallySizedBox(
+                heightFactor: UIConstants.bottomSheetHeightFraction,
+                child: EditBioBottomSheet(
+                    title: 'Enter Bio',
+                    initialText: state.memo ?? '',
+                    onPressed: (String? text) {
+                      context.read<SendBloc>().add(SendEvent.onMemoEntered(text));
+                      Get.back();
+                    }),
+              ),
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
+              ),
+            );
+          },
+          child: HyphaCard(
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      state.memo ?? 'Memo (optional)',
+                      style: context.hyphaTextTheme.regular.copyWith(color: HyphaColors.midGrey),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 }
