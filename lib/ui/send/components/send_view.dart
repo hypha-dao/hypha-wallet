@@ -29,7 +29,7 @@ class SendView extends StatelessWidget {
           title: Text('Send ${context.read<SendBloc>().state.tokenData.name}'),
         ),
         bottomNavigationBar: BlocBuilder<SendBloc, SendState>(
-          buildWhen: (p,c) => p.userEnteredAmount != c.userEnteredAmount,
+          buildWhen: (p, c) => p.userEnteredAmount != c.userEnteredAmount,
           builder: (context, state) {
             return HyphaSafeBottomNavigationBar(
               child: HyphaAppButton(
@@ -160,17 +160,16 @@ class _MemoField extends StatelessWidget {
               isScrollControlled: true,
               clipBehavior: Clip.hardEdge,
               context: context,
-              builder: (modelContext) =>
-                  FractionallySizedBox(
-                    heightFactor: UIConstants.bottomSheetHeightFraction,
-                    child: TextRequestBottomSheet(
-                        title: 'Enter Memo',
-                        initialText: state.memo ?? '',
-                        onPressed: (String? text) {
-                          context.read<SendBloc>().add(SendEvent.onMemoEntered(text));
-                          Get.back();
-                        }),
-                  ),
+              builder: (modelContext) => FractionallySizedBox(
+                heightFactor: UIConstants.bottomSheetHeightFraction,
+                child: TextRequestBottomSheet(
+                    title: 'Enter Memo',
+                    initialText: state.memo ?? '',
+                    onPressed: (String? text) {
+                      context.read<SendBloc>().add(SendEvent.onMemoEntered(text));
+                      Get.back();
+                    }),
+              ),
               shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
               ),
@@ -184,11 +183,13 @@ class _MemoField extends StatelessWidget {
                   Expanded(
                     child: Text(
                       state.memo ?? 'Memo (optional)',
-                      style: context.hyphaTextTheme.regular.copyWith(color: HyphaColors.midGrey),
+                      style: context.hyphaTextTheme.regular
+                          .copyWith(color: state.memo == null ? HyphaColors.midGrey : null),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
+                  state.memo == null ? const SizedBox.shrink() : const Icon(Icons.edit)
                 ],
               ),
             ),
