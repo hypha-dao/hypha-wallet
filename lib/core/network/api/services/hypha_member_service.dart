@@ -7,7 +7,7 @@ class HyphaMemberService {
 
   HyphaMemberService(this.networkingManager);
 
-  Future<List<Map<String, dynamic>>> getTableRows(
+  Future<List<Map<String, dynamic>>> _getTableRows(
     String code,
     String scope,
     String table, {
@@ -37,11 +37,11 @@ class HyphaMemberService {
   }
 
   /// Find a hypha accounts starting with prefix
-  Future<Result<List<String>, HyphaError>> findHyphaAccount({
+  Future<Result<List<String>, HyphaError>> findHyphaAccounts({
     required String prefix,
   }) async {
     try {
-      final res = await getTableRows(
+      final res = await _getTableRows(
         'dao.hypha',
         'dao.hypha',
         'members',

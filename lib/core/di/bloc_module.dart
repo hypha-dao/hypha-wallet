@@ -102,5 +102,5 @@ void _registerBlocsModule() {
     ),
   );
 
-  _registerFactory(() => SearchUserBloc());
+  _registerFactory(() => SearchUserBloc(_getIt<SearchForMemberUseCase>(),));
 }

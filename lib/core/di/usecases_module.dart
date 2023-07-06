@@ -8,7 +8,10 @@ void _registerUseCasesModule() {
   _registerFactory(() => FetchProfileUseCase(_getIt<ProfileService>(), _getIt<HyphaSharedPrefs>()));
   _registerFactory(() => GenerateKeyFromSeedsPassportWordsUseCase(_getIt<CryptoAuthService>()));
   _registerFactory(() => GenerateKeyFromRecoveryWordsUseCase(_getIt<CryptoAuthService>()));
-  _registerFactory(() => FindAccountsUseCase(_getIt<ProfileService>(), _getIt<RemoteConfigService>()));
+  _registerFactory(() => FindAccountsUseCase(
+        _getIt<RemoteConfigService>(),
+        _getIt<GetUserProfilesFromAccountsUseCase>(),
+      ));
   _registerFactory(() => ValidateKeyUseCase());
   _registerFactory(() => SignTransactionUseCase(
         _getIt<EOSService>(),
@@ -40,4 +43,9 @@ void _registerUseCasesModule() {
   _registerFactory(() => PPPSignUpUseCase(_getIt<AmplifyService>()));
   _registerFactory(() => ProfileLoginUseCase(_getIt<AmplifyService>()));
   _registerFactory(() => InitializeProfileUseCase(_getIt<AmplifyService>()));
+  _registerFactory(() => SearchForMemberUseCase(
+        _getIt<UserAccountRepository>(),
+        _getIt<GetUserProfilesFromAccountsUseCase>(),
+      ));
+  _registerFactory(() => GetUserProfilesFromAccountsUseCase(_getIt<ProfileService>()));
 }

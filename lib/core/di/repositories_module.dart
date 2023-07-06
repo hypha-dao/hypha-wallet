@@ -19,7 +19,7 @@ void _registerRepositoriesModule() {
         _getIt<FirebaseDatabaseService>(),
       ));
 
-  _registerLazySingleton(() => UserAccountRepository(userService: _getIt<UserAccountService>()));
+  _registerLazySingleton(() => UserAccountRepository(userService: _getIt<UserAccountService>(), memberService: _getIt<HyphaMemberService>()));
 
   _registerLazySingleton(() => TransactionHistoryRepository(service: _getIt<TransactionHistoryService>()));
 }
