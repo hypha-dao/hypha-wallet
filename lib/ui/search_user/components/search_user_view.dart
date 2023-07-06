@@ -7,11 +7,14 @@ import 'package:hypha_wallet/ui/architecture/interactor/page_states.dart';
 import 'package:hypha_wallet/ui/search_user/components/search_result_row.dart';
 import 'package:hypha_wallet/ui/search_user/components/search_user_text_field.dart';
 import 'package:hypha_wallet/ui/search_user/interactor/search_user_bloc.dart';
+import 'package:hypha_wallet/ui/send/send_page.dart';
+import 'package:hypha_wallet/ui/wallet/data/wallet_token_data.dart';
 
 class SearchUserView extends StatelessWidget {
   final String pageTitle;
+  final WalletTokenData tokenModel;
 
-  const SearchUserView(this.pageTitle, {super.key});
+  const SearchUserView(this.pageTitle, {super.key, required this.tokenModel});
 
   @override
   Widget build(BuildContext context) {
@@ -30,34 +33,27 @@ class SearchUserView extends StatelessWidget {
               const SizedBox(height: 16),
               BlocBuilder<SearchUserBloc, SearchUserState>(
                 builder: (_, state) {
-                  switch (state.pageState) {
-                    case PageState.loading:
-                    case PageState.failure:
-                    case PageState.success:
-                      if (state.pageState == PageState.success && state.users.isEmpty) {
-                        return const Padding(
-                          padding: EdgeInsets.all(24),
-                          child: Center(child: Text('No Users Found')),
-                        );
-                      } else {
-                        return Expanded(
-                          child: ListView.builder(
-                            itemCount: state.users.length,
-                            itemBuilder: (_, index) {
-                              final UserProfileData user = state.users[index];
-                              return SearchResultRow(
-                                key: Key(user.accountName),
-                                member: user,
-                                onTap: () {
-                                  Get.back(result: user);
-                                },
-                              );
+                  if (state.pageState == PageState.success && state.users.isEmpty) {
+                    return const Padding(
+                      padding: EdgeInsets.all(24),
+                      child: Center(child: Text('No Users Found')),
+                    );
+                  } else {
+                    return Expanded(
+                      child: ListView.builder(
+                        itemCount: state.users.length,
+                        itemBuilder: (_, index) {
+                          final UserProfileData user = state.users[index];
+                          return SearchResultRow(
+                            key: Key(user.accountName),
+                            member: user,
+                            onTap: () {
+                              Get.to(() => SendPage(receiverUser: user, tokenData: tokenModel));
                             },
-                          ),
-                        );
-                      }
-                    default:
-                      return const SizedBox.shrink();
+                          );
+                        },
+                      ),
+                    );
                   }
                 },
               ),

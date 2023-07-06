@@ -7,7 +7,7 @@ class SendState with _$SendState {
   const factory SendState({
     @Default(PageState.initial) PageState pageState,
     PageCommand? command,
-    @Default('0') String userEnteredAmount,
+    @Default(null) String? userEnteredAmount,
     required UserProfileData receiverUser,
     required WalletTokenData tokenData,
   }) = _SendState;

@@ -44,7 +44,7 @@ class SendView extends StatelessWidget {
                 buildWhen: (p, c) => p.userEnteredAmount != c.userEnteredAmount,
                 builder: (context, state) {
                   return Text(
-                    state.userEnteredAmount,
+                    state.userEnteredAmount ?? '0',
                     textAlign: TextAlign.center,
                     style: context.hyphaTextTheme.popsExtraLargeAndLight,
                   );

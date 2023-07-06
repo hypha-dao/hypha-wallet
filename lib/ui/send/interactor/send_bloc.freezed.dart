@@ -173,7 +173,7 @@ mixin _$SendEvent {
     required TResult Function() clearPageCommand,
     required TResult Function(AmountPercentage amountPercentage)
         onPercentageTapped,
-    required TResult Function(KeypadKey amountPercentage) onKeypadTapped,
+    required TResult Function(KeypadKey tappedKey) onKeypadTapped,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -182,7 +182,7 @@ mixin _$SendEvent {
     TResult? Function()? onRefresh,
     TResult? Function()? clearPageCommand,
     TResult? Function(AmountPercentage amountPercentage)? onPercentageTapped,
-    TResult? Function(KeypadKey amountPercentage)? onKeypadTapped,
+    TResult? Function(KeypadKey tappedKey)? onKeypadTapped,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -191,7 +191,7 @@ mixin _$SendEvent {
     TResult Function()? onRefresh,
     TResult Function()? clearPageCommand,
     TResult Function(AmountPercentage amountPercentage)? onPercentageTapped,
-    TResult Function(KeypadKey amountPercentage)? onKeypadTapped,
+    TResult Function(KeypadKey tappedKey)? onKeypadTapped,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -284,7 +284,7 @@ class _$_Initial implements _Initial {
     required TResult Function() clearPageCommand,
     required TResult Function(AmountPercentage amountPercentage)
         onPercentageTapped,
-    required TResult Function(KeypadKey amountPercentage) onKeypadTapped,
+    required TResult Function(KeypadKey tappedKey) onKeypadTapped,
   }) {
     return initial();
   }
@@ -296,7 +296,7 @@ class _$_Initial implements _Initial {
     TResult? Function()? onRefresh,
     TResult? Function()? clearPageCommand,
     TResult? Function(AmountPercentage amountPercentage)? onPercentageTapped,
-    TResult? Function(KeypadKey amountPercentage)? onKeypadTapped,
+    TResult? Function(KeypadKey tappedKey)? onKeypadTapped,
   }) {
     return initial?.call();
   }
@@ -308,7 +308,7 @@ class _$_Initial implements _Initial {
     TResult Function()? onRefresh,
     TResult Function()? clearPageCommand,
     TResult Function(AmountPercentage amountPercentage)? onPercentageTapped,
-    TResult Function(KeypadKey amountPercentage)? onKeypadTapped,
+    TResult Function(KeypadKey tappedKey)? onKeypadTapped,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -405,7 +405,7 @@ class _$_OnRefresh implements _OnRefresh {
     required TResult Function() clearPageCommand,
     required TResult Function(AmountPercentage amountPercentage)
         onPercentageTapped,
-    required TResult Function(KeypadKey amountPercentage) onKeypadTapped,
+    required TResult Function(KeypadKey tappedKey) onKeypadTapped,
   }) {
     return onRefresh();
   }
@@ -417,7 +417,7 @@ class _$_OnRefresh implements _OnRefresh {
     TResult? Function()? onRefresh,
     TResult? Function()? clearPageCommand,
     TResult? Function(AmountPercentage amountPercentage)? onPercentageTapped,
-    TResult? Function(KeypadKey amountPercentage)? onKeypadTapped,
+    TResult? Function(KeypadKey tappedKey)? onKeypadTapped,
   }) {
     return onRefresh?.call();
   }
@@ -429,7 +429,7 @@ class _$_OnRefresh implements _OnRefresh {
     TResult Function()? onRefresh,
     TResult Function()? clearPageCommand,
     TResult Function(AmountPercentage amountPercentage)? onPercentageTapped,
-    TResult Function(KeypadKey amountPercentage)? onKeypadTapped,
+    TResult Function(KeypadKey tappedKey)? onKeypadTapped,
     required TResult orElse(),
   }) {
     if (onRefresh != null) {
@@ -526,7 +526,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     required TResult Function() clearPageCommand,
     required TResult Function(AmountPercentage amountPercentage)
         onPercentageTapped,
-    required TResult Function(KeypadKey amountPercentage) onKeypadTapped,
+    required TResult Function(KeypadKey tappedKey) onKeypadTapped,
   }) {
     return clearPageCommand();
   }
@@ -538,7 +538,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     TResult? Function()? onRefresh,
     TResult? Function()? clearPageCommand,
     TResult? Function(AmountPercentage amountPercentage)? onPercentageTapped,
-    TResult? Function(KeypadKey amountPercentage)? onKeypadTapped,
+    TResult? Function(KeypadKey tappedKey)? onKeypadTapped,
   }) {
     return clearPageCommand?.call();
   }
@@ -550,7 +550,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     TResult Function()? onRefresh,
     TResult Function()? clearPageCommand,
     TResult Function(AmountPercentage amountPercentage)? onPercentageTapped,
-    TResult Function(KeypadKey amountPercentage)? onKeypadTapped,
+    TResult Function(KeypadKey tappedKey)? onKeypadTapped,
     required TResult orElse(),
   }) {
     if (clearPageCommand != null) {
@@ -675,7 +675,7 @@ class _$_OnPercentageTapped implements _OnPercentageTapped {
     required TResult Function() clearPageCommand,
     required TResult Function(AmountPercentage amountPercentage)
         onPercentageTapped,
-    required TResult Function(KeypadKey amountPercentage) onKeypadTapped,
+    required TResult Function(KeypadKey tappedKey) onKeypadTapped,
   }) {
     return onPercentageTapped(amountPercentage);
   }
@@ -687,7 +687,7 @@ class _$_OnPercentageTapped implements _OnPercentageTapped {
     TResult? Function()? onRefresh,
     TResult? Function()? clearPageCommand,
     TResult? Function(AmountPercentage amountPercentage)? onPercentageTapped,
-    TResult? Function(KeypadKey amountPercentage)? onKeypadTapped,
+    TResult? Function(KeypadKey tappedKey)? onKeypadTapped,
   }) {
     return onPercentageTapped?.call(amountPercentage);
   }
@@ -699,7 +699,7 @@ class _$_OnPercentageTapped implements _OnPercentageTapped {
     TResult Function()? onRefresh,
     TResult Function()? clearPageCommand,
     TResult Function(AmountPercentage amountPercentage)? onPercentageTapped,
-    TResult Function(KeypadKey amountPercentage)? onKeypadTapped,
+    TResult Function(KeypadKey tappedKey)? onKeypadTapped,
     required TResult orElse(),
   }) {
     if (onPercentageTapped != null) {
@@ -765,7 +765,7 @@ abstract class _$$_OnKeypadTappedCopyWith<$Res> {
           _$_OnKeypadTapped value, $Res Function(_$_OnKeypadTapped) then) =
       __$$_OnKeypadTappedCopyWithImpl<$Res>;
   @useResult
-  $Res call({KeypadKey amountPercentage});
+  $Res call({KeypadKey tappedKey});
 }
 
 /// @nodoc
@@ -779,12 +779,12 @@ class __$$_OnKeypadTappedCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? amountPercentage = null,
+    Object? tappedKey = null,
   }) {
     return _then(_$_OnKeypadTapped(
-      null == amountPercentage
-          ? _value.amountPercentage
-          : amountPercentage // ignore: cast_nullable_to_non_nullable
+      null == tappedKey
+          ? _value.tappedKey
+          : tappedKey // ignore: cast_nullable_to_non_nullable
               as KeypadKey,
     ));
   }
@@ -793,14 +793,14 @@ class __$$_OnKeypadTappedCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_OnKeypadTapped implements _OnKeypadTapped {
-  const _$_OnKeypadTapped(this.amountPercentage);
+  const _$_OnKeypadTapped(this.tappedKey);
 
   @override
-  final KeypadKey amountPercentage;
+  final KeypadKey tappedKey;
 
   @override
   String toString() {
-    return 'SendEvent.onKeypadTapped(amountPercentage: $amountPercentage)';
+    return 'SendEvent.onKeypadTapped(tappedKey: $tappedKey)';
   }
 
   @override
@@ -808,12 +808,12 @@ class _$_OnKeypadTapped implements _OnKeypadTapped {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_OnKeypadTapped &&
-            (identical(other.amountPercentage, amountPercentage) ||
-                other.amountPercentage == amountPercentage));
+            (identical(other.tappedKey, tappedKey) ||
+                other.tappedKey == tappedKey));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, amountPercentage);
+  int get hashCode => Object.hash(runtimeType, tappedKey);
 
   @JsonKey(ignore: true)
   @override
@@ -829,9 +829,9 @@ class _$_OnKeypadTapped implements _OnKeypadTapped {
     required TResult Function() clearPageCommand,
     required TResult Function(AmountPercentage amountPercentage)
         onPercentageTapped,
-    required TResult Function(KeypadKey amountPercentage) onKeypadTapped,
+    required TResult Function(KeypadKey tappedKey) onKeypadTapped,
   }) {
-    return onKeypadTapped(amountPercentage);
+    return onKeypadTapped(tappedKey);
   }
 
   @override
@@ -841,9 +841,9 @@ class _$_OnKeypadTapped implements _OnKeypadTapped {
     TResult? Function()? onRefresh,
     TResult? Function()? clearPageCommand,
     TResult? Function(AmountPercentage amountPercentage)? onPercentageTapped,
-    TResult? Function(KeypadKey amountPercentage)? onKeypadTapped,
+    TResult? Function(KeypadKey tappedKey)? onKeypadTapped,
   }) {
-    return onKeypadTapped?.call(amountPercentage);
+    return onKeypadTapped?.call(tappedKey);
   }
 
   @override
@@ -853,11 +853,11 @@ class _$_OnKeypadTapped implements _OnKeypadTapped {
     TResult Function()? onRefresh,
     TResult Function()? clearPageCommand,
     TResult Function(AmountPercentage amountPercentage)? onPercentageTapped,
-    TResult Function(KeypadKey amountPercentage)? onKeypadTapped,
+    TResult Function(KeypadKey tappedKey)? onKeypadTapped,
     required TResult orElse(),
   }) {
     if (onKeypadTapped != null) {
-      return onKeypadTapped(amountPercentage);
+      return onKeypadTapped(tappedKey);
     }
     return orElse();
   }
@@ -904,10 +904,9 @@ class _$_OnKeypadTapped implements _OnKeypadTapped {
 }
 
 abstract class _OnKeypadTapped implements SendEvent {
-  const factory _OnKeypadTapped(final KeypadKey amountPercentage) =
-      _$_OnKeypadTapped;
+  const factory _OnKeypadTapped(final KeypadKey tappedKey) = _$_OnKeypadTapped;
 
-  KeypadKey get amountPercentage;
+  KeypadKey get tappedKey;
   @JsonKey(ignore: true)
   _$$_OnKeypadTappedCopyWith<_$_OnKeypadTapped> get copyWith =>
       throw _privateConstructorUsedError;
@@ -917,7 +916,7 @@ abstract class _OnKeypadTapped implements SendEvent {
 mixin _$SendState {
   PageState get pageState => throw _privateConstructorUsedError;
   PageCommand? get command => throw _privateConstructorUsedError;
-  String get userEnteredAmount => throw _privateConstructorUsedError;
+  String? get userEnteredAmount => throw _privateConstructorUsedError;
   UserProfileData get receiverUser => throw _privateConstructorUsedError;
   WalletTokenData get tokenData => throw _privateConstructorUsedError;
 
@@ -934,7 +933,7 @@ abstract class $SendStateCopyWith<$Res> {
   $Res call(
       {PageState pageState,
       PageCommand? command,
-      String userEnteredAmount,
+      String? userEnteredAmount,
       UserProfileData receiverUser,
       WalletTokenData tokenData});
 
@@ -957,7 +956,7 @@ class _$SendStateCopyWithImpl<$Res, $Val extends SendState>
   $Res call({
     Object? pageState = null,
     Object? command = freezed,
-    Object? userEnteredAmount = null,
+    Object? userEnteredAmount = freezed,
     Object? receiverUser = null,
     Object? tokenData = null,
   }) {
@@ -970,10 +969,10 @@ class _$SendStateCopyWithImpl<$Res, $Val extends SendState>
           ? _value.command
           : command // ignore: cast_nullable_to_non_nullable
               as PageCommand?,
-      userEnteredAmount: null == userEnteredAmount
+      userEnteredAmount: freezed == userEnteredAmount
           ? _value.userEnteredAmount
           : userEnteredAmount // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       receiverUser: null == receiverUser
           ? _value.receiverUser
           : receiverUser // ignore: cast_nullable_to_non_nullable
@@ -1016,7 +1015,7 @@ abstract class _$$_SendStateCopyWith<$Res> implements $SendStateCopyWith<$Res> {
   $Res call(
       {PageState pageState,
       PageCommand? command,
-      String userEnteredAmount,
+      String? userEnteredAmount,
       UserProfileData receiverUser,
       WalletTokenData tokenData});
 
@@ -1039,7 +1038,7 @@ class __$$_SendStateCopyWithImpl<$Res>
   $Res call({
     Object? pageState = null,
     Object? command = freezed,
-    Object? userEnteredAmount = null,
+    Object? userEnteredAmount = freezed,
     Object? receiverUser = null,
     Object? tokenData = null,
   }) {
@@ -1052,10 +1051,10 @@ class __$$_SendStateCopyWithImpl<$Res>
           ? _value.command
           : command // ignore: cast_nullable_to_non_nullable
               as PageCommand?,
-      userEnteredAmount: null == userEnteredAmount
+      userEnteredAmount: freezed == userEnteredAmount
           ? _value.userEnteredAmount
           : userEnteredAmount // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       receiverUser: null == receiverUser
           ? _value.receiverUser
           : receiverUser // ignore: cast_nullable_to_non_nullable
@@ -1074,7 +1073,7 @@ class _$_SendState extends _SendState {
   const _$_SendState(
       {this.pageState = PageState.initial,
       this.command,
-      this.userEnteredAmount = '0',
+      this.userEnteredAmount = null,
       required this.receiverUser,
       required this.tokenData})
       : super._();
@@ -1086,7 +1085,7 @@ class _$_SendState extends _SendState {
   final PageCommand? command;
   @override
   @JsonKey()
-  final String userEnteredAmount;
+  final String? userEnteredAmount;
   @override
   final UserProfileData receiverUser;
   @override
@@ -1128,7 +1127,7 @@ abstract class _SendState extends SendState {
   const factory _SendState(
       {final PageState pageState,
       final PageCommand? command,
-      final String userEnteredAmount,
+      final String? userEnteredAmount,
       required final UserProfileData receiverUser,
       required final WalletTokenData tokenData}) = _$_SendState;
   const _SendState._() : super._();
@@ -1138,7 +1137,7 @@ abstract class _SendState extends SendState {
   @override
   PageCommand? get command;
   @override
-  String get userEnteredAmount;
+  String? get userEnteredAmount;
   @override
   UserProfileData get receiverUser;
   @override

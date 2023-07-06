@@ -28,13 +28,12 @@ class SendBloc extends Bloc<SendEvent, SendState> {
   }
 
   Future<void> _initial(_Initial event, Emitter<SendState> emit) async {
-    // TODO(gguij): Continue here
     // final precision = state.tokenData.precision;
-    // final initialValue = '0.';
+    // var initialValue = '0.';
     // for(int i = 0; i< precision; i++) {
-    //   initialValue + '0';
+    //   initialValue += '0';
     // }
-
+    //
     // emit(state.copyWith(userEnteredAmount: initialValue));
   }
 
@@ -44,7 +43,28 @@ class SendBloc extends Bloc<SendEvent, SendState> {
   }
 
   FutureOr<void> _onKeypadTapped(_OnKeypadTapped event, Emitter<SendState> emit) {
-    final newValue = state.userEnteredAmount + event.amountPercentage.value.toString();
-    emit(state.copyWith(userEnteredAmount: newValue.toString()));
+    final newUserEntered = switch (event.tappedKey) {
+      KeypadKey.delete => deleteValue(event.tappedKey, state.userEnteredAmount),
+      _ => addValue(event.tappedKey, state.userEnteredAmount),
+    };
+
+    emit(state.copyWith(userEnteredAmount: newUserEntered));
+  }
+
+  String? deleteValue(KeypadKey tappedKey, String? userEnteredAmount) {
+    if (userEnteredAmount?.length == 1) {
+      return null;
+    } else if ((userEnteredAmount?.length ?? 0) > 1) {
+      return userEnteredAmount!.substring(0, userEnteredAmount.length - 1);
+    }
+    return null;
+  }
+
+  String? addValue(KeypadKey tappedKey, String? userEnteredAmount) {
+    if(tappedKey == KeypadKey.dot && userEnteredAmount?.contains('.') == true) {
+      return userEnteredAmount;
+    }
+
+    return userEnteredAmount != null ? userEnteredAmount + tappedKey.value : tappedKey.value;
   }
 }
