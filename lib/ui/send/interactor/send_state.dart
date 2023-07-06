@@ -12,4 +12,9 @@ class SendState with _$SendState {
     required UserProfileData receiverUser,
     required WalletTokenData tokenData,
   }) = _SendState;
+
+  bool get isSubmitEnabled {
+    final parsedAmount = double.tryParse(userEnteredAmount ?? '0') ?? 0;
+    return parsedAmount > 0 && parsedAmount <= (tokenData.userOwnedAmount ?? 0);
+  }
 }

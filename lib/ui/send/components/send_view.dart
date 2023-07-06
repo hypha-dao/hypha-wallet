@@ -26,18 +26,20 @@ class SendView extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
-          title: BlocBuilder<SendBloc, SendState>(
-            builder: (context, state) {
-              return Text('Send ${state.tokenData.name}');
-            },
-          ),
+          title: Text('Send ${context.read<SendBloc>().state.tokenData.name}'),
         ),
-        bottomNavigationBar: HyphaSafeBottomNavigationBar(
-          child: HyphaAppButton(
-            onPressed: () {},
-            title: 'Send',
-            buttonType: ButtonType.primary,
-          ),
+        bottomNavigationBar: BlocBuilder<SendBloc, SendState>(
+          buildWhen: (p,c) => p.userEnteredAmount != c.userEnteredAmount,
+          builder: (context, state) {
+            return HyphaSafeBottomNavigationBar(
+              child: HyphaAppButton(
+                onPressed: () {},
+                title: 'Send',
+                buttonType: ButtonType.primary,
+                isActive: state.isSubmitEnabled,
+              ),
+            );
+          },
         ),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -158,16 +160,17 @@ class _MemoField extends StatelessWidget {
               isScrollControlled: true,
               clipBehavior: Clip.hardEdge,
               context: context,
-              builder: (modelContext) => FractionallySizedBox(
-                heightFactor: UIConstants.bottomSheetHeightFraction,
-                child: EditBioBottomSheet(
-                    title: 'Enter Bio',
-                    initialText: state.memo ?? '',
-                    onPressed: (String? text) {
-                      context.read<SendBloc>().add(SendEvent.onMemoEntered(text));
-                      Get.back();
-                    }),
-              ),
+              builder: (modelContext) =>
+                  FractionallySizedBox(
+                    heightFactor: UIConstants.bottomSheetHeightFraction,
+                    child: EditBioBottomSheet(
+                        title: 'Enter Bio',
+                        initialText: state.memo ?? '',
+                        onPressed: (String? text) {
+                          context.read<SendBloc>().add(SendEvent.onMemoEntered(text));
+                          Get.back();
+                        }),
+                  ),
               shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
               ),
