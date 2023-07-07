@@ -10,6 +10,9 @@ import 'package:hypha_wallet/design/buttons/hypha_app_button.dart';
 import 'package:hypha_wallet/design/hypha_card.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
+import 'package:hypha_wallet/ui/send/components/send_memo_field.dart';
+import 'package:hypha_wallet/ui/send/components/send_review_bottom_sheet.dart';
+import 'package:hypha_wallet/ui/send/components/send_to_user_row.dart';
 import 'package:hypha_wallet/ui/send/data/amount_percentage.dart';
 import 'package:hypha_wallet/ui/send/data/keypad_key.dart';
 import 'package:hypha_wallet/ui/send/interactor/send_bloc.dart';
@@ -33,7 +36,21 @@ class SendView extends StatelessWidget {
           builder: (context, state) {
             return HyphaSafeBottomNavigationBar(
               child: HyphaAppButton(
-                onPressed: () {},
+                onPressed: () {
+                  // GERE
+                  showModalBottomSheet(
+                    isScrollControlled: true,
+                    clipBehavior: Clip.hardEdge,
+                    context: context,
+                    builder: (childContext) => BlocProvider.value(
+                      value: BlocProvider.of<SendBloc>(context),
+                      child: const SendReviewBottomSheet(),
+                    ),
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
+                    ),
+                  );
+                },
                 title: 'Send',
                 buttonType: ButtonType.primary,
                 isActive: state.isSubmitEnabled,
@@ -56,9 +73,9 @@ class SendView extends StatelessWidget {
                 },
               ),
               const _AvailableBalanceWidget(),
-              const _ToUserRow(),
+              const SendToUserRow(imageRadius: 20),
               const SizedBox(height: 24),
-              const _MemoField(),
+              const SendMemoField(),
               const SizedBox(height: 24),
               const _PercentagesWidget(),
               const SizedBox(height: 24),
@@ -142,89 +159,6 @@ class _PercentagesWidget extends StatelessWidget {
         ),
         child: Text(text, style: context.hyphaTextTheme.regular.copyWith(color: HyphaColors.primaryBlu)),
       ),
-    );
-  }
-}
-
-class _MemoField extends StatelessWidget {
-  const _MemoField();
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<SendBloc, SendState>(
-      buildWhen: (previous, current) => previous.memo != current.memo,
-      builder: (context, state) {
-        return GestureDetector(
-          onTap: () {
-            showModalBottomSheet(
-              isScrollControlled: true,
-              clipBehavior: Clip.hardEdge,
-              context: context,
-              builder: (modelContext) => FractionallySizedBox(
-                heightFactor: UIConstants.bottomSheetHeightFraction,
-                child: TextRequestBottomSheet(
-                    title: 'Enter Memo',
-                    initialText: state.memo ?? '',
-                    onPressed: (String? text) {
-                      context.read<SendBloc>().add(SendEvent.onMemoEntered(text));
-                      Get.back();
-                    }),
-              ),
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
-              ),
-            );
-          },
-          child: HyphaCard(
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Text(
-                      state.memo ?? 'Memo (optional)',
-                      style: context.hyphaTextTheme.regular
-                          .copyWith(color: state.memo == null ? HyphaColors.midGrey : null),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
-                  state.memo == null ? const SizedBox.shrink() : const Icon(Icons.edit)
-                ],
-              ),
-            ),
-          ),
-        );
-      },
-    );
-  }
-}
-
-class _ToUserRow extends StatelessWidget {
-  const _ToUserRow();
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<SendBloc, SendState>(
-      builder: (context, state) {
-        return ListTile(
-          contentPadding: EdgeInsets.zero,
-          leading: HyphaAvatarImage(
-            imageRadius: 20,
-            name: state.receiverUser.userName,
-            imageFromUrl: state.receiverUser.userImage,
-          ),
-          title: Text(state.receiverUser.userName ?? state.receiverUser.accountName),
-          subtitle: Text(state.receiverUser.accountName),
-          trailing: HyphaCard(
-            borderRadius: BorderRadius.circular(10),
-            child: const Padding(
-              padding: EdgeInsets.all(12),
-              child: Text('To'),
-            ),
-          ),
-        );
-      },
     );
   }
 }

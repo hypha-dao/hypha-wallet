@@ -15,10 +15,10 @@ class SendPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => GetIt.I.get<SendBloc>(param1: receiverUser, param2: tokenData)
-        ..add(
-          const SendEvent.initial(),
-        ),
+      create: (context) => GetIt.I.get<SendBloc>(
+        param1: receiverUser,
+        param2: tokenData,
+      )..add(const SendEvent.initial()),
       child: BlocListener<SendBloc, SendState>(
         listenWhen: (previous, current) => previous.command != current.command,
         listener: (context, state) {

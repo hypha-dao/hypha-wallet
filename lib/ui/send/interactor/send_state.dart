@@ -17,4 +17,8 @@ class SendState with _$SendState {
     final parsedAmount = double.tryParse(userEnteredAmount ?? '0') ?? 0;
     return parsedAmount > 0 && parsedAmount <= (tokenData.userOwnedAmount ?? 0);
   }
+
+  String get formattedAmount {
+    return userEnteredAmount?.let((it) => double.tryParse(it)?.toStringAsFixed(tokenData.precision) ?? it) ?? '0';
+  }
 }
