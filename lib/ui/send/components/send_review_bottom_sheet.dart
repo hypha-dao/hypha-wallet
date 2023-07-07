@@ -10,6 +10,7 @@ import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 import 'package:hypha_wallet/ui/send/components/send_to_user_row.dart';
 import 'package:hypha_wallet/ui/send/interactor/send_bloc.dart';
+import 'package:hypha_wallet/ui/shared/components/color_arrow_up.dart';
 
 class SendReviewBottomSheet extends StatelessWidget {
   const SendReviewBottomSheet({super.key});
@@ -31,10 +32,15 @@ class SendReviewBottomSheet extends StatelessWidget {
                   children: [
                     BlocBuilder<SendBloc, SendState>(
                       builder: (context, state) {
-                        return HyphaAvatarImage(
-                          imageRadius: 50,
-                          imageFromUrl: state.tokenData.image,
-                          name: state.tokenData.name,
+                        return Stack(
+                          children: [
+                            HyphaAvatarImage(
+                              imageRadius: 50,
+                              imageFromUrl: state.tokenData.image,
+                              name: state.tokenData.name,
+                            ),
+                            Positioned(bottom: 0, right: 0, child: ColorArrowUp()),
+                          ],
                         );
                       },
                     ),
