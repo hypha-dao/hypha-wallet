@@ -70,22 +70,22 @@ class SendReviewBottomSheet extends StatelessWidget {
                         return memo == null
                             ? const SizedBox.shrink()
                             : HyphaCard(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(16),
-                                  child: Row(
-                                    children: [
-                                      Expanded(
-                                        child: Text(
-                                          memo,
-                                          style: context.hyphaTextTheme.regular.copyWith(color: HyphaColors.midGrey),
-                                          maxLines: 4,
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                      )
-                                    ],
+                          child: Padding(
+                            padding: const EdgeInsets.all(16),
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    memo,
+                                    style: context.hyphaTextTheme.regular.copyWith(color: HyphaColors.midGrey),
+                                    maxLines: 4,
+                                    overflow: TextOverflow.ellipsis,
                                   ),
-                                ),
-                              );
+                                )
+                              ],
+                            ),
+                          ),
+                        );
                       },
                     ),
                     const SizedBox(height: 16),
@@ -113,9 +113,17 @@ class SendReviewBottomSheet extends StatelessWidget {
                       onPressed: () {},
                     ),
                     const SizedBox(height: 16),
-                    HyphaAppButton(
-                      title: 'Send',
-                      onPressed: () {},
+                    BlocBuilder<SendBloc, SendState>(
+                      buildWhen: (p,c) => p.isSendButtonLoading != c.isSendButtonLoading,
+                      builder: (context, state) {
+                        return HyphaAppButton(
+                          title: 'Send',
+                          isLoading: state.isSendButtonLoading,
+                          onPressed: () {
+                            context.read<SendBloc>().add(const SendEvent.onSendTapped());
+                          },
+                        );
+                      },
                     ),
                   ],
                 ),

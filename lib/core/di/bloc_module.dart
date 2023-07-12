@@ -91,7 +91,12 @@ void _registerBlocsModule() {
   );
 
   _registerFactoryWithParams<SendBloc, UserProfileData, WalletTokenData>(
-    (pageParams, tokenData) => SendBloc(pageParams, tokenData),
+    (pageParams, tokenData) => SendBloc(
+      pageParams,
+      tokenData,
+      _getIt<SendTokenUseCase>(),
+      _getIt<ErrorHandlerManager>(),
+    ),
   );
 
   _registerFactory(
@@ -102,5 +107,7 @@ void _registerBlocsModule() {
     ),
   );
 
-  _registerFactory(() => SearchUserBloc(_getIt<SearchForMemberUseCase>(),));
+  _registerFactory(() => SearchUserBloc(
+        _getIt<SearchForMemberUseCase>(),
+      ));
 }

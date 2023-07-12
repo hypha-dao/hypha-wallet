@@ -48,4 +48,5 @@ void _registerUseCasesModule() {
         _getIt<GetUserProfilesFromAccountsUseCase>(),
       ));
   _registerFactory(() => GetUserProfilesFromAccountsUseCase(_getIt<ProfileService>()));
+  _registerFactory(() => SendTokenUseCase(_getIt<EOSService>(), _getIt<HyphaSharedPrefs>()));
 }

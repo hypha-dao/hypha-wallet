@@ -11,6 +11,7 @@ class SendState with _$SendState {
     @Default(null) String? memo,
     required UserProfileData receiverUser,
     required WalletTokenData tokenData,
+    @Default(false) bool isSendButtonLoading,
   }) = _SendState;
 
   bool get isSubmitEnabled {
