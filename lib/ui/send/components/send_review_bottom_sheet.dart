@@ -66,7 +66,8 @@ class SendReviewBottomSheet extends StatelessWidget {
                     const SizedBox(height: 16),
                     BlocBuilder<SendBloc, SendState>(
                       builder: (context, state) {
-                        return state.memo == null
+                        final memo = state.memo;
+                        return memo == null
                             ? const SizedBox.shrink()
                             : HyphaCard(
                                 child: Padding(
@@ -75,10 +76,9 @@ class SendReviewBottomSheet extends StatelessWidget {
                                     children: [
                                       Expanded(
                                         child: Text(
-                                          state.memo ?? 'Memo (optional)',
-                                          style: context.hyphaTextTheme.regular
-                                              .copyWith(color: state.memo == null ? HyphaColors.midGrey : null),
-                                          maxLines: 1,
+                                          memo,
+                                          style: context.hyphaTextTheme.regular.copyWith(color: HyphaColors.midGrey),
+                                          maxLines: 4,
                                           overflow: TextOverflow.ellipsis,
                                         ),
                                       )
