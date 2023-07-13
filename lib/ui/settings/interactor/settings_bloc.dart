@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hypha_wallet/core/local/models/user_auth_data.dart';
 import 'package:hypha_wallet/core/local/services/secure_storage_service.dart';
+import 'package:hypha_wallet/core/network/repository/auth_repository.dart';
 import 'package:hypha_wallet/core/shared_preferences/hypha_shared_prefs.dart';
 import 'package:hypha_wallet/ui/architecture/interactor/page_states.dart';
 import 'package:hypha_wallet/ui/settings/usecases/delete_account_use_case.dart';
@@ -22,8 +23,9 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
   final HyphaSharedPrefs _sharedPrefs;
   final SecureStorageService _secureStorageService;
   final DeleteAccountUseCase _deleteAccountUseCase;
+  final AuthRepository _authRepository;
 
-  SettingsBloc(this._sharedPrefs, this._secureStorageService, this._deleteAccountUseCase)
+  SettingsBloc(this._sharedPrefs, this._secureStorageService, this._deleteAccountUseCase, this._authRepository)
       : super(const SettingsState()) {
     on<_Initial>(_initial);
     on<_OnThemeChanged>(_onThemeChanged);
@@ -67,10 +69,9 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
 
   FutureOr<void> _onDeleteAccountTapped(_OnDeleteAccountTapped event, Emitter<SettingsState> emit) async {
     emit(state.copyWith(pageState: PageState.loading));
-    final accountName = (await _sharedPrefs.getUserProfileData())?.accountName;
-    if (accountName != null) {
-      await _deleteAccountUseCase.run(accountName);
-    }
+    final user = _authRepository.authDataOrCrash;
+    final accountName = user.userProfileData.accountName;
+    await _deleteAccountUseCase.run(accountName);
     emit(state.copyWith(pageState: PageState.success));
   }
 

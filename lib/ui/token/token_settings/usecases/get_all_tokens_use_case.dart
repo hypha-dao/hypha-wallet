@@ -2,20 +2,20 @@ import 'dart:async';
 
 import 'package:hypha_wallet/core/firebase/firebase_database_service.dart';
 import 'package:hypha_wallet/core/firebase/firebase_token_data.dart';
-import 'package:hypha_wallet/core/shared_preferences/hypha_shared_prefs.dart';
+import 'package:hypha_wallet/core/network/repository/auth_repository.dart';
 import 'package:hypha_wallet/ui/wallet/data/wallet_token_data.dart';
 
 class GetAllTokensUseCase {
   final FirebaseDatabaseService _database;
-  final HyphaSharedPrefs _appSharedPrefs;
+  final AuthRepository _authRepository;
 
-  GetAllTokensUseCase(this._database, this._appSharedPrefs);
+  GetAllTokensUseCase(this._database, this._authRepository);
 
   Future<Stream<List<WalletTokenData>>> run() async {
-    final user = await _appSharedPrefs.getUserProfileData();
+    final user = _authRepository.authDataOrCrash;
     final List<FirebaseTokenData> allTokens = await _database.getAllTokens();
 
-    final Stream<List<String>> userTokens = _database.getUserTokensLive(accountName: user!.accountName);
+    final Stream<List<String>> userTokens = _database.getUserTokensLive(accountName: user.userProfileData.accountName);
     final Stream<List<WalletTokenData>> tokens = userTokens.map((List<String> userTokens) {
       return allTokens
           .map(

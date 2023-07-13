@@ -16,8 +16,6 @@ import 'package:hypha_wallet/core/shared_preferences/hypha_shared_prefs.dart';
 import 'package:hypha_wallet/ui/blocs/deeplink/deeplink_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 
-enum AuthenticationStatus { unknown, authenticated, unauthenticated }
-
 class AuthRepository {
   final HyphaSharedPrefs _appSharedPrefs;
   final SecureStorageService _secureStorageService;
@@ -26,7 +24,9 @@ class AuthRepository {
   final AmplifyService _amplifyService;
   final FirebasePushNotificationsService _firebasePushNotificationsService;
   final FirebaseDatabaseService _firebaseDatabaseService;
-  final _controller = StreamController<AuthenticationStatus>();
+  final StreamController<AuthenticationStatus> _controller = StreamController.broadcast();
+
+  Authenticated? authenticateUser;
 
   AuthRepository(
     this._appSharedPrefs,
@@ -36,7 +36,13 @@ class AuthRepository {
     this._amplifyService,
     this._firebasePushNotificationsService,
     this._firebaseDatabaseService,
-  );
+  ) {
+    status.listen((AuthenticationStatus event) {
+      if(event is Authenticated) {
+       authenticateUser = event;
+      }
+    });
+  }
 
   Future<bool> createUserAccount({
     required String accountName,
@@ -76,7 +82,16 @@ class AuthRepository {
 
   /// This stream will represent the source of truth for the user authentication.
   Stream<AuthenticationStatus> get status async* {
-    yield* _controller.stream;
+    yield* _controller.stream ;
+  }
+
+  /// Use this method when we expect the auth data to be there. Anytime after auth. If the data isnt there. then crash
+  Authenticated get authDataOrCrash {
+    if (authenticateUser is Authenticated) {
+      return authenticateUser!;
+    }
+
+    throw Exception('Attempted to fetch Auth data but the user is not authenticated. ');
   }
 
   Future<UserProfileData> login(
@@ -103,15 +118,18 @@ class AuthRepository {
         );
 
     if (shouldLoginAfter) {
-      loginUser();
+      loginUser(userProfileData, userAuthData);
     }
   }
 
-  void loginUser() {
-    return _controller.add(AuthenticationStatus.authenticated);
+  void loginUser(
+    UserProfileData userProfileData,
+    UserAuthData userAuthData,
+  ) {
+    return _controller.add(Authenticated(userAuthData, userProfileData));
   }
 
-  Future<void> logOut(String accountName) async {
+  Future<void> logOut(String? accountName) async {
     LogHelper.d('Clearing User Data');
 
     try {
@@ -121,18 +139,39 @@ class AuthRepository {
       await _amplifyService.logout();
 
       /// Get firebase device token and remove to firebase
-      await _firebasePushNotificationsService.getDeviceToken().then(
-            (String? value) => value?.let((it) {
-              _firebaseDatabaseService.removeDeviceToken(it, accountName);
-            }),
-          );
+      await accountName?.let(
+        (self) async => _firebasePushNotificationsService.getDeviceToken().then(
+              (String? value) => value?.let((it) {
+                _firebaseDatabaseService.removeDeviceToken(it, self);
+              }),
+            ),
+      );
     } catch (error, stacktrace) {
       LogHelper.e('Error clearing user data', error: error, stacktrace: stacktrace);
     }
 
-    _controller.add(AuthenticationStatus.unauthenticated);
+    _controller.add(const UnAuthenticated());
     LogHelper.d('User data cleared successfully');
   }
 
   void dispose() => _controller.close();
+}
+
+sealed class AuthenticationStatus {
+  const AuthenticationStatus();
+}
+
+class Authenticated extends AuthenticationStatus {
+  final UserAuthData userAuthData;
+  final UserProfileData userProfileData;
+
+  const Authenticated(this.userAuthData, this.userProfileData);
+}
+
+class UnAuthenticated extends AuthenticationStatus {
+  const UnAuthenticated();
+}
+
+class Unknown extends AuthenticationStatus {
+  const Unknown();
 }
