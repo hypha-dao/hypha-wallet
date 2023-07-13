@@ -9,7 +9,7 @@ class TokenDetailsState with _$TokenDetailsState {
     PageCommand? command,
     required WalletTokenData token,
     @Default(true) bool loadingTransaction,
-    @Default([]) List<TransactionModel> recentTransactions,
+    @Default([]) List<WalletTransactionTileData> recentTransactions,
     @Default(true) bool loadingTokenBalance,
   }) = _TokenDetailsState;
 }

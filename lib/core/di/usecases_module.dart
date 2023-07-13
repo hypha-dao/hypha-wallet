@@ -49,4 +49,8 @@ void _registerUseCasesModule() {
       ));
   _registerFactory(() => GetUserProfilesFromAccountsUseCase(_getIt<ProfileService>()));
   _registerFactory(() => SendTokenUseCase(_getIt<EOSService>(), _getIt<HyphaSharedPrefs>()));
+  _registerFactory(() => GetTransactionHistoryDataUseCase(
+        _getIt<GetTransactionHistoryUseCase>(),
+        _getIt<FirebaseDatabaseService>(),
+      ));
 }

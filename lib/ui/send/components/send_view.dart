@@ -1,8 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
-import 'package:hypha_wallet/design/avatar_image/hypha_avatar_image.dart';
 import 'package:hypha_wallet/design/background/hypha_page_background.dart';
 import 'package:hypha_wallet/design/bottom_component/hypha_safe_bottom_navigation_bar.dart';
 import 'package:hypha_wallet/design/buttons/button_type.dart';
@@ -16,8 +14,6 @@ import 'package:hypha_wallet/ui/send/components/send_to_user_row.dart';
 import 'package:hypha_wallet/ui/send/data/amount_percentage.dart';
 import 'package:hypha_wallet/ui/send/data/keypad_key.dart';
 import 'package:hypha_wallet/ui/send/interactor/send_bloc.dart';
-import 'package:hypha_wallet/ui/shared/components/text_request_bottom_sheet.dart';
-import 'package:hypha_wallet/ui/shared/ui_constants.dart';
 
 class SendView extends StatelessWidget {
   const SendView({super.key});

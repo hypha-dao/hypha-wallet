@@ -11,9 +11,11 @@ class TransactionHistoryRepository {
 
   TransactionHistoryRepository({required this.service});
 
-  Future<Result<List<TransactionModel>, HyphaError>> getTransactions(String userAccount) async {
+  Future<Result<List<TransactionModel>, HyphaError>> getTransactions(String userAccount, bool transferOnly) async {
     try {
-      final Response response = await service.getTransactions(userAccount);
+      final Response response = transferOnly
+          ? await service.getTransferTransactions(userAccount)
+          : await service.getAllTransactions(userAccount);
       final List<dynamic> transfers = response.data['actions'].toList();
       return Result.value(transfers.map((transfer) => TransactionModel.fromJson(transfer)).toList());
     } on DioError catch (e) {

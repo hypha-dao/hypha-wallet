@@ -39,7 +39,7 @@ class SendReviewBottomSheet extends StatelessWidget {
                               imageFromUrl: state.tokenData.image,
                               name: state.tokenData.name,
                             ),
-                            Positioned(bottom: 0, right: 0, child: ColorArrowUp()),
+                            const Positioned(bottom: 0, right: 0, child: ColorArrowUp()),
                           ],
                         );
                       },

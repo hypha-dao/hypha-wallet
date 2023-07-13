@@ -79,6 +79,7 @@ import 'package:hypha_wallet/ui/token/token_settings/usecases/get_all_tokens_use
 import 'package:hypha_wallet/ui/token/token_settings/usecases/remove_token_from_user_use_case.dart';
 import 'package:hypha_wallet/ui/wallet/data/wallet_token_data.dart';
 import 'package:hypha_wallet/ui/wallet/interactor/wallet_bloc.dart';
+import 'package:hypha_wallet/ui/wallet/usecases/get_transaction_history_data_use_case.dart';
 import 'package:hypha_wallet/ui/wallet/usecases/get_user_tokens_use_case.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:rx_shared_preferences/rx_shared_preferences.dart';

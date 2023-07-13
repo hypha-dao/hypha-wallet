@@ -47,9 +47,9 @@ void _registerBlocsModule() {
   _registerFactory(() => TransactionDetailBloc());
 
   _registerFactory(() => WalletBloc(
-        _getIt<GetTransactionHistoryUseCase>(),
         _getIt<ErrorHandlerManager>(),
         _getIt<GetUserTokensUseCase>(),
+        _getIt<GetTransactionHistoryDataUseCase>(),
       ));
 
   _registerFactory(() => TokensSettingsBloc(
@@ -63,8 +63,8 @@ void _registerBlocsModule() {
       _getIt<RemoveTokenFromUserUseCase>(),
       _getIt<AddTokenToUserUseCase>(),
       _getIt<GetTokenBalanceUseCase>(),
-      _getIt<GetTransactionHistoryUseCase>(),
       _getIt<ErrorHandlerManager>(),
+      _getIt<GetTransactionHistoryDataUseCase>(),
       tokenData,
     ),
   );
