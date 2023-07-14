@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get_it/get_it.dart';
-import 'package:hypha_wallet/core/network/api/services/remote_config_service.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/icons/hypha_icons.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
@@ -12,7 +10,6 @@ import 'package:hypha_wallet/ui/profile/profile_page.dart';
 import 'package:hypha_wallet/ui/settings/interactor/settings_bloc.dart';
 import 'package:hypha_wallet/ui/settings/settings_page.dart';
 import 'package:hypha_wallet/ui/wallet/wallet_page.dart';
-// import 'package:hypha_wallet/ui/wallet/wallet_page.dart';
 
 const double _bottomBarRadius = 22;
 
@@ -51,7 +48,7 @@ class BottomNavigationView extends StatelessWidget {
                       BlocProvider.of<BottomNavigationBloc>(context).add(
                         BottomNavigationEvent.onPageSelected(state.allPages[index]),
                       );
-                      if (index == (GetIt.I.get<RemoteConfigService>().isWalletEnabled ? 4 : 3)) {
+                      if (state.allPages[index] == BottomNavigationPage.settings) {
                         BlocProvider.of<SettingsBloc>(context).add(const SettingsEvent.onShowSettings());
                       }
                     },
