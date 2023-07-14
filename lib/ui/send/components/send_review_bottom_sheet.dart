@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:hypha_wallet/design/avatar_image/hypha_avatar_image.dart';
 import 'package:hypha_wallet/design/background/hypha_half_background.dart';
 import 'package:hypha_wallet/design/background/hypha_page_background.dart';
@@ -110,7 +111,9 @@ class SendReviewBottomSheet extends StatelessWidget {
                     HyphaAppButton(
                       title: 'Edit',
                       buttonType: ButtonType.secondary,
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.back();
+                      },
                     ),
                     const SizedBox(height: 16),
                     BlocBuilder<SendBloc, SendState>(

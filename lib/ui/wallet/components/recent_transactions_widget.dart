@@ -49,8 +49,10 @@ class RecentTransactionsWidget extends StatelessWidget {
                 child: HyphaCard(
                   child: Padding(
                     padding: const EdgeInsets.all(24),
-                    child:
-                        Text('You haven’t done any transaction yet', style: context.hyphaTextTheme.ralMediumSmallNote),
+                    child: Text(
+                      'You haven’t done any transaction yet',
+                      style: context.hyphaTextTheme.ralMediumSmallNote,
+                    ),
                   ),
                 ),
               );

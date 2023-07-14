@@ -18,21 +18,21 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$BottomNavigationEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
+    required TResult Function(int? initialPage) initial,
     required TResult Function() clearPageCommand,
     required TResult Function(int index) onPageSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
+    TResult? Function(int? initialPage)? initial,
     TResult? Function()? clearPageCommand,
     TResult? Function(int index)? onPageSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
+    TResult Function(int? initialPage)? initial,
     TResult Function()? clearPageCommand,
     TResult Function(int index)? onPageSelected,
     required TResult orElse(),
@@ -86,6 +86,8 @@ abstract class _$$_InitialCopyWith<$Res> {
   factory _$$_InitialCopyWith(
           _$_Initial value, $Res Function(_$_Initial) then) =
       __$$_InitialCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int? initialPage});
 }
 
 /// @nodoc
@@ -94,57 +96,82 @@ class __$$_InitialCopyWithImpl<$Res>
     implements _$$_InitialCopyWith<$Res> {
   __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? initialPage = freezed,
+  }) {
+    return _then(_$_Initial(
+      freezed == initialPage
+          ? _value.initialPage
+          : initialPage // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_Initial implements _Initial {
-  const _$_Initial();
+  const _$_Initial(this.initialPage);
+
+  @override
+  final int? initialPage;
 
   @override
   String toString() {
-    return 'BottomNavigationEvent.initial()';
+    return 'BottomNavigationEvent.initial(initialPage: $initialPage)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Initial);
+        (other.runtimeType == runtimeType &&
+            other is _$_Initial &&
+            (identical(other.initialPage, initialPage) ||
+                other.initialPage == initialPage));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, initialPage);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_InitialCopyWith<_$_Initial> get copyWith =>
+      __$$_InitialCopyWithImpl<_$_Initial>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
+    required TResult Function(int? initialPage) initial,
     required TResult Function() clearPageCommand,
     required TResult Function(int index) onPageSelected,
   }) {
-    return initial();
+    return initial(initialPage);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
+    TResult? Function(int? initialPage)? initial,
     TResult? Function()? clearPageCommand,
     TResult? Function(int index)? onPageSelected,
   }) {
-    return initial?.call();
+    return initial?.call(initialPage);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
+    TResult Function(int? initialPage)? initial,
     TResult Function()? clearPageCommand,
     TResult Function(int index)? onPageSelected,
     required TResult orElse(),
   }) {
     if (initial != null) {
-      return initial();
+      return initial(initialPage);
     }
     return orElse();
   }
@@ -185,7 +212,12 @@ class _$_Initial implements _Initial {
 }
 
 abstract class _Initial implements BottomNavigationEvent {
-  const factory _Initial() = _$_Initial;
+  const factory _Initial(final int? initialPage) = _$_Initial;
+
+  int? get initialPage;
+  @JsonKey(ignore: true)
+  _$$_InitialCopyWith<_$_Initial> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -226,7 +258,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
+    required TResult Function(int? initialPage) initial,
     required TResult Function() clearPageCommand,
     required TResult Function(int index) onPageSelected,
   }) {
@@ -236,7 +268,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
+    TResult? Function(int? initialPage)? initial,
     TResult? Function()? clearPageCommand,
     TResult? Function(int index)? onPageSelected,
   }) {
@@ -246,7 +278,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
+    TResult Function(int? initialPage)? initial,
     TResult Function()? clearPageCommand,
     TResult Function(int index)? onPageSelected,
     required TResult orElse(),
@@ -360,7 +392,7 @@ class _$_OnPageSelected implements _OnPageSelected {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
+    required TResult Function(int? initialPage) initial,
     required TResult Function() clearPageCommand,
     required TResult Function(int index) onPageSelected,
   }) {
@@ -370,7 +402,7 @@ class _$_OnPageSelected implements _OnPageSelected {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
+    TResult? Function(int? initialPage)? initial,
     TResult? Function()? clearPageCommand,
     TResult? Function(int index)? onPageSelected,
   }) {
@@ -380,7 +412,7 @@ class _$_OnPageSelected implements _OnPageSelected {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
+    TResult Function(int? initialPage)? initial,
     TResult Function()? clearPageCommand,
     TResult Function(int index)? onPageSelected,
     required TResult orElse(),

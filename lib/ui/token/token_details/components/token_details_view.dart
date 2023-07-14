@@ -60,14 +60,15 @@ class TokenDetailsView extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Expanded(
-                    child: HyphaAppButton(
-                      title: 'Receive',
-                      onPressed: () {},
-                      buttonType: ButtonType.secondary,
-                    ),
-                  ),
-                  const SizedBox(width: 22),
+                  // TODO(gguij): Complete receive
+                  // Expanded(
+                  //   child: HyphaAppButton(
+                  //     title: 'Receive',
+                  //     onPressed: () {},
+                  //     buttonType: ButtonType.secondary,
+                  //   ),
+                  // ),
+                  // const SizedBox(width: 22),
                   Expanded(
                     child: BlocBuilder<TokenDetailsBloc, TokenDetailsState>(
                       builder: (context, state) {

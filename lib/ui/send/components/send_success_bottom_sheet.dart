@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:hypha_wallet/design/avatar_image/hypha_avatar_image.dart';
 import 'package:hypha_wallet/design/background/hypha_half_background.dart';
 import 'package:hypha_wallet/design/background/hypha_page_background.dart';
@@ -10,8 +11,10 @@ import 'package:hypha_wallet/design/dividers/hypha_divider.dart';
 import 'package:hypha_wallet/design/hypha_card.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
+import 'package:hypha_wallet/ui/bottom_navigation/hypha_bottom_navigation.dart';
 import 'package:hypha_wallet/ui/send/components/send_to_user_row.dart';
 import 'package:hypha_wallet/ui/send/interactor/send_bloc.dart';
+import 'package:hypha_wallet/ui/token/token_details/token_details_page.dart';
 import 'package:intl/intl.dart';
 
 class SendSuccessBottomSheet extends StatelessWidget {
@@ -135,10 +138,16 @@ class SendSuccessBottomSheet extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 56),
-                    HyphaAppButton(
-                      title: 'Close',
-                      onPressed: () {
-                        context.read<SendBloc>().add(const SendEvent.onSendTapped());
+                    BlocBuilder<SendBloc, SendState>(
+                      builder: (context, state) {
+                        return HyphaAppButton(
+                          title: 'Close',
+                          onPressed: () {
+                            /// Navigate to home page, then to token details in the wallet page
+                            Get.offAll(() => const HyphaBottomNavigation(initialPage: 1));
+                            Get.to(TokensDetailsPage(data: state.tokenData));
+                          },
+                        );
                       },
                     )
                   ],
