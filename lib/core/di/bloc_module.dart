@@ -31,10 +31,10 @@ void _registerBlocsModule() {
         _getIt<FindAccountsUseCase>(),
         _getIt<AuthRepository>(),
       ));
-  _registerFactory(() => BottomNavigationBloc());
+  _registerFactory(() => BottomNavigationBloc(_getIt<RemoteConfigService>()));
   _registerFactory(() => ProfileBloc(
         _getIt<FetchProfileUseCase>(),
-    _getIt<AuthRepository>(),
+        _getIt<AuthRepository>(),
         _getIt<SetNameUseCase>(),
         _getIt<SetImageUseCase>(),
         _getIt<SetBioUseCase>(),

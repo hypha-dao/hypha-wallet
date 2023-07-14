@@ -11,6 +11,7 @@ import 'package:hypha_wallet/design/dividers/hypha_divider.dart';
 import 'package:hypha_wallet/design/hypha_card.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
+import 'package:hypha_wallet/ui/bottom_navigation/components/bottom_navigation_view.dart';
 import 'package:hypha_wallet/ui/bottom_navigation/hypha_bottom_navigation.dart';
 import 'package:hypha_wallet/ui/send/components/send_to_user_row.dart';
 import 'package:hypha_wallet/ui/send/interactor/send_bloc.dart';
@@ -144,7 +145,7 @@ class SendSuccessBottomSheet extends StatelessWidget {
                           title: 'Close',
                           onPressed: () {
                             /// Navigate to home page, then to token details in the wallet page
-                            Get.offAll(() => const HyphaBottomNavigation(initialPage: 1));
+                            Get.offAll(() => const HyphaBottomNavigation(initialPage: BottomNavigationPage.wallet));
                             Get.to(TokensDetailsPage(data: state.tokenData));
                           },
                         );
