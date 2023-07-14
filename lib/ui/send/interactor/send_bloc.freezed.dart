@@ -16,37 +16,43 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$PageCommand {
+  String get transactionId => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() navigateToSuccess,
+    required TResult Function(String transactionId) navigateToSendSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? navigateToSuccess,
+    TResult? Function(String transactionId)? navigateToSendSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? navigateToSuccess,
+    TResult Function(String transactionId)? navigateToSendSuccess,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_NavigateTo value) navigateToSuccess,
+    required TResult Function(_NavigateToSendSuccess value)
+        navigateToSendSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_NavigateTo value)? navigateToSuccess,
+    TResult? Function(_NavigateToSendSuccess value)? navigateToSendSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_NavigateTo value)? navigateToSuccess,
+    TResult Function(_NavigateToSendSuccess value)? navigateToSendSuccess,
     required TResult orElse(),
   }) =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $PageCommandCopyWith<PageCommand> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -55,6 +61,8 @@ abstract class $PageCommandCopyWith<$Res> {
   factory $PageCommandCopyWith(
           PageCommand value, $Res Function(PageCommand) then) =
       _$PageCommandCopyWithImpl<$Res, PageCommand>;
+  @useResult
+  $Res call({String transactionId});
 }
 
 /// @nodoc
@@ -66,67 +74,110 @@ class _$PageCommandCopyWithImpl<$Res, $Val extends PageCommand>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? transactionId = null,
+  }) {
+    return _then(_value.copyWith(
+      transactionId: null == transactionId
+          ? _value.transactionId
+          : transactionId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$_NavigateToCopyWith<$Res> {
-  factory _$$_NavigateToCopyWith(
-          _$_NavigateTo value, $Res Function(_$_NavigateTo) then) =
-      __$$_NavigateToCopyWithImpl<$Res>;
+abstract class _$$_NavigateToSendSuccessCopyWith<$Res>
+    implements $PageCommandCopyWith<$Res> {
+  factory _$$_NavigateToSendSuccessCopyWith(_$_NavigateToSendSuccess value,
+          $Res Function(_$_NavigateToSendSuccess) then) =
+      __$$_NavigateToSendSuccessCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String transactionId});
 }
 
 /// @nodoc
-class __$$_NavigateToCopyWithImpl<$Res>
-    extends _$PageCommandCopyWithImpl<$Res, _$_NavigateTo>
-    implements _$$_NavigateToCopyWith<$Res> {
-  __$$_NavigateToCopyWithImpl(
-      _$_NavigateTo _value, $Res Function(_$_NavigateTo) _then)
+class __$$_NavigateToSendSuccessCopyWithImpl<$Res>
+    extends _$PageCommandCopyWithImpl<$Res, _$_NavigateToSendSuccess>
+    implements _$$_NavigateToSendSuccessCopyWith<$Res> {
+  __$$_NavigateToSendSuccessCopyWithImpl(_$_NavigateToSendSuccess _value,
+      $Res Function(_$_NavigateToSendSuccess) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? transactionId = null,
+  }) {
+    return _then(_$_NavigateToSendSuccess(
+      null == transactionId
+          ? _value.transactionId
+          : transactionId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$_NavigateTo implements _NavigateTo {
-  const _$_NavigateTo();
+class _$_NavigateToSendSuccess implements _NavigateToSendSuccess {
+  const _$_NavigateToSendSuccess(this.transactionId);
+
+  @override
+  final String transactionId;
 
   @override
   String toString() {
-    return 'PageCommand.navigateToSuccess()';
+    return 'PageCommand.navigateToSendSuccess(transactionId: $transactionId)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_NavigateTo);
+        (other.runtimeType == runtimeType &&
+            other is _$_NavigateToSendSuccess &&
+            (identical(other.transactionId, transactionId) ||
+                other.transactionId == transactionId));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, transactionId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_NavigateToSendSuccessCopyWith<_$_NavigateToSendSuccess> get copyWith =>
+      __$$_NavigateToSendSuccessCopyWithImpl<_$_NavigateToSendSuccess>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() navigateToSuccess,
+    required TResult Function(String transactionId) navigateToSendSuccess,
   }) {
-    return navigateToSuccess();
+    return navigateToSendSuccess(transactionId);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? navigateToSuccess,
+    TResult? Function(String transactionId)? navigateToSendSuccess,
   }) {
-    return navigateToSuccess?.call();
+    return navigateToSendSuccess?.call(transactionId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? navigateToSuccess,
+    TResult Function(String transactionId)? navigateToSendSuccess,
     required TResult orElse(),
   }) {
-    if (navigateToSuccess != null) {
-      return navigateToSuccess();
+    if (navigateToSendSuccess != null) {
+      return navigateToSendSuccess(transactionId);
     }
     return orElse();
   }
@@ -134,34 +185,43 @@ class _$_NavigateTo implements _NavigateTo {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_NavigateTo value) navigateToSuccess,
+    required TResult Function(_NavigateToSendSuccess value)
+        navigateToSendSuccess,
   }) {
-    return navigateToSuccess(this);
+    return navigateToSendSuccess(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_NavigateTo value)? navigateToSuccess,
+    TResult? Function(_NavigateToSendSuccess value)? navigateToSendSuccess,
   }) {
-    return navigateToSuccess?.call(this);
+    return navigateToSendSuccess?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_NavigateTo value)? navigateToSuccess,
+    TResult Function(_NavigateToSendSuccess value)? navigateToSendSuccess,
     required TResult orElse(),
   }) {
-    if (navigateToSuccess != null) {
-      return navigateToSuccess(this);
+    if (navigateToSendSuccess != null) {
+      return navigateToSendSuccess(this);
     }
     return orElse();
   }
 }
 
-abstract class _NavigateTo implements PageCommand {
-  const factory _NavigateTo() = _$_NavigateTo;
+abstract class _NavigateToSendSuccess implements PageCommand {
+  const factory _NavigateToSendSuccess(final String transactionId) =
+      _$_NavigateToSendSuccess;
+
+  @override
+  String get transactionId;
+  @override
+  @JsonKey(ignore: true)
+  _$$_NavigateToSendSuccessCopyWith<_$_NavigateToSendSuccess> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

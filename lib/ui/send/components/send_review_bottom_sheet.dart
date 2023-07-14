@@ -5,12 +5,12 @@ import 'package:hypha_wallet/design/background/hypha_half_background.dart';
 import 'package:hypha_wallet/design/background/hypha_page_background.dart';
 import 'package:hypha_wallet/design/buttons/button_type.dart';
 import 'package:hypha_wallet/design/buttons/hypha_app_button.dart';
+import 'package:hypha_wallet/design/circle_with_icon/color_arrow_up.dart';
 import 'package:hypha_wallet/design/hypha_card.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 import 'package:hypha_wallet/ui/send/components/send_to_user_row.dart';
 import 'package:hypha_wallet/ui/send/interactor/send_bloc.dart';
-import 'package:hypha_wallet/ui/shared/components/color_arrow_up.dart';
 
 class SendReviewBottomSheet extends StatelessWidget {
   const SendReviewBottomSheet({super.key});

@@ -33,7 +33,6 @@ class SendView extends StatelessWidget {
             return HyphaSafeBottomNavigationBar(
               child: HyphaAppButton(
                 onPressed: () {
-                  // GERE
                   showModalBottomSheet(
                     isScrollControlled: true,
                     clipBehavior: Clip.hardEdge,

@@ -68,7 +68,7 @@ class WalletTransactionTile extends StatelessWidget {
               alignment: Alignment.centerLeft,
               child: Icon(
                 data.isReceived ? Icons.arrow_downward : Icons.arrow_upward,
-                color: data.isReceived ? Colors.green : HyphaColors.error,
+                color: data.isReceived ? HyphaColors.success : HyphaColors.error,
               ),
             ),
           ),

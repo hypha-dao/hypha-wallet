@@ -8,6 +8,7 @@ import 'package:hypha_wallet/core/extension/scope_functions.dart';
 import 'package:hypha_wallet/core/logging/log_helper.dart';
 import 'package:hypha_wallet/core/network/models/user_profile_data.dart';
 import 'package:hypha_wallet/ui/architecture/interactor/page_states.dart';
+import 'package:hypha_wallet/ui/architecture/result/result.dart';
 import 'package:hypha_wallet/ui/send/data/amount_percentage.dart';
 import 'package:hypha_wallet/ui/send/data/keypad_key.dart';
 import 'package:hypha_wallet/ui/send/usecases/send_token_use_case.dart';
@@ -87,10 +88,7 @@ class SendBloc extends Bloc<SendEvent, SendState> {
       );
 
       if(result.isValue) {
-        emit(state.copyWith(isSendButtonLoading: false));
-        /// Navigate to success
-        // TODO(gguij002): DOET
-        LogHelper.d('Gery: SENT SUCCESS ');
+        emit(state.copyWith(isSendButtonLoading: false, command: PageCommand.navigateToSendSuccess(result.valueOrCrash)));
       } else {
         emit(state.copyWith(isSendButtonLoading: false));
         await _errorHandlerManager.handlerError(result.asError!.error);
