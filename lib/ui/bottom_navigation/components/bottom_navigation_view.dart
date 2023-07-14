@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
+import 'package:hypha_wallet/core/network/api/services/remote_config_service.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/icons/hypha_icons.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
@@ -47,7 +49,7 @@ class BottomNavigationView extends StatelessWidget {
                     currentIndex: state.selectedPage,
                     onTap: (int index) {
                       BlocProvider.of<BottomNavigationBloc>(context).add(BottomNavigationEvent.onPageSelected(index));
-                      if (index == 4) {
+                      if (index == (GetIt.I.get<RemoteConfigService>().isWalletEnabled ? 4 : 3)) {
                         BlocProvider.of<SettingsBloc>(context).add(const SettingsEvent.onShowSettings());
                       }
                     },
@@ -56,10 +58,12 @@ class BottomNavigationView extends StatelessWidget {
                         icon: Padding(padding: EdgeInsets.only(bottom: 6), child: Icon(HyphaIcons.home_b, size: 20)),
                         label: 'Scan-QR',
                       ),
-                      const BottomNavigationBarItem(
-                        icon: Padding(padding: EdgeInsets.only(bottom: 6), child: Icon(HyphaIcons.wallet_b, size: 20)),
-                        label: 'Wallet',
-                      ),
+                      if (GetIt.I.get<RemoteConfigService>().isWalletEnabled)
+                        const BottomNavigationBarItem(
+                          icon:
+                              Padding(padding: EdgeInsets.only(bottom: 6), child: Icon(HyphaIcons.wallet_b, size: 20)),
+                          label: 'Wallet',
+                        ),
                       const BottomNavigationBarItem(
                         icon: Padding(padding: EdgeInsets.only(bottom: 6), child: Icon(HyphaIcons.history_b, size: 20)),
                         label: 'History',
@@ -82,7 +86,7 @@ class BottomNavigationView extends StatelessWidget {
               index: state.selectedPage,
               children: [
                 const HomePage(),
-                const WalletPage(),
+                if (GetIt.I.get<RemoteConfigService>().isWalletEnabled) const WalletPage(),
                 const TransactionsPage(),
                 const ProfilePage(),
                 const SettingsPage(),
