@@ -38,8 +38,8 @@ class AuthRepository {
     this._firebaseDatabaseService,
   ) {
     status.listen((AuthenticationStatus event) {
-      if(event is Authenticated) {
-       authenticateUser = event;
+      if (event is Authenticated) {
+        authenticateUser = event;
       }
     });
   }
@@ -82,7 +82,7 @@ class AuthRepository {
 
   /// This stream will represent the source of truth for the user authentication.
   Stream<AuthenticationStatus> get status async* {
-    yield* _controller.stream ;
+    yield* _controller.stream;
   }
 
   /// Use this method when we expect the auth data to be there. Anytime after auth. If the data isnt there. then crash
