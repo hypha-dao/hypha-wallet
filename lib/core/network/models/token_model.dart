@@ -4,7 +4,7 @@ class TokenModel {
   final SymbolModel symbol;
   final String contract;
 
-  TokenModel(this.symbol, this.contract);
+  TokenModel({required this.symbol, required this.contract});
 
   // "1.00 HYPHA"
   factory TokenModel.fromString(String s, String contract) {
@@ -17,6 +17,6 @@ class TokenModel {
     assert(decimals.length == 2, 'Invalid decimals string');
 
     final precision = decimals[1].length;
-    return TokenModel(SymbolModel(symbol, precision), contract);
+    return TokenModel(symbol: SymbolModel(symbol: symbol, precision: precision), contract: contract);
   }
 }

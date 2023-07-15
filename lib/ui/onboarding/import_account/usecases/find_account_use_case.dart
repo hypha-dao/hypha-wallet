@@ -1,18 +1,16 @@
-import 'package:collection/collection.dart';
 import 'package:hypha_wallet/core/crypto/eosdart/eosdart.dart';
 import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
 import 'package:hypha_wallet/core/network/api/services/remote_config_service.dart';
 import 'package:hypha_wallet/core/network/models/user_profile_data.dart';
-import 'package:hypha_wallet/core/network/repository/profile_repository.dart';
 import 'package:hypha_wallet/ui/architecture/interactor/base_usecase.dart';
 import 'package:hypha_wallet/ui/architecture/result/result.dart';
-import 'package:hypha_wallet/ui/profile/interactor/profile_data.dart';
+import 'package:hypha_wallet/ui/shared/usercases/get_user_profiles_from_accounts_use_case.dart';
 
 class FindAccountsUseCase extends InputUseCase<Result<Iterable<UserProfileData>, HyphaError>, String> {
-  final ProfileService _profileService;
   final RemoteConfigService remoteConfigService;
+  final GetUserProfilesFromAccountsUseCase getUserProfilesFromAccountsUseCase;
 
-  FindAccountsUseCase(this._profileService, this.remoteConfigService);
+  FindAccountsUseCase( this.remoteConfigService, this.getUserProfilesFromAccountsUseCase);
 
   @override
   Future<Result<Iterable<UserProfileData>, HyphaError>> run(String input) async {
@@ -43,34 +41,7 @@ class FindAccountsUseCase extends InputUseCase<Result<Iterable<UserProfileData>,
     }
 
     if (data != null) {
-      final Iterable<Future<Result<ProfileData, HyphaError>>> futures = data.accountNames.map(
-        (accountName) => _profileService.getProfile(accountName),
-      );
-
-      final List<Result<ProfileData, HyphaError>> profiles = await Future.wait(futures);
-
-      final List<UserProfileData> wtf = List.empty(growable: true);
-
-      profiles.forEachIndexed((index, response) {
-        if (response.isValue) {
-          final ProfileData profileData = response.asValue!.value;
-          wtf.add(UserProfileData(
-            accountName: profileData.account,
-            userName: profileData.name,
-            userImage: profileData.getAvatarUrl(),
-            bio: profileData.bio,
-          ));
-        } else {
-          wtf.add(UserProfileData(
-            accountName: data!.accountNames[index],
-            userName: null,
-            userImage: null,
-            bio: null,
-          ));
-        }
-      });
-
-      return Result.value(wtf);
+      return getUserProfilesFromAccountsUseCase.run(data.accountNames);
     } else {
       return Result.error(HyphaError.api('Failed to fetch accounts'));
     }

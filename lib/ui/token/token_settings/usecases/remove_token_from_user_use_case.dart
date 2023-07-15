@@ -1,14 +1,14 @@
 import 'package:hypha_wallet/core/firebase/firebase_database_service.dart';
-import 'package:hypha_wallet/core/shared_preferences/hypha_shared_prefs.dart';
+import 'package:hypha_wallet/core/network/repository/auth_repository.dart';
 
 class RemoveTokenFromUserUseCase {
   final FirebaseDatabaseService _database;
-  final HyphaSharedPrefs _appSharedPrefs;
+  final AuthRepository _authRepository;
 
-  RemoveTokenFromUserUseCase(this._database, this._appSharedPrefs);
+  RemoveTokenFromUserUseCase(this._database, this._authRepository);
 
   Future run(String tokenId) async {
-    final user = await _appSharedPrefs.getUserProfileData();
-    await _database.removeTokenFromUser(tokenId: tokenId, accountName: user!.accountName);
+    final user = _authRepository.authDataOrCrash;
+    await _database.removeTokenFromUser(tokenId: tokenId, accountName: user.userProfileData.accountName);
   }
 }
