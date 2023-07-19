@@ -8,12 +8,23 @@ class TransactionHistoryService {
   TransactionHistoryService(this.networkingManager);
 
   // TODO(Gery): This needs pagination
-  Future<Response> getTransactions(String userAccount) async {
+  Future<Response> getAllTransactions(String userAccount) async {
     final res = await networkingManager.get(Endpoints.getTransactionHistory, queryParameters: {
       'account': userAccount,
       'skip': 0,
       'limit': 100,
       'sort': 'desc',
+    });
+    return res;
+  }
+
+  Future<Response> getTransferTransactions(String userAccount) async {
+    final res = await networkingManager.get(Endpoints.getTransactionHistory, queryParameters: {
+      'account': userAccount,
+      'skip': 0,
+      'limit': 100,
+      'sort': 'desc',
+      'act.name':'transfer',
     });
     return res;
   }

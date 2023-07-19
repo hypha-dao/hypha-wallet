@@ -18,23 +18,23 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$BottomNavigationEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
+    required TResult Function(BottomNavigationPage? initialPage) initial,
     required TResult Function() clearPageCommand,
-    required TResult Function(int index) onPageSelected,
+    required TResult Function(BottomNavigationPage page) onPageSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
+    TResult? Function(BottomNavigationPage? initialPage)? initial,
     TResult? Function()? clearPageCommand,
-    TResult? Function(int index)? onPageSelected,
+    TResult? Function(BottomNavigationPage page)? onPageSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
+    TResult Function(BottomNavigationPage? initialPage)? initial,
     TResult Function()? clearPageCommand,
-    TResult Function(int index)? onPageSelected,
+    TResult Function(BottomNavigationPage page)? onPageSelected,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -86,6 +86,8 @@ abstract class _$$_InitialCopyWith<$Res> {
   factory _$$_InitialCopyWith(
           _$_Initial value, $Res Function(_$_Initial) then) =
       __$$_InitialCopyWithImpl<$Res>;
+  @useResult
+  $Res call({BottomNavigationPage? initialPage});
 }
 
 /// @nodoc
@@ -94,57 +96,82 @@ class __$$_InitialCopyWithImpl<$Res>
     implements _$$_InitialCopyWith<$Res> {
   __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? initialPage = freezed,
+  }) {
+    return _then(_$_Initial(
+      freezed == initialPage
+          ? _value.initialPage
+          : initialPage // ignore: cast_nullable_to_non_nullable
+              as BottomNavigationPage?,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_Initial implements _Initial {
-  const _$_Initial();
+  const _$_Initial(this.initialPage);
+
+  @override
+  final BottomNavigationPage? initialPage;
 
   @override
   String toString() {
-    return 'BottomNavigationEvent.initial()';
+    return 'BottomNavigationEvent.initial(initialPage: $initialPage)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Initial);
+        (other.runtimeType == runtimeType &&
+            other is _$_Initial &&
+            (identical(other.initialPage, initialPage) ||
+                other.initialPage == initialPage));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, initialPage);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_InitialCopyWith<_$_Initial> get copyWith =>
+      __$$_InitialCopyWithImpl<_$_Initial>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
+    required TResult Function(BottomNavigationPage? initialPage) initial,
     required TResult Function() clearPageCommand,
-    required TResult Function(int index) onPageSelected,
+    required TResult Function(BottomNavigationPage page) onPageSelected,
   }) {
-    return initial();
+    return initial(initialPage);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
+    TResult? Function(BottomNavigationPage? initialPage)? initial,
     TResult? Function()? clearPageCommand,
-    TResult? Function(int index)? onPageSelected,
+    TResult? Function(BottomNavigationPage page)? onPageSelected,
   }) {
-    return initial?.call();
+    return initial?.call(initialPage);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
+    TResult Function(BottomNavigationPage? initialPage)? initial,
     TResult Function()? clearPageCommand,
-    TResult Function(int index)? onPageSelected,
+    TResult Function(BottomNavigationPage page)? onPageSelected,
     required TResult orElse(),
   }) {
     if (initial != null) {
-      return initial();
+      return initial(initialPage);
     }
     return orElse();
   }
@@ -185,7 +212,12 @@ class _$_Initial implements _Initial {
 }
 
 abstract class _Initial implements BottomNavigationEvent {
-  const factory _Initial() = _$_Initial;
+  const factory _Initial(final BottomNavigationPage? initialPage) = _$_Initial;
+
+  BottomNavigationPage? get initialPage;
+  @JsonKey(ignore: true)
+  _$$_InitialCopyWith<_$_Initial> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -226,9 +258,9 @@ class _$_ClearPageCommand implements _ClearPageCommand {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
+    required TResult Function(BottomNavigationPage? initialPage) initial,
     required TResult Function() clearPageCommand,
-    required TResult Function(int index) onPageSelected,
+    required TResult Function(BottomNavigationPage page) onPageSelected,
   }) {
     return clearPageCommand();
   }
@@ -236,9 +268,9 @@ class _$_ClearPageCommand implements _ClearPageCommand {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
+    TResult? Function(BottomNavigationPage? initialPage)? initial,
     TResult? Function()? clearPageCommand,
-    TResult? Function(int index)? onPageSelected,
+    TResult? Function(BottomNavigationPage page)? onPageSelected,
   }) {
     return clearPageCommand?.call();
   }
@@ -246,9 +278,9 @@ class _$_ClearPageCommand implements _ClearPageCommand {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
+    TResult Function(BottomNavigationPage? initialPage)? initial,
     TResult Function()? clearPageCommand,
-    TResult Function(int index)? onPageSelected,
+    TResult Function(BottomNavigationPage page)? onPageSelected,
     required TResult orElse(),
   }) {
     if (clearPageCommand != null) {
@@ -302,7 +334,7 @@ abstract class _$$_OnPageSelectedCopyWith<$Res> {
           _$_OnPageSelected value, $Res Function(_$_OnPageSelected) then) =
       __$$_OnPageSelectedCopyWithImpl<$Res>;
   @useResult
-  $Res call({int index});
+  $Res call({BottomNavigationPage page});
 }
 
 /// @nodoc
@@ -316,13 +348,13 @@ class __$$_OnPageSelectedCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? index = null,
+    Object? page = null,
   }) {
     return _then(_$_OnPageSelected(
-      null == index
-          ? _value.index
-          : index // ignore: cast_nullable_to_non_nullable
-              as int,
+      null == page
+          ? _value.page
+          : page // ignore: cast_nullable_to_non_nullable
+              as BottomNavigationPage,
     ));
   }
 }
@@ -330,14 +362,14 @@ class __$$_OnPageSelectedCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_OnPageSelected implements _OnPageSelected {
-  const _$_OnPageSelected(this.index);
+  const _$_OnPageSelected(this.page);
 
   @override
-  final int index;
+  final BottomNavigationPage page;
 
   @override
   String toString() {
-    return 'BottomNavigationEvent.onPageSelected(index: $index)';
+    return 'BottomNavigationEvent.onPageSelected(page: $page)';
   }
 
   @override
@@ -345,11 +377,11 @@ class _$_OnPageSelected implements _OnPageSelected {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_OnPageSelected &&
-            (identical(other.index, index) || other.index == index));
+            (identical(other.page, page) || other.page == page));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, index);
+  int get hashCode => Object.hash(runtimeType, page);
 
   @JsonKey(ignore: true)
   @override
@@ -360,33 +392,33 @@ class _$_OnPageSelected implements _OnPageSelected {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
+    required TResult Function(BottomNavigationPage? initialPage) initial,
     required TResult Function() clearPageCommand,
-    required TResult Function(int index) onPageSelected,
+    required TResult Function(BottomNavigationPage page) onPageSelected,
   }) {
-    return onPageSelected(index);
+    return onPageSelected(page);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
+    TResult? Function(BottomNavigationPage? initialPage)? initial,
     TResult? Function()? clearPageCommand,
-    TResult? Function(int index)? onPageSelected,
+    TResult? Function(BottomNavigationPage page)? onPageSelected,
   }) {
-    return onPageSelected?.call(index);
+    return onPageSelected?.call(page);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
+    TResult Function(BottomNavigationPage? initialPage)? initial,
     TResult Function()? clearPageCommand,
-    TResult Function(int index)? onPageSelected,
+    TResult Function(BottomNavigationPage page)? onPageSelected,
     required TResult orElse(),
   }) {
     if (onPageSelected != null) {
-      return onPageSelected(index);
+      return onPageSelected(page);
     }
     return orElse();
   }
@@ -427,9 +459,10 @@ class _$_OnPageSelected implements _OnPageSelected {
 }
 
 abstract class _OnPageSelected implements BottomNavigationEvent {
-  const factory _OnPageSelected(final int index) = _$_OnPageSelected;
+  const factory _OnPageSelected(final BottomNavigationPage page) =
+      _$_OnPageSelected;
 
-  int get index;
+  BottomNavigationPage get page;
   @JsonKey(ignore: true)
   _$$_OnPageSelectedCopyWith<_$_OnPageSelected> get copyWith =>
       throw _privateConstructorUsedError;
@@ -439,7 +472,8 @@ abstract class _OnPageSelected implements BottomNavigationEvent {
 mixin _$BottomNavigationState {
   PageState get pageState => throw _privateConstructorUsedError;
   PageCommand? get command => throw _privateConstructorUsedError;
-  int get selectedPage => throw _privateConstructorUsedError;
+  List<BottomNavigationPage> get allPages => throw _privateConstructorUsedError;
+  BottomNavigationPage get selectedPage => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $BottomNavigationStateCopyWith<BottomNavigationState> get copyWith =>
@@ -452,7 +486,11 @@ abstract class $BottomNavigationStateCopyWith<$Res> {
           $Res Function(BottomNavigationState) then) =
       _$BottomNavigationStateCopyWithImpl<$Res, BottomNavigationState>;
   @useResult
-  $Res call({PageState pageState, PageCommand? command, int selectedPage});
+  $Res call(
+      {PageState pageState,
+      PageCommand? command,
+      List<BottomNavigationPage> allPages,
+      BottomNavigationPage selectedPage});
 
   $PageCommandCopyWith<$Res>? get command;
 }
@@ -473,6 +511,7 @@ class _$BottomNavigationStateCopyWithImpl<$Res,
   $Res call({
     Object? pageState = null,
     Object? command = freezed,
+    Object? allPages = null,
     Object? selectedPage = null,
   }) {
     return _then(_value.copyWith(
@@ -484,10 +523,14 @@ class _$BottomNavigationStateCopyWithImpl<$Res,
           ? _value.command
           : command // ignore: cast_nullable_to_non_nullable
               as PageCommand?,
+      allPages: null == allPages
+          ? _value.allPages
+          : allPages // ignore: cast_nullable_to_non_nullable
+              as List<BottomNavigationPage>,
       selectedPage: null == selectedPage
           ? _value.selectedPage
           : selectedPage // ignore: cast_nullable_to_non_nullable
-              as int,
+              as BottomNavigationPage,
     ) as $Val);
   }
 
@@ -512,7 +555,11 @@ abstract class _$$_BottomNavigationStateCopyWith<$Res>
       __$$_BottomNavigationStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({PageState pageState, PageCommand? command, int selectedPage});
+  $Res call(
+      {PageState pageState,
+      PageCommand? command,
+      List<BottomNavigationPage> allPages,
+      BottomNavigationPage selectedPage});
 
   @override
   $PageCommandCopyWith<$Res>? get command;
@@ -531,6 +578,7 @@ class __$$_BottomNavigationStateCopyWithImpl<$Res>
   $Res call({
     Object? pageState = null,
     Object? command = freezed,
+    Object? allPages = null,
     Object? selectedPage = null,
   }) {
     return _then(_$_BottomNavigationState(
@@ -542,34 +590,50 @@ class __$$_BottomNavigationStateCopyWithImpl<$Res>
           ? _value.command
           : command // ignore: cast_nullable_to_non_nullable
               as PageCommand?,
+      allPages: null == allPages
+          ? _value._allPages
+          : allPages // ignore: cast_nullable_to_non_nullable
+              as List<BottomNavigationPage>,
       selectedPage: null == selectedPage
           ? _value.selectedPage
           : selectedPage // ignore: cast_nullable_to_non_nullable
-              as int,
+              as BottomNavigationPage,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_BottomNavigationState implements _BottomNavigationState {
+class _$_BottomNavigationState extends _BottomNavigationState {
   const _$_BottomNavigationState(
       {this.pageState = PageState.initial,
       this.command,
-      this.selectedPage = 0});
+      final List<BottomNavigationPage> allPages = const [],
+      this.selectedPage = BottomNavigationPage.home})
+      : _allPages = allPages,
+        super._();
 
   @override
   @JsonKey()
   final PageState pageState;
   @override
   final PageCommand? command;
+  final List<BottomNavigationPage> _allPages;
   @override
   @JsonKey()
-  final int selectedPage;
+  List<BottomNavigationPage> get allPages {
+    if (_allPages is EqualUnmodifiableListView) return _allPages;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_allPages);
+  }
+
+  @override
+  @JsonKey()
+  final BottomNavigationPage selectedPage;
 
   @override
   String toString() {
-    return 'BottomNavigationState(pageState: $pageState, command: $command, selectedPage: $selectedPage)';
+    return 'BottomNavigationState(pageState: $pageState, command: $command, allPages: $allPages, selectedPage: $selectedPage)';
   }
 
   @override
@@ -580,13 +644,14 @@ class _$_BottomNavigationState implements _BottomNavigationState {
             (identical(other.pageState, pageState) ||
                 other.pageState == pageState) &&
             (identical(other.command, command) || other.command == command) &&
+            const DeepCollectionEquality().equals(other._allPages, _allPages) &&
             (identical(other.selectedPage, selectedPage) ||
                 other.selectedPage == selectedPage));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, pageState, command, selectedPage);
+  int get hashCode => Object.hash(runtimeType, pageState, command,
+      const DeepCollectionEquality().hash(_allPages), selectedPage);
 
   @JsonKey(ignore: true)
   @override
@@ -596,18 +661,22 @@ class _$_BottomNavigationState implements _BottomNavigationState {
           this, _$identity);
 }
 
-abstract class _BottomNavigationState implements BottomNavigationState {
+abstract class _BottomNavigationState extends BottomNavigationState {
   const factory _BottomNavigationState(
       {final PageState pageState,
       final PageCommand? command,
-      final int selectedPage}) = _$_BottomNavigationState;
+      final List<BottomNavigationPage> allPages,
+      final BottomNavigationPage selectedPage}) = _$_BottomNavigationState;
+  const _BottomNavigationState._() : super._();
 
   @override
   PageState get pageState;
   @override
   PageCommand? get command;
   @override
-  int get selectedPage;
+  List<BottomNavigationPage> get allPages;
+  @override
+  BottomNavigationPage get selectedPage;
   @override
   @JsonKey(ignore: true)
   _$$_BottomNavigationStateCopyWith<_$_BottomNavigationState> get copyWith =>

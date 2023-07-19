@@ -9,6 +9,6 @@ class WalletState with _$WalletState {
     PageCommand? command,
     @Default(true) bool loadingTransaction,
     @Default([]) List<WalletTokenData> tokens,
-    @Default([]) List<TransactionModel> recentTransactions,
+    @Default([]) List<WalletTransactionTileData> recentTransactions,
   }) = _WalletState;
 }

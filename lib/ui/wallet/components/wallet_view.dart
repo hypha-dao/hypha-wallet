@@ -82,7 +82,7 @@ class WalletView extends StatelessWidget {
                     _UserTokensList(tokens: tokens),
                     const SizedBox(height: 24),
                     BlocBuilder<WalletBloc, WalletState>(
-                      builder: (context, state) {
+                      builder: (context, WalletState state) {
                         return RecentTransactionsView(
                           loadingTransaction: state.loadingTransaction,
                           recentTransactions: state.recentTransactions,

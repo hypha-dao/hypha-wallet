@@ -5,15 +5,16 @@ class HyphaHalfBackground extends StatelessWidget {
   final Color? backgroundColor;
   final Widget? child;
   final bool showTopBar;
+  final double? height;
 
-  const HyphaHalfBackground({super.key, this.backgroundColor, this.child, required this.showTopBar});
+  const HyphaHalfBackground({super.key, this.backgroundColor, this.child, required this.showTopBar, this.height});
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
         Container(
-          height: 170,
+          height: height ?? 170,
           width: double.infinity,
           decoration: BoxDecoration(
             color: backgroundColor,

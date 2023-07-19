@@ -74,6 +74,7 @@ class RemoteConfigService {
   }
 
   bool get isSignUpEnabled => FirebaseRemoteConfig.instance.getBool('signUpEnabled');
+  bool get isWalletEnabled => FirebaseRemoteConfig.instance.getBool('walletEnabled');
 
   // PPP Profile Service Backend
   String get profileServiceEndpoint => FirebaseRemoteConfig.instance.getString('profileServiceEndpoint');
@@ -167,6 +168,7 @@ class RemoteConfigService {
         'region': 'us-east-1',
       }),
       'signUpEnabled': false,
+      'walletEnabled': false,
     });
     FirebaseRemoteConfig.instance.onConfigUpdated.listen((event) async {
       await FirebaseRemoteConfig.instance.activate();

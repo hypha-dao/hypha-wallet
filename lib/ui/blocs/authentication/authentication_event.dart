@@ -7,6 +7,8 @@ class AuthenticationEvent with _$AuthenticationEvent {
   const factory AuthenticationEvent.authenticationStatusChanged(AuthenticationStatus status) =
       _AuthenticationStatusChanged;
 
+  const factory AuthenticationEvent.attemptToAuthenticate() =_AttemptToAuthenticate;
+
   const factory AuthenticationEvent.onFCMTokenChanged(String token) = _OnFCMTokenChanged;
 
   const factory AuthenticationEvent.authenticationLogoutRequested() = _AuthenticationLogoutRequested;

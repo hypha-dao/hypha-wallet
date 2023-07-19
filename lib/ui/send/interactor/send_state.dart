@@ -7,8 +7,19 @@ class SendState with _$SendState {
   const factory SendState({
     @Default(PageState.initial) PageState pageState,
     PageCommand? command,
-    @Default('0') String userEnteredAmount,
+    @Default(null) String? userEnteredAmount,
+    @Default(null) String? memo,
     required UserProfileData receiverUser,
     required WalletTokenData tokenData,
+    @Default(false) bool isSendButtonLoading,
   }) = _SendState;
+
+  bool get isSubmitEnabled {
+    final parsedAmount = double.tryParse(userEnteredAmount ?? '0') ?? 0;
+    return parsedAmount > 0 && parsedAmount <= (tokenData.userOwnedAmount ?? 0);
+  }
+
+  String get formattedAmount {
+    return userEnteredAmount?.let((it) => double.tryParse(it)?.toStringAsFixed(tokenData.precision) ?? it) ?? '0';
+  }
 }

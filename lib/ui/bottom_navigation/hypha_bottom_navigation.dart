@@ -5,12 +5,13 @@ import 'package:hypha_wallet/ui/bottom_navigation/components/bottom_navigation_v
 import 'package:hypha_wallet/ui/bottom_navigation/interactor/bottom_navigation_bloc.dart';
 
 class HyphaBottomNavigation extends StatelessWidget {
-  const HyphaBottomNavigation({super.key});
+  final BottomNavigationPage? initialPage;
+  const HyphaBottomNavigation({super.key, this.initialPage});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => GetIt.I.get<BottomNavigationBloc>()..add(const BottomNavigationEvent.initial()),
+      create: (context) => GetIt.I.get<BottomNavigationBloc>()..add(BottomNavigationEvent.initial(initialPage)),
       child: BlocListener<BottomNavigationBloc, BottomNavigationState>(
         listenWhen: (previous, current) => previous.command != current.command,
         listener: (context, state) {
