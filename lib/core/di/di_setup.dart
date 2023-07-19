@@ -18,6 +18,7 @@ import 'package:hypha_wallet/core/network/api/aws_amplify/amplify_service.dart';
 import 'package:hypha_wallet/core/network/api/aws_amplify/profile_upload_repository.dart';
 import 'package:hypha_wallet/core/network/api/eos_service.dart';
 import 'package:hypha_wallet/core/network/api/hypha_member_service.dart';
+import 'package:hypha_wallet/core/network/api/services/invite_service.dart';
 import 'package:hypha_wallet/core/network/api/services/remote_config_service.dart';
 import 'package:hypha_wallet/core/network/api/services/sign_transaction_callback_service.dart';
 import 'package:hypha_wallet/core/network/api/services/token_service.dart';
