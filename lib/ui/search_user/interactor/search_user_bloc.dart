@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
+import 'package:hypha_wallet/core/network/api/services/remote_config_service.dart';
 import 'package:hypha_wallet/core/network/models/user_profile_data.dart';
 import 'package:hypha_wallet/ui/architecture/interactor/page_states.dart';
 import 'package:hypha_wallet/ui/architecture/result/result.dart';
@@ -32,16 +33,18 @@ class SearchUserBloc extends Bloc<SearchUserEvent, SearchUserState> {
 
   /// Debounce to avoid making search network calls each time the user types
   /// switchMap: To remove the previous event. Every time a new Stream is created, the previous Stream is discarded.
-  Stream<_OnSearchQueryChanged> _transformEvents(
-      Stream<_OnSearchQueryChanged> events, Stream<_OnSearchQueryChanged> Function(_OnSearchQueryChanged) transitionFn) {
+  Stream<_OnSearchQueryChanged> _transformEvents(Stream<_OnSearchQueryChanged> events,
+      Stream<_OnSearchQueryChanged> Function(_OnSearchQueryChanged) transitionFn) {
     return events.debounceTime(const Duration(milliseconds: 300)).switchMap(transitionFn);
   }
 
   Future<void> _onSearchQueryChanged(_OnSearchQueryChanged event, Emitter<SearchUserState> emit) async {
     emit(state.copyWith(pageState: PageState.loading, showClearIcon: event.query.isNotEmpty));
     if (event.query.length > _minTextLengthBeforeValidSearch) {
-      final Result<List<UserProfileData>, HyphaError> results = await searchForMemberUseCase.run(event.query.toLowerCase());
-      if(results.isValue) {
+      final searchNetwork = Networks.telos; // TODO(Gery): This needs to be the account's network
+      final Result<List<UserProfileData>, HyphaError> results =
+          await searchForMemberUseCase.run(event.query.toLowerCase(), searchNetwork);
+      if (results.isValue) {
         emit(state.copyWith(users: results.asValue!.value, pageState: PageState.success));
       } else {
         emit(state.copyWith(pageState: PageState.failure));
