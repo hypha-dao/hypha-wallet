@@ -72,6 +72,16 @@ class RemoteConfigService {
     return networkConfig['inviteContract'];
   }
 
+  String payCpuContract({Networks? network}) {
+    final networkConfig = _getNetworkConfig(network: network);
+    return networkConfig['payCpuContract'];
+  }
+
+  String daoContract({Networks? network}) {
+    final networkConfig = _getNetworkConfig(network: network);
+    return networkConfig['daoContract'];
+  }
+
   bool get isSignUpEnabled => FirebaseRemoteConfig.instance.getBool('signUpEnabled');
   bool get isWalletEnabled => FirebaseRemoteConfig.instance.getBool('walletEnabled');
 
@@ -100,9 +110,11 @@ class RemoteConfigService {
           'endpoint': 'https://mainnet.telos.net',
           'fastEndpoint': 'https://mainnet.telos.net',
           'loginContract': 'eosio.login',
-          'inviteContract': 'join.hypha',
           'loginAction': 'loginuser',
           'logoutAction': 'deletelogin',
+          'inviteContract': 'join.hypha',
+          'payCpuContract': 'paycpu.hypha',
+          'daoContract': 'dao.hypha',
           'graphQlEndpoint': 'https://alpha-dhomn.tekit.io/graphql'
         },
         'telosTestnet': {
@@ -110,9 +122,11 @@ class RemoteConfigService {
           'endpoint': 'https://testnet.telos.net',
           'fastEndpoint': 'https://testnet.telos.net',
           'loginContract': 'eosio.login',
-          'inviteContract': 'joinhypha111',
           'loginAction': 'loginuser',
           'logoutAction': 'deletelogin',
+          'inviteContract': 'joinhypha111',
+          'payCpuContract': 'paycpuxhypha',
+          'daoContract': 'mtdhoxhyphaa',
           'graphQlEndpoint': 'https://alpha-stts.tekit.io/graphql'
         },
         'eos': {
@@ -120,20 +134,24 @@ class RemoteConfigService {
           'endpoint': 'https://eos.greymass.com',
           'fastEndpoint': 'https://eos.greymass.com',
           'loginContract': 'eosio.login',
-          'inviteContract': 'join.hypha',
           'loginAction': 'loginuser',
           'logoutAction': 'deletelogin',
-          'graphQlEndpoint': ''
+          'inviteContract': 'join.hypha',
+          'payCpuContract': 'paycpu.hypha',
+          'daoContract': 'dao.hypha',
+          'graphQlEndpoint': 'https://nameless-brook-400051.eu-central-1.aws.cloud.dgraph.io/graphql'
         },
         'eosTestnet': {
           'name': 'Jungle4 Testnet',
           'endpoint': 'https://jungle4.dfuse.eosnation.io',
           'fastEndpoint': 'https://jungle4.dfuse.eosnation.io',
           'loginContract': 'eosio.login',
-          'inviteContract': 'joinxhypha11',
           'loginAction': 'loginuser',
           'logoutAction': 'deletelogin',
-          'graphQlEndpoint': ''
+          'inviteContract': 'joinxhypha11',
+          'payCpuContract': 'paycpuxhypha',
+          'daoContract': 'dao.hypha',
+          'graphQlEndpoint': 'https://nameless-brook-400226.eu-central-1.aws.cloud.dgraph.io/graphql'
         }
       }),
       'accountCreatorEndpoint': 'http://34.236.29.152:9108',
