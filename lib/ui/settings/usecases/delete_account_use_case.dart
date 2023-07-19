@@ -14,7 +14,7 @@ class DeleteAccountUseCase {
 
     try {
       /// 1 - Delete profile service account
-      await _amplifyService.loginUser(accountName);
+      await _amplifyService.profileServiceLoginUser(accountName);
       final res = await _amplifyService.deleteAccount();
 
       if (res) {

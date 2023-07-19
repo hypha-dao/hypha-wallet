@@ -44,7 +44,7 @@ void _registerUseCasesModule() {
       _getIt<TokenService>(),
     ),
   );
-  _registerFactory(() => SetNameUseCase(_getIt<AmplifyService>()));
+  _registerFactory(() => SetNameUseCase(_getIt<AmplifyService>(), _getIt<ProfileLoginUseCase>()));
   _registerFactory(() => SetImageUseCase(_getIt<AmplifyService>(), _getIt<ProfileLoginUseCase>()));
   _registerFactory(() => SetBioUseCase(_getIt<AmplifyService>(), _getIt<ProfileLoginUseCase>()));
   _registerFactory(() => RemoveAvatarUseCase(_getIt<AmplifyService>(), _getIt<ProfileLoginUseCase>()));

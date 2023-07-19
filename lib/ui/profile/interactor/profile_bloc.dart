@@ -69,7 +69,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
 
   FutureOr<void> _setName(_SetName event, Emitter<ProfileState> emit) async {
     emit(state.copyWith(showUpdateBioLoading: true));
-    final result = await _setNameUseCase.run(event.name);
+    final result = await _setNameUseCase.run(accountName: state.profileData!.account, name: event.name);
     if (result.isValue) {
       emit(
         state.copyWith(
