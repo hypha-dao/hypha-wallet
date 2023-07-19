@@ -144,28 +144,6 @@ class RemoteConfigService {
         'eos': pppConfig.getProfileSeriviceConfig(Networks.eos),
         'eosTestnet': pppConfig.getProfileSeriviceConfig(Networks.eosTestnet),
       }),
-      'pppService': json.encode({
-        // DEPRECATED - use profileService above
-        'awsProfileServiceEndpoint':
-            'https://ttac1sv2yj.execute-api.us-east-1.amazonaws.com/prod', // PPP Prod Sebastian
-        'identityPoolId': 'us-east-1:58bf768c-7607-41eb-b512-78314549d61b', // PPP prod
-        'userPoolId': 'us-east-1_9voNzsQ2J',
-        'clientId': '6a2p1a1jsei5ttp3t3vro1f0c5',
-        'pppOriginAppId': '9b833d70-46f6-11ea-a689-e5b7f4a9b462',
-        'region': 'us-east-1',
-        's3Bucket': 'ppp-service-prod-attachmentsbucket-1qc5rzodik7x6',
-        's3Region': 'us-east-1',
-      }),
-      'pppServiceNEW': json.encode({
-        // NEW profile serivce
-        'awsProfileServiceEndpoint':
-            'https://nfjlqism6i.execute-api.us-east-1.amazonaws.com/dev', // PPP service Aleksandar
-        'identityPoolId': 'us-east-1:b57a53c2-f77d-44d5-9656-15b40da6004d',
-        'userPoolId': 'us-east-1_BNGTP2fup',
-        'clientId': '6mufhii0pab2392b6muvtiv8k8',
-        'pppOriginAppId': '9b833d70-46f6-11ea-a689-e5b7f4a9b462',
-        'region': 'us-east-1',
-      }),
       'signUpEnabled': false,
       'walletEnabled': false,
     });
