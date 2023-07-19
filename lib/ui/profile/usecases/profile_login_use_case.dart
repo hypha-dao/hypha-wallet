@@ -10,7 +10,7 @@ class ProfileLoginUseCase {
   Future<Result<bool, HyphaError>> run(String accountName) async {
     try {
       // ignore: unused_local_variable
-      final res = await _amplifyService.loginUser(accountName);
+      final res = await _amplifyService.profileServiceLoginUser(accountName);
       return Result.value(true);
     } catch (error) {
       print('ProfileLoginUseCase error $error');
