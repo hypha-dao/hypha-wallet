@@ -22,7 +22,6 @@ class RemoteConfigService {
 
   Map<String, dynamic> _pppService({Networks? network}) {
     network = network ?? _defaultNetwork;
-    print('ppp service for ${network.name}: ${_getMap('profileService')[network.name]}');
     return _getMap('profileService')[network.name];
   }
 
