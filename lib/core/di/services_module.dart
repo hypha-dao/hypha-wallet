@@ -7,6 +7,8 @@ Future<void> _registerServicesModule() async {
 
   /// DIO
   _registerLazySingleton(() => Dio());
+
+  // TODO: Only remaining hard-coded reference to Telos - I guess we can't create NetworkingManager with base URL since the base URL depends on the network?
   _registerLazySingleton(() => NetworkingManager(_getIt<RemoteConfigService>().baseUrl(network: Network.telos)));
 
   /// Secure Storage
