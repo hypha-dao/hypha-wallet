@@ -7,7 +7,7 @@ Future<void> _registerServicesModule() async {
 
   /// DIO
   _registerLazySingleton(() => Dio());
-  _registerLazySingleton(() => NetworkingManager(_getIt<RemoteConfigService>().baseUrl()));
+  _registerLazySingleton(() => NetworkingManager(_getIt<RemoteConfigService>().baseUrl(network: Network.telos)));
 
   /// Secure Storage
   _registerLazySingleton(() => const FlutterSecureStorage());

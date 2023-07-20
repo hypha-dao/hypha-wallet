@@ -1,5 +1,6 @@
 import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
 import 'package:hypha_wallet/core/network/api/aws_amplify/amplify_service.dart';
+import 'package:hypha_wallet/core/network/api/services/remote_config_service.dart';
 import 'package:hypha_wallet/ui/architecture/result/result.dart';
 
 class PPPSignUpUseCase {
@@ -7,10 +8,10 @@ class PPPSignUpUseCase {
 
   PPPSignUpUseCase(this._amplifyService);
 
-  Future<Result<bool, HyphaError>> run(String accountName) async {
+  Future<Result<bool, HyphaError>> run(String accountName, Network network) async {
     try {
       // ignore: unused_local_variable
-      final res = await _amplifyService.signUp(accountName);
+      final res = await _amplifyService.signUp(accountName, network);
       return Result.value(true);
     } catch (error) {
       print('PPPSignUpUseCase error $error');

@@ -67,18 +67,25 @@ class AuthRepository {
         publicKey: userAuthData.publicKey.toString(),
       );
 
+      final network = Network.fromString(inviteLinkData.chain);
+
       _saveUserData(
         UserProfileData(
           accountName: accountName,
           userName: userName,
-          network: Network.fromString(inviteLinkData.chain),
+          network: network,
         ),
         userAuthData,
         false,
       );
 
       print('create ppp account for $accountName with image ${image?.path}');
-      await _uploadRepository.scheduleUpload(accountName: accountName, userName: userName, fileName: image?.path);
+      await _uploadRepository.scheduleUpload(
+        accountName: accountName,
+        network: network,
+        userName: userName,
+        fileName: image?.path,
+      );
       unawaited(_uploadRepository.start());
 
       return true;

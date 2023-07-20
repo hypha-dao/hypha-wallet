@@ -1,5 +1,6 @@
 import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
 import 'package:hypha_wallet/core/network/api/aws_amplify/amplify_service.dart';
+import 'package:hypha_wallet/core/network/api/services/remote_config_service.dart';
 import 'package:hypha_wallet/core/network/repository/auth_repository.dart';
 import 'package:hypha_wallet/ui/architecture/result/result.dart';
 
@@ -9,13 +10,13 @@ class DeleteAccountUseCase {
 
   DeleteAccountUseCase(this._amplifyService, this._authRepository);
 
-  Future<Result<bool, HyphaError>> run(String accountName) async {
+  Future<Result<bool, HyphaError>> run(String accountName, Network network) async {
     print('Delete Account: $accountName');
 
     try {
       /// 1 - Delete profile service account
-      await _amplifyService.profileServiceLoginUser(accountName);
-      final res = await _amplifyService.deleteAccount();
+      await _amplifyService.profileServiceLoginUser(accountName, network);
+      final res = await _amplifyService.deleteAccount(network);
 
       if (res) {
         /// 2 - logout and delete local data

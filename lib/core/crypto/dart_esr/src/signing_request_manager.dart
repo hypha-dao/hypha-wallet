@@ -812,6 +812,7 @@ extension HyphaSigningRequestManager on SigningRequestManager {
   static Network resolveNetwork(List<dynamic> chainId) {
     if (chainId[0] == 'chain_alias') {
       // chain_alias officially only supports EOS mainnet, and Telos mainnet, as 1, and 2.
+      // Also supports others but we don't suppor those
       if (chainId[1] == 1) {
         return Network.eos;
       } else if (chainId[1] == 2) {

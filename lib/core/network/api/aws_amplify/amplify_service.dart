@@ -22,18 +22,18 @@ class AmplifyService {
   final EOSService eosService;
   final NetworkingManager networkingManager;
 
-  CognitoUserPool get userPool => CognitoUserPool(
-        remoteConfigService.userPoolId,
-        remoteConfigService.clientId,
+  CognitoUserPool userPool(Network network) => CognitoUserPool(
+        remoteConfigService.userPoolId(network),
+        remoteConfigService.clientId(network),
       );
   CognitoUser? cognitoUser;
   CognitoUserSession? session;
 
   RemoteConfigService get remoteConfigService => eosService.remoteConfigService;
-  String get awsLambdaEndpoint => remoteConfigService.awsProfileServiceEndpoint;
-  String get awsLambdaRegion => remoteConfigService.pppRegion;
-  String get s3Bucket => remoteConfigService.pppS3Bucket;
-  String get s3Region => remoteConfigService.pppS3Region;
+  String awsLambdaEndpoint(Network network) => remoteConfigService.awsProfileServiceEndpoint(network);
+  String awsLambdaRegion(Network network) => remoteConfigService.pppRegion(network);
+  String s3Bucket(Network network) => remoteConfigService.pppS3Bucket(network);
+  String s3Region(Network network) => remoteConfigService.pppS3Region(network);
 
   AmplifyService(this.eosService, this.networkingManager);
 
@@ -68,14 +68,14 @@ class AmplifyService {
     return attributes;
   }
 
-  Future<dynamic> signUp(String accountName, {String? name}) async {
+  Future<dynamic> signUp(String accountName, Network network, {String? name}) async {
     final List<AttributeArg> userAttributes = [];
     if (name != null) {
       userAttributes.add(AttributeArg(name: 'name', value: name));
     }
     try {
       final randomPassword = getRandomString(20);
-      final result = await userPool.signUp(
+      final result = await userPool(network).signUp(
         accountName,
         randomPassword,
         userAttributes: userAttributes,
@@ -97,7 +97,7 @@ class AmplifyService {
     cognitoUser = null;
   }
 
-  Future<bool> profileServiceLoginUser(String accountName, {bool isSignUp = false}) async {
+  Future<bool> profileServiceLoginUser(String accountName, Network network, {bool isSignUp = false}) async {
     if (session != null && session!.isValid()) {
       print('already logged in');
       return true;
@@ -105,7 +105,7 @@ class AmplifyService {
     if (isSignUp) {
       try {
         // ignore: unused_local_variable
-        final res = await signUp(accountName);
+        final res = await signUp(accountName, network);
         print('signup res: $res');
       } catch (error) {
         print('error signing up: $error');
@@ -116,7 +116,7 @@ class AmplifyService {
 
     cognitoUser = CognitoUser(
       accountName,
-      userPool,
+      userPool(network),
     );
     cognitoUser!.authenticationFlowType = 'CUSTOM_AUTH';
 
@@ -147,7 +147,7 @@ class AmplifyService {
 
       // handle CUSTOM_CHALLENGE challenge
       final loginCode = e.challengeParameters['loginCode'];
-      await eosService.loginWithCode(accountName: accountName, loginCode: loginCode, network: Network.telos);
+      await eosService.loginWithCode(accountName: accountName, loginCode: loginCode, network: network);
       print('return challenge $loginCode');
       session = await cognitoUser!.sendCustomChallengeAnswer(loginCode);
 
@@ -170,7 +170,7 @@ class AmplifyService {
   ///
   /// register method is used to modify any user attributes such as name, bio, etc
   ///
-  Future<dynamic> register(Map<String, dynamic> pppData) async {
+  Future<dynamic> register(Map<String, dynamic> pppData, Network network) async {
     final result = await _request(
       path: 'register',
       body: <String, dynamic>{
@@ -178,15 +178,16 @@ class AmplifyService {
         'originAppId': remoteConfigService.pppOriginAppId,
         'appData': {},
       },
+      network: network,
     );
     return result;
   }
 
   // maybe try to cache credentials?
-  Future<CognitoCredentials> getCredentials() async {
+  Future<CognitoCredentials> getCredentials(Network network) async {
     final credentials = CognitoCredentials(
-      remoteConfigService.identityPoolId,
-      userPool,
+      remoteConfigService.identityPoolId(network),
+      userPool(network),
     );
     await credentials.getAwsCredentials(session?.getIdToken().getJwtToken());
     return credentials;
@@ -198,13 +199,14 @@ class AmplifyService {
     Map<String, String>? headers,
     Map<String, String>? queryParams,
     CognitoCredentials? credentials,
+    required Network network,
   }) async {
-    final String region = awsLambdaRegion;
-    credentials ??= await getCredentials();
+    final String region = awsLambdaRegion(network);
+    credentials ??= await getCredentials(network);
     return awsAuthenticatedRequest(
       credentials: credentials,
       awsRegion: region,
-      endpoint: awsLambdaEndpoint,
+      endpoint: awsLambdaEndpoint(network),
       path: path,
       body: body,
       headers: headers,
@@ -212,49 +214,61 @@ class AmplifyService {
     );
   }
 
-  Future<dynamic> setName(String name) async {
-    return register({
-      'publicData': {
-        'name': name,
+  Future<dynamic> setName(String name, Network network) async {
+    return register(
+      {
+        'publicData': {
+          'name': name,
+        },
+        'appData': {},
       },
-      'appData': {},
-    });
+      network,
+    );
   }
 
-  Future<dynamic> setBio(String bio) async {
-    return register({
-      'publicData': {
-        'bio': bio,
+  Future<dynamic> setBio(String bio, Network network) async {
+    return register(
+      {
+        'publicData': {
+          'bio': bio,
+        },
+        'appData': {},
       },
-      'appData': {},
-    });
+      network,
+    );
   }
 
-  Future<dynamic> removeAvatar() async {
-    return register({
-      'publicData': {
-        'avatar': null,
+  Future<dynamic> removeAvatar(Network network) async {
+    return register(
+      {
+        'publicData': {
+          'avatar': null,
+        },
+        'appData': {},
       },
-      'appData': {},
-    });
+      network,
+    );
   }
 
-  Future<bool> deleteAccount() async {
+  Future<bool> deleteAccount(Network network) async {
     if (cognitoUser == null) {
       throw 'Log in before calling deleteAccount';
     }
     bool userDeleted = false;
     try {
       // delete all user personal data - needed for our public access get account service
-      await register({
-        'publicData': {
-          'avatar': null,
-          'bio': null,
-          'name': null,
-          'deleted': true,
+      await register(
+        {
+          'publicData': {
+            'avatar': null,
+            'bio': null,
+            'name': null,
+            'deleted': true,
+          },
+          'appData': {},
         },
-        'appData': {},
-      });
+        network,
+      );
       // delete the user
       userDeleted = await cognitoUser!.deleteUser();
     } catch (e) {
@@ -264,53 +278,62 @@ class AmplifyService {
     return userDeleted;
   }
 
-  Future<dynamic> setS3Identity(String s3Identity) async {
-    return register({
-      'publicData': {
-        's3Identity': s3Identity,
+  Future<dynamic> setS3Identity(String s3Identity, Network network) async {
+    return register(
+      {
+        'publicData': {
+          's3Identity': s3Identity,
+        },
+        'appData': {},
       },
-      'appData': {},
-    });
+      network,
+    );
   }
 
   Future<dynamic> initializeProfile(
-      {required String name, required String s3Identity, String? bio, String? avatar}) async {
-    return register({
-      'publicData': {
-        'name': name,
-        's3Identity': s3Identity,
-        if (bio != null) ...{
-          'bio': bio,
+      {required String name, required String s3Identity, String? bio, String? avatar, required Network network}) async {
+    return register(
+      {
+        'publicData': {
+          'name': name,
+          's3Identity': s3Identity,
+          if (bio != null) ...{
+            'bio': bio,
+          },
+          if (avatar != null) ...{
+            'avatar': avatar,
+          },
         },
-        if (avatar != null) ...{
-          'avatar': avatar,
-        },
+        'appData': {},
+        'emailAddress': 'not-real-email-${getRandomString(10)}@notrealemailxxx1.io',
       },
-      'appData': {},
-      'emailAddress': 'not-real-email-${getRandomString(10)}@notrealemailxxx1.io',
-    });
+      network,
+    );
   }
 
-  Future<dynamic> setPicture(File image, String fileName) async {
+  Future<dynamic> setPicture(File image, String fileName, Network network) async {
     try {
-      final credentials = await getCredentials();
+      final credentials = await getCredentials(network);
 
       final res = await _postImage(
         credentials: credentials,
         image: image,
         fileName: fileName,
-        s3Region: s3Region,
-        s3Bucket: s3Bucket,
+        s3Region: s3Region(network),
+        s3Bucket: s3Bucket(network),
       );
 
       print('post image finished: $res ');
 
-      final res2 = await register({
-        'publicData': {
-          'avatar': fileName,
+      final res2 = await register(
+        {
+          'publicData': {
+            'avatar': fileName,
+          },
+          'appData': {},
         },
-        'appData': {},
-      });
+        network,
+      );
       return res2;
     } catch (error) {
       print('Error posting image: $error');

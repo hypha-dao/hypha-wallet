@@ -50,7 +50,7 @@ mixin MockUseCase {
 class MockSignupUseCase extends PPPSignUpUseCase with MockUseCase {
   MockSignupUseCase(super.amplifyService);
   @override
-  Future<Result<bool, HyphaError>> run(String accountName) async {
+  Future<Result<bool, HyphaError>> run(String accountName, Network network) async {
     return genericRun();
   }
 }
@@ -58,7 +58,7 @@ class MockSignupUseCase extends PPPSignUpUseCase with MockUseCase {
 class MockProfileLoginUseCase extends ProfileLoginUseCase with MockUseCase {
   MockProfileLoginUseCase(super.amplifyService);
   @override
-  Future<Result<bool, HyphaError>> run(String accountName) async {
+  Future<Result<bool, HyphaError>> run(String accountName, Network network) async {
     return genericRun();
   }
 }
@@ -66,7 +66,8 @@ class MockProfileLoginUseCase extends ProfileLoginUseCase with MockUseCase {
 class MockInitializeProfileUseCase extends InitializeProfileUseCase with MockUseCase {
   MockInitializeProfileUseCase(super.amplifyService);
   @override
-  Future<Result<bool, HyphaError>> run({required String accountName, required String name}) async {
+  Future<Result<bool, HyphaError>> run(
+      {required String accountName, required String name, required Network network}) async {
     return genericRun();
   }
 }
@@ -74,17 +75,17 @@ class MockInitializeProfileUseCase extends InitializeProfileUseCase with MockUse
 class MockSetImageUseCase extends SetImageUseCase with MockUseCase {
   MockSetImageUseCase(super.amplifyService, super._profileLoginUseCase);
   @override
-  Future<Result<bool, HyphaError>> runFileName(String filePath, String accountName) async {
+  Future<Result<bool, HyphaError>> runFileName(String filePath, String accountName, Network network) async {
     return genericRun();
   }
 
   @override
-  Future<Result<bool, HyphaError>> run(XFile image, String accountName) async {
+  Future<Result<bool, HyphaError>> run(XFile image, String accountName, Network network) async {
     return genericRun();
   }
 
   @override
-  Future<Result<bool, HyphaError>> runFile(File imageFile, String accountName) async {
+  Future<Result<bool, HyphaError>> runFile(File imageFile, String accountName, Network network) async {
     return genericRun();
   }
 }
@@ -137,6 +138,7 @@ void main() {
   test('Test upload and restart', () async {
     await service.scheduleUpload(
       accountName: accountName,
+      network: Network.telos,
       userName: name,
       fileName: fileName,
     );
@@ -156,6 +158,7 @@ void main() {
       accountName: accountName,
       userName: name,
       fileName: fileName,
+      network: Network.telos,
     );
     await service.start();
     final data2 = await prefs.getSignupData();
@@ -172,6 +175,7 @@ void main() {
       accountName: accountName,
       userName: name,
       fileName: fileName,
+      network: Network.telos,
     );
     allUseCases[1].isFailing = true;
     expect(allUseCases[2].wasCalled, false, reason: '2 was not called 1');
@@ -210,6 +214,7 @@ void main() {
       accountName: accountName,
       userName: name,
       fileName: fileName,
+      network: Network.telos,
     );
     allUseCases[2].isFailing = true;
     allUseCases[2].onCall = (useCase, counter) {

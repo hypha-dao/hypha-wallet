@@ -1,5 +1,6 @@
 import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
 import 'package:hypha_wallet/core/network/api/aws_amplify/amplify_service.dart';
+import 'package:hypha_wallet/core/network/api/services/remote_config_service.dart';
 import 'package:hypha_wallet/ui/architecture/result/result.dart';
 import 'package:hypha_wallet/ui/profile/usecases/profile_login_use_case.dart';
 
@@ -12,11 +13,11 @@ class SetBioUseCase {
   Future<Result<bool, HyphaError>> run(SetBioUseCaseInput input) async {
     try {
       print('set bio to ${input.profileBio}');
-      final Result<bool, HyphaError> loginResult = await _profileLoginUseCase.run(input.accountName);
+      final Result<bool, HyphaError> loginResult = await _profileLoginUseCase.run(input.accountName, input.network);
 
       if (loginResult.isValue) {
         // ignore: unused_local_variable
-        final res = await _amplifyService.setBio(input.profileBio);
+        final res = await _amplifyService.setBio(input.profileBio, input.network);
         return Result.value(true);
       } else {
         print('SetBioUseCase error login Failed ');
@@ -33,6 +34,7 @@ class SetBioUseCase {
 class SetBioUseCaseInput {
   final String accountName;
   final String profileBio;
+  final Network network;
 
-  SetBioUseCaseInput({required this.accountName, required this.profileBio});
+  SetBioUseCaseInput({required this.accountName, required this.profileBio, required this.network});
 }
