@@ -3,9 +3,21 @@ import 'dart:convert';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/services.dart';
 
-enum Networks { telos, telosTestnet, eos, eosTestnet }
+enum Network {
+  telos,
+  telosTestnet,
+  eos,
+  eosTestnet;
 
-const Networks _defaultNetwork = Networks.telos;
+  static Network fromString(String label) {
+    return values.firstWhere(
+      (v) => v.name == label,
+      orElse: () => Network.telos,
+    );
+  }
+}
+
+const Network _defaultNetwork = Network.telos;
 
 /// Encapsulates everything to do with remote configuration
 class RemoteConfigService {
@@ -20,12 +32,12 @@ class RemoteConfigService {
     return json.decode(FirebaseRemoteConfig.instance.getValue(param).asString());
   }
 
-  Map<String, dynamic> _pppService({Networks? network}) {
+  Map<String, dynamic> _pppService({Network? network}) {
     network = network ?? _defaultNetwork;
     return _getMap('profileService')[network.name];
   }
 
-  Map<String, dynamic> _getNetworkConfig({Networks? network}) {
+  Map<String, dynamic> _getNetworkConfig({Network? network}) {
     network = network ?? _defaultNetwork;
     final conf = _getMap('networks');
     final networkFromConfig = conf[network.name];
@@ -37,7 +49,7 @@ class RemoteConfigService {
 
   // base url - read URL
   // network: default is Telos mainnet
-  String baseUrl({Networks? network}) {
+  String baseUrl({Network? network}) {
     final networkConfig = _getNetworkConfig(network: network);
     final endpoint = networkConfig['endpoint'];
     return endpoint;
@@ -45,59 +57,69 @@ class RemoteConfigService {
 
   // Node for push transactions - should be a fast server to prevent timeouts
   // network: default is Telos mainnet.
-  String pushTransactionNodeUrl({required Networks network}) {
+  String pushTransactionNodeUrl({required Network network}) {
     final networkConfig = _getNetworkConfig(network: network);
     final endpoint = networkConfig['fastEndpoint'];
     return endpoint;
   }
 
-  String graphQLEndpoint({required Networks network}) {
+  String graphQLEndpoint({required Network network}) {
     final networkConfig = _getNetworkConfig(network: network);
     final endpoint = networkConfig['graphQlEndpoint'];
     return endpoint;
   }
 
-  String loginContract({Networks? network}) {
+  String loginContract({Network? network}) {
     final networkConfig = _getNetworkConfig(network: network);
     return networkConfig['loginContract'];
   }
 
-  String loginAction({Networks? network}) {
+  String loginAction({Network? network}) {
     final networkConfig = _getNetworkConfig(network: network);
     return networkConfig['loginAction'];
   }
 
-  String inviteContract({Networks? network}) {
+  String inviteContract({Network? network}) {
     final networkConfig = _getNetworkConfig(network: network);
     return networkConfig['inviteContract'];
   }
 
-  String payCpuContract({Networks? network}) {
+  String payCpuContract({Network? network}) {
     final networkConfig = _getNetworkConfig(network: network);
     return networkConfig['payCpuContract'];
   }
 
-  String daoContract({Networks? network}) {
+  String daoContract({Network? network}) {
     final networkConfig = _getNetworkConfig(network: network);
     return networkConfig['daoContract'];
   }
 
   bool get isSignUpEnabled => FirebaseRemoteConfig.instance.getBool('signUpEnabled');
+
   bool get isWalletEnabled => FirebaseRemoteConfig.instance.getBool('walletEnabled');
 
   // PPP Profile Service Backend
   String get profileServiceEndpoint => FirebaseRemoteConfig.instance.getString('profileServiceEndpoint');
+
   String get accountCreatorEndpoint => FirebaseRemoteConfig.instance.getString('accountCreatorEndpoint');
 
   // PPP Service AWS
   String get awsProfileServiceEndpoint => _pppService()['awsProfileServiceEndpoint'];
+
   String get pppEndpoint => _pppService()['awsProfileServiceEndpoint'];
+
   String get identityPoolId => _pppService()['identityPoolId'];
+
   String get userPoolId => _pppService()['userPoolId'];
+
   String get clientId => _pppService()['clientId'];
+
   String get pppOriginAppId => _pppService()['pppOriginAppId'];
+
   String get pppRegion => _pppService()['region'];
+
   String get pppS3Region => _pppService()['s3Region'];
+
   String get pppS3Bucket => _pppService()['s3Bucket'];
 
   // TODO(NIK): find the best endpoints for EOS
@@ -157,10 +179,10 @@ class RemoteConfigService {
       'accountCreatorEndpoint': 'http://34.236.29.152:9108',
       'profileServiceEndpoint': 'http://34.236.29.152:9109',
       'profileService': json.encode({
-        'telos': pppConfig.getProfileSeriviceConfig(Networks.telos),
-        'telosTestnet': pppConfig.getProfileSeriviceConfig(Networks.telosTestnet),
-        'eos': pppConfig.getProfileSeriviceConfig(Networks.eos),
-        'eosTestnet': pppConfig.getProfileSeriviceConfig(Networks.eosTestnet),
+        'telos': pppConfig.getProfileSeriviceConfig(Network.telos),
+        'telosTestnet': pppConfig.getProfileSeriviceConfig(Network.telosTestnet),
+        'eos': pppConfig.getProfileSeriviceConfig(Network.eos),
+        'eosTestnet': pppConfig.getProfileSeriviceConfig(Network.eosTestnet),
       }),
       'signUpEnabled': false,
       'walletEnabled': false,
@@ -178,12 +200,12 @@ class RemoteConfigService {
 }
 
 extension MapExtensions on Map<String, dynamic> {
-  Map<String, dynamic> getProfileSeriviceConfig(Networks network) {
+  Map<String, dynamic> getProfileSeriviceConfig(Network network) {
     final networkMap = {
-      Networks.telos: 'prod',
-      Networks.telosTestnet: 'test',
-      Networks.eos: 'eos',
-      Networks.eosTestnet: 'eosTestNet',
+      Network.telos: 'prod',
+      Network.telosTestnet: 'test',
+      Network.eos: 'eos',
+      Network.eosTestnet: 'eosTestNet',
     };
     final data = this[networkMap[network]];
 

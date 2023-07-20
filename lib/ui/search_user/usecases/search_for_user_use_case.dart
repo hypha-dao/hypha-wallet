@@ -11,10 +11,10 @@ class SearchForMemberUseCase {
 
   SearchForMemberUseCase(this.userAccountRepository, this.getUserProfilesFromAccountsUseCase);
 
-  Future<Result<List<UserProfileData>, HyphaError>> run(String searchQuery, Networks network) async {
+  Future<Result<List<UserProfileData>, HyphaError>> run(String searchQuery, Network network) async {
     final Result<List<String>, HyphaError> result = await userAccountRepository.findHyphaAccounts(searchQuery, network);
     if (result.isValue) {
-      return getUserProfilesFromAccountsUseCase.run(result.asValue!.value);
+      return getUserProfilesFromAccountsUseCase.run({network: result.asValue!.value});
     }
 
     return Result.error(HyphaError.generic('Error fetching accounts that start with $searchQuery'));

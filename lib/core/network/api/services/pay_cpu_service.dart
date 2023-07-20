@@ -16,7 +16,7 @@ class PayForCpuService {
   /// Usage: preload the payCpuAction for any member who is a Hypha member - see HyphaMemberService
   EOSAction payCpuAction({
     required String account,
-    required Networks network,
+    required Network network,
   }) {
     final contractName = eosService.remoteConfigService.payCpuContract(network: network);
     final action = EOSAction()

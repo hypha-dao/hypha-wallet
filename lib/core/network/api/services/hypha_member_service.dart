@@ -41,7 +41,7 @@ class HyphaMemberService {
   /// Find a hypha accounts starting with prefix
   Future<Result<List<String>, HyphaError>> findHyphaAccounts({
     required String prefix,
-    required Networks network,
+    required Network network,
   }) async {
     try {
       final daoContract = remoteConfigService.daoContract(network: network);
@@ -61,7 +61,7 @@ class HyphaMemberService {
 
   Future<Result<bool, HyphaError>> isMember({
     required String account,
-    required Networks network,
+    required Network network,
   }) async {
     try {
       final daoContract = remoteConfigService.daoContract(network: network);

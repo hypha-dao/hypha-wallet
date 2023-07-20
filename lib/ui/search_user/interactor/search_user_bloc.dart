@@ -5,6 +5,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
 import 'package:hypha_wallet/core/network/api/services/remote_config_service.dart';
 import 'package:hypha_wallet/core/network/models/user_profile_data.dart';
+import 'package:hypha_wallet/core/network/repository/auth_repository.dart';
 import 'package:hypha_wallet/ui/architecture/interactor/page_states.dart';
 import 'package:hypha_wallet/ui/architecture/result/result.dart';
 import 'package:hypha_wallet/ui/search_user/usecases/search_for_user_use_case.dart';
@@ -20,9 +21,10 @@ part 'search_user_state.dart';
 
 class SearchUserBloc extends Bloc<SearchUserEvent, SearchUserState> {
   final int _minTextLengthBeforeValidSearch = 2;
-  final SearchForMemberUseCase searchForMemberUseCase;
+  final SearchForMemberUseCase _searchForMemberUseCase;
+  final AuthRepository _authRepository;
 
-  SearchUserBloc(this.searchForMemberUseCase) : super(const SearchUserState()) {
+  SearchUserBloc(this._searchForMemberUseCase, this._authRepository) : super(const SearchUserState()) {
     on<_Initial>(_initial);
     on<_ClearPageCommand>((_, emit) => emit(state.copyWith(command: null)));
     on<_OnSearchQueryChanged>(_onSearchQueryChanged, transformer: _transformEvents);
@@ -40,10 +42,10 @@ class SearchUserBloc extends Bloc<SearchUserEvent, SearchUserState> {
 
   Future<void> _onSearchQueryChanged(_OnSearchQueryChanged event, Emitter<SearchUserState> emit) async {
     emit(state.copyWith(pageState: PageState.loading, showClearIcon: event.query.isNotEmpty));
+    final user = _authRepository.authDataOrCrash;
     if (event.query.length > _minTextLengthBeforeValidSearch) {
-      final searchNetwork = Networks.telos; // TODO(Gery): This needs to be the account's network
       final Result<List<UserProfileData>, HyphaError> results =
-          await searchForMemberUseCase.run(event.query.toLowerCase(), searchNetwork);
+          await _searchForMemberUseCase.run(event.query.toLowerCase(), user.userProfileData.network);
       if (results.isValue) {
         emit(state.copyWith(users: results.asValue!.value, pageState: PageState.success));
       } else {

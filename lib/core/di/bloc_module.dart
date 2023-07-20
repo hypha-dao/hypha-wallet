@@ -113,5 +113,6 @@ void _registerBlocsModule() {
 
   _registerFactory(() => SearchUserBloc(
         _getIt<SearchForMemberUseCase>(),
+        _getIt<AuthRepository>(),
       ));
 }

@@ -21,7 +21,7 @@ class InviteService {
   Future<Result<dynamic>> redeemInvite({
     required String account,
     required String secret,
-    required Networks network,
+    required Network network,
   }) async {
     final contractName = eosService.remoteConfigService.inviteContract(network: network);
     final actionName = 'redeeminvite';

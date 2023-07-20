@@ -20,7 +20,7 @@ class UserAccountRepository {
     return _userService.findAvailableUserAccount(fullName);
   }
 
-  Future<Result<List<String>, HyphaError>> findHyphaAccounts(String prefix, Networks network) {
+  Future<Result<List<String>, HyphaError>> findHyphaAccounts(String prefix, Network network) {
     return _memberService.findHyphaAccounts(prefix: prefix, network: network);
   }
 }

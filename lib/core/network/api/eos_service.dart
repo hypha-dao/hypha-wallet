@@ -15,7 +15,7 @@ class EOSService {
 
   EOSService(this.secureStorageService, this.remoteConfigService);
 
-  EOSClient getEosClientForNetwork(Networks network, {List<String> privateKeys = const []}) {
+  EOSClient getEosClientForNetwork(Network network, {List<String> privateKeys = const []}) {
     return EOSClient(
       baseUrl: remoteConfigService.pushTransactionNodeUrl(network: network),
       privateKeys: privateKeys,
@@ -26,7 +26,7 @@ class EOSService {
   Future<Result<dynamic>> loginWithCode({
     required String accountName,
     required String loginCode,
-    required Networks network,
+    required Network network,
   }) async {
     final contractName = remoteConfigService.loginContract(network: network);
     final actionName = remoteConfigService.loginAction(network: network);
@@ -52,7 +52,7 @@ class EOSService {
     required String toAccount,
     required TokenValue tokenValue,
     String memo = '',
-    required Networks network,
+    required Network network,
   }) async {
     final contractName = tokenValue.tokenModel.contract;
     final actionName = 'transfer';
@@ -77,7 +77,7 @@ class EOSService {
 
   Future<Result<dynamic>> deleteBlockchainAccount({
     required String accountName,
-    required Networks network,
+    required Network network,
   }) async {
     throw 'TBD - implement this';
     // final action = createChangePermissionsAction(accountName, 'owner', ['keys'], ['accounts']);
@@ -87,7 +87,7 @@ class EOSService {
   Future<Result<dynamic>> sendTransaction({
     required EOSTransaction eosTransaction,
     required String accountName,
-    required Networks network,
+    required Network network,
   }) async {
     final actions = eosTransaction.actions.map((e) => e.toEosAction).toList();
 

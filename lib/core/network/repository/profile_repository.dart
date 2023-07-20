@@ -11,13 +11,13 @@ class ProfileService extends NetworkingManager {
 
   ProfileService(this._remoteConfigService) : super(_remoteConfigService.profileServiceEndpoint);
 
-  Future<Result<ProfileData, HyphaError>> getProfile(String accountName) async {
+  Future<Result<ProfileData, HyphaError>> getProfile(String accountName, Network network) async {
     final url = '${_remoteConfigService.profileServiceEndpoint}${Endpoints.pppProfile}/$accountName';
     try {
       final response = await get(url);
       if (response.statusCode == 200) {
         final map = Map<String, dynamic>.from(response.data);
-        return Result.value(ProfileData.fromJson(map));
+        return Result.value(ProfileData.fromJson(map, network));
       } else {
         print('get profile status error: ${response.statusCode} ${response.statusMessage}');
         return Result.error(HyphaError(type: HyphaErrorType.api, message: 'server error ${response.statusMessage}'));

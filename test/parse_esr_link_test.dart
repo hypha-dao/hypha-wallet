@@ -9,7 +9,7 @@ import 'mocks/mock_secure_storage_service.dart';
 class MockEosService extends EOSService {
   MockEosService(super.secureStorageService, super.remoteConfigService);
   @override
-  EOSClient getEosClientForNetwork(Networks network, {List<String> privateKeys = const []}) {
+  EOSClient getEosClientForNetwork(Network network, {List<String> privateKeys = const []}) {
     return EOSClient(baseUrl: 'https://mainnet.telos.net', privateKeys: [], version: 'v1');
   }
 }

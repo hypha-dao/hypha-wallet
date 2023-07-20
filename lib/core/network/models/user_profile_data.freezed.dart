@@ -21,6 +21,7 @@ UserProfileData _$UserProfileDataFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$UserProfileData {
   String get accountName => throw _privateConstructorUsedError;
+  Network get network => throw _privateConstructorUsedError;
   String? get userImage => throw _privateConstructorUsedError;
   String? get bio => throw _privateConstructorUsedError;
   String? get userName => throw _privateConstructorUsedError;
@@ -38,7 +39,11 @@ abstract class $UserProfileDataCopyWith<$Res> {
       _$UserProfileDataCopyWithImpl<$Res, UserProfileData>;
   @useResult
   $Res call(
-      {String accountName, String? userImage, String? bio, String? userName});
+      {String accountName,
+      Network network,
+      String? userImage,
+      String? bio,
+      String? userName});
 }
 
 /// @nodoc
@@ -55,6 +60,7 @@ class _$UserProfileDataCopyWithImpl<$Res, $Val extends UserProfileData>
   @override
   $Res call({
     Object? accountName = null,
+    Object? network = null,
     Object? userImage = freezed,
     Object? bio = freezed,
     Object? userName = freezed,
@@ -64,6 +70,10 @@ class _$UserProfileDataCopyWithImpl<$Res, $Val extends UserProfileData>
           ? _value.accountName
           : accountName // ignore: cast_nullable_to_non_nullable
               as String,
+      network: null == network
+          ? _value.network
+          : network // ignore: cast_nullable_to_non_nullable
+              as Network,
       userImage: freezed == userImage
           ? _value.userImage
           : userImage // ignore: cast_nullable_to_non_nullable
@@ -89,7 +99,11 @@ abstract class _$$_UserProfileDataCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String accountName, String? userImage, String? bio, String? userName});
+      {String accountName,
+      Network network,
+      String? userImage,
+      String? bio,
+      String? userName});
 }
 
 /// @nodoc
@@ -104,6 +118,7 @@ class __$$_UserProfileDataCopyWithImpl<$Res>
   @override
   $Res call({
     Object? accountName = null,
+    Object? network = null,
     Object? userImage = freezed,
     Object? bio = freezed,
     Object? userName = freezed,
@@ -113,6 +128,10 @@ class __$$_UserProfileDataCopyWithImpl<$Res>
           ? _value.accountName
           : accountName // ignore: cast_nullable_to_non_nullable
               as String,
+      network: null == network
+          ? _value.network
+          : network // ignore: cast_nullable_to_non_nullable
+              as Network,
       userImage: freezed == userImage
           ? _value.userImage
           : userImage // ignore: cast_nullable_to_non_nullable
@@ -134,6 +153,7 @@ class __$$_UserProfileDataCopyWithImpl<$Res>
 class _$_UserProfileData extends _UserProfileData {
   _$_UserProfileData(
       {required this.accountName,
+      required this.network,
       this.userImage = null,
       this.bio = null,
       this.userName = null})
@@ -144,6 +164,8 @@ class _$_UserProfileData extends _UserProfileData {
 
   @override
   final String accountName;
+  @override
+  final Network network;
   @override
   @JsonKey()
   final String? userImage;
@@ -156,7 +178,7 @@ class _$_UserProfileData extends _UserProfileData {
 
   @override
   String toString() {
-    return 'UserProfileData(accountName: $accountName, userImage: $userImage, bio: $bio, userName: $userName)';
+    return 'UserProfileData(accountName: $accountName, network: $network, userImage: $userImage, bio: $bio, userName: $userName)';
   }
 
   @override
@@ -166,6 +188,7 @@ class _$_UserProfileData extends _UserProfileData {
             other is _$_UserProfileData &&
             (identical(other.accountName, accountName) ||
                 other.accountName == accountName) &&
+            (identical(other.network, network) || other.network == network) &&
             (identical(other.userImage, userImage) ||
                 other.userImage == userImage) &&
             (identical(other.bio, bio) || other.bio == bio) &&
@@ -176,7 +199,7 @@ class _$_UserProfileData extends _UserProfileData {
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, accountName, userImage, bio, userName);
+      Object.hash(runtimeType, accountName, network, userImage, bio, userName);
 
   @JsonKey(ignore: true)
   @override
@@ -195,6 +218,7 @@ class _$_UserProfileData extends _UserProfileData {
 abstract class _UserProfileData extends UserProfileData {
   factory _UserProfileData(
       {required final String accountName,
+      required final Network network,
       final String? userImage,
       final String? bio,
       final String? userName}) = _$_UserProfileData;
@@ -205,6 +229,8 @@ abstract class _UserProfileData extends UserProfileData {
 
   @override
   String get accountName;
+  @override
+  Network get network;
   @override
   String? get userImage;
   @override
