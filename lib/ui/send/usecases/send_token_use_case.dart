@@ -33,7 +33,7 @@ class SendTokenUseCase {
         ),
       ),
       memo: memo ?? '',
-      network: Network.telos,
+      network: user.userProfileData.network,
     );
 
     if(result.isValue) {
