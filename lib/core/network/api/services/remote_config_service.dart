@@ -3,18 +3,14 @@ import 'dart:convert';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 
 enum Network {
-  telos('telos'),
-  telosTestnet('telosTestnet'),
-  eos('eos'),
-  eosTestnet('eosTestnet');
-
-  const Network(this.value);
-
-  final String value;
+  telos,
+  telosTestnet,
+  eos,
+  eosTestnet;
 
   static Network fromString(String label) {
     return values.firstWhere(
-      (v) => v.value == label,
+      (v) => v.name == label,
       orElse: () => Network.telos,
     );
   }

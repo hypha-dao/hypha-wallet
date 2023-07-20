@@ -3,7 +3,6 @@ import 'package:hypha_wallet/core/network/api/services/remote_config_service.dar
 import 'package:hypha_wallet/core/network/models/user_profile_data.dart';
 import 'package:hypha_wallet/core/network/repository/profile_repository.dart';
 import 'package:hypha_wallet/core/shared_preferences/hypha_shared_prefs.dart';
-import 'package:hypha_wallet/ui/architecture/interactor/base_usecase.dart';
 import 'package:hypha_wallet/ui/architecture/result/result.dart';
 import 'package:hypha_wallet/ui/profile/interactor/profile_data.dart';
 

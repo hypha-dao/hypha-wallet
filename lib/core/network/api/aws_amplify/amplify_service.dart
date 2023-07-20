@@ -10,7 +10,6 @@ import 'package:hypha_wallet/core/network/api/aws_amplify/aws_authenticated_requ
 import 'package:hypha_wallet/core/network/api/eos_service.dart';
 import 'package:hypha_wallet/core/network/api/services/remote_config_service.dart';
 import 'package:hypha_wallet/core/network/networking_manager.dart';
-import 'package:hypha_wallet/ui/profile/interactor/profile_data.dart';
 
 String getRandomString(int len) {
   final random = Random.secure();
