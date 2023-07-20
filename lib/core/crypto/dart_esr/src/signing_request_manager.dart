@@ -804,7 +804,7 @@ extension HyphaSigningRequestManager on SigningRequestManager {
   /// Convert the ESR standard's "chain_id" to our Network
   /// Both signify a unique identifier for a chain
   /// But we support fewer chains than ESR does.
-  /// Networks maps to remote config which contains the server node URLs we need
+  /// Network maps to remote config which contains the server node URLs we need
   /// to use in order to access supported chains.
   /// Returns: Network
   /// throws: unsupported network when the chainID can't be parsed.

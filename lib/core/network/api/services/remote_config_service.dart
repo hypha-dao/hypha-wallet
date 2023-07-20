@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:firebase_remote_config/firebase_remote_config.dart';
+import 'package:flutter/services.dart';
 
 enum Network {
   telos,
@@ -31,8 +32,9 @@ class RemoteConfigService {
     return json.decode(FirebaseRemoteConfig.instance.getValue(param).asString());
   }
 
-  Map<String, dynamic> _pppService() {
-    return _getMap('pppService');
+  Map<String, dynamic> _pppService({Network? network}) {
+    network = network ?? _defaultNetwork;
+    return _getMap('profileService')[network.name];
   }
 
   Map<String, dynamic> _getNetworkConfig({Network? network}) {
@@ -77,6 +79,21 @@ class RemoteConfigService {
     return networkConfig['loginAction'];
   }
 
+  String inviteContract({Network? network}) {
+    final networkConfig = _getNetworkConfig(network: network);
+    return networkConfig['inviteContract'];
+  }
+
+  String payCpuContract({Network? network}) {
+    final networkConfig = _getNetworkConfig(network: network);
+    return networkConfig['payCpuContract'];
+  }
+
+  String daoContract({Network? network}) {
+    final networkConfig = _getNetworkConfig(network: network);
+    return networkConfig['daoContract'];
+  }
+
   bool get isSignUpEnabled => FirebaseRemoteConfig.instance.getBool('signUpEnabled');
 
   bool get isWalletEnabled => FirebaseRemoteConfig.instance.getBool('walletEnabled');
@@ -107,6 +124,7 @@ class RemoteConfigService {
 
   // TODO(NIK): find the best endpoints for EOS
   Future<void> setDefaults() async {
+    final pppConfig = await loadProfileServiceConfig();
     await FirebaseRemoteConfig.instance.setDefaults({
       'networks': json.encode({
         'telos': {
@@ -116,6 +134,9 @@ class RemoteConfigService {
           'loginContract': 'eosio.login',
           'loginAction': 'loginuser',
           'logoutAction': 'deletelogin',
+          'inviteContract': 'join.hypha',
+          'payCpuContract': 'paycpu.hypha',
+          'daoContract': 'dao.hypha',
           'graphQlEndpoint': 'https://alpha-dhomn.tekit.io/graphql'
         },
         'telosTestnet': {
@@ -125,6 +146,9 @@ class RemoteConfigService {
           'loginContract': 'eosio.login',
           'loginAction': 'loginuser',
           'logoutAction': 'deletelogin',
+          'inviteContract': 'joinhypha111',
+          'payCpuContract': 'paycpuxhypha',
+          'daoContract': 'mtdhoxhyphaa',
           'graphQlEndpoint': 'https://alpha-stts.tekit.io/graphql'
         },
         'eos': {
@@ -134,7 +158,10 @@ class RemoteConfigService {
           'loginContract': 'eosio.login',
           'loginAction': 'loginuser',
           'logoutAction': 'deletelogin',
-          'graphQlEndpoint': ''
+          'inviteContract': 'join.hypha',
+          'payCpuContract': 'paycpu.hypha',
+          'daoContract': 'dao.hypha',
+          'graphQlEndpoint': 'https://nameless-brook-400051.eu-central-1.aws.cloud.dgraph.io/graphql'
         },
         'eosTestnet': {
           'name': 'Jungle4 Testnet',
@@ -143,30 +170,19 @@ class RemoteConfigService {
           'loginContract': 'eosio.login',
           'loginAction': 'loginuser',
           'logoutAction': 'deletelogin',
-          'graphQlEndpoint': ''
+          'inviteContract': 'joinxhypha11',
+          'payCpuContract': 'paycpuxhypha',
+          'daoContract': 'dao.hypha',
+          'graphQlEndpoint': 'https://nameless-brook-400226.eu-central-1.aws.cloud.dgraph.io/graphql'
         }
       }),
       'accountCreatorEndpoint': 'http://34.236.29.152:9108',
       'profileServiceEndpoint': 'http://34.236.29.152:9109',
-      'pppService': json.encode({
-        'awsProfileServiceEndpoint':
-            'https://ttac1sv2yj.execute-api.us-east-1.amazonaws.com/prod', // PPP Prod Sebastian
-        'identityPoolId': 'us-east-1:58bf768c-7607-41eb-b512-78314549d61b', // PPP prod
-        'userPoolId': 'us-east-1_9voNzsQ2J',
-        'clientId': '6a2p1a1jsei5ttp3t3vro1f0c5',
-        'pppOriginAppId': '9b833d70-46f6-11ea-a689-e5b7f4a9b462',
-        'region': 'us-east-1',
-        's3Bucket': 'ppp-service-prod-attachmentsbucket-1qc5rzodik7x6',
-        's3Region': 'us-east-1',
-      }),
-      'pppServiceNEW': json.encode({
-        'awsProfileServiceEndpoint':
-            'https://nfjlqism6i.execute-api.us-east-1.amazonaws.com/dev', // PPP service Aleksandar
-        'identityPoolId': 'us-east-1:b57a53c2-f77d-44d5-9656-15b40da6004d',
-        'userPoolId': 'us-east-1_BNGTP2fup',
-        'clientId': '6mufhii0pab2392b6muvtiv8k8',
-        'pppOriginAppId': '9b833d70-46f6-11ea-a689-e5b7f4a9b462',
-        'region': 'us-east-1',
+      'profileService': json.encode({
+        'telos': pppConfig.getProfileSeriviceConfig(Network.telos),
+        'telosTestnet': pppConfig.getProfileSeriviceConfig(Network.telosTestnet),
+        'eos': pppConfig.getProfileSeriviceConfig(Network.eos),
+        'eosTestnet': pppConfig.getProfileSeriviceConfig(Network.eosTestnet),
       }),
       'signUpEnabled': false,
       'walletEnabled': false,
@@ -174,5 +190,34 @@ class RemoteConfigService {
     FirebaseRemoteConfig.instance.onConfigUpdated.listen((event) async {
       await FirebaseRemoteConfig.instance.activate();
     });
+  }
+
+  Future<Map<String, dynamic>> loadProfileServiceConfig() async {
+    final configString = await rootBundle.loadString('assets/config/profile_serivce/config.json');
+    final configJson = jsonDecode(configString);
+    return configJson as Map<String, dynamic>;
+  }
+}
+
+extension MapExtensions on Map<String, dynamic> {
+  Map<String, dynamic> getProfileSeriviceConfig(Network network) {
+    final networkMap = {
+      Network.telos: 'prod',
+      Network.telosTestnet: 'test',
+      Network.eos: 'eos',
+      Network.eosTestnet: 'eosTestNet',
+    };
+    final data = this[networkMap[network]];
+
+    return {
+      'awsProfileServiceEndpoint': data['AWS']['API']['endpoints'][0]['endpoint'],
+      'identityPoolId': data['AWS']['Auth']['identityPoolId'],
+      'userPoolId': data['AWS']['Auth']['userPoolId'],
+      'clientId': data['AWS']['Auth']['userPoolWebClientId'],
+      'pppOriginAppId': '9b833d70-46f6-11ea-a689-e5b7f4a9b462', // hard-coded
+      'region': data['AWS']['Auth']['region'],
+      's3Bucket': data['AWS']['Storage']['AWSS3']['bucket'],
+      's3Region': data['AWS']['Storage']['AWSS3']['region'],
+    };
   }
 }

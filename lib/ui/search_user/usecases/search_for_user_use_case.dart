@@ -11,8 +11,8 @@ class SearchForMemberUseCase {
 
   SearchForMemberUseCase(this.userAccountRepository, this.getUserProfilesFromAccountsUseCase);
 
-  Future<Result<List<UserProfileData>, HyphaError>> run(String searchQuery) async {
-    final Result<List<String>, HyphaError> result = await userAccountRepository.findHyphaAccounts(searchQuery);
+  Future<Result<List<UserProfileData>, HyphaError>> run(String searchQuery, Network network) async {
+    final Result<List<String>, HyphaError> result = await userAccountRepository.findHyphaAccounts(searchQuery, network);
     if (result.isValue) {
       return getUserProfilesFromAccountsUseCase.run({Network.eos: result.asValue!.value});
     }
