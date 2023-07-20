@@ -17,8 +17,6 @@ enum Network {
   }
 }
 
-// const Network _defaultNetwork = Network.telos;
-
 /// Encapsulates everything to do with remote configuration
 class RemoteConfigService {
   static Future<RemoteConfigService> initialized() async {
