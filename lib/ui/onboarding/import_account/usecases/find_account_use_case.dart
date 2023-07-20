@@ -18,13 +18,13 @@ class FindAccountsUseCase extends InputUseCase<Result<Iterable<UserProfileData>,
     // For this we need to find the correct PPP service for each chain, each chain uses a different PPP serivice
     // instance.
     final eosClient = EOSClient(
-      baseUrl: remoteConfigService.baseUrl(network: Networks.eos),
+      baseUrl: remoteConfigService.baseUrl(network: Network.eos),
       privateKeys: [],
       version: 'v1',
     );
 
     final telosClient = EOSClient(
-      baseUrl: remoteConfigService.baseUrl(network: Networks.telos),
+      baseUrl: remoteConfigService.baseUrl(network: Network.telos),
       privateKeys: [],
       version: 'v1',
     );
@@ -33,15 +33,17 @@ class FindAccountsUseCase extends InputUseCase<Result<Iterable<UserProfileData>,
     final eosResult = results[0];
     final telosResult = results[1];
 
-    AccountNames? data;
+    final Map<Network, List<String>> data = {};
+
+    // AccountNames? data;
     if (eosResult.isValue) {
-      data = eosResult.asValue!.value;
+      data.putIfAbsent(Network.eos, () => eosResult.asValue!.value.accountNames);
     } else if (telosResult.isValue) {
-      data = telosResult.asValue!.value;
+      data.putIfAbsent(Network.telos, () => telosResult.asValue!.value.accountNames);
     }
 
-    if (data != null) {
-      return getUserProfilesFromAccountsUseCase.run(data.accountNames);
+    if (data.isNotEmpty) {
+      return getUserProfilesFromAccountsUseCase.run(data);
     } else {
       return Result.error(HyphaError.api('Failed to fetch accounts'));
     }

@@ -5,7 +5,7 @@ import 'package:hypha_wallet/core/crypto/seeds_esr/eos_action.dart';
 import 'package:hypha_wallet/core/network/api/services/remote_config_service.dart';
 
 class EOSTransaction extends Equatable {
-  final Networks network;
+  final Network network;
   final List<EOSAction> actions;
   bool get isValid => actions.isNotEmpty;
 
@@ -16,7 +16,7 @@ class EOSTransaction extends Equatable {
   @override
   List<Object?> get props => [actions];
 
-  factory EOSTransaction.fromESRActionsList(List<esr.ESRAction> esrActions, Networks network) {
+  factory EOSTransaction.fromESRActionsList(List<esr.ESRAction> esrActions, Network network) {
     final List<EOSAction> eosActions =
         esrActions.map((e) => EOSAction.fromESRAction(e)).where((item) => item.isValid).toList();
     return EOSTransaction(eosActions, network);
@@ -27,7 +27,7 @@ class EOSTransaction extends Equatable {
     required String actionName,
     required Map<String, dynamic> data,
     List<eos.Authorization?>? authorization,
-    required Networks network,
+    required Network network,
   }) =>
       EOSTransaction([
         EOSAction()

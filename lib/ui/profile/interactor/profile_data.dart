@@ -1,3 +1,5 @@
+import 'package:hypha_wallet/core/network/api/services/remote_config_service.dart';
+
 class ProfileData {
   final String? avatarUrl;
   final String? name;
@@ -8,6 +10,7 @@ class ProfileData {
   final String? s3Identity;
   final String? avatar;
   final bool? deleted;
+  final Network network;
 
   ProfileData({
     required this.name,
@@ -19,9 +22,10 @@ class ProfileData {
     this.s3Identity,
     this.avatar,
     this.deleted,
+    required this.network,
   });
 
-  factory ProfileData.fromJson(Map<String, dynamic> json) {
+  factory ProfileData.fromJson(Map<String, dynamic> json, Network network) {
     final account = json['eosAccount'];
     final avatarUrl = json['avatarUrl'];
     final publicData = json['publicData'];
@@ -34,25 +38,7 @@ class ProfileData {
       avatarUrl: avatarUrl,
       bio: bio,
       deleted: deleted,
-    );
-  }
-
-  factory ProfileData.fromPPPDataJson(Map<String, dynamic> json) {
-    final account = json['eosAccount'];
-    final publicData = json['publicData'];
-    final avatar = publicData['avatar'];
-    final s3Identity = publicData['s3Identity'];
-    final name = publicData['name'];
-    final bio = publicData['bio'];
-    final deleted = publicData['deleted'];
-    return ProfileData(
-      name: name,
-      account: account,
-      avatarUrl: avatar,
-      bio: bio,
-      s3Identity: s3Identity,
-      avatar: avatar,
-      deleted: deleted,
+      network: network,
     );
   }
 
@@ -65,6 +51,7 @@ class ProfileData {
         bitCoinData: bitCoinData,
         eosData: eosData,
         s3Identity: s3Identity,
+        network: network,
       );
 
   ProfileData updateName(String? name) => ProfileData(
@@ -76,6 +63,7 @@ class ProfileData {
         bitCoinData: bitCoinData,
         eosData: eosData,
         s3Identity: s3Identity,
+        network: network,
       );
 
   ProfileData updateImageAvatar(String avatar) => ProfileData(
@@ -87,6 +75,7 @@ class ProfileData {
         bitCoinData: bitCoinData,
         eosData: eosData,
         s3Identity: s3Identity,
+        network: network,
       );
 
   ProfileData removeAvatar() => ProfileData(
@@ -98,11 +87,8 @@ class ProfileData {
         bitCoinData: bitCoinData,
         eosData: eosData,
         s3Identity: s3Identity,
+        network: network,
       );
-
-  String? getAvatarUrl() {
-    return avatarUrl;
-  }
 }
 
 class CryptoAccountData {

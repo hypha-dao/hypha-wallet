@@ -809,13 +809,13 @@ extension HyphaSigningRequestManager on SigningRequestManager {
   /// Returns: Network
   /// throws: unsupported network when the chainID can't be parsed.
   ///
-  static Networks resolveNetwork(List<dynamic> chainId) {
+  static Network resolveNetwork(List<dynamic> chainId) {
     if (chainId[0] == 'chain_alias') {
       // chain_alias officially only supports EOS mainnet, and Telos mainnet, as 1, and 2.
       if (chainId[1] == 1) {
-        return Networks.eos;
+        return Network.eos;
       } else if (chainId[1] == 2) {
-        return Networks.telos;
+        return Network.telos;
       } else {
         throw 'unsupported network alias ${chainId[1]}';
       }
@@ -823,17 +823,17 @@ extension HyphaSigningRequestManager on SigningRequestManager {
       final ChainName name = SigningRequestUtils.idToName(chainId[1]);
       switch (name) {
         case ChainName.EOS:
-          return Networks.eos;
+          return Network.eos;
         case ChainName.EOS_JUNGLE4:
-          return Networks.eosTestnet;
+          return Network.eosTestnet;
         case ChainName.TELOS:
-          return Networks.telos;
+          return Network.telos;
         case ChainName.TELOS_TESTNET:
-          return Networks.telosTestnet;
+          return Network.telosTestnet;
         default:
           throw 'unsupported network ${name.name}';
       }
     }
-    return Networks.eos;
+    return Network.eos;
   }
 }

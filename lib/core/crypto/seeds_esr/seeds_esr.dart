@@ -22,7 +22,7 @@ class SeedsESR {
   }
 
   Result<ScanQrCodeResultData> processResolvedRequest() {
-    Networks network;
+    Network network;
     try {
       network = _resolveNetwork();
     } catch (error) {
@@ -40,7 +40,7 @@ class SeedsESR {
   }
 
   /// Map ChainName or actual chain ID to our supported Network list
-  Networks _resolveNetwork() {
+  Network _resolveNetwork() {
     final List<dynamic> chainId = manager.signingRequest.chainId;
     return HyphaSigningRequestManager.resolveNetwork(chainId);
   }

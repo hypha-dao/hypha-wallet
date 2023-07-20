@@ -16,8 +16,11 @@ import 'package:hypha_wallet/ui/profile/usecases/set_name_use_case.dart';
 import 'package:image_picker/image_picker.dart';
 
 part 'page_command.dart';
+
 part 'profile_bloc.freezed.dart';
+
 part 'profile_event.dart';
+
 part 'profile_state.dart';
 
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
@@ -50,7 +53,10 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   Future<void> _initial(_Initial event, Emitter<ProfileState> emit) async {
     emit(state.copyWith(pageState: PageState.loading));
     final userData = _authRepository.authDataOrCrash;
-    final Result<ProfileData, HyphaError> result = await _fetchProfileUseCase.run(userData.userProfileData.accountName);
+    final Result<ProfileData, HyphaError> result = await _fetchProfileUseCase.run(
+      userData.userProfileData.accountName,
+      userData.userProfileData.network,
+    );
     if (result.isValue) {
       emit(state.copyWith(pageState: PageState.success, profileData: result.asValue!.value));
     } else {
@@ -58,6 +64,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       final profileData = ProfileData(
         name: userData.userProfileData.userName,
         account: userData.userProfileData.accountName,
+        network: userData.userProfileData.network,
       );
       emit(state.copyWith(pageState: PageState.success, profileData: profileData));
     }
@@ -108,9 +115,13 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   FutureOr<void> _setAvatarImage(_SetAvatarImage event, Emitter<ProfileState> emit) async {
     emit(state.copyWith(showUpdateImageLoading: true));
     final result = await _setImageUseCase.run(event.image, state.profileData!.account);
+    final userData = _authRepository.authDataOrCrash;
 
     if (result.isValue) {
-      final Result<ProfileData, HyphaError> profileResult = await _fetchProfileUseCase.run(state.profileData!.account);
+      final Result<ProfileData, HyphaError> profileResult = await _fetchProfileUseCase.run(
+        state.profileData!.account,
+        userData.userProfileData.network,
+      );
       if (profileResult.isValue) {
         final profile = profileResult.asValue!.value;
         emit(state.copyWith(showUpdateImageLoading: false, profileData: profile));

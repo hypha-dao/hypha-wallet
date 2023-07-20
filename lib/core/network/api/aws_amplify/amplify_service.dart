@@ -148,7 +148,7 @@ class AmplifyService {
 
       // handle CUSTOM_CHALLENGE challenge
       final loginCode = e.challengeParameters['loginCode'];
-      await eosService.loginWithCode(accountName: accountName, loginCode: loginCode, network: Networks.telos);
+      await eosService.loginWithCode(accountName: accountName, loginCode: loginCode, network: Network.telos);
       print('return challenge $loginCode');
       session = await cognitoUser!.sendCustomChallengeAnswer(loginCode);
 
@@ -166,18 +166,6 @@ class AmplifyService {
     }
 
     return true;
-  }
-
-  Future<ProfileData> getProfile() async {
-    final result = await _request(
-      path: 'get-profile',
-      body: {
-        'originAppId': remoteConfigService.pppOriginAppId,
-      },
-    );
-    final Map<String, dynamic> data = result['profile'];
-    final ProfileData profile = ProfileData.fromPPPDataJson(data);
-    return profile;
   }
 
   ///

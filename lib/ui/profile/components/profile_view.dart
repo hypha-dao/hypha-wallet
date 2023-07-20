@@ -72,7 +72,7 @@ class ProfileView extends StatelessWidget {
                           child: HyphaEditableAvatarImage(
                             imageRadius: 50,
                             name: state.profileData?.name,
-                            imageFromUrl: state.profileData?.getAvatarUrl(),
+                            imageFromUrl: state.profileData?.avatarUrl,
                             onImageRemoved: () {
                               context.read<ProfileBloc>().add(const ProfileEvent.onRemoveImageTapped());
                             },
