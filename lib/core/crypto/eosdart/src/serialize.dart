@@ -973,7 +973,7 @@ deserializeArray(Type self, SerialBuffer buffer, {SerializerState? state, allowE
   return result;
 }
 
-serializeOptional(Type self, SerialBuffer buffer, Object data, {SerializerState? state, allowExtensions = true}) {
+serializeOptional(Type self, SerialBuffer buffer, Object? data, {SerializerState? state, allowExtensions = true}) {
   if (state == null) state = SerializerState();
   if (data == null) {
     buffer.push([0]);

@@ -11,6 +11,8 @@ class Endpoints {
   static const String getAccount = '/v1/chain/get_account';
   static const String getTransactionHistory = '/v2/history/get_actions';
   static const String getCurrencyBalance = '/v1/chain/get_currency_balance';
+  static const String getTableScopes = '/v1/chain/get_table_by_scope';
+  static const String getCurrencyStats = '/v1/chain/get_currency_stats';
 
   // Account Creator REST API
   static const String createAccount = '/createAccount';

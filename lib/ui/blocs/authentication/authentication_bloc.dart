@@ -13,7 +13,9 @@ import 'package:hypha_wallet/core/network/repository/auth_repository.dart';
 import 'package:hypha_wallet/core/shared_preferences/hypha_shared_prefs.dart';
 
 part 'authentication_bloc.freezed.dart';
+
 part 'authentication_event.dart';
+
 part 'authentication_state.dart';
 
 /// AuthenticationBloc will handle all Auth things in the app. Logout/Login/CreateAccount/Etc
@@ -39,6 +41,7 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
     on<_AuthenticationStatusChanged>(_onAuthenticationStatusChanged);
     on<_AuthenticationLogoutRequested>(_onAuthenticationLogoutRequested);
     on<_OnAuthenticatedDataChanged>(_onAuthenticatedDataChanged);
+    on<_AttemptToAuthenticate>(_attemptToAuthenticate);
     on<_OnFCMTokenChanged>(_onFCMTokenChanged);
     _authenticationStatusSubscription = _authRepository.status.listen(
       (status) => add(AuthenticationEvent.authenticationStatusChanged(status)),
@@ -67,18 +70,15 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
     try {
       final userProfileData = await _appSharedPrefs.getUserProfileData();
       final authData = await _secureStorageService.getUserAuthData();
+
       if (userProfileData != null && authData != null) {
-        emit(state.copyWith(
-          authStatus: AuthenticationStatus.authenticated,
-          userAuthData: authData,
-          userProfileData: userProfileData,
-        ));
+        _authRepository.loginUser(userProfileData, authData);
       } else {
-        emit(state.copyWith(authStatus: AuthenticationStatus.unauthenticated));
+        await _authRepository.logOut(null);
       }
     } catch (error, stacktrace) {
       LogHelper.e('Error during user sign-in status', error: error, stacktrace: stacktrace);
-      emit(state.copyWith(authStatus: AuthenticationStatus.unauthenticated));
+      emit(state.copyWith(authStatus: const UnAuthenticated()));
     }
   }
 
@@ -87,24 +87,16 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
     Emitter<AuthenticationState> emit,
   ) async {
     switch (event.status) {
-      case AuthenticationStatus.unauthenticated:
-        return emit(state.copyWith(authStatus: AuthenticationStatus.unauthenticated));
-      case AuthenticationStatus.authenticated:
-        final profileData = await _appSharedPrefs.getUserProfileData();
-        final authData = await _secureStorageService.getUserAuthData();
-        if (profileData != null && authData != null) {
-          return emit(
-            state.copyWith(
-              authStatus: AuthenticationStatus.authenticated,
-              userProfileData: profileData,
-              userAuthData: authData,
-            ),
-          );
-        } else {
-          return emit(state.copyWith(authStatus: AuthenticationStatus.unauthenticated));
-        }
-      case AuthenticationStatus.unknown:
-        return emit(state.copyWith(authStatus: AuthenticationStatus.unknown));
+      case final UnAuthenticated s:
+        return emit(state.copyWith(authStatus: s));
+      case final Authenticated s:
+        return emit(state.copyWith(
+          authStatus: s,
+          userProfileData: s.userProfileData,
+          userAuthData: s.userAuthData,
+        ));
+      case final Unknown s:
+        return emit(state.copyWith(authStatus: s));
     }
   }
 
@@ -131,5 +123,13 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
         accountName: self.accountName,
       ),
     );
+  }
+
+  FutureOr<void> _attemptToAuthenticate(_AttemptToAuthenticate event, Emitter<AuthenticationState> emit) async {
+    final userProfileData = await _appSharedPrefs.getUserProfileData();
+    final authData = await _secureStorageService.getUserAuthData();
+    if (userProfileData != null && authData != null) {
+      _authRepository.loginUser(userProfileData, authData);
+    }
   }
 }

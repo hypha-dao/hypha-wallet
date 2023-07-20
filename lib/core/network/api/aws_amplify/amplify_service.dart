@@ -98,7 +98,7 @@ class AmplifyService {
     cognitoUser = null;
   }
 
-  Future<bool> loginUser(String accountName, {bool isSignUp = false}) async {
+  Future<bool> profileServiceLoginUser(String accountName, {bool isSignUp = false}) async {
     if (session != null && session!.isValid()) {
       print('already logged in');
       return true;

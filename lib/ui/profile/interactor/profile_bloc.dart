@@ -4,8 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hypha_wallet/core/error_handler/error_handler_manager.dart';
 import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
-import 'package:hypha_wallet/core/network/models/user_profile_data.dart';
-import 'package:hypha_wallet/core/shared_preferences/hypha_shared_prefs.dart';
+import 'package:hypha_wallet/core/network/repository/auth_repository.dart';
 import 'package:hypha_wallet/ui/architecture/interactor/page_states.dart';
 import 'package:hypha_wallet/ui/architecture/result/result.dart';
 import 'package:hypha_wallet/ui/profile/interactor/profile_data.dart';
@@ -23,7 +22,7 @@ part 'profile_state.dart';
 
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   final FetchProfileUseCase _fetchProfileUseCase;
-  final HyphaSharedPrefs _appSharedPrefs;
+  final AuthRepository _authRepository;
   final SetNameUseCase _setNameUseCase;
   final SetImageUseCase _setImageUseCase;
   final SetBioUseCase _setBioUseCase;
@@ -32,7 +31,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
 
   ProfileBloc(
     this._fetchProfileUseCase,
-    this._appSharedPrefs,
+    this._authRepository,
     this._setNameUseCase,
     this._setImageUseCase,
     this._setBioUseCase,
@@ -50,22 +49,17 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
 
   Future<void> _initial(_Initial event, Emitter<ProfileState> emit) async {
     emit(state.copyWith(pageState: PageState.loading));
-    final UserProfileData? userData = await _appSharedPrefs.getUserProfileData();
-    if (userData != null) {
-      final Result<ProfileData, HyphaError> result = await _fetchProfileUseCase.run(userData.accountName);
-      if (result.isValue) {
-        emit(state.copyWith(pageState: PageState.success, profileData: result.asValue!.value));
-      } else {
-        // if loading fails, show saved user data.
-        final profileData = ProfileData(
-          name: userData.userName,
-          account: userData.accountName,
-        );
-        emit(state.copyWith(pageState: PageState.success, profileData: profileData));
-      }
+    final userData = _authRepository.authDataOrCrash;
+    final Result<ProfileData, HyphaError> result = await _fetchProfileUseCase.run(userData.userProfileData.accountName);
+    if (result.isValue) {
+      emit(state.copyWith(pageState: PageState.success, profileData: result.asValue!.value));
     } else {
-      print('Error - no user data');
-      emit(state.copyWith(pageState: PageState.failure));
+      // if loading fails, show saved user data.
+      final profileData = ProfileData(
+        name: userData.userProfileData.userName,
+        account: userData.userProfileData.accountName,
+      );
+      emit(state.copyWith(pageState: PageState.success, profileData: profileData));
     }
   }
 
@@ -75,7 +69,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
 
   FutureOr<void> _setName(_SetName event, Emitter<ProfileState> emit) async {
     emit(state.copyWith(showUpdateBioLoading: true));
-    final result = await _setNameUseCase.run(event.name);
+    final result = await _setNameUseCase.run(accountName: state.profileData!.account, name: event.name);
     if (result.isValue) {
       emit(
         state.copyWith(

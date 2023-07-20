@@ -37,6 +37,7 @@ class WalletView extends StatelessWidget {
                   contract: 'ADD TOKEN',
                   id: 'ADD TOKEN',
                   symbol: 'ADD TOKEN',
+                  precision: 2,
                 )
               ];
           return RefreshIndicator(
@@ -81,7 +82,7 @@ class WalletView extends StatelessWidget {
                     _UserTokensList(tokens: tokens),
                     const SizedBox(height: 24),
                     BlocBuilder<WalletBloc, WalletState>(
-                      builder: (context, state) {
+                      builder: (context, WalletState state) {
                         return RecentTransactionsView(
                           loadingTransaction: state.loadingTransaction,
                           recentTransactions: state.recentTransactions,
@@ -107,7 +108,7 @@ class _UserTokensList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 150,
+      height: 151,
       child: ListViewWithAllSeparators(
         scrollDirection: Axis.horizontal,
         items: tokens,

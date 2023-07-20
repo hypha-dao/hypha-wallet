@@ -9,7 +9,7 @@ import 'package:hypha_wallet/ui/home_page/home_page.dart';
 import 'package:hypha_wallet/ui/profile/profile_page.dart';
 import 'package:hypha_wallet/ui/settings/interactor/settings_bloc.dart';
 import 'package:hypha_wallet/ui/settings/settings_page.dart';
-// import 'package:hypha_wallet/ui/wallet/wallet_page.dart';
+import 'package:hypha_wallet/ui/wallet/wallet_page.dart';
 
 const double _bottomBarRadius = 22;
 
@@ -19,7 +19,7 @@ class BottomNavigationView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<BottomNavigationBloc, BottomNavigationState>(
-      builder: (context, state) {
+      builder: (context, BottomNavigationState state) {
         return Scaffold(
             extendBody: true,
             bottomNavigationBar: DecoratedBox(
@@ -43,51 +43,70 @@ class BottomNavigationView extends StatelessWidget {
                   child: BottomNavigationBar(
                     elevation: 0,
                     backgroundColor: context.isDarkTheme ? HyphaColors.lightBlack : HyphaColors.white,
-                    currentIndex: state.selectedPage,
+                    currentIndex: state.indexOfSelected,
                     onTap: (int index) {
-                      BlocProvider.of<BottomNavigationBloc>(context).add(BottomNavigationEvent.onPageSelected(index));
-                      if (index == 3) {
+                      BlocProvider.of<BottomNavigationBloc>(context).add(
+                        BottomNavigationEvent.onPageSelected(state.allPages[index]),
+                      );
+                      if (state.allPages[index] == BottomNavigationPage.settings) {
                         BlocProvider.of<SettingsBloc>(context).add(const SettingsEvent.onShowSettings());
                       }
                     },
-                    items: [
-                      const BottomNavigationBarItem(
-                        icon: Padding(padding: EdgeInsets.only(bottom: 6), child: Icon(HyphaIcons.home_b, size: 20)),
-                        label: 'Scan-QR',
-                      ),
-                      // const BottomNavigationBarItem(
-                      //   icon: Padding(padding: EdgeInsets.only(bottom: 6), child: Icon(HyphaIcons.wallet_b, size: 20)),
-                      //   label: 'Wallet',
-                      // ),
-                      const BottomNavigationBarItem(
-                        icon: Padding(padding: EdgeInsets.only(bottom: 6), child: Icon(HyphaIcons.history_b, size: 20)),
-                        label: 'History',
-                      ),
-                      const BottomNavigationBarItem(
-                        icon: Padding(padding: EdgeInsets.only(bottom: 6), child: Icon(HyphaIcons.profile_b, size: 20)),
-                        label: 'Profile',
-                      ),
-                      const BottomNavigationBarItem(
-                        icon:
-                            Padding(padding: EdgeInsets.only(bottom: 6), child: Icon(HyphaIcons.settings_b, size: 20)),
-                        label: 'Settings',
-                      ),
-                    ],
+                    items: _mapBottomNavigationItems(state.allPages),
                   ),
                 ),
               ),
             ),
             body: IndexedStack(
-              index: state.selectedPage,
-              children: [
-                const HomePage(),
-                // const WalletPage(),
-                const TransactionsPage(),
-                const ProfilePage(),
-                const SettingsPage(),
-              ],
+              index: state.indexOfSelected,
+              children: state.allPages
+                  .map((e) => switch (e) {
+                        BottomNavigationPage.home => const HomePage(),
+                        BottomNavigationPage.wallet => const WalletPage(),
+                        BottomNavigationPage.transactions => const TransactionsPage(),
+                        BottomNavigationPage.profile => const ProfilePage(),
+                        BottomNavigationPage.settings => const SettingsPage(),
+                      })
+                  .toList(),
             ));
       },
     );
   }
+
+  List<BottomNavigationBarItem> _mapBottomNavigationItems(List<BottomNavigationPage> allPages) {
+    return allPages.map((BottomNavigationPage e) => switch (e) {
+      BottomNavigationPage.home => const BottomNavigationBarItem(
+        icon: Padding(padding: EdgeInsets.only(bottom: 6), child: Icon(HyphaIcons.home_b, size: 20)),
+        label: 'Scan-QR',
+      ),
+      BottomNavigationPage.wallet => const BottomNavigationBarItem(
+        icon:
+        Padding(padding: EdgeInsets.only(bottom: 6), child: Icon(HyphaIcons.wallet_b, size: 20)),
+        label: 'Wallet',
+      ),
+      BottomNavigationPage.transactions => const BottomNavigationBarItem(
+        icon: Padding(padding: EdgeInsets.only(bottom: 6), child: Icon(HyphaIcons.history_b, size: 20)),
+        label: 'History',
+      ),
+      BottomNavigationPage.profile => const BottomNavigationBarItem(
+        icon: Padding(padding: EdgeInsets.only(bottom: 6), child: Icon(HyphaIcons.profile_b, size: 20)),
+        label: 'Profile',
+      ),
+      BottomNavigationPage.settings => const BottomNavigationBarItem(
+        icon:
+        Padding(padding: EdgeInsets.only(bottom: 6), child: Icon(HyphaIcons.settings_b, size: 20)),
+        label: 'Settings',
+      ),
+    }).toList();
+  }
+}
+
+
+
+enum BottomNavigationPage {
+  home,
+  wallet,
+  transactions,
+  profile,
+  settings;
 }

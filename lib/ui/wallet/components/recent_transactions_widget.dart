@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hypha_wallet/core/network/models/transaction_model.dart';
 import 'package:hypha_wallet/design/hypha_card.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/progress_indicator/hypha_progress_indicator.dart';
@@ -10,7 +9,7 @@ import 'package:hypha_wallet/ui/wallet/components/wallet_transaction_tile.dart';
 
 class RecentTransactionsWidget extends StatelessWidget {
   final bool loadingTransaction;
-  final List<TransactionModel> recentTransactions;
+  final List<WalletTransactionTileData> recentTransactions;
 
   const RecentTransactionsWidget({super.key, required this.loadingTransaction, required this.recentTransactions});
 
@@ -23,38 +22,8 @@ class RecentTransactionsWidget extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 24),
                 child: ListViewWithAllSeparators(
                   shrinkWrap: true,
-                  itemBuilder: (context, item, index) {
-                    if (item is TransactionRedeem) {
-                      return WalletTransactionTile(
-                        name: item.account,
-                        amount: item.amount,
-                        isReceived: true,
-                        time: item.timestamp,
-                        tokenImage: 'token image',
-                        tokenName: item.symbol,
-                        userProfileImage: null,
-                      );
-                    } else if (item is TransactionTransfer) {
-                      return WalletTransactionTile(
-                        name: item.account,
-                        amount: item.amount.toString(),
-                        isReceived: true,
-                        time: item.timestamp,
-                        tokenImage: 'token image',
-                        tokenName: item.symbol,
-                        userProfileImage: null,
-                      );
-                    } else {
-                      return WalletTransactionTile(
-                        name: item.account,
-                        amount: '???',
-                        isReceived: true,
-                        time: item.timestamp,
-                        tokenImage: 'token image',
-                        tokenName: '???',
-                        userProfileImage: null,
-                      );
-                    }
+                  itemBuilder: (context, WalletTransactionTileData item, index) {
+                    return WalletTransactionTile(data: item);
                   },
                   separatorBuilder: (BuildContext context, int index) {
                     if (index == 0) {
@@ -80,8 +49,10 @@ class RecentTransactionsWidget extends StatelessWidget {
                 child: HyphaCard(
                   child: Padding(
                     padding: const EdgeInsets.all(24),
-                    child:
-                        Text('You haven’t done any transaction yet', style: context.hyphaTextTheme.ralMediumSmallNote),
+                    child: Text(
+                      'You haven’t done any transaction yet',
+                      style: context.hyphaTextTheme.ralMediumSmallNote,
+                    ),
                   ),
                 ),
               );

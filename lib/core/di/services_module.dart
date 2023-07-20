@@ -18,12 +18,18 @@ Future<void> _registerServicesModule() async {
       networkingManager: _getIt<NetworkingManager>(), remoteConfigService: _getIt<RemoteConfigService>()));
   _registerLazySingleton(() => TransactionHistoryService(_getIt<NetworkingManager>()));
   _registerLazySingleton(() => TokenService(_getIt<NetworkingManager>()));
-  _registerLazySingleton(() => HyphaMemberService(_getIt<NetworkingManager>()));
-  _registerLazySingleton(() => SignTransactionCallbackService(_getIt<NetworkingManager>()));
+  _registerLazySingleton(() => HyphaMemberService(_getIt<NetworkingManager>(), _getIt<RemoteConfigService>()));
+  _registerLazySingleton(() => SignTransactionCallbackService(
+        _getIt<NetworkingManager>(),
+      ));
+  _registerLazySingleton(() =>
+      DaoService(networkingManager: _getIt<NetworkingManager>(), remoteConfigService: _getIt<RemoteConfigService>()));
 
   _registerLazySingleton(() => CryptoAuthService());
 
   _registerLazySingleton(() => EOSService(_getIt<SecureStorageService>(), _getIt<RemoteConfigService>()));
+
+  _registerLazySingleton(() => InviteService(_getIt<EOSService>(), _getIt<NetworkingManager>()));
 
   final amplifyService = AmplifyService(_getIt<EOSService>(), _getIt<NetworkingManager>());
   _registerLazySingleton(() => amplifyService);

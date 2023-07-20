@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' as GetX;
 import 'package:get/get.dart';
-import 'package:hypha_wallet/core/network/models/transaction_model.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/ui/wallet/components/recent_transactions_widget.dart';
+import 'package:hypha_wallet/ui/wallet/components/wallet_transaction_tile.dart';
 
 class RecentTransactionsView extends StatelessWidget {
   final bool loadingTransaction;
-  final List<TransactionModel> recentTransactions;
+  final List<WalletTransactionTileData> recentTransactions;
   const RecentTransactionsView({super.key, required this.loadingTransaction, required this.recentTransactions});
 
   @override

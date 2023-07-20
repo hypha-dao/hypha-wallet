@@ -7,6 +7,10 @@ class SettingsState with _$SettingsState {
     @Default(ThemeMode.dark) ThemeMode themeMode,
     @Default(true) bool showSecurityNotification,
     @Default(false) bool hasWords,
+    String? appName,
+    String? packageName,
+    String? buildNumber,
+    String? version,
     PageCommand? command,
   }) = _SettingsState;
 }

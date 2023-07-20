@@ -22,7 +22,7 @@ class CreateAccountSuccessPage extends StatelessWidget {
     return WillPopScope(
       onWillPop: () async {
         context.read<AuthenticationBloc>().add(
-              const AuthenticationEvent.authenticationStatusChanged(AuthenticationStatus.authenticated),
+              const AuthenticationEvent.authenticationStatusChanged(UnAuthenticated()),
             );
         return true;
       },
@@ -33,9 +33,12 @@ class CreateAccountSuccessPage extends StatelessWidget {
           bottomNavigationBar: HyphaSafeBottomNavigationBar(
             child: HyphaAppButton(
               onPressed: () {
-                context.read<AuthenticationBloc>().add(
-                      const AuthenticationEvent.authenticationStatusChanged(AuthenticationStatus.authenticated),
-                    );
+                /// This is a hack: Fixes an issue where the user is already signed in and scans a sign up QR or link
+                /// This hack forces a state refresh.
+                context
+                    .read<AuthenticationBloc>()
+                    .add(const AuthenticationEvent.authenticationStatusChanged(Unknown()));
+                context.read<AuthenticationBloc>().add(const AuthenticationEvent.attemptToAuthenticate());
               },
               title: 'Next',
             ),

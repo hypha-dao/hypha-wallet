@@ -22,7 +22,7 @@ class FirebaseDatabaseService {
     return db
         .collection('users')
         .doc(accountName)
-        .set(user)
+        .update(user)
         .onError((e, _) => LogHelper.d('Error writing document: $e'));
   }
 
@@ -38,7 +38,7 @@ class FirebaseDatabaseService {
     return db
         .collection('users')
         .doc(accountName)
-        .set(user)
+        .update(user)
         .onError((e, _) => LogHelper.d('Error writing document: $e'));
   }
 
@@ -109,6 +109,7 @@ class FirebaseDatabaseService {
             contract: token.data()['contract'],
             symbol: token.data()['symbol'],
             id: token.data()['id'],
+            precision: token.data()['precision'],
           ),
         )
         .toList();

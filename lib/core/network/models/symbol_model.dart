@@ -2,5 +2,5 @@ class SymbolModel {
   final String symbol;
   final int precision;
 
-  SymbolModel(this.symbol, this.precision);
+  SymbolModel({required this.symbol, required this.precision});
 }

@@ -34,7 +34,7 @@ class OnboardingPage extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              if (GetIt.I.get<RemoteConfigService>().featureFlagSignUpEnabled())
+              if (GetIt.I.get<RemoteConfigService>().isSignUpEnabled)
                 HyphaAppButton(
                   onPressed: () {
                     _launchUrl();
