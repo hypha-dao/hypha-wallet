@@ -10,7 +10,7 @@ class FindAccountsUseCase extends InputUseCase<Result<Iterable<UserProfileData>,
   final RemoteConfigService remoteConfigService;
   final GetUserProfilesFromAccountsUseCase getUserProfilesFromAccountsUseCase;
 
-  FindAccountsUseCase( this.remoteConfigService, this.getUserProfilesFromAccountsUseCase);
+  FindAccountsUseCase(this.remoteConfigService, this.getUserProfilesFromAccountsUseCase);
 
   @override
   Future<Result<Iterable<UserProfileData>, HyphaError>> run(String input) async {
@@ -29,17 +29,43 @@ class FindAccountsUseCase extends InputUseCase<Result<Iterable<UserProfileData>,
       version: 'v1',
     );
 
-    final results = await Future.wait([eosClient.getKeyAccounts(input), telosClient.getKeyAccounts(input)]);
+    final telosTestnetClient = EOSClient(
+      baseUrl: remoteConfigService.baseUrl(network: Network.telosTestnet),
+      privateKeys: [],
+      version: 'v1',
+    );
+
+    final eosTestnetClient = EOSClient(
+      baseUrl: remoteConfigService.baseUrl(network: Network.eosTestnet),
+      privateKeys: [],
+      version: 'v1',
+    );
+
+    final results = await Future.wait([
+      eosClient.getKeyAccounts(input),
+      telosClient.getKeyAccounts(input),
+      telosTestnetClient.getKeyAccounts(input),
+      eosTestnetClient.getKeyAccounts(input)
+    ]);
     final eosResult = results[0];
     final telosResult = results[1];
+    final telosTestnetResult = results[2];
+    final eosTestnetResult = results[3];
 
     final Map<Network, List<String>> data = {};
 
     // AccountNames? data;
     if (eosResult.isValue) {
       data.putIfAbsent(Network.eos, () => eosResult.asValue!.value.accountNames);
-    } else if (telosResult.isValue) {
+    }
+    if (telosResult.isValue) {
       data.putIfAbsent(Network.telos, () => telosResult.asValue!.value.accountNames);
+    }
+    if (telosTestnetResult.isValue) {
+      data.putIfAbsent(Network.telosTestnet, () => telosTestnetResult.asValue!.value.accountNames);
+    }
+    if (eosTestnetResult.isValue) {
+      data.putIfAbsent(Network.eosTestnet, () => eosTestnetResult.asValue!.value.accountNames);
     }
 
     if (data.isNotEmpty) {
