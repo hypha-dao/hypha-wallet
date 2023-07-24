@@ -40,21 +40,23 @@ class ProfileView extends StatelessWidget {
                 appBar: AppBar(
                   backgroundColor: Colors.transparent,
                   actions: [
-                    IconButton(
-                        onPressed: () {
-                          showModalBottomSheet(
-                            isScrollControlled: true,
-                            clipBehavior: Clip.hardEdge,
-                            context: context,
-                            builder: (modelContext) => Wrap(children: [
-                              ProfileEditMenuBottomSheet(profileBloc: BlocProvider.of<ProfileBloc>(context))
-                            ]),
-                            shape: const RoundedRectangleBorder(
-                              borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
-                            ),
-                          );
-                        },
-                        icon: const Icon(Icons.edit))
+                    TextButton.icon(
+                      label: Text('Edit', style: context.hyphaTextTheme.regular.copyWith(color: Colors.white)),
+                      onPressed: () {
+                        showModalBottomSheet(
+                          isScrollControlled: true,
+                          clipBehavior: Clip.hardEdge,
+                          context: context,
+                          builder: (modelContext) => Wrap(children: [
+                            ProfileEditMenuBottomSheet(profileBloc: BlocProvider.of<ProfileBloc>(context))
+                          ]),
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
+                          ),
+                        );
+                      },
+                      icon: const Icon(Icons.edit, color: Colors.white, size: 18),
+                    )
                   ],
                 ),
                 extendBodyBehindAppBar: true,
@@ -65,12 +67,11 @@ class ProfileView extends StatelessWidget {
                     ListView(
                       physics: const AlwaysScrollableScrollPhysics(),
                       children: [
-                        const SizedBox(height: 80),
                         HyphaPartialProgressIndicator(
                           withBackground: false,
                           isLoading: state.showUpdateImageLoading,
                           child: HyphaEditableAvatarImage(
-                            imageRadius: 50,
+                            imageRadius: 60,
                             name: state.profileData?.name,
                             imageFromUrl: state.profileData?.avatarUrl,
                             onImageRemoved: () {
