@@ -10,6 +10,7 @@ class HyphaEditableAvatarImage extends StatelessWidget {
   final double imageRadius;
   final Function(XFile image)? onImageSelected;
   final GestureTapCallback? onImageRemoved;
+  final bool withBorder;
 
   bool get hasImage => imageFromFile != null || imageFromUrl != null;
 
@@ -21,6 +22,7 @@ class HyphaEditableAvatarImage extends StatelessWidget {
     required this.imageRadius,
     this.onImageSelected,
     this.onImageRemoved,
+    this.withBorder = false,
   });
 
   @override
@@ -37,6 +39,7 @@ class HyphaEditableAvatarImage extends StatelessWidget {
             onTap: () async {
               await _selectImage();
             },
+            withBorder: withBorder,
           ),
           Positioned(
             top: -10,

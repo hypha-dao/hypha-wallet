@@ -71,6 +71,7 @@ class ProfileView extends StatelessWidget {
                           withBackground: false,
                           isLoading: state.showUpdateImageLoading,
                           child: HyphaEditableAvatarImage(
+                            withBorder: true,
                             imageRadius: 60,
                             name: state.profileData?.name,
                             imageFromUrl: state.profileData?.avatarUrl,
