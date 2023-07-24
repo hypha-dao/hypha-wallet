@@ -41,8 +41,8 @@ class SearchUserBloc extends Bloc<SearchUserEvent, SearchUserState> {
 
   Future<void> _onSearchQueryChanged(_OnSearchQueryChanged event, Emitter<SearchUserState> emit) async {
     emit(state.copyWith(pageState: PageState.loading, showClearIcon: event.query.isNotEmpty));
-    final user = _authRepository.authDataOrCrash;
     if (event.query.length > _minTextLengthBeforeValidSearch) {
+      final user = _authRepository.authDataOrCrash;
       final Result<List<UserProfileData>, HyphaError> results =
           await _searchForMemberUseCase.run(event.query.toLowerCase(), user.userProfileData.network);
       if (results.isValue) {
