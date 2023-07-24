@@ -1,6 +1,5 @@
 import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
 import 'package:hypha_wallet/core/network/api/eos_service.dart';
-import 'package:hypha_wallet/core/network/api/services/remote_config_service.dart';
 import 'package:hypha_wallet/core/network/models/symbol_model.dart';
 import 'package:hypha_wallet/core/network/models/token_model.dart';
 import 'package:hypha_wallet/core/network/models/token_value.dart';
@@ -36,7 +35,7 @@ class SendTokenUseCase {
       network: user.userProfileData.network,
     );
 
-    if(result.isValue) {
+    if (result.isValue) {
       return HResult.Result.value(result.asValue!.value);
     } else {
       return HResult.Result.error(HyphaError.generic('Error sending tokens'));
