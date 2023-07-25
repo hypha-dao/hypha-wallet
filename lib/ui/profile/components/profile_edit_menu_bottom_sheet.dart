@@ -69,7 +69,7 @@ class ProfileEditMenuBottomSheet extends StatelessWidget {
               trailing: const Icon(Icons.chevron_right),
               onTap: () async {
                 Navigator.of(context).pop();
-                
+
                 final XFile? image = await ImagePicker().pickImage(
                   source: ImageSource.gallery,
                   imageQuality: 0,
