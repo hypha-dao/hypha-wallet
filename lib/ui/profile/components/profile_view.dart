@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hypha_wallet/core/extension/scope_functions.dart';
+import 'package:hypha_wallet/design/avatar_image/hypha_avatar_image.dart';
 import 'package:hypha_wallet/design/avatar_image/hypha_editable_avatar_image.dart';
 import 'package:hypha_wallet/design/background/hypha_half_background.dart';
 import 'package:hypha_wallet/design/background/hypha_page_background.dart';
@@ -70,37 +71,37 @@ class ProfileView extends StatelessWidget {
                         HyphaPartialProgressIndicator(
                           withBackground: false,
                           isLoading: state.showUpdateImageLoading,
-                          child: HyphaEditableAvatarImage(
+                          child: HyphaAvatarImage(
                             withBorder: true,
                             imageRadius: 60,
                             name: state.profileData?.name,
                             imageFromUrl: state.profileData?.avatarUrl,
-                            onImageRemoved: () {
-                              context.read<ProfileBloc>().add(const ProfileEvent.onRemoveImageTapped());
-                            },
-                            onImageSelected: (image) async {
-                              final CroppedFile? croppedFile = await ImageCropper().cropImage(
-                                sourcePath: image.path,
-                                aspectRatioPresets: [
-                                  CropAspectRatioPreset.square,
-                                ],
-                                uiSettings: [
-                                  AndroidUiSettings(
-                                    toolbarTitle: 'Crop Image',
-                                    toolbarColor: HyphaColors.primaryBlu,
-                                    toolbarWidgetColor: Colors.white,
-                                    initAspectRatio: CropAspectRatioPreset.original,
-                                    lockAspectRatio: false,
-                                  ),
-                                  IOSUiSettings(title: 'Crop Image'),
-                                ],
-                              );
-
-                              /// Send event with image after cropping it.
-                              croppedFile?.let(
-                                (it) => context.read<ProfileBloc>().add(ProfileEvent.setAvatarImage(XFile(it.path))),
-                              );
-                            },
+                            // onImageRemoved: () {
+                            //   context.read<ProfileBloc>().add(const ProfileEvent.onRemoveImageTapped());
+                            // },
+                            // onImageSelected: (image) async {
+                            //   final CroppedFile? croppedFile = await ImageCropper().cropImage(
+                            //     sourcePath: image.path,
+                            //     aspectRatioPresets: [
+                            //       CropAspectRatioPreset.square,
+                            //     ],
+                            //     uiSettings: [
+                            //       AndroidUiSettings(
+                            //         toolbarTitle: 'Crop Image',
+                            //         toolbarColor: HyphaColors.primaryBlu,
+                            //         toolbarWidgetColor: Colors.white,
+                            //         initAspectRatio: CropAspectRatioPreset.original,
+                            //         lockAspectRatio: false,
+                            //       ),
+                            //       IOSUiSettings(title: 'Crop Image'),
+                            //     ],
+                            //   );
+                            //
+                            //   /// Send event with image after cropping it.
+                            //   croppedFile?.let(
+                            //     (it) => context.read<ProfileBloc>().add(ProfileEvent.setAvatarImage(XFile(it.path))),
+                            //   );
+                            // },
                           ),
                         ),
                         const SizedBox(height: 14),
