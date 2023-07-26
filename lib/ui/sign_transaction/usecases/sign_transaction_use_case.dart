@@ -20,8 +20,7 @@ class SignTransactionUseCase extends InputUseCase<HResult.Result<String, HyphaEr
     final userData = _authRepository.authDataOrCrash;
     final Result<dynamic> result = await eosService.sendTransaction(
       eosTransaction: input.eOSTransaction,
-      accountName: userData.userProfileData.accountName,
-      network: input.eOSTransaction.network,
+      user: userData.userProfileData,
     );
     if (result.isValue) {
       final transactionID = result.asValue!.value;

@@ -45,7 +45,7 @@ class EOSService {
       ],
       network: user.network,
     );
-    return send(user: user, eosTransaction: loginTransaction);
+    return sendTransaction(user: user, eosTransaction: loginTransaction);
   }
 
   Future<Result<dynamic>> transferTokens({
@@ -72,7 +72,7 @@ class EOSService {
       ],
       network: fromUser.network,
     );
-    return send(user: fromUser, eosTransaction: transferTransaction);
+    return sendTransaction(user: fromUser, eosTransaction: transferTransaction);
   }
 
   Future<Result<dynamic>> deleteBlockchainAccount({
@@ -83,34 +83,31 @@ class EOSService {
     // return sendTransaction(eosTransaction: action, accountName: accountName, network: network);
   }
 
-  Future<Result<dynamic>> send({
+  Future<Result<dynamic>> sendTransaction({
     required UserProfileData user,
     required EOSTransaction eosTransaction,
   }) async {
-    return sendTransaction(eosTransaction: eosTransaction, accountName: user.accountName, network: user.network);
-  }
+    /// Note: An EOSTransaction coming from a QR code may be on the incorrect network for the account we are trying to use.
+    if (user.network != eosTransaction.network) {
+      throw 'Wrong network - transaction on ${eosTransaction.network} cannot be signed by user on network ${user.network}';
+    }
 
-  Future<Result<dynamic>> sendTransaction({
-    required EOSTransaction eosTransaction,
-    required String accountName,
-    required Network network,
-  }) async {
     final actions = eosTransaction.actions.map((e) => e.toEosAction).toList();
 
     for (final action in actions) {
       if (action.authorization == null || action.authorization == []) {
         action.authorization = [
           Authorization()
-            ..actor = accountName
+            ..actor = user.accountName
             ..permission = 'active'
         ];
       }
     }
-    final transaction = _buildTransaction(actions, accountName);
+    final transaction = _buildTransaction(actions, user.accountName);
     final UserAuthData? userAuthData = await secureStorageService.getUserAuthData();
 
     final eosClient = EOSClient(
-      baseUrl: remoteConfigService.pushTransactionNodeUrl(network: network),
+      baseUrl: remoteConfigService.pushTransactionNodeUrl(network: eosTransaction.network),
       privateKeys: [userAuthData!.eOSPrivateKey.toString()],
       version: 'v1',
     );
