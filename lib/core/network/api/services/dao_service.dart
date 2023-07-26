@@ -28,7 +28,7 @@ class DaoService {
     } catch (error) {
       print('Error accessing graphQL');
       print(error);
-      if (error is DioError) {
+      if (error is DioException) {
         final dioError = error;
         print('message: ${dioError.message}');
         print('status code: ${dioError.response?.statusCode}');

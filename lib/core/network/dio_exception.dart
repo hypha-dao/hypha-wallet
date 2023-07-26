@@ -3,34 +3,31 @@ import 'package:dio/dio.dart';
 class DioExceptions implements Exception {
   late String message;
 
-  DioExceptions.fromDioError(DioError dioError) {
+  DioExceptions.fromDioError(DioException dioError) {
     switch (dioError.type) {
-      case DioErrorType.cancel:
+      case DioException.requestCancelled:
         message = 'Request to API server was cancelled';
         break;
-      case DioErrorType.connectionTimeout:
+      case DioException.connectionTimeout:
         message = 'Connection timeout with API server';
         break;
-      case DioErrorType.receiveTimeout:
+      case DioException.receiveTimeout:
         message = 'Receive timeout in connection with API server';
         break;
-      case DioErrorType.badResponse:
+      case DioException.badResponse:
         message = _handleError(
           dioError.response?.statusCode,
           dioError.response?.data,
         );
         break;
-      case DioErrorType.sendTimeout:
+      case DioException.sendTimeout:
         message = 'Send timeout in connection with API server';
         break;
-      case DioErrorType.unknown:
+      default:
         if (dioError.message?.contains('SocketException') == true) {
           message = 'No Internet';
           break;
         }
-        message = 'Unexpected error occurred';
-        break;
-      default:
         message = 'Something went wrong';
         break;
     }

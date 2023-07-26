@@ -18,7 +18,7 @@ class TransactionHistoryRepository {
           : await service.getAllTransactions(userAccount);
       final List<dynamic> transfers = response.data['actions'].toList();
       return Result.value(transfers.map((transfer) => TransactionModel.fromJson(transfer)).toList());
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       final errorMessage = DioExceptions.fromDioError(e).toString();
       return Result.error(HyphaError.api(errorMessage));
     } catch (e) {
