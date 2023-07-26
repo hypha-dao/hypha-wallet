@@ -2,6 +2,7 @@ import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
 import 'package:hypha_wallet/core/error_handler/model/hypha_error_type.dart';
 import 'package:hypha_wallet/core/network/api/endpoints.dart';
 import 'package:hypha_wallet/core/network/api/services/remote_config_service.dart';
+import 'package:hypha_wallet/core/network/models/network.dart';
 import 'package:hypha_wallet/core/network/networking_manager.dart';
 import 'package:hypha_wallet/ui/architecture/result/result.dart';
 import 'package:hypha_wallet/ui/profile/interactor/profile_data.dart';

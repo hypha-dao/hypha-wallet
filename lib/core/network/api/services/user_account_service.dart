@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:hypha_wallet/core/network/api/endpoints.dart';
 import 'package:hypha_wallet/core/network/api/services/remote_config_service.dart';
+import 'package:hypha_wallet/core/network/models/network.dart';
+import 'package:hypha_wallet/core/network/models/network_extension.dart';
 import 'package:hypha_wallet/core/network/networking_manager.dart';
 
 class UserAccountService {

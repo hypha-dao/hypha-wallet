@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:hypha_wallet/core/network/api/services/remote_config_service.dart';
+
+import 'package:hypha_wallet/core/network/models/network.dart';
 
 part 'user_profile_data.freezed.dart';
 part 'user_profile_data.g.dart';

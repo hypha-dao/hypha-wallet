@@ -1,8 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
-import 'package:get_it/get_it.dart';
 import 'package:hypha_wallet/core/network/api/endpoints.dart';
-import 'package:hypha_wallet/core/network/api/services/remote_config_service.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class NetworkingManager extends DioForNative {
@@ -26,8 +24,4 @@ class NetworkingManager extends DioForNative {
 
     options.baseUrl = baseUrl;
   }
-}
-
-extension NetworkingManagerNetwork on Network {
-  NetworkingManager get manager => NetworkingManager(GetIt.I.get<RemoteConfigService>().baseUrl(network: this));
 }

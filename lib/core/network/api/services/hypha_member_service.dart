@@ -1,5 +1,6 @@
 import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
 import 'package:hypha_wallet/core/network/api/services/remote_config_service.dart';
+import 'package:hypha_wallet/core/network/models/network.dart';
 import 'package:hypha_wallet/core/network/networking_manager.dart';
 import 'package:hypha_wallet/ui/architecture/result/result.dart';
 

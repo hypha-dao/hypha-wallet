@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart' as Get;
 import 'package:get_it/get_it.dart';
-import 'package:hypha_wallet/core/network/api/services/remote_config_service.dart';
+import 'package:hypha_wallet/core/network/models/network.dart';
 import 'package:hypha_wallet/design/progress_indicator/hypha_full_page_progress_indicator.dart';
 import 'package:hypha_wallet/ui/onboarding/create_account_success_page.dart';
 import 'package:hypha_wallet/ui/onboarding/edit_account/components/edit_account_view.dart';

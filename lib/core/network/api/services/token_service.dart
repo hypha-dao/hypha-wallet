@@ -4,6 +4,7 @@ import 'package:hypha_wallet/core/crypto/eos_models/eos_symbol.dart';
 import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
 import 'package:hypha_wallet/core/logging/log_helper.dart';
 import 'package:hypha_wallet/core/network/api/endpoints.dart';
+import 'package:hypha_wallet/core/network/models/network_extension.dart';
 import 'package:hypha_wallet/core/network/models/symbol_model.dart';
 import 'package:hypha_wallet/core/network/models/token_model.dart';
 import 'package:hypha_wallet/core/network/models/token_value.dart';

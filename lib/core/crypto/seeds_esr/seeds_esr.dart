@@ -3,7 +3,7 @@ import 'package:hypha_wallet/core/crypto/dart_esr/dart_esr.dart';
 import 'package:hypha_wallet/core/crypto/seeds_esr/eos_transaction.dart';
 import 'package:hypha_wallet/core/crypto/seeds_esr/scan_qr_code_result_data.dart';
 import 'package:hypha_wallet/core/logging/log_helper.dart';
-import 'package:hypha_wallet/core/network/api/services/remote_config_service.dart';
+import 'package:hypha_wallet/core/network/models/network.dart';
 // import 'package:hypha_wallet/core/crypto/eosdart/src/models/action.dart';
 
 class SeedsESR {

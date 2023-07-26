@@ -1,5 +1,5 @@
 import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
-import 'package:hypha_wallet/core/network/api/services/remote_config_service.dart';
+import 'package:hypha_wallet/core/network/models/network.dart';
 import 'package:hypha_wallet/core/network/models/user_profile_data.dart';
 import 'package:hypha_wallet/core/network/repository/profile_repository.dart';
 import 'package:hypha_wallet/core/shared_preferences/hypha_shared_prefs.dart';
