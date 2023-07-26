@@ -11,6 +11,7 @@ import 'package:hypha_wallet/core/network/api/aws_amplify/amplify_service.dart';
 import 'package:hypha_wallet/core/network/api/aws_amplify/profile_upload_repository.dart';
 import 'package:hypha_wallet/core/network/api/eos_service.dart';
 import 'package:hypha_wallet/core/network/api/services/remote_config_service.dart';
+import 'package:hypha_wallet/core/network/models/user_profile_data.dart';
 import 'package:hypha_wallet/core/network/networking_manager.dart';
 import 'package:hypha_wallet/core/shared_preferences/hypha_shared_prefs.dart';
 import 'package:hypha_wallet/ui/architecture/result/result.dart';
@@ -50,7 +51,7 @@ mixin MockUseCase {
 class MockSignupUseCase extends PPPSignUpUseCase with MockUseCase {
   MockSignupUseCase(super.amplifyService);
   @override
-  Future<Result<bool, HyphaError>> run(String accountName, Network network) async {
+  Future<Result<bool, HyphaError>> run(UserProfileData user) async {
     return genericRun();
   }
 }
@@ -58,7 +59,7 @@ class MockSignupUseCase extends PPPSignUpUseCase with MockUseCase {
 class MockProfileLoginUseCase extends ProfileLoginUseCase with MockUseCase {
   MockProfileLoginUseCase(super.amplifyService);
   @override
-  Future<Result<bool, HyphaError>> run(String accountName, Network network) async {
+  Future<Result<bool, HyphaError>> run(UserProfileData user) async {
     return genericRun();
   }
 }
@@ -66,8 +67,7 @@ class MockProfileLoginUseCase extends ProfileLoginUseCase with MockUseCase {
 class MockInitializeProfileUseCase extends InitializeProfileUseCase with MockUseCase {
   MockInitializeProfileUseCase(super.amplifyService);
   @override
-  Future<Result<bool, HyphaError>> run(
-      {required String accountName, required String name, required Network network}) async {
+  Future<Result<bool, HyphaError>> run({required UserProfileData user, required String name}) async {
     return genericRun();
   }
 }
@@ -75,17 +75,17 @@ class MockInitializeProfileUseCase extends InitializeProfileUseCase with MockUse
 class MockSetImageUseCase extends SetImageUseCase with MockUseCase {
   MockSetImageUseCase(super.amplifyService, super._profileLoginUseCase);
   @override
-  Future<Result<bool, HyphaError>> runFileName(String filePath, String accountName, Network network) async {
+  Future<Result<bool, HyphaError>> runFileName(String filePath, UserProfileData user) async {
     return genericRun();
   }
 
   @override
-  Future<Result<bool, HyphaError>> run(XFile image, String accountName, Network network) async {
+  Future<Result<bool, HyphaError>> run(XFile image, UserProfileData user) async {
     return genericRun();
   }
 
   @override
-  Future<Result<bool, HyphaError>> runFile(File imageFile, String accountName, Network network) async {
+  Future<Result<bool, HyphaError>> runFile(File imageFile, UserProfileData user) async {
     return genericRun();
   }
 }

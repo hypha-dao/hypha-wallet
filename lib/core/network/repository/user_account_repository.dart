@@ -12,12 +12,12 @@ class UserAccountRepository {
       : _userService = userService,
         _memberService = memberService;
 
-  Future<bool> isUserAccountAvailable(String userAccount) async {
-    return _userService.isUserAccountAvailable(userAccount);
+  Future<bool> isUserAccountAvailable(String accountName, Network network) async {
+    return _userService.isUserAccountAvailable(accountName, network);
   }
 
-  Future<String> findAvailableUserAccount(String fullName) async {
-    return _userService.findAvailableUserAccount(fullName);
+  Future<String> findAvailableUserAccount(String fullName, Network network) async {
+    return _userService.findAvailableUserAccount(fullName, network);
   }
 
   Future<Result<List<String>, HyphaError>> findHyphaAccounts(String prefix, Network network) {

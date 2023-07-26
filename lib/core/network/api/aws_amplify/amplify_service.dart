@@ -9,6 +9,7 @@ import 'package:hypha_wallet/core/network/api/aws_amplify/amplify_policy.dart';
 import 'package:hypha_wallet/core/network/api/aws_amplify/aws_authenticated_request.dart';
 import 'package:hypha_wallet/core/network/api/eos_service.dart';
 import 'package:hypha_wallet/core/network/api/services/remote_config_service.dart';
+import 'package:hypha_wallet/core/network/models/user_profile_data.dart';
 import 'package:hypha_wallet/core/network/networking_manager.dart';
 
 String getRandomString(int len) {
@@ -68,15 +69,15 @@ class AmplifyService {
     return attributes;
   }
 
-  Future<dynamic> signUp(String accountName, Network network, {String? name}) async {
+  Future<dynamic> signUp(UserProfileData user, {String? name}) async {
     final List<AttributeArg> userAttributes = [];
     if (name != null) {
       userAttributes.add(AttributeArg(name: 'name', value: name));
     }
     try {
       final randomPassword = getRandomString(20);
-      final result = await userPool(network).signUp(
-        accountName,
+      final result = await userPool(user.network).signUp(
+        user.accountName,
         randomPassword,
         userAttributes: userAttributes,
       );
@@ -97,7 +98,7 @@ class AmplifyService {
     cognitoUser = null;
   }
 
-  Future<bool> profileServiceLoginUser(String accountName, Network network, {bool isSignUp = false}) async {
+  Future<bool> profileServiceLoginUser(UserProfileData user, {bool isSignUp = false}) async {
     if (session != null && session!.isValid()) {
       print('already logged in');
       return true;
@@ -105,7 +106,7 @@ class AmplifyService {
     if (isSignUp) {
       try {
         // ignore: unused_local_variable
-        final res = await signUp(accountName, network);
+        final res = await signUp(user);
         print('signup res: $res');
       } catch (error) {
         print('error signing up: $error');
@@ -115,13 +116,13 @@ class AmplifyService {
     }
 
     cognitoUser = CognitoUser(
-      accountName,
-      userPool(network),
+      user.accountName,
+      userPool(user.network),
     );
     cognitoUser!.authenticationFlowType = 'CUSTOM_AUTH';
 
     final authDetails = AuthenticationDetails(
-      username: accountName,
+      username: user.accountName,
       password: 'Password001',
     );
 
@@ -147,7 +148,7 @@ class AmplifyService {
 
       // handle CUSTOM_CHALLENGE challenge
       final loginCode = e.challengeParameters['loginCode'];
-      await eosService.loginWithCode(accountName: accountName, loginCode: loginCode, network: network);
+      await eosService.loginWithCode(user: user, loginCode: loginCode);
       print('return challenge $loginCode');
       session = await cognitoUser!.sendCustomChallengeAnswer(loginCode);
 

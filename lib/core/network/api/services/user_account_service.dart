@@ -26,11 +26,6 @@ class UserAccountService {
     try {
       // ignore: unused_local_variable
       final res = await networkingManager.post(url, data: requestBody);
-
-      // TODO(gguij): Not sure we need to handle the response - how to we parse status codes?
-      // print('res: $res');
-      // flutter: res: {"success":true}
-
       return true;
     } catch (error) {
       print('Error creating account');
@@ -46,25 +41,25 @@ class UserAccountService {
     }
   }
 
-  Future<bool> isUserAccountAvailable(String accountName) async {
+  Future<bool> isUserAccountAvailable(String accountName, Network network) async {
     final requestBody = '{ "account_name": "$accountName" }';
     try {
       // ignore: unused_local_variable
-      final res = await networkingManager.post(Endpoints.getAccount, data: requestBody);
+      final res = await network.manager.post(Endpoints.getAccount, data: requestBody);
       return false;
     } catch (error) {
       return true;
     }
   }
 
-  Future<String> findAvailableUserAccount(String fullName) async {
+  Future<String> findAvailableUserAccount(String fullName, Network network) async {
     var sequence = 0;
     final maxTries = 100;
 
     while (sequence < maxTries) {
       final accountName = generateUserName(fullName: fullName, sequence: sequence);
       if (accountName != null) {
-        final bool available = await isUserAccountAvailable(accountName);
+        final bool available = await isUserAccountAvailable(accountName, network);
         if (available) {
           return accountName;
         }

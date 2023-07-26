@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:hypha_wallet/core/network/api/services/remote_config_service.dart';
+import 'package:hypha_wallet/core/network/models/user_profile_data.dart';
 import 'package:hypha_wallet/core/shared_preferences/hypha_shared_prefs.dart';
 import 'package:hypha_wallet/ui/architecture/result/result.dart';
 import 'package:hypha_wallet/ui/profile/usecases/initialize_profile_use_case.dart';
@@ -92,7 +93,7 @@ class ProfileUploadRepository {
     while (data.step < data.numSteps) {
       switch (data.step) {
         case 0:
-          final signupResult = await _pPPSignUpUseCase.run(data.accountName, data.network);
+          final signupResult = await _pPPSignUpUseCase.run(data.user);
           print('Signup success: ${signupResult.asValue?.value}');
           if (trueResult(signupResult)) {
             data.step++;
@@ -102,7 +103,7 @@ class ProfileUploadRepository {
           break;
 
         case 1:
-          final loginResult = await _profileLoginUseCase.run(data.accountName, data.network);
+          final loginResult = await _profileLoginUseCase.run(data.user);
           print('Login success: ${loginResult.asValue?.value}');
           if (trueResult(loginResult)) {
             data.step++;
@@ -113,9 +114,8 @@ class ProfileUploadRepository {
 
         case 2:
           final initResult = await _initializeProfileUseCase.run(
-            accountName: data.accountName,
+            user: data.user,
             name: data.userName,
-            network: data.network,
           );
           print('initResult: ${initResult.asValue?.value}');
           if (trueResult(initResult)) {
@@ -127,7 +127,7 @@ class ProfileUploadRepository {
 
         case 3:
           if (data.fileName != null) {
-            final setImageResult = await _setImageUseCase.runFileName(data.fileName!, data.accountName, data.network);
+            final setImageResult = await _setImageUseCase.runFileName(data.fileName!, data.user);
             print('setImageResult: ${setImageResult.asValue?.value}');
             if (trueResult(setImageResult)) {
               data.step++;
@@ -162,6 +162,7 @@ class SignupData {
   final Network network;
   int step;
   final numSteps = 4;
+  UserProfileData get user => UserProfileData(accountName: accountName, network: network);
 
   SignupData({
     required this.accountName,

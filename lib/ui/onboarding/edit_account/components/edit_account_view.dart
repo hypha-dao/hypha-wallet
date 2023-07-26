@@ -39,7 +39,7 @@ class _EditAccountViewState extends State<EditAccountView> {
         void _onSearchChanged(String value) {
           if (_debounce?.isActive ?? false) _debounce?.cancel();
           _debounce = Timer(const Duration(milliseconds: 500), () {
-            context.read<EditAccountBloc>().add(EditAccountEvent.onAccountChange(value));
+            context.read<EditAccountBloc>().add(EditAccountEvent.onAccountChange(value, state.network));
           });
         }
 

@@ -76,8 +76,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
 
   FutureOr<void> _setName(_SetName event, Emitter<ProfileState> emit) async {
     emit(state.copyWith(showUpdateBioLoading: true));
-    final result = await _setNameUseCase.run(
-        accountName: state.profileData!.account, name: event.name, network: state.profileData!.network);
+    final result = await _setNameUseCase.run(user: state.profileData!.user, name: event.name);
     if (result.isValue) {
       emit(
         state.copyWith(
@@ -96,8 +95,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   FutureOr<void> _setBio(_SetBio event, Emitter<ProfileState> emit) async {
     emit(state.copyWith(showUpdateBioLoading: true));
     final result = await _setBioUseCase.run(
-      SetBioUseCaseInput(
-          accountName: state.profileData!.account, profileBio: event.bio, network: state.profileData!.network),
+      SetBioUseCaseInput(user: state.profileData!.user, profileBio: event.bio),
     );
     if (result.isValue) {
       emit(
@@ -116,7 +114,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
 
   FutureOr<void> _setAvatarImage(_SetAvatarImage event, Emitter<ProfileState> emit) async {
     emit(state.copyWith(showUpdateImageLoading: true));
-    final result = await _setImageUseCase.run(event.image, state.profileData!.account, state.profileData!.network);
+    final result = await _setImageUseCase.run(event.image, state.profileData!.user);
     final userData = _authRepository.authDataOrCrash;
 
     if (result.isValue) {
@@ -139,7 +137,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
 
   FutureOr<void> _onRemoveImageTapped(_OnRemoveImageTapped event, Emitter<ProfileState> emit) async {
     emit(state.copyWith(showUpdateImageLoading: true));
-    final result = await _removeAvatarUseCase.run(state.profileData!.account, state.profileData!.network);
+    final result = await _removeAvatarUseCase.run(state.profileData!.user);
     if (result.isValue) {
       emit(
         state.copyWith(

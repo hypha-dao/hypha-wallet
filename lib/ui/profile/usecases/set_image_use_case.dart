@@ -4,7 +4,7 @@ import 'dart:io';
 
 import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
 import 'package:hypha_wallet/core/network/api/aws_amplify/amplify_service.dart';
-import 'package:hypha_wallet/core/network/api/services/remote_config_service.dart';
+import 'package:hypha_wallet/core/network/models/user_profile_data.dart';
 import 'package:hypha_wallet/ui/architecture/result/result.dart';
 import 'package:hypha_wallet/ui/profile/usecases/profile_login_use_case.dart';
 import 'package:image_picker/image_picker.dart';
@@ -16,19 +16,19 @@ class SetImageUseCase {
 
   SetImageUseCase(this._amplifyService, this._profileLoginUseCase);
 
-  Future<Result<bool, HyphaError>> run(XFile image, String accountName, Network network) async {
+  Future<Result<bool, HyphaError>> run(XFile image, UserProfileData user) async {
     final File imageFile = File(image.path);
-    return runFile(imageFile, accountName, network);
+    return runFile(imageFile, user);
   }
 
-  Future<Result<bool, HyphaError>> runFileName(String filePath, String accountName, Network network) async {
+  Future<Result<bool, HyphaError>> runFileName(String filePath, UserProfileData user) async {
     final File imageFile = File(filePath);
-    return runFile(imageFile, accountName, network);
+    return runFile(imageFile, user);
   }
 
-  Future<Result<bool, HyphaError>> runFile(File image, String accountName, Network network) async {
+  Future<Result<bool, HyphaError>> runFile(File image, UserProfileData user) async {
     try {
-      final Result<bool, HyphaError> loginResult = await _profileLoginUseCase.run(accountName, network);
+      final Result<bool, HyphaError> loginResult = await _profileLoginUseCase.run(user);
 
       if (loginResult.isValue) {
         final File imageFile = File(image.path);
@@ -37,7 +37,7 @@ class SetImageUseCase {
         print('file size: ${imageFile.lengthSync()}');
         print('file name: $filename');
 
-        final res = await _amplifyService.setPicture(imageFile, filename, network);
+        final res = await _amplifyService.setPicture(imageFile, filename, user.network);
         return Result.value(true);
       } else {
         print('SetImageUseCase error login Failed ');

@@ -8,6 +8,7 @@ import 'package:hypha_wallet/core/local/models/user_auth_data.dart';
 import 'package:hypha_wallet/core/local/services/secure_storage_service.dart';
 import 'package:hypha_wallet/core/network/api/services/remote_config_service.dart';
 import 'package:hypha_wallet/core/network/models/token_value.dart';
+import 'package:hypha_wallet/core/network/models/user_profile_data.dart';
 
 class EOSService {
   final SecureStorageService secureStorageService;
@@ -24,35 +25,33 @@ class EOSService {
   }
 
   Future<Result<dynamic>> loginWithCode({
-    required String accountName,
+    required UserProfileData user,
     required String loginCode,
-    required Network network,
   }) async {
-    final contractName = remoteConfigService.loginContract(network: network);
-    final actionName = remoteConfigService.loginAction(network: network);
+    final contractName = remoteConfigService.loginContract(network: user.network);
+    final actionName = remoteConfigService.loginAction(network: user.network);
     final loginTransaction = EOSTransaction.fromAction(
       account: contractName,
       actionName: actionName,
       data: {
-        'account_name': accountName,
+        'account_name': user.accountName,
         'login_code': loginCode,
       },
       authorization: [
         Authorization()
-          ..actor = accountName
+          ..actor = user.accountName
           ..permission = 'active'
       ],
-      network: network,
+      network: user.network,
     );
-    return sendTransaction(eosTransaction: loginTransaction, accountName: accountName, network: network);
+    return send(user: user, eosTransaction: loginTransaction);
   }
 
   Future<Result<dynamic>> transferTokens({
-    required String fromAccount,
+    required UserProfileData fromUser,
     required String toAccount,
     required TokenValue tokenValue,
     String memo = '',
-    required Network network,
   }) async {
     final contractName = tokenValue.tokenModel.contract;
     final actionName = 'transfer';
@@ -60,28 +59,34 @@ class EOSService {
       account: contractName,
       actionName: actionName,
       data: {
-        'from': fromAccount,
+        'from': fromUser.accountName,
         'to': toAccount,
         'quantity': tokenValue.asFormattedString(),
         'memo': memo,
       },
       authorization: [
         Authorization()
-          ..actor = fromAccount
+          ..actor = fromUser.accountName
           ..permission = 'active'
       ],
-      network: network,
+      network: fromUser.network,
     );
-    return sendTransaction(eosTransaction: transferTransaction, accountName: fromAccount, network: network);
+    return send(user: fromUser, eosTransaction: transferTransaction);
   }
 
   Future<Result<dynamic>> deleteBlockchainAccount({
-    required String accountName,
-    required Network network,
+    required UserProfileData user,
   }) async {
     throw 'TBD - implement this';
     // final action = createChangePermissionsAction(accountName, 'owner', ['keys'], ['accounts']);
     // return sendTransaction(eosTransaction: action, accountName: accountName, network: network);
+  }
+
+  Future<Result<dynamic>> send({
+    required UserProfileData user,
+    required EOSTransaction eosTransaction,
+  }) async {
+    return sendTransaction(eosTransaction: eosTransaction, accountName: user.accountName, network: user.network);
   }
 
   Future<Result<dynamic>> sendTransaction({

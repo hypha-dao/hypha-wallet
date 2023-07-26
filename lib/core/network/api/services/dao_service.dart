@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:hypha_wallet/core/network/api/services/remote_config_service.dart';
 import 'package:hypha_wallet/core/network/models/dao_data_model.dart';
+import 'package:hypha_wallet/core/network/models/user_profile_data.dart';
 import 'package:hypha_wallet/core/network/networking_manager.dart';
 
 class DaoService {
@@ -10,13 +11,13 @@ class DaoService {
   DaoService({required this.networkingManager, required this.remoteConfigService});
 
   Future<List<DaoData>> getDaos({
-    required String accountName,
-    required Network network,
+    required UserProfileData user,
   }) async {
+    final String accountName = user.accountName;
     final String query =
         '{"query":"query profileDhos(\$username: String!, \$first: Int, \$offset: Int) { getMember(details_member_n: \$username) { docId __typename createdDate details_member_n memberofAggregate { count } memberof(first: \$first, offset: \$offset) { ... on Dao { docId details_daoName_n settings { settings_daoTitle_s settings_isHypha_i settings_logo_s settings_daoUrl_s } } } applicantof { ... on Dao { details_daoName_n settings { settings_daoTitle_s settings_daoUrl_s } } } } }","variables":{"username":"$accountName"}}';
 
-    final url = remoteConfigService.graphQLEndpoint(network: network);
+    final url = remoteConfigService.graphQLEndpoint(network: user.network);
     try {
       final res = await networkingManager.post(url, data: query);
       final Map<String, dynamic> response = res.data;
