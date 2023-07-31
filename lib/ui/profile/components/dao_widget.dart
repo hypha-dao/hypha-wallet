@@ -13,9 +13,6 @@ class DaoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final base64String = dao.settingsLogo;
-    // String svgString = String.fromCharCodes(base64Decode(base64String));
-
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 22),
       child: HyphaCard(
@@ -30,12 +27,18 @@ class DaoWidget extends StatelessWidget {
               children: [
                 ListTile(
                   dense: true,
-                  // leading: ClipOval(child: SvgPicture.string(
-                  //   svgString,
-                  //   width: 24,
-                  //   height: 24,
-                  //   fit: BoxFit.contain,
-                  // )),
+                  // leading: FutureBuilder<String>(
+                  //   future: fetchSVGFromIPFS('QmV3KmaoqCCXuCDvHzYWS9Jg3RfjrDTQSXK1e7453qfSRS'),
+                  //   builder: (context, snapshot) {
+                  //     if (snapshot.connectionState == ConnectionState.waiting) {
+                  //       return CircularProgressIndicator();
+                  //     } else if (snapshot.hasError) {
+                  //       return Text('Error: ${snapshot.error}');
+                  //     } else {
+                  //       return SvgPicture.string(snapshot.data!);
+                  //     }
+                  //   },
+                  // ),
                   visualDensity: VisualDensity.compact,
                   title: Text(dao.settingsDaoTitle, style: context.hyphaTextTheme.smallTitles),
                 ),
@@ -50,3 +53,14 @@ class DaoWidget extends StatelessWidget {
     );
   }
 }
+
+// Future<String> fetchSVGFromIPFS(String ipfsHash) async {
+//   final ipfsURL = 'https://ipfs.io/ipfs/$ipfsHash:svg';
+//   final response = await http.get(Uri.parse(ipfsURL));
+//
+//   if (response.statusCode == 200) {
+//     return response.body;
+//   } else {
+//     throw Exception('Failed to fetch SVG from IPFS. Status code: ${response.statusCode}');
+//   }
+// }
