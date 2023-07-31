@@ -17,7 +17,7 @@ class ProfileService extends NetworkingManager {
       final response = await get(url);
       if (response.statusCode == 200) {
         final map = Map<String, dynamic>.from(response.data);
-        return Result.value(ProfileData.fromJson(map, network));
+        return Result.value(ProfileData.fromJson(map, network, []));
       } else {
         print('get profile status error: ${response.statusCode} ${response.statusMessage}');
         return Result.error(HyphaError(type: HyphaErrorType.api, message: 'server error ${response.statusMessage}'));

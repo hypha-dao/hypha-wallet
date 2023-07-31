@@ -1,3 +1,5 @@
+import 'package:hypha_wallet/core/logging/log_helper.dart';
+
 class DaoData {
   final String docId;
   final String detailsDaoName;
@@ -15,6 +17,8 @@ class DaoData {
 
   factory DaoData.fromJson(Map<String, dynamic> json) {
     final Map<String, dynamic> settings = json['settings'][0];
+    LogHelper.d(settings.toString());
+
     return DaoData(
       docId: json['docId'],
       detailsDaoName: json['details_daoName_n'],

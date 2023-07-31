@@ -53,10 +53,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   Future<void> _initial(_Initial event, Emitter<ProfileState> emit) async {
     emit(state.copyWith(pageState: PageState.loading));
     final userData = _authRepository.authDataOrCrash;
-    final Result<ProfileData, HyphaError> result = await _fetchProfileUseCase.run(
-      userData.userProfileData.accountName,
-      userData.userProfileData.network,
-    );
+    final Result<ProfileData, HyphaError> result = await _fetchProfileUseCase.run(userData.userProfileData);
     if (result.isValue) {
       emit(state.copyWith(pageState: PageState.success, profileData: result.asValue!.value));
     } else {
@@ -65,6 +62,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
         name: userData.userProfileData.userName,
         account: userData.userProfileData.accountName,
         network: userData.userProfileData.network,
+        daos: [],
       );
       emit(state.copyWith(pageState: PageState.success, profileData: profileData));
     }
@@ -118,10 +116,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     final userData = _authRepository.authDataOrCrash;
 
     if (result.isValue) {
-      final Result<ProfileData, HyphaError> profileResult = await _fetchProfileUseCase.run(
-        state.profileData!.account,
-        userData.userProfileData.network,
-      );
+      final Result<ProfileData, HyphaError> profileResult = await _fetchProfileUseCase.run(userData.userProfileData);
       if (profileResult.isValue) {
         final profile = profileResult.asValue!.value;
         emit(state.copyWith(showUpdateImageLoading: false, profileData: profile));

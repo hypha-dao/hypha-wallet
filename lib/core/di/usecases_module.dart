@@ -5,7 +5,11 @@ void _registerUseCasesModule() {
   _registerFactory(() => FindAvailableAccountUseCase(_getIt<UserAccountRepository>()));
   _registerFactory(() => CreateAccountUseCase(_getIt<AuthRepository>()));
   _registerFactory(() => ParseQRCodeUseCase(_getIt<AuthRepository>()));
-  _registerFactory(() => FetchProfileUseCase(_getIt<ProfileService>(), _getIt<HyphaSharedPrefs>()));
+  _registerFactory(() => FetchProfileUseCase(
+        _getIt<ProfileService>(),
+        _getIt<HyphaSharedPrefs>(),
+        _getIt<DaoService>(),
+      ));
   _registerFactory(() => GenerateKeyFromSeedsPassportWordsUseCase(_getIt<CryptoAuthService>()));
   _registerFactory(() => GenerateKeyFromRecoveryWordsUseCase(_getIt<CryptoAuthService>()));
   _registerFactory(() => FindAccountsUseCase(
