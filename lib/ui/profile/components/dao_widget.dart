@@ -1,12 +1,6 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hypha_wallet/core/network/models/dao_data_model.dart';
-import 'package:hypha_wallet/design/dividers/hypha_divider.dart';
 import 'package:hypha_wallet/design/hypha_card.dart';
-import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 
 class DaoWidget extends StatelessWidget {
@@ -51,31 +45,6 @@ class DaoWidget extends StatelessWidget {
               ],
             ),
           ),
-        ),
-      ),
-    );
-  }
-}
-
-class AddressContainer extends StatelessWidget {
-  final String address;
-  final bool selected;
-
-  const AddressContainer({super.key, required this.address, required this.selected});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.only(left: 12, right: 12, top: 8, bottom: 8),
-      decoration: BoxDecoration(
-        borderRadius: const BorderRadius.all(Radius.circular(12)),
-        color: HyphaColors.midGrey.withOpacity(0.10),
-      ),
-      child: Text(
-        address,
-        style: context.hyphaTextTheme.ralMediumBody.copyWith(
-          color: !selected ? HyphaColors.midGrey : context.hyphaTextTheme.ralMediumBody.color,
         ),
       ),
     );
