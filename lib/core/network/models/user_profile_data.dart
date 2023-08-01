@@ -10,7 +10,7 @@ class UserProfileData with _$UserProfileData {
 
   factory UserProfileData({
     required String accountName,
-    required Network network,
+    @Default(Network.telos) /*required*/ Network network,
     @Default(null) String? userImage,
     @Default(null) String? bio,
     @Default(null) String? userName,
@@ -18,5 +18,5 @@ class UserProfileData with _$UserProfileData {
 
   factory UserProfileData.fromJson(Map<String, dynamic> json) => _$UserProfileDataFromJson(json);
 
-  String get userNameOrAccount  => userName != null ? userName! : accountName;
+  String get userNameOrAccount => userName != null ? userName! : accountName;
 }
