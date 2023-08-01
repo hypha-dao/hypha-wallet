@@ -153,7 +153,7 @@ class __$$_UserProfileDataCopyWithImpl<$Res>
 class _$_UserProfileData extends _UserProfileData {
   _$_UserProfileData(
       {required this.accountName,
-      required this.network = Network.telos,
+      this.network = Network.telos,
       this.userImage = null,
       this.bio = null,
       this.userName = null})
@@ -219,7 +219,7 @@ class _$_UserProfileData extends _UserProfileData {
 abstract class _UserProfileData extends UserProfileData {
   factory _UserProfileData(
       {required final String accountName,
-      required final Network network,
+      final Network network,
       final String? userImage,
       final String? bio,
       final String? userName}) = _$_UserProfileData;

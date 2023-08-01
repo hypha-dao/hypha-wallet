@@ -10,7 +10,7 @@ class UserProfileData with _$UserProfileData {
 
   factory UserProfileData({
     required String accountName,
-    @Default(Network.telos) required Network network,
+    @Default(Network.telos) /*required*/ Network network,
     @Default(null) String? userImage,
     @Default(null) String? bio,
     @Default(null) String? userName,
