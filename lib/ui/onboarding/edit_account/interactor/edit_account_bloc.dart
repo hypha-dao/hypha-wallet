@@ -10,6 +10,7 @@ import 'package:hypha_wallet/core/extension/collection_extension.dart';
 import 'package:hypha_wallet/core/local/models/user_auth_data.dart';
 import 'package:hypha_wallet/core/local/services/crypto_auth_service.dart';
 import 'package:hypha_wallet/core/logging/log_helper.dart';
+import 'package:hypha_wallet/core/network/models/network.dart';
 import 'package:hypha_wallet/ui/architecture/interactor/page_states.dart';
 import 'package:hypha_wallet/ui/architecture/result/result.dart' as Hypha;
 import 'package:hypha_wallet/ui/blocs/deeplink/deeplink_bloc.dart';
@@ -38,7 +39,7 @@ class EditAccountBloc extends Bloc<EditAccountEvent, EditAccountState> {
     this._errorHandlerManager,
     this._cryptoAuthService,
     PageParams pageParams,
-  ) : super(EditAccountState(userName: pageParams.name, image: pageParams.file)) {
+  ) : super(EditAccountState(userName: pageParams.name, image: pageParams.file, network: pageParams.network)) {
     on<_Initial>(_initial);
     on<_OnNextPressed>(_onNextPressed);
     on<_ClearPageCommand>((_, emit) => emit(state.copyWith(command: null)));
@@ -97,7 +98,7 @@ class EditAccountBloc extends Bloc<EditAccountEvent, EditAccountState> {
         emit(state.copyWith(userAccountRequirements: completedItems));
 
         searchUserCancellable = CancelableOperation.fromFuture(
-          _checkAccountAvailabilityUseCase.run(event.value),
+          _checkAccountAvailabilityUseCase.run(CheckAccountInput(event.value, event.network)),
           onCancel: () => {LogHelper.d('_checkAccountAvailabilityUseCase cancelled for: ${event.value}')},
         );
 

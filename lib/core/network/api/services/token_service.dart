@@ -4,9 +4,11 @@ import 'package:hypha_wallet/core/crypto/eos_models/eos_symbol.dart';
 import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
 import 'package:hypha_wallet/core/logging/log_helper.dart';
 import 'package:hypha_wallet/core/network/api/endpoints.dart';
+import 'package:hypha_wallet/core/network/models/network_extension.dart';
 import 'package:hypha_wallet/core/network/models/symbol_model.dart';
 import 'package:hypha_wallet/core/network/models/token_model.dart';
 import 'package:hypha_wallet/core/network/models/token_value.dart';
+import 'package:hypha_wallet/core/network/models/user_profile_data.dart';
 import 'package:hypha_wallet/core/network/networking_manager.dart';
 import 'package:hypha_wallet/ui/architecture/result/result.dart';
 
@@ -23,18 +25,18 @@ class TokenService {
   TokenService(this.networkingManager);
 
   Future<Result<TokenValue, HyphaError>> getTokenBalance({
-    required String userAccount,
+    required UserProfileData user,
     required String tokenContract,
     required String symbol,
   }) async {
     try {
       final requestBody = '''
       { 
-        "account": "$userAccount",
+        "account": "${user.accountName}",
         "code": "$tokenContract",
         "symbol": "$symbol",
       }''';
-      final Response<List> res = await networkingManager.post<List>(
+      final Response<List> res = await user.network.manager.post<List>(
         Endpoints.getCurrencyBalance,
         data: requestBody,
       );
@@ -71,8 +73,8 @@ class TokenService {
       final res = await networkingManager.post(Endpoints.getTableScopes, data: requestBody);
       final List<Map<String, dynamic>> list = List<Map<String, dynamic>>.from(res.data['rows']);
       final tokenSymbolScopes = List<TokenSymbolScope>.from(list.map((e) {
-        /// This converts a name type into an int type and subsequently converts 
-        /// the int type into a symbol. Like magic. 
+        /// This converts a name type into an int type and subsequently converts
+        /// the int type into a symbol. Like magic.
         final scope = e['scope'];
         final eosName = EosName.from(scope);
         final eosSymbol = EosSymbol(eosName.value);

@@ -10,8 +10,8 @@ import 'package:hypha_wallet/core/local/services/secure_storage_service.dart';
 import 'package:hypha_wallet/core/logging/log_helper.dart';
 import 'package:hypha_wallet/core/network/api/aws_amplify/amplify_service.dart';
 import 'package:hypha_wallet/core/network/api/aws_amplify/profile_upload_repository.dart';
-import 'package:hypha_wallet/core/network/api/services/remote_config_service.dart';
 import 'package:hypha_wallet/core/network/api/services/user_account_service.dart';
+import 'package:hypha_wallet/core/network/models/network.dart';
 import 'package:hypha_wallet/core/network/models/user_profile_data.dart';
 import 'package:hypha_wallet/core/shared_preferences/hypha_shared_prefs.dart';
 import 'package:hypha_wallet/ui/blocs/deeplink/deeplink_bloc.dart';
@@ -67,18 +67,25 @@ class AuthRepository {
         publicKey: userAuthData.publicKey.toString(),
       );
 
+      final network = Network.fromString(inviteLinkData.chain);
+
       _saveUserData(
         UserProfileData(
           accountName: accountName,
           userName: userName,
-          network: Network.fromString(inviteLinkData.chain),
+          network: network,
         ),
         userAuthData,
         false,
       );
 
       print('create ppp account for $accountName with image ${image?.path}');
-      await _uploadRepository.scheduleUpload(accountName: accountName, userName: userName, fileName: image?.path);
+      await _uploadRepository.scheduleUpload(
+        accountName: accountName,
+        network: network,
+        userName: userName,
+        fileName: image?.path,
+      );
       unawaited(_uploadRepository.start());
 
       return true;

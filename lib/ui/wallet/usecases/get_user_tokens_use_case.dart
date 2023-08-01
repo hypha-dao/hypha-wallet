@@ -17,12 +17,13 @@ class GetUserTokensUseCase {
   Future<Stream<List<WalletTokenData>>> run() async {
     final user = _authRepository.authDataOrCrash;
     final List<FirebaseTokenData> allTokens = await _database.getAllTokens();
-    final Stream<List<String>> userTokensLive = _database.getUserTokensLive(accountName: user.userProfileData.accountName);
+    final Stream<List<String>> userTokensLive =
+        _database.getUserTokensLive(accountName: user.userProfileData.accountName);
 
     final Stream<Iterable<Future<WalletTokenData>>> mappedData = userTokensLive.map((List<String> userTokens) {
       return allTokens.where((element) => userTokens.contains(element.id)).map((e) async {
         final Result<TokenValue, HyphaError> tokenBalance = await _tokenService.getTokenBalance(
-          userAccount: user.userProfileData.accountName,
+          user: user.userProfileData,
           tokenContract: e.contract,
           symbol: e.symbol,
         );

@@ -1,4 +1,7 @@
+// ignore: unused_import
 import 'package:hypha_wallet/core/network/api/services/remote_config_service.dart';
+import 'package:hypha_wallet/core/network/models/network.dart';
+import 'package:hypha_wallet/core/network/models/user_profile_data.dart';
 
 class ProfileData {
   final String? avatarUrl;
@@ -11,6 +14,8 @@ class ProfileData {
   final String? avatar;
   final bool? deleted;
   final Network network;
+
+  UserProfileData get user => UserProfileData(accountName: account, network: network);
 
   ProfileData({
     required this.name,

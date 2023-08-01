@@ -70,8 +70,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
   FutureOr<void> _onDeleteAccountTapped(_OnDeleteAccountTapped event, Emitter<SettingsState> emit) async {
     emit(state.copyWith(pageState: PageState.loading));
     final user = _authRepository.authDataOrCrash;
-    final accountName = user.userProfileData.accountName;
-    await _deleteAccountUseCase.run(accountName);
+    await _deleteAccountUseCase.run(user.userProfileData);
     emit(state.copyWith(pageState: PageState.success));
   }
 

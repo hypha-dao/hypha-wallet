@@ -21,7 +21,7 @@ mixin _$EditAccountEvent {
     required TResult Function() initial,
     required TResult Function(InviteLinkData inviteLinkData) onNextPressed,
     required TResult Function() clearPageCommand,
-    required TResult Function(String value) onAccountChange,
+    required TResult Function(String value, Network network) onAccountChange,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -29,7 +29,7 @@ mixin _$EditAccountEvent {
     TResult? Function()? initial,
     TResult? Function(InviteLinkData inviteLinkData)? onNextPressed,
     TResult? Function()? clearPageCommand,
-    TResult? Function(String value)? onAccountChange,
+    TResult? Function(String value, Network network)? onAccountChange,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -37,7 +37,7 @@ mixin _$EditAccountEvent {
     TResult Function()? initial,
     TResult Function(InviteLinkData inviteLinkData)? onNextPressed,
     TResult Function()? clearPageCommand,
-    TResult Function(String value)? onAccountChange,
+    TResult Function(String value, Network network)? onAccountChange,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -126,7 +126,7 @@ class _$_Initial implements _Initial {
     required TResult Function() initial,
     required TResult Function(InviteLinkData inviteLinkData) onNextPressed,
     required TResult Function() clearPageCommand,
-    required TResult Function(String value) onAccountChange,
+    required TResult Function(String value, Network network) onAccountChange,
   }) {
     return initial();
   }
@@ -137,7 +137,7 @@ class _$_Initial implements _Initial {
     TResult? Function()? initial,
     TResult? Function(InviteLinkData inviteLinkData)? onNextPressed,
     TResult? Function()? clearPageCommand,
-    TResult? Function(String value)? onAccountChange,
+    TResult? Function(String value, Network network)? onAccountChange,
   }) {
     return initial?.call();
   }
@@ -148,7 +148,7 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function(InviteLinkData inviteLinkData)? onNextPressed,
     TResult Function()? clearPageCommand,
-    TResult Function(String value)? onAccountChange,
+    TResult Function(String value, Network network)? onAccountChange,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -267,7 +267,7 @@ class _$_OnNextPressed implements _OnNextPressed {
     required TResult Function() initial,
     required TResult Function(InviteLinkData inviteLinkData) onNextPressed,
     required TResult Function() clearPageCommand,
-    required TResult Function(String value) onAccountChange,
+    required TResult Function(String value, Network network) onAccountChange,
   }) {
     return onNextPressed(inviteLinkData);
   }
@@ -278,7 +278,7 @@ class _$_OnNextPressed implements _OnNextPressed {
     TResult? Function()? initial,
     TResult? Function(InviteLinkData inviteLinkData)? onNextPressed,
     TResult? Function()? clearPageCommand,
-    TResult? Function(String value)? onAccountChange,
+    TResult? Function(String value, Network network)? onAccountChange,
   }) {
     return onNextPressed?.call(inviteLinkData);
   }
@@ -289,7 +289,7 @@ class _$_OnNextPressed implements _OnNextPressed {
     TResult Function()? initial,
     TResult Function(InviteLinkData inviteLinkData)? onNextPressed,
     TResult Function()? clearPageCommand,
-    TResult Function(String value)? onAccountChange,
+    TResult Function(String value, Network network)? onAccountChange,
     required TResult orElse(),
   }) {
     if (onNextPressed != null) {
@@ -387,7 +387,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     required TResult Function() initial,
     required TResult Function(InviteLinkData inviteLinkData) onNextPressed,
     required TResult Function() clearPageCommand,
-    required TResult Function(String value) onAccountChange,
+    required TResult Function(String value, Network network) onAccountChange,
   }) {
     return clearPageCommand();
   }
@@ -398,7 +398,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     TResult? Function()? initial,
     TResult? Function(InviteLinkData inviteLinkData)? onNextPressed,
     TResult? Function()? clearPageCommand,
-    TResult? Function(String value)? onAccountChange,
+    TResult? Function(String value, Network network)? onAccountChange,
   }) {
     return clearPageCommand?.call();
   }
@@ -409,7 +409,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     TResult Function()? initial,
     TResult Function(InviteLinkData inviteLinkData)? onNextPressed,
     TResult Function()? clearPageCommand,
-    TResult Function(String value)? onAccountChange,
+    TResult Function(String value, Network network)? onAccountChange,
     required TResult orElse(),
   }) {
     if (clearPageCommand != null) {
@@ -466,7 +466,7 @@ abstract class _$$_OnAccountChangeCopyWith<$Res> {
           _$_OnAccountChange value, $Res Function(_$_OnAccountChange) then) =
       __$$_OnAccountChangeCopyWithImpl<$Res>;
   @useResult
-  $Res call({String value});
+  $Res call({String value, Network network});
 }
 
 /// @nodoc
@@ -481,12 +481,17 @@ class __$$_OnAccountChangeCopyWithImpl<$Res>
   @override
   $Res call({
     Object? value = null,
+    Object? network = null,
   }) {
     return _then(_$_OnAccountChange(
       null == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
               as String,
+      null == network
+          ? _value.network
+          : network // ignore: cast_nullable_to_non_nullable
+              as Network,
     ));
   }
 }
@@ -494,14 +499,16 @@ class __$$_OnAccountChangeCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_OnAccountChange implements _OnAccountChange {
-  const _$_OnAccountChange(this.value);
+  const _$_OnAccountChange(this.value, this.network);
 
   @override
   final String value;
+  @override
+  final Network network;
 
   @override
   String toString() {
-    return 'EditAccountEvent.onAccountChange(value: $value)';
+    return 'EditAccountEvent.onAccountChange(value: $value, network: $network)';
   }
 
   @override
@@ -509,11 +516,12 @@ class _$_OnAccountChange implements _OnAccountChange {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_OnAccountChange &&
-            (identical(other.value, value) || other.value == value));
+            (identical(other.value, value) || other.value == value) &&
+            (identical(other.network, network) || other.network == network));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, value);
+  int get hashCode => Object.hash(runtimeType, value, network);
 
   @JsonKey(ignore: true)
   @override
@@ -527,9 +535,9 @@ class _$_OnAccountChange implements _OnAccountChange {
     required TResult Function() initial,
     required TResult Function(InviteLinkData inviteLinkData) onNextPressed,
     required TResult Function() clearPageCommand,
-    required TResult Function(String value) onAccountChange,
+    required TResult Function(String value, Network network) onAccountChange,
   }) {
-    return onAccountChange(value);
+    return onAccountChange(value, network);
   }
 
   @override
@@ -538,9 +546,9 @@ class _$_OnAccountChange implements _OnAccountChange {
     TResult? Function()? initial,
     TResult? Function(InviteLinkData inviteLinkData)? onNextPressed,
     TResult? Function()? clearPageCommand,
-    TResult? Function(String value)? onAccountChange,
+    TResult? Function(String value, Network network)? onAccountChange,
   }) {
-    return onAccountChange?.call(value);
+    return onAccountChange?.call(value, network);
   }
 
   @override
@@ -549,11 +557,11 @@ class _$_OnAccountChange implements _OnAccountChange {
     TResult Function()? initial,
     TResult Function(InviteLinkData inviteLinkData)? onNextPressed,
     TResult Function()? clearPageCommand,
-    TResult Function(String value)? onAccountChange,
+    TResult Function(String value, Network network)? onAccountChange,
     required TResult orElse(),
   }) {
     if (onAccountChange != null) {
-      return onAccountChange(value);
+      return onAccountChange(value, network);
     }
     return orElse();
   }
@@ -597,9 +605,11 @@ class _$_OnAccountChange implements _OnAccountChange {
 }
 
 abstract class _OnAccountChange implements EditAccountEvent {
-  const factory _OnAccountChange(final String value) = _$_OnAccountChange;
+  const factory _OnAccountChange(final String value, final Network network) =
+      _$_OnAccountChange;
 
   String get value;
+  Network get network;
   @JsonKey(ignore: true)
   _$$_OnAccountChangeCopyWith<_$_OnAccountChange> get copyWith =>
       throw _privateConstructorUsedError;
@@ -610,6 +620,7 @@ mixin _$EditAccountState {
   PageState get pageState => throw _privateConstructorUsedError;
   XFile? get image => throw _privateConstructorUsedError;
   String get userName => throw _privateConstructorUsedError;
+  Network get network => throw _privateConstructorUsedError;
   String? get userAccount => throw _privateConstructorUsedError;
   PageCommand? get command => throw _privateConstructorUsedError;
   List<UserAccountRequirement> get userAccountRequirements =>
@@ -630,6 +641,7 @@ abstract class $EditAccountStateCopyWith<$Res> {
       {PageState pageState,
       XFile? image,
       String userName,
+      Network network,
       String? userAccount,
       PageCommand? command,
       List<UserAccountRequirement> userAccountRequirements});
@@ -653,6 +665,7 @@ class _$EditAccountStateCopyWithImpl<$Res, $Val extends EditAccountState>
     Object? pageState = null,
     Object? image = freezed,
     Object? userName = null,
+    Object? network = null,
     Object? userAccount = freezed,
     Object? command = freezed,
     Object? userAccountRequirements = null,
@@ -670,6 +683,10 @@ class _$EditAccountStateCopyWithImpl<$Res, $Val extends EditAccountState>
           ? _value.userName
           : userName // ignore: cast_nullable_to_non_nullable
               as String,
+      network: null == network
+          ? _value.network
+          : network // ignore: cast_nullable_to_non_nullable
+              as Network,
       userAccount: freezed == userAccount
           ? _value.userAccount
           : userAccount // ignore: cast_nullable_to_non_nullable
@@ -710,6 +727,7 @@ abstract class _$$_CreateAccountStateCopyWith<$Res>
       {PageState pageState,
       XFile? image,
       String userName,
+      Network network,
       String? userAccount,
       PageCommand? command,
       List<UserAccountRequirement> userAccountRequirements});
@@ -732,6 +750,7 @@ class __$$_CreateAccountStateCopyWithImpl<$Res>
     Object? pageState = null,
     Object? image = freezed,
     Object? userName = null,
+    Object? network = null,
     Object? userAccount = freezed,
     Object? command = freezed,
     Object? userAccountRequirements = null,
@@ -749,6 +768,10 @@ class __$$_CreateAccountStateCopyWithImpl<$Res>
           ? _value.userName
           : userName // ignore: cast_nullable_to_non_nullable
               as String,
+      network: null == network
+          ? _value.network
+          : network // ignore: cast_nullable_to_non_nullable
+              as Network,
       userAccount: freezed == userAccount
           ? _value.userAccount
           : userAccount // ignore: cast_nullable_to_non_nullable
@@ -772,6 +795,7 @@ class _$_CreateAccountState extends _CreateAccountState {
       {this.pageState = PageState.initial,
       this.image,
       required this.userName,
+      required this.network,
       this.userAccount,
       this.command,
       final List<UserAccountRequirement> userAccountRequirements = const []})
@@ -785,6 +809,8 @@ class _$_CreateAccountState extends _CreateAccountState {
   final XFile? image;
   @override
   final String userName;
+  @override
+  final Network network;
   @override
   final String? userAccount;
   @override
@@ -801,7 +827,7 @@ class _$_CreateAccountState extends _CreateAccountState {
 
   @override
   String toString() {
-    return 'EditAccountState(pageState: $pageState, image: $image, userName: $userName, userAccount: $userAccount, command: $command, userAccountRequirements: $userAccountRequirements)';
+    return 'EditAccountState(pageState: $pageState, image: $image, userName: $userName, network: $network, userAccount: $userAccount, command: $command, userAccountRequirements: $userAccountRequirements)';
   }
 
   @override
@@ -814,6 +840,7 @@ class _$_CreateAccountState extends _CreateAccountState {
             (identical(other.image, image) || other.image == image) &&
             (identical(other.userName, userName) ||
                 other.userName == userName) &&
+            (identical(other.network, network) || other.network == network) &&
             (identical(other.userAccount, userAccount) ||
                 other.userAccount == userAccount) &&
             (identical(other.command, command) || other.command == command) &&
@@ -827,6 +854,7 @@ class _$_CreateAccountState extends _CreateAccountState {
       pageState,
       image,
       userName,
+      network,
       userAccount,
       command,
       const DeepCollectionEquality().hash(_userAccountRequirements));
@@ -844,6 +872,7 @@ abstract class _CreateAccountState extends EditAccountState {
           {final PageState pageState,
           final XFile? image,
           required final String userName,
+          required final Network network,
           final String? userAccount,
           final PageCommand? command,
           final List<UserAccountRequirement> userAccountRequirements}) =
@@ -856,6 +885,8 @@ abstract class _CreateAccountState extends EditAccountState {
   XFile? get image;
   @override
   String get userName;
+  @override
+  Network get network;
   @override
   String? get userAccount;
   @override

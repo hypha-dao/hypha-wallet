@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:hypha_wallet/core/network/models/network.dart';
+import 'package:hypha_wallet/core/network/models/user_profile_data.dart';
 import 'package:hypha_wallet/core/shared_preferences/hypha_shared_prefs.dart';
 import 'package:hypha_wallet/ui/architecture/result/result.dart';
 import 'package:hypha_wallet/ui/profile/usecases/initialize_profile_use_case.dart';
@@ -37,8 +39,9 @@ class ProfileUploadRepository {
   /// Schedule a new data set for upload
   /// - call start() after this
   ///
-  Future<void> scheduleUpload({required String accountName, required String userName, String? fileName}) async {
-    final data = SignupData(accountName: accountName, userName: userName, fileName: fileName);
+  Future<void> scheduleUpload(
+      {required String accountName, required Network network, required String userName, String? fileName}) async {
+    final data = SignupData(accountName: accountName, network: network, userName: userName, fileName: fileName);
     await prefs.setSignupData(data);
   }
 
@@ -90,7 +93,7 @@ class ProfileUploadRepository {
     while (data.step < data.numSteps) {
       switch (data.step) {
         case 0:
-          final signupResult = await _pPPSignUpUseCase.run(data.accountName);
+          final signupResult = await _pPPSignUpUseCase.run(data.user);
           print('Signup success: ${signupResult.asValue?.value}');
           if (trueResult(signupResult)) {
             data.step++;
@@ -100,7 +103,7 @@ class ProfileUploadRepository {
           break;
 
         case 1:
-          final loginResult = await _profileLoginUseCase.run(data.accountName);
+          final loginResult = await _profileLoginUseCase.run(data.user);
           print('Login success: ${loginResult.asValue?.value}');
           if (trueResult(loginResult)) {
             data.step++;
@@ -110,7 +113,10 @@ class ProfileUploadRepository {
           break;
 
         case 2:
-          final initResult = await _initializeProfileUseCase.run(accountName: data.accountName, name: data.userName);
+          final initResult = await _initializeProfileUseCase.run(
+            user: data.user,
+            name: data.userName,
+          );
           print('initResult: ${initResult.asValue?.value}');
           if (trueResult(initResult)) {
             data.step++;
@@ -121,7 +127,7 @@ class ProfileUploadRepository {
 
         case 3:
           if (data.fileName != null) {
-            final setImageResult = await _setImageUseCase.runFileName(data.fileName!, data.accountName);
+            final setImageResult = await _setImageUseCase.runFileName(data.fileName!, data.user);
             print('setImageResult: ${setImageResult.asValue?.value}');
             if (trueResult(setImageResult)) {
               data.step++;
@@ -153,13 +159,16 @@ class SignupData {
   final String accountName;
   final String userName;
   final String? fileName;
+  final Network network;
   int step;
   final numSteps = 4;
+  UserProfileData get user => UserProfileData(accountName: accountName, network: network);
 
   SignupData({
     required this.accountName,
     required this.userName,
     required this.fileName,
+    required this.network,
     this.step = 0,
   });
 
@@ -172,11 +181,13 @@ class SignupData {
     final accountName = jsonMap['accountName'];
     final userName = jsonMap['userName'];
     final fileName = jsonMap['fileName'];
+    final network = jsonMap['network'];
     final step = jsonMap['step'];
     return SignupData(
       accountName: accountName,
       userName: userName,
       fileName: fileName,
+      network: Network.fromString(network),
       step: step,
     );
   }
@@ -186,6 +197,7 @@ class SignupData {
       'accountName': accountName,
       'userName': userName,
       'fileName': fileName,
+      'network': network.name,
       'step': step,
     };
     return jsonEncode(jsonMap);

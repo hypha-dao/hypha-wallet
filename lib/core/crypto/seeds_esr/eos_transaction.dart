@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:hypha_wallet/core/crypto/dart_esr/dart_esr.dart' as esr;
 import 'package:hypha_wallet/core/crypto/eosdart/eosdart.dart' as eos;
 import 'package:hypha_wallet/core/crypto/seeds_esr/eos_action.dart';
-import 'package:hypha_wallet/core/network/api/services/remote_config_service.dart';
+import 'package:hypha_wallet/core/network/models/network.dart';
 
 class EOSTransaction extends Equatable {
   final Network network;

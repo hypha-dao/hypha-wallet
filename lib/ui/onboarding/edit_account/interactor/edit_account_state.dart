@@ -8,6 +8,7 @@ class EditAccountState with _$EditAccountState {
     @Default(PageState.initial) PageState pageState,
     XFile? image,
     required String userName,
+    required Network network,
     String? userAccount,
     PageCommand? command,
     @Default([]) List<UserAccountRequirement> userAccountRequirements,
