@@ -177,7 +177,7 @@ class AmplifyService {
       path: 'register',
       body: <String, dynamic>{
         ...pppData,
-        'originAppId': remoteConfigService.pppOriginAppId,
+        'originAppId': remoteConfigService.pppOriginAppId(network),
         'appData': {},
       },
       network: network,

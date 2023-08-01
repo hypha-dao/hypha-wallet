@@ -107,7 +107,6 @@ class RemoteConfigService {
 
   String pppS3Bucket(Network network) => _pppService(network: network)['s3Bucket'];
 
-  // TODO(NIK): find the best endpoints for EOS
   Future<void> setDefaults() async {
     final pppConfig = await loadProfileServiceConfig();
     await FirebaseRemoteConfig.instance.setDefaults({
