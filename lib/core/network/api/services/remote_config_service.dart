@@ -193,7 +193,7 @@ class RemoteConfigService {
   }
 
   Future<Map<String, dynamic>> loadProfileServiceConfig() async {
-    final configString = await rootBundle.loadString('assets/config/profile_serivce/config.json');
+    final configString = await rootBundle.loadString('assets/config/profile_service/config.json');
     final configJson = jsonDecode(configString);
     return configJson as Map<String, dynamic>;
   }
