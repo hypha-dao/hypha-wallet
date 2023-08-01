@@ -17,7 +17,7 @@ class HyphaTransactionDetailsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List rows = List.empty(growable: true);
-    var memo;
+    String? memo;
     data.data.forEach((key, value) {
       if (key != 'memo') {
         rows.add(Row(
@@ -93,7 +93,7 @@ class HyphaTransactionDetailsCard extends StatelessWidget {
                         ? HyphaColors.midGrey.withOpacity(0.10)
                         : HyphaColors.midGrey.withOpacity(0.05),
                   ),
-                  child: Text(memo, style: context.hyphaTextTheme.ralMediumBody),
+                  child: Text(memo!, style: context.hyphaTextTheme.ralMediumBody),
                 )
               ],
               const SizedBox(height: 22),

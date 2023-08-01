@@ -22,7 +22,7 @@ class SendTokenUseCase {
   ) async {
     final user = _authRepository.authDataOrCrash;
     final result = await _eosService.transferTokens(
-      fromAccount: user.userProfileData.accountName,
+      fromUser: user.userProfileData,
       toAccount: receiverUser.accountName,
       tokenValue: TokenValue(
         double.parse(userEnteredAmount),
@@ -32,7 +32,6 @@ class SendTokenUseCase {
         ),
       ),
       memo: memo ?? '',
-      network: user.userProfileData.network,
     );
 
     if (result.isValue) {

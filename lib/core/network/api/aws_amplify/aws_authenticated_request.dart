@@ -56,8 +56,8 @@ Future<dynamic> awsAuthenticatedRequest({
     return response.data;
   } catch (error) {
     print('Call failed $path $error');
-    if (error is DioError) {
-      final DioError dioError = error;
+    if (error is DioException) {
+      final DioException dioError = error;
       print('message: ${dioError.message}');
       print('status code: ${dioError.response?.statusCode}');
       print('message: ${dioError.response?.statusMessage}');

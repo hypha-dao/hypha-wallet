@@ -1,7 +1,7 @@
 import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
 import 'package:hypha_wallet/core/network/api/services/hypha_member_service.dart';
-import 'package:hypha_wallet/core/network/api/services/remote_config_service.dart';
 import 'package:hypha_wallet/core/network/api/services/user_account_service.dart';
+import 'package:hypha_wallet/core/network/models/network.dart';
 import 'package:hypha_wallet/ui/architecture/result/result.dart';
 
 class UserAccountRepository {
@@ -12,12 +12,12 @@ class UserAccountRepository {
       : _userService = userService,
         _memberService = memberService;
 
-  Future<bool> isUserAccountAvailable(String userAccount) async {
-    return _userService.isUserAccountAvailable(userAccount);
+  Future<bool> isUserAccountAvailable(String accountName, Network network) async {
+    return _userService.isUserAccountAvailable(accountName, network);
   }
 
-  Future<String> findAvailableUserAccount(String fullName) async {
-    return _userService.findAvailableUserAccount(fullName);
+  Future<String> findAvailableUserAccount(String fullName, Network network) async {
+    return _userService.findAvailableUserAccount(fullName, network);
   }
 
   Future<Result<List<String>, HyphaError>> findHyphaAccounts(String prefix, Network network) {

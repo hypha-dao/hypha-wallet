@@ -13,7 +13,7 @@ class GetTokenBalanceUseCase {
   Future<Result<TokenValue, HyphaError>> run(String symbol, String contract) async {
     final user = _authRepository.authDataOrCrash;
     return _tokenService.getTokenBalance(
-      userAccount: user.userProfileData.accountName,
+      user: user.userProfileData,
       tokenContract: contract,
       symbol: symbol,
     );

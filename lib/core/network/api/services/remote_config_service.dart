@@ -2,22 +2,7 @@ import 'dart:convert';
 
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/services.dart';
-
-enum Network {
-  telos,
-  telosTestnet,
-  eos,
-  eosTestnet;
-
-  static Network fromString(String label) {
-    return values.firstWhere(
-      (v) => v.name == label,
-      orElse: () => Network.telos,
-    );
-  }
-}
-
-const Network _defaultNetwork = Network.telos;
+import 'package:hypha_wallet/core/network/models/network.dart';
 
 /// Encapsulates everything to do with remote configuration
 class RemoteConfigService {
@@ -32,13 +17,13 @@ class RemoteConfigService {
     return json.decode(FirebaseRemoteConfig.instance.getValue(param).asString());
   }
 
-  Map<String, dynamic> _pppService({Network? network}) {
-    network = network ?? _defaultNetwork;
+  Map<String, dynamic> _pppService({required Network network}) {
+    network = network;
     return _getMap('profileService')[network.name];
   }
 
-  Map<String, dynamic> _getNetworkConfig({Network? network}) {
-    network = network ?? _defaultNetwork;
+  Map<String, dynamic> _getNetworkConfig({required Network network}) {
+    network = network;
     final conf = _getMap('networks');
     final networkFromConfig = conf[network.name];
     if (networkFromConfig == null) {
@@ -49,7 +34,7 @@ class RemoteConfigService {
 
   // base url - read URL
   // network: default is Telos mainnet
-  String baseUrl({Network? network}) {
+  String baseUrl({required Network network}) {
     final networkConfig = _getNetworkConfig(network: network);
     final endpoint = networkConfig['endpoint'];
     return endpoint;
@@ -69,27 +54,27 @@ class RemoteConfigService {
     return endpoint;
   }
 
-  String loginContract({Network? network}) {
+  String loginContract({required Network network}) {
     final networkConfig = _getNetworkConfig(network: network);
     return networkConfig['loginContract'];
   }
 
-  String loginAction({Network? network}) {
+  String loginAction({required Network network}) {
     final networkConfig = _getNetworkConfig(network: network);
     return networkConfig['loginAction'];
   }
 
-  String inviteContract({Network? network}) {
+  String inviteContract({required Network network}) {
     final networkConfig = _getNetworkConfig(network: network);
     return networkConfig['inviteContract'];
   }
 
-  String payCpuContract({Network? network}) {
+  String payCpuContract({required Network network}) {
     final networkConfig = _getNetworkConfig(network: network);
     return networkConfig['payCpuContract'];
   }
 
-  String daoContract({Network? network}) {
+  String daoContract({required Network network}) {
     final networkConfig = _getNetworkConfig(network: network);
     return networkConfig['daoContract'];
   }
@@ -104,25 +89,24 @@ class RemoteConfigService {
   String get accountCreatorEndpoint => FirebaseRemoteConfig.instance.getString('accountCreatorEndpoint');
 
   // PPP Service AWS
-  String get awsProfileServiceEndpoint => _pppService()['awsProfileServiceEndpoint'];
+  String awsProfileServiceEndpoint(Network network) => _pppService(network: network)['awsProfileServiceEndpoint'];
 
-  String get pppEndpoint => _pppService()['awsProfileServiceEndpoint'];
+  String pppEndpoint(Network network) => _pppService(network: network)['awsProfileServiceEndpoint'];
 
-  String get identityPoolId => _pppService()['identityPoolId'];
+  String identityPoolId(Network network) => _pppService(network: network)['identityPoolId'];
 
-  String get userPoolId => _pppService()['userPoolId'];
+  String userPoolId(Network network) => _pppService(network: network)['userPoolId'];
 
-  String get clientId => _pppService()['clientId'];
+  String clientId(Network network) => _pppService(network: network)['clientId'];
 
-  String get pppOriginAppId => _pppService()['pppOriginAppId'];
+  String pppOriginAppId(Network network) => _pppService(network: network)['pppOriginAppId'];
 
-  String get pppRegion => _pppService()['region'];
+  String pppRegion(Network network) => _pppService(network: network)['region'];
 
-  String get pppS3Region => _pppService()['s3Region'];
+  String pppS3Region(Network network) => _pppService(network: network)['s3Region'];
 
-  String get pppS3Bucket => _pppService()['s3Bucket'];
+  String pppS3Bucket(Network network) => _pppService(network: network)['s3Bucket'];
 
-  // TODO(NIK): find the best endpoints for EOS
   Future<void> setDefaults() async {
     final pppConfig = await loadProfileServiceConfig();
     await FirebaseRemoteConfig.instance.setDefaults({

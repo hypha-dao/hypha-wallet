@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:hypha_wallet/core/network/api/services/remote_config_service.dart';
+
+import 'package:hypha_wallet/core/network/models/network.dart';
 
 part 'user_profile_data.freezed.dart';
 part 'user_profile_data.g.dart';
@@ -10,7 +11,7 @@ class UserProfileData with _$UserProfileData {
 
   factory UserProfileData({
     required String accountName,
-    required Network network,
+    @Default(Network.telos) /*required*/ Network network,
     @Default(null) String? userImage,
     @Default(null) String? bio,
     @Default(null) String? userName,
@@ -18,5 +19,5 @@ class UserProfileData with _$UserProfileData {
 
   factory UserProfileData.fromJson(Map<String, dynamic> json) => _$UserProfileDataFromJson(json);
 
-  String get userNameOrAccount  => userName != null ? userName! : accountName;
+  String get userNameOrAccount => userName != null ? userName! : accountName;
 }

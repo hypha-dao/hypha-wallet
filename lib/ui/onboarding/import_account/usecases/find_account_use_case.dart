@@ -1,6 +1,7 @@
 import 'package:hypha_wallet/core/crypto/eosdart/eosdart.dart';
 import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
 import 'package:hypha_wallet/core/network/api/services/remote_config_service.dart';
+import 'package:hypha_wallet/core/network/models/network.dart';
 import 'package:hypha_wallet/core/network/models/user_profile_data.dart';
 import 'package:hypha_wallet/ui/architecture/interactor/base_usecase.dart';
 import 'package:hypha_wallet/ui/architecture/result/result.dart';
@@ -14,9 +15,6 @@ class FindAccountsUseCase extends InputUseCase<Result<Iterable<UserProfileData>,
 
   @override
   Future<Result<Iterable<UserProfileData>, HyphaError>> run(String input) async {
-    // TODO(n13): change this to scan all known chains.
-    // For this we need to find the correct PPP service for each chain, each chain uses a different PPP serivice
-    // instance.
     final eosClient = EOSClient(
       baseUrl: remoteConfigService.baseUrl(network: Network.eos),
       privateKeys: [],
