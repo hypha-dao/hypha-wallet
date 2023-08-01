@@ -163,10 +163,10 @@ class RemoteConfigService {
       'accountCreatorEndpoint': 'http://34.236.29.152:9108',
       'profileServiceEndpoint': 'http://34.236.29.152:9109',
       'profileService': json.encode({
-        'telos': pppConfig.getProfileSeriviceConfig(Network.telos),
-        'telosTestnet': pppConfig.getProfileSeriviceConfig(Network.telosTestnet),
-        'eos': pppConfig.getProfileSeriviceConfig(Network.eos),
-        'eosTestnet': pppConfig.getProfileSeriviceConfig(Network.eosTestnet),
+        'telos': pppConfig.getProfileServiceConfig(Network.telos),
+        'telosTestnet': pppConfig.getProfileServiceConfig(Network.telosTestnet),
+        'eos': pppConfig.getProfileServiceConfig(Network.eos),
+        'eosTestnet': pppConfig.getProfileServiceConfig(Network.eosTestnet),
       }),
       'signUpEnabled': false,
       'walletEnabled': false,
@@ -184,7 +184,7 @@ class RemoteConfigService {
 }
 
 extension MapExtensions on Map<String, dynamic> {
-  Map<String, dynamic> getProfileSeriviceConfig(Network network) {
+  Map<String, dynamic> getProfileServiceConfig(Network network) {
     final networkMap = {
       Network.telos: 'prod',
       Network.telosTestnet: 'test',

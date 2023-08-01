@@ -1,5 +1,4 @@
-// ignore: unused_import
-import 'package:hypha_wallet/core/network/api/services/remote_config_service.dart';
+import 'package:hypha_wallet/core/network/models/dao_data_model.dart';
 import 'package:hypha_wallet/core/network/models/network.dart';
 import 'package:hypha_wallet/core/network/models/user_profile_data.dart';
 
@@ -14,6 +13,7 @@ class ProfileData {
   final String? avatar;
   final bool? deleted;
   final Network network;
+  final List<DaoData> daos;
 
   UserProfileData get user => UserProfileData(accountName: account, network: network);
 
@@ -28,9 +28,10 @@ class ProfileData {
     this.avatar,
     this.deleted,
     required this.network,
+    required this.daos,
   });
 
-  factory ProfileData.fromJson(Map<String, dynamic> json, Network network) {
+  factory ProfileData.fromJson(Map<String, dynamic> json, Network network, List<DaoData> daos) {
     final account = json['eosAccount'];
     final avatarUrl = json['avatarUrl'];
     final publicData = json['publicData'];
@@ -44,6 +45,7 @@ class ProfileData {
       bio: bio,
       deleted: deleted,
       network: network,
+      daos: daos,
     );
   }
 
@@ -57,6 +59,7 @@ class ProfileData {
         eosData: eosData,
         s3Identity: s3Identity,
         network: network,
+        daos: daos,
       );
 
   ProfileData updateName(String? name) => ProfileData(
@@ -69,7 +72,21 @@ class ProfileData {
         eosData: eosData,
         s3Identity: s3Identity,
         network: network,
+        daos: daos,
       );
+
+  ProfileData updateDaos(List<DaoData> daos) => ProfileData(
+    name: name,
+    account: account,
+    bio: bio,
+    avatar: avatar,
+    avatarUrl: avatarUrl,
+    bitCoinData: bitCoinData,
+    eosData: eosData,
+    s3Identity: s3Identity,
+    network: network,
+    daos: daos,
+  );
 
   ProfileData updateImageAvatar(String avatar) => ProfileData(
         name: name,
@@ -81,6 +98,7 @@ class ProfileData {
         eosData: eosData,
         s3Identity: s3Identity,
         network: network,
+        daos: daos,
       );
 
   ProfileData removeAvatar() => ProfileData(
@@ -93,6 +111,7 @@ class ProfileData {
         eosData: eosData,
         s3Identity: s3Identity,
         network: network,
+        daos: daos,
       );
 }
 

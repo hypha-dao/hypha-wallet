@@ -39,11 +39,13 @@ class BottomNavigationView extends StatelessWidget {
                 ),
                 clipBehavior: Clip.antiAlias,
                 child: Padding(
-                  padding: const EdgeInsets.only(bottom: 12, left: 30, right: 30, top: 12),
+                  padding: const EdgeInsets.only(bottom: 8, left: 30, right: 30, top: 12),
                   child: BottomNavigationBar(
                     elevation: 0,
                     backgroundColor: context.isDarkTheme ? HyphaColors.lightBlack : HyphaColors.white,
                     currentIndex: state.indexOfSelected,
+                    selectedFontSize: 12,
+                    unselectedFontSize: 12,
                     onTap: (int index) {
                       BlocProvider.of<BottomNavigationBloc>(context).add(
                         BottomNavigationEvent.onPageSelected(state.allPages[index]),

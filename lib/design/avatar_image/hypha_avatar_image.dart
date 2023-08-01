@@ -12,6 +12,7 @@ class HyphaAvatarImage extends StatelessWidget {
   final String? name;
   final double imageRadius;
   final GestureTapCallback? onTap;
+  final bool withBorder;
 
   const HyphaAvatarImage({
     super.key,
@@ -20,6 +21,7 @@ class HyphaAvatarImage extends StatelessWidget {
     this.name,
     required this.imageRadius,
     this.onTap,
+    this.withBorder = false,
   });
 
   bool get hasImage => imageFromUrl != null || imageFromFile != null;
@@ -82,13 +84,30 @@ class HyphaAvatarImage extends StatelessWidget {
       image = Icon(HyphaIcons.image, size: imageRadius, color: context.textTheme.titleSmall?.color);
     }
 
+    final view = withBorder
+        ? DecoratedBox(
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              border: Border.all(color: Colors.white, width: 1),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(1),
+              child: CircleAvatar(
+                radius: imageRadius,
+                backgroundColor: HyphaColors.transparent,
+                child: image,
+              ),
+            ),
+          )
+        : CircleAvatar(
+            radius: imageRadius + (hasImage ? 2 : 1),
+            backgroundColor: HyphaColors.transparent,
+            child: image,
+          );
+
     return GestureDetector(
       onTap: onTap,
-      child: CircleAvatar(
-        radius: imageRadius + (hasImage ? 2 : 1),
-        backgroundColor: HyphaColors.transparent,
-        child: image,
-      ),
+      child: view,
     );
   }
 }
