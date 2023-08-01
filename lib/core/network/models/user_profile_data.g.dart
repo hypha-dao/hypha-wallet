@@ -9,7 +9,8 @@ part of 'user_profile_data.dart';
 _$_UserProfileData _$$_UserProfileDataFromJson(Map<String, dynamic> json) =>
     _$_UserProfileData(
       accountName: json['accountName'] as String,
-      network: $enumDecode(_$NetworkEnumMap, json['network']),
+      network: $enumDecodeNullable(_$NetworkEnumMap, json['network']) ??
+          Network.telos,
       userImage: json['userImage'] as String? ?? null,
       bio: json['bio'] as String? ?? null,
       userName: json['userName'] as String? ?? null,

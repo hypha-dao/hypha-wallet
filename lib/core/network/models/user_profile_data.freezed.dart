@@ -153,7 +153,7 @@ class __$$_UserProfileDataCopyWithImpl<$Res>
 class _$_UserProfileData extends _UserProfileData {
   _$_UserProfileData(
       {required this.accountName,
-      required this.network,
+      required this.network = Network.telos,
       this.userImage = null,
       this.bio = null,
       this.userName = null})
@@ -165,6 +165,7 @@ class _$_UserProfileData extends _UserProfileData {
   @override
   final String accountName;
   @override
+  @JsonKey()
   final Network network;
   @override
   @JsonKey()
