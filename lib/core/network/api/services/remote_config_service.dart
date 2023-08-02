@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_single_quotes
+
 import 'dart:convert';
 
 import 'package:firebase_remote_config/firebase_remote_config.dart';
@@ -111,53 +113,53 @@ class RemoteConfigService {
     final pppConfig = await loadProfileServiceConfig();
     await FirebaseRemoteConfig.instance.setDefaults({
       'networks': json.encode({
-        'telos': {
-          'name': 'Telos',
-          'endpoint': 'https://mainnet.telos.net',
-          'fastEndpoint': 'https://mainnet.telos.net',
-          'loginContract': 'eosio.login',
-          'loginAction': 'loginuser',
-          'logoutAction': 'deletelogin',
-          'inviteContract': 'join.hypha',
-          'payCpuContract': 'paycpu.hypha',
-          'daoContract': 'dao.hypha',
-          'graphQlEndpoint': 'https://alpha-dhomn.tekit.io/graphql'
+        "telos": {
+          "name": "Telos",
+          "endpoint": "https://mainnet.telos.net",
+          "fastEndpoint": "https://mainnet.telos.net",
+          "loginContract": "eosio.login",
+          "loginAction": "loginuser",
+          "logoutAction": "deletelogin",
+          "inviteContract": "join.hypha",
+          "payCpuContract": "paycpu.hypha",
+          "daoContract": "dao.hypha",
+          "graphQlEndpoint": "https://alpha-dhomn.tekit.io/graphql"
         },
-        'telosTestnet': {
-          'name': 'Telos Testnet',
-          'endpoint': 'https://testnet.telos.net',
-          'fastEndpoint': 'https://testnet.telos.net',
-          'loginContract': 'eosio.login',
-          'loginAction': 'loginuser',
-          'logoutAction': 'deletelogin',
-          'inviteContract': 'joinhypha111',
-          'payCpuContract': 'paycpuxhypha',
-          'daoContract': 'mtdhoxhyphaa',
-          'graphQlEndpoint': 'https://alpha-stts.tekit.io/graphql'
+        "telosTestnet": {
+          "name": "Telos Testnet",
+          "endpoint": "https://testnet.telos.net",
+          "fastEndpoint": "https://testnet.telos.net",
+          "loginContract": "logintester1",
+          "loginAction": "loginuser",
+          "logoutAction": "logoutuser",
+          "inviteContract": "joinhypha111",
+          "payCpuContract": "paycpuxhypha",
+          "daoContract": "mtdhoxhyphaa",
+          "graphQlEndpoint": "https://alpha-stts.tekit.io/graphql"
         },
-        'eos': {
-          'name': 'EOS',
-          'endpoint': 'https://eos.greymass.com',
-          'fastEndpoint': 'https://eos.greymass.com',
-          'loginContract': 'eosio.login',
-          'loginAction': 'loginuser',
-          'logoutAction': 'deletelogin',
-          'inviteContract': 'join.hypha',
-          'payCpuContract': 'paycpu.hypha',
-          'daoContract': 'dao.hypha',
-          'graphQlEndpoint': 'https://nameless-brook-400051.eu-central-1.aws.cloud.dgraph.io/graphql'
+        "eos": {
+          "name": "EOS",
+          "endpoint": "https://eos.greymass.com",
+          "fastEndpoint": "https://eos.greymass.com",
+          "loginContract": "logintohypha",
+          "loginAction": "loginuser",
+          "logoutAction": "logoutuser",
+          "inviteContract": "join.hypha",
+          "payCpuContract": "paycpu.hypha",
+          "daoContract": "dao.hypha",
+          "graphQlEndpoint": "https://nameless-brook-400051.eu-central-1.aws.cloud.dgraph.io/graphql"
         },
-        'eosTestnet': {
-          'name': 'Jungle4 Testnet',
-          'endpoint': 'https://jungle4.dfuse.eosnation.io',
-          'fastEndpoint': 'https://jungle4.dfuse.eosnation.io',
-          'loginContract': 'eosio.login',
-          'loginAction': 'loginuser',
-          'logoutAction': 'deletelogin',
-          'inviteContract': 'joinxhypha11',
-          'payCpuContract': 'paycpuxhypha',
-          'daoContract': 'dao.hypha',
-          'graphQlEndpoint': 'https://nameless-brook-400226.eu-central-1.aws.cloud.dgraph.io/graphql'
+        "eosTestnet": {
+          "name": "Jungle4 Testnet",
+          "endpoint": "https://jungle4.dfuse.eosnation.io",
+          "fastEndpoint": "https://jungle4.dfuse.eosnation.io",
+          "loginContract": "logintohypha",
+          "loginAction": "loginuser",
+          "logoutAction": "logoutuser",
+          "inviteContract": "joinxhypha11",
+          "payCpuContract": "paycpuxhypha",
+          "daoContract": "dao.hypha",
+          "graphQlEndpoint": "https://nameless-brook-400226.eu-central-1.aws.cloud.dgraph.io/graphql"
         }
       }),
       'accountCreatorEndpoint': 'http://34.236.29.152:9108',
