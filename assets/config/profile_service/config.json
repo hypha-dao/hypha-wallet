@@ -1,6 +1,7 @@
 {
     "test": {
         "AWS": {
+            "originAppId": "47f595b0-272d-11ea-9aa4-6f2f7a0e2550",
             "Auth": {
                 "region": "us-east-1",
                 "userPoolId": "us-east-1_gd8OvMUK6",
@@ -28,6 +29,7 @@
     },
     "prod": {
         "AWS": {
+            "originAppId": "9b833d70-46f6-11ea-a689-e5b7f4a9b462",
             "Auth": {
                 "region": "us-east-1",
                 "userPoolId": "us-east-1_9voNzsQ2J",
@@ -55,6 +57,7 @@
     },
     "eos": {
         "AWS": {
+            "originAppId": "base-app",
             "Auth": {
                 "region": "us-east-1",
                 "userPoolId": "us-east-1_lgd67Lgcq",
@@ -84,6 +87,7 @@
     },
     "eosTestNet": {
         "AWS": {
+            "originAppId": "base-app",
             "Auth": {
                 "region": "us-east-1",
                 "userPoolId": "us-east-1_lgd67Lgcq",
