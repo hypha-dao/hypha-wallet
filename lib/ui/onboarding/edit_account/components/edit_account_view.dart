@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart' as Get;
 import 'package:hypha_wallet/core/extension/scope_functions.dart';
+import 'package:hypha_wallet/core/network/models/network.dart';
 import 'package:hypha_wallet/design/avatar_image/hypha_avatar_image.dart';
 import 'package:hypha_wallet/design/background/hypha_page_background.dart';
 import 'package:hypha_wallet/design/bottom_component/hypha_safe_bottom_navigation_bar.dart';
@@ -32,6 +33,10 @@ class _EditAccountViewState extends State<EditAccountView> {
     super.dispose();
   }
 
+  Network _getNetwork(BuildContext context) {
+    return context.read<DeeplinkBloc>().state.inviteLinkData!.network;
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<EditAccountBloc, EditAccountState>(
@@ -39,7 +44,7 @@ class _EditAccountViewState extends State<EditAccountView> {
         void _onSearchChanged(String value) {
           if (_debounce?.isActive ?? false) _debounce?.cancel();
           _debounce = Timer(const Duration(milliseconds: 500), () {
-            context.read<EditAccountBloc>().add(EditAccountEvent.onAccountChange(value, state.network));
+            context.read<EditAccountBloc>().add(EditAccountEvent.onAccountChange(value, _getNetwork(context)));
           });
         }
 

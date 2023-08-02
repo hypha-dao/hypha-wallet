@@ -39,7 +39,7 @@ class EditAccountBloc extends Bloc<EditAccountEvent, EditAccountState> {
     this._errorHandlerManager,
     this._cryptoAuthService,
     PageParams pageParams,
-  ) : super(EditAccountState(userName: pageParams.name, image: pageParams.file, network: pageParams.network)) {
+  ) : super(EditAccountState(userName: pageParams.name, image: pageParams.file)) {
     on<_Initial>(_initial);
     on<_OnNextPressed>(_onNextPressed);
     on<_ClearPageCommand>((_, emit) => emit(state.copyWith(command: null)));

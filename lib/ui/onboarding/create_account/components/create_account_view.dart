@@ -91,7 +91,6 @@ class CreateAccountView extends StatelessWidget {
       () => EditAccountPage(PageParams(
         file: state.image,
         name: state.userName,
-        network: state.network,
       )),
       transition: Get.Transition.rightToLeft,
     );

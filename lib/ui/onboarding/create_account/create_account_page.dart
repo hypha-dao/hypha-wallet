@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart' as Get;
 import 'package:get_it/get_it.dart';
 import 'package:hypha_wallet/design/progress_indicator/hypha_full_page_progress_indicator.dart';
+import 'package:hypha_wallet/ui/blocs/deeplink/deeplink_bloc.dart';
 import 'package:hypha_wallet/ui/onboarding/create_account/components/create_account_view.dart';
 import 'package:hypha_wallet/ui/onboarding/create_account/interactor/create_account_bloc.dart';
 import 'package:hypha_wallet/ui/onboarding/create_account_success_page.dart';
@@ -17,8 +18,12 @@ class CreateAccountPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>
-          GetIt.I.get<CreateAccountBloc>(param1: _file, param2: _name)..add(const CreateAccountEvent.initial()),
+      create: (context) => GetIt.I.get<CreateAccountBloc>(param1: _file, param2: _name)
+        ..add(
+          CreateAccountEvent.initial(
+            context.read<DeeplinkBloc>().state.inviteLinkData!.network,
+          ),
+        ),
       child: BlocListener<CreateAccountBloc, CreateAccountState>(
         listenWhen: (previous, current) => previous.command != current.command,
         listener: (context, state) {

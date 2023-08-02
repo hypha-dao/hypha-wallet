@@ -18,21 +18,21 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$CreateAccountEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
+    required TResult Function(Network network) initial,
     required TResult Function() clearPageCommand,
     required TResult Function(InviteLinkData inviteLinkData) onNextTapped,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
+    TResult? Function(Network network)? initial,
     TResult? Function()? clearPageCommand,
     TResult? Function(InviteLinkData inviteLinkData)? onNextTapped,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
+    TResult Function(Network network)? initial,
     TResult Function()? clearPageCommand,
     TResult Function(InviteLinkData inviteLinkData)? onNextTapped,
     required TResult orElse(),
@@ -85,6 +85,8 @@ abstract class _$$_InitialCopyWith<$Res> {
   factory _$$_InitialCopyWith(
           _$_Initial value, $Res Function(_$_Initial) then) =
       __$$_InitialCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Network network});
 }
 
 /// @nodoc
@@ -93,57 +95,81 @@ class __$$_InitialCopyWithImpl<$Res>
     implements _$$_InitialCopyWith<$Res> {
   __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? network = null,
+  }) {
+    return _then(_$_Initial(
+      null == network
+          ? _value.network
+          : network // ignore: cast_nullable_to_non_nullable
+              as Network,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_Initial implements _Initial {
-  const _$_Initial();
+  const _$_Initial(this.network);
+
+  @override
+  final Network network;
 
   @override
   String toString() {
-    return 'CreateAccountEvent.initial()';
+    return 'CreateAccountEvent.initial(network: $network)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Initial);
+        (other.runtimeType == runtimeType &&
+            other is _$_Initial &&
+            (identical(other.network, network) || other.network == network));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, network);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_InitialCopyWith<_$_Initial> get copyWith =>
+      __$$_InitialCopyWithImpl<_$_Initial>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
+    required TResult Function(Network network) initial,
     required TResult Function() clearPageCommand,
     required TResult Function(InviteLinkData inviteLinkData) onNextTapped,
   }) {
-    return initial();
+    return initial(network);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
+    TResult? Function(Network network)? initial,
     TResult? Function()? clearPageCommand,
     TResult? Function(InviteLinkData inviteLinkData)? onNextTapped,
   }) {
-    return initial?.call();
+    return initial?.call(network);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
+    TResult Function(Network network)? initial,
     TResult Function()? clearPageCommand,
     TResult Function(InviteLinkData inviteLinkData)? onNextTapped,
     required TResult orElse(),
   }) {
     if (initial != null) {
-      return initial();
+      return initial(network);
     }
     return orElse();
   }
@@ -184,7 +210,12 @@ class _$_Initial implements _Initial {
 }
 
 abstract class _Initial implements CreateAccountEvent {
-  const factory _Initial() = _$_Initial;
+  const factory _Initial(final Network network) = _$_Initial;
+
+  Network get network;
+  @JsonKey(ignore: true)
+  _$$_InitialCopyWith<_$_Initial> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -225,7 +256,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
+    required TResult Function(Network network) initial,
     required TResult Function() clearPageCommand,
     required TResult Function(InviteLinkData inviteLinkData) onNextTapped,
   }) {
@@ -235,7 +266,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
+    TResult? Function(Network network)? initial,
     TResult? Function()? clearPageCommand,
     TResult? Function(InviteLinkData inviteLinkData)? onNextTapped,
   }) {
@@ -245,7 +276,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
+    TResult Function(Network network)? initial,
     TResult Function()? clearPageCommand,
     TResult Function(InviteLinkData inviteLinkData)? onNextTapped,
     required TResult orElse(),
@@ -360,7 +391,7 @@ class _$_OnNextTapped implements _OnNextTapped {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
+    required TResult Function(Network network) initial,
     required TResult Function() clearPageCommand,
     required TResult Function(InviteLinkData inviteLinkData) onNextTapped,
   }) {
@@ -370,7 +401,7 @@ class _$_OnNextTapped implements _OnNextTapped {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
+    TResult? Function(Network network)? initial,
     TResult? Function()? clearPageCommand,
     TResult? Function(InviteLinkData inviteLinkData)? onNextTapped,
   }) {
@@ -380,7 +411,7 @@ class _$_OnNextTapped implements _OnNextTapped {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
+    TResult Function(Network network)? initial,
     TResult Function()? clearPageCommand,
     TResult Function(InviteLinkData inviteLinkData)? onNextTapped,
     required TResult orElse(),
@@ -441,7 +472,6 @@ mixin _$CreateAccountState {
   PageState get pageState => throw _privateConstructorUsedError;
   XFile? get image => throw _privateConstructorUsedError;
   String get userName => throw _privateConstructorUsedError;
-  Network get network => throw _privateConstructorUsedError;
   String? get userAccount => throw _privateConstructorUsedError;
   PageCommand? get command => throw _privateConstructorUsedError;
 
@@ -460,7 +490,6 @@ abstract class $CreateAccountStateCopyWith<$Res> {
       {PageState pageState,
       XFile? image,
       String userName,
-      Network network,
       String? userAccount,
       PageCommand? command});
 
@@ -483,7 +512,6 @@ class _$CreateAccountStateCopyWithImpl<$Res, $Val extends CreateAccountState>
     Object? pageState = null,
     Object? image = freezed,
     Object? userName = null,
-    Object? network = null,
     Object? userAccount = freezed,
     Object? command = freezed,
   }) {
@@ -500,10 +528,6 @@ class _$CreateAccountStateCopyWithImpl<$Res, $Val extends CreateAccountState>
           ? _value.userName
           : userName // ignore: cast_nullable_to_non_nullable
               as String,
-      network: null == network
-          ? _value.network
-          : network // ignore: cast_nullable_to_non_nullable
-              as Network,
       userAccount: freezed == userAccount
           ? _value.userAccount
           : userAccount // ignore: cast_nullable_to_non_nullable
@@ -540,7 +564,6 @@ abstract class _$$_CreateAccountStateCopyWith<$Res>
       {PageState pageState,
       XFile? image,
       String userName,
-      Network network,
       String? userAccount,
       PageCommand? command});
 
@@ -562,7 +585,6 @@ class __$$_CreateAccountStateCopyWithImpl<$Res>
     Object? pageState = null,
     Object? image = freezed,
     Object? userName = null,
-    Object? network = null,
     Object? userAccount = freezed,
     Object? command = freezed,
   }) {
@@ -579,10 +601,6 @@ class __$$_CreateAccountStateCopyWithImpl<$Res>
           ? _value.userName
           : userName // ignore: cast_nullable_to_non_nullable
               as String,
-      network: null == network
-          ? _value.network
-          : network // ignore: cast_nullable_to_non_nullable
-              as Network,
       userAccount: freezed == userAccount
           ? _value.userAccount
           : userAccount // ignore: cast_nullable_to_non_nullable
@@ -602,7 +620,6 @@ class _$_CreateAccountState implements _CreateAccountState {
       {this.pageState = PageState.initial,
       this.image,
       required this.userName,
-      required this.network,
       this.userAccount,
       this.command});
 
@@ -614,15 +631,13 @@ class _$_CreateAccountState implements _CreateAccountState {
   @override
   final String userName;
   @override
-  final Network network;
-  @override
   final String? userAccount;
   @override
   final PageCommand? command;
 
   @override
   String toString() {
-    return 'CreateAccountState(pageState: $pageState, image: $image, userName: $userName, network: $network, userAccount: $userAccount, command: $command)';
+    return 'CreateAccountState(pageState: $pageState, image: $image, userName: $userName, userAccount: $userAccount, command: $command)';
   }
 
   @override
@@ -635,7 +650,6 @@ class _$_CreateAccountState implements _CreateAccountState {
             (identical(other.image, image) || other.image == image) &&
             (identical(other.userName, userName) ||
                 other.userName == userName) &&
-            (identical(other.network, network) || other.network == network) &&
             (identical(other.userAccount, userAccount) ||
                 other.userAccount == userAccount) &&
             (identical(other.command, command) || other.command == command));
@@ -643,7 +657,7 @@ class _$_CreateAccountState implements _CreateAccountState {
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, pageState, image, userName, network, userAccount, command);
+      runtimeType, pageState, image, userName, userAccount, command);
 
   @JsonKey(ignore: true)
   @override
@@ -658,7 +672,6 @@ abstract class _CreateAccountState implements CreateAccountState {
       {final PageState pageState,
       final XFile? image,
       required final String userName,
-      required final Network network,
       final String? userAccount,
       final PageCommand? command}) = _$_CreateAccountState;
 
@@ -668,8 +681,6 @@ abstract class _CreateAccountState implements CreateAccountState {
   XFile? get image;
   @override
   String get userName;
-  @override
-  Network get network;
   @override
   String? get userAccount;
   @override

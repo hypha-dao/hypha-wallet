@@ -7,6 +7,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hypha_wallet/core/crypto/dart_esr/dart_esr.dart';
 import 'package:hypha_wallet/core/crypto/seeds_esr/scan_qr_code_result_data.dart';
 import 'package:hypha_wallet/core/logging/log_helper.dart';
+import 'package:hypha_wallet/core/network/models/network.dart';
 import 'package:hypha_wallet/ui/home_page/usecases/parse_qr_code_use_case.dart';
 
 part 'deeplink_bloc.freezed.dart';
@@ -89,7 +90,7 @@ class DeeplinkBloc extends Bloc<DeeplinkEvent, DeeplinkState> {
       /// Emit new state with data from link
       emit(
         state.copyWith(
-          inviteLinkData: InviteLinkData(code: code, chain: chain, dao: dao),
+          inviteLinkData: InviteLinkData(code: code, network: Network.fromString(chain), dao: dao),
           command: const PageCommand.navigateToCreateAccount(),
         ),
       );
