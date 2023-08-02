@@ -4,6 +4,7 @@ import 'package:hypha_wallet/core/logging/log_helper.dart';
 import 'package:hypha_wallet/core/network/api/services/transaction_history_service.dart';
 import 'package:hypha_wallet/core/network/dio_exception.dart';
 import 'package:hypha_wallet/core/network/models/transaction_model.dart';
+import 'package:hypha_wallet/core/network/models/user_profile_data.dart';
 import 'package:hypha_wallet/ui/architecture/result/result.dart';
 
 class TransactionHistoryRepository {
@@ -11,11 +12,10 @@ class TransactionHistoryRepository {
 
   TransactionHistoryRepository({required this.service});
 
-  Future<Result<List<TransactionModel>, HyphaError>> getTransactions(String userAccount, bool transferOnly) async {
+  Future<Result<List<TransactionModel>, HyphaError>> getTransactions(UserProfileData user, bool transferOnly) async {
     try {
-      final Response response = transferOnly
-          ? await service.getTransferTransactions(userAccount)
-          : await service.getAllTransactions(userAccount);
+      final Response response =
+          transferOnly ? await service.getTransferTransactions(user) : await service.getAllTransactions(user);
       final List<dynamic> transfers = response.data['actions'].toList();
       return Result.value(transfers.map((transfer) => TransactionModel.fromJson(transfer)).toList());
     } on DioException catch (e) {

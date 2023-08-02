@@ -15,6 +15,6 @@ class GetTransactionHistoryUseCase extends InputUseCase<Result<List<TransactionM
   // ignore: avoid_renaming_method_parameters
   Future<Result<List<TransactionModel>, HyphaError>> run(bool transferOnly) async {
     final user = _authRepository.authDataOrCrash;
-    return _repository.getTransactions(user.userProfileData.accountName, transferOnly);
+    return _repository.getTransactions(user.userProfileData, transferOnly);
   }
 }
