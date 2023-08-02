@@ -25,7 +25,7 @@ class DaoService {
     try {
       final res = await _networkingManager.post(url, data: query);
       final Map<String, dynamic> response = res.data;
-      final List<dynamic> memberOfList = response['data']['getMember']['memberof'];
+      final List<dynamic> memberOfList = response['data']['getMember']?['memberof'] ?? [];
       final List<DaoData> daos = memberOfList.map((member) {
         return DaoData.fromJson(member);
       }).toList();
@@ -38,7 +38,6 @@ class DaoService {
         LogHelper.d('message: ${dioError.response?.statusMessage}');
         LogHelper.d('dioError: $dioError');
       }
-
 
       LogHelper.e('Error accessing graphQL');
       LogHelper.e(error.toString());
