@@ -20,4 +20,7 @@ class UserProfileData with _$UserProfileData {
   factory UserProfileData.fromJson(Map<String, dynamic> json) => _$UserProfileDataFromJson(json);
 
   String get userNameOrAccount => userName != null ? userName! : accountName;
+
+  bool get isEmpty =>
+      (userImage == null || userImage == '') && (userName == null || userName == '') && (bio == null || bio == '');
 }

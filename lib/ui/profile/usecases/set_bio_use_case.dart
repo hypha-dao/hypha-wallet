@@ -17,7 +17,7 @@ class SetBioUseCase {
 
       if (loginResult.isValue) {
         // ignore: unused_local_variable
-        final res = await _amplifyService.setBio(input.profileBio, input.user.network);
+        final res = await _amplifyService.setBio(input.profileBio, input.user.network, init: input.user.isEmpty);
         return Result.value(true);
       } else {
         print('SetBioUseCase error login Failed ');

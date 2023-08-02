@@ -12,11 +12,12 @@ class SetNameUseCase {
 
   Future<Result<bool, HyphaError>> run({required UserProfileData user, required String name}) async {
     try {
+      print('empty name: ${user.isEmpty}');
       // ignore: unused_local_variable
       final Result<bool, HyphaError> loginResult = await _profileLoginUseCase.run(user);
 
       // ignore: unused_local_variable
-      final res = await _amplifyService.setName(name, user.network);
+      final res = await _amplifyService.setName(name, user.network, init: user.isEmpty);
       return Result.value(true);
     } catch (error) {
       print('SetNameUseCase error $error');
