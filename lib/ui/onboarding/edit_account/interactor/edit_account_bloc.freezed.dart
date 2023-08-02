@@ -620,7 +620,6 @@ mixin _$EditAccountState {
   PageState get pageState => throw _privateConstructorUsedError;
   XFile? get image => throw _privateConstructorUsedError;
   String get userName => throw _privateConstructorUsedError;
-  Network get network => throw _privateConstructorUsedError;
   String? get userAccount => throw _privateConstructorUsedError;
   PageCommand? get command => throw _privateConstructorUsedError;
   List<UserAccountRequirement> get userAccountRequirements =>
@@ -641,7 +640,6 @@ abstract class $EditAccountStateCopyWith<$Res> {
       {PageState pageState,
       XFile? image,
       String userName,
-      Network network,
       String? userAccount,
       PageCommand? command,
       List<UserAccountRequirement> userAccountRequirements});
@@ -665,7 +663,6 @@ class _$EditAccountStateCopyWithImpl<$Res, $Val extends EditAccountState>
     Object? pageState = null,
     Object? image = freezed,
     Object? userName = null,
-    Object? network = null,
     Object? userAccount = freezed,
     Object? command = freezed,
     Object? userAccountRequirements = null,
@@ -683,10 +680,6 @@ class _$EditAccountStateCopyWithImpl<$Res, $Val extends EditAccountState>
           ? _value.userName
           : userName // ignore: cast_nullable_to_non_nullable
               as String,
-      network: null == network
-          ? _value.network
-          : network // ignore: cast_nullable_to_non_nullable
-              as Network,
       userAccount: freezed == userAccount
           ? _value.userAccount
           : userAccount // ignore: cast_nullable_to_non_nullable
@@ -727,7 +720,6 @@ abstract class _$$_CreateAccountStateCopyWith<$Res>
       {PageState pageState,
       XFile? image,
       String userName,
-      Network network,
       String? userAccount,
       PageCommand? command,
       List<UserAccountRequirement> userAccountRequirements});
@@ -750,7 +742,6 @@ class __$$_CreateAccountStateCopyWithImpl<$Res>
     Object? pageState = null,
     Object? image = freezed,
     Object? userName = null,
-    Object? network = null,
     Object? userAccount = freezed,
     Object? command = freezed,
     Object? userAccountRequirements = null,
@@ -768,10 +759,6 @@ class __$$_CreateAccountStateCopyWithImpl<$Res>
           ? _value.userName
           : userName // ignore: cast_nullable_to_non_nullable
               as String,
-      network: null == network
-          ? _value.network
-          : network // ignore: cast_nullable_to_non_nullable
-              as Network,
       userAccount: freezed == userAccount
           ? _value.userAccount
           : userAccount // ignore: cast_nullable_to_non_nullable
@@ -795,7 +782,6 @@ class _$_CreateAccountState extends _CreateAccountState {
       {this.pageState = PageState.initial,
       this.image,
       required this.userName,
-      required this.network,
       this.userAccount,
       this.command,
       final List<UserAccountRequirement> userAccountRequirements = const []})
@@ -809,8 +795,6 @@ class _$_CreateAccountState extends _CreateAccountState {
   final XFile? image;
   @override
   final String userName;
-  @override
-  final Network network;
   @override
   final String? userAccount;
   @override
@@ -827,7 +811,7 @@ class _$_CreateAccountState extends _CreateAccountState {
 
   @override
   String toString() {
-    return 'EditAccountState(pageState: $pageState, image: $image, userName: $userName, network: $network, userAccount: $userAccount, command: $command, userAccountRequirements: $userAccountRequirements)';
+    return 'EditAccountState(pageState: $pageState, image: $image, userName: $userName, userAccount: $userAccount, command: $command, userAccountRequirements: $userAccountRequirements)';
   }
 
   @override
@@ -840,7 +824,6 @@ class _$_CreateAccountState extends _CreateAccountState {
             (identical(other.image, image) || other.image == image) &&
             (identical(other.userName, userName) ||
                 other.userName == userName) &&
-            (identical(other.network, network) || other.network == network) &&
             (identical(other.userAccount, userAccount) ||
                 other.userAccount == userAccount) &&
             (identical(other.command, command) || other.command == command) &&
@@ -854,7 +837,6 @@ class _$_CreateAccountState extends _CreateAccountState {
       pageState,
       image,
       userName,
-      network,
       userAccount,
       command,
       const DeepCollectionEquality().hash(_userAccountRequirements));
@@ -872,7 +854,6 @@ abstract class _CreateAccountState extends EditAccountState {
           {final PageState pageState,
           final XFile? image,
           required final String userName,
-          required final Network network,
           final String? userAccount,
           final PageCommand? command,
           final List<UserAccountRequirement> userAccountRequirements}) =
@@ -885,8 +866,6 @@ abstract class _CreateAccountState extends EditAccountState {
   XFile? get image;
   @override
   String get userName;
-  @override
-  Network get network;
   @override
   String? get userAccount;
   @override
