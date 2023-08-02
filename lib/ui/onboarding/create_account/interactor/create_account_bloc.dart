@@ -7,7 +7,6 @@ import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
 import 'package:hypha_wallet/core/local/models/user_auth_data.dart';
 import 'package:hypha_wallet/core/local/services/crypto_auth_service.dart';
 import 'package:hypha_wallet/core/network/models/network.dart';
-import 'package:hypha_wallet/core/network/models/user_profile_data.dart';
 import 'package:hypha_wallet/ui/architecture/interactor/page_states.dart';
 import 'package:hypha_wallet/ui/architecture/result/result.dart' as Hypha;
 import 'package:hypha_wallet/ui/blocs/deeplink/deeplink_bloc.dart';
@@ -33,8 +32,8 @@ class CreateAccountBloc extends Bloc<CreateAccountEvent, CreateAccountState> {
     this._findAvailableAccountUseCase,
     this._errorHandlerManager,
     XFile? image,
-    UserProfileData user,
-  ) : super(CreateAccountState(userName: user.accountName, network: user.network, image: image)) {
+    String userName,
+  ) : super(CreateAccountState(userName: userName, image: image)) {
     on<_Initial>(_initial);
     on<_OnNextTapped>(_onNextTapped);
     on<_ClearPageCommand>((_, emit) => emit(state.copyWith(command: null)));
@@ -43,7 +42,7 @@ class CreateAccountBloc extends Bloc<CreateAccountEvent, CreateAccountState> {
   Future<void> _initial(_Initial event, Emitter<CreateAccountState> emit) async {
     emit(state.copyWith(pageState: PageState.success, command: const PageCommand.showLoadingDialog()));
     final Hypha.Result<String, HyphaError> result =
-        await _findAvailableAccountUseCase.run(CheckAccountInput(state.userName, state.network));
+        await _findAvailableAccountUseCase.run(CheckAccountInput(state.userName, event.network));
     if (result.isValue) {
       emit(state.copyWith(
         pageState: PageState.success,

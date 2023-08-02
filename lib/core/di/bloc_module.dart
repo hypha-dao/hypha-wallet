@@ -73,14 +73,14 @@ void _registerBlocsModule() {
     ),
   );
 
-  _registerFactoryWithParams<CreateAccountBloc, XFile?, UserProfileData>(
-    (image, userProfileData) => CreateAccountBloc(
+  _registerFactoryWithParams<CreateAccountBloc, XFile?, String>(
+    (image, userName) => CreateAccountBloc(
       _getIt<CryptoAuthService>(),
       _getIt<CreateAccountUseCase>(),
       _getIt<FindAvailableAccountUseCase>(),
       _getIt<ErrorHandlerManager>(),
       image,
-      userProfileData,
+      userName,
     ),
   );
 
