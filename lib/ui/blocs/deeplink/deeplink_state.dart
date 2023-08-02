@@ -10,8 +10,8 @@ class DeeplinkState with _$DeeplinkState {
 
 class InviteLinkData {
   final String code;
-  final String chain;
+  final Network network;
   final String? dao;
 
-  InviteLinkData({required this.code, required this.chain, this.dao});
+  InviteLinkData({required this.code, required this.network, this.dao});
 }

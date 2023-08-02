@@ -34,9 +34,7 @@ class _EditAccountViewState extends State<EditAccountView> {
   }
 
   Network _getNetwork(BuildContext context) {
-    final inviteLinkData = context.read<DeeplinkBloc>().state.inviteLinkData!;
-    final network = Network.fromString(inviteLinkData.chain);
-    return network;
+    return context.read<DeeplinkBloc>().state.inviteLinkData!.network;
   }
 
   @override
