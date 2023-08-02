@@ -485,7 +485,6 @@ class SigningRequestManager {
         final List<ESRAction> resultActions = List.from(actions.map(
           (e) => ESRAction.fromJson(Map<String, dynamic>.from(e)),
         ));
-        // TODO(n13): return list of actions  - note this code is duplicated elsewhere we already handle multiple actions
         return resultActions;
       case 'identity':
         var data = '0101000000000000000200000000000000'; // placeholder permission
@@ -703,7 +702,6 @@ class ResolvedSigningRequest {
   }
 
   ResolvedCallback getCallback(List<String> signatures, {int? blockNum}) {
-    // TODO(n13): ResolvedSigningRequest getCallback 'not implemented yet'
     throw 'not implemented yet';
   }
 }

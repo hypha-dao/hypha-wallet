@@ -75,7 +75,6 @@ abstract class EOSKey {
     List<int> result = [];
     for (int i = 0; i < bytes.length; i++) {
       int v = bytes[i].toSigned(8);
-      //TODO I don't know why, just guess...
       if (i == 0 && v < 0) {
         result.add(0);
       }
