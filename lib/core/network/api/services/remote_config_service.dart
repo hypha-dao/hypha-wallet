@@ -34,6 +34,11 @@ class RemoteConfigService {
     return networkFromConfig;
   }
 
+  String _pppCacheEndpoint({required Network network}) {
+    network = network;
+    return _getMap('profileServiceEndpoints')[network.name];
+  }
+
   // base url - read URL
   // network: default is Telos mainnet
   String baseUrl({required Network network}) {
@@ -86,7 +91,7 @@ class RemoteConfigService {
   bool get isWalletEnabled => FirebaseRemoteConfig.instance.getBool('walletEnabled');
 
   // PPP Profile Service Backend
-  String get profileServiceEndpoint => FirebaseRemoteConfig.instance.getString('profileServiceEndpoint');
+  String profileServiceCacheEndpoint(Network network) => _pppCacheEndpoint(network: network);
 
   String get accountCreatorEndpoint => FirebaseRemoteConfig.instance.getString('accountCreatorEndpoint');
 
@@ -163,7 +168,12 @@ class RemoteConfigService {
         }
       }),
       'accountCreatorEndpoint': 'http://34.236.29.152:9108',
-      'profileServiceEndpoint': 'http://34.236.29.152:9109',
+      'profileServiceEndpoints': json.encode({
+        "telos": "http://34.236.29.152:9109",
+        "telosTestnet": "http://34.236.29.152:9110",
+        "eos": "http://34.236.29.152:9111",
+        "eosTestnet": "http://34.236.29.152:9112",
+      }),
       'profileService': json.encode({
         'telos': pppConfig.getProfileServiceConfig(Network.telos),
         'telosTestnet': pppConfig.getProfileServiceConfig(Network.telosTestnet),

@@ -17,8 +17,7 @@ class FetchProfileUseCase {
   Future<Result<ProfileData, HyphaError>> run(UserProfileData userProfileData) async {
     final Future daosFuture = _daoService.getDaos(user: userProfileData);
     final profileFuture = _profileService.getProfile(
-      userProfileData.accountName,
-      userProfileData.network,
+      userProfileData,
     );
 
     final futureResults = await Future.wait([

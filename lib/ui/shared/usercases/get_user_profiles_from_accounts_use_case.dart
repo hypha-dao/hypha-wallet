@@ -18,9 +18,11 @@ class GetUserProfilesFromAccountsUseCase {
       pairs.addAll(ll);
     });
 
-    final List<Future<Result<ProfileData, HyphaError>>> futures =
-        pairs.map((e) => _profileService.getProfile(e.$2, e.$1)).toList();
-
+    final List<Future<Result<ProfileData, HyphaError>>> futures = pairs
+        .map((e) => _profileService.getProfile(
+              UserProfileData(accountName: e.$2, network: e.$1),
+            ))
+        .toList();
 
     final List<Result<ProfileData, HyphaError>> profiles = await Future.wait(futures);
 
