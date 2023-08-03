@@ -1,4 +1,3 @@
-import 'package:hypha_wallet/core/logging/log_helper.dart';
 import 'package:ipfs_client_flutter/ipfs_client_flutter.dart';
 
 class IPFSManager {
@@ -12,8 +11,7 @@ class IPFSManager {
   }
 
   Future getImage(String imageToken) async {
-    final response = await ipfsClient.read(dir: 'imageToken');
-    LogHelper.d('IPSF = ' + response.toString());
+    final response = await ipfsClient.read(dir: imageToken);
     return response;
   }
 }
