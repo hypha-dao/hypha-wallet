@@ -16,7 +16,7 @@ class SetNameUseCase {
       final Result<bool, HyphaError> loginResult = await _profileLoginUseCase.run(user);
 
       // ignore: unused_local_variable
-      final res = await _amplifyService.setName(name, user.network);
+      final res = await _amplifyService.setName(name, user.network, init: user.doesNotHaveUserProfileOnPPPService);
       return Result.value(true);
     } catch (error) {
       print('SetNameUseCase error $error');

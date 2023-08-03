@@ -185,6 +185,7 @@ class RemoteConfigService {
   }
 }
 
+// pppServiceConfig
 extension MapExtensions on Map<String, dynamic> {
   Map<String, dynamic> getProfileServiceConfig(Network network) {
     final networkMap = {
@@ -200,7 +201,7 @@ extension MapExtensions on Map<String, dynamic> {
       'identityPoolId': data['AWS']['Auth']['identityPoolId'],
       'userPoolId': data['AWS']['Auth']['userPoolId'],
       'clientId': data['AWS']['Auth']['userPoolWebClientId'],
-      'pppOriginAppId': '9b833d70-46f6-11ea-a689-e5b7f4a9b462', // hard-coded
+      'pppOriginAppId': data['AWS']['originAppId'],
       'region': data['AWS']['Auth']['region'],
       's3Bucket': data['AWS']['Storage']['AWSS3']['bucket'],
       's3Region': data['AWS']['Storage']['AWSS3']['region'],

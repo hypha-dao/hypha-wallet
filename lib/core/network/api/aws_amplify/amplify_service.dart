@@ -172,13 +172,14 @@ class AmplifyService {
   ///
   /// register method is used to modify any user attributes such as name, bio, etc
   ///
-  Future<dynamic> register(Map<String, dynamic> pppData, Network network) async {
+  Future<dynamic> register(Map<String, dynamic> pppData, Network network, {bool init = false}) async {
     final result = await _request(
       path: 'register',
       body: <String, dynamic>{
         ...pppData,
         'originAppId': remoteConfigService.pppOriginAppId(network),
         'appData': {},
+        if (init) 'emailAddress': 'not-real-email-${getRandomString(10)}@notrealemailxxx1.io',
       },
       network: network,
     );
@@ -216,7 +217,7 @@ class AmplifyService {
     );
   }
 
-  Future<dynamic> setName(String name, Network network) async {
+  Future<dynamic> setName(String name, Network network, {bool init = false}) async {
     return register(
       {
         'publicData': {
@@ -225,10 +226,11 @@ class AmplifyService {
         'appData': {},
       },
       network,
+      init: init,
     );
   }
 
-  Future<dynamic> setBio(String bio, Network network) async {
+  Future<dynamic> setBio(String bio, Network network, {bool init = false}) async {
     return register(
       {
         'publicData': {
@@ -237,6 +239,7 @@ class AmplifyService {
         'appData': {},
       },
       network,
+      init: init,
     );
   }
 
@@ -313,7 +316,7 @@ class AmplifyService {
     );
   }
 
-  Future<dynamic> setPicture(File image, String fileName, Network network) async {
+  Future<dynamic> setPicture(File image, String fileName, Network network, {bool init = false}) async {
     try {
       final credentials = await getCredentials(network);
 
@@ -335,6 +338,7 @@ class AmplifyService {
           'appData': {},
         },
         network,
+        init: init,
       );
       return res2;
     } catch (error) {
