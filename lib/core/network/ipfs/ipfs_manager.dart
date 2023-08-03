@@ -12,7 +12,7 @@ class IPFSManager {
   }
 
   Future getImage(String imageToken) async {
-    final response = await ipfsClient.read(dir: 'QmV3KmaoqCCXuCDvHzYWS9Jg3RfjrDTQSXK1e7453qfSRS:svg');
+    final response = await ipfsClient.read(dir: 'imageToken');
     LogHelper.d('IPSF = ' + response.toString());
     return response;
   }
