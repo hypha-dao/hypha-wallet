@@ -37,7 +37,8 @@ class SetImageUseCase {
         print('file size: ${imageFile.lengthSync()}');
         print('file name: $filename');
 
-        final res = await _amplifyService.setPicture(imageFile, filename, user.network, init: user.isEmpty);
+        final res = await _amplifyService.setPicture(imageFile, filename, user.network,
+            init: user.doesNotHaveUserProfileOnPPPService);
         return Result.value(true);
       } else {
         print('SetImageUseCase error login Failed ');

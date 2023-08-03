@@ -21,6 +21,6 @@ class UserProfileData with _$UserProfileData {
 
   String get userNameOrAccount => userName != null ? userName! : accountName;
 
-  bool get isEmpty =>
+  bool get doesNotHaveUserProfileOnPPPService =>
       (userImage == null || userImage == '') && (userName == null || userName == '') && (bio == null || bio == '');
 }
