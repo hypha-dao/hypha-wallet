@@ -74,23 +74,6 @@ class DaoWidget extends StatelessWidget {
                       Text('Core member', style: context.hyphaTextTheme.ralMediumBody.copyWith(height: 0)),
                     ],
                   )
-                  // ListTile(
-                  //   dense: true,
-                  //   leading: FutureBuilder<dynamic>(
-                  //     future: GetIt.I.get<IPFSManager>().getImage('QmV3KmaoqCCXuCDvHzYWS9Jg3RfjrDTQSXK1e7453qfSRS:svg'),
-                  //     builder: (context, snapshot) {
-                  //       if (snapshot.connectionState == ConnectionState.waiting) {
-                  //         return CircularProgressIndicator();
-                  //       } else if (snapshot.hasError) {
-                  //         return Text('Error: ${snapshot.error}');
-                  //       } else {
-                  //         return SizedBox.shrink();//SvgPicture.string(snapshot.data!);
-                  //       }
-                  //     },
-                  //   ),
-                  //   visualDensity: VisualDensity.compact,
-                  //   title: Text(dao.settingsDaoTitle, style: context.hyphaTextTheme.smallTitles),
-                  // ),
                 ],
               ),
             ),
@@ -100,14 +83,3 @@ class DaoWidget extends StatelessWidget {
     );
   }
 }
-
-// Future<String> fetchSVGFromIPFS(String ipfsHash) async {
-//   final ipfsURL = 'https://ipfs.io/ipfs/$ipfsHash:svg';
-//   final response = await http.get(Uri.parse(ipfsURL));
-//
-//   if (response.statusCode == 200) {
-//     return response.body;
-//   } else {
-//     throw Exception('Failed to fetch SVG from IPFS. Status code: ${response.statusCode}');
-//   }
-// }
