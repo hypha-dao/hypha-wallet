@@ -10,6 +10,7 @@ Future<void> _registerServicesModule() async {
 
   // TODO(n13): Only remaining hard-coded reference to Telos - I guess we can't create NetworkingManager with base URL since the base URL depends on the network?
   _registerLazySingleton(() => NetworkingManager(_getIt<RemoteConfigService>().baseUrl(network: Network.telos)));
+  _registerLazySingleton(() => IPFSManager());
 
   /// Secure Storage
   _registerLazySingleton(() => const FlutterSecureStorage());
@@ -38,6 +39,4 @@ Future<void> _registerServicesModule() async {
   _registerLazySingleton<PermissionService>(() => PermissionServiceImplementation());
 
   _registerLazySingleton<ProfileService>(() => ProfileService(_getIt<RemoteConfigService>()));
-
-  _registerLazySingleton<IPFSManager>(() => IPFSManager('TODO_URL'));
 }

@@ -5,8 +5,8 @@ import 'package:hypha_wallet/core/network/api/endpoints.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class IPFSManager extends DioForNative {
-
-  IPFSManager(String baseUrl) : super() {
+  final token = 'TOKEN';
+  IPFSManager() : super() {
     final loggerInterceptor = PrettyDioLogger(
       requestHeader: false,
       requestBody: true,
@@ -24,7 +24,7 @@ class IPFSManager extends DioForNative {
     options.receiveTimeout = Endpoints.receiveTimeout;
     options.responseType = ResponseType.json;
 
-    options.baseUrl = baseUrl;
+    options.baseUrl = 'baseUrl';
   }
 
   Future<Response> getImage(String imageToken) {
