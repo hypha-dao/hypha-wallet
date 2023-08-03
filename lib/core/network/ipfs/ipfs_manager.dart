@@ -1,33 +1,19 @@
-import 'package:dio/dio.dart';
-import 'package:dio/io.dart';
-import 'package:flutter/foundation.dart';
-import 'package:hypha_wallet/core/network/api/endpoints.dart';
-import 'package:pretty_dio_logger/pretty_dio_logger.dart';
+import 'package:hypha_wallet/core/logging/log_helper.dart';
+import 'package:ipfs_client_flutter/ipfs_client_flutter.dart';
 
-class IPFSManager extends DioForNative {
-  final token = 'TOKEN';
-  IPFSManager() : super() {
-    final loggerInterceptor = PrettyDioLogger(
-      requestHeader: false,
-      requestBody: true,
-      responseBody: true,
-      responseHeader: false,
-      error: true,
-      compact: true,
-    );
+class IPFSManager {
+  final apiKey = '2TU6LIOvEczl1yQJlgOzNDWh4Ms';
+  final apiKeySecret = '65d98b8d450753eba9a60caa1a7b1bcd';
+  final serverUlr = 'https://ipfs.infura.io:5001';
+  late IpfsClient ipfsClient;
 
-    if (kDebugMode) {
-      interceptors.add(loggerInterceptor);
-    }
-
-    options.connectTimeout = Endpoints.connectionTimeout;
-    options.receiveTimeout = Endpoints.receiveTimeout;
-    options.responseType = ResponseType.json;
-
-    options.baseUrl = 'baseUrl';
+  IPFSManager() {
+    ipfsClient = IpfsClient(url: serverUlr, authorizationToken: apiKeySecret);
   }
 
-  Future<Response> getImage(String imageToken) {
-    return get(imageToken);
+  Future getImage(String imageToken) async {
+    final response = await ipfsClient.read(dir: 'QmV3KmaoqCCXuCDvHzYWS9Jg3RfjrDTQSXK1e7453qfSRS:svg');
+    LogHelper.d('IPSF = ' + response.toString());
+    return response;
   }
 }

@@ -800,6 +800,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.4"
+  ipfs_client_flutter:
+    dependency: "direct main"
+    description:
+      name: ipfs_client_flutter
+      sha256: e9ec8c3b33af20240cdfcb1316ef0804be68d5237df65a82ff3f3a2cfc2fd497
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.7"
   js:
     dependency: transitive
     description:

@@ -136,6 +136,11 @@ dependencies:
   # Get the app version
   package_info_plus: ^4.0.2
 
+  ipfs_client_flutter: ^1.0.7
+
+dependency_overrides:
+  dio: ^5.3.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

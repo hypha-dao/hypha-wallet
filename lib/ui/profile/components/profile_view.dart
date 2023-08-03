@@ -145,15 +145,22 @@ class DaosView extends StatelessWidget {
       return const SizedBox.shrink();
     } else {
       final List<DaoWidget> widgets = daos.map((e) => DaoWidget(dao: e)).toList();
-      return Column(children: [
-        Text(
-          'Organisations you are part of',
-          style: context.hyphaTextTheme.ralMediumBody.copyWith(
-            color: HyphaColors.midGrey,
-          ),
+      return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 24),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Organizations you are part of',
+              style: context.hyphaTextTheme.ralMediumBody.copyWith(
+                color: HyphaColors.midGrey,
+              ),
+            ),
+            const SizedBox(height: 12),
+            ...widgets
+          ],
         ),
-        ...widgets
-      ]);
+      );
     }
   }
 }
