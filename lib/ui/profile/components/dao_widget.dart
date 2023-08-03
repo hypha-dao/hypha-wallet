@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
+import 'package:hypha_wallet/core/network/ipfs/ipfs_manager.dart';
 import 'package:hypha_wallet/core/network/models/dao_data_model.dart';
 import 'package:hypha_wallet/design/hypha_card.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
@@ -28,7 +30,7 @@ class DaoWidget extends StatelessWidget {
                 ListTile(
                   dense: true,
                   // leading: FutureBuilder<String>(
-                  //   future: fetchSVGFromIPFS('QmV3KmaoqCCXuCDvHzYWS9Jg3RfjrDTQSXK1e7453qfSRS'),
+                  //   future: GetIt.I.get<IPFSManager>().,
                   //   builder: (context, snapshot) {
                   //     if (snapshot.connectionState == ConnectionState.waiting) {
                   //       return CircularProgressIndicator();

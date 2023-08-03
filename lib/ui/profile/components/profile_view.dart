@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hypha_wallet/core/network/models/dao_data_model.dart';
 import 'package:hypha_wallet/design/avatar_image/hypha_avatar_image.dart';
 import 'package:hypha_wallet/design/background/hypha_half_background.dart';
 import 'package:hypha_wallet/design/background/hypha_page_background.dart';
@@ -119,9 +120,7 @@ class ProfileView extends StatelessWidget {
                             onChanged: (value) {},
                           ),
                         ],
-                        Wrap(
-                          children: state.profileData?.daos.map((e) => DaoWidget(dao: e)).toList() ?? [],
-                        ),
+                        DaosView(daos: state.profileData?.daos ?? []),
                       ],
                     ),
                   ],
@@ -132,5 +131,29 @@ class ProfileView extends StatelessWidget {
         },
       ),
     );
+  }
+}
+
+class DaosView extends StatelessWidget {
+  final List<DaoData> daos;
+
+  const DaosView({super.key, required this.daos});
+
+  @override
+  Widget build(BuildContext context) {
+    if (daos.isEmpty) {
+      return const SizedBox.shrink();
+    } else {
+      final List<DaoWidget> widgets = daos.map((e) => DaoWidget(dao: e)).toList();
+      return Column(children: [
+        Text(
+          'Organisations you are part of',
+          style: context.hyphaTextTheme.ralMediumBody.copyWith(
+            color: HyphaColors.midGrey,
+          ),
+        ),
+        ...widgets
+      ]);
+    }
   }
 }

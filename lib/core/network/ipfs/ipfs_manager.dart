@@ -1,25 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
-import 'package:dio_smart_retry/dio_smart_retry.dart';
-import 'package:hypha_wallet/core/logging/log_helper.dart';
+import 'package:flutter/foundation.dart';
 import 'package:hypha_wallet/core/network/api/endpoints.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
-class NetworkingManager extends DioForNative {
-  static final bool _isDebugNetworking = true;
+class IPFSManager extends DioForNative {
 
-  NetworkingManager(String baseUrl) : super() {
-    final retryInterceptor = RetryInterceptor(
-      dio: this,
-      logPrint: (message) {
-        LogHelper.d('Retry call: $message');
-      },
-      retries: 1, // retry count
-      retryDelays: const [
-        Duration(seconds: 1), // wait 1 sec before first retry
-      ],
-    );
-
+  IPFSManager(String baseUrl) : super() {
     final loggerInterceptor = PrettyDioLogger(
       requestHeader: false,
       requestBody: true,
@@ -29,8 +16,7 @@ class NetworkingManager extends DioForNative {
       compact: true,
     );
 
-    interceptors.add(retryInterceptor);
-    if (_isDebugNetworking) {
+    if (kDebugMode) {
       interceptors.add(loggerInterceptor);
     }
 
@@ -39,5 +25,9 @@ class NetworkingManager extends DioForNative {
     options.responseType = ResponseType.json;
 
     options.baseUrl = baseUrl;
+  }
+
+  Future<Response> getImage(String imageToken) {
+    return get(imageToken);
   }
 }
