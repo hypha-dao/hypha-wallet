@@ -11,8 +11,11 @@ import 'package:hypha_wallet/core/network/models/network.dart';
 import 'package:hypha_wallet/ui/home_page/usecases/parse_qr_code_use_case.dart';
 
 part 'deeplink_bloc.freezed.dart';
+
 part 'deeplink_event.dart';
+
 part 'deeplink_state.dart';
+
 part 'page_command.dart';
 
 class DeeplinkBloc extends Bloc<DeeplinkEvent, DeeplinkState> {
@@ -87,10 +90,17 @@ class DeeplinkBloc extends Bloc<DeeplinkEvent, DeeplinkState> {
       final chain = queryParams['chain']!;
       final dao = queryParams['dao']!;
 
+      final String? enrollSecret = queryParams['enroll_secret'];
+
       /// Emit new state with data from link
       emit(
         state.copyWith(
-          inviteLinkData: InviteLinkData(code: code, network: Network.fromString(chain), dao: dao),
+          inviteLinkData: InviteLinkData(
+            code: code,
+            network: Network.fromString(chain),
+            dao: dao,
+            enrollSecret: enrollSecret,
+          ),
           command: const PageCommand.navigateToCreateAccount(),
         ),
       );

@@ -83,7 +83,7 @@ class EOSService {
     // return sendTransaction(eosTransaction: action, accountName: accountName, network: network);
   }
 
-  Future<Result<dynamic>> sendTransaction({
+  Future<Result<String>> sendTransaction({
     required UserProfileData user,
     required EOSTransaction eosTransaction,
   }) async {
@@ -114,7 +114,7 @@ class EOSService {
 
     return eosClient
         .pushTransaction(transaction)
-        .then((dio.Response response) => _mapEosResponse(response, (dynamic map) {
+        .then((dio.Response response) => _mapEosResponse<String>(response, (dynamic map) {
               return map['transaction_id'];
             }))
         .catchError((error, s) => _mapEosError(error, s));

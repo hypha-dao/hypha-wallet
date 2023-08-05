@@ -11,6 +11,7 @@ import 'package:hypha_wallet/core/local/models/user_auth_data.dart';
 import 'package:hypha_wallet/core/local/services/crypto_auth_service.dart';
 import 'package:hypha_wallet/core/logging/log_helper.dart';
 import 'package:hypha_wallet/core/network/models/network.dart';
+import 'package:hypha_wallet/core/network/models/user_profile_data.dart';
 import 'package:hypha_wallet/ui/architecture/interactor/page_states.dart';
 import 'package:hypha_wallet/ui/architecture/result/result.dart' as Hypha;
 import 'package:hypha_wallet/ui/blocs/deeplink/deeplink_bloc.dart';
@@ -135,7 +136,7 @@ class EditAccountBloc extends Bloc<EditAccountEvent, EditAccountState> {
 
     /// Make call to create Account
     emit(state.copyWith(command: const PageCommand.showLoadingDialog()));
-    final Hypha.Result<bool, HyphaError> result = await _createAccountUseCase.run(CreateAccountInput(
+    final Hypha.Result<UserProfileData, HyphaError> result = await _createAccountUseCase.run(CreateAccountInput(
       userAuthData: auth,
       accountName: state.userAccount!,
       userName: state.userName,

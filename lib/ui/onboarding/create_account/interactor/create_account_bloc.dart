@@ -7,6 +7,7 @@ import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
 import 'package:hypha_wallet/core/local/models/user_auth_data.dart';
 import 'package:hypha_wallet/core/local/services/crypto_auth_service.dart';
 import 'package:hypha_wallet/core/network/models/network.dart';
+import 'package:hypha_wallet/core/network/models/user_profile_data.dart';
 import 'package:hypha_wallet/ui/architecture/interactor/page_states.dart';
 import 'package:hypha_wallet/ui/architecture/result/result.dart' as Hypha;
 import 'package:hypha_wallet/ui/blocs/deeplink/deeplink_bloc.dart';
@@ -62,7 +63,7 @@ class CreateAccountBloc extends Bloc<CreateAccountEvent, CreateAccountState> {
     final UserAuthData auth = _cryptoAuthService.createRandomPrivateKeyAndWords();
 
     /// Make call to create Account
-    final Hypha.Result<bool, HyphaError> result = await _createAccountUseCase.run(CreateAccountInput(
+    final Hypha.Result<UserProfileData, HyphaError> result = await _createAccountUseCase.run(CreateAccountInput(
       userAuthData: auth,
       accountName: state.userAccount!,
       userName: state.userName,
