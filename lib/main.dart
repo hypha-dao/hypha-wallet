@@ -2,6 +2,7 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:hypha_wallet/app.dart';
 import 'package:hypha_wallet/core/di/di_setup.dart';
 import 'package:hypha_wallet/ui/blocs/bloc_observer.dart';
@@ -10,6 +11,7 @@ void main() async {
   // Initialize Flutter
   WidgetsFlutterBinding.ensureInitialized();
 
+  await dotenv.load(fileName: '.env');
   await setupDependencies();
 
   if (kDebugMode) {
