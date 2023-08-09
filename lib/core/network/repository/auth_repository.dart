@@ -2,6 +2,8 @@
 
 import 'dart:async';
 
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
 import 'package:hypha_wallet/core/extension/scope_functions.dart';
 import 'package:hypha_wallet/core/firebase/firebase_database_service.dart';
 import 'package:hypha_wallet/core/firebase/firebase_push_notifications_service.dart';
@@ -13,6 +15,7 @@ import 'package:hypha_wallet/core/network/api/aws_amplify/profile_upload_reposit
 import 'package:hypha_wallet/core/network/api/services/user_account_service.dart';
 import 'package:hypha_wallet/core/network/models/user_profile_data.dart';
 import 'package:hypha_wallet/core/shared_preferences/hypha_shared_prefs.dart';
+import 'package:hypha_wallet/ui/architecture/result/result.dart';
 import 'package:hypha_wallet/ui/blocs/deeplink/deeplink_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -44,7 +47,7 @@ class AuthRepository {
     });
   }
 
-  Future<bool> createUserAccount({
+  Future<Result<UserProfileData, HyphaError>> createUserAccount({
     required String accountName,
     required UserAuthData userAuthData,
     required InviteLinkData inviteLinkData,
@@ -66,15 +69,13 @@ class AuthRepository {
         publicKey: userAuthData.publicKey.toString(),
       );
 
-      _saveUserData(
-        UserProfileData(
-          accountName: accountName,
-          userName: userName,
-          network: inviteLinkData.network,
-        ),
-        userAuthData,
-        false,
+      final userData = UserProfileData(
+        accountName: accountName,
+        userName: userName,
+        network: inviteLinkData.network,
       );
+
+      _saveUserData(userData, userAuthData, false);
 
       print('create ppp account for $accountName with image ${image?.path}');
       await _uploadRepository.scheduleUpload(
@@ -85,11 +86,12 @@ class AuthRepository {
       );
       unawaited(_uploadRepository.start());
 
-      return true;
-    } catch (e) {
-      print('Error creating account $e');
-      print(e);
-      rethrow;
+      return Result.value(userData);
+    } catch (e, stack) {
+      LogHelper.e('Error creating account $e');
+      LogHelper.e(e.toString());
+      unawaited(FirebaseCrashlytics.instance.recordError(e, stack));
+      return Result.error(HyphaError.generic('Error creating account'));
     }
   }
 

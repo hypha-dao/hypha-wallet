@@ -12,6 +12,7 @@ class InviteLinkData {
   final String code;
   final Network network;
   final String? dao;
+  final String? enrollSecret;
 
-  InviteLinkData({required this.code, required this.network, this.dao});
+  const InviteLinkData({required this.code, required this.network, this.dao, this.enrollSecret,});
 }
