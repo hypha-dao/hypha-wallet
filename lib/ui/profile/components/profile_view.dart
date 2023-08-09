@@ -14,6 +14,7 @@ import 'package:hypha_wallet/ui/profile/components/profile_edit_menu_bottom_shee
 import 'package:hypha_wallet/ui/profile/interactor/profile_bloc.dart';
 import 'package:hypha_wallet/ui/shared/hypha_body_widget.dart';
 import 'package:hypha_wallet/ui/shared/hypha_error_view.dart';
+import 'package:hypha_wallet/ui/shared/listview_with_all_separators.dart';
 
 class ProfileView extends StatelessWidget {
   const ProfileView({super.key});
@@ -144,20 +145,27 @@ class DaosView extends StatelessWidget {
     if (daos.isEmpty) {
       return const SizedBox.shrink();
     } else {
-      final List<DaoWidget> widgets = daos.map((e) => DaoWidget(dao: e)).toList();
       return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Organizations you are part of',
-              style: context.hyphaTextTheme.ralMediumBody.copyWith(
-                color: HyphaColors.midGrey,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              child: Text(
+                'Organizations you are part of',
+                style: context.hyphaTextTheme.ralMediumBody.copyWith(
+                  color: HyphaColors.midGrey,
+                ),
               ),
             ),
-            const SizedBox(height: 12),
-            ...widgets
+            ListViewWithAllSeparators(
+                shrinkWrap: true,
+                items: daos,
+                itemBuilder: (_, DaoData dao, __) {
+                  return DaoWidget(dao: dao);
+                },
+                separatorBuilder: (_, __) => const SizedBox(height: 12))
           ],
         ),
       );
