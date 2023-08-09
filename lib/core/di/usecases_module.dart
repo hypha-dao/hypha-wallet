@@ -3,7 +3,7 @@ part of 'di_setup.dart';
 void _registerUseCasesModule() {
   _registerFactory(() => CheckAccountAvailabilityUseCase(_getIt<UserAccountRepository>()));
   _registerFactory(() => FindAvailableAccountUseCase(_getIt<UserAccountRepository>()));
-  _registerFactory(() => CreateAccountUseCase(_getIt<AuthRepository>()));
+  _registerFactory(() => CreateAccountUseCase(_getIt<AuthRepository>(), _getIt<InviteService>()));
   _registerFactory(() => ParseQRCodeUseCase(_getIt<AuthRepository>()));
   _registerFactory(() => FetchProfileUseCase(
         _getIt<ProfileService>(),

@@ -136,6 +136,9 @@ dependencies:
   # Get the app version
   package_info_plus: ^4.0.2
 
+  # Animations
+  lottie: ^2.5.0
+
   # Load images and files from IPFS
   ipfs_client_flutter: ^1.0.7
 
@@ -197,6 +200,7 @@ flutter:
    - assets/images/shield.png
    - assets/images/logos/dark/hypha_logo_composite.svg
    - assets/config/profile_service/config.json
+   - assets/animations/hypha_splash.json
    - .env
 
   # An image asset can refer to one or more resolution-specific "variants", see
