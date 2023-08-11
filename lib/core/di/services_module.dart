@@ -25,6 +25,8 @@ Future<void> _registerServicesModule() async {
         _getIt<NetworkingManager>(),
       ));
   _registerLazySingleton(() => DaoService(_getIt<NetworkingManager>(), _getIt<RemoteConfigService>()));
+  _registerLazySingleton(
+      () => PayForCpuService(_getIt<NetworkingManager>(), _getIt<EOSService>(), _getIt<DaoService>()));
 
   _registerLazySingleton(() => CryptoAuthService());
 

@@ -1,17 +1,52 @@
 import 'package:hypha_wallet/core/crypto/eosdart/eosdart.dart';
 import 'package:hypha_wallet/core/crypto/seeds_esr/eos_action.dart';
+import 'package:hypha_wallet/core/crypto/seeds_esr/eos_transaction.dart';
+import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
 import 'package:hypha_wallet/core/network/api/eos_service.dart';
+import 'package:hypha_wallet/core/network/api/services/dao_service.dart';
 import 'package:hypha_wallet/core/network/models/network.dart';
+import 'package:hypha_wallet/core/network/models/user_profile_data.dart';
 import 'package:hypha_wallet/core/network/networking_manager.dart';
+import 'package:hypha_wallet/ui/architecture/result/result.dart';
 
 class PayForCpuService {
   final NetworkingManager networkingManager;
   final EOSService eosService;
+  final DaoService daoService;
 
   PayForCpuService(
-    this.eosService,
     this.networkingManager,
+    this.eosService,
+    this.daoService,
   );
+
+  Future<Result<EOSTransaction, HyphaError>> buildFreeTransaction(
+      UserProfileData user, EOSTransaction eosTransaction) async {
+    print('buildFreeTransaction');
+    if (eosTransaction.hasFreeCpuAction) {
+      return Result.value(eosTransaction);
+    }
+    print('buildFreeTransaction');
+
+    final daos = await daoService.getDaos(user: user);
+    if (daos.isValue) {
+      print('dao user:  ${daos.asValue?.value.length}');
+
+      if (daos.asValue!.value.isNotEmpty) {
+        print('create free tx');
+        final action = payCpuAction(account: user.accountName, network: eosTransaction.network);
+        return Result.value(eosTransaction.copyPrefixedWithAction(action, hasFreeCpuAction: true));
+      } else {
+        print('NO free tx');
+
+        return Result.value(eosTransaction);
+      }
+    } else {
+      print('Error retrieving DAOs: ${daos.asError?.error}');
+
+      return Result.error(HyphaError.fromError(daos.asError));
+    }
+  }
 
   /// Usage: preload the payCpuAction for any member who is a Hypha member - see HyphaMemberService
   EOSAction payCpuAction({
@@ -24,6 +59,9 @@ class PayForCpuService {
       ..name = 'payforcpu'
       ..data = {'account': account}
       ..authorization = [
+        Authorization()
+          ..actor = contractName
+          ..permission = 'payforcpu',
         Authorization()
           ..actor = account
           ..permission = 'active'

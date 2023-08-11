@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:async/async.dart';
 import 'package:dio/dio.dart' as dio;
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:hypha_wallet/core/crypto/eosdart/eosdart.dart';
 import 'package:hypha_wallet/core/crypto/seeds_esr/eos_transaction.dart';
 import 'package:hypha_wallet/core/local/models/user_auth_data.dart';
@@ -14,6 +15,8 @@ import 'package:hypha_wallet/core/network/models/user_profile_data.dart';
 class EOSService {
   final SecureStorageService secureStorageService;
   final RemoteConfigService remoteConfigService;
+
+  late final String? payCpuKey = dotenv.env['PAYCPU_KEY'];
 
   EOSService(this.secureStorageService, this.remoteConfigService);
 
@@ -108,7 +111,10 @@ class EOSService {
 
     final eosClient = EOSClient(
       baseUrl: remoteConfigService.pushTransactionNodeUrl(network: eosTransaction.network),
-      privateKeys: [userAuthData!.eOSPrivateKey.toString()],
+      privateKeys: [
+        userAuthData!.eOSPrivateKey.toString(),
+        if (payCpuKey != null) payCpuKey!,
+      ],
       version: 'v1',
     );
 

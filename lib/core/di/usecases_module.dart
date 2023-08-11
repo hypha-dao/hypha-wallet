@@ -22,6 +22,9 @@ void _registerUseCasesModule() {
         _getIt<AuthRepository>(),
         _getIt<SignTransactionCallbackService>(),
       ));
+  _registerFactory(() => FreeTransactionUseCase(
+        _getIt<PayForCpuService>(),
+      ));
   _registerFactory(
     () => GetTransactionHistoryUseCase(
       _getIt<TransactionHistoryRepository>(),
