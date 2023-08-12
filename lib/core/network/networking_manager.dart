@@ -23,7 +23,7 @@ class NetworkingManager extends DioForNative {
     final loggerInterceptor = PrettyDioLogger(
       requestHeader: false,
       requestBody: true,
-      responseBody: true,
+      responseBody: false,
       responseHeader: false,
       error: true,
       compact: true,

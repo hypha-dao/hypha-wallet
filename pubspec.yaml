@@ -101,7 +101,7 @@ dependencies:
   share_plus: ^7.0.0
 
   # Launch URL
-  url_launcher: ^6.1.10
+  url_launcher: ^6.1.12
 
   # Fonts
   google_fonts: ^4.0.4

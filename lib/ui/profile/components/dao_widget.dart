@@ -6,13 +6,12 @@ import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-
 /// Render an IPFS image
-/// 
+///
 /// Images come in the form '<hash>:type' - we use type to render correctly
-/// 
+///
 /// Supports svg and bitmap images
-/// 
+///
 class IpfsImage extends StatelessWidget {
   final String ipfsHash;
   final String type;
@@ -54,8 +53,10 @@ class DaoWidget extends StatelessWidget {
     return HyphaCard(
       child: InkWell(
         borderRadius: BorderRadius.circular(16),
-        onTap: () {
-          launchUrl(Uri.parse(daoUrl)) ;
+        onTap: () async {
+          if (!await launchUrl(Uri.parse(daoUrl), mode: LaunchMode.externalApplication)) {
+            throw Exception('Could not launch $daoUrl');
+          }
         },
         child: Stack(
           children: [
