@@ -518,6 +518,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "8.1.3"
+  flutter_dotenv:
+    dependency: "direct main"
+    description:
+      name: flutter_dotenv
+      sha256: "9357883bdd153ab78cbf9ffa07656e336b8bbb2b5a3ca596b0b27e119f7c7d77"
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.1.0"
   flutter_launcher_icons:
     dependency: "direct dev"
     description:
@@ -800,6 +808,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.4"
+  ipfs_client_flutter:
+    dependency: "direct main"
+    description:
+      name: ipfs_client_flutter
+      sha256: e9ec8c3b33af20240cdfcb1316ef0804be68d5237df65a82ff3f3a2cfc2fd497
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.7"
   js:
     dependency: transitive
     description:
@@ -1337,10 +1353,10 @@ packages:
     dependency: "direct main"
     description:
       name: url_launcher
-      sha256: eb1e00ab44303d50dd487aab67ebc575456c146c6af44422f9c13889984c00f3
+      sha256: "781bd58a1eb16069412365c98597726cd8810ae27435f04b3b4d3a470bacd61e"
       url: "https://pub.dev"
     source: hosted
-    version: "6.1.11"
+    version: "6.1.12"
   url_launcher_android:
     dependency: transitive
     description:

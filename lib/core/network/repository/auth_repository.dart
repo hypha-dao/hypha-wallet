@@ -29,7 +29,7 @@ class AuthRepository {
   final FirebaseDatabaseService _firebaseDatabaseService;
   final StreamController<AuthenticationStatus> _controller = StreamController.broadcast();
 
-  Authenticated? authenticateUser;
+  AuthenticationStatus currentAuthStatus = const Unknown();
 
   AuthRepository(
     this._appSharedPrefs,
@@ -42,7 +42,7 @@ class AuthRepository {
   ) {
     status.listen((AuthenticationStatus event) {
       if (event is Authenticated) {
-        authenticateUser = event;
+        currentAuthStatus = event;
       }
     });
   }
@@ -101,9 +101,9 @@ class AuthRepository {
   }
 
   /// Use this method when we expect the auth data to be there. Anytime after auth. If the data isnt there. then crash
-  Authenticated get authDataOrCrash {
-    if (authenticateUser is Authenticated) {
-      return authenticateUser!;
+   Authenticated get authDataOrCrash {
+    if (currentAuthStatus is Authenticated) {
+      return currentAuthStatus as Authenticated;
     }
 
     throw Exception('Attempted to fetch Auth data but the user is not authenticated. ');

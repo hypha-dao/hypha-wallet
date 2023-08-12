@@ -101,7 +101,7 @@ dependencies:
   share_plus: ^7.0.0
 
   # Launch URL
-  url_launcher: ^6.1.10
+  url_launcher: ^6.1.12
 
   # Fonts
   google_fonts: ^4.0.4
@@ -138,6 +138,15 @@ dependencies:
 
   # Animations
   lottie: ^2.5.0
+
+  # Load images and files from IPFS
+  ipfs_client_flutter: ^1.0.7
+
+  # Env variables
+  flutter_dotenv: ^5.1.0
+
+dependency_overrides:
+  dio: ^5.3.0
 
 dev_dependencies:
   flutter_test:
@@ -192,6 +201,7 @@ flutter:
    - assets/images/logos/dark/hypha_logo_composite.svg
    - assets/config/profile_service/config.json
    - assets/animations/hypha_splash.json
+   - .env
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

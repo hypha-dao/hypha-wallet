@@ -1,34 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_it/get_it.dart';
+import 'package:hypha_wallet/core/logging/log_helper.dart';
+import 'package:hypha_wallet/core/network/repository/auth_repository.dart';
 import 'package:hypha_wallet/ui/bottom_navigation/hypha_bottom_navigation.dart';
 import 'package:hypha_wallet/ui/onboarding/onboarding_page.dart';
 import 'package:lottie/lottie.dart';
 
-class SplashScreen extends StatefulWidget {
-  /// If true, means we are authenticated and navigate to bottom page: Else navigate to onboarding.
-  final bool isAuthenticated;
-
-  const SplashScreen({super.key, required this.isAuthenticated});
+class SplashPage extends StatefulWidget {
+  const SplashPage({super.key});
 
   @override
-  _SplashScreenState createState() => _SplashScreenState();
+  _SplashPageState createState() => _SplashPageState();
 }
 
-class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMixin {
+class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
   late AnimationController _controller;
 
   @override
   void initState() {
     super.initState();
     _controller = AnimationController(
-      duration: const Duration(seconds: 5),
       vsync: this,
     );
   }
 
   @override
+  void dispose() {
+    _controller.dispose(); // you need this
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       body: Lottie.asset(
         'assets/animations/hypha_splash.json',
         controller: _controller,
@@ -37,9 +43,18 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
         onLoaded: (composition) {
           _controller
             ..duration = composition.duration
-            ..forward().whenComplete(() => Get.offAll(
-                  widget.isAuthenticated ? const HyphaBottomNavigation() : const OnboardingPage(),
-                ));
+            ..forward().whenComplete(() {
+              final userAuthData = GetIt.I.get<AuthRepository>().currentAuthStatus;
+              if (userAuthData is Authenticated) {
+                if (Get.currentRoute != '/HyphaBottomNavigation') {
+                  Get.offAll(const HyphaBottomNavigation());
+                }
+              } else {
+                if (Get.currentRoute != '/OnboardingPage') {
+                  Get.offAll(const OnboardingPage());
+                }
+              }
+            });
         },
       ),
     );

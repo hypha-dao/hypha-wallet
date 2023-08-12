@@ -23,17 +23,16 @@ class NetworkingManager extends DioForNative {
     final loggerInterceptor = PrettyDioLogger(
       requestHeader: false,
       requestBody: true,
-      responseBody: true,
+      responseBody: false,
       responseHeader: false,
       error: true,
       compact: true,
     );
 
+    interceptors.add(retryInterceptor);
     if (_isDebugNetworking) {
       interceptors.add(loggerInterceptor);
     }
-
-    interceptors.add(retryInterceptor);
 
     options.connectTimeout = Endpoints.connectionTimeout;
     options.receiveTimeout = Endpoints.receiveTimeout;
