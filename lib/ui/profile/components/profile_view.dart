@@ -153,7 +153,7 @@ class DaosView extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12),
               child: Text(
-                'Organizations you are part of',
+                'My DAOs',
                 style: context.hyphaTextTheme.ralMediumBody.copyWith(
                   color: HyphaColors.midGrey,
                 ),
