@@ -45,7 +45,6 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
             ..duration = composition.duration
             ..forward().whenComplete(() {
               final userAuthData = GetIt.I.get<AuthRepository>().currentAuthStatus;
-              LogHelper.d('Gery GEry ' + Get.currentRoute);
               if (userAuthData is Authenticated) {
                 if (Get.currentRoute != '/HyphaBottomNavigation') {
                   Get.offAll(const HyphaBottomNavigation());
