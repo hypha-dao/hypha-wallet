@@ -4,6 +4,7 @@ import 'package:hypha_wallet/core/network/models/dao_data_model.dart';
 import 'package:hypha_wallet/design/hypha_card.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 
 /// Render an IPFS image
@@ -41,6 +42,8 @@ class IpfsImage extends StatelessWidget {
 class DaoWidget extends StatelessWidget {
   final DaoData dao;
 
+  String get daoUrl => 'https://dao.hypha.earth/${dao.settingsDaoUrl}';
+
   const DaoWidget({
     super.key,
     required this.dao,
@@ -52,7 +55,7 @@ class DaoWidget extends StatelessWidget {
       child: InkWell(
         borderRadius: BorderRadius.circular(16),
         onTap: () {
-          /// Navigate to Hypha URL
+          launchUrl(Uri.parse(daoUrl)) ;
         },
         child: Stack(
           children: [
