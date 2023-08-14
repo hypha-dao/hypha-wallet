@@ -69,10 +69,10 @@ class HyphaAppView extends StatelessWidget {
                 LogHelper.d('Auth Bloc Listener unknown');
                 break;
               case Authenticated _:
-                Get.offAll(() => const HyphaBottomNavigation());
+                Get.offAll(() => const SplashPage());
                 break;
               case UnAuthenticated _:
-                Get.offAll(() => const OnboardingPage());
+                Get.offAll(() => const SplashPage());
                 break;
             }
           },
