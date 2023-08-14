@@ -15,6 +15,8 @@ import 'package:hypha_wallet/ui/blocs/authentication/authentication_bloc.dart';
 import 'package:hypha_wallet/ui/blocs/deeplink/deeplink_bloc.dart';
 import 'package:hypha_wallet/ui/blocs/error_handler/error_handler_bloc.dart';
 import 'package:hypha_wallet/ui/blocs/push_notifications/push_notifications_bloc.dart';
+import 'package:hypha_wallet/ui/bottom_navigation/hypha_bottom_navigation.dart';
+import 'package:hypha_wallet/ui/onboarding/onboarding_page.dart';
 import 'package:hypha_wallet/ui/onboarding/onboarding_page_with_link.dart';
 import 'package:hypha_wallet/ui/settings/hypha_confirmation_page.dart';
 import 'package:hypha_wallet/ui/settings/interactor/settings_bloc.dart';
@@ -61,15 +63,16 @@ class HyphaAppView extends StatelessWidget {
             return previous.authStatus != current.authStatus;
           },
           listener: (context, state) {
+            LogHelper.d('Auth Bloc Listener FIRED');
             switch (state.authStatus) {
               case Unknown _:
                 LogHelper.d('Auth Bloc Listener unknown');
                 break;
               case Authenticated _:
-                Get.offAll(() => const SplashScreen(isAuthenticated: true));
+                Get.offAll(() => const HyphaBottomNavigation());
                 break;
               case UnAuthenticated _:
-                Get.offAll(() => const SplashScreen(isAuthenticated: false));
+                Get.offAll(() => const OnboardingPage());
                 break;
             }
           },
@@ -188,7 +191,7 @@ class HyphaAppView extends StatelessWidget {
             theme: HyphaTheme.lightTheme,
             themeMode: state.themeMode,
             navigatorObservers: <NavigatorObserver>[GetIt.I.get<FirebaseAnalyticsService>().firebaseObserver],
-            home: const SizedBox.shrink(),
+            home:  const SplashPage(),
           );
         },
       ),

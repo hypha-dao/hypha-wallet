@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hypha_wallet/core/network/models/dao_data_model.dart';
 import 'package:hypha_wallet/design/avatar_image/hypha_avatar_image.dart';
 import 'package:hypha_wallet/design/background/hypha_half_background.dart';
 import 'package:hypha_wallet/design/background/hypha_page_background.dart';
@@ -13,6 +14,7 @@ import 'package:hypha_wallet/ui/profile/components/profile_edit_menu_bottom_shee
 import 'package:hypha_wallet/ui/profile/interactor/profile_bloc.dart';
 import 'package:hypha_wallet/ui/shared/hypha_body_widget.dart';
 import 'package:hypha_wallet/ui/shared/hypha_error_view.dart';
+import 'package:hypha_wallet/ui/shared/listview_with_all_separators.dart';
 
 class ProfileView extends StatelessWidget {
   const ProfileView({super.key});
@@ -119,9 +121,7 @@ class ProfileView extends StatelessWidget {
                             onChanged: (value) {},
                           ),
                         ],
-                        Wrap(
-                          children: state.profileData?.daos.map((e) => DaoWidget(dao: e)).toList() ?? [],
-                        ),
+                        DaosView(daos: state.profileData?.daos ?? []),
                       ],
                     ),
                   ],
@@ -132,5 +132,43 @@ class ProfileView extends StatelessWidget {
         },
       ),
     );
+  }
+}
+
+class DaosView extends StatelessWidget {
+  final List<DaoData> daos;
+
+  const DaosView({super.key, required this.daos});
+
+  @override
+  Widget build(BuildContext context) {
+    if (daos.isEmpty) {
+      return const SizedBox.shrink();
+    } else {
+      return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 24),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              child: Text(
+                'My DAOs',
+                style: context.hyphaTextTheme.ralMediumBody.copyWith(
+                  color: HyphaColors.midGrey,
+                ),
+              ),
+            ),
+            ListViewWithAllSeparators(
+                shrinkWrap: true,
+                items: daos,
+                itemBuilder: (_, DaoData dao, __) {
+                  return DaoWidget(dao: dao);
+                },
+                separatorBuilder: (_, __) => const SizedBox(height: 12))
+          ],
+        ),
+      );
+    }
   }
 }
