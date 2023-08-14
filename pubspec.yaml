@@ -138,7 +138,6 @@ dependencies:
 
   # Animations
   lottie: ^2.5.0
-  flutter_dotenv: ^5.1.0
 
   # Load images and files from IPFS
   ipfs_client_flutter: ^1.0.7
