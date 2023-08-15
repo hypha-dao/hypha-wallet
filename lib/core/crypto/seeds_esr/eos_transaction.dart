@@ -7,12 +7,11 @@ import 'package:hypha_wallet/core/network/models/network.dart';
 class EOSTransaction extends Equatable {
   final Network network;
   final List<EOSAction> actions;
-  final bool hasFreeCpuAction;
 
   bool get isValid => actions.isNotEmpty;
   bool get isTransfer => actions.length == 1 && actions.first.name == 'transfer';
 
-  const EOSTransaction(this.actions, this.network, {this.hasFreeCpuAction = false});
+  const EOSTransaction(this.actions, this.network);
 
   @override
   List<Object?> get props => [actions, network];
@@ -38,12 +37,5 @@ class EOSTransaction extends Equatable {
           ..authorization = authorization,
       ], network);
 
-  EOSTransaction copyPrefixedWithAction(EOSAction action, {hasFreeCpuAction = false}) =>
-      EOSTransaction([action, ...actions], network, hasFreeCpuAction: hasFreeCpuAction);
-}
-
-// Convenience to easily display free CPU action separate from the other actions.
-extension FreeEosTransaction on EOSTransaction {
-  EOSAction? get freeAction => hasFreeCpuAction ? actions[0] : null;
-  List<EOSAction> get otherActions => hasFreeCpuAction ? actions.sublist(1) : actions;
+  EOSTransaction copyPrefixedWithAction(EOSAction action) => EOSTransaction([action, ...actions], network);
 }
