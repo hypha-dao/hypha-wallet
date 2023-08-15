@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hypha_wallet/core/network/repository/auth_repository.dart';
+import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/ui/bottom_navigation/hypha_bottom_navigation.dart';
 import 'package:hypha_wallet/ui/onboarding/onboarding_page.dart';
 import 'package:lottie/lottie.dart';
@@ -26,7 +27,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
 
   @override
   void dispose() {
-    _controller.dispose(); // you need this
+    _controller.dispose();
     super.dispose();
   }
 
@@ -35,9 +36,11 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
     return Scaffold(
       extendBodyBehindAppBar: true,
       body: Lottie.asset(
+        fit: BoxFit.fill,
         'assets/animations/hypha_splash.json',
         controller: _controller,
         height: MediaQuery.of(context).size.height * 1,
+        width: MediaQuery.of(context).size.width * 1,
         animate: true,
         onLoaded: (composition) {
           _controller
@@ -46,11 +49,11 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
               final userAuthData = GetIt.I.get<AuthRepository>().currentAuthStatus;
               if (userAuthData is Authenticated) {
                 if (Get.currentRoute != '/HyphaBottomNavigation') {
-                  Get.offAll(const HyphaBottomNavigation());
+                  Get.offAll(() => const HyphaBottomNavigation());
                 }
               } else {
                 if (Get.currentRoute != '/OnboardingPage') {
-                  Get.offAll(const OnboardingPage());
+                  Get.offAll(() => const OnboardingPage());
                 }
               }
             });
