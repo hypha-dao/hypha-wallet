@@ -42,8 +42,7 @@ void _registerBlocsModule() {
         _getIt<RemoveAvatarUseCase>(),
       ));
   _registerFactoryWithParams<SignTransactionBloc, ScanQrCodeResultData, void>(
-    (qrCodeData, _) =>
-        SignTransactionBloc(_getIt<SignTransactionUseCase>(), _getIt<FreeTransactionUseCase>(), qrCodeData),
+    (qrCodeData, _) => SignTransactionBloc(_getIt<SignTransactionUseCase>(), qrCodeData),
   );
   _registerFactory(() => TransactionsBloc(
         _getIt<GetTransactionHistoryUseCase>(),
