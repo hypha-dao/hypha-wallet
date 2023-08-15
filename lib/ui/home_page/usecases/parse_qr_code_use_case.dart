@@ -20,7 +20,7 @@ class ParseQRCodeUseCase extends InputUseCase<HResult.Result<ScanQrCodeResultDat
   Future<HResult.Result<ScanQrCodeResultData, HyphaError>> run(ParseESRLinkInput input) async {
     final userData = _authRepository.authDataOrCrash;
     final user = userData.userProfileData;
-    final qrCodeValidationResult = await validateQrCode(user: user, scanResult: input.esrLink);
+    final qrCodeValidationResult = await _validateQrCode(user: user, scanResult: input.esrLink);
 
     if (qrCodeValidationResult.isValue) {
       final data = qrCodeValidationResult.asValue!.value;
@@ -31,7 +31,7 @@ class ParseQRCodeUseCase extends InputUseCase<HResult.Result<ScanQrCodeResultDat
     }
   }
 
-  Future<Result<ScanQrCodeResultData>> validateQrCode(
+  Future<Result<ScanQrCodeResultData>> _validateQrCode(
       {required UserProfileData user, required String scanResult}) async {
     if (scanResult.isEmpty) {
       return Result.error(HyphaError.generic("We don't recognize this QR Code"));
