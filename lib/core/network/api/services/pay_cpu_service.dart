@@ -1,7 +1,7 @@
 import 'package:hypha_wallet/core/crypto/eosdart/eosdart.dart';
 import 'package:hypha_wallet/core/crypto/seeds_esr/eos_action.dart';
-import 'package:hypha_wallet/core/crypto/seeds_esr/eos_transaction.dart';
 import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
+import 'package:hypha_wallet/core/logging/log_helper.dart';
 import 'package:hypha_wallet/core/network/api/eos_service.dart';
 import 'package:hypha_wallet/core/network/api/services/dao_service.dart';
 import 'package:hypha_wallet/core/network/models/network.dart';
@@ -20,30 +20,18 @@ class PayForCpuService {
     this.daoService,
   );
 
-  Future<Result<EOSTransaction, HyphaError>> buildFreeTransaction(
-      UserProfileData user, EOSTransaction eosTransaction) async {
-    print('buildFreeTransaction');
-    if (eosTransaction.hasFreeCpuAction) {
-      return Result.value(eosTransaction);
-    }
-    print('buildFreeTransaction');
-
+  Future<Result<EOSAction?, HyphaError>> getFreeCpuAction(UserProfileData user, Network network) async {
+    LogHelper.d('buildFreeTransaction');
     final daos = await daoService.getDaos(user: user);
     if (daos.isValue) {
-      print('dao user:  ${daos.asValue?.value.length}');
-
       if (daos.asValue!.value.isNotEmpty) {
-        print('create free tx');
-        final action = payCpuAction(account: user.accountName, network: eosTransaction.network);
-        return Result.value(eosTransaction.copyPrefixedWithAction(action, hasFreeCpuAction: true));
+        final action = payCpuAction(account: user.accountName, network: network);
+        return Result.value(action);
       } else {
-        print('NO free tx');
-
-        return Result.value(eosTransaction);
+        return Result.value(null);
       }
     } else {
-      print('Error retrieving DAOs: ${daos.asError?.error}');
-
+      LogHelper.e('Error retrieving DAOs: ${daos.asError?.error}');
       return Result.error(HyphaError.fromError(daos.asError));
     }
   }
