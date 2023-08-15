@@ -22,7 +22,7 @@ class TransactionDetailsData {
     return TransactionDetailsData(
       signingTitle: 'From ${data.esr.actions.first.account}',
       expirationTime: expiration,
-      isFreeTransaction: data.transaction.hasFreeCpuAction,
+      isFreeTransaction: data.isFreeTransaction,
       cards: data.transaction.actions.map((EOSAction e) {
         final params = e.data.map((key, value) => MapEntry(key, value.toString()));
         return TransactionDetailsCardData(
