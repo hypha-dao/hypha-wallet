@@ -23,6 +23,13 @@ class SignTransactionView extends StatelessWidget {
           child: Column(
             children: [
               _Header('Signing request', state.transactionDetailsData.signingTitle),
+              if (state.transactionDetailsData.isFreeTransaction) ...[
+                const SizedBox(height: 24),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 24),
+                  child: _FreeTransaction(),
+                ),
+              ],
               Expanded(
                 child: SingleChildScrollView(
                   child: Column(
@@ -65,6 +72,31 @@ class SignTransactionView extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+}
+
+class _FreeTransaction extends StatelessWidget {
+  const _FreeTransaction();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            Text('Free', style: context.hyphaTextTheme.smallTitles.copyWith(color: HyphaColors.success)),
+            const SizedBox(width: 4),
+            Text('Transaction', style: context.hyphaTextTheme.smallTitles),
+          ],
+        ),
+        Text('Transaction will be covered by Hypha',
+            style: context.hyphaTextTheme.ralMediumLabel.copyWith(
+              color: HyphaColors.midGrey,
+              fontStyle: FontStyle.italic,
+            )),
+      ],
     );
   }
 }
