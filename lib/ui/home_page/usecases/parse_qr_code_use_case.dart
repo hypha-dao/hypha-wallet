@@ -28,11 +28,11 @@ class ParseQRCodeUseCase extends InputUseCase<HResult.Result<ScanQrCodeResultDat
 
 Future<Result<ScanQrCodeResultData>> _validateQrCode({required String scanResult, required String accountName}) async {
   if (scanResult.isEmpty) {
-    return Result.error(HyphaError.generic("We don't recognize this QR Code"));
+    return Result.error(HyphaError.generic("We don't recognize this QR Code Is Empty"));
   } else {
     if (!SigningRequestManager.isValidESRScheme(scanResult)) {
       print(' _validateQrCode : Invalid QR code');
-      return Result.error(HyphaError.generic("We don't recognize this QR Code"));
+      return Result.error(HyphaError.generic("We don't recognize this QR Code is not Valid ESR Scheme"));
     }
 
     final SeedsESR esr = SeedsESR(uri: scanResult);
