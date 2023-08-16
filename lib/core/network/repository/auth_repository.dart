@@ -152,6 +152,7 @@ class AuthRepository {
       await _appSharedPrefs.clear();
       await _secureStorageService.clearAllData();
       await _amplifyService.logout();
+      _controller.add(const UnAuthenticated());
 
       /// Get firebase device token and remove to firebase
       await accountName?.let(
