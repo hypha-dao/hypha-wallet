@@ -43,6 +43,8 @@ class AuthRepository {
     status.listen((AuthenticationStatus event) {
       if (event is Authenticated) {
         currentAuthStatus = event;
+      } else if (event is UnAuthenticated) {
+        currentAuthStatus = event;
       }
     });
   }
@@ -101,7 +103,7 @@ class AuthRepository {
   }
 
   /// Use this method when we expect the auth data to be there. Anytime after auth. If the data isnt there. then crash
-   Authenticated get authDataOrCrash {
+  Authenticated get authDataOrCrash {
     if (currentAuthStatus is Authenticated) {
       return currentAuthStatus as Authenticated;
     }
