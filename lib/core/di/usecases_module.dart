@@ -4,7 +4,6 @@ void _registerUseCasesModule() {
   _registerFactory(() => CheckAccountAvailabilityUseCase(_getIt<UserAccountRepository>()));
   _registerFactory(() => FindAvailableAccountUseCase(_getIt<UserAccountRepository>()));
   _registerFactory(() => CreateAccountUseCase(_getIt<AuthRepository>(), _getIt<InviteService>()));
-  _registerFactory(() => ParseQRCodeUseCase(_getIt<AuthRepository>()));
   _registerFactory(() => FetchProfileUseCase(
         _getIt<ProfileService>(),
         _getIt<HyphaSharedPrefs>(),
@@ -22,6 +21,11 @@ void _registerUseCasesModule() {
         _getIt<AuthRepository>(),
         _getIt<SignTransactionCallbackService>(),
       ));
+  _registerFactory(() => FreeTransactionUseCase(
+        _getIt<PayForCpuService>(),
+      ));
+  _registerFactory(() => ParseQRCodeUseCase(_getIt<AuthRepository>(), _getIt<FreeTransactionUseCase>()));
+
   _registerFactory(
     () => GetTransactionHistoryUseCase(
       _getIt<TransactionHistoryRepository>(),

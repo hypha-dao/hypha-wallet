@@ -10,6 +10,7 @@ import 'package:hypha_wallet/ui/blocs/bloc_observer.dart';
 void main() async {
   // Initialize Flutter
   WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load();
 
   await dotenv.load(fileName: '.env');
   await setupDependencies();

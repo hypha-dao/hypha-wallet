@@ -1,17 +1,50 @@
 import 'package:hypha_wallet/core/crypto/eosdart/eosdart.dart';
 import 'package:hypha_wallet/core/crypto/seeds_esr/eos_action.dart';
+import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
+import 'package:hypha_wallet/core/logging/log_helper.dart';
 import 'package:hypha_wallet/core/network/api/eos_service.dart';
+import 'package:hypha_wallet/core/network/api/services/dao_service.dart';
+import 'package:hypha_wallet/core/network/api/services/remote_config_service.dart';
 import 'package:hypha_wallet/core/network/models/network.dart';
+import 'package:hypha_wallet/core/network/models/user_profile_data.dart';
 import 'package:hypha_wallet/core/network/networking_manager.dart';
+import 'package:hypha_wallet/ui/architecture/result/result.dart';
 
 class PayForCpuService {
   final NetworkingManager networkingManager;
+  final RemoteConfigService remoteConfigService;
   final EOSService eosService;
+  final DaoService daoService;
 
   PayForCpuService(
-    this.eosService,
     this.networkingManager,
+    this.remoteConfigService,
+    this.eosService,
+    this.daoService,
   );
+
+  Future<Result<EOSAction?, HyphaError>> getFreeCpuAction(UserProfileData user, Network network) async {
+    LogHelper.d('buildFreeTransaction');
+
+    // pay cpu is under feature flag for each network
+    if (!remoteConfigService.isPayCpuEnabled(network)) {
+      return Result.value(null);
+    }
+
+    // if user is DAO member, we can pay for CPU
+    final daos = await daoService.getDaos(user: user);
+    if (daos.isValue) {
+      if (daos.asValue!.value.isNotEmpty) {
+        final action = payCpuAction(account: user.accountName, network: network);
+        return Result.value(action);
+      } else {
+        return Result.value(null);
+      }
+    } else {
+      LogHelper.e('Error retrieving DAOs: ${daos.asError?.error}');
+      return Result.error(HyphaError.fromError(daos.asError));
+    }
+  }
 
   /// Usage: preload the payCpuAction for any member who is a Hypha member - see HyphaMemberService
   EOSAction payCpuAction({
@@ -24,6 +57,9 @@ class PayForCpuService {
       ..name = 'payforcpu'
       ..data = {'account': account}
       ..authorization = [
+        Authorization()
+          ..actor = contractName
+          ..permission = 'payforcpu',
         Authorization()
           ..actor = account
           ..permission = 'active'

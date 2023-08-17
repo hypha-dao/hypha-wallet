@@ -7,14 +7,14 @@ import 'package:hypha_wallet/core/network/models/network.dart';
 class EOSTransaction extends Equatable {
   final Network network;
   final List<EOSAction> actions;
-  bool get isValid => actions.isNotEmpty;
 
+  bool get isValid => actions.isNotEmpty;
   bool get isTransfer => actions.length == 1 && actions.first.name == 'transfer';
 
   const EOSTransaction(this.actions, this.network);
 
   @override
-  List<Object?> get props => [actions];
+  List<Object?> get props => [actions, network];
 
   factory EOSTransaction.fromESRActionsList(List<esr.ESRAction> esrActions, Network network) {
     final List<EOSAction> eosActions =
@@ -36,4 +36,6 @@ class EOSTransaction extends Equatable {
           ..data = data
           ..authorization = authorization,
       ], network);
+
+  EOSTransaction copyPrefixedWithAction(EOSAction action) => EOSTransaction([action, ...actions], network);
 }

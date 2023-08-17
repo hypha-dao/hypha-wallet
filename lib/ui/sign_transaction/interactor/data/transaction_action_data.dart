@@ -6,11 +6,13 @@ class TransactionDetailsData {
   final String signingTitle;
   final List<TransactionDetailsCardData> cards;
   final DateTime expirationTime;
+  final bool isFreeTransaction;
 
   TransactionDetailsData({
     required this.signingTitle,
     required this.cards,
     required this.expirationTime,
+    required this.isFreeTransaction,
   });
 
   factory TransactionDetailsData.fromQrCodeData(ScanQrCodeResultData data) {
@@ -20,6 +22,7 @@ class TransactionDetailsData {
     return TransactionDetailsData(
       signingTitle: 'From ${data.esr.actions.first.account}',
       expirationTime: expiration,
+      isFreeTransaction: data.isFreeTransaction,
       cards: data.transaction.actions.map((EOSAction e) {
         final params = e.data.map((key, value) => MapEntry(key, value.toString()));
         return TransactionDetailsCardData(
