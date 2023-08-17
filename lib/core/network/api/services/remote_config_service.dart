@@ -90,6 +90,8 @@ class RemoteConfigService {
 
   bool get isWalletEnabled => FirebaseRemoteConfig.instance.getBool('walletEnabled');
 
+  bool isPayCpuEnabled(Network network) => _getMap('payCpuEnabledNetwork')[network.name] ?? false;
+
   // PPP Profile Service Backend
   String profileServiceCacheEndpoint(Network network) => _pppCacheEndpoint(network: network);
 

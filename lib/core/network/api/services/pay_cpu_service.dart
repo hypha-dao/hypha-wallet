@@ -4,6 +4,7 @@ import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
 import 'package:hypha_wallet/core/logging/log_helper.dart';
 import 'package:hypha_wallet/core/network/api/eos_service.dart';
 import 'package:hypha_wallet/core/network/api/services/dao_service.dart';
+import 'package:hypha_wallet/core/network/api/services/remote_config_service.dart';
 import 'package:hypha_wallet/core/network/models/network.dart';
 import 'package:hypha_wallet/core/network/models/user_profile_data.dart';
 import 'package:hypha_wallet/core/network/networking_manager.dart';
@@ -11,17 +12,26 @@ import 'package:hypha_wallet/ui/architecture/result/result.dart';
 
 class PayForCpuService {
   final NetworkingManager networkingManager;
+  final RemoteConfigService remoteConfigService;
   final EOSService eosService;
   final DaoService daoService;
 
   PayForCpuService(
     this.networkingManager,
+    this.remoteConfigService,
     this.eosService,
     this.daoService,
   );
 
   Future<Result<EOSAction?, HyphaError>> getFreeCpuAction(UserProfileData user, Network network) async {
     LogHelper.d('buildFreeTransaction');
+
+    // pay cpu is under feature flag for each network
+    if (!remoteConfigService.isPayCpuEnabled(network)) {
+      return Result.value(null);
+    }
+
+    // if user is DAO member, we can pay for CPU
     final daos = await daoService.getDaos(user: user);
     if (daos.isValue) {
       if (daos.asValue!.value.isNotEmpty) {
