@@ -189,7 +189,7 @@ class HyphaAppView extends StatelessWidget {
             theme: HyphaTheme.lightTheme,
             themeMode: state.themeMode,
             navigatorObservers: <NavigatorObserver>[GetIt.I.get<FirebaseAnalyticsService>().firebaseObserver],
-            home: const SplashPage(),
+            home: const SizedBox.shrink(),
           );
         },
       ),

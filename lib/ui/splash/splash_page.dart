@@ -33,31 +33,29 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBodyBehindAppBar: true,
-      body: Lottie.asset(
-        fit: BoxFit.fill,
-        'assets/animations/hypha_splash.json',
-        controller: _controller,
-        height: MediaQuery.of(context).size.height * 1,
-        width: MediaQuery.of(context).size.width * 1,
-        animate: true,
-        onLoaded: (composition) {
-          _controller
-            ..duration = composition.duration
-            ..forward().whenComplete(() {
-              final userAuthData = GetIt.I.get<AuthRepository>().currentAuthStatus;
-              if (userAuthData is Authenticated) {
-                if (Get.currentRoute != '/HyphaBottomNavigation') {
-                  Get.offAll(() => const HyphaBottomNavigation());
-                }
-              } else {
-                if (Get.currentRoute != '/OnboardingPage') {
-                  Get.offAll(() => const OnboardingPage());
-                }
-              }
-            });
-        },
-      ),
-    );
+        extendBodyBehindAppBar: true,
+        body: Container(
+          height: MediaQuery.of(context).size.height * 1,
+          width: MediaQuery.of(context).size.width * 1,
+          child: FittedBox(
+              fit: BoxFit.cover,
+              child: Lottie.asset('assets/animations/hypha_splash.json', controller: _controller, animate: true,
+                  onLoaded: (composition) {
+                _controller
+                  ..duration = composition.duration
+                  ..forward().whenComplete(() {
+                    final userAuthData = GetIt.I.get<AuthRepository>().currentAuthStatus;
+                    if (userAuthData is Authenticated) {
+                      if (Get.currentRoute != '/HyphaBottomNavigation') {
+                        Get.offAll(() => const HyphaBottomNavigation());
+                      }
+                    } else {
+                      if (Get.currentRoute != '/OnboardingPage') {
+                        Get.offAll(() => const OnboardingPage());
+                      }
+                    }
+                  });
+              })),
+        ));
   }
 }
