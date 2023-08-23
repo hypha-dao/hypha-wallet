@@ -47,11 +47,19 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
                     final userAuthData = GetIt.I.get<AuthRepository>().currentAuthStatus;
                     if (userAuthData is Authenticated) {
                       if (Get.currentRoute != '/HyphaBottomNavigation') {
-                        Get.offAll(() => const HyphaBottomNavigation());
+                        Get.offAll(
+                          () => const HyphaBottomNavigation(),
+                          transition: Transition.fadeIn,
+                          duration: const Duration(milliseconds: 500),
+                        );
                       }
                     } else {
                       if (Get.currentRoute != '/OnboardingPage') {
-                        Get.offAll(() => const HyphaBottomNavigation());
+                        Get.offAll(
+                          () => const OnboardingPage(),
+                          transition: Transition.fadeIn,
+                          duration: const Duration(milliseconds: 500),
+                        );
                       }
                     }
                   });
