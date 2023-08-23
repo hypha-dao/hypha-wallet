@@ -24,6 +24,7 @@ class HyphaPageBackground extends StatelessWidget {
 
     return DecoratedBox(
       decoration: BoxDecoration(
+        color: const Color.fromRGBO(5, 15, 33, 1.0),
         gradient: withGradient
             ? context.isDarkTheme
                 ? HyphaColors.gradientBlack
