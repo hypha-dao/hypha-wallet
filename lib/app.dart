@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
+import 'package:get/get.dart' as Get;
 import 'package:get_it/get_it.dart';
 import 'package:hypha_wallet/core/crypto/seeds_esr/scan_qr_code_result_data.dart';
 import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
@@ -67,10 +67,18 @@ class HyphaAppView extends StatelessWidget {
                 LogHelper.d('Auth Bloc Listener unknown');
                 break;
               case Authenticated _:
-                Get.offAll(() => const SplashPage());
+                Get.Get.offAll(
+                  () => const SplashPage(),
+                  duration: const Duration(milliseconds: 500),
+                  transition: Get.Transition.fadeIn,
+                );
                 break;
               case UnAuthenticated _:
-                Get.offAll(() => const SplashPage());
+                Get.Get.offAll(
+                      () => const SplashPage(),
+                  duration: const Duration(milliseconds: 500),
+                  transition: Get.Transition.fadeIn,
+                );
                 break;
             }
           },
@@ -79,7 +87,7 @@ class HyphaAppView extends StatelessWidget {
           listenWhen: (previous, current) => previous.command != current.command,
           listener: (context, state) {
             state.command?.when(
-                navigateToCreateAccount: () => Get.offAll(() => const OnboardingPageWithLink()),
+                navigateToCreateAccount: () => Get.Get.offAll(() => const OnboardingPageWithLink()),
                 navigateToSignTransaction: (ScanQrCodeResultData data) {
                   _showSignTransactionBottomSheet(data);
                 });
@@ -109,7 +117,7 @@ class HyphaAppView extends StatelessWidget {
               words,
               privateKey,
             ) async {
-              unawaited(Get.bottomSheet(
+              unawaited(Get.Get.bottomSheet(
                 FractionallySizedBox(
                   heightFactor: 0.95,
                   child: HyphaConfirmationPage(
@@ -118,13 +126,13 @@ class HyphaAppView extends StatelessWidget {
                     image: image,
                     rationale: rationale,
                     primaryButtonCallback: () {
-                      Get.off(state.hasWords ? SaveWordsPage(words) : SaveKeyPage(privateKey));
+                      Get.Get.off(state.hasWords ? SaveWordsPage(words) : SaveKeyPage(privateKey));
                       context.read<SettingsBloc>().add(const SettingsEvent.onSecureAccountTapped());
                     },
                     primaryButtonText: mainButtonText,
                     secondaryButtonText: 'Close',
                     secondaryButtonCallback: () {
-                      Get.back();
+                      Get.Get.back();
                     },
                   ),
                 ),
@@ -150,7 +158,7 @@ class HyphaAppView extends StatelessWidget {
                 /// NOTHING FOR NOW
               },
               showReLoginDialog: () {
-                Get.defaultDialog(
+                Get.Get.defaultDialog(
                   title: 'Something went wrong.',
                   middleText: 'Please authenticate again.',
                   cancel: const Text('Login'),
@@ -165,14 +173,14 @@ class HyphaAppView extends StatelessWidget {
                 // TODO(gguij): handle connection error
               },
               showErrorDialog: (HyphaError hyphaError) {
-                Get.defaultDialog(
+                Get.Get.defaultDialog(
                   title: hyphaError.message,
                   cancel: hyphaError.actionText?.let((it) => Text(it)),
                   onCancel: hyphaError.action?.call(),
                 );
               },
               showErrorMessage: (message) {
-                Get.showSnackbar(GetSnackBar(message: message, duration: const Duration(seconds: 3)));
+                Get.Get.showSnackbar(Get.GetSnackBar(message: message, duration: const Duration(seconds: 3)));
               },
             );
 
@@ -183,7 +191,7 @@ class HyphaAppView extends StatelessWidget {
       child: BlocBuilder<SettingsBloc, SettingsState>(
         buildWhen: (previous, current) => previous.themeMode != current.themeMode,
         builder: (context, state) {
-          return GetMaterialApp(
+          return Get.GetMaterialApp(
             title: 'Hypha Wallet',
             darkTheme: HyphaTheme.darkTheme,
             theme: HyphaTheme.lightTheme,
@@ -197,7 +205,7 @@ class HyphaAppView extends StatelessWidget {
   }
 
   void _showSignTransactionBottomSheet(ScanQrCodeResultData data) {
-    Get.bottomSheet(
+    Get.Get.bottomSheet(
       FractionallySizedBox(
         heightFactor: UIConstants.bottomSheetHeightFraction,
         child: SignTransactionPage(qrCodeData: data),
