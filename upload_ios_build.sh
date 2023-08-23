@@ -23,4 +23,4 @@ open -a "Transporter" build/ios/ipa/hypha_wallet.ipa
 # xcrun altool --upload-app --type ios --file "ios/build/Runner.ipa" --username "YOUR_APPLE_ID_EMAIL" --password "YOUR_APP_SPECIFIC_PASSWORD"
 
 # Or just open the ipa file in transporter
-open -a "Transporter" /Users/elohim/play/hypha/hypha_wallet/ios/build/hypha_wallet.ipa
+# open -a "Transporter" /Users/elohim/play/hypha/hypha_wallet/ios/build/hypha_wallet.ipa
