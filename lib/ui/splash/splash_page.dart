@@ -49,7 +49,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
                       if (Get.currentRoute != '/HyphaBottomNavigation') {
                         Get.offAll(
                           () => const HyphaBottomNavigation(),
-                          transition: Transition.downToUp,
+                          transition: Transition.fadeIn,
                           duration: const Duration(milliseconds: 500),
                         );
                       }
@@ -57,7 +57,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
                       if (Get.currentRoute != '/OnboardingPage') {
                         Get.offAll(
                           () => const OnboardingPage(),
-                          transition: Transition.downToUp,
+                          transition: Transition.fadeIn,
                           duration: const Duration(milliseconds: 500),
                         );
                       }

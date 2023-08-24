@@ -45,3 +45,7 @@ app.*.map.json
 
 # env variables and secrets
 *.env
+
+## ios build/distribution directory
+ios/archive
+ios/build
