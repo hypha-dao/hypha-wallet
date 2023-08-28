@@ -1,7 +1,11 @@
 import 'package:equatable/equatable.dart';
 
 const _daoAccount = 'dao.hypha';
+const _systemTokenAccount = 'eosio.token';
+const _hyphaTokenAccount = 'hypha.hypha';
+const _hyphaWrapTokenAccount = 'whypha.hypha';
 const _eosioLoginAccount = 'eosio.login';
+
 sealed class TransactionModel extends Equatable {
   final DateTime timestamp;
   final String account;
@@ -24,19 +28,19 @@ sealed class TransactionModel extends Equatable {
   @override
   List<Object?> get props => [actionName, data, account, timestamp, blockNumber];
 
-  factory TransactionModel.fromJson(Map<String, dynamic> json) {
-    final act = json['act'];
-    final actionName = act['name'];
-    final account = act['account'];
-    final data = act['data'];
-    final timestamp = parseTimestamp(json['@timestamp']);
-    final blockNumber = json['block_num'];
-    final actor = act['authorization'].first['actor'];
-    final transactionId = json['trx_id'];
-
-    // parse known transactions
+  factory TransactionModel.parseFromParams({
+    required timestamp,
+    required String account,
+    required String actionName,
+    required blockNumber,
+    required actor,
+    required String? transactionId,
+    required Map<String, dynamic> data,
+  }) {
     return switch (actionName) {
-      'transfer' => TransactionTransfer(
+      'transfer'
+          when account == _hyphaTokenAccount || account == _hyphaWrapTokenAccount || account == _systemTokenAccount =>
+        TransactionTransfer(
           account: account,
           actionName: actionName,
           blockNumber: blockNumber,
@@ -127,6 +131,48 @@ sealed class TransactionModel extends Equatable {
           transactionId: transactionId,
         ),
     };
+  }
+
+  factory TransactionModel.fromJson(Map<String, dynamic> json) {
+    final act = json['act'];
+    final actionName = act['name'];
+    final account = act['account'];
+    final data = act['data'];
+    final timestamp = parseTimestamp(json['@timestamp']);
+    final blockNumber = json['block_num'];
+    final actor = act['authorization'].first['actor'];
+    final transactionId = json['trx_id'];
+
+    return TransactionModel.parseFromParams(
+      account: account,
+      actionName: actionName,
+      blockNumber: blockNumber,
+      data: data,
+      timestamp: timestamp,
+      actor: actor,
+      transactionId: transactionId,
+    );
+  }
+
+  factory TransactionModel.fromJsonV1History(Map<String, dynamic> json) {
+    final act = json['action_trace']['act'];
+    final actionName = act['name'];
+    final account = act['account'];
+    final data = act['data'];
+    final actor = act['authorization'].first['actor'];
+    final timestamp = parseTimestamp(json['block_time']);
+    final blockNumber = json['block_num'];
+    final transactionId = json['action_trace']['trx_id'];
+
+    return TransactionModel.parseFromParams(
+      account: account,
+      actionName: actionName,
+      blockNumber: blockNumber,
+      data: data,
+      timestamp: timestamp,
+      actor: actor,
+      transactionId: transactionId,
+    );
   }
 }
 

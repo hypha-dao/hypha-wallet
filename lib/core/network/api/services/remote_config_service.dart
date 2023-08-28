@@ -92,6 +92,9 @@ class RemoteConfigService {
 
   bool isPayCpuEnabled(Network network) => _getMap('payCpuEnabledNetwork')[network.name] ?? false;
 
+  String v1HistoryEndpoint(Network network) => _getMap('historyEndpoints')[network.name]['v1'];
+  String v2HistoryEndpoint(Network network) => _getMap('historyEndpoints')[network.name]['v2'];
+
   // PPP Profile Service Backend
   String profileServiceCacheEndpoint(Network network) => _pppCacheEndpoint(network: network);
 
@@ -181,6 +184,24 @@ class RemoteConfigService {
         'telosTestnet': pppConfig.getProfileServiceConfig(Network.telosTestnet),
         'eos': pppConfig.getProfileServiceConfig(Network.eos),
         'eosTestnet': pppConfig.getProfileServiceConfig(Network.eosTestnet),
+      }),
+      'historyEndpoints': json.encode({
+        "telos": {
+          "v1": "http://mainnet.telos.net",
+          "v2": "http://mainnet.telos.net",
+        },
+        "telosTestnet": {
+          "v1": "http://testnet.telos.net",
+          "v2": "http://testnet.telos.net",
+        },
+        "eos": {
+          "v1": "http://eos.greymass.com",
+          "v2": "http://eos.eosusa.io",
+        },
+        "eosTestnet": {
+          "v1": "http://jungle.eosusa.io",
+          "v2": "http://jungle.eosusa.io",
+        },
       }),
       'signUpEnabled': false,
       'walletEnabled': false,
