@@ -27,7 +27,8 @@ class TransactionDetailsData {
         final params = e.data.map((key, value) => MapEntry(key, value.toString()));
         return TransactionDetailsCardData(
           params: e.data.map((key, value) => MapEntry(key, value.toString())),
-          contractAction: '${e.account ?? ''} - ${e.name ?? ''}',
+          contract: e.account ?? '',
+          action: e.name ?? '',
           memo: params['memo'],
         );
       }).toList(),
@@ -47,19 +48,22 @@ const knownContractActions = {
 
 class TransactionDetailsCardData {
   final Map<String, dynamic> params;
-  final String contractAction;
+  final String contract;
+  final String action;
   final DateTime? timestamp;
   final GestureTapCallback? onTap;
   final String? memo;
 
   TransactionDetailsCardData({
     required this.params,
-    required this.contractAction,
+    required this.contract,
+    required this.action,
     this.timestamp,
     this.onTap,
     this.memo,
   });
 
+  String get contractAction => '$contract - $action';
   String get userFriendlyContractAction => knownContractActions[contractAction] ?? contractAction;
   String? get requestor => params['requestor'];
   String? get amount => params['amount'];

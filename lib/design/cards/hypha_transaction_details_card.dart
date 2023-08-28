@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:hypha_wallet/core/network/models/transaction_model.dart';
 import 'package:hypha_wallet/design/buttons/hypha_app_button.dart';
 import 'package:hypha_wallet/design/dividers/hypha_divider.dart';
@@ -70,7 +69,22 @@ class HyphaTransactionDetailsCard extends StatelessWidget {
               const SizedBox(height: 16),
               const HyphaDivider(),
               const SizedBox(height: 22),
-              Text('${data.actionName.capitalizeFirst}', style: context.hyphaTextTheme.smallTitles),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(data.account, style: context.hyphaTextTheme.smallTitles),
+                  const SizedBox(width: 4),
+                  Flexible(
+                    child: Text(
+                      data.actionName,
+                      style: context.hyphaTextTheme.smallTitles,
+                      textAlign: TextAlign.right,
+                      maxLines: 4,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ],
+              ),
               const SizedBox(height: 22),
               const HyphaDivider(),
               const SizedBox(height: 22),

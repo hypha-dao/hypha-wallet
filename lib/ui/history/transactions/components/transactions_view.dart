@@ -31,31 +31,37 @@ class TransactionsView extends StatelessWidget {
               ),
               backgroundColor: HyphaColors.primaryBlu,
             ),
-            body: HyphaBodyWidget(
-              pageState: state.pageState,
-              success: (_) => ListView.separated(
-                padding: const EdgeInsets.all(22),
-                itemCount: state.transactions.length,
-                itemBuilder: (context, index) {
-                  final TransactionModel item = state.transactions[index];
-                  return HyphaTransactionActionCard(
-                    data: TransactionDetailsCardData(
-                      contractAction: item.actionName,
-                      params: item.data,
-                      timestamp: item.timestamp,
-                      memo: item.data['memo'],
-                      onTap: () {
-                        GetX.Get.to(
-                          TransactionDetailsPage(transactionModel: item),
-                          transition: GetX.Transition.rightToLeft,
-                        );
-                      },
-                    ),
-                  );
-                },
-                separatorBuilder: (BuildContext context, int index) {
-                  return const SizedBox(height: 16);
-                },
+            body: RefreshIndicator(
+              onRefresh: () async {
+                context.read<TransactionsBloc>().add(const TransactionsEvent.initial());
+              },
+              child: HyphaBodyWidget(
+                pageState: state.pageState,
+                success: (_) => ListView.separated(
+                  padding: const EdgeInsets.all(22),
+                  itemCount: state.transactions.length,
+                  itemBuilder: (context, index) {
+                    final TransactionModel item = state.transactions[index];
+                    return HyphaTransactionActionCard(
+                      data: TransactionDetailsCardData(
+                        contract: item.account,
+                        action: item.actionName,
+                        params: item.data,
+                        timestamp: item.timestamp,
+                        memo: item.data['memo'],
+                        onTap: () {
+                          GetX.Get.to(
+                            TransactionDetailsPage(transactionModel: item),
+                            transition: GetX.Transition.rightToLeft,
+                          );
+                        },
+                      ),
+                    );
+                  },
+                  separatorBuilder: (BuildContext context, int index) {
+                    return const SizedBox(height: 16);
+                  },
+                ),
               ),
             ),
           ),
