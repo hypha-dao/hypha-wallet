@@ -151,8 +151,6 @@ class RemoteConfigService {
           "name": "EOS",
           "endpoint": "https://eos.greymass.com",
           "fastEndpoint": "https://eos.greymass.com",
-          "v1HistoryEP": "https://eos.greymass.com",
-          "v2HistoryEP": "https://eos.greymass.com",
           "loginContract": "logintohypha",
           "loginAction": "loginuser",
           "logoutAction": "logoutuser",
