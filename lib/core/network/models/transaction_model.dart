@@ -160,7 +160,6 @@ sealed class TransactionModel extends Equatable {
     final account = act['account'];
     final data = act['data'];
     final actor = act['authorization'].first['actor'];
-
     final timestamp = parseTimestamp(json['block_time']);
     final blockNumber = json['block_num'];
     final transactionId = json['action_trace']['trx_id'];
