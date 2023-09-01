@@ -6,8 +6,6 @@ import 'package:hypha_wallet/core/network/api/endpoints.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class NetworkingManager extends DioForNative {
-  static final bool _isDebugNetworking = true;
-
   NetworkingManager(String baseUrl) : super() {
     final retryInterceptor = RetryInterceptor(
       dio: this,
@@ -30,7 +28,7 @@ class NetworkingManager extends DioForNative {
     );
 
     interceptors.add(retryInterceptor);
-    if (_isDebugNetworking) {
+    if (kIsDebugNetworking) {
       interceptors.add(loggerInterceptor);
     }
 

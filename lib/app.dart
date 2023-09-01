@@ -24,8 +24,6 @@ import 'package:hypha_wallet/ui/shared/ui_constants.dart';
 import 'package:hypha_wallet/ui/sign_transaction/sign_transaction_page.dart';
 import 'package:hypha_wallet/ui/splash/splash_page.dart';
 
-const kLogQuietMode = false;
-
 class HyphaApp extends StatelessWidget {
   const HyphaApp({super.key});
 
@@ -75,7 +73,7 @@ class HyphaAppView extends StatelessWidget {
                 break;
               case UnAuthenticated _:
                 Get.Get.offAll(
-                      () => const SplashPage(),
+                  () => const SplashPage(),
                   duration: const Duration(milliseconds: 500),
                   transition: Get.Transition.fadeIn,
                 );

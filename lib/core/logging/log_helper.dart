@@ -1,6 +1,9 @@
 import 'package:fimber/fimber.dart';
 import 'package:flutter/foundation.dart';
 
+const kLogQuietMode = false;
+const kIsDebugNetworking = true;
+
 /// Wrap Fimber in case we want to move out from it.
 class LogHelper {
   /// Logs VERBOSE level [message]
