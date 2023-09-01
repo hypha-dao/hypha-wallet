@@ -1,5 +1,4 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hypha_wallet/app.dart';
 import 'package:hypha_wallet/core/logging/log_helper.dart';
 
 /// Custom [BlocObserver] which observes all bloc and cubit instances.
