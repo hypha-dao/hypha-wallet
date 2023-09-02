@@ -2,6 +2,7 @@ import 'package:async/async.dart';
 import 'package:hypha_wallet/core/crypto/seeds_esr/eos_transaction.dart';
 import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
 import 'package:hypha_wallet/core/extension/scope_functions.dart';
+import 'package:hypha_wallet/core/logging/log_helper.dart';
 import 'package:hypha_wallet/core/network/api/eos_service.dart';
 import 'package:hypha_wallet/core/network/api/services/sign_transaction_callback_service.dart';
 import 'package:hypha_wallet/core/network/repository/auth_repository.dart';
@@ -18,10 +19,16 @@ class SignTransactionUseCase extends InputUseCase<HResult.Result<String, HyphaEr
   @override
   Future<HResult.Result<String, HyphaError>> run(SignTransactionInput input) async {
     final userData = _authRepository.authDataOrCrash;
-    final Result<dynamic> result = await eosService.sendTransaction(
-      eosTransaction: input.eOSTransaction,
-      user: userData.userProfileData,
-    );
+    final Result<dynamic> result;
+    try {
+      result = await eosService.sendTransaction(
+        eosTransaction: input.eOSTransaction,
+        user: userData.userProfileData,
+      );
+    } catch (error) {
+      LogHelper.e('Error signing transaction: $error');
+      return HResult.Result.error(HyphaError.fromError(error));
+    }
     if (result.isValue) {
       final transactionID = result.asValue!.value;
       try {
