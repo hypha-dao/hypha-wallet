@@ -67,7 +67,7 @@ dependencies:
   shared_preferences: ^2.0.15
 
   # QR code Scanner
-  mobile_scanner: ^2.1.0
+  mobile_scanner: ^3.4.1
 
   # RX-ify Shared Preferences
   rx_shared_preferences: ^3.0.0
@@ -118,17 +118,17 @@ dependencies:
   image_cropper: ^4.0.1
 
   # Firebase
-  firebase_core: ^2.4.0
-  firebase_crashlytics: ^3.0.7
-  firebase_dynamic_links: ^5.0.8
-  firebase_messaging: ^14.4.1
-  cloud_firestore: ^4.5.3
-  firebase_analytics: ^10.2.1
-  firebase_remote_config: ^4.1.0
+  firebase_core: ^2.15.1
+  firebase_crashlytics: ^3.3.5
+  firebase_dynamic_links: ^5.3.5
+  firebase_messaging: ^14.6.7
+  cloud_firestore: ^4.9.1
+  firebase_analytics: ^10.4.5
+  firebase_remote_config: ^4.2.5
 
   # Amazon stuff for profile... Weak sauce
   amazon_cognito_identity_dart_2: ^3.2.0
-  app_links: ^3.4.2
+  app_links: ^3.4.3
 
   # Dotted outline container
   dotted_border: ^2.0.0+3
