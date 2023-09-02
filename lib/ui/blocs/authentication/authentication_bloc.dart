@@ -73,8 +73,6 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
 
       if (userProfileData != null && authData != null) {
         _authRepository.loginUser(userProfileData, authData);
-      } else {
-        await _authRepository.logOut(null);
       }
     } catch (error, stacktrace) {
       LogHelper.e('Error during user sign-in status', error: error, stacktrace: stacktrace);
