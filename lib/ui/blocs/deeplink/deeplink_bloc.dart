@@ -6,8 +6,12 @@ import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hypha_wallet/core/crypto/dart_esr/dart_esr.dart';
 import 'package:hypha_wallet/core/crypto/seeds_esr/scan_qr_code_result_data.dart';
+import 'package:hypha_wallet/core/error_handler/error_handler_manager.dart';
+import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
+import 'package:hypha_wallet/core/error_handler/model/hypha_error_type.dart';
 import 'package:hypha_wallet/core/logging/log_helper.dart';
 import 'package:hypha_wallet/core/network/models/network.dart';
+import 'package:hypha_wallet/core/network/repository/auth_repository.dart';
 import 'package:hypha_wallet/ui/home_page/usecases/parse_qr_code_use_case.dart';
 
 part 'deeplink_bloc.freezed.dart';
@@ -20,11 +24,14 @@ part 'page_command.dart';
 
 class DeeplinkBloc extends Bloc<DeeplinkEvent, DeeplinkState> {
   final ParseQRCodeUseCase _parseQRCodeUseCase;
+  final AuthRepository _authRepository;
+  final ErrorHandlerManager _errorHandlerManager;
   final _appLinks = AppLinks();
 
   late StreamSubscription<String> _linkSubscription;
 
-  DeeplinkBloc(this._parseQRCodeUseCase) : super(const DeeplinkState()) {
+  DeeplinkBloc(this._parseQRCodeUseCase, this._authRepository, this._errorHandlerManager)
+      : super(const DeeplinkState()) {
     initDynamicLinks();
 
     on<_IncomingFirebaseDeepLink>(_incomingFirebaseDeepLink);
@@ -110,12 +117,22 @@ class DeeplinkBloc extends Bloc<DeeplinkEvent, DeeplinkState> {
   Future<void> _incomingESRLink(_IncomingESRLink event, Emitter<DeeplinkState> emit) async {
     final result = await _parseQRCodeUseCase.run(ParseESRLinkInput(esrLink: event.link));
     if (result.isValue) {
-      emit(
-        state.copyWith(
-          command: PageCommand.navigateToSignTransaction(result.asValue!.value),
-        ),
-      );
+      if (_authRepository.currentAuthStatus is Authenticated) {
+        emit(state.copyWith(command: PageCommand.navigateToSignTransaction(result.asValue!.value)));
+      } else {
+        unawaited(
+          _errorHandlerManager.handlerError(
+            HyphaError(
+              message: 'No account found. Please import an account before continuing',
+              type: HyphaErrorType.generic,
+            ),
+          ),
+        );
+      }
     } else {
+      unawaited(
+        _errorHandlerManager.handlerError(HyphaError(message: 'Error parsing Link', type: HyphaErrorType.generic)),
+      );
       LogHelper.e('error: ${result.asError!.error}');
     }
   }
