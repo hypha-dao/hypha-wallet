@@ -60,6 +60,11 @@ class HyphaAppView extends StatelessWidget {
           },
           listener: (context, state) {
             LogHelper.d('Auth Bloc Listener FIRED');
+            /// If we are handling a deeplink. Do not listen to navigation.
+            if(context.read<DeeplinkBloc>().state.inviteLinkData != null) {
+              LogHelper.d('There is Invite Link data. Ignore this command.');
+              return;
+            }
             switch (state.authStatus) {
               case Unknown _:
                 LogHelper.d('Auth Bloc Listener unknown');

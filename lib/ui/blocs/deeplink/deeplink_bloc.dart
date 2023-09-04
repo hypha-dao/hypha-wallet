@@ -37,6 +37,7 @@ class DeeplinkBloc extends Bloc<DeeplinkEvent, DeeplinkState> {
     on<_IncomingFirebaseDeepLink>(_incomingFirebaseDeepLink);
     on<_IncomingESRLink>(_incomingESRLink);
     on<_ClearPageCommand>((_, emit) => emit(state.copyWith(command: null)));
+    on<_ClearInviteLink>((_, emit) => emit(state.copyWith(inviteLinkData: null)));
   }
 
   @override

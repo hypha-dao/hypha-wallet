@@ -35,6 +35,8 @@ class CreateAccountPage extends StatelessWidget {
               Navigator.of(context).pop();
             },
             navigateToSuccess: () {
+              /// Invite link data has been consumed. Clean it up
+              context.read<DeeplinkBloc>().add(const DeeplinkEvent.clearInviteLink());
               Get.Get.to(
                 () => CreateAccountSuccessPage(
                   accountName: state.userAccount!,

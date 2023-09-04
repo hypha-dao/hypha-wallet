@@ -21,6 +21,7 @@ mixin _$DeeplinkEvent {
     required TResult Function(Uri link) incomingFirebaseDeepLink,
     required TResult Function(String link) incomingESRLink,
     required TResult Function() clearPageCommand,
+    required TResult Function() clearInviteLink,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -28,6 +29,7 @@ mixin _$DeeplinkEvent {
     TResult? Function(Uri link)? incomingFirebaseDeepLink,
     TResult? Function(String link)? incomingESRLink,
     TResult? Function()? clearPageCommand,
+    TResult? Function()? clearInviteLink,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,6 +37,7 @@ mixin _$DeeplinkEvent {
     TResult Function(Uri link)? incomingFirebaseDeepLink,
     TResult Function(String link)? incomingESRLink,
     TResult Function()? clearPageCommand,
+    TResult Function()? clearInviteLink,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -44,6 +47,7 @@ mixin _$DeeplinkEvent {
         incomingFirebaseDeepLink,
     required TResult Function(_IncomingESRLink value) incomingESRLink,
     required TResult Function(_ClearPageCommand value) clearPageCommand,
+    required TResult Function(_ClearInviteLink value) clearInviteLink,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -52,6 +56,7 @@ mixin _$DeeplinkEvent {
         incomingFirebaseDeepLink,
     TResult? Function(_IncomingESRLink value)? incomingESRLink,
     TResult? Function(_ClearPageCommand value)? clearPageCommand,
+    TResult? Function(_ClearInviteLink value)? clearInviteLink,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -59,6 +64,7 @@ mixin _$DeeplinkEvent {
     TResult Function(_IncomingFirebaseDeepLink value)? incomingFirebaseDeepLink,
     TResult Function(_IncomingESRLink value)? incomingESRLink,
     TResult Function(_ClearPageCommand value)? clearPageCommand,
+    TResult Function(_ClearInviteLink value)? clearInviteLink,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -151,6 +157,7 @@ class _$_IncomingFirebaseDeepLink implements _IncomingFirebaseDeepLink {
     required TResult Function(Uri link) incomingFirebaseDeepLink,
     required TResult Function(String link) incomingESRLink,
     required TResult Function() clearPageCommand,
+    required TResult Function() clearInviteLink,
   }) {
     return incomingFirebaseDeepLink(link);
   }
@@ -161,6 +168,7 @@ class _$_IncomingFirebaseDeepLink implements _IncomingFirebaseDeepLink {
     TResult? Function(Uri link)? incomingFirebaseDeepLink,
     TResult? Function(String link)? incomingESRLink,
     TResult? Function()? clearPageCommand,
+    TResult? Function()? clearInviteLink,
   }) {
     return incomingFirebaseDeepLink?.call(link);
   }
@@ -171,6 +179,7 @@ class _$_IncomingFirebaseDeepLink implements _IncomingFirebaseDeepLink {
     TResult Function(Uri link)? incomingFirebaseDeepLink,
     TResult Function(String link)? incomingESRLink,
     TResult Function()? clearPageCommand,
+    TResult Function()? clearInviteLink,
     required TResult orElse(),
   }) {
     if (incomingFirebaseDeepLink != null) {
@@ -186,6 +195,7 @@ class _$_IncomingFirebaseDeepLink implements _IncomingFirebaseDeepLink {
         incomingFirebaseDeepLink,
     required TResult Function(_IncomingESRLink value) incomingESRLink,
     required TResult Function(_ClearPageCommand value) clearPageCommand,
+    required TResult Function(_ClearInviteLink value) clearInviteLink,
   }) {
     return incomingFirebaseDeepLink(this);
   }
@@ -197,6 +207,7 @@ class _$_IncomingFirebaseDeepLink implements _IncomingFirebaseDeepLink {
         incomingFirebaseDeepLink,
     TResult? Function(_IncomingESRLink value)? incomingESRLink,
     TResult? Function(_ClearPageCommand value)? clearPageCommand,
+    TResult? Function(_ClearInviteLink value)? clearInviteLink,
   }) {
     return incomingFirebaseDeepLink?.call(this);
   }
@@ -207,6 +218,7 @@ class _$_IncomingFirebaseDeepLink implements _IncomingFirebaseDeepLink {
     TResult Function(_IncomingFirebaseDeepLink value)? incomingFirebaseDeepLink,
     TResult Function(_IncomingESRLink value)? incomingESRLink,
     TResult Function(_ClearPageCommand value)? clearPageCommand,
+    TResult Function(_ClearInviteLink value)? clearInviteLink,
     required TResult orElse(),
   }) {
     if (incomingFirebaseDeepLink != null) {
@@ -293,6 +305,7 @@ class _$_IncomingESRLink implements _IncomingESRLink {
     required TResult Function(Uri link) incomingFirebaseDeepLink,
     required TResult Function(String link) incomingESRLink,
     required TResult Function() clearPageCommand,
+    required TResult Function() clearInviteLink,
   }) {
     return incomingESRLink(link);
   }
@@ -303,6 +316,7 @@ class _$_IncomingESRLink implements _IncomingESRLink {
     TResult? Function(Uri link)? incomingFirebaseDeepLink,
     TResult? Function(String link)? incomingESRLink,
     TResult? Function()? clearPageCommand,
+    TResult? Function()? clearInviteLink,
   }) {
     return incomingESRLink?.call(link);
   }
@@ -313,6 +327,7 @@ class _$_IncomingESRLink implements _IncomingESRLink {
     TResult Function(Uri link)? incomingFirebaseDeepLink,
     TResult Function(String link)? incomingESRLink,
     TResult Function()? clearPageCommand,
+    TResult Function()? clearInviteLink,
     required TResult orElse(),
   }) {
     if (incomingESRLink != null) {
@@ -328,6 +343,7 @@ class _$_IncomingESRLink implements _IncomingESRLink {
         incomingFirebaseDeepLink,
     required TResult Function(_IncomingESRLink value) incomingESRLink,
     required TResult Function(_ClearPageCommand value) clearPageCommand,
+    required TResult Function(_ClearInviteLink value) clearInviteLink,
   }) {
     return incomingESRLink(this);
   }
@@ -339,6 +355,7 @@ class _$_IncomingESRLink implements _IncomingESRLink {
         incomingFirebaseDeepLink,
     TResult? Function(_IncomingESRLink value)? incomingESRLink,
     TResult? Function(_ClearPageCommand value)? clearPageCommand,
+    TResult? Function(_ClearInviteLink value)? clearInviteLink,
   }) {
     return incomingESRLink?.call(this);
   }
@@ -349,6 +366,7 @@ class _$_IncomingESRLink implements _IncomingESRLink {
     TResult Function(_IncomingFirebaseDeepLink value)? incomingFirebaseDeepLink,
     TResult Function(_IncomingESRLink value)? incomingESRLink,
     TResult Function(_ClearPageCommand value)? clearPageCommand,
+    TResult Function(_ClearInviteLink value)? clearInviteLink,
     required TResult orElse(),
   }) {
     if (incomingESRLink != null) {
@@ -408,6 +426,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     required TResult Function(Uri link) incomingFirebaseDeepLink,
     required TResult Function(String link) incomingESRLink,
     required TResult Function() clearPageCommand,
+    required TResult Function() clearInviteLink,
   }) {
     return clearPageCommand();
   }
@@ -418,6 +437,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     TResult? Function(Uri link)? incomingFirebaseDeepLink,
     TResult? Function(String link)? incomingESRLink,
     TResult? Function()? clearPageCommand,
+    TResult? Function()? clearInviteLink,
   }) {
     return clearPageCommand?.call();
   }
@@ -428,6 +448,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     TResult Function(Uri link)? incomingFirebaseDeepLink,
     TResult Function(String link)? incomingESRLink,
     TResult Function()? clearPageCommand,
+    TResult Function()? clearInviteLink,
     required TResult orElse(),
   }) {
     if (clearPageCommand != null) {
@@ -443,6 +464,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
         incomingFirebaseDeepLink,
     required TResult Function(_IncomingESRLink value) incomingESRLink,
     required TResult Function(_ClearPageCommand value) clearPageCommand,
+    required TResult Function(_ClearInviteLink value) clearInviteLink,
   }) {
     return clearPageCommand(this);
   }
@@ -454,6 +476,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
         incomingFirebaseDeepLink,
     TResult? Function(_IncomingESRLink value)? incomingESRLink,
     TResult? Function(_ClearPageCommand value)? clearPageCommand,
+    TResult? Function(_ClearInviteLink value)? clearInviteLink,
   }) {
     return clearPageCommand?.call(this);
   }
@@ -464,6 +487,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     TResult Function(_IncomingFirebaseDeepLink value)? incomingFirebaseDeepLink,
     TResult Function(_IncomingESRLink value)? incomingESRLink,
     TResult Function(_ClearPageCommand value)? clearPageCommand,
+    TResult Function(_ClearInviteLink value)? clearInviteLink,
     required TResult orElse(),
   }) {
     if (clearPageCommand != null) {
@@ -475,6 +499,122 @@ class _$_ClearPageCommand implements _ClearPageCommand {
 
 abstract class _ClearPageCommand implements DeeplinkEvent {
   const factory _ClearPageCommand() = _$_ClearPageCommand;
+}
+
+/// @nodoc
+abstract class _$$_ClearInviteLinkCopyWith<$Res> {
+  factory _$$_ClearInviteLinkCopyWith(
+          _$_ClearInviteLink value, $Res Function(_$_ClearInviteLink) then) =
+      __$$_ClearInviteLinkCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_ClearInviteLinkCopyWithImpl<$Res>
+    extends _$DeeplinkEventCopyWithImpl<$Res, _$_ClearInviteLink>
+    implements _$$_ClearInviteLinkCopyWith<$Res> {
+  __$$_ClearInviteLinkCopyWithImpl(
+      _$_ClearInviteLink _value, $Res Function(_$_ClearInviteLink) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_ClearInviteLink implements _ClearInviteLink {
+  const _$_ClearInviteLink();
+
+  @override
+  String toString() {
+    return 'DeeplinkEvent.clearInviteLink()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_ClearInviteLink);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Uri link) incomingFirebaseDeepLink,
+    required TResult Function(String link) incomingESRLink,
+    required TResult Function() clearPageCommand,
+    required TResult Function() clearInviteLink,
+  }) {
+    return clearInviteLink();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Uri link)? incomingFirebaseDeepLink,
+    TResult? Function(String link)? incomingESRLink,
+    TResult? Function()? clearPageCommand,
+    TResult? Function()? clearInviteLink,
+  }) {
+    return clearInviteLink?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Uri link)? incomingFirebaseDeepLink,
+    TResult Function(String link)? incomingESRLink,
+    TResult Function()? clearPageCommand,
+    TResult Function()? clearInviteLink,
+    required TResult orElse(),
+  }) {
+    if (clearInviteLink != null) {
+      return clearInviteLink();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_IncomingFirebaseDeepLink value)
+        incomingFirebaseDeepLink,
+    required TResult Function(_IncomingESRLink value) incomingESRLink,
+    required TResult Function(_ClearPageCommand value) clearPageCommand,
+    required TResult Function(_ClearInviteLink value) clearInviteLink,
+  }) {
+    return clearInviteLink(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_IncomingFirebaseDeepLink value)?
+        incomingFirebaseDeepLink,
+    TResult? Function(_IncomingESRLink value)? incomingESRLink,
+    TResult? Function(_ClearPageCommand value)? clearPageCommand,
+    TResult? Function(_ClearInviteLink value)? clearInviteLink,
+  }) {
+    return clearInviteLink?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_IncomingFirebaseDeepLink value)? incomingFirebaseDeepLink,
+    TResult Function(_IncomingESRLink value)? incomingESRLink,
+    TResult Function(_ClearPageCommand value)? clearPageCommand,
+    TResult Function(_ClearInviteLink value)? clearInviteLink,
+    required TResult orElse(),
+  }) {
+    if (clearInviteLink != null) {
+      return clearInviteLink(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ClearInviteLink implements DeeplinkEvent {
+  const factory _ClearInviteLink() = _$_ClearInviteLink;
 }
 
 /// @nodoc
