@@ -118,7 +118,7 @@ class DeeplinkBloc extends Bloc<DeeplinkEvent, DeeplinkState> {
   Future<void> _incomingESRLink(_IncomingESRLink event, Emitter<DeeplinkState> emit) async {
     final result = await _parseQRCodeUseCase.run(ParseESRLinkInput(esrLink: event.link));
     if (result.isValue) {
-      if (_authRepository.currentAuthStatus is Authenticated) {
+      if (_canSignTransaction()) {
         emit(state.copyWith(command: PageCommand.navigateToSignTransaction(result.asValue!.value)));
       } else {
         unawaited(
@@ -136,6 +136,13 @@ class DeeplinkBloc extends Bloc<DeeplinkEvent, DeeplinkState> {
       );
       LogHelper.e('error: ${result.asError!.error}');
     }
+  }
+
+  /// At the time of writing this code.
+  /// The only requirement for our wallet to be able to sign a VALID transaction
+  /// is that there is an account to sign with
+  bool _canSignTransaction() {
+    return _authRepository.currentAuthStatus is Authenticated;
   }
 }
 
