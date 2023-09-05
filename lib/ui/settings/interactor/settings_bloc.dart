@@ -97,7 +97,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
           title: 'Security alert',
           subtitle: 'Keep your Private Key safe',
           rationale:
-              'Never share your private key. Anyone with your private key can access to your Hypha account and your funds.',
+              'Never share your private key. Anyone with your private key can gain access to your Hypha account and your funds.',
           mainButtonText: 'VIEW PRIVATE KEY',
           image: 'assets/images/shield.png',
           privateKey: authData!.eOSPrivateKey.toString(),

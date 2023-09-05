@@ -9,7 +9,11 @@ void _registerBlocsModule() {
         _getIt<FirebasePushNotificationsService>(),
         _getIt<FirebaseDatabaseService>(),
       ));
-  _registerFactory(() => DeeplinkBloc(_getIt<ParseQRCodeUseCase>()));
+  _registerFactory(() => DeeplinkBloc(
+        _getIt<ParseQRCodeUseCase>(),
+        _getIt<AuthRepository>(),
+        _getIt<ErrorHandlerManager>(),
+      ));
   _registerFactory(() => ErrorHandlerBloc(_getIt<ErrorHandlerManager>()));
   _registerFactory(() => SettingsBloc(
         _getIt<HyphaSharedPrefs>(),
