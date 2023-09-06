@@ -88,6 +88,11 @@ class _ScannerWidgetState extends State<ScannerWidget> {
                                   final List<Barcode> barcodes = capture.barcodes;
                                   final barcode = barcodes.firstOrNull;
 
+                                  // TODO(NIk): What this should do is - for each QR code, determine whether or not
+                                  // we can handle it - skip if we can't handle it (example: non-ESR URL)
+                                  // Take the first one we can handle, and pass it up the block and close the scanner
+                                  // If we can't handle any, keep scanning.
+
                                   if (barcode == null || barcode.rawValue == null || barcode.isBlank == true) {
                                     LogHelper.d('Failed to scan Barcode');
                                     context.read<ErrorHandlerBloc>().add(
