@@ -57,7 +57,7 @@ class AmplifyService {
       LogHelper.e('Error in getAuthUserAttributes', stacktrace: stackTrace, error: error);
     }
     attributes?.forEach((attribute) {
-      print('attribute ${attribute.getName()} has value ${attribute.getValue()}');
+      LogHelper.d('attribute ${attribute.getName()} has value ${attribute.getValue()}');
     });
     return attributes;
   }
@@ -70,7 +70,7 @@ class AmplifyService {
       LogHelper.e('Error in getUserAttributes', stacktrace: stackTrace, error: error);
     }
     attributes?.forEach((attribute) {
-      print('attribute ${attribute.getName()} has value ${attribute.getValue()}');
+      LogHelper.d('attribute ${attribute.getName()} has value ${attribute.getValue()}');
     });
     return attributes;
   }
@@ -106,14 +106,14 @@ class AmplifyService {
 
   Future<bool> profileServiceLoginUser(UserProfileData user, {bool isSignUp = false}) async {
     if (session != null && session!.isValid()) {
-      print('already logged in');
+      LogHelper.d('already logged in');
       return true;
     }
     if (isSignUp) {
       try {
         // ignore: unused_local_variable
         final res = await signUp(user);
-        print('signup res: $res');
+        LogHelper.d('signup res: $res');
       } catch (error, stackTrace) {
         LogHelper.e('Error in profileServiceLoginUser', stacktrace: stackTrace, error: error);
       }
@@ -133,44 +133,40 @@ class AmplifyService {
     try {
       session = await cognitoUser!.initiateAuth(authDetails);
     } on CognitoUserNewPasswordRequiredException catch (e) {
-      print('CognitoUserNewPasswordRequiredException $e');
+      LogHelper.d('CognitoUserNewPasswordRequiredException $e');
       // handle New Password challenge
     } on CognitoUserMfaRequiredException catch (e) {
-      print('CognitoUserMfaRequiredException $e');
+      LogHelper.d('CognitoUserMfaRequiredException $e');
       // handle SMS_MFA challenge
     } on CognitoUserSelectMfaTypeException catch (e) {
-      print('CognitoUserSelectMfaTypeException $e');
+      LogHelper.d('CognitoUserSelectMfaTypeException $e');
       // handle SELECT_MFA_TYPE challenge
     } on CognitoUserMfaSetupException catch (e) {
-      print('CognitoUserMfaSetupException $e');
+      LogHelper.d('CognitoUserMfaSetupException $e');
       // handle MFA_SETUP challenge
     } on CognitoUserTotpRequiredException catch (e) {
-      print('CognitoUserTotpRequiredException $e');
+      LogHelper.d('CognitoUserTotpRequiredException $e');
       // handle SOFTWARE_TOKEN_MFA challenge
-    } on CognitoUserCustomChallengeException catch (e) {
-      print('CognitoUserCustomChallengeException $e');
+    } on CognitoUserCustomChallengeException catch (error, stackTrace) {
+      LogHelper.d('CognitoUserCustomChallengeException', stacktrace: stackTrace, error: error);
 
       // handle CUSTOM_CHALLENGE challenge
-      final loginCode = e.challengeParameters['loginCode'];
+      final loginCode = error.challengeParameters['loginCode'];
       await eosService.loginWithCode(user: user, loginCode: loginCode);
-      print('return challenge $loginCode');
+      LogHelper.d('return challenge $loginCode');
       session = await cognitoUser!.sendCustomChallengeAnswer(loginCode);
 
-      print('logged in: ${session?.isValid()}');
+      LogHelper.d('logged in: ${session?.isValid()}');
 
       return true;
     } on CognitoUserConfirmationNecessaryException catch (error, stackTrace) {
-      LogHelper.e(
-        'Error in profileServiceLoginUser: CognitoUserConfirmationNecessaryException',
-        stacktrace: stackTrace,
-        error: error,
-      );
+      LogHelper.d('CognitoUserConfirmationNecessaryException', stacktrace: stackTrace, error: error);
       // handle User Confirmation Necessary
     } on CognitoClientException catch (error, stackTrace) {
-      LogHelper.e('Error in profileServiceLoginUser: CognitoClientException', stacktrace: stackTrace, error: error);
+      LogHelper.d('CognitoClientException', stacktrace: stackTrace, error: error);
       // handle Wrong Username and Password and Cognito Client
     } catch (error, stackTrace) {
-      LogHelper.e('Error in profileServiceLoginUser', stacktrace: stackTrace, error: error);
+      LogHelper.d('Error in profileServiceLoginUser', stacktrace: stackTrace, error: error);
     }
 
     return true;
@@ -283,10 +279,10 @@ class AmplifyService {
       );
       // delete the user
       userDeleted = await cognitoUser!.deleteUser();
-    } catch (e) {
-      print(e);
+    } catch (error, stackTrace) {
+      LogHelper.e('deleteAccount: $error', error: error, stacktrace: stackTrace);
     }
-    print('Deleted account: $userDeleted');
+    LogHelper.d('Deleted account: $userDeleted');
     return userDeleted;
   }
 
@@ -335,7 +331,7 @@ class AmplifyService {
         s3Bucket: s3Bucket(network),
       );
 
-      print('post image finished: $res ');
+      LogHelper.d('post image finished: $res ');
 
       final res2 = await register(
         {
