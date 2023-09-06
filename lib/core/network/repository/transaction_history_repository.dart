@@ -29,11 +29,12 @@ class TransactionHistoryRepository {
       // sort descending, newest first
       transactions.sort((a, b) => b.timestamp.compareTo(a.timestamp));
       return Result.value(transactions);
-    } on DioException catch (e) {
+    } on DioException catch (e, stackTrace) {
       final errorMessage = DioExceptions.fromDioError(e).toString();
+      LogHelper.e(errorMessage, stacktrace: stackTrace, error: e);
       return Result.error(HyphaError.api(errorMessage));
-    } catch (e) {
-      LogHelper.e(e.toString());
+    } catch (e, stackTrace) {
+      LogHelper.e('Error parsing data from transaction history', error: e, stacktrace: stackTrace);
       return Result.error(HyphaError.generic('Error parsing data from transaction history'));
     }
   }

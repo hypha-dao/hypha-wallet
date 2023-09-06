@@ -5,6 +5,7 @@ import 'dart:math';
 import 'package:amazon_cognito_identity_dart_2/cognito.dart';
 import 'package:amazon_cognito_identity_dart_2/sig_v4.dart';
 import 'package:dio/dio.dart';
+import 'package:hypha_wallet/core/logging/log_helper.dart';
 import 'package:hypha_wallet/core/network/api/aws_amplify/amplify_policy.dart';
 import 'package:hypha_wallet/core/network/api/aws_amplify/aws_authenticated_request.dart';
 import 'package:hypha_wallet/core/network/api/eos_service.dart';
@@ -32,9 +33,13 @@ class AmplifyService {
   CognitoUserSession? session;
 
   RemoteConfigService get remoteConfigService => eosService.remoteConfigService;
+
   String awsLambdaEndpoint(Network network) => remoteConfigService.awsProfileServiceEndpoint(network);
+
   String awsLambdaRegion(Network network) => remoteConfigService.pppRegion(network);
+
   String s3Bucket(Network network) => remoteConfigService.pppS3Bucket(network);
+
   String s3Region(Network network) => remoteConfigService.pppS3Region(network);
 
   AmplifyService(this.eosService, this.networkingManager);
@@ -48,8 +53,8 @@ class AmplifyService {
     List<CognitoUserAttribute>? attributes;
     try {
       attributes = await cognitoUser?.getUserAttributes();
-    } catch (e) {
-      print(e);
+    } catch (error, stackTrace) {
+      LogHelper.e('Error in getAuthUserAttributes', stacktrace: stackTrace, error: error);
     }
     attributes?.forEach((attribute) {
       print('attribute ${attribute.getName()} has value ${attribute.getValue()}');
@@ -61,8 +66,8 @@ class AmplifyService {
     List<CognitoUserAttribute>? attributes;
     try {
       attributes = await cognitoUser?.getUserAttributes();
-    } catch (e) {
-      print(e);
+    } catch (error, stackTrace) {
+      LogHelper.e('Error in getUserAttributes', stacktrace: stackTrace, error: error);
     }
     attributes?.forEach((attribute) {
       print('attribute ${attribute.getName()} has value ${attribute.getValue()}');
@@ -83,8 +88,8 @@ class AmplifyService {
         userAttributes: userAttributes,
       );
       return result;
-    } catch (e) {
-      print('_signUp error: $e');
+    } catch (error, stackTrace) {
+      LogHelper.e('Error in signUp', stacktrace: stackTrace, error: error);
       rethrow;
     }
   }
@@ -109,10 +114,8 @@ class AmplifyService {
         // ignore: unused_local_variable
         final res = await signUp(user);
         print('signup res: $res');
-      } catch (error) {
-        print('error signing up: $error');
-        // ignore user exists error
-        // throw other errors
+      } catch (error, stackTrace) {
+        LogHelper.e('Error in profileServiceLoginUser', stacktrace: stackTrace, error: error);
       }
     }
 
@@ -156,14 +159,18 @@ class AmplifyService {
       print('logged in: ${session?.isValid()}');
 
       return true;
-    } on CognitoUserConfirmationNecessaryException catch (e) {
-      print('CognitoUserConfirmationNecessaryException $e');
+    } on CognitoUserConfirmationNecessaryException catch (error, stackTrace) {
+      LogHelper.e(
+        'Error in profileServiceLoginUser: CognitoUserConfirmationNecessaryException',
+        stacktrace: stackTrace,
+        error: error,
+      );
       // handle User Confirmation Necessary
-    } on CognitoClientException catch (e) {
-      print('CognitoClientException $e');
+    } on CognitoClientException catch (error, stackTrace) {
+      LogHelper.e('Error in profileServiceLoginUser: CognitoClientException', stacktrace: stackTrace, error: error);
       // handle Wrong Username and Password and Cognito Client
-    } catch (e) {
-      print('error logging in: $e');
+    } catch (error, stackTrace) {
+      LogHelper.e('Error in profileServiceLoginUser', stacktrace: stackTrace, error: error);
     }
 
     return true;
@@ -341,9 +348,8 @@ class AmplifyService {
         init: init,
       );
       return res2;
-    } catch (error) {
-      print('Error posting image: $error');
-      print(error);
+    } catch (error, stackTrace) {
+      LogHelper.e('Error posting image', stacktrace: stackTrace, error: error);
     }
   }
 
@@ -407,8 +413,8 @@ class AmplifyService {
       // ignore: unused_local_variable
       final res = await networkingManager.post(uri.toString(), data: formData);
       return true;
-    } catch (e) {
-      print('post image error: $e');
+    } catch (error, stackTrace) {
+      LogHelper.e('post image error', stacktrace: stackTrace, error: error);
       rethrow;
     }
   }

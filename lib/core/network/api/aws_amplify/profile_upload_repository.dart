@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:hypha_wallet/core/logging/log_helper.dart';
 import 'package:hypha_wallet/core/network/models/network.dart';
 import 'package:hypha_wallet/core/network/models/user_profile_data.dart';
 import 'package:hypha_wallet/core/shared_preferences/hypha_shared_prefs.dart';
@@ -67,7 +68,8 @@ class ProfileUploadRepository {
       }
       try {
         await _upload(signupData);
-      } catch (error) {
+      } catch (error, stackTrace) {
+        LogHelper.e('upload error - will try again', stacktrace: stackTrace, error: error);
         print('upload error - will try again $error');
       } finally {
         if (signupData.isComplete()) {
@@ -81,6 +83,7 @@ class ProfileUploadRepository {
         }
       }
     } else {
+      LogHelper.e('error no signup data');
       print('error no signup data');
     }
   }

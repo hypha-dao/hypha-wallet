@@ -12,7 +12,7 @@ class NetworkingManager extends DioForNative {
       dio: this,
       logPrint: (message) {
         FirebaseCrashlytics.instance.log('Retry call: $message');
-        LogHelper.d('Retry call: $message');
+        LogHelper.e('Retry call: $message');
       },
       retries: 1, // retry count
       retryDelays: const [

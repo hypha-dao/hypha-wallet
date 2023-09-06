@@ -30,7 +30,8 @@ class DaoService {
         return DaoData.fromJson(member);
       }).toList();
       return Result.value(daos);
-    } catch (error) {
+    } catch (error, stackTrace) {
+      LogHelper.e('Error accessing graphQL', stacktrace: stackTrace, error: error);
       if (error is DioException) {
         final dioError = error;
         LogHelper.d('message: ${dioError.message}');

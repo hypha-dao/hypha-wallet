@@ -1,6 +1,7 @@
 import 'package:amazon_cognito_identity_dart_2/cognito.dart';
 import 'package:amazon_cognito_identity_dart_2/sig_v4.dart';
 import 'package:dio/dio.dart';
+import 'package:hypha_wallet/core/logging/log_helper.dart';
 import 'package:hypha_wallet/core/network/networking_manager.dart';
 
 ///
@@ -54,7 +55,8 @@ Future<dynamic> awsAuthenticatedRequest({
     // print('RES: ');
     // print(response.data);
     return response.data;
-  } catch (error) {
+  } catch (error, stackTrace) {
+    LogHelper.e('Error in awsAuthenticatedRequest', stacktrace: stackTrace, error: error);
     print('Call failed $path $error');
     if (error is DioException) {
       final DioException dioError = error;
