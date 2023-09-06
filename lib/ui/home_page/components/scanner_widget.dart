@@ -88,9 +88,7 @@ class _ScannerWidgetState extends State<ScannerWidget> {
                                   final List<Barcode> barcodes = capture.barcodes;
                                   final barcode = barcodes.firstOrNull;
 
-                                  if (barcode == null ||
-                                      (barcode.rawValue == null && barcode.displayValue == null) ||
-                                      barcode.isBlank == true) {
+                                  if (barcode == null || barcode.rawValue == null || barcode.isBlank == true) {
                                     LogHelper.d('Failed to scan Barcode');
                                     context.read<ErrorHandlerBloc>().add(
                                           ErrorHandlerEvent.onError(
@@ -101,11 +99,8 @@ class _ScannerWidgetState extends State<ScannerWidget> {
                                           ),
                                         );
                                   } else {
-                                    final String code = (barcode.rawValue ?? barcode.displayValue)!;
+                                    final String code = barcode.rawValue!;
                                     LogHelper.d('Barcode found! $code');
-                                    print("display raw: ${barcode.rawValue}");
-                                    print("display value: ${barcode.displayValue}");
-                                    print("display url: ${barcode.url}");
                                     hideScanner();
                                     context.read<HomeBloc>().add(HomeEvent.onQRCodeScanned(code));
                                   }
