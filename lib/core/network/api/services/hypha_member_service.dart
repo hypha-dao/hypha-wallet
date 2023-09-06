@@ -1,4 +1,5 @@
 import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
+import 'package:hypha_wallet/core/logging/log_helper.dart';
 import 'package:hypha_wallet/core/network/api/services/remote_config_service.dart';
 import 'package:hypha_wallet/core/network/models/network.dart';
 import 'package:hypha_wallet/core/network/networking_manager.dart';
@@ -23,20 +24,25 @@ class HyphaMemberService {
     int limit = 10,
     bool reverse = false,
   }) async {
-    final result = await networkingManager.post('/v1/chain/get_table_rows', data: {
-      'json': json,
-      'code': code,
-      'scope': scope,
-      'table': table,
-      'table_key': tableKey,
-      'lower_bound': lower,
-      'upper_bound': upper,
-      'index_position': indexPosition,
-      'key_type': keyType,
-      'limit': limit,
-      'reverse': reverse,
-    });
-    return result.data['rows'].cast<Map<String, dynamic>>();
+    try {
+      final result = await networkingManager.post('/v1/chain/get_table_rows', data: {
+        'json': json,
+        'code': code,
+        'scope': scope,
+        'table': table,
+        'table_key': tableKey,
+        'lower_bound': lower,
+        'upper_bound': upper,
+        'index_position': indexPosition,
+        'key_type': keyType,
+        'limit': limit,
+        'reverse': reverse,
+      });
+      return result.data['rows'].cast<Map<String, dynamic>>();
+    } catch (error, stackTrace) {
+      LogHelper.e('Error in _getTableRows', stacktrace: stackTrace, error: error);
+      return [];
+    }
   }
 
   /// Find a hypha accounts starting with prefix
@@ -55,7 +61,8 @@ class HyphaMemberService {
       );
       final names = List<String>.from(rows.map((e) => e['name']));
       return Result.value(names);
-    } catch (error) {
+    } catch (error, stackTrace) {
+      LogHelper.e('Error in findHyphaAccounts', stacktrace: stackTrace, error: error);
       return Result.error(HyphaError.fromError(error));
     }
   }
@@ -75,7 +82,8 @@ class HyphaMemberService {
         limit: 1,
       );
       return Result.value(rows.isNotEmpty);
-    } catch (error) {
+    } catch (error, stackTrace) {
+      LogHelper.e('Error in isMember', stacktrace: stackTrace, error: error);
       return Result.error(HyphaError.fromError(error));
     }
   }

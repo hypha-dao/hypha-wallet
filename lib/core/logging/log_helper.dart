@@ -1,4 +1,5 @@
 import 'package:fimber/fimber.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 
 const kLogQuietMode = false;
@@ -34,6 +35,7 @@ class LogHelper {
   /// with optional exception and stacktrace
   static void e(String message, {dynamic error, StackTrace? stacktrace}) {
     Fimber.e(message, ex: error, stacktrace: stacktrace);
+    FirebaseCrashlytics.instance.log('Error message $message \nStackTrace: $stacktrace');
     if (error != null && kDebugMode) throw error;
   }
 }

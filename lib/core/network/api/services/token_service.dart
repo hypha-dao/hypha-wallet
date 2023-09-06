@@ -52,7 +52,8 @@ class TokenService {
       }
       final tokenString = res.data![0];
       return Result.value(TokenValue.fromString(tokenString, tokenContract));
-    } catch (error) {
+    } catch (error, stackTrace) {
+      LogHelper.e('Error getTokenBalance', stacktrace: stackTrace, error: error);
       return Result.error(HyphaError.fromError(error));
     }
   }
@@ -81,7 +82,8 @@ class TokenService {
         return TokenSymbolScope(symbol: eosSymbol.toString(), scope: scope, tokenContract: tokenContract);
       }));
       return Result.value(tokenSymbolScopes);
-    } catch (error) {
+    } catch (error, stackTrace) {
+      LogHelper.e('Error getTokenSymbols', stacktrace: stackTrace, error: error);
       print('Error getTokenSymbols $error');
       return Result.error(HyphaError.fromError(error));
     }
@@ -104,8 +106,8 @@ class TokenService {
       final symbolString = json[symbol]['max_supply'];
       final tokenModel = TokenModel.fromString(symbolString, tokenContract);
       return Result.value(tokenModel.symbol);
-    } catch (error) {
-      print('Error getTokenSymbols $error');
+    } catch (error, stackTrace) {
+      LogHelper.e('Error getTokenSymbols', stacktrace: stackTrace, error: error);
       return Result.error(HyphaError.fromError(error));
     }
   }

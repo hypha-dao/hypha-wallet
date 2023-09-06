@@ -90,7 +90,7 @@ class AuthRepository {
 
       return Result.value(userData);
     } catch (e, stack) {
-      LogHelper.e('Error creating account $e');
+      LogHelper.e('Error creating account $e', stacktrace: stack, error: e);
       LogHelper.e(e.toString());
       unawaited(FirebaseCrashlytics.instance.recordError(e, stack));
       return Result.error(HyphaError.generic('Error creating account'));

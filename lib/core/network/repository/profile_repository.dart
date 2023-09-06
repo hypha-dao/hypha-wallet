@@ -1,5 +1,6 @@
 import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
 import 'package:hypha_wallet/core/error_handler/model/hypha_error_type.dart';
+import 'package:hypha_wallet/core/logging/log_helper.dart';
 import 'package:hypha_wallet/core/network/api/endpoints.dart';
 import 'package:hypha_wallet/core/network/api/services/remote_config_service.dart';
 import 'package:hypha_wallet/core/network/models/network_extension.dart';
@@ -21,12 +22,12 @@ class ProfileService {
         final map = Map<String, dynamic>.from(response.data);
         return Result.value(ProfileData.fromJson(map, user.network, []));
       } else {
-        print('get profile status error: ${response.statusCode} ${response.statusMessage}');
+        LogHelper.e('get profile status error', stacktrace: StackTrace.current);
         return Result.error(HyphaError(type: HyphaErrorType.api, message: 'server error ${response.statusMessage}'));
       }
-    } catch (error) {
+    } catch (error, stackTrace) {
       // note: 500 status on get throws an error
-      print('get profile error: $error');
+      LogHelper.e('get profile error', stacktrace: stackTrace, error: error);
       return Result.error(HyphaError(type: HyphaErrorType.api, message: 'server error $error'));
     }
   }

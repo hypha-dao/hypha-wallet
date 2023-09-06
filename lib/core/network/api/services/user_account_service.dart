@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:hypha_wallet/core/logging/log_helper.dart';
 import 'package:hypha_wallet/core/network/api/endpoints.dart';
 import 'package:hypha_wallet/core/network/api/services/remote_config_service.dart';
 import 'package:hypha_wallet/core/network/models/network.dart';
@@ -29,7 +30,8 @@ class UserAccountService {
       // ignore: unused_local_variable
       final res = await networkingManager.post(url, data: requestBody);
       return true;
-    } catch (error) {
+    } catch (error, stackTrace) {
+      LogHelper.e('Error in createUserAccount', stacktrace: stackTrace, error: error);
       print('Error creating account');
       print(error);
       if (error is DioException) {
@@ -49,7 +51,8 @@ class UserAccountService {
       // ignore: unused_local_variable
       final res = await network.manager.post(Endpoints.getAccount, data: requestBody);
       return false;
-    } catch (error) {
+    } catch (error, stackTrace) {
+      LogHelper.e('Error in isUserAccountAvailable', stacktrace: stackTrace, error: error);
       return true;
     }
   }
