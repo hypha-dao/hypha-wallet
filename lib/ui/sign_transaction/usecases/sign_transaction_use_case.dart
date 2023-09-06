@@ -29,8 +29,8 @@ class SignTransactionUseCase extends InputUseCase<HResult.Result<String, HyphaEr
         eosTransaction: input.eOSTransaction,
         user: userData.userProfileData,
       );
-    } catch (error) {
-      LogHelper.e('Error signing transaction: $error');
+    } catch (error, stackTrace) {
+      LogHelper.e('Error signing transaction: $error', error: error, stacktrace: stackTrace);
       return HResult.Result.error(HyphaError.fromError(error));
     }
     if (result.isValue) {
@@ -39,11 +39,10 @@ class SignTransactionUseCase extends InputUseCase<HResult.Result<String, HyphaEr
         final callbackResponse =
             await input.callback?.let((it) async => signTransactionCallbackService.callTheCallback(it, transactionID));
         if (callbackResponse?.statusCode != 200) {
-          print('callback failed with status ${callbackResponse?.statusCode} - ignored');
+          LogHelper.e('callback failed with status ${callbackResponse?.statusCode} - ignored');
         }
-      } catch (error) {
-        print('callback error: $error');
-        print(error);
+      } catch (error, stackTrace) {
+        LogHelper.e('callback error: $error', error: error, stacktrace: stackTrace);
       }
       return HResult.Result.value(result.asValue!.value as String);
     } else {
