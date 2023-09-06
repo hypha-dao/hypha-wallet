@@ -85,15 +85,15 @@ class _ScannerWidgetState extends State<ScannerWidget> {
                                   torchEnabled: false,
                                 ),
                                 onDetect: (capture) {
-                                  final List<Barcode> barcodes = capture.barcodes;
-                                  final barcode = barcodes.firstOrNull;
+                                  final List<Barcode> barcodes =
+                                      capture.barcodes.where((element) => element.rawValue != null).toList();
 
                                   // TODO(NIK): What this should do is - for each QR code, determine whether or not
                                   // we can handle it - skip if we can't handle it (example: non-ESR URL)
                                   // Take the first one we can handle, and pass it up the block and close the scanner
                                   // If we can't handle any, keep scanning.
 
-                                  if (barcode == null || barcode.rawValue == null || barcode.isBlank == true) {
+                                  if (barcodes.isEmpty) {
                                     LogHelper.d('Failed to scan Barcode');
                                     context.read<ErrorHandlerBloc>().add(
                                           ErrorHandlerEvent.onError(
@@ -104,7 +104,7 @@ class _ScannerWidgetState extends State<ScannerWidget> {
                                           ),
                                         );
                                   } else {
-                                    final String code = barcode.rawValue!;
+                                    final String code = barcodes.first!.rawValue!;
                                     LogHelper.d('Barcode found! $code');
                                     hideScanner();
                                     context.read<HomeBloc>().add(HomeEvent.onQRCodeScanned(code));
