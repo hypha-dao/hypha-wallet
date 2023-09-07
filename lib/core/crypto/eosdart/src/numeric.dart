@@ -35,6 +35,16 @@ bool isNegative(Uint8List bignum) {
   return (bignum[bignum.length - 1] & 0x80) != 0;
 }
 
+/// Is `bignum` zero?
+bool isZero(Uint8List bignum) {
+  for (int d in bignum) {
+    if (d != 0) {
+      return false;
+    }
+  }
+  return true;
+}
+
 /// Negate `bignum`
 void negate(Uint8List bignum) {
   var carry = 1;
@@ -73,15 +83,17 @@ Uint8List signedDecimalToBinary(int size, String s) {
   var negative = s[0] == '-';
   if (negative) {
     s = s.substring(1);
+    // "-0" is 0 and not negative.
+    negative = s != '0';
   }
   var result = decimalToBinary(size, s);
   if (negative) {
     negate(result);
     if (!isNegative(result)) {
-      throw 'number is out of range';
+      throw 'negative number is out of range: -$s => $result';
     }
   } else if (isNegative(result)) {
-    throw 'number is out of range';
+    throw 'number is out of range: $s => $result';
   }
   return result;
 }
