@@ -22,7 +22,7 @@ class ProfileService {
         final map = Map<String, dynamic>.from(response.data);
         return Result.value(ProfileData.fromJson(map, user.network, []));
       } else {
-        LogHelper.i('get profile status error');
+        LogHelper.i('get profile error status code: ${response.statusMessage}');
         return Result.error(HyphaError(type: HyphaErrorType.api, message: 'server error ${response.statusMessage}'));
       }
     } catch (error, stackTrace) {
