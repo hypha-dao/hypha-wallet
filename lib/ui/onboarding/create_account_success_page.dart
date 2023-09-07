@@ -8,7 +8,6 @@ import 'package:hypha_wallet/design/buttons/hypha_app_button.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 import 'package:hypha_wallet/ui/blocs/authentication/authentication_bloc.dart';
-import 'package:hypha_wallet/ui/blocs/deeplink/deeplink_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 
 class CreateAccountSuccessPage extends StatelessWidget {
