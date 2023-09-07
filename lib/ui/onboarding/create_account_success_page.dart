@@ -34,9 +34,6 @@ class CreateAccountSuccessPage extends StatelessWidget {
           bottomNavigationBar: HyphaSafeBottomNavigationBar(
             child: HyphaAppButton(
               onPressed: () {
-                // If we arrive on this page, the invite link has certainly been consumed.
-                context.read<DeeplinkBloc>().add(const DeeplinkEvent.clearInviteLink());
-
                 /// This is a hack: Fixes an issue where the user is already signed in and scans a sign up QR or link
                 /// This hack forces a state refresh.
                 context
