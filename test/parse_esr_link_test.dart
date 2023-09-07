@@ -55,4 +55,24 @@ void main() {
 
     expect(parsed, true);
   });
+
+  test('Parse create DAO link', () async {
+    final esrLink =
+        'esr://go1TvYsUSxDfnXO9DxV96smZSItfIG_vZtfd8wPFQAwOzg_kMB17Zmp3m-3pHrur925QUQyMhMdDNDFQE_EDQ0MVzMyNBME_QCNTUWtm584LlsdrJpn6fVRVV3V1z4uJ_en1u7veHNi5dO_dxsNfP_98La3uPz1-s3H_-8lHlSuLL9-6T5ceVCqPDz6XH89Wt72f2f1y8cnDCp1n35rNH-Nj0zsirRAUBl2jXRpIHoL0xmNALqSdiLkOFE-g-iV5tfTvPx9uT-YRFCjBmzgv-mwJLG7NYzHYyIgUhVbeC2-pJyyjjzMkwtSUNpCwhdS6JI9akaQyY7FLkowIK8h0h2EPWGqEQqG6jKuYYZaCBSz-hYqdRZPNssV1Vj1uWQigCu0q5RD5I-m5iddngAEYSqwiKNiNtu_bv9lyj9RcMaf6Si-rYQFERK37VHyXSwlZUR0VU1RFXfIklBAzgURjCe9D3maO2xQikZBjSPJZtoBFhdaZgRiQQGlqVFHjHfplEV26M2KTsAEC3QdHqFXKs7m45dXor_JsGmgRQYC6D2osLqne5QsLZ85WKpPOQmABYrvmsmOg88sLYmd4PheCo9qtE5NDMAUjdDwanC6VXIquSvLtWGn4fu1iaby9hK86bVwyxHaW2My6ImkpIp4Fw0xr5ntHMkpWbnau9vhOdWjmUEiBWUlOnESRSgGmVi3T7VpvNgLfjQY4TeA_LP7SKtS0LVQDjyLtFK49lPF8Ds5Ib0KJfj1f5WnbFynV2i39IrKnEa16zRSwgWXyG82ojnxwmyNa6yCBJARjayMpNYuZhA1Sd7VX2UKLmnDqKtJSG298X7PV7LTjrTREna_-H-BIZ74FMJW_gbVYpzhjvIeY2hNzczwV9ZRn-aBne1na47PADfbm0HBleZSvx2kn4lPz7da8H_phnfuNuN7y2616ON9u1Dt-2DoSHz92NDzaPIgrAVGvXcOVGze8MZLt_z-yWiHbOJT9Bg';
+    final MockEosService eosService = MockEosService(MockSecureStorageService(), RemoteConfigService());
+
+    var parsed = false;
+    try {
+      // ignore: unused_local_variable
+      final signingRequestManager =
+          SigningRequestManager.from(esrLink, options: defaultSigningRequestEncodingOptions(), eosService: eosService);
+      print('Signing Request: ${signingRequestManager.signingRequest.toJson()}');
+      parsed = true;
+    } catch (error, s) {
+      print(error);
+      print(s);
+    }
+
+    expect(parsed, true);
+  });
 }
