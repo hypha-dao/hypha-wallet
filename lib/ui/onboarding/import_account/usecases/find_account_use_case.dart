@@ -40,10 +40,10 @@ class FindAccountsUseCase extends InputUseCase<Result<Iterable<UserProfileData>,
     );
 
     final results = await Future.wait([
-      eosClient.getKeyAccounts(input),
-      telosClient.getKeyAccounts(input),
-      telosTestnetClient.getKeyAccounts(input),
-      eosTestnetClient.getKeyAccounts(input)
+      eosClient.getAccountsByKey(input),
+      telosClient.getAccountsByKey(input),
+      telosTestnetClient.getAccountsByKey(input),
+      eosTestnetClient.getAccountsByKey(input)
     ]);
     final eosResult = results[0];
     final telosResult = results[1];

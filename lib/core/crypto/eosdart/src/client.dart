@@ -203,12 +203,15 @@ class EOSClient extends NetworkingManager {
     });
   }
 
-  /// Get Key Accounts
-  Future<Result<AccountNames>> getKeyAccounts(String pubKey) async {
+  /// Get accounts by key - uses /chain/get_accounts_by_authorizers
+  Future<Result<AccountNames>> getAccountsByKey(String pubKey) async {
     try {
-      return Result.capture(
-          _post('/history/get_key_accounts', {'public_key': pubKey}).then((dio.Response accountNames) {
-        return AccountNames.fromJson(accountNames.data as Map<String, dynamic>);
+      return Result.capture(_post('/chain/get_accounts_by_authorizers', {
+        'accounts': [],
+        'keys': [pubKey]
+      }).then((dio.Response response) {
+        final List<String> accountNames = List.from(response.data['accounts'].map((e) => e['account_name']));
+        return AccountNames(accountNames.toSet().toList());
       }));
     } catch (e) {
       LogHelper.e(e.toString());
