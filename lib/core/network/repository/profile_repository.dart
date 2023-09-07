@@ -22,12 +22,13 @@ class ProfileService {
         final map = Map<String, dynamic>.from(response.data);
         return Result.value(ProfileData.fromJson(map, user.network, []));
       } else {
-        LogHelper.e('get profile status error', stacktrace: StackTrace.current);
+        LogHelper.i('get profile status error');
         return Result.error(HyphaError(type: HyphaErrorType.api, message: 'server error ${response.statusMessage}'));
       }
     } catch (error, stackTrace) {
       // note: 500 status on get throws an error
-      LogHelper.e('get profile error', stacktrace: stackTrace, error: error);
+      // this happens when the profile doesn't exist, which is valid
+      LogHelper.i('get profile error', stacktrace: stackTrace, error: error);
       return Result.error(HyphaError(type: HyphaErrorType.api, message: 'server error $error'));
     }
   }
