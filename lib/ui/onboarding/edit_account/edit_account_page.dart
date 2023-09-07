@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart' as Get;
 import 'package:get_it/get_it.dart';
 import 'package:hypha_wallet/design/progress_indicator/hypha_full_page_progress_indicator.dart';
+import 'package:hypha_wallet/ui/blocs/deeplink/deeplink_bloc.dart';
 import 'package:hypha_wallet/ui/onboarding/create_account_success_page.dart';
 import 'package:hypha_wallet/ui/onboarding/edit_account/components/edit_account_view.dart';
 import 'package:hypha_wallet/ui/onboarding/edit_account/interactor/edit_account_bloc.dart';
@@ -28,6 +29,8 @@ class EditAccountPage extends StatelessWidget {
               Navigator.of(context).pop();
             },
             navigateToSuccess: () {
+              /// Invite link data has been consumed. Clean it up
+              context.read<DeeplinkBloc>().add(const DeeplinkEvent.clearInviteLink());
               Get.Get.to(
                 () => CreateAccountSuccessPage(
                   accountName: state.userAccount!,

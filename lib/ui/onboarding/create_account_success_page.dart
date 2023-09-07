@@ -8,6 +8,7 @@ import 'package:hypha_wallet/design/buttons/hypha_app_button.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 import 'package:hypha_wallet/ui/blocs/authentication/authentication_bloc.dart';
+import 'package:hypha_wallet/ui/blocs/deeplink/deeplink_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 
 class CreateAccountSuccessPage extends StatelessWidget {
@@ -33,6 +34,9 @@ class CreateAccountSuccessPage extends StatelessWidget {
           bottomNavigationBar: HyphaSafeBottomNavigationBar(
             child: HyphaAppButton(
               onPressed: () {
+                // If we arrive on this page, the invite link has certainly been consumed.
+                context.read<DeeplinkBloc>().add(const DeeplinkEvent.clearInviteLink());
+
                 /// This is a hack: Fixes an issue where the user is already signed in and scans a sign up QR or link
                 /// This hack forces a state refresh.
                 context
