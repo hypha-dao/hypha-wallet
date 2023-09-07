@@ -1,6 +1,5 @@
 import 'package:fimber/fimber.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
-import 'package:flutter/foundation.dart';
 
 const kLogQuietMode = false;
 const kIsDebugNetworking = true;
@@ -36,6 +35,8 @@ class LogHelper {
   static void e(String message, {dynamic error, StackTrace? stacktrace}) {
     Fimber.e(message, ex: error, stacktrace: stacktrace);
     FirebaseCrashlytics.instance.log('Error message $message \nStackTrace: $stacktrace');
-    if (error != null && kDebugMode) throw error;
+    // Nik: I commented out below. A log should never throw an error!
+    // It should log things. Not throw errors.
+    // if (error != null && kDebugMode) throw error;
   }
 }

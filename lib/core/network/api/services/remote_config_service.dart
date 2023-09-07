@@ -161,8 +161,8 @@ class RemoteConfigService {
         },
         "eosTestnet": {
           "name": "Jungle4 Testnet",
-          "endpoint": "https://jungle4.dfuse.eosnation.io",
-          "fastEndpoint": "https://jungle4.dfuse.eosnation.io",
+          "endpoint": "http://jungle.eosusa.io/",
+          "fastEndpoint": "http://jungle.eosusa.io/",
           "loginContract": "logintohypha",
           "loginAction": "loginuser",
           "logoutAction": "logoutuser",
@@ -207,6 +207,7 @@ class RemoteConfigService {
       'walletEnabled': false,
     });
     FirebaseRemoteConfig.instance.onConfigUpdated.listen((event) async {
+      // Side note: This does not seem to work reliably on simulator but it works in the app.
       await FirebaseRemoteConfig.instance.activate();
     });
   }

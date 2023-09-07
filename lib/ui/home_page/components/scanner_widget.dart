@@ -99,7 +99,7 @@ class _ScannerWidgetState extends State<ScannerWidget> {
                                           ),
                                         );
                                   } else {
-                                    final String code = barcodes.first!.rawValue!;
+                                    final String code = barcodes.first.rawValue!;
                                     LogHelper.d('Barcode found! $code');
                                     hideScanner();
                                     context.read<HomeBloc>().add(HomeEvent.onQRCodeScanned(code));
