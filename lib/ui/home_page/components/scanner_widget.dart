@@ -81,7 +81,8 @@ class _ScannerWidgetState extends State<ScannerWidget> {
                                 // allowDuplicates: false,
                                 controller: MobileScannerController(
                                   facing: CameraFacing.back,
-                                  detectionSpeed: DetectionSpeed.normal,
+                                  formats: [BarcodeFormat.qrCode],
+                                  detectionSpeed: DetectionSpeed.unrestricted,
                                   torchEnabled: false,
                                 ),
                                 onDetect: (capture) {
