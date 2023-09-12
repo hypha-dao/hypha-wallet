@@ -29,6 +29,7 @@ class TokenService {
     required String tokenContract,
     required String symbol,
   }) async {
+    LogHelper.d('getTokenBalance: ' + tokenContract);
     try {
       final requestBody = '''
       { 
@@ -51,9 +52,10 @@ class TokenService {
         return Result.value(TokenValue.fromString('0.00 $symbol', tokenContract));
       }
       final tokenString = res.data![0];
+      LogHelper.d('TOken Balance response: ' + tokenString);
       return Result.value(TokenValue.fromString(tokenString, tokenContract));
     } catch (error, stackTrace) {
-      LogHelper.e('Error getTokenBalance', stacktrace: stackTrace, error: error);
+      LogHelper.e('Error getTokenBalance for $symbol', stacktrace: stackTrace, error: error);
       return Result.error(HyphaError.fromError(error));
     }
   }

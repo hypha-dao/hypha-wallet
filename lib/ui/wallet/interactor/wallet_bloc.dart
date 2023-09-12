@@ -36,13 +36,13 @@ class WalletBloc extends Bloc<WalletEvent, WalletState> {
     emit(state.copyWith(pageState: PageState.success, loadingTransaction: true));
 
     unawaited(_getTransactionHistoryDataUseCase.run(true).then((result) {
-      if (result.isValue) {
+      if (result.isValue && !isClosed) {
         emit(state.copyWith(
           pageState: PageState.success,
           recentTransactions: result.valueOrCrash,
           loadingTransaction: false,
         ));
-      } else {
+      } else if (!isClosed){
         // ignore: unawaited_futures
         _errorHandlerManager.handlerError(result.asError!.error);
         emit(state.copyWith(loadingTransaction: false));
