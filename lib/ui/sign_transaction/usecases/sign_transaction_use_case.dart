@@ -46,9 +46,7 @@ class SignTransactionUseCase extends InputUseCase<HResult.Result<String, HyphaEr
       }
       return HResult.Result.value(result.asValue!.value as String);
     } else {
-      print('result error ${result.asError?.error}');
-
-      LogHelper.d('error creating transaction ${result.asError?.error}');
+      LogHelper.e('error creating transaction ${result.asError?.error}');
       return HResult.Result.error(HyphaError.api('Error creating singing transaction ${result.asError?.error}'));
     }
   }

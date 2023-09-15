@@ -44,7 +44,6 @@ class SignTransactionBloc extends Bloc<SignTransactionEvent, SignTransactionStat
       emit(
           state.copyWith(command: const PageCommand.navigateToTransactionSuccess(SignSuccessTransactionType.approved)));
     } else {
-      print('Transaction Error');
       LogHelper.e('Transaction error: ${result.asError?.error.message}');
       emit(state.copyWith(command: const PageCommand.navigateToTransactionFailed()));
     }

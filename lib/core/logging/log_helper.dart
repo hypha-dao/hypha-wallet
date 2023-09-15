@@ -33,7 +33,6 @@ class LogHelper {
   /// Logs ERROR level [message]
   /// with optional exception and stacktrace
   static void e(String message, {dynamic error, StackTrace? stacktrace}) {
-    print('error $message');
     Fimber.e(message, ex: error, stacktrace: stacktrace);
     FirebaseCrashlytics.instance.log('Error message $message \nStackTrace: $stacktrace');
     // Nik: I commented out below. A log should never throw an error!
