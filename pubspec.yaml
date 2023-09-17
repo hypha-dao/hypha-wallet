@@ -165,7 +165,7 @@ icons_launcher:
   image_path: "assets/icon/icon.png"
   platforms:
     android:
-      enable: true
+      enable: false
     ios:
       enable: true
   
