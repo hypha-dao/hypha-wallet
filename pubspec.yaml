@@ -165,6 +165,10 @@ icons_launcher:
   image_path: "assets/icon/icon.png"
   platforms:
     android:
+      # Do Android in Android studio. 
+      # 1. Right click on app->res->mipmap, 
+      # 2. select "New Image Asset"
+      # 3. Create a launcher asset
       enable: false
     ios:
       enable: true
