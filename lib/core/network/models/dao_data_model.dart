@@ -16,8 +16,12 @@ class DaoData {
   });
 
   factory DaoData.fromJson(Map<String, dynamic> json) {
+    print('DaoData.fromJson ${json}');
     final Map<String, dynamic> settings = json['settings'][0];
-    final logoUrlAndType = settings['settings_logo_s']?.split(':') ?? ['', ''];
+    List<String>? logoUrlAndType = settings['settings_logo_s']?.split(':');
+    if (logoUrlAndType == null || logoUrlAndType.length != 2) {
+      logoUrlAndType = ['', ''];
+    }
     return DaoData(
       docId: json['docId'],
       detailsDaoName: json['details_daoName_n'],
