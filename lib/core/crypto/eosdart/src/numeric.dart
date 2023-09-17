@@ -89,7 +89,7 @@ Uint8List signedDecimalToBinary(int size, String s) {
   var result = decimalToBinary(size, s);
   if (negative) {
     negate(result);
-    if (!isNegative(result)) {
+    if (!isNegative(result) && !isZero(result)) {
       throw 'negative number is out of range: -$s => $result';
     }
   } else if (isNegative(result)) {

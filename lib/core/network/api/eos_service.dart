@@ -93,7 +93,9 @@ class EOSService {
   }) async {
     /// Note: An EOSTransaction coming from a QR code may be on the incorrect network for the account we are trying to use.
     if (user.network != eosTransaction.network) {
-      throw 'Wrong network - transaction on ${eosTransaction.network} cannot be signed by user on network ${user.network}';
+      LogHelper.e('Wrong network error');
+      return ErrorResult(
+          'Wrong network - transaction on ${eosTransaction.network} cannot be signed by user on network ${user.network}');
     }
 
     final actions = eosTransaction.actions.map((e) => e.toEosAction).toList();
