@@ -38,9 +38,7 @@ sealed class TransactionModel extends Equatable {
     required Map<String, dynamic> data,
   }) {
     return switch (actionName) {
-      'transfer'
-          when account == _hyphaTokenAccount || account == _hyphaWrapTokenAccount || account == _systemTokenAccount =>
-        TransactionTransfer(
+      'transfer' => TransactionTransfer(
           account: account,
           actionName: actionName,
           blockNumber: blockNumber,

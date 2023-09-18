@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:hypha_wallet/design/buttons/hypha_app_button.dart';
 import 'package:hypha_wallet/design/hypha_card.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/progress_indicator/hypha_progress_indicator.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 import 'package:hypha_wallet/ui/shared/listview_with_all_separators.dart';
 import 'package:hypha_wallet/ui/wallet/components/wallet_transaction_tile.dart';
+import 'package:hypha_wallet/ui/wallet/interactor/wallet_bloc.dart';
 
 class RecentTransactionsWidget extends StatelessWidget {
   final bool loadingTransaction;
@@ -49,9 +52,19 @@ class RecentTransactionsWidget extends StatelessWidget {
                 child: HyphaCard(
                   child: Padding(
                     padding: const EdgeInsets.all(24),
-                    child: Text(
-                      'You haven’t done any transaction yet',
-                      style: context.hyphaTextTheme.ralMediumSmallNote,
+                    child: Column(
+                      children: [
+                        Text(
+                          'You haven’t done any transaction yet',
+                          style: context.hyphaTextTheme.ralMediumSmallNote,
+                        ),
+                        HyphaAppButton(
+                          title: 'Refresh',
+                          onPressed: () {
+                            context.read<WalletBloc>().add(const WalletEvent.onRefresh());
+                          },
+                        )
+                      ],
                     ),
                   ),
                 ),
