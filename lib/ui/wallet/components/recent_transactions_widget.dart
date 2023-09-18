@@ -58,6 +58,7 @@ class RecentTransactionsWidget extends StatelessWidget {
                           'You haven’t done any transaction yet',
                           style: context.hyphaTextTheme.ralMediumSmallNote,
                         ),
+                        const SizedBox(height: 8),
                         HyphaAppButton(
                           title: 'Refresh',
                           onPressed: () {
