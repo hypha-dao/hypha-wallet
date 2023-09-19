@@ -74,7 +74,7 @@ class SendView extends StatelessWidget {
               const SizedBox(height: 24),
               const _PercentagesWidget(),
               const SizedBox(height: 24),
-              const _NumberKeyboardGrid(),
+              const NumberKeyboardGrid(),
             ],
           ),
         ),
@@ -83,8 +83,8 @@ class SendView extends StatelessWidget {
   }
 }
 
-class _NumberKeyboardGrid extends StatelessWidget {
-  const _NumberKeyboardGrid();
+class NumberKeyboardGrid extends StatelessWidget {
+  const NumberKeyboardGrid({super.key});
 
   @override
   Widget build(BuildContext context) {
