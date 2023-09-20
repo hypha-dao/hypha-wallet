@@ -2,9 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:hypha_wallet/core/error_handler/error_handler_manager.dart';
 import 'package:hypha_wallet/core/extension/scope_functions.dart';
-import 'package:hypha_wallet/core/network/models/user_profile_data.dart';
 import 'package:hypha_wallet/ui/architecture/interactor/page_states.dart';
 import 'package:hypha_wallet/ui/transfer_tokens/components/keypad_key.dart';
 import 'package:hypha_wallet/ui/transfer_tokens/send/usecases/send_token_use_case.dart';
@@ -20,12 +18,10 @@ part 'receive_state.dart';
 
 class ReceiveBloc extends Bloc<ReceiveEvent, ReceiveState> {
   final SendTokenUseCase sendTokenUseCase;
-  final ErrorHandlerManager _errorHandlerManager;
 
   ReceiveBloc(
     WalletTokenData tokenData,
-    this.sendTokenUseCase,
-    this._errorHandlerManager,
+    this.sendTokenUseCase
   ) : super(ReceiveState(tokenData: tokenData)) {
     on<_Initial>(_initial);
     on<_OnKeypadTapped>(_onKeypadTapped);

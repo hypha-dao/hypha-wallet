@@ -108,11 +108,7 @@ void _registerBlocsModule() {
   );
 
   _registerFactoryWithParams<ReceiveBloc, WalletTokenData, void>(
-        (tokenData, _) => ReceiveBloc(
-      tokenData,
-      _getIt<SendTokenUseCase>(),
-      _getIt<ErrorHandlerManager>(),
-    ),
+    (tokenData, _) => ReceiveBloc(tokenData, _getIt<SendTokenUseCase>()),
   );
 
   _registerFactory(
