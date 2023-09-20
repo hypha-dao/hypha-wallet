@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hypha_wallet/design/avatar_image/hypha_avatar_image.dart';
 import 'package:hypha_wallet/design/hypha_card.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
-import 'package:hypha_wallet/ui/send/interactor/send_bloc.dart';
+import 'package:hypha_wallet/ui/transfer_tokens/send/interactor/send_bloc.dart';
 
 class SendToUserRow extends StatelessWidget {
   final double imageRadius;

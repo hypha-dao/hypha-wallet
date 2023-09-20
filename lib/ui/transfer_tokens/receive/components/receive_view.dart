@@ -1,18 +1,14 @@
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:hypha_wallet/design/background/hypha_page_background.dart';
 import 'package:hypha_wallet/design/bottom_component/hypha_safe_bottom_navigation_bar.dart';
 import 'package:hypha_wallet/design/buttons/button_type.dart';
 import 'package:hypha_wallet/design/buttons/hypha_app_button.dart';
-import 'package:hypha_wallet/design/hypha_card.dart';
-import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
-import 'package:hypha_wallet/ui/receive/interactor/receive_bloc.dart';
-import 'package:hypha_wallet/ui/send/components/send_memo_field.dart';
-import 'package:hypha_wallet/ui/send/components/send_view.dart';
-import 'package:hypha_wallet/ui/send/data/keypad_key.dart';
-
+import 'package:hypha_wallet/ui/transfer_tokens/components/memo_field.dart';
+import 'package:hypha_wallet/ui/transfer_tokens/components/number_keyboard_grid.dart';
+import 'package:hypha_wallet/ui/transfer_tokens/receive/interactor/receive_bloc.dart';
 
 class ReceiveView extends StatelessWidget {
   const ReceiveView({super.key});
@@ -32,7 +28,7 @@ class ReceiveView extends StatelessWidget {
             return HyphaSafeBottomNavigationBar(
               child: HyphaAppButton(
                 onPressed: () {
-                /// Navigate to receive screen
+                  /// Navigate to receive screen
                 },
                 title: 'Next',
                 buttonType: ButtonType.primary,
@@ -56,9 +52,22 @@ class ReceiveView extends StatelessWidget {
                 },
               ),
               const SizedBox(height: 24),
-              const SendMemoField(),
+              BlocBuilder<ReceiveBloc, ReceiveState>(
+                buildWhen: (c,p) => c.memo != p.memo,
+                builder: (context, state) {
+                  return MemoField(
+                    onPressed: (value) {
+                      context.read<ReceiveBloc>().add(ReceiveEvent.onMemoEntered(value));
+                      Get.back();
+                    },
+                    memo: state.memo,
+                  );
+                },
+              ),
               const SizedBox(height: 24),
-              const NumberKeyboardGrid(),
+              NumberKeyboardGrid(onKeyTapped: (element) {
+                context.read<ReceiveBloc>().add(ReceiveEvent.onKeypadTapped(element));
+              }),
             ],
           ),
         ),
@@ -66,40 +75,3 @@ class ReceiveView extends StatelessWidget {
     );
   }
 }
-
-class _NumberKeyboardGrid extends StatelessWidget {
-  final GestureTapCallback onTap;
-  const _NumberKeyboardGrid(this.onTap);
-
-  @override
-  Widget build(BuildContext context) {
-    return GridView.count(
-        crossAxisCount: 3,
-        shrinkWrap: true,
-        childAspectRatio: 1.8,
-        physics: const NeverScrollableScrollPhysics(),
-        children: KeypadKey.values.mapIndexed((index, element) {
-          final text = switch (element) {
-            KeypadKey.dot => '.',
-            KeypadKey.delete => '<-',
-            _ => element.value.toString(),
-          };
-          return GestureDetector(
-            onTap: onTap,
-            child: Padding(
-              padding: EdgeInsets.only(top: 8, bottom: 8, left: index % 3 == 0 ? 0 : 8, right: index % 3 == 2 ? 0 : 8),
-              child: HyphaCard(
-                borderRadius: BorderRadius.circular(14),
-                child: Center(
-                  child: Text(
-                    text,
-                    style: context.hyphaTextTheme.mediumTitles,
-                  ),
-                ),
-              ),
-            ),
-          );
-        }).toList());
-  }
-}
-

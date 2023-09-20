@@ -3,14 +3,11 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hypha_wallet/core/error_handler/error_handler_manager.dart';
-import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
 import 'package:hypha_wallet/core/extension/scope_functions.dart';
 import 'package:hypha_wallet/core/network/models/user_profile_data.dart';
 import 'package:hypha_wallet/ui/architecture/interactor/page_states.dart';
-import 'package:hypha_wallet/ui/architecture/result/result.dart';
-import 'package:hypha_wallet/ui/send/data/amount_percentage.dart';
-import 'package:hypha_wallet/ui/send/data/keypad_key.dart';
-import 'package:hypha_wallet/ui/send/usecases/send_token_use_case.dart';
+import 'package:hypha_wallet/ui/transfer_tokens/components/keypad_key.dart';
+import 'package:hypha_wallet/ui/transfer_tokens/send/usecases/send_token_use_case.dart';
 import 'package:hypha_wallet/ui/wallet/data/wallet_token_data.dart';
 
 part 'page_command.dart';
@@ -26,7 +23,6 @@ class ReceiveBloc extends Bloc<ReceiveEvent, ReceiveState> {
   final ErrorHandlerManager _errorHandlerManager;
 
   ReceiveBloc(
-    UserProfileData receiverUser,
     WalletTokenData tokenData,
     this.sendTokenUseCase,
     this._errorHandlerManager,

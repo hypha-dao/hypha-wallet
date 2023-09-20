@@ -3,10 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hypha_wallet/core/network/models/user_profile_data.dart';
-import 'package:hypha_wallet/ui/send/components/send_success_bottom_sheet.dart';
-import 'package:hypha_wallet/ui/send/components/send_view.dart';
-import 'package:hypha_wallet/ui/send/interactor/send_bloc.dart';
+import 'package:hypha_wallet/ui/transfer_tokens/send/components/send_success_bottom_sheet.dart';
+import 'package:hypha_wallet/ui/transfer_tokens/send/components/send_view.dart';
+import 'package:hypha_wallet/ui/transfer_tokens/send/interactor/send_bloc.dart';
 import 'package:hypha_wallet/ui/wallet/data/wallet_token_data.dart';
+
 
 class SendPage extends StatelessWidget {
   final UserProfileData receiverUser;

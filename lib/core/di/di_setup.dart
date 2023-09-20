@@ -68,8 +68,6 @@ import 'package:hypha_wallet/ui/profile/usecases/set_image_use_case.dart';
 import 'package:hypha_wallet/ui/profile/usecases/set_name_use_case.dart';
 import 'package:hypha_wallet/ui/search_user/interactor/search_user_bloc.dart';
 import 'package:hypha_wallet/ui/search_user/usecases/search_for_user_use_case.dart';
-import 'package:hypha_wallet/ui/send/interactor/send_bloc.dart';
-import 'package:hypha_wallet/ui/send/usecases/send_token_use_case.dart';
 import 'package:hypha_wallet/ui/settings/interactor/settings_bloc.dart';
 import 'package:hypha_wallet/ui/settings/usecases/delete_account_use_case.dart';
 import 'package:hypha_wallet/ui/shared/usercases/get_user_profiles_from_accounts_use_case.dart';
@@ -82,6 +80,9 @@ import 'package:hypha_wallet/ui/token/token_settings/interactor/token_settings_b
 import 'package:hypha_wallet/ui/token/token_settings/usecases/add_token_to_user_use_case.dart';
 import 'package:hypha_wallet/ui/token/token_settings/usecases/get_all_tokens_use_case.dart';
 import 'package:hypha_wallet/ui/token/token_settings/usecases/remove_token_from_user_use_case.dart';
+import 'package:hypha_wallet/ui/transfer_tokens/receive/interactor/receive_bloc.dart';
+import 'package:hypha_wallet/ui/transfer_tokens/send/interactor/send_bloc.dart';
+import 'package:hypha_wallet/ui/transfer_tokens/send/usecases/send_token_use_case.dart';
 import 'package:hypha_wallet/ui/wallet/data/wallet_token_data.dart';
 import 'package:hypha_wallet/ui/wallet/interactor/wallet_bloc.dart';
 import 'package:hypha_wallet/ui/wallet/usecases/get_transaction_history_data_use_case.dart';

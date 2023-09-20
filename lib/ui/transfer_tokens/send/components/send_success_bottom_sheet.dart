@@ -13,9 +13,9 @@ import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 import 'package:hypha_wallet/ui/bottom_navigation/components/bottom_navigation_view.dart';
 import 'package:hypha_wallet/ui/bottom_navigation/hypha_bottom_navigation.dart';
-import 'package:hypha_wallet/ui/send/components/send_to_user_row.dart';
-import 'package:hypha_wallet/ui/send/interactor/send_bloc.dart';
 import 'package:hypha_wallet/ui/token/token_details/token_details_page.dart';
+import 'package:hypha_wallet/ui/transfer_tokens/send/components/send_to_user_row.dart';
+import 'package:hypha_wallet/ui/transfer_tokens/send/interactor/send_bloc.dart';
 import 'package:intl/intl.dart';
 
 class SendSuccessBottomSheet extends StatelessWidget {
