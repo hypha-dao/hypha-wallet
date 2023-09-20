@@ -14,7 +14,7 @@ class ReceiveState with _$ReceiveState {
 
   bool get isSubmitEnabled {
     final parsedAmount = double.tryParse(userEnteredAmount ?? '0') ?? 0;
-    return parsedAmount > 0 && parsedAmount <= (tokenData.userOwnedAmount ?? 0);
+    return parsedAmount > 0;
   }
 
   String get formattedAmount {

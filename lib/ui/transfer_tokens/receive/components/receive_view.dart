@@ -5,6 +5,7 @@ import 'package:hypha_wallet/design/background/hypha_page_background.dart';
 import 'package:hypha_wallet/design/bottom_component/hypha_safe_bottom_navigation_bar.dart';
 import 'package:hypha_wallet/design/buttons/button_type.dart';
 import 'package:hypha_wallet/design/buttons/hypha_app_button.dart';
+import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 import 'package:hypha_wallet/ui/transfer_tokens/components/memo_field.dart';
 import 'package:hypha_wallet/ui/transfer_tokens/components/number_keyboard_grid.dart';
@@ -51,9 +52,20 @@ class ReceiveView extends StatelessWidget {
                   );
                 },
               ),
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text('Amount to ', style: Theme.of(context).textTheme.bodyMedium),
+                  Text(
+                    'receive',
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: HyphaColors.primaryBlu),
+                  ),
+                ],
+              ),
               const SizedBox(height: 24),
               BlocBuilder<ReceiveBloc, ReceiveState>(
-                buildWhen: (c,p) => c.memo != p.memo,
+                buildWhen: (c, p) => c.memo != p.memo,
                 builder: (context, state) {
                   return MemoField(
                     onPressed: (value) {
