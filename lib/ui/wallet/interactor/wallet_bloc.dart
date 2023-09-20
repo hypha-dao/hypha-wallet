@@ -38,7 +38,7 @@ class WalletBloc extends Bloc<WalletEvent, WalletState> {
   Future<void> _initial(_Initial event, Emitter<WalletState> emit) async {
     emit(state.copyWith(pageState: PageState.success, loadingTransaction: true));
 
-    unawaited(_getTransactionHistoryDataUseCase.run(true).then((result) {
+    unawaited(_getTransactionHistoryDataUseCase.getTransferTransactionsForTokens().then((result) {
       if (isClosed) {
         return;
       }

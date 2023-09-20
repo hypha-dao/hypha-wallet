@@ -18,13 +18,13 @@ class UserAccountService {
     required String publicKey,
     required String network,
   }) async {
-    final requestBody = '''
-    { 
-      "code": "$code",
-      "accountName": "$accountName",
-      "publicKey": "$publicKey",
-      "network": "$network"
-    }''';
+    final requestBody = {
+      'code': code,
+      'accountName': accountName,
+      'publicKey': publicKey,
+      'network': network
+    };
+
     final url = remoteConfigService.accountCreatorEndpoint + Endpoints.createAccount;
     try {
       // ignore: unused_local_variable
@@ -46,7 +46,9 @@ class UserAccountService {
   }
 
   Future<bool> isUserAccountAvailable(String accountName, Network network) async {
-    final requestBody = '{ "account_name": "$accountName" }';
+    final requestBody = {
+      'account_name': accountName
+    };
     try {
       // ignore: unused_local_variable
       final res = await network.manager.post(Endpoints.getAccount, data: requestBody);
