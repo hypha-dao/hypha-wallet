@@ -16,6 +16,7 @@ class TokenSymbolScope {
   final String symbol;
   final String scope;
   final String tokenContract;
+
   TokenSymbolScope({required this.symbol, required this.scope, required this.tokenContract});
 }
 
@@ -31,12 +32,12 @@ class TokenService {
   }) async {
     LogHelper.d('getTokenBalance: $tokenContract');
     try {
-      final requestBody = '''
-      { 
-        "account": "${user.accountName}",
-        "code": "$tokenContract",
-        "symbol": "$symbol",
-      }''';
+      final requestBody = {
+        'account': user.accountName,
+        'code': tokenContract,
+        'symbol': symbol,
+      };
+
       final Response<List> res = await user.network.manager.post<List>(
         Endpoints.getCurrencyBalance,
         data: requestBody,
@@ -64,15 +65,15 @@ class TokenService {
     required String tokenContract,
   }) async {
     try {
-      final requestBody = '''
-      { 
-        "code": "$tokenContract",
-        "table": "stat",
-        "lower_bound": "",
-        "upper_bound": "",
-        "limit": 1000,
-        "reverse": false,
-      }''';
+      final requestBody = {
+        'code': tokenContract,
+        'table': 'stat',
+        'lower_bound': '',
+        'upper_bound': '',
+        'limit': 1000,
+        'reverse': false,
+      };
+
       final res = await networkingManager.post(Endpoints.getTableScopes, data: requestBody);
       final List<Map<String, dynamic>> list = List<Map<String, dynamic>>.from(res.data['rows']);
       final tokenSymbolScopes = List<TokenSymbolScope>.from(list.map((e) {
@@ -96,12 +97,12 @@ class TokenService {
     required String symbol,
   }) async {
     try {
-      final requestBody = '''
-      { 
-        "json": true,
-        "code": "$tokenContract",
-        "symbol": "$symbol"
-      }''';
+      final requestBody = {
+        'json': true,
+        'code': tokenContract,
+        'symbol': symbol
+      };
+
       final res = await networkingManager.post(Endpoints.getCurrencyStats, data: requestBody);
       final json = res.data;
       // flutter: res: {HYPHA: {supply: 47738747.41 HYPHA, max_supply: -1.00 HYPHA, issuer: dao.hypha}}

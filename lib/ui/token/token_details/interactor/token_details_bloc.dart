@@ -14,8 +14,11 @@ import 'package:hypha_wallet/ui/wallet/data/wallet_token_data.dart';
 import 'package:hypha_wallet/ui/wallet/usecases/get_transaction_history_data_use_case.dart';
 
 part 'page_command.dart';
+
 part 'token_details_bloc.freezed.dart';
+
 part 'token_details_event.dart';
+
 part 'token_details_state.dart';
 
 class TokenDetailsBloc extends Bloc<TokenDetailsEvent, TokenDetailsState> {
@@ -44,8 +47,9 @@ class TokenDetailsBloc extends Bloc<TokenDetailsEvent, TokenDetailsState> {
   FutureOr<void> _initial(_Initial event, Emitter<TokenDetailsState> emit) async {
     emit(state.copyWith(loadingTransaction: true, loadingTokenBalance: true));
 
-
-    await _getTransactionHistoryDataUseCase.run(true).then((result) {
+    await _getTransactionHistoryDataUseCase
+        .getTransferTransactionsForToken(contract: state.token.contract, symbol: state.token.symbol)
+        .then((result) {
       if (result.isValue) {
         emit(state.copyWith(
           pageState: PageState.success,
