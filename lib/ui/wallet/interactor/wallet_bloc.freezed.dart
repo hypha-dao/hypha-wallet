@@ -171,6 +171,9 @@ mixin _$WalletEvent {
     required TResult Function() initial,
     required TResult Function() onRefresh,
     required TResult Function() clearPageCommand,
+    required TResult Function(
+            Result<List<WalletTransactionTileData>, HyphaError> value)
+        onTransactionsChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -178,6 +181,9 @@ mixin _$WalletEvent {
     TResult? Function()? initial,
     TResult? Function()? onRefresh,
     TResult? Function()? clearPageCommand,
+    TResult? Function(
+            Result<List<WalletTransactionTileData>, HyphaError> value)?
+        onTransactionsChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -185,6 +191,8 @@ mixin _$WalletEvent {
     TResult Function()? initial,
     TResult Function()? onRefresh,
     TResult Function()? clearPageCommand,
+    TResult Function(Result<List<WalletTransactionTileData>, HyphaError> value)?
+        onTransactionsChanged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -193,6 +201,8 @@ mixin _$WalletEvent {
     required TResult Function(_Initial value) initial,
     required TResult Function(_OnRefresh value) onRefresh,
     required TResult Function(_ClearPageCommand value) clearPageCommand,
+    required TResult Function(_OnTransactionsChanged value)
+        onTransactionsChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -200,6 +210,7 @@ mixin _$WalletEvent {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_OnRefresh value)? onRefresh,
     TResult? Function(_ClearPageCommand value)? clearPageCommand,
+    TResult? Function(_OnTransactionsChanged value)? onTransactionsChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -207,6 +218,7 @@ mixin _$WalletEvent {
     TResult Function(_Initial value)? initial,
     TResult Function(_OnRefresh value)? onRefresh,
     TResult Function(_ClearPageCommand value)? clearPageCommand,
+    TResult Function(_OnTransactionsChanged value)? onTransactionsChanged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -270,6 +282,9 @@ class _$_Initial implements _Initial {
     required TResult Function() initial,
     required TResult Function() onRefresh,
     required TResult Function() clearPageCommand,
+    required TResult Function(
+            Result<List<WalletTransactionTileData>, HyphaError> value)
+        onTransactionsChanged,
   }) {
     return initial();
   }
@@ -280,6 +295,9 @@ class _$_Initial implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? onRefresh,
     TResult? Function()? clearPageCommand,
+    TResult? Function(
+            Result<List<WalletTransactionTileData>, HyphaError> value)?
+        onTransactionsChanged,
   }) {
     return initial?.call();
   }
@@ -290,6 +308,8 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? onRefresh,
     TResult Function()? clearPageCommand,
+    TResult Function(Result<List<WalletTransactionTileData>, HyphaError> value)?
+        onTransactionsChanged,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -304,6 +324,8 @@ class _$_Initial implements _Initial {
     required TResult Function(_Initial value) initial,
     required TResult Function(_OnRefresh value) onRefresh,
     required TResult Function(_ClearPageCommand value) clearPageCommand,
+    required TResult Function(_OnTransactionsChanged value)
+        onTransactionsChanged,
   }) {
     return initial(this);
   }
@@ -314,6 +336,7 @@ class _$_Initial implements _Initial {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_OnRefresh value)? onRefresh,
     TResult? Function(_ClearPageCommand value)? clearPageCommand,
+    TResult? Function(_OnTransactionsChanged value)? onTransactionsChanged,
   }) {
     return initial?.call(this);
   }
@@ -324,6 +347,7 @@ class _$_Initial implements _Initial {
     TResult Function(_Initial value)? initial,
     TResult Function(_OnRefresh value)? onRefresh,
     TResult Function(_ClearPageCommand value)? clearPageCommand,
+    TResult Function(_OnTransactionsChanged value)? onTransactionsChanged,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -378,6 +402,9 @@ class _$_OnRefresh implements _OnRefresh {
     required TResult Function() initial,
     required TResult Function() onRefresh,
     required TResult Function() clearPageCommand,
+    required TResult Function(
+            Result<List<WalletTransactionTileData>, HyphaError> value)
+        onTransactionsChanged,
   }) {
     return onRefresh();
   }
@@ -388,6 +415,9 @@ class _$_OnRefresh implements _OnRefresh {
     TResult? Function()? initial,
     TResult? Function()? onRefresh,
     TResult? Function()? clearPageCommand,
+    TResult? Function(
+            Result<List<WalletTransactionTileData>, HyphaError> value)?
+        onTransactionsChanged,
   }) {
     return onRefresh?.call();
   }
@@ -398,6 +428,8 @@ class _$_OnRefresh implements _OnRefresh {
     TResult Function()? initial,
     TResult Function()? onRefresh,
     TResult Function()? clearPageCommand,
+    TResult Function(Result<List<WalletTransactionTileData>, HyphaError> value)?
+        onTransactionsChanged,
     required TResult orElse(),
   }) {
     if (onRefresh != null) {
@@ -412,6 +444,8 @@ class _$_OnRefresh implements _OnRefresh {
     required TResult Function(_Initial value) initial,
     required TResult Function(_OnRefresh value) onRefresh,
     required TResult Function(_ClearPageCommand value) clearPageCommand,
+    required TResult Function(_OnTransactionsChanged value)
+        onTransactionsChanged,
   }) {
     return onRefresh(this);
   }
@@ -422,6 +456,7 @@ class _$_OnRefresh implements _OnRefresh {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_OnRefresh value)? onRefresh,
     TResult? Function(_ClearPageCommand value)? clearPageCommand,
+    TResult? Function(_OnTransactionsChanged value)? onTransactionsChanged,
   }) {
     return onRefresh?.call(this);
   }
@@ -432,6 +467,7 @@ class _$_OnRefresh implements _OnRefresh {
     TResult Function(_Initial value)? initial,
     TResult Function(_OnRefresh value)? onRefresh,
     TResult Function(_ClearPageCommand value)? clearPageCommand,
+    TResult Function(_OnTransactionsChanged value)? onTransactionsChanged,
     required TResult orElse(),
   }) {
     if (onRefresh != null) {
@@ -486,6 +522,9 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     required TResult Function() initial,
     required TResult Function() onRefresh,
     required TResult Function() clearPageCommand,
+    required TResult Function(
+            Result<List<WalletTransactionTileData>, HyphaError> value)
+        onTransactionsChanged,
   }) {
     return clearPageCommand();
   }
@@ -496,6 +535,9 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     TResult? Function()? initial,
     TResult? Function()? onRefresh,
     TResult? Function()? clearPageCommand,
+    TResult? Function(
+            Result<List<WalletTransactionTileData>, HyphaError> value)?
+        onTransactionsChanged,
   }) {
     return clearPageCommand?.call();
   }
@@ -506,6 +548,8 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     TResult Function()? initial,
     TResult Function()? onRefresh,
     TResult Function()? clearPageCommand,
+    TResult Function(Result<List<WalletTransactionTileData>, HyphaError> value)?
+        onTransactionsChanged,
     required TResult orElse(),
   }) {
     if (clearPageCommand != null) {
@@ -520,6 +564,8 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     required TResult Function(_Initial value) initial,
     required TResult Function(_OnRefresh value) onRefresh,
     required TResult Function(_ClearPageCommand value) clearPageCommand,
+    required TResult Function(_OnTransactionsChanged value)
+        onTransactionsChanged,
   }) {
     return clearPageCommand(this);
   }
@@ -530,6 +576,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_OnRefresh value)? onRefresh,
     TResult? Function(_ClearPageCommand value)? clearPageCommand,
+    TResult? Function(_OnTransactionsChanged value)? onTransactionsChanged,
   }) {
     return clearPageCommand?.call(this);
   }
@@ -540,6 +587,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     TResult Function(_Initial value)? initial,
     TResult Function(_OnRefresh value)? onRefresh,
     TResult Function(_ClearPageCommand value)? clearPageCommand,
+    TResult Function(_OnTransactionsChanged value)? onTransactionsChanged,
     required TResult orElse(),
   }) {
     if (clearPageCommand != null) {
@@ -551,6 +599,160 @@ class _$_ClearPageCommand implements _ClearPageCommand {
 
 abstract class _ClearPageCommand implements WalletEvent {
   const factory _ClearPageCommand() = _$_ClearPageCommand;
+}
+
+/// @nodoc
+abstract class _$$_OnTransactionsChangedCopyWith<$Res> {
+  factory _$$_OnTransactionsChangedCopyWith(_$_OnTransactionsChanged value,
+          $Res Function(_$_OnTransactionsChanged) then) =
+      __$$_OnTransactionsChangedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Result<List<WalletTransactionTileData>, HyphaError> value});
+}
+
+/// @nodoc
+class __$$_OnTransactionsChangedCopyWithImpl<$Res>
+    extends _$WalletEventCopyWithImpl<$Res, _$_OnTransactionsChanged>
+    implements _$$_OnTransactionsChangedCopyWith<$Res> {
+  __$$_OnTransactionsChangedCopyWithImpl(_$_OnTransactionsChanged _value,
+      $Res Function(_$_OnTransactionsChanged) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? value = null,
+  }) {
+    return _then(_$_OnTransactionsChanged(
+      null == value
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as Result<List<WalletTransactionTileData>, HyphaError>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_OnTransactionsChanged implements _OnTransactionsChanged {
+  const _$_OnTransactionsChanged(this.value);
+
+  @override
+  final Result<List<WalletTransactionTileData>, HyphaError> value;
+
+  @override
+  String toString() {
+    return 'WalletEvent.onTransactionsChanged(value: $value)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_OnTransactionsChanged &&
+            (identical(other.value, value) || other.value == value));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, value);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_OnTransactionsChangedCopyWith<_$_OnTransactionsChanged> get copyWith =>
+      __$$_OnTransactionsChangedCopyWithImpl<_$_OnTransactionsChanged>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() onRefresh,
+    required TResult Function() clearPageCommand,
+    required TResult Function(
+            Result<List<WalletTransactionTileData>, HyphaError> value)
+        onTransactionsChanged,
+  }) {
+    return onTransactionsChanged(value);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? onRefresh,
+    TResult? Function()? clearPageCommand,
+    TResult? Function(
+            Result<List<WalletTransactionTileData>, HyphaError> value)?
+        onTransactionsChanged,
+  }) {
+    return onTransactionsChanged?.call(value);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? onRefresh,
+    TResult Function()? clearPageCommand,
+    TResult Function(Result<List<WalletTransactionTileData>, HyphaError> value)?
+        onTransactionsChanged,
+    required TResult orElse(),
+  }) {
+    if (onTransactionsChanged != null) {
+      return onTransactionsChanged(value);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_OnRefresh value) onRefresh,
+    required TResult Function(_ClearPageCommand value) clearPageCommand,
+    required TResult Function(_OnTransactionsChanged value)
+        onTransactionsChanged,
+  }) {
+    return onTransactionsChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_OnRefresh value)? onRefresh,
+    TResult? Function(_ClearPageCommand value)? clearPageCommand,
+    TResult? Function(_OnTransactionsChanged value)? onTransactionsChanged,
+  }) {
+    return onTransactionsChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_OnRefresh value)? onRefresh,
+    TResult Function(_ClearPageCommand value)? clearPageCommand,
+    TResult Function(_OnTransactionsChanged value)? onTransactionsChanged,
+    required TResult orElse(),
+  }) {
+    if (onTransactionsChanged != null) {
+      return onTransactionsChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _OnTransactionsChanged implements WalletEvent {
+  const factory _OnTransactionsChanged(
+          final Result<List<WalletTransactionTileData>, HyphaError> value) =
+      _$_OnTransactionsChanged;
+
+  Result<List<WalletTransactionTileData>, HyphaError> get value;
+  @JsonKey(ignore: true)
+  _$$_OnTransactionsChangedCopyWith<_$_OnTransactionsChanged> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

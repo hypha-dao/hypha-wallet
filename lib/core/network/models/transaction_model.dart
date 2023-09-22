@@ -1,9 +1,6 @@
 import 'package:equatable/equatable.dart';
 
 const _daoAccount = 'dao.hypha';
-const _systemTokenAccount = 'eosio.token';
-const _hyphaTokenAccount = 'hypha.hypha';
-const _hyphaWrapTokenAccount = 'whypha.hypha';
 const _eosioLoginAccount = 'eosio.login';
 
 sealed class TransactionModel extends Equatable {
@@ -26,7 +23,7 @@ sealed class TransactionModel extends Equatable {
   });
 
   @override
-  List<Object?> get props => [actionName, data, account, timestamp, blockNumber];
+  List<Object?> get props => [actionName, data, account, timestamp, blockNumber, actor, transactionId];
 
   factory TransactionModel.parseFromParams({
     required timestamp,
@@ -38,9 +35,7 @@ sealed class TransactionModel extends Equatable {
     required Map<String, dynamic> data,
   }) {
     return switch (actionName) {
-      'transfer'
-          when account == _hyphaTokenAccount || account == _hyphaWrapTokenAccount || account == _systemTokenAccount =>
-        TransactionTransfer(
+      'transfer' => TransactionTransfer(
           account: account,
           actionName: actionName,
           blockNumber: blockNumber,
@@ -187,10 +182,10 @@ class TransactionTransfer extends TransactionModel {
   String get to => data['to'];
 
   /// 3175.00
-  num get amount => data['amount'];
+  String get amount => (data['quantity'] as String).split(' ').first;
 
   /// HUSD
-  String get symbol => data['symbol'];
+  String get symbol => (data['quantity'] as String).split(' ').last;
 
   const TransactionTransfer({
     required super.data,
@@ -208,10 +203,11 @@ class TransactionRedeem extends TransactionModel {
 
   String get requestor => data['requestor'];
 
-  /// 3175.00 HUSD Beware of this...
-  String get amount => (data['amount'] as String).split(' ').first;
+  /// 3175.00
+  String get amount => (data['quantity'] as String).split(' ').first;
 
-  String get symbol => (data['amount'] as String).split(' ')[1];
+  /// HUSD
+  String get symbol => (data['quantity'] as String).split(' ').last;
 
   const TransactionRedeem({
     required super.data,

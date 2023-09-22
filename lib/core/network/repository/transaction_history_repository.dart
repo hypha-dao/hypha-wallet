@@ -12,8 +12,11 @@ class TransactionHistoryRepository {
 
   TransactionHistoryRepository({required this.service});
 
-  Future<Result<List<TransactionModel>, HyphaError>> getTransactions(UserProfileData user, bool transferOnly,
-      {useV1History = false}) async {
+  Future<Result<List<TransactionModel>, HyphaError>> getTransactions(
+    UserProfileData user,
+    bool transferOnly, {
+    useV1History = false,
+  }) async {
     try {
       final Response response = useV1History
           ? await service.getAllTransactionsV1History(user)

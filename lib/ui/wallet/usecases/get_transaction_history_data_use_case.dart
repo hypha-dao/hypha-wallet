@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
 import 'package:hypha_wallet/core/firebase/firebase_database_service.dart';
 import 'package:hypha_wallet/core/firebase/firebase_token_data.dart';
@@ -19,14 +20,41 @@ class GetTransactionHistoryDataUseCase {
     this._authRepository,
   );
 
-  Future<Result<List<WalletTransactionTileData>, HyphaError>> run(bool transferOnly) async {
+  Future<Result<List<WalletTransactionTileData>, HyphaError>> getTransferTransactionsForTokens() async {
     final List<FirebaseTokenData> allTokens = await _firebaseDatabaseService.getAllTokens();
     final user = _authRepository.authDataOrCrash;
 
-    final result = await _getTransactionHistoryUseCase.run(transferOnly);
+    final result = await _getTransactionHistoryUseCase.run(true);
     if (result.isValue) {
       return Result.value(result.valueOrCrash
-          .where((TransactionModel element) => element is TransactionRedeem || element is TransactionTransfer)
+          .where(
+            (TransactionModel element) =>
+                element is TransactionRedeem ||
+                element is TransactionTransfer &&
+                    allTokens.firstWhereOrNull(
+                            (token) => token.contract == element.account && token.symbol == element.symbol) !=
+                        null,
+          )
+          .toList()
+          .mapRecentTransactionsTileData(allTokens, user.userProfileData.accountName));
+    } else {
+      return Result.error(result.asError!.error);
+    }
+  }
+
+  Future<Result<List<WalletTransactionTileData>, HyphaError>> getTransferTransactionsForToken({
+    required String contract,
+    required String symbol,
+  }) async {
+    final List<FirebaseTokenData> allTokens = await _firebaseDatabaseService.getAllTokens();
+    final user = _authRepository.authDataOrCrash;
+
+    final result = await _getTransactionHistoryUseCase.run(true);
+    if (result.isValue) {
+      return Result.value(result.valueOrCrash
+          .where((TransactionModel element) =>
+              element is TransactionRedeem ||
+              element is TransactionTransfer && contract == element.account && symbol == element.symbol)
           .toList()
           .mapRecentTransactionsTileData(allTokens, user.userProfileData.accountName));
     } else {
