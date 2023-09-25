@@ -8,17 +8,14 @@ import 'package:hypha_wallet/core/extension/scope_functions.dart';
 import 'package:hypha_wallet/core/network/models/user_profile_data.dart';
 import 'package:hypha_wallet/ui/architecture/interactor/page_states.dart';
 import 'package:hypha_wallet/ui/architecture/result/result.dart';
-import 'package:hypha_wallet/ui/send/data/amount_percentage.dart';
-import 'package:hypha_wallet/ui/send/data/keypad_key.dart';
-import 'package:hypha_wallet/ui/send/usecases/send_token_use_case.dart';
+import 'package:hypha_wallet/ui/transfer_tokens/components/keypad_key.dart';
+import 'package:hypha_wallet/ui/transfer_tokens/send/data/amount_percentage.dart';
+import 'package:hypha_wallet/ui/transfer_tokens/send/usecases/send_token_use_case.dart';
 import 'package:hypha_wallet/ui/wallet/data/wallet_token_data.dart';
 
 part 'page_command.dart';
-
 part 'send_bloc.freezed.dart';
-
 part 'send_event.dart';
-
 part 'send_state.dart';
 
 class SendBloc extends Bloc<SendEvent, SendState> {

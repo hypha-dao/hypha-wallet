@@ -11,6 +11,7 @@ import 'package:hypha_wallet/design/progress_indicator/hypha_progress_indicator.
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 import 'package:hypha_wallet/ui/search_user/search_user_page.dart';
 import 'package:hypha_wallet/ui/token/token_details/interactor/token_details_bloc.dart';
+import 'package:hypha_wallet/ui/transfer_tokens/receive/receive_page.dart';
 import 'package:hypha_wallet/ui/wallet/components/recent_transactions_view.dart';
 import 'package:hypha_wallet/ui/wallet/data/wallet_token_data.dart';
 
@@ -60,27 +61,23 @@ class TokenDetailsView extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // TODO(gguij): Complete receive
-                  // Expanded(
-                  //   child: HyphaAppButton(
-                  //     title: 'Receive',
-                  //     onPressed: () {},
-                  //     buttonType: ButtonType.secondary,
-                  //   ),
-                  // ),
-                  // const SizedBox(width: 22),
                   Expanded(
-                    child: BlocBuilder<TokenDetailsBloc, TokenDetailsState>(
-                      builder: (context, state) {
-                        return HyphaAppButton(
-                          title: 'Send',
-                          buttonType: ButtonType.primary,
-                          onPressed: () {
-                            Get.to(
-                              () => SearchUserPage(pageTitle: 'Send ${state.token.name}', tokenModel: state.token),
-                            );
-                          },
-                        );
+                    child: HyphaAppButton(
+                      title: 'Receive',
+                      onPressed: () {
+                        Get.to(() => ReceivePage(tokenData: context.read<TokenDetailsBloc>().state.token));
+                      },
+                      buttonType: ButtonType.secondary,
+                    ),
+                  ),
+                  const SizedBox(width: 22),
+                  Expanded(
+                    child: HyphaAppButton(
+                      title: 'Send',
+                      buttonType: ButtonType.primary,
+                      onPressed: () {
+                        final token = context.read<TokenDetailsBloc>().state.token;
+                        Get.to(() => SearchUserPage(pageTitle: 'Send ${token.name}', tokenModel: token));
                       },
                     ),
                   ),

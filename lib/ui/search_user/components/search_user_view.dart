@@ -7,7 +7,7 @@ import 'package:hypha_wallet/ui/architecture/interactor/page_states.dart';
 import 'package:hypha_wallet/ui/search_user/components/search_result_row.dart';
 import 'package:hypha_wallet/ui/search_user/components/search_user_text_field.dart';
 import 'package:hypha_wallet/ui/search_user/interactor/search_user_bloc.dart';
-import 'package:hypha_wallet/ui/send/send_page.dart';
+import 'package:hypha_wallet/ui/transfer_tokens/send/send_page.dart';
 import 'package:hypha_wallet/ui/wallet/data/wallet_token_data.dart';
 
 class SearchUserView extends StatelessWidget {
