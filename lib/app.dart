@@ -20,6 +20,7 @@ import 'package:hypha_wallet/ui/settings/hypha_confirmation_page.dart';
 import 'package:hypha_wallet/ui/settings/interactor/settings_bloc.dart';
 import 'package:hypha_wallet/ui/settings/save_key_page.dart';
 import 'package:hypha_wallet/ui/settings/save_words_page.dart';
+import 'package:hypha_wallet/ui/shared/components/join_dao_rationale_bottom_sheet.dart';
 import 'package:hypha_wallet/ui/shared/ui_constants.dart';
 import 'package:hypha_wallet/ui/sign_transaction/sign_transaction_page.dart';
 import 'package:hypha_wallet/ui/splash/splash_page.dart';
@@ -60,8 +61,9 @@ class HyphaAppView extends StatelessWidget {
           },
           listener: (context, state) {
             LogHelper.d('Auth Bloc Listener FIRED');
+
             /// If we are handling a deeplink. Do not listen to navigation.
-            if(context.read<DeeplinkBloc>().state.inviteLinkData != null) {
+            if (context.read<DeeplinkBloc>().state.inviteLinkData != null) {
               LogHelper.d('There is Invite Link data. Ignore this command.');
               return;
             }
@@ -90,10 +92,14 @@ class HyphaAppView extends StatelessWidget {
           listenWhen: (previous, current) => previous.command != current.command,
           listener: (context, state) {
             state.command?.when(
-                navigateToCreateAccount: () => Get.Get.offAll(() => const OnboardingPageWithLink()),
-                navigateToSignTransaction: (ScanQrCodeResultData data) {
-                  _showSignTransactionBottomSheet(data);
-                });
+              navigateToCreateAccount: () => Get.Get.offAll(() => const OnboardingPageWithLink()),
+              navigateToSignTransaction: (ScanQrCodeResultData data) {
+                _showSignTransactionBottomSheet(data);
+              },
+              showJoinDaoRationale: (daoName, secret) {
+                _showJoinDaoRationale(daoName, secret);
+              },
+            );
             context.read<DeeplinkBloc>().add(const DeeplinkEvent.clearPageCommand());
           },
         ),
@@ -212,6 +218,19 @@ class HyphaAppView extends StatelessWidget {
       FractionallySizedBox(
         heightFactor: UIConstants.bottomSheetHeightFraction,
         child: SignTransactionPage(qrCodeData: data),
+      ),
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
+      ),
+    );
+  }
+
+  void _showJoinDaoRationale(String daoName, String secret) {
+    Get.Get.bottomSheet(
+      FractionallySizedBox(
+        heightFactor: UIConstants.bottomSheetHeightFraction,
+        child: JoinDaoRationaleBottomSheet(daoName: daoName, secret: secret),
       ),
       isScrollControlled: true,
       shape: const RoundedRectangleBorder(

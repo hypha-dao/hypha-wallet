@@ -775,6 +775,8 @@ mixin _$PageCommand {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() navigateToCreateAccount,
+    required TResult Function(String daoName, String secret)
+        showJoinDaoRationale,
     required TResult Function(ScanQrCodeResultData data)
         navigateToSignTransaction,
   }) =>
@@ -782,12 +784,14 @@ mixin _$PageCommand {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? navigateToCreateAccount,
+    TResult? Function(String daoName, String secret)? showJoinDaoRationale,
     TResult? Function(ScanQrCodeResultData data)? navigateToSignTransaction,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? navigateToCreateAccount,
+    TResult Function(String daoName, String secret)? showJoinDaoRationale,
     TResult Function(ScanQrCodeResultData data)? navigateToSignTransaction,
     required TResult orElse(),
   }) =>
@@ -796,6 +800,7 @@ mixin _$PageCommand {
   TResult map<TResult extends Object?>({
     required TResult Function(_NavigateToCreateAccount value)
         navigateToCreateAccount,
+    required TResult Function(_ShowJoinDaoRationale value) showJoinDaoRationale,
     required TResult Function(_ESRLinkNavigateToSignTransaction value)
         navigateToSignTransaction,
   }) =>
@@ -803,6 +808,7 @@ mixin _$PageCommand {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_NavigateToCreateAccount value)? navigateToCreateAccount,
+    TResult? Function(_ShowJoinDaoRationale value)? showJoinDaoRationale,
     TResult? Function(_ESRLinkNavigateToSignTransaction value)?
         navigateToSignTransaction,
   }) =>
@@ -810,6 +816,7 @@ mixin _$PageCommand {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_NavigateToCreateAccount value)? navigateToCreateAccount,
+    TResult Function(_ShowJoinDaoRationale value)? showJoinDaoRationale,
     TResult Function(_ESRLinkNavigateToSignTransaction value)?
         navigateToSignTransaction,
     required TResult orElse(),
@@ -875,6 +882,8 @@ class _$_NavigateToCreateAccount implements _NavigateToCreateAccount {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() navigateToCreateAccount,
+    required TResult Function(String daoName, String secret)
+        showJoinDaoRationale,
     required TResult Function(ScanQrCodeResultData data)
         navigateToSignTransaction,
   }) {
@@ -885,6 +894,7 @@ class _$_NavigateToCreateAccount implements _NavigateToCreateAccount {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? navigateToCreateAccount,
+    TResult? Function(String daoName, String secret)? showJoinDaoRationale,
     TResult? Function(ScanQrCodeResultData data)? navigateToSignTransaction,
   }) {
     return navigateToCreateAccount?.call();
@@ -894,6 +904,7 @@ class _$_NavigateToCreateAccount implements _NavigateToCreateAccount {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? navigateToCreateAccount,
+    TResult Function(String daoName, String secret)? showJoinDaoRationale,
     TResult Function(ScanQrCodeResultData data)? navigateToSignTransaction,
     required TResult orElse(),
   }) {
@@ -908,6 +919,7 @@ class _$_NavigateToCreateAccount implements _NavigateToCreateAccount {
   TResult map<TResult extends Object?>({
     required TResult Function(_NavigateToCreateAccount value)
         navigateToCreateAccount,
+    required TResult Function(_ShowJoinDaoRationale value) showJoinDaoRationale,
     required TResult Function(_ESRLinkNavigateToSignTransaction value)
         navigateToSignTransaction,
   }) {
@@ -918,6 +930,7 @@ class _$_NavigateToCreateAccount implements _NavigateToCreateAccount {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_NavigateToCreateAccount value)? navigateToCreateAccount,
+    TResult? Function(_ShowJoinDaoRationale value)? showJoinDaoRationale,
     TResult? Function(_ESRLinkNavigateToSignTransaction value)?
         navigateToSignTransaction,
   }) {
@@ -928,6 +941,7 @@ class _$_NavigateToCreateAccount implements _NavigateToCreateAccount {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_NavigateToCreateAccount value)? navigateToCreateAccount,
+    TResult Function(_ShowJoinDaoRationale value)? showJoinDaoRationale,
     TResult Function(_ESRLinkNavigateToSignTransaction value)?
         navigateToSignTransaction,
     required TResult orElse(),
@@ -941,6 +955,162 @@ class _$_NavigateToCreateAccount implements _NavigateToCreateAccount {
 
 abstract class _NavigateToCreateAccount implements PageCommand {
   const factory _NavigateToCreateAccount() = _$_NavigateToCreateAccount;
+}
+
+/// @nodoc
+abstract class _$$_ShowJoinDaoRationaleCopyWith<$Res> {
+  factory _$$_ShowJoinDaoRationaleCopyWith(_$_ShowJoinDaoRationale value,
+          $Res Function(_$_ShowJoinDaoRationale) then) =
+      __$$_ShowJoinDaoRationaleCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String daoName, String secret});
+}
+
+/// @nodoc
+class __$$_ShowJoinDaoRationaleCopyWithImpl<$Res>
+    extends _$PageCommandCopyWithImpl<$Res, _$_ShowJoinDaoRationale>
+    implements _$$_ShowJoinDaoRationaleCopyWith<$Res> {
+  __$$_ShowJoinDaoRationaleCopyWithImpl(_$_ShowJoinDaoRationale _value,
+      $Res Function(_$_ShowJoinDaoRationale) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? daoName = null,
+    Object? secret = null,
+  }) {
+    return _then(_$_ShowJoinDaoRationale(
+      null == daoName
+          ? _value.daoName
+          : daoName // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == secret
+          ? _value.secret
+          : secret // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_ShowJoinDaoRationale implements _ShowJoinDaoRationale {
+  const _$_ShowJoinDaoRationale(this.daoName, this.secret);
+
+  @override
+  final String daoName;
+  @override
+  final String secret;
+
+  @override
+  String toString() {
+    return 'PageCommand.showJoinDaoRationale(daoName: $daoName, secret: $secret)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_ShowJoinDaoRationale &&
+            (identical(other.daoName, daoName) || other.daoName == daoName) &&
+            (identical(other.secret, secret) || other.secret == secret));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, daoName, secret);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_ShowJoinDaoRationaleCopyWith<_$_ShowJoinDaoRationale> get copyWith =>
+      __$$_ShowJoinDaoRationaleCopyWithImpl<_$_ShowJoinDaoRationale>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() navigateToCreateAccount,
+    required TResult Function(String daoName, String secret)
+        showJoinDaoRationale,
+    required TResult Function(ScanQrCodeResultData data)
+        navigateToSignTransaction,
+  }) {
+    return showJoinDaoRationale(daoName, secret);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? navigateToCreateAccount,
+    TResult? Function(String daoName, String secret)? showJoinDaoRationale,
+    TResult? Function(ScanQrCodeResultData data)? navigateToSignTransaction,
+  }) {
+    return showJoinDaoRationale?.call(daoName, secret);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? navigateToCreateAccount,
+    TResult Function(String daoName, String secret)? showJoinDaoRationale,
+    TResult Function(ScanQrCodeResultData data)? navigateToSignTransaction,
+    required TResult orElse(),
+  }) {
+    if (showJoinDaoRationale != null) {
+      return showJoinDaoRationale(daoName, secret);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_NavigateToCreateAccount value)
+        navigateToCreateAccount,
+    required TResult Function(_ShowJoinDaoRationale value) showJoinDaoRationale,
+    required TResult Function(_ESRLinkNavigateToSignTransaction value)
+        navigateToSignTransaction,
+  }) {
+    return showJoinDaoRationale(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_NavigateToCreateAccount value)? navigateToCreateAccount,
+    TResult? Function(_ShowJoinDaoRationale value)? showJoinDaoRationale,
+    TResult? Function(_ESRLinkNavigateToSignTransaction value)?
+        navigateToSignTransaction,
+  }) {
+    return showJoinDaoRationale?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_NavigateToCreateAccount value)? navigateToCreateAccount,
+    TResult Function(_ShowJoinDaoRationale value)? showJoinDaoRationale,
+    TResult Function(_ESRLinkNavigateToSignTransaction value)?
+        navigateToSignTransaction,
+    required TResult orElse(),
+  }) {
+    if (showJoinDaoRationale != null) {
+      return showJoinDaoRationale(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ShowJoinDaoRationale implements PageCommand {
+  const factory _ShowJoinDaoRationale(
+      final String daoName, final String secret) = _$_ShowJoinDaoRationale;
+
+  String get daoName;
+  String get secret;
+  @JsonKey(ignore: true)
+  _$$_ShowJoinDaoRationaleCopyWith<_$_ShowJoinDaoRationale> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1013,6 +1183,8 @@ class _$_ESRLinkNavigateToSignTransaction
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() navigateToCreateAccount,
+    required TResult Function(String daoName, String secret)
+        showJoinDaoRationale,
     required TResult Function(ScanQrCodeResultData data)
         navigateToSignTransaction,
   }) {
@@ -1023,6 +1195,7 @@ class _$_ESRLinkNavigateToSignTransaction
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? navigateToCreateAccount,
+    TResult? Function(String daoName, String secret)? showJoinDaoRationale,
     TResult? Function(ScanQrCodeResultData data)? navigateToSignTransaction,
   }) {
     return navigateToSignTransaction?.call(data);
@@ -1032,6 +1205,7 @@ class _$_ESRLinkNavigateToSignTransaction
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? navigateToCreateAccount,
+    TResult Function(String daoName, String secret)? showJoinDaoRationale,
     TResult Function(ScanQrCodeResultData data)? navigateToSignTransaction,
     required TResult orElse(),
   }) {
@@ -1046,6 +1220,7 @@ class _$_ESRLinkNavigateToSignTransaction
   TResult map<TResult extends Object?>({
     required TResult Function(_NavigateToCreateAccount value)
         navigateToCreateAccount,
+    required TResult Function(_ShowJoinDaoRationale value) showJoinDaoRationale,
     required TResult Function(_ESRLinkNavigateToSignTransaction value)
         navigateToSignTransaction,
   }) {
@@ -1056,6 +1231,7 @@ class _$_ESRLinkNavigateToSignTransaction
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_NavigateToCreateAccount value)? navigateToCreateAccount,
+    TResult? Function(_ShowJoinDaoRationale value)? showJoinDaoRationale,
     TResult? Function(_ESRLinkNavigateToSignTransaction value)?
         navigateToSignTransaction,
   }) {
@@ -1066,6 +1242,7 @@ class _$_ESRLinkNavigateToSignTransaction
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_NavigateToCreateAccount value)? navigateToCreateAccount,
+    TResult Function(_ShowJoinDaoRationale value)? showJoinDaoRationale,
     TResult Function(_ESRLinkNavigateToSignTransaction value)?
         navigateToSignTransaction,
     required TResult orElse(),

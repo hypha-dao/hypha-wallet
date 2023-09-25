@@ -681,10 +681,10 @@ class __$$_OnKeypadTappedCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? tappedKey = freezed,
+    Object? tappedKey = null,
   }) {
     return _then(_$_OnKeypadTapped(
-      freezed == tappedKey
+      null == tappedKey
           ? _value.tappedKey
           : tappedKey // ignore: cast_nullable_to_non_nullable
               as KeypadKey,
@@ -710,12 +710,12 @@ class _$_OnKeypadTapped implements _OnKeypadTapped {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_OnKeypadTapped &&
-            const DeepCollectionEquality().equals(other.tappedKey, tappedKey));
+            (identical(other.tappedKey, tappedKey) ||
+                other.tappedKey == tappedKey));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(tappedKey));
+  int get hashCode => Object.hash(runtimeType, tappedKey);
 
   @JsonKey(ignore: true)
   @override
