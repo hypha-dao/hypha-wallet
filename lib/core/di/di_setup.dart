@@ -54,6 +54,7 @@ import 'package:hypha_wallet/ui/onboarding/import_account/usecases/find_account_
 import 'package:hypha_wallet/ui/onboarding/import_account/usecases/generate_key_from_recovery_words_use_case.dart';
 import 'package:hypha_wallet/ui/onboarding/import_account/usecases/generate_key_from_seeds_passport_words_use_case.dart';
 import 'package:hypha_wallet/ui/onboarding/import_account/usecases/validate_key_use_case.dart';
+import 'package:hypha_wallet/ui/onboarding/join_dao/interactor/join_dao_bloc.dart';
 import 'package:hypha_wallet/ui/onboarding/usecases/check_account_availability_use_case.dart';
 import 'package:hypha_wallet/ui/onboarding/usecases/create_account_use_case.dart';
 import 'package:hypha_wallet/ui/onboarding/usecases/find_available_account_use_case.dart';
