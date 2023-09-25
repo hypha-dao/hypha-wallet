@@ -97,7 +97,7 @@ class HyphaAppView extends StatelessWidget {
                 _showSignTransactionBottomSheet(data);
               },
               showJoinDaoRationale: (daoName, secret) {
-                _showJoinDaoRationale(daoName, secret);
+                _showJoinDaoRationale(daoName, secret, context);
               },
             );
             context.read<DeeplinkBloc>().add(const DeeplinkEvent.clearPageCommand());
@@ -226,16 +226,17 @@ class HyphaAppView extends StatelessWidget {
     );
   }
 
-  void _showJoinDaoRationale(String daoName, String secret) {
-    Get.Get.bottomSheet(
-      FractionallySizedBox(
-        heightFactor: UIConstants.bottomSheetHeightFraction,
-        child: JoinDaoRationaleBottomSheet(daoName: daoName, secret: secret),
-      ),
+  void _showJoinDaoRationale(String daoName, String secret, BuildContext context) {
+    showModalBottomSheet(
+      useSafeArea: true,
       isScrollControlled: true,
+      builder: (context) {
+        return JoinDaoRationaleBottomSheet(daoName: daoName, secret: secret);
+      },
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
       ),
+      context: context,
     );
   }
 }

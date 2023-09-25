@@ -10,7 +10,6 @@ import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/icons/hypha_icons.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 import 'package:hypha_wallet/ui/blocs/authentication/authentication_bloc.dart';
-import 'package:hypha_wallet/ui/onboarding/join_dao/join_dao_rationale_bottom_sheet.dart';
 import 'package:hypha_wallet/ui/settings/hypha_confirmation_page.dart';
 import 'package:hypha_wallet/ui/settings/interactor/settings_bloc.dart';
 import 'package:hypha_wallet/ui/settings/save_key_page.dart';
@@ -83,18 +82,7 @@ class SettingsView extends StatelessWidget {
                           subtitle:
                               'Your private key (and the 12 secret words) are the only way to retrieve your hypha account and funds',
                           onTap: () {
-                            showModalBottomSheet(
-                              useSafeArea: true,
-                              isScrollControlled: true,
-                              builder: (context) {
-                                return const JoinDaoRationaleBottomSheet(daoName: 'Cuties in Bali', secret: 'secret');
-                              },
-                              shape: const RoundedRectangleBorder(
-                                borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
-                              ),
-                              context: context,
-                            );
-                            // Get.to(() => SaveKeyPage(state.userAuthData!.eOSPrivateKey.toString()));
+                            Get.to(() => SaveKeyPage(state.userAuthData!.eOSPrivateKey.toString()));
                           },
                         );
                       },
