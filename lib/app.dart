@@ -96,8 +96,8 @@ class HyphaAppView extends StatelessWidget {
               navigateToSignTransaction: (ScanQrCodeResultData data) {
                 _showSignTransactionBottomSheet(data);
               },
-              showJoinDaoRationale: (daoName, secret) {
-                _showJoinDaoRationale(daoName, secret, context);
+              showJoinDaoRationale: (daoName, daoId, secret) {
+                _showJoinDaoRationale(daoName, daoId, secret, context);
               },
             );
             context.read<DeeplinkBloc>().add(const DeeplinkEvent.clearPageCommand());
@@ -226,7 +226,7 @@ class HyphaAppView extends StatelessWidget {
     );
   }
 
-  void _showJoinDaoRationale(String daoName, String secret, BuildContext context) {
+  void _showJoinDaoRationale(String daoName, String daoId, String secret, BuildContext context) {
     showModalBottomSheet(
       useSafeArea: true,
       isScrollControlled: true,

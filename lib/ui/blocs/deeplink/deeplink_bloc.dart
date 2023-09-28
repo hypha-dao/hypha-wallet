@@ -101,8 +101,8 @@ class DeeplinkBloc extends Bloc<DeeplinkEvent, DeeplinkState> {
       final String enrollSecret = queryParams['enroll_secret']!;
 
       final PageCommand command;
-      if(_authRepository.currentAuthStatus is Authenticated) {
-        command = PageCommand.showJoinDaoRationale(dao, enrollSecret);
+      if (_authRepository.currentAuthStatus is Authenticated) {
+        command = PageCommand.showJoinDaoRationale(dao, dao, enrollSecret);
       } else {
         command = const PageCommand.navigateToCreateAccount();
       }

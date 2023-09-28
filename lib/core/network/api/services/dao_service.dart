@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
 import 'package:hypha_wallet/core/logging/log_helper.dart';
@@ -60,9 +58,6 @@ class DaoService {
     try {
       final res = await _networkingManager.post(url, data: query);
       final Map<String, dynamic> response = res.data;
-
-      print("response: ${response}");
-
       final List<dynamic> daos = response['data']['queryDao'];
       return Result.value(daos.isNotEmpty ? DaoData.fromJson(daos[0]) : null);
     } catch (error, stackTrace) {
