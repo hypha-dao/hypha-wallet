@@ -98,7 +98,14 @@ class DeeplinkBloc extends Bloc<DeeplinkEvent, DeeplinkState> {
       final chain = queryParams['chain']!;
       final dao = queryParams['dao']!;
 
-      final String? enrollSecret = queryParams['enroll_secret'];
+      final String enrollSecret = queryParams['enroll_secret']!;
+
+      final PageCommand command;
+      if(_authRepository.currentAuthStatus is Authenticated) {
+        command = PageCommand.showJoinDaoRationale(dao, enrollSecret);
+      } else {
+        command = const PageCommand.navigateToCreateAccount();
+      }
 
       /// Emit new state with data from link
       emit(
@@ -109,7 +116,7 @@ class DeeplinkBloc extends Bloc<DeeplinkEvent, DeeplinkState> {
             dao: dao,
             enrollSecret: enrollSecret,
           ),
-          command: const PageCommand.navigateToCreateAccount(),
+          command: command,
         ),
       );
     }

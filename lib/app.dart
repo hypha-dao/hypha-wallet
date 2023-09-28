@@ -15,6 +15,7 @@ import 'package:hypha_wallet/ui/blocs/authentication/authentication_bloc.dart';
 import 'package:hypha_wallet/ui/blocs/deeplink/deeplink_bloc.dart';
 import 'package:hypha_wallet/ui/blocs/error_handler/error_handler_bloc.dart';
 import 'package:hypha_wallet/ui/blocs/push_notifications/push_notifications_bloc.dart';
+import 'package:hypha_wallet/ui/onboarding/join_dao/join_dao_rationale_bottom_sheet.dart';
 import 'package:hypha_wallet/ui/onboarding/onboarding_page_with_link.dart';
 import 'package:hypha_wallet/ui/settings/hypha_confirmation_page.dart';
 import 'package:hypha_wallet/ui/settings/interactor/settings_bloc.dart';
@@ -60,8 +61,9 @@ class HyphaAppView extends StatelessWidget {
           },
           listener: (context, state) {
             LogHelper.d('Auth Bloc Listener FIRED');
+
             /// If we are handling a deeplink. Do not listen to navigation.
-            if(context.read<DeeplinkBloc>().state.inviteLinkData != null) {
+            if (context.read<DeeplinkBloc>().state.inviteLinkData != null) {
               LogHelper.d('There is Invite Link data. Ignore this command.');
               return;
             }
@@ -90,10 +92,14 @@ class HyphaAppView extends StatelessWidget {
           listenWhen: (previous, current) => previous.command != current.command,
           listener: (context, state) {
             state.command?.when(
-                navigateToCreateAccount: () => Get.Get.offAll(() => const OnboardingPageWithLink()),
-                navigateToSignTransaction: (ScanQrCodeResultData data) {
-                  _showSignTransactionBottomSheet(data);
-                });
+              navigateToCreateAccount: () => Get.Get.offAll(() => const OnboardingPageWithLink()),
+              navigateToSignTransaction: (ScanQrCodeResultData data) {
+                _showSignTransactionBottomSheet(data);
+              },
+              showJoinDaoRationale: (daoName, secret) {
+                _showJoinDaoRationale(daoName, secret, context);
+              },
+            );
             context.read<DeeplinkBloc>().add(const DeeplinkEvent.clearPageCommand());
           },
         ),
@@ -217,6 +223,20 @@ class HyphaAppView extends StatelessWidget {
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
       ),
+    );
+  }
+
+  void _showJoinDaoRationale(String daoName, String secret, BuildContext context) {
+    showModalBottomSheet(
+      useSafeArea: true,
+      isScrollControlled: true,
+      builder: (context) {
+        return JoinDaoRationaleBottomSheet(daoName: daoName, secret: secret);
+      },
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
+      ),
+      context: context,
     );
   }
 }

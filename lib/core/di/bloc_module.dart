@@ -107,6 +107,15 @@ void _registerBlocsModule() {
     ),
   );
 
+  _registerFactoryWithParams<JoinDaoBloc, String, void>(
+    (secret, _) => JoinDaoBloc(
+      _getIt<AuthRepository>(),
+      _getIt<InviteService>(),
+      _getIt<ErrorHandlerManager>(),
+      secret,
+    ),
+  );
+
   _registerFactoryWithParams<ReceiveBloc, WalletTokenData, void>(
     (tokenData, _) => ReceiveBloc(tokenData, _getIt<SendTokenUseCase>()),
   );
