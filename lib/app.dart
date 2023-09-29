@@ -227,16 +227,12 @@ class HyphaAppView extends StatelessWidget {
   }
 
   void _showJoinDaoRationale(String daoName, String secret, BuildContext context) {
-    showModalBottomSheet(
-      useSafeArea: true,
+    Get.Get.bottomSheet(
+        JoinDaoRationaleBottomSheet(daoName: daoName, secret: secret),
       isScrollControlled: true,
-      builder: (context) {
-        return JoinDaoRationaleBottomSheet(daoName: daoName, secret: secret);
-      },
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
       ),
-      context: context,
     );
   }
 }
