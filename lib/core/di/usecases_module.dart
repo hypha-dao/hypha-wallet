@@ -74,4 +74,6 @@ void _registerUseCasesModule() {
         _getIt<FirebaseDatabaseService>(),
         _getIt<AuthRepository>(),
       ));
+
+  _registerFactory(() => GetDaoNameUseCase(_getIt<DaoService>()));
 }

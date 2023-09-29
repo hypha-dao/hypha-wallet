@@ -775,7 +775,7 @@ mixin _$PageCommand {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() navigateToCreateAccount,
-    required TResult Function(String daoName, String daoId, String secret)
+    required TResult Function(InviteLinkData inviteLinkData)
         showJoinDaoRationale,
     required TResult Function(ScanQrCodeResultData data)
         navigateToSignTransaction,
@@ -784,16 +784,14 @@ mixin _$PageCommand {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? navigateToCreateAccount,
-    TResult? Function(String daoName, String daoId, String secret)?
-        showJoinDaoRationale,
+    TResult? Function(InviteLinkData inviteLinkData)? showJoinDaoRationale,
     TResult? Function(ScanQrCodeResultData data)? navigateToSignTransaction,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? navigateToCreateAccount,
-    TResult Function(String daoName, String daoId, String secret)?
-        showJoinDaoRationale,
+    TResult Function(InviteLinkData inviteLinkData)? showJoinDaoRationale,
     TResult Function(ScanQrCodeResultData data)? navigateToSignTransaction,
     required TResult orElse(),
   }) =>
@@ -884,7 +882,7 @@ class _$_NavigateToCreateAccount implements _NavigateToCreateAccount {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() navigateToCreateAccount,
-    required TResult Function(String daoName, String daoId, String secret)
+    required TResult Function(InviteLinkData inviteLinkData)
         showJoinDaoRationale,
     required TResult Function(ScanQrCodeResultData data)
         navigateToSignTransaction,
@@ -896,8 +894,7 @@ class _$_NavigateToCreateAccount implements _NavigateToCreateAccount {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? navigateToCreateAccount,
-    TResult? Function(String daoName, String daoId, String secret)?
-        showJoinDaoRationale,
+    TResult? Function(InviteLinkData inviteLinkData)? showJoinDaoRationale,
     TResult? Function(ScanQrCodeResultData data)? navigateToSignTransaction,
   }) {
     return navigateToCreateAccount?.call();
@@ -907,8 +904,7 @@ class _$_NavigateToCreateAccount implements _NavigateToCreateAccount {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? navigateToCreateAccount,
-    TResult Function(String daoName, String daoId, String secret)?
-        showJoinDaoRationale,
+    TResult Function(InviteLinkData inviteLinkData)? showJoinDaoRationale,
     TResult Function(ScanQrCodeResultData data)? navigateToSignTransaction,
     required TResult orElse(),
   }) {
@@ -967,7 +963,7 @@ abstract class _$$_ShowJoinDaoRationaleCopyWith<$Res> {
           $Res Function(_$_ShowJoinDaoRationale) then) =
       __$$_ShowJoinDaoRationaleCopyWithImpl<$Res>;
   @useResult
-  $Res call({String daoName, String daoId, String secret});
+  $Res call({InviteLinkData inviteLinkData});
 }
 
 /// @nodoc
@@ -981,23 +977,13 @@ class __$$_ShowJoinDaoRationaleCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? daoName = null,
-    Object? daoId = null,
-    Object? secret = null,
+    Object? inviteLinkData = null,
   }) {
     return _then(_$_ShowJoinDaoRationale(
-      null == daoName
-          ? _value.daoName
-          : daoName // ignore: cast_nullable_to_non_nullable
-              as String,
-      null == daoId
-          ? _value.daoId
-          : daoId // ignore: cast_nullable_to_non_nullable
-              as String,
-      null == secret
-          ? _value.secret
-          : secret // ignore: cast_nullable_to_non_nullable
-              as String,
+      null == inviteLinkData
+          ? _value.inviteLinkData
+          : inviteLinkData // ignore: cast_nullable_to_non_nullable
+              as InviteLinkData,
     ));
   }
 }
@@ -1005,18 +991,14 @@ class __$$_ShowJoinDaoRationaleCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_ShowJoinDaoRationale implements _ShowJoinDaoRationale {
-  const _$_ShowJoinDaoRationale(this.daoName, this.daoId, this.secret);
+  const _$_ShowJoinDaoRationale(this.inviteLinkData);
 
   @override
-  final String daoName;
-  @override
-  final String daoId;
-  @override
-  final String secret;
+  final InviteLinkData inviteLinkData;
 
   @override
   String toString() {
-    return 'PageCommand.showJoinDaoRationale(daoName: $daoName, daoId: $daoId, secret: $secret)';
+    return 'PageCommand.showJoinDaoRationale(inviteLinkData: $inviteLinkData)';
   }
 
   @override
@@ -1024,13 +1006,12 @@ class _$_ShowJoinDaoRationale implements _ShowJoinDaoRationale {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ShowJoinDaoRationale &&
-            (identical(other.daoName, daoName) || other.daoName == daoName) &&
-            (identical(other.daoId, daoId) || other.daoId == daoId) &&
-            (identical(other.secret, secret) || other.secret == secret));
+            (identical(other.inviteLinkData, inviteLinkData) ||
+                other.inviteLinkData == inviteLinkData));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, daoName, daoId, secret);
+  int get hashCode => Object.hash(runtimeType, inviteLinkData);
 
   @JsonKey(ignore: true)
   @override
@@ -1043,36 +1024,34 @@ class _$_ShowJoinDaoRationale implements _ShowJoinDaoRationale {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() navigateToCreateAccount,
-    required TResult Function(String daoName, String daoId, String secret)
+    required TResult Function(InviteLinkData inviteLinkData)
         showJoinDaoRationale,
     required TResult Function(ScanQrCodeResultData data)
         navigateToSignTransaction,
   }) {
-    return showJoinDaoRationale(daoName, daoId, secret);
+    return showJoinDaoRationale(inviteLinkData);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? navigateToCreateAccount,
-    TResult? Function(String daoName, String daoId, String secret)?
-        showJoinDaoRationale,
+    TResult? Function(InviteLinkData inviteLinkData)? showJoinDaoRationale,
     TResult? Function(ScanQrCodeResultData data)? navigateToSignTransaction,
   }) {
-    return showJoinDaoRationale?.call(daoName, daoId, secret);
+    return showJoinDaoRationale?.call(inviteLinkData);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? navigateToCreateAccount,
-    TResult Function(String daoName, String daoId, String secret)?
-        showJoinDaoRationale,
+    TResult Function(InviteLinkData inviteLinkData)? showJoinDaoRationale,
     TResult Function(ScanQrCodeResultData data)? navigateToSignTransaction,
     required TResult orElse(),
   }) {
     if (showJoinDaoRationale != null) {
-      return showJoinDaoRationale(daoName, daoId, secret);
+      return showJoinDaoRationale(inviteLinkData);
     }
     return orElse();
   }
@@ -1117,13 +1096,10 @@ class _$_ShowJoinDaoRationale implements _ShowJoinDaoRationale {
 }
 
 abstract class _ShowJoinDaoRationale implements PageCommand {
-  const factory _ShowJoinDaoRationale(
-          final String daoName, final String daoId, final String secret) =
+  const factory _ShowJoinDaoRationale(final InviteLinkData inviteLinkData) =
       _$_ShowJoinDaoRationale;
 
-  String get daoName;
-  String get daoId;
-  String get secret;
+  InviteLinkData get inviteLinkData;
   @JsonKey(ignore: true)
   _$$_ShowJoinDaoRationaleCopyWith<_$_ShowJoinDaoRationale> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1199,7 +1175,7 @@ class _$_ESRLinkNavigateToSignTransaction
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() navigateToCreateAccount,
-    required TResult Function(String daoName, String daoId, String secret)
+    required TResult Function(InviteLinkData inviteLinkData)
         showJoinDaoRationale,
     required TResult Function(ScanQrCodeResultData data)
         navigateToSignTransaction,
@@ -1211,8 +1187,7 @@ class _$_ESRLinkNavigateToSignTransaction
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? navigateToCreateAccount,
-    TResult? Function(String daoName, String daoId, String secret)?
-        showJoinDaoRationale,
+    TResult? Function(InviteLinkData inviteLinkData)? showJoinDaoRationale,
     TResult? Function(ScanQrCodeResultData data)? navigateToSignTransaction,
   }) {
     return navigateToSignTransaction?.call(data);
@@ -1222,8 +1197,7 @@ class _$_ESRLinkNavigateToSignTransaction
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? navigateToCreateAccount,
-    TResult Function(String daoName, String daoId, String secret)?
-        showJoinDaoRationale,
+    TResult Function(InviteLinkData inviteLinkData)? showJoinDaoRationale,
     TResult Function(ScanQrCodeResultData data)? navigateToSignTransaction,
     required TResult orElse(),
   }) {

@@ -45,6 +45,7 @@ import 'package:hypha_wallet/ui/history/details/interactor/transaction_detail_bl
 import 'package:hypha_wallet/ui/history/transactions/interactor/transactions_bloc.dart';
 import 'package:hypha_wallet/ui/history/transactions/usecases/get_transaction_history_use_case.dart';
 import 'package:hypha_wallet/ui/home_page/interactor/home_bloc.dart';
+import 'package:hypha_wallet/ui/home_page/usecases/get_dao_name_use_case.dart';
 import 'package:hypha_wallet/ui/home_page/usecases/parse_qr_code_use_case.dart';
 import 'package:hypha_wallet/ui/onboarding/create_account/interactor/create_account_bloc.dart';
 import 'package:hypha_wallet/ui/onboarding/edit_account/edit_account_page.dart';

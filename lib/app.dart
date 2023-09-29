@@ -96,8 +96,8 @@ class HyphaAppView extends StatelessWidget {
               navigateToSignTransaction: (ScanQrCodeResultData data) {
                 _showSignTransactionBottomSheet(data);
               },
-              showJoinDaoRationale: (daoName, daoId, secret) {
-                _showJoinDaoRationale(daoName, daoId, secret, context);
+              showJoinDaoRationale: (inviteLinkData) {
+                _showJoinDaoRationale(inviteLinkData, context);
               },
             );
             context.read<DeeplinkBloc>().add(const DeeplinkEvent.clearPageCommand());
@@ -226,9 +226,9 @@ class HyphaAppView extends StatelessWidget {
     );
   }
 
-  void _showJoinDaoRationale(String daoName, String daoId, String secret, BuildContext context) {
+  void _showJoinDaoRationale(InviteLinkData inviteLinkData, BuildContext context) {
     Get.Get.bottomSheet(
-        JoinDaoRationaleBottomSheet(daoName: daoName, secret: secret),
+        JoinDaoRationaleBottomSheet(inviteLinkData: inviteLinkData),
       isScrollControlled: true,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(30)),

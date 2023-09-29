@@ -281,6 +281,7 @@ abstract class _OnYesTapped implements JoinDaoEvent {
 mixin _$JoinDaoState {
   PageState get pageState => throw _privateConstructorUsedError;
   bool get isButtonLoading => throw _privateConstructorUsedError;
+  String get daoName => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $JoinDaoStateCopyWith<JoinDaoState> get copyWith =>
@@ -293,7 +294,7 @@ abstract class $JoinDaoStateCopyWith<$Res> {
           JoinDaoState value, $Res Function(JoinDaoState) then) =
       _$JoinDaoStateCopyWithImpl<$Res, JoinDaoState>;
   @useResult
-  $Res call({PageState pageState, bool isButtonLoading});
+  $Res call({PageState pageState, bool isButtonLoading, String daoName});
 }
 
 /// @nodoc
@@ -311,6 +312,7 @@ class _$JoinDaoStateCopyWithImpl<$Res, $Val extends JoinDaoState>
   $Res call({
     Object? pageState = null,
     Object? isButtonLoading = null,
+    Object? daoName = null,
   }) {
     return _then(_value.copyWith(
       pageState: null == pageState
@@ -321,6 +323,10 @@ class _$JoinDaoStateCopyWithImpl<$Res, $Val extends JoinDaoState>
           ? _value.isButtonLoading
           : isButtonLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      daoName: null == daoName
+          ? _value.daoName
+          : daoName // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -333,7 +339,7 @@ abstract class _$$_JoinDaoStateCopyWith<$Res>
       __$$_JoinDaoStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({PageState pageState, bool isButtonLoading});
+  $Res call({PageState pageState, bool isButtonLoading, String daoName});
 }
 
 /// @nodoc
@@ -349,6 +355,7 @@ class __$$_JoinDaoStateCopyWithImpl<$Res>
   $Res call({
     Object? pageState = null,
     Object? isButtonLoading = null,
+    Object? daoName = null,
   }) {
     return _then(_$_JoinDaoState(
       pageState: null == pageState
@@ -359,6 +366,10 @@ class __$$_JoinDaoStateCopyWithImpl<$Res>
           ? _value.isButtonLoading
           : isButtonLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      daoName: null == daoName
+          ? _value.daoName
+          : daoName // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -367,7 +378,9 @@ class __$$_JoinDaoStateCopyWithImpl<$Res>
 
 class _$_JoinDaoState extends _JoinDaoState {
   const _$_JoinDaoState(
-      {this.pageState = PageState.initial, this.isButtonLoading = false})
+      {this.pageState = PageState.initial,
+      this.isButtonLoading = false,
+      this.daoName = ''})
       : super._();
 
   @override
@@ -376,10 +389,13 @@ class _$_JoinDaoState extends _JoinDaoState {
   @override
   @JsonKey()
   final bool isButtonLoading;
+  @override
+  @JsonKey()
+  final String daoName;
 
   @override
   String toString() {
-    return 'JoinDaoState(pageState: $pageState, isButtonLoading: $isButtonLoading)';
+    return 'JoinDaoState(pageState: $pageState, isButtonLoading: $isButtonLoading, daoName: $daoName)';
   }
 
   @override
@@ -390,11 +406,13 @@ class _$_JoinDaoState extends _JoinDaoState {
             (identical(other.pageState, pageState) ||
                 other.pageState == pageState) &&
             (identical(other.isButtonLoading, isButtonLoading) ||
-                other.isButtonLoading == isButtonLoading));
+                other.isButtonLoading == isButtonLoading) &&
+            (identical(other.daoName, daoName) || other.daoName == daoName));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, pageState, isButtonLoading);
+  int get hashCode =>
+      Object.hash(runtimeType, pageState, isButtonLoading, daoName);
 
   @JsonKey(ignore: true)
   @override
@@ -406,13 +424,16 @@ class _$_JoinDaoState extends _JoinDaoState {
 abstract class _JoinDaoState extends JoinDaoState {
   const factory _JoinDaoState(
       {final PageState pageState,
-      final bool isButtonLoading}) = _$_JoinDaoState;
+      final bool isButtonLoading,
+      final String daoName}) = _$_JoinDaoState;
   const _JoinDaoState._() : super._();
 
   @override
   PageState get pageState;
   @override
   bool get isButtonLoading;
+  @override
+  String get daoName;
   @override
   @JsonKey(ignore: true)
   _$$_JoinDaoStateCopyWith<_$_JoinDaoState> get copyWith =>
