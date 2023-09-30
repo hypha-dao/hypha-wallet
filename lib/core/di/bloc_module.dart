@@ -107,12 +107,13 @@ void _registerBlocsModule() {
     ),
   );
 
-  _registerFactoryWithParams<JoinDaoBloc, String, void>(
-    (secret, _) => JoinDaoBloc(
+  _registerFactoryWithParams<JoinDaoBloc, InviteLinkData, void>(
+    (inviteLinkData, _) => JoinDaoBloc(
       _getIt<AuthRepository>(),
       _getIt<InviteService>(),
       _getIt<ErrorHandlerManager>(),
-      secret,
+      _getIt<GetDaoNameUseCase>(),
+      inviteLinkData,
     ),
   );
 

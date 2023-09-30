@@ -7,6 +7,7 @@ class JoinDaoState with _$JoinDaoState {
   const factory JoinDaoState({
     @Default(PageState.initial) PageState pageState,
     @Default(false) bool isButtonLoading,
+    @Default('') String daoName,
   }) = _JoinDaoState;
 
 }
