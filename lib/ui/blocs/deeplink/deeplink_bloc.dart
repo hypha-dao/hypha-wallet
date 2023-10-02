@@ -98,7 +98,7 @@ class DeeplinkBloc extends Bloc<DeeplinkEvent, DeeplinkState> {
       final chain = queryParams['chain']!;
       final network = Network.fromString(chain);
       final dao = queryParams['dao']!;
-      final String enrollSecret = queryParams['enroll_secret']!;
+      final String? enrollSecret = queryParams['enroll_secret'];
 
       final inviteLinkData = InviteLinkData(
         code: code,
