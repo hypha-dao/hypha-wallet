@@ -20,8 +20,10 @@ class SignTransactionUseCase extends InputUseCase<HResult.Result<String, HyphaEr
   Future<HResult.Result<String, HyphaError>> run(SignTransactionInput input) async {
     final userData = _authRepository.authDataOrCrash;
     if (input.eOSTransaction.network != userData.userProfileData.network) {
-      return HResult.Result.error(HyphaError.api(
-          'Wrong network. Transaction on ${input.eOSTransaction.network} cannot be signed by user on ${userData.userProfileData.network}'));
+      return HResult.Result.error(
+        HyphaError.api(
+            'Wrong network. Transaction on ${input.eOSTransaction.network} cannot be signed by user on ${userData.userProfileData.network}'),
+      );
     }
     final Result<dynamic> result;
     try {
