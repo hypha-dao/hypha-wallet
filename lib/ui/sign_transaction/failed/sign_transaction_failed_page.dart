@@ -70,6 +70,8 @@ class SignTransactionFailedPage extends StatelessWidget {
                     const SizedBox(height: 16),
                     ExpansionTile(
                       title: const Text('Tap to see full error'),
+                      collapsedTextColor: context.hyphaTextTheme.ralMediumBody.color,
+                      textColor: context.hyphaTextTheme.ralMediumBody.color,
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(bottom: 8),
