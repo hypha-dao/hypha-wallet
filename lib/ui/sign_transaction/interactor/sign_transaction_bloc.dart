@@ -3,15 +3,20 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hypha_wallet/core/crypto/seeds_esr/scan_qr_code_result_data.dart';
+import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
 import 'package:hypha_wallet/core/logging/log_helper.dart';
 import 'package:hypha_wallet/ui/architecture/interactor/page_states.dart';
+import 'package:hypha_wallet/ui/architecture/result/result.dart';
 import 'package:hypha_wallet/ui/sign_transaction/interactor/data/transaction_action_data.dart';
 import 'package:hypha_wallet/ui/sign_transaction/success/sign_transaction_success_page.dart';
 import 'package:hypha_wallet/ui/sign_transaction/usecases/sign_transaction_use_case.dart';
 
 part 'page_command.dart';
+
 part 'sign_transaction_bloc.freezed.dart';
+
 part 'sign_transaction_event.dart';
+
 part 'sign_transaction_state.dart';
 
 class SignTransactionBloc extends Bloc<SignTransactionEvent, SignTransactionState> {
@@ -41,10 +46,11 @@ class SignTransactionBloc extends Bloc<SignTransactionEvent, SignTransactionStat
     ));
     if (result.isValue) {
       emit(
-          state.copyWith(command: const PageCommand.navigateToTransactionSuccess(SignSuccessTransactionType.approved)));
+        state.copyWith(command: const PageCommand.navigateToTransactionSuccess(SignSuccessTransactionType.approved)),
+      );
     } else {
       LogHelper.e('Transaction error: ${result.asError?.error.message}');
-      emit(state.copyWith(command: const PageCommand.navigateToTransactionFailed()));
+      emit(state.copyWith(command: PageCommand.navigateToTransactionFailed(result.asError!)));
     }
   }
 

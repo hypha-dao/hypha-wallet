@@ -26,8 +26,8 @@ class SignTransactionPage extends StatelessWidget {
               () => SignTransactionSuccessPage(transactionType: type),
               transition: GetX.Transition.downToUp,
             );
-          }, navigateToTransactionFailed: () {
-            GetX.Get.off(() => const SignTransactionFailedPage(), transition: GetX.Transition.downToUp);
+          }, navigateToTransactionFailed: (error) {
+            GetX.Get.off(() => SignTransactionFailedPage(error.error), transition: GetX.Transition.downToUp);
           }, navigateAway: () {
             GetX.Get.back();
           });

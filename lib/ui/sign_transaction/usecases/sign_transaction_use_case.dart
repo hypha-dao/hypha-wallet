@@ -1,4 +1,5 @@
 import 'package:async/async.dart';
+import 'package:dio/dio.dart';
 import 'package:hypha_wallet/core/crypto/seeds_esr/eos_transaction.dart';
 import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
 import 'package:hypha_wallet/core/extension/scope_functions.dart';
@@ -20,8 +21,10 @@ class SignTransactionUseCase extends InputUseCase<HResult.Result<String, HyphaEr
   Future<HResult.Result<String, HyphaError>> run(SignTransactionInput input) async {
     final userData = _authRepository.authDataOrCrash;
     if (input.eOSTransaction.network != userData.userProfileData.network) {
-      return HResult.Result.error(HyphaError.api(
-          'Wrong network. Transaction on ${input.eOSTransaction.network} cannot be signed by user on ${userData.userProfileData.network}'));
+      return HResult.Result.error(
+        HyphaError.api(
+            'Wrong network. Transaction on ${input.eOSTransaction.network} cannot be signed by user on ${userData.userProfileData.network}'),
+      );
     }
     final Result<dynamic> result;
     try {
@@ -47,7 +50,29 @@ class SignTransactionUseCase extends InputUseCase<HResult.Result<String, HyphaEr
       return HResult.Result.value(result.asValue!.value as String);
     } else {
       LogHelper.e('error creating transaction ${result.asError?.error}');
-      return HResult.Result.error(HyphaError.api('Error creating singing transaction ${result.asError?.error}'));
+      final error = result.asError!.error;
+
+      if (error is DioException && error.response != null) {
+        try {
+          final data = error.response!.data;
+          final code = data['code'];
+          final errorData = data['error'] as Map;
+          final what = errorData['what'];
+          final details = errorData['details'] as List;
+          final detailedMessage = details[0];
+
+          return HResult.Result.error(HyphaError.api(
+            'Error Code: $code'
+            '\nWhat: $what'
+            '\nMessage: $detailedMessage',
+          ));
+        } catch (e, s) {
+          LogHelper.e('Error parsing DioException', stacktrace: s);
+          return HResult.Result.error(HyphaError.api('Error creating singing transaction ${result.asError?.error}'));
+        }
+      } else {
+        return HResult.Result.error(HyphaError.api('Error creating singing transaction ${result.asError?.error}'));
+      }
     }
   }
 }

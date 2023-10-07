@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:hypha_wallet/core/network/models/dao_data_model.dart';
 import 'package:hypha_wallet/design/avatar_image/hypha_avatar_image.dart';
 import 'package:hypha_wallet/design/background/hypha_half_background.dart';
@@ -84,7 +85,7 @@ class ProfileView extends StatelessWidget {
                         const SizedBox(height: 4),
                         Center(
                           child: Text(
-                            '@${state.profileData?.account ?? ''}',
+                            '@${state.profileData?.account ?? ''} - ${state.profileData?.network.name.capitalizeFirst}',
                             style: context.hyphaTextTheme.regular.copyWith(color: HyphaColors.lightBlue),
                           ),
                         ),
