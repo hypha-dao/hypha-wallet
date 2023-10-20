@@ -87,6 +87,7 @@ class RemoteConfigService {
   }
 
   bool get isSignUpEnabled => FirebaseRemoteConfig.instance.getBool('signUpEnabled');
+  String get signUpLinkUrl => FirebaseRemoteConfig.instance.getString('signUpLinkUrl');
 
   bool get isWalletEnabled => FirebaseRemoteConfig.instance.getBool('walletEnabled');
 
@@ -203,7 +204,8 @@ class RemoteConfigService {
           "v2": "http://jungle.eosusa.io",
         },
       }),
-      'signUpEnabled': false,
+      'signUpEnabled': true,
+      "signUpLinkUrl": "https://dao.hypha.earth/hypha/login",
       'walletEnabled': false,
     });
     FirebaseRemoteConfig.instance.onConfigUpdated.listen((event) async {
