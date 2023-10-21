@@ -18,7 +18,7 @@ class OnboardingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Future<void> _launchUrl() async {
-      const _url = 'https://dao.hypha.earth/';
+      final _url = GetIt.I.get<RemoteConfigService>().signUpLinkUrl;
       if (!await launchUrl(Uri.parse(_url))) {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           content: Text('Error Launching URL. Please visit dao.hypha.earth'),
