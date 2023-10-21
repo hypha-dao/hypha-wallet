@@ -471,7 +471,7 @@ int checkRange(int orig, int converted) {
 }
 
 DateTime checkDateParse(String date) {
-  var result = DateTime.parse(date + 'Z');
+  var result = DateTime.parse(date.endsWith('Z') ? date : date + 'Z');
   return result;
 }
 
