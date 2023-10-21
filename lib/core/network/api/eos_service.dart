@@ -8,8 +8,10 @@ import 'package:hypha_wallet/core/crypto/seeds_esr/eos_transaction.dart';
 import 'package:hypha_wallet/core/local/models/user_auth_data.dart';
 import 'package:hypha_wallet/core/local/services/secure_storage_service.dart';
 import 'package:hypha_wallet/core/logging/log_helper.dart';
+import 'package:hypha_wallet/core/network/api/endpoints.dart';
 import 'package:hypha_wallet/core/network/api/services/remote_config_service.dart';
 import 'package:hypha_wallet/core/network/models/network.dart';
+import 'package:hypha_wallet/core/network/models/network_extension.dart';
 import 'package:hypha_wallet/core/network/models/token_value.dart';
 import 'package:hypha_wallet/core/network/models/user_profile_data.dart';
 
@@ -223,6 +225,17 @@ class EOSService {
     print('action to be proposed: $action');
 
     return action;
+  }
+
+  Future<Result<Account>> getAccount(String accountName, Network network) async {
+    final requestBody = {'account_name': accountName};
+    try {
+      final res = await network.manager.post(Endpoints.getAccount, data: requestBody);
+      return Result.value(Account.fromJson(res.data));
+    } catch (error) {
+      LogHelper.e('getAccount Error', error: error);
+      return Result.error('getAccount Error: $error');
+    }
   }
 }
 

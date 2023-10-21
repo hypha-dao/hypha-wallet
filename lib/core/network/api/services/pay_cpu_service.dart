@@ -26,23 +26,38 @@ class PayForCpuService {
   Future<Result<EOSAction?, HyphaError>> getFreeCpuAction(UserProfileData user, Network network) async {
     LogHelper.d('buildFreeTransaction');
 
-    // pay cpu is under feature flag for each network
-    if (!remoteConfigService.isPayCpuEnabled(network)) {
-      return Result.value(null);
-    }
-
-    // if user is DAO member, we can pay for CPU
-    final daos = await daoService.getDaos(user: user);
-    if (daos.isValue) {
-      if (daos.asValue!.value.isNotEmpty) {
-        final action = payCpuAction(account: user.accountName, network: network);
-        return Result.value(action);
-      } else {
+    try {
+      // pay cpu is under feature flag for each network
+      if (!remoteConfigService.isPayCpuEnabled(network)) {
         return Result.value(null);
       }
-    } else {
-      LogHelper.e('Error retrieving DAOs: ${daos.asError?.error}');
-      return Result.error(HyphaError.fromError(daos.asError));
+
+      // if user is DAO member, we can pay for CPU
+      final daos = await daoService.getDaos(user: user);
+
+      if (daos.isValue) {
+        if (daos.asValue!.value.isNotEmpty) {
+          final action = payCpuAction(account: user.accountName, network: network);
+          return Result.value(action);
+        } else {
+          // if user was created by us and recently, we also cover CPU
+          // This covers EOS users that create a new account
+          final result = await eosService.getAccount(user.accountName, network);
+          final freshHours = remoteConfigService.newAccountFreshnessHours;
+          if (result.isValue) {
+            if (DateTime.now().difference(result.asValue!.value.created!).inHours < freshHours) {
+              return Result.value(payCpuAction(account: user.accountName, network: network));
+            }
+          }
+          return Result.value(null);
+        }
+      } else {
+        LogHelper.e('Error retrieving DAOs (ignored): ${daos.asError?.error}');
+        return Result.value(null);
+      }
+    } catch (error) {
+      LogHelper.e('ignored payCPUActionError: $error');
+      return Result.value(null);
     }
   }
 
