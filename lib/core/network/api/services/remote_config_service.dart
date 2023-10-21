@@ -89,6 +89,8 @@ class RemoteConfigService {
   bool get isSignUpEnabled => FirebaseRemoteConfig.instance.getBool('signUpEnabled');
   String get signUpLinkUrl => FirebaseRemoteConfig.instance.getString('signUpLinkUrl');
 
+  int get newAccountFreshnessHours => FirebaseRemoteConfig.instance.getInt('newAccountFreshnessHours');
+
   bool get isWalletEnabled => FirebaseRemoteConfig.instance.getBool('walletEnabled');
 
   bool isPayCpuEnabled(Network network) => _getMap('payCpuEnabledNetwork')[network.name] ?? false;
@@ -207,6 +209,8 @@ class RemoteConfigService {
       'signUpEnabled': true,
       "signUpLinkUrl": "https://dao.hypha.earth/hypha/login",
       'walletEnabled': false,
+      'newAccountFreshnessHours': 48,
+      'payCpuEnabledNetwork': json.encode({"telos": false, "telosTestnet": true, "eos": true, "eosTestnet": true})
     });
     FirebaseRemoteConfig.instance.onConfigUpdated.listen((event) async {
       // Side note: This does not seem to work reliably on simulator but it works in the app.
