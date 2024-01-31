@@ -171,7 +171,7 @@ class RemoteConfigService {
           "logoutAction": "logoutuser",
           "inviteContract": "joinxhypha11",
           "payCpuContract": "paycpuxhypha",
-          "daoContract": "dao.hypha",
+          "daoContract": "daoxhypha111",
           "graphQlEndpoint": "https://nameless-brook-400226.eu-central-1.aws.cloud.dgraph.io/graphql"
         }
       }),
