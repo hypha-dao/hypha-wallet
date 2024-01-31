@@ -164,8 +164,8 @@ class RemoteConfigService {
         },
         "eosTestnet": {
           "name": "Jungle4 Testnet",
-          "endpoint": "http://jungle.eosusa.io/",
-          "fastEndpoint": "http://jungle.eosusa.io/",
+          "endpoint": "http://jungle.eosusa.io",
+          "fastEndpoint": "http://jungle.eosusa.io",
           "loginContract": "logintohypha",
           "loginAction": "loginuser",
           "logoutAction": "logoutuser",
