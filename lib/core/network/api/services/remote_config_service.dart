@@ -91,7 +91,7 @@ class RemoteConfigService {
 
   int get newAccountFreshnessHours => FirebaseRemoteConfig.instance.getInt('newAccountFreshnessHours');
 
-  bool get isWalletEnabled => FirebaseRemoteConfig.instance.getBool('walletEnabled');
+  bool get isWalletEnabled => FirebaseRemoteConfig.instance.getBool('walletEnabled2');
 
   bool isPayCpuEnabled(Network network) => _getMap('payCpuEnabledNetwork')[network.name] ?? false;
 
@@ -208,7 +208,8 @@ class RemoteConfigService {
       }),
       'signUpEnabled': true,
       "signUpLinkUrl": "https://dao.hypha.earth/hypha/login",
-      'walletEnabled': false,
+      'walletEnabled': false, // to be retired
+      'walletEnabled2': true,
       'newAccountFreshnessHours': 48,
       'payCpuEnabledNetwork': json.encode({"telos": false, "telosTestnet": true, "eos": true, "eosTestnet": true})
     });
