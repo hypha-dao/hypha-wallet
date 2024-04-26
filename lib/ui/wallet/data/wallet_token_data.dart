@@ -7,11 +7,11 @@ class WalletTokenData extends FirebaseTokenData {
   const WalletTokenData({
     required this.selected,
     this.userOwnedAmount,
+    required super.network,
     required super.image,
     required super.name,
     required super.contract,
     required super.symbol,
-    required super.id,
     required super.precision,
   });
 
@@ -20,11 +20,11 @@ class WalletTokenData extends FirebaseTokenData {
   WalletTokenData withUserOwnedAmount(double userOwnedAmount) {
     return WalletTokenData(
       selected: selected,
+      network: network,
       image: image,
       name: name,
       contract: contract,
       symbol: symbol,
-      id: id,
       userOwnedAmount: userOwnedAmount,
       precision: precision,
     );

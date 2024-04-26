@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:hypha_wallet/core/firebase/firebase_token_data.dart';
 import 'package:hypha_wallet/core/logging/log_helper.dart';
+import 'package:hypha_wallet/core/network/models/network.dart';
 
 class FirebaseDatabaseService {
   const FirebaseDatabaseService._();
@@ -97,18 +98,20 @@ class FirebaseDatabaseService {
   }
 
   /// Get all tokens
-  Future<List<FirebaseTokenData>> getAllTokens() async {
+  Future<List<FirebaseTokenData>> getAllTokens(Network network) async {
     final db = FirebaseFirestore.instance;
 
-    final tokens = await db.collection('tokens').get();
+    print("getting tokens 'tokens/$network'");
+
+    final tokens = await db.collection('tokens/${network.name}').get();
     final mappedTokens = tokens.docs
         .map(
           (QueryDocumentSnapshot<Map<String, dynamic>> token) => FirebaseTokenData(
+            network: network.name,
             image: token.data()['image'],
             name: token.data()['name'],
             contract: token.data()['contract'],
             symbol: token.data()['symbol'],
-            id: token.data()['id'],
             precision: token.data()['precision'],
           ),
         )
