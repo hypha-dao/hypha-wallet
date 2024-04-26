@@ -233,6 +233,7 @@ mixin _$ReceiveEvent {
     required TResult Function() clearPageCommand,
     required TResult Function(KeypadKey tappedKey) onKeypadTapped,
     required TResult Function(String? memo) onMemoEntered,
+    required TResult Function() onNextTapped,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -242,6 +243,7 @@ mixin _$ReceiveEvent {
     TResult? Function()? clearPageCommand,
     TResult? Function(KeypadKey tappedKey)? onKeypadTapped,
     TResult? Function(String? memo)? onMemoEntered,
+    TResult? Function()? onNextTapped,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -251,6 +253,7 @@ mixin _$ReceiveEvent {
     TResult Function()? clearPageCommand,
     TResult Function(KeypadKey tappedKey)? onKeypadTapped,
     TResult Function(String? memo)? onMemoEntered,
+    TResult Function()? onNextTapped,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -261,6 +264,7 @@ mixin _$ReceiveEvent {
     required TResult Function(_ClearPageCommand value) clearPageCommand,
     required TResult Function(_OnKeypadTapped value) onKeypadTapped,
     required TResult Function(_OnMemoEntered value) onMemoEntered,
+    required TResult Function(_OnNextTapped value) onNextTapped,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -270,6 +274,7 @@ mixin _$ReceiveEvent {
     TResult? Function(_ClearPageCommand value)? clearPageCommand,
     TResult? Function(_OnKeypadTapped value)? onKeypadTapped,
     TResult? Function(_OnMemoEntered value)? onMemoEntered,
+    TResult? Function(_OnNextTapped value)? onNextTapped,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -279,6 +284,7 @@ mixin _$ReceiveEvent {
     TResult Function(_ClearPageCommand value)? clearPageCommand,
     TResult Function(_OnKeypadTapped value)? onKeypadTapped,
     TResult Function(_OnMemoEntered value)? onMemoEntered,
+    TResult Function(_OnNextTapped value)? onNextTapped,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -344,6 +350,7 @@ class _$_Initial implements _Initial {
     required TResult Function() clearPageCommand,
     required TResult Function(KeypadKey tappedKey) onKeypadTapped,
     required TResult Function(String? memo) onMemoEntered,
+    required TResult Function() onNextTapped,
   }) {
     return initial();
   }
@@ -356,6 +363,7 @@ class _$_Initial implements _Initial {
     TResult? Function()? clearPageCommand,
     TResult? Function(KeypadKey tappedKey)? onKeypadTapped,
     TResult? Function(String? memo)? onMemoEntered,
+    TResult? Function()? onNextTapped,
   }) {
     return initial?.call();
   }
@@ -368,6 +376,7 @@ class _$_Initial implements _Initial {
     TResult Function()? clearPageCommand,
     TResult Function(KeypadKey tappedKey)? onKeypadTapped,
     TResult Function(String? memo)? onMemoEntered,
+    TResult Function()? onNextTapped,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -384,6 +393,7 @@ class _$_Initial implements _Initial {
     required TResult Function(_ClearPageCommand value) clearPageCommand,
     required TResult Function(_OnKeypadTapped value) onKeypadTapped,
     required TResult Function(_OnMemoEntered value) onMemoEntered,
+    required TResult Function(_OnNextTapped value) onNextTapped,
   }) {
     return initial(this);
   }
@@ -396,6 +406,7 @@ class _$_Initial implements _Initial {
     TResult? Function(_ClearPageCommand value)? clearPageCommand,
     TResult? Function(_OnKeypadTapped value)? onKeypadTapped,
     TResult? Function(_OnMemoEntered value)? onMemoEntered,
+    TResult? Function(_OnNextTapped value)? onNextTapped,
   }) {
     return initial?.call(this);
   }
@@ -408,6 +419,7 @@ class _$_Initial implements _Initial {
     TResult Function(_ClearPageCommand value)? clearPageCommand,
     TResult Function(_OnKeypadTapped value)? onKeypadTapped,
     TResult Function(_OnMemoEntered value)? onMemoEntered,
+    TResult Function(_OnNextTapped value)? onNextTapped,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -464,6 +476,7 @@ class _$_OnRefresh implements _OnRefresh {
     required TResult Function() clearPageCommand,
     required TResult Function(KeypadKey tappedKey) onKeypadTapped,
     required TResult Function(String? memo) onMemoEntered,
+    required TResult Function() onNextTapped,
   }) {
     return onRefresh();
   }
@@ -476,6 +489,7 @@ class _$_OnRefresh implements _OnRefresh {
     TResult? Function()? clearPageCommand,
     TResult? Function(KeypadKey tappedKey)? onKeypadTapped,
     TResult? Function(String? memo)? onMemoEntered,
+    TResult? Function()? onNextTapped,
   }) {
     return onRefresh?.call();
   }
@@ -488,6 +502,7 @@ class _$_OnRefresh implements _OnRefresh {
     TResult Function()? clearPageCommand,
     TResult Function(KeypadKey tappedKey)? onKeypadTapped,
     TResult Function(String? memo)? onMemoEntered,
+    TResult Function()? onNextTapped,
     required TResult orElse(),
   }) {
     if (onRefresh != null) {
@@ -504,6 +519,7 @@ class _$_OnRefresh implements _OnRefresh {
     required TResult Function(_ClearPageCommand value) clearPageCommand,
     required TResult Function(_OnKeypadTapped value) onKeypadTapped,
     required TResult Function(_OnMemoEntered value) onMemoEntered,
+    required TResult Function(_OnNextTapped value) onNextTapped,
   }) {
     return onRefresh(this);
   }
@@ -516,6 +532,7 @@ class _$_OnRefresh implements _OnRefresh {
     TResult? Function(_ClearPageCommand value)? clearPageCommand,
     TResult? Function(_OnKeypadTapped value)? onKeypadTapped,
     TResult? Function(_OnMemoEntered value)? onMemoEntered,
+    TResult? Function(_OnNextTapped value)? onNextTapped,
   }) {
     return onRefresh?.call(this);
   }
@@ -528,6 +545,7 @@ class _$_OnRefresh implements _OnRefresh {
     TResult Function(_ClearPageCommand value)? clearPageCommand,
     TResult Function(_OnKeypadTapped value)? onKeypadTapped,
     TResult Function(_OnMemoEntered value)? onMemoEntered,
+    TResult Function(_OnNextTapped value)? onNextTapped,
     required TResult orElse(),
   }) {
     if (onRefresh != null) {
@@ -584,6 +602,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     required TResult Function() clearPageCommand,
     required TResult Function(KeypadKey tappedKey) onKeypadTapped,
     required TResult Function(String? memo) onMemoEntered,
+    required TResult Function() onNextTapped,
   }) {
     return clearPageCommand();
   }
@@ -596,6 +615,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     TResult? Function()? clearPageCommand,
     TResult? Function(KeypadKey tappedKey)? onKeypadTapped,
     TResult? Function(String? memo)? onMemoEntered,
+    TResult? Function()? onNextTapped,
   }) {
     return clearPageCommand?.call();
   }
@@ -608,6 +628,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     TResult Function()? clearPageCommand,
     TResult Function(KeypadKey tappedKey)? onKeypadTapped,
     TResult Function(String? memo)? onMemoEntered,
+    TResult Function()? onNextTapped,
     required TResult orElse(),
   }) {
     if (clearPageCommand != null) {
@@ -624,6 +645,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     required TResult Function(_ClearPageCommand value) clearPageCommand,
     required TResult Function(_OnKeypadTapped value) onKeypadTapped,
     required TResult Function(_OnMemoEntered value) onMemoEntered,
+    required TResult Function(_OnNextTapped value) onNextTapped,
   }) {
     return clearPageCommand(this);
   }
@@ -636,6 +658,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     TResult? Function(_ClearPageCommand value)? clearPageCommand,
     TResult? Function(_OnKeypadTapped value)? onKeypadTapped,
     TResult? Function(_OnMemoEntered value)? onMemoEntered,
+    TResult? Function(_OnNextTapped value)? onNextTapped,
   }) {
     return clearPageCommand?.call(this);
   }
@@ -648,6 +671,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
     TResult Function(_ClearPageCommand value)? clearPageCommand,
     TResult Function(_OnKeypadTapped value)? onKeypadTapped,
     TResult Function(_OnMemoEntered value)? onMemoEntered,
+    TResult Function(_OnNextTapped value)? onNextTapped,
     required TResult orElse(),
   }) {
     if (clearPageCommand != null) {
@@ -731,6 +755,7 @@ class _$_OnKeypadTapped implements _OnKeypadTapped {
     required TResult Function() clearPageCommand,
     required TResult Function(KeypadKey tappedKey) onKeypadTapped,
     required TResult Function(String? memo) onMemoEntered,
+    required TResult Function() onNextTapped,
   }) {
     return onKeypadTapped(tappedKey);
   }
@@ -743,6 +768,7 @@ class _$_OnKeypadTapped implements _OnKeypadTapped {
     TResult? Function()? clearPageCommand,
     TResult? Function(KeypadKey tappedKey)? onKeypadTapped,
     TResult? Function(String? memo)? onMemoEntered,
+    TResult? Function()? onNextTapped,
   }) {
     return onKeypadTapped?.call(tappedKey);
   }
@@ -755,6 +781,7 @@ class _$_OnKeypadTapped implements _OnKeypadTapped {
     TResult Function()? clearPageCommand,
     TResult Function(KeypadKey tappedKey)? onKeypadTapped,
     TResult Function(String? memo)? onMemoEntered,
+    TResult Function()? onNextTapped,
     required TResult orElse(),
   }) {
     if (onKeypadTapped != null) {
@@ -771,6 +798,7 @@ class _$_OnKeypadTapped implements _OnKeypadTapped {
     required TResult Function(_ClearPageCommand value) clearPageCommand,
     required TResult Function(_OnKeypadTapped value) onKeypadTapped,
     required TResult Function(_OnMemoEntered value) onMemoEntered,
+    required TResult Function(_OnNextTapped value) onNextTapped,
   }) {
     return onKeypadTapped(this);
   }
@@ -783,6 +811,7 @@ class _$_OnKeypadTapped implements _OnKeypadTapped {
     TResult? Function(_ClearPageCommand value)? clearPageCommand,
     TResult? Function(_OnKeypadTapped value)? onKeypadTapped,
     TResult? Function(_OnMemoEntered value)? onMemoEntered,
+    TResult? Function(_OnNextTapped value)? onNextTapped,
   }) {
     return onKeypadTapped?.call(this);
   }
@@ -795,6 +824,7 @@ class _$_OnKeypadTapped implements _OnKeypadTapped {
     TResult Function(_ClearPageCommand value)? clearPageCommand,
     TResult Function(_OnKeypadTapped value)? onKeypadTapped,
     TResult Function(_OnMemoEntered value)? onMemoEntered,
+    TResult Function(_OnNextTapped value)? onNextTapped,
     required TResult orElse(),
   }) {
     if (onKeypadTapped != null) {
@@ -882,6 +912,7 @@ class _$_OnMemoEntered implements _OnMemoEntered {
     required TResult Function() clearPageCommand,
     required TResult Function(KeypadKey tappedKey) onKeypadTapped,
     required TResult Function(String? memo) onMemoEntered,
+    required TResult Function() onNextTapped,
   }) {
     return onMemoEntered(memo);
   }
@@ -894,6 +925,7 @@ class _$_OnMemoEntered implements _OnMemoEntered {
     TResult? Function()? clearPageCommand,
     TResult? Function(KeypadKey tappedKey)? onKeypadTapped,
     TResult? Function(String? memo)? onMemoEntered,
+    TResult? Function()? onNextTapped,
   }) {
     return onMemoEntered?.call(memo);
   }
@@ -906,6 +938,7 @@ class _$_OnMemoEntered implements _OnMemoEntered {
     TResult Function()? clearPageCommand,
     TResult Function(KeypadKey tappedKey)? onKeypadTapped,
     TResult Function(String? memo)? onMemoEntered,
+    TResult Function()? onNextTapped,
     required TResult orElse(),
   }) {
     if (onMemoEntered != null) {
@@ -922,6 +955,7 @@ class _$_OnMemoEntered implements _OnMemoEntered {
     required TResult Function(_ClearPageCommand value) clearPageCommand,
     required TResult Function(_OnKeypadTapped value) onKeypadTapped,
     required TResult Function(_OnMemoEntered value) onMemoEntered,
+    required TResult Function(_OnNextTapped value) onNextTapped,
   }) {
     return onMemoEntered(this);
   }
@@ -934,6 +968,7 @@ class _$_OnMemoEntered implements _OnMemoEntered {
     TResult? Function(_ClearPageCommand value)? clearPageCommand,
     TResult? Function(_OnKeypadTapped value)? onKeypadTapped,
     TResult? Function(_OnMemoEntered value)? onMemoEntered,
+    TResult? Function(_OnNextTapped value)? onNextTapped,
   }) {
     return onMemoEntered?.call(this);
   }
@@ -946,6 +981,7 @@ class _$_OnMemoEntered implements _OnMemoEntered {
     TResult Function(_ClearPageCommand value)? clearPageCommand,
     TResult Function(_OnKeypadTapped value)? onKeypadTapped,
     TResult Function(_OnMemoEntered value)? onMemoEntered,
+    TResult Function(_OnNextTapped value)? onNextTapped,
     required TResult orElse(),
   }) {
     if (onMemoEntered != null) {
@@ -962,6 +998,132 @@ abstract class _OnMemoEntered implements ReceiveEvent {
   @JsonKey(ignore: true)
   _$$_OnMemoEnteredCopyWith<_$_OnMemoEntered> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_OnNextTappedCopyWith<$Res> {
+  factory _$$_OnNextTappedCopyWith(
+          _$_OnNextTapped value, $Res Function(_$_OnNextTapped) then) =
+      __$$_OnNextTappedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_OnNextTappedCopyWithImpl<$Res>
+    extends _$ReceiveEventCopyWithImpl<$Res, _$_OnNextTapped>
+    implements _$$_OnNextTappedCopyWith<$Res> {
+  __$$_OnNextTappedCopyWithImpl(
+      _$_OnNextTapped _value, $Res Function(_$_OnNextTapped) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_OnNextTapped implements _OnNextTapped {
+  const _$_OnNextTapped();
+
+  @override
+  String toString() {
+    return 'ReceiveEvent.onNextTapped()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_OnNextTapped);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() onRefresh,
+    required TResult Function() clearPageCommand,
+    required TResult Function(KeypadKey tappedKey) onKeypadTapped,
+    required TResult Function(String? memo) onMemoEntered,
+    required TResult Function() onNextTapped,
+  }) {
+    return onNextTapped();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? onRefresh,
+    TResult? Function()? clearPageCommand,
+    TResult? Function(KeypadKey tappedKey)? onKeypadTapped,
+    TResult? Function(String? memo)? onMemoEntered,
+    TResult? Function()? onNextTapped,
+  }) {
+    return onNextTapped?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? onRefresh,
+    TResult Function()? clearPageCommand,
+    TResult Function(KeypadKey tappedKey)? onKeypadTapped,
+    TResult Function(String? memo)? onMemoEntered,
+    TResult Function()? onNextTapped,
+    required TResult orElse(),
+  }) {
+    if (onNextTapped != null) {
+      return onNextTapped();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_OnRefresh value) onRefresh,
+    required TResult Function(_ClearPageCommand value) clearPageCommand,
+    required TResult Function(_OnKeypadTapped value) onKeypadTapped,
+    required TResult Function(_OnMemoEntered value) onMemoEntered,
+    required TResult Function(_OnNextTapped value) onNextTapped,
+  }) {
+    return onNextTapped(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_OnRefresh value)? onRefresh,
+    TResult? Function(_ClearPageCommand value)? clearPageCommand,
+    TResult? Function(_OnKeypadTapped value)? onKeypadTapped,
+    TResult? Function(_OnMemoEntered value)? onMemoEntered,
+    TResult? Function(_OnNextTapped value)? onNextTapped,
+  }) {
+    return onNextTapped?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_OnRefresh value)? onRefresh,
+    TResult Function(_ClearPageCommand value)? clearPageCommand,
+    TResult Function(_OnKeypadTapped value)? onKeypadTapped,
+    TResult Function(_OnMemoEntered value)? onMemoEntered,
+    TResult Function(_OnNextTapped value)? onNextTapped,
+    required TResult orElse(),
+  }) {
+    if (onNextTapped != null) {
+      return onNextTapped(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _OnNextTapped implements ReceiveEvent {
+  const factory _OnNextTapped() = _$_OnNextTapped;
 }
 
 /// @nodoc

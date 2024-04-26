@@ -99,20 +99,23 @@ class FirebaseDatabaseService {
 
   /// Get all tokens
   Future<List<FirebaseTokenData>> getAllTokens(Network network) async {
-    final db = FirebaseFirestore.instance;
-
     print("getting tokens 'tokens/$network'");
+    // Access the collection
+    final CollectionReference tokens = FirebaseFirestore.instance.collection('tokens');
 
-    final tokens = await db.collection('tokens/${network.name}').get();
-    final mappedTokens = tokens.docs
+    // Query the subcollection for the specified network
+    final QuerySnapshot querySnapshot = await tokens.doc(network.name).collection('tokens').get();
+
+    //final tokens = await db.collection('tokens/${network.name}').get();
+    final mappedTokens = querySnapshot.docs
         .map(
-          (QueryDocumentSnapshot<Map<String, dynamic>> token) => FirebaseTokenData(
+          (QueryDocumentSnapshot<Object?> token) => FirebaseTokenData(
             network: network.name,
-            image: token.data()['image'],
-            name: token.data()['name'],
-            contract: token.data()['contract'],
-            symbol: token.data()['symbol'],
-            precision: token.data()['precision'],
+            image: (token.data() as Map<String, dynamic>)['image'],
+            name: (token.data() as Map<String, dynamic>)['name'],
+            contract: (token.data() as Map<String, dynamic>)['contract'],
+            symbol: (token.data() as Map<String, dynamic>)['symbol'],
+            precision: (token.data() as Map<String, dynamic>)['precision'],
           ),
         )
         .toList();
