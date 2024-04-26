@@ -61,16 +61,16 @@ class TokenDetailsView extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Expanded(
-                    child: HyphaAppButton(
-                      title: 'Receive',
-                      onPressed: () {
-                        Get.to(() => ReceivePage(tokenData: context.read<TokenDetailsBloc>().state.token));
-                      },
-                      buttonType: ButtonType.secondary,
-                    ),
-                  ),
-                  const SizedBox(width: 22),
+                  // Expanded(
+                  //   child: HyphaAppButton(
+                  //     title: 'Receive',
+                  //     onPressed: () {
+                  //       Get.to(() => ReceivePage(tokenData: context.read<TokenDetailsBloc>().state.token));
+                  //     },
+                  //     buttonType: ButtonType.secondary,
+                  //   ),
+                  // ),
+                  // const SizedBox(width: 22),
                   Expanded(
                     child: HyphaAppButton(
                       title: 'Send',
