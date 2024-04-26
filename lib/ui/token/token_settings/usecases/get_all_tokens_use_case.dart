@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:collection/collection.dart';
 import 'package:hypha_wallet/core/firebase/firebase_database_service.dart';
 import 'package:hypha_wallet/core/firebase/firebase_token_data.dart';
 import 'package:hypha_wallet/core/network/repository/auth_repository.dart';
@@ -29,6 +30,7 @@ class GetAllTokensUseCase {
               precision: e.precision,
             ),
           )
+          .sortedBy((e) => e.name)
           .toList();
     });
 
