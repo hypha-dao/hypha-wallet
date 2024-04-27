@@ -183,10 +183,14 @@ class _ScannerWidgetState extends State<ScannerWidget> {
             Get.back(result: true);
           },
           primaryButtonText: 'Continue',
-          secondaryButtonText: 'CLOSE',
-          secondaryButtonCallback: () {
-            Get.back(result: false);
-          },
+
+          // Note: Due to new App store rules, we can't have close button here
+          // Thanks for nothing, Apple! 
+          // 
+          // secondaryButtonText: 'CLOSE',
+          // secondaryButtonCallback: () {
+          //   Get.back(result: false);
+          // },
         ),
       ),
       shape: const RoundedRectangleBorder(
