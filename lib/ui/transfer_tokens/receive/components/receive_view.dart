@@ -29,7 +29,7 @@ class ReceiveView extends StatelessWidget {
             return HyphaSafeBottomNavigationBar(
               child: HyphaAppButton(
                 onPressed: () {
-                  /// Navigate to receive screen
+                  context.read<ReceiveBloc>().add(const ReceiveEvent.onNextTapped());
                 },
                 title: 'Next',
                 buttonType: ButtonType.primary,

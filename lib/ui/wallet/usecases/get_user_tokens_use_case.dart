@@ -16,7 +16,7 @@ class GetUserTokensUseCase {
 
   Future<Stream<List<WalletTokenData>>> run() async {
     final user = _authRepository.authDataOrCrash;
-    final List<FirebaseTokenData> allTokens = await _database.getAllTokens();
+    final List<FirebaseTokenData> allTokens = await _database.getAllTokens(user.userProfileData.network);
     final Stream<List<String>> userTokensLive =
         _database.getUserTokensLive(accountName: user.userProfileData.accountName);
 
@@ -28,13 +28,13 @@ class GetUserTokensUseCase {
           symbol: e.symbol,
         );
         return WalletTokenData(
+          network: user.userProfileData.network.name,
           userOwnedAmount: tokenBalance.asValue?.value.amount,
           selected: true,
           image: e.image,
           name: e.name,
           contract: e.contract,
           symbol: e.symbol,
-          id: e.id,
           precision: e.precision,
         );
       });

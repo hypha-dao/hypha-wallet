@@ -17,7 +17,7 @@ class TokensSettingsView extends StatelessWidget {
       withGradient: true,
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        appBar: const OnboardingAppbar(title: 'Available Hypha', subTitle: ' network tokens'),
+        appBar: const OnboardingAppbar(title: 'Available Tokens', subTitle: ''),
         body: BlocBuilder<TokensSettingsBloc, TokensSettingsState>(
           builder: (context, state) {
             return Padding(

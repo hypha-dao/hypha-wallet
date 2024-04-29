@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:collection/collection.dart';
 import 'package:hypha_wallet/core/firebase/firebase_database_service.dart';
 import 'package:hypha_wallet/core/firebase/firebase_token_data.dart';
 import 'package:hypha_wallet/core/network/repository/auth_repository.dart';
@@ -13,22 +14,23 @@ class GetAllTokensUseCase {
 
   Future<Stream<List<WalletTokenData>>> run() async {
     final user = _authRepository.authDataOrCrash;
-    final List<FirebaseTokenData> allTokens = await _database.getAllTokens();
+    final List<FirebaseTokenData> allTokens = await _database.getAllTokens(user.userProfileData.network);
 
     final Stream<List<String>> userTokens = _database.getUserTokensLive(accountName: user.userProfileData.accountName);
     final Stream<List<WalletTokenData>> tokens = userTokens.map((List<String> userTokens) {
       return allTokens
           .map(
             (e) => WalletTokenData(
+              network: user.userProfileData.network.name,
               selected: userTokens.contains(e.id),
               image: e.image,
               name: e.name,
               contract: e.contract,
               symbol: e.symbol,
-              id: e.id,
               precision: e.precision,
             ),
           )
+          .sortedBy((e) => e.name)
           .toList();
     });
 

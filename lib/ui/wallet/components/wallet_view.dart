@@ -32,10 +32,10 @@ class WalletView extends StatelessWidget {
               [
                 const WalletTokenData(
                   selected: true,
+                  network: 'NETWORK',
                   name: 'ADD TOKEN',
                   image: 'ADD TOKEN',
                   contract: 'ADD TOKEN',
-                  id: 'ADD TOKEN',
                   symbol: 'ADD TOKEN',
                   precision: 2,
                 )

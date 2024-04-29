@@ -1,17 +1,18 @@
 class FirebaseTokenData {
-  final String image;
-  final String name;
+  final String network;
   final String contract;
   final String symbol;
-  final String id;
+  final String image;
+  final String name;
   final int precision;
+  String get id => '$network-$contract-$symbol';
 
   const FirebaseTokenData({
-    required this.image,
-    required this.name,
+    required this.network,
     required this.contract,
     required this.symbol,
-    required this.id,
+    required this.image,
+    required this.name,
     required this.precision,
   });
 }

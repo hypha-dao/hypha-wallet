@@ -19,13 +19,11 @@ part 'receive_state.dart';
 class ReceiveBloc extends Bloc<ReceiveEvent, ReceiveState> {
   final SendTokenUseCase sendTokenUseCase;
 
-  ReceiveBloc(
-    WalletTokenData tokenData,
-    this.sendTokenUseCase
-  ) : super(ReceiveState(tokenData: tokenData)) {
+  ReceiveBloc(WalletTokenData tokenData, this.sendTokenUseCase) : super(ReceiveState(tokenData: tokenData)) {
     on<_Initial>(_initial);
     on<_OnKeypadTapped>(_onKeypadTapped);
     on<_OnMemoEntered>(_onMemoEntered);
+    on<_OnNextTapped>(_onNextTapped);
     on<_ClearPageCommand>((_, emit) => emit(state.copyWith(command: null)));
   }
 
@@ -59,5 +57,10 @@ class ReceiveBloc extends Bloc<ReceiveEvent, ReceiveState> {
 
   FutureOr<void> _onMemoEntered(_OnMemoEntered event, Emitter<ReceiveState> emit) {
     emit(state.copyWith(memo: event.memo));
+  }
+
+  FutureOr<void> _onNextTapped(_OnNextTapped event, Emitter<ReceiveState> emit) {
+    print('Not yet implemented');
+    //emit(state.copyWith(memo: event.memo));
   }
 }

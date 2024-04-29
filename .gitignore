@@ -49,3 +49,5 @@ app.*.map.json
 ## ios build/distribution directory
 ios/archive
 ios/build
+/node_modules
+/scripts/node_modules

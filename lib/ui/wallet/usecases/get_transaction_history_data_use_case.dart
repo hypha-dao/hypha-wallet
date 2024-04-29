@@ -21,8 +21,8 @@ class GetTransactionHistoryDataUseCase {
   );
 
   Future<Result<List<WalletTransactionTileData>, HyphaError>> getTransferTransactionsForTokens() async {
-    final List<FirebaseTokenData> allTokens = await _firebaseDatabaseService.getAllTokens();
     final user = _authRepository.authDataOrCrash;
+    final List<FirebaseTokenData> allTokens = await _firebaseDatabaseService.getAllTokens(user.userProfileData.network);
 
     final result = await _getTransactionHistoryUseCase.run(true);
     if (result.isValue) {
@@ -46,8 +46,8 @@ class GetTransactionHistoryDataUseCase {
     required String contract,
     required String symbol,
   }) async {
-    final List<FirebaseTokenData> allTokens = await _firebaseDatabaseService.getAllTokens();
     final user = _authRepository.authDataOrCrash;
+    final List<FirebaseTokenData> allTokens = await _firebaseDatabaseService.getAllTokens(user.userProfileData.network);
 
     final result = await _getTransactionHistoryUseCase.run(true);
     if (result.isValue) {

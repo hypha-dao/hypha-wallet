@@ -7,4 +7,5 @@ class ReceiveEvent with _$ReceiveEvent {
   const factory ReceiveEvent.clearPageCommand() = _ClearPageCommand;
   const factory ReceiveEvent.onKeypadTapped(KeypadKey tappedKey) = _OnKeypadTapped;
   const factory ReceiveEvent.onMemoEntered(String? memo) = _OnMemoEntered;
+  const factory ReceiveEvent.onNextTapped() = _OnNextTapped;
 }

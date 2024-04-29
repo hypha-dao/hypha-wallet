@@ -46,7 +46,6 @@ class TokenDetailsBloc extends Bloc<TokenDetailsEvent, TokenDetailsState> {
 
   FutureOr<void> _initial(_Initial event, Emitter<TokenDetailsState> emit) async {
     emit(state.copyWith(loadingTransaction: true, loadingTokenBalance: true));
-
     await _getTransactionHistoryDataUseCase
         .getTransferTransactionsForToken(contract: state.token.contract, symbol: state.token.symbol)
         .then((result) {
