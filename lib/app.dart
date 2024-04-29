@@ -24,6 +24,7 @@ import 'package:hypha_wallet/ui/settings/save_words_page.dart';
 import 'package:hypha_wallet/ui/shared/ui_constants.dart';
 import 'package:hypha_wallet/ui/sign_transaction/sign_transaction_page.dart';
 import 'package:hypha_wallet/ui/splash/splash_page.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HyphaApp extends StatelessWidget {
   const HyphaApp({super.key});
@@ -92,7 +93,12 @@ class HyphaAppView extends StatelessWidget {
           listenWhen: (previous, current) => previous.command != current.command,
           listener: (context, state) {
             state.command?.when(
-              navigateToCreateAccount: () => Get.Get.offAll(() => const OnboardingPageWithLink()),
+              navigateToCreateAccount: () async {
+                /// Note: In the case there is an in app web view, close it.
+                await closeInAppWebView();
+                // ignore: unawaited_futures
+                Get.Get.offAll(() => const OnboardingPageWithLink());
+              },
               navigateToSignTransaction: (ScanQrCodeResultData data) {
                 _showSignTransactionBottomSheet(data);
               },
@@ -228,7 +234,7 @@ class HyphaAppView extends StatelessWidget {
 
   void _showJoinDaoRationale(InviteLinkData inviteLinkData, BuildContext context) {
     Get.Get.bottomSheet(
-        JoinDaoRationaleBottomSheet(inviteLinkData: inviteLinkData),
+      JoinDaoRationaleBottomSheet(inviteLinkData: inviteLinkData),
       isScrollControlled: true,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
