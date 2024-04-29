@@ -21,7 +21,7 @@ class OnboardingPage extends StatelessWidget {
       final _url = GetIt.I.get<RemoteConfigService>().signUpLinkUrl;
       if (!await launchUrl(
         Uri.parse(_url),
-        mode: LaunchMode.externalApplication,
+        mode: LaunchMode.inAppWebView,
       )) {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           content: Text('Error Launching URL. Please visit dao.hypha.earth'),
