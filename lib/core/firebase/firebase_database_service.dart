@@ -55,7 +55,7 @@ class FirebaseDatabaseService {
     return db
         .collection('users')
         .doc(accountName)
-        .update(token)
+        .set(token, SetOptions(merge: true))
         .onError((e, _) => LogHelper.d('Error writing document: $e'));
   }
 
