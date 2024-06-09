@@ -14,65 +14,66 @@ class WalletTransactionTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(left: 16, right: 16),
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          HyphaCard(
-            child: Container(
-              padding: const EdgeInsets.all(16),
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
+      child: HyphaCard(
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          child: Row(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Icon(
+                data.isReceived ? Icons.arrow_downward : Icons.arrow_upward,
+                color:
+                    data.isReceived ? HyphaColors.success : HyphaColors.error,
+              ),
+              Expanded(
+                flex: 1,
+                child: HyphaAvatarImage(
+                    imageFromUrl: data.userProfileImage,
+                    imageRadius: 20,
+                    name: data.name),
+              ),
+              const SizedBox(
+                width: 6,
+              ),
+              Expanded(
+                flex: 4,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(data.name,
+                        style: context.hyphaTextTheme.reducedTitles),
+                    const SizedBox(height: 4),
+                    Text(timeago.format(data.time),
+                        style: context.hyphaTextTheme.ralMediumLabel),
+                  ],
+                ),
+              ),
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Expanded(
-                    flex: 1,
-                    child: HyphaAvatarImage(imageFromUrl: data.userProfileImage, imageRadius: 20, name: data.name),
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      HyphaAvatarImage(
+                          imageRadius: 10,
+                          imageFromUrl: data.tokenImage,
+                          name: data.tokenName),
+                      Text(data.amount, style: context.hyphaTextTheme.regular),
+                    ],
                   ),
-                  Expanded(
-                    flex: 4,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(data.name, style: context.hyphaTextTheme.reducedTitles),
-                        const SizedBox(height: 4),
-                        Text(timeago.format(data.time), style: context.hyphaTextTheme.ralMediumLabel),
-                      ],
+                  Text(
+                    data.tokenName,
+                    style: context.hyphaTextTheme.regular.copyWith(
+                      color: HyphaColors.lightBlue,
                     ),
                   ),
-                  Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          HyphaAvatarImage(imageRadius: 10, imageFromUrl: data.tokenImage, name: data.tokenName),
-                          Text(data.amount, style: context.hyphaTextTheme.regular),
-                        ],
-                      ),
-                      Text(
-                        data.tokenName,
-                        style: context.hyphaTextTheme.regular.copyWith(
-                          color: HyphaColors.lightBlue,
-                        ),
-                      ),
-                    ],
-                  )
                 ],
-              ),
-            ),
+              )
+            ],
           ),
-          Positioned(
-            left: -4,
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: Icon(
-                data.isReceived ? Icons.arrow_downward : Icons.arrow_upward,
-                color: data.isReceived ? HyphaColors.success : HyphaColors.error,
-              ),
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }
