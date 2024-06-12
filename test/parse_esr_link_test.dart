@@ -1,6 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hypha_wallet/core/crypto/dart_esr/dart_esr.dart';
 import 'package:hypha_wallet/core/crypto/eosdart/src/client.dart';
+import 'package:hypha_wallet/core/crypto/eosdart/src/numeric.dart';
+import 'package:hypha_wallet/core/crypto/eosdart/src/serialize.dart';
 import 'package:hypha_wallet/core/network/api/eos_service.dart';
 import 'package:hypha_wallet/core/network/api/services/remote_config_service.dart';
 import 'package:hypha_wallet/core/network/models/network.dart';
@@ -74,5 +76,15 @@ void main() {
     }
 
     expect(parsed, true);
+  });
+
+  group('Serialization test', () {
+    test('roundtrip negative bignum', () {
+      final testnumber = '-123456789';
+      final serialized = signedDecimalToBinary(testnumber.length, testnumber);
+      print('serialized: $serialized\n' + '   ${arrayToHex(serialized)}');
+      final number = signedBinaryToDecimal(serialized);
+      expect(number, testnumber);
+    });
   });
 }
