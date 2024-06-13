@@ -1,6 +1,7 @@
 // ignore_for_file: always_use_package_imports, type_annotate_public_apis, cast_nullable_to_non_nullable
 
 import 'dart:typed_data';
+
 import 'archive_exception.dart';
 import 'byte_order.dart';
 
