@@ -1,3 +1,5 @@
+import 'dart:io' show Platform;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -21,7 +23,9 @@ class OnboardingPage extends StatelessWidget {
       final _url = GetIt.I.get<RemoteConfigService>().signUpLinkUrl;
       if (!await launchUrl(
         Uri.parse(_url),
-        mode: LaunchMode.inAppWebView,
+        // We launch in app web view in iOS because App review requires it.
+        // We launch external browser in Android because it works much better.
+        mode: Platform.isIOS ? LaunchMode.inAppWebView : LaunchMode.externalApplication,
       )) {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           content: Text('Error Launching URL. Please visit dao.hypha.earth'),
