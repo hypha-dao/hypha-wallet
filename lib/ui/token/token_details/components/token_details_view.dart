@@ -11,7 +11,6 @@ import 'package:hypha_wallet/design/progress_indicator/hypha_progress_indicator.
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 import 'package:hypha_wallet/ui/search_user/search_user_page.dart';
 import 'package:hypha_wallet/ui/token/token_details/interactor/token_details_bloc.dart';
-import 'package:hypha_wallet/ui/transfer_tokens/receive/receive_page.dart';
 import 'package:hypha_wallet/ui/wallet/components/recent_transactions_view.dart';
 import 'package:hypha_wallet/ui/wallet/data/wallet_token_data.dart';
 
