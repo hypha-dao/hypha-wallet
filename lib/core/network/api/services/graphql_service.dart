@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
 import 'package:hypha_wallet/core/logging/log_helper.dart';
@@ -12,13 +14,37 @@ class GraphQLService {
 
   GraphQLService(this._networkingManager, this._remoteConfigService);
 
+  Future<String> _getJWTAccessToken(Network network) async {
+    try {
+      final url = _remoteConfigService.graphQlJWTEndpoint(network: network);
+      final response = await Dio().get(url);
+      String prettyPrint = JsonEncoder.withIndent('  ').convert(response.data);
+      print('JWT res:  $prettyPrint');
+
+      final accessJWT = response.data['accessJWT'];
+      return accessJWT;
+    } catch (error) {
+      LogHelper.e('Error fetching JWT token', error: error);
+      throw HyphaError.fromError(error);
+    }
+  }
+
   Future<Result<Map<String, dynamic>, HyphaError>> graphQLQuery({
     required Network network,
     required String query,
   }) async {
     try {
       final url = _remoteConfigService.graphQlEndpoint(network: network);
-      final res = await _networkingManager.post(url, data: query);
+      final jwtToken = await _getJWTAccessToken(network);
+      final res = await _networkingManager.post(
+        url,
+        data: query,
+        options: Options(
+          headers: {
+            'X-Dgraph-AccessToken': jwtToken,
+          },
+        ),
+      );
       final Map<String, dynamic> response = res.data;
       return Result.value(response);
     } catch (error, stackTrace) {
