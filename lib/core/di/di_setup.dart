@@ -18,6 +18,7 @@ import 'package:hypha_wallet/core/network/api/aws_amplify/amplify_service.dart';
 import 'package:hypha_wallet/core/network/api/aws_amplify/profile_upload_repository.dart';
 import 'package:hypha_wallet/core/network/api/eos_service.dart';
 import 'package:hypha_wallet/core/network/api/services/dao_service.dart';
+import 'package:hypha_wallet/core/network/api/services/graphql_service.dart';
 import 'package:hypha_wallet/core/network/api/services/hypha_member_service.dart';
 import 'package:hypha_wallet/core/network/api/services/invite_service.dart';
 import 'package:hypha_wallet/core/network/api/services/pay_cpu_service.dart';

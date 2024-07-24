@@ -25,7 +25,8 @@ Future<void> _registerServicesModule() async {
   _registerLazySingleton(() => SignTransactionCallbackService(
         _getIt<NetworkingManager>(),
       ));
-  _registerLazySingleton(() => DaoService(_getIt<NetworkingManager>(), _getIt<RemoteConfigService>()));
+  _registerLazySingleton(() => GraphQLService(_getIt<NetworkingManager>()));
+  _registerLazySingleton(() => DaoService(_getIt<GraphQLService>(), _getIt<RemoteConfigService>()));
   _registerLazySingleton(() => PayForCpuService(
       _getIt<NetworkingManager>(), _getIt<RemoteConfigService>(), _getIt<EOSService>(), _getIt<DaoService>()));
 
