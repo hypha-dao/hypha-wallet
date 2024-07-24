@@ -18,9 +18,6 @@ class GraphQLService {
     try {
       final url = _remoteConfigService.graphQlJWTEndpoint(network: network);
       final response = await Dio().get(url);
-      String prettyPrint = JsonEncoder.withIndent('  ').convert(response.data);
-      print('JWT res:  $prettyPrint');
-
       final accessJWT = response.data['accessJWT'];
       return accessJWT;
     } catch (error) {
