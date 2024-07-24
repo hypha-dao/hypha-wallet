@@ -17,7 +17,7 @@ class GraphQLService {
     required String query,
   }) async {
     try {
-      final url = _remoteConfigService.graphQLEndpoint(network: network);
+      final url = _remoteConfigService.graphQlEndpoint(network: network);
       final res = await _networkingManager.post(url, data: query);
       final Map<String, dynamic> response = res.data;
       return Result.value(response);

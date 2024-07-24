@@ -55,9 +55,15 @@ class RemoteConfigService {
     return endpoint;
   }
 
-  String graphQLEndpoint({required Network network}) {
+  String graphQlEndpoint({required Network network}) {
     final networkConfig = _getNetworkConfig(network: network);
     final endpoint = networkConfig['graphQlEndpoint'];
+    return endpoint;
+  }
+
+  String graphQlJWTEndpoint({required Network network}) {
+    final networkConfig = _getNetworkConfig(network: network);
+    final endpoint = networkConfig['graphQlJWTEndpoint'];
     return endpoint;
   }
 
@@ -136,7 +142,9 @@ class RemoteConfigService {
           "inviteContract": "join.hypha",
           "payCpuContract": "paycpu.hypha",
           "daoContract": "dao.hypha",
-          "graphQlEndpoint": "https://alpha-dhomn.tekit.io/graphql"
+          "graphQlEndpoint": "https://hypha.us-east-1.aws.cloud.dgraph.io/graphql",
+          "graphQlJWTEndpoint":
+              "https://y3b2ihsdv7.execute-api.us-east-1.amazonaws.com/?env=prod&network=mainnet&chain=telos"
         },
         "telosTestnet": {
           "name": "Telos Testnet",
@@ -148,7 +156,9 @@ class RemoteConfigService {
           "inviteContract": "joinhypha111",
           "payCpuContract": "paycpuxhypha",
           "daoContract": "mtdhoxhyphaa",
-          "graphQlEndpoint": "https://alpha-stts.tekit.io/graphql"
+          "graphQlEndpoint": "https://hypha.us-east-1.aws.cloud.dgraph.io/graphql",
+          "graphQlJWTEndpoint":
+              "https://y3b2ihsdv7.execute-api.us-east-1.amazonaws.com/?env=dev&network=testnet&chain=telos"
         },
         "eos": {
           "name": "EOS",
@@ -160,7 +170,9 @@ class RemoteConfigService {
           "inviteContract": "join.hypha",
           "payCpuContract": "paycpu.hypha",
           "daoContract": "dao.hypha",
-          "graphQlEndpoint": "https://nameless-brook-400051.eu-central-1.aws.cloud.dgraph.io/graphql"
+          "graphQlEndpoint": "https://hypha.us-east-1.aws.cloud.dgraph.io/graphql",
+          "graphQlJWTEndpoint":
+              "https://y3b2ihsdv7.execute-api.us-east-1.amazonaws.com/?env=prod&network=mainnet&chain=eos"
         },
         "eosTestnet": {
           "name": "Jungle4 Testnet",
@@ -172,7 +184,9 @@ class RemoteConfigService {
           "inviteContract": "joinxhypha11",
           "payCpuContract": "paycpuxhypha",
           "daoContract": "daoxhypha111",
-          "graphQlEndpoint": "https://nameless-brook-400226.eu-central-1.aws.cloud.dgraph.io/graphql"
+          "graphQlEndpoint": "https://hypha.us-east-1.aws.cloud.dgraph.io/graphql",
+          "graphQlJWTEndpoint":
+              "https://y3b2ihsdv7.execute-api.us-east-1.amazonaws.com/?env=dev&network=testnet&chain=eos"
         }
       }),
       'accountCreatorEndpoint': 'http://34.236.29.152:9108',
