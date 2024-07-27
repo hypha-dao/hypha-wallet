@@ -1,7 +1,7 @@
 import 'package:fimber/fimber.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 
-const kLogQuietMode = false;
+const kLogQuietMode = true;
 const kIsDebugNetworking = true;
 
 /// Wrap Fimber in case we want to move out from it.
