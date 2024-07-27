@@ -17,6 +17,7 @@ class DaoData {
 
   factory DaoData.fromJson(Map<String, dynamic> json) {
     final Map<String, dynamic> settings = json['settings'][0];
+    print("got settings result: $settings");
     List<String>? logoUrlAndType = settings['settings_logo_s']?.split(':');
     if (logoUrlAndType == null || logoUrlAndType.length != 2) {
       logoUrlAndType = ['', ''];

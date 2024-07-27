@@ -32,10 +32,10 @@ void _registerUseCasesModule() {
       _getIt<AuthRepository>(),
     ),
   );
+  _registerFactory(() => TokenRepositoryService(_getIt<GraphQLService>()));
+
   _registerFactory(() => GetAllTokensUseCase(
-        _getIt<FirebaseDatabaseService>(),
-        _getIt<AuthRepository>(),
-      ));
+      _getIt<FirebaseDatabaseService>(), _getIt<AuthRepository>(), _getIt<TokenRepositoryService>()));
   _registerFactory(() => GetTokenBalanceUseCase(_getIt<AuthRepository>(), _getIt<TokenService>()));
   _registerFactory(() => AddTokenToUserUseCase(
         _getIt<FirebaseDatabaseService>(),
@@ -50,6 +50,7 @@ void _registerUseCasesModule() {
       _getIt<FirebaseDatabaseService>(),
       _getIt<AuthRepository>(),
       _getIt<TokenService>(),
+      _getIt<TokenRepositoryService>(),
     ),
   );
   _registerFactory(() => SetNameUseCase(_getIt<AmplifyService>(), _getIt<ProfileLoginUseCase>()));
@@ -71,7 +72,7 @@ void _registerUseCasesModule() {
       ));
   _registerFactory(() => GetTransactionHistoryDataUseCase(
         _getIt<GetTransactionHistoryUseCase>(),
-        _getIt<FirebaseDatabaseService>(),
+        _getIt<TokenRepositoryService>(),
         _getIt<AuthRepository>(),
       ));
 

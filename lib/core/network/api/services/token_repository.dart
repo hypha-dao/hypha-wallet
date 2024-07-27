@@ -6,14 +6,22 @@ import 'package:hypha_wallet/core/network/api/services/graphql_service.dart';
 import 'package:hypha_wallet/core/network/models/network.dart';
 
 class TokenRepositoryService {
-  final FirebaseFirestore _firestore;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
   final GraphQLService _graphQLService;
   final StreamController<List<FirebaseTokenData>> _tokenStreamController =
       StreamController<List<FirebaseTokenData>>.broadcast();
 
-  TokenRepositoryService(this._firestore, this._graphQLService);
+  TokenRepositoryService(this._graphQLService);
 
   Stream<List<FirebaseTokenData>> get tokenStream => _tokenStreamController.stream;
+
+  Future<List<FirebaseTokenData>> getCurrentTokens(Network network) async {
+    // Wait for the next emission from the stream
+    final tokens = await tokenStream.first;
+    // Filter tokens for the specified network
+    return tokens.where((token) => token.network == network.name).toList();
+  }
 
   Future<void> updateTokens(Network network) async {
     try {
@@ -23,8 +31,8 @@ class TokenRepositoryService {
       // Fetch tokens from GraphQL
       final graphQLTokens = await _getTokensFromGraphQL(network);
 
-      // Consolidate tokens
-      final allTokens = [...firebaseTokens, ...graphQLTokens];
+      // Consolidate, deduplicate, and sort tokens
+      final allTokens = _deduplicateAndSortTokens([...firebaseTokens, ...graphQLTokens]);
 
       // Update the stream
       _tokenStreamController.add(allTokens);
@@ -32,6 +40,17 @@ class TokenRepositoryService {
       LogHelper.e('Error updating tokens', error: error);
       _tokenStreamController.addError(error);
     }
+  }
+
+  List<FirebaseTokenData> _deduplicateAndSortTokens(List<FirebaseTokenData> tokens) {
+    final uniqueTokens = <String, FirebaseTokenData>{};
+    for (final token in tokens) {
+      final key = '${token.network}:${token.contract}:${token.symbol}';
+      uniqueTokens[key] = token;
+    }
+    final sortedTokens = uniqueTokens.values.toList()
+      ..sort((a, b) => a.symbol.toLowerCase().compareTo(b.symbol.toLowerCase()));
+    return sortedTokens;
   }
 
   Future<List<FirebaseTokenData>> _getTokensFromFirebase(Network network) async {
@@ -75,11 +94,11 @@ class TokenRepositoryService {
 
     if (result.isValue) {
       final data = result.asValue!.value['queryDao'] as List<dynamic>;
-      List<FirebaseTokenData> tokens = [];
+      final List<FirebaseTokenData> tokens = [];
 
-      for (var token in data) {
+      for (final token in data) {
         final settings = token['settings'] as List<dynamic>;
-        for (var setting in settings) {
+        for (final setting in settings) {
           if (setting['settings_rewardToken_a'] != null) {
             tokens.add(FirebaseTokenData(
               network: network.name,
