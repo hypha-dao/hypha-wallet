@@ -70,7 +70,7 @@ class TokenRepositoryService {
   List<FirebaseTokenData> _deduplicateAndSortTokens(List<FirebaseTokenData> tokens) {
     final uniqueTokens = <String, FirebaseTokenData>{};
     for (final token in tokens) {
-      final key = '${token.network}:${token.contract}:${token.symbol}';
+      final key = token.id;
       uniqueTokens[key] = token;
     }
     final sortedTokens = uniqueTokens.values.toList()
@@ -157,7 +157,7 @@ class TokenRepositoryService {
               network: network.name,
               image: imageUrl ?? '',
               name: setting['settings_pegTokenName_s'] ?? _parseSymbol(setting['settings_pegToken_a']),
-              contract: setting['settings_pegTokenContract_n'] ?? 'hypha.hypha',
+              contract: setting['settings_pegTokenContract_n'] ?? 'husd.hypha',
               symbol: _parseSymbol(setting['settings_pegToken_a']),
               precision: _parsePrecision(setting['settings_pegToken_a']),
               daoId: daoId,
