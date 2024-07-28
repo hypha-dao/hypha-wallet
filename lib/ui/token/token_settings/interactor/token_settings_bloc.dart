@@ -24,12 +24,21 @@ class TokensSettingsBloc extends Bloc<TokensSettingsEvent, TokensSettingsState> 
     this._addTokenToUserUseCase,
   ) : super(const TokensSettingsState()) {
     on<_Initial>(_initial);
+    on<_Refresh>(_refresh);
     on<_AddTokenToUser>(_addTokenToUser);
     on<_RemoveTokenToUser>(_removeTokenToUser);
     on<_ClearPageCommand>((_, emit) => emit(state.copyWith(command: null)));
   }
 
   Future<void> _initial(_Initial event, Emitter<TokensSettingsState> emit) async {
+    await _loadTokens(emit);
+  }
+
+  Future<void> _refresh(_Refresh event, Emitter<TokensSettingsState> emit) async {
+    await _loadTokens(emit);
+  }
+
+  Future<void> _loadTokens(Emitter<TokensSettingsState> emit) async {
     emit(state.copyWith(pageState: PageState.loading));
 
     final Stream<List<WalletTokenData>> tokens = await _getAllTokensUseCase.run();

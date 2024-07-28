@@ -17,7 +17,12 @@ class GetAllTokensUseCase {
 
   GetAllTokensUseCase(this._database, this._authRepository, this._tokenRepository, this._daoService);
 
-  Future<Stream<List<WalletTokenData>>> run() async {
+  Future<Stream<List<WalletTokenData>>> run({bool refresh = false}) async {
+    if (refresh) {
+      final user = _authRepository.authDataOrCrash;
+      final network = user.userProfileData.network;
+      await _tokenRepository.updateTokens(network);
+    }
     final user = _authRepository.authDataOrCrash;
     final Stream<List<FirebaseTokenData>> allTokens = _tokenRepository.tokenStream;
     final Stream<List<String>> userTokens = _database.getUserTokensLive(accountName: user.userProfileData.accountName);

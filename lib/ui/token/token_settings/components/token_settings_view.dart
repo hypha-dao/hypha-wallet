@@ -25,22 +25,27 @@ class TokensSettingsView extends StatelessWidget {
             final daoTokens = state.tokens.where((t) => t.group == TokenGroup.dao).toList();
             final otherTokens = state.tokens.where((t) => t.group == TokenGroup.other).toList();
 
-            return ListView(
-              padding: const EdgeInsets.symmetric(vertical: 26, horizontal: 16),
-              children: [
-                if (systemTokens.isNotEmpty) ...[
-                  _buildGroupHeader(context, 'System Tokens'),
-                  ...systemTokens.map((token) => _buildTokenItem(context, token)),
+            return RefreshIndicator(
+              onRefresh: () async {
+                context.read<TokensSettingsBloc>().add(const TokensSettingsEvent.refresh());
+              },
+              child: ListView(
+                padding: const EdgeInsets.symmetric(vertical: 26, horizontal: 16),
+                children: [
+                  if (systemTokens.isNotEmpty) ...[
+                    _buildGroupHeader(context, 'System Tokens'),
+                    ...systemTokens.map((token) => _buildTokenItem(context, token)),
+                  ],
+                  if (daoTokens.isNotEmpty) ...[
+                    _buildGroupHeader(context, 'DAO Tokens'),
+                    ...daoTokens.map((token) => _buildTokenItem(context, token)),
+                  ],
+                  if (otherTokens.isNotEmpty) ...[
+                    _buildGroupHeader(context, 'Other Tokens'),
+                    ...otherTokens.map((token) => _buildTokenItem(context, token)),
+                  ],
                 ],
-                if (daoTokens.isNotEmpty) ...[
-                  _buildGroupHeader(context, 'DAO Tokens'),
-                  ...daoTokens.map((token) => _buildTokenItem(context, token)),
-                ],
-                if (otherTokens.isNotEmpty) ...[
-                  _buildGroupHeader(context, 'Other Tokens'),
-                  ...otherTokens.map((token) => _buildTokenItem(context, token)),
-                ],
-              ],
+              ),
             );
           },
         ),
