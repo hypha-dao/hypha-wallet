@@ -32,7 +32,7 @@ void _registerUseCasesModule() {
       _getIt<AuthRepository>(),
     ),
   );
-  _registerFactory(() => TokenRepositoryService(_getIt<GraphQLService>()));
+  _registerLazySingleton(() => TokenRepositoryService(_getIt<GraphQLService>()));
 
   _registerFactory(() => GetAllTokensUseCase(
       _getIt<FirebaseDatabaseService>(), _getIt<AuthRepository>(), _getIt<TokenRepositoryService>()));

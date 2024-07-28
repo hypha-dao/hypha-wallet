@@ -146,4 +146,7 @@ Future<void> setupDependencies() async {
 
   // Use Cases
   _registerUseCasesModule();
+
+  // Initialize TokenRepositoryService
+  await GetIt.I<TokenRepositoryService>().initialize();
 }

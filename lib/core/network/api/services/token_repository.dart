@@ -22,6 +22,12 @@ class TokenRepositoryService {
     return _tokenStreamController.stream;
   }
 
+  Future<void> initialize() async {
+    if (!_isInitialized) {
+      await _initializeTokens();
+    }
+  }
+
   Future<void> _initializeTokens() async {
     _isInitialized = true;
     await updateTokens(Network.telos); // You might want to update for all networks here
@@ -118,13 +124,8 @@ class TokenRepositoryService {
     );
 
     if (result.isValue) {
-      print('GraphQL Response:');
-      print(const JsonEncoder.withIndent('  ').convert(result.asValue!.value));
-
       // Check if there are any errors in the response
       if (result.asValue!.value['errors'] != null) {
-        print('GraphQL Errors:');
-        print(const JsonEncoder.withIndent('  ').convert(result.asValue!.value['errors']));
         throw Exception('GraphQL query failed: ${result.asValue!.value['errors']}');
       }
 
@@ -132,6 +133,8 @@ class TokenRepositoryService {
       final List<FirebaseTokenData> tokens = [];
 
       for (final dao in data) {
+        final int? daoId = int.tryParse(dao['docId'] as String);
+        final String daoName = dao['details_daoName_n'];
         final settings = dao['settings'] as List<dynamic>;
         for (final setting in settings) {
           final String? imageUrl = _formatImageUrl(setting['settings_logo_s']);
@@ -144,6 +147,8 @@ class TokenRepositoryService {
               contract: setting['settings_rewardTokenContract_n'] ?? 'hypha.hypha',
               symbol: _parseSymbol(setting['settings_rewardToken_a']),
               precision: _parsePrecision(setting['settings_rewardToken_a']),
+              daoId: daoId,
+              daoName: daoName,
             ));
           }
 
@@ -155,6 +160,8 @@ class TokenRepositoryService {
               contract: setting['settings_pegTokenContract_n'] ?? 'hypha.hypha',
               symbol: _parseSymbol(setting['settings_pegToken_a']),
               precision: _parsePrecision(setting['settings_pegToken_a']),
+              daoId: daoId,
+              daoName: daoName,
             ));
           }
         }
