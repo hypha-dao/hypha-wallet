@@ -16,10 +16,10 @@ class HyphaTheme {
       colorScheme: darkColorScheme,
       textTheme: mainTextTheme,
       switchTheme: SwitchThemeData(
-        trackColor: MaterialStateProperty.resolveWith(
-          (states) => states.contains(MaterialState.selected) ? HyphaColors.primaryBlu : HyphaColors.midGrey,
+        trackColor: WidgetStateProperty.resolveWith(
+          (states) => states.contains(WidgetState.selected) ? HyphaColors.primaryBlu : HyphaColors.midGrey,
         ),
-        thumbColor: const MaterialStatePropertyAll(HyphaColors.offWhite),
+        thumbColor: const WidgetStatePropertyAll(HyphaColors.offWhite),
       ),
       iconTheme: const IconThemeData(color: HyphaColors.white),
       appBarTheme: AppBarTheme(
@@ -47,10 +47,10 @@ class HyphaTheme {
       colorScheme: lightColorScheme,
       textTheme: mainTextTheme,
       switchTheme: SwitchThemeData(
-        trackColor: MaterialStateProperty.resolveWith(
-          (states) => states.contains(MaterialState.selected) ? HyphaColors.primaryBlu : HyphaColors.midGrey,
+        trackColor: WidgetStateProperty.resolveWith(
+          (states) => states.contains(WidgetState.selected) ? HyphaColors.primaryBlu : HyphaColors.midGrey,
         ),
-        thumbColor: const MaterialStatePropertyAll(HyphaColors.offWhite),
+        thumbColor: const WidgetStatePropertyAll(HyphaColors.offWhite),
       ),
       iconTheme: const IconThemeData(color: HyphaColors.black),
       appBarTheme: AppBarTheme(

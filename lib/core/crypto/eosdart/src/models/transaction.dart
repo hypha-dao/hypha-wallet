@@ -1,12 +1,13 @@
 // ignore_for_file: always_use_package_imports, unnecessary_this, prefer_final_locals
 
 import 'dart:typed_data';
+
 import 'package:json_annotation/json_annotation.dart';
 
-import './action.dart';
-import './conversion_helper.dart';
 import '../eosdart_base.dart';
 import '../serialize.dart' as ser;
+import './action.dart';
+import './conversion_helper.dart';
 
 part 'transaction.g.dart';
 
@@ -24,9 +25,7 @@ class TransactionBlock with ConversionHelper {
   @JsonKey(name: 'block_num', fromJson: ConversionHelper.getIntFromJson)
   int? blockNum;
 
-  @JsonKey(
-      name: 'last_irreversible_block',
-      fromJson: ConversionHelper.getIntFromJson)
+  @JsonKey(name: 'last_irreversible_block', fromJson: ConversionHelper.getIntFromJson)
   int? lastIrreversibleBlock;
 
   @JsonKey(name: 'traces')
@@ -34,8 +33,7 @@ class TransactionBlock with ConversionHelper {
 
   TransactionBlock();
 
-  factory TransactionBlock.fromJson(Map<String, dynamic> json) =>
-      _$TransactionBlockFromJson(json);
+  factory TransactionBlock.fromJson(Map<String, dynamic> json) => _$TransactionBlockFromJson(json);
 
   Map<String, dynamic> toJson() => _$TransactionBlockToJson(this);
 
@@ -53,8 +51,7 @@ class TransactionWithReceipt {
 
   TransactionWithReceipt();
 
-  factory TransactionWithReceipt.fromJson(Map<String, dynamic> json) =>
-      _$TransactionWithReceiptFromJson(json);
+  factory TransactionWithReceipt.fromJson(Map<String, dynamic> json) => _$TransactionWithReceiptFromJson(json);
 
   Map<String, dynamic> toJson() => _$TransactionWithReceiptToJson(this);
 
@@ -78,8 +75,7 @@ class TransactionReceipt with ConversionHelper {
 
   TransactionReceipt();
 
-  factory TransactionReceipt.fromJson(Map<String, dynamic> json) =>
-      _$TransactionReceiptFromJson(json);
+  factory TransactionReceipt.fromJson(Map<String, dynamic> json) => _$TransactionReceiptFromJson(json);
 
   Map<String, dynamic> toJson() => _$TransactionReceiptToJson(this);
 
@@ -124,8 +120,7 @@ class Transaction {
 
   Transaction();
 
-  factory Transaction.fromJson(Map<String, dynamic> json) =>
-      _$TransactionFromJson(json);
+  factory Transaction.fromJson(Map<String, dynamic> json) => _$TransactionFromJson(json);
 
   Map<String, dynamic> toJson() => _$TransactionToJson(this);
 
@@ -149,8 +144,7 @@ class TransactionCommitted {
 
   TransactionCommitted();
 
-  factory TransactionCommitted.fromJson(Map<String, dynamic> json) =>
-      _$TransactionCommittedFromJson(json);
+  factory TransactionCommitted.fromJson(Map<String, dynamic> json) => _$TransactionCommittedFromJson(json);
 
   Map<String, dynamic> toJson() => _$TransactionCommittedToJson(this);
 
@@ -189,8 +183,7 @@ class TransactionProcessed with ConversionHelper {
 
   TransactionProcessed();
 
-  factory TransactionProcessed.fromJson(Map<String, dynamic> json) =>
-      _$TransactionProcessedFromJson(json);
+  factory TransactionProcessed.fromJson(Map<String, dynamic> json) => _$TransactionProcessedFromJson(json);
 
   Map<String, dynamic> toJson() => _$TransactionProcessedToJson(this);
 

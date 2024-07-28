@@ -25,8 +25,18 @@ class WalletTokenWidget extends StatelessWidget {
               children: [
                 HyphaAvatarImage(imageRadius: 18, imageFromUrl: token.image, name: token.name),
                 const SizedBox(height: 32),
-                Text(token.userOwnedAmount?.toString() ?? 'n/a', style: context.hyphaTextTheme.regular),
-                Text(token.name, style: context.hyphaTextTheme.regular),
+                Text(
+                  token.userOwnedAmount?.toString() ?? 'n/a',
+                  style: context.hyphaTextTheme.regular,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                Text(
+                  token.name,
+                  style: context.hyphaTextTheme.regular,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
               ],
             ),
           ),

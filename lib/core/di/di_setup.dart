@@ -18,11 +18,13 @@ import 'package:hypha_wallet/core/network/api/aws_amplify/amplify_service.dart';
 import 'package:hypha_wallet/core/network/api/aws_amplify/profile_upload_repository.dart';
 import 'package:hypha_wallet/core/network/api/eos_service.dart';
 import 'package:hypha_wallet/core/network/api/services/dao_service.dart';
+import 'package:hypha_wallet/core/network/api/services/graphql_service.dart';
 import 'package:hypha_wallet/core/network/api/services/hypha_member_service.dart';
 import 'package:hypha_wallet/core/network/api/services/invite_service.dart';
 import 'package:hypha_wallet/core/network/api/services/pay_cpu_service.dart';
 import 'package:hypha_wallet/core/network/api/services/remote_config_service.dart';
 import 'package:hypha_wallet/core/network/api/services/sign_transaction_callback_service.dart';
+import 'package:hypha_wallet/core/network/api/services/token_repository.dart';
 import 'package:hypha_wallet/core/network/api/services/token_service.dart';
 import 'package:hypha_wallet/core/network/api/services/transaction_history_service.dart';
 import 'package:hypha_wallet/core/network/api/services/user_account_service.dart';
@@ -144,4 +146,7 @@ Future<void> setupDependencies() async {
 
   // Use Cases
   _registerUseCasesModule();
+
+  // Initialize TokenRepositoryService
+  await GetIt.I<TokenRepositoryService>().initialize();
 }

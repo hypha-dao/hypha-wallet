@@ -82,7 +82,7 @@ void main() {
     test('roundtrip negative bignum', () {
       final testnumber = '-123456789';
       final serialized = signedDecimalToBinary(testnumber.length, testnumber);
-      print('serialized: $serialized\n' + '   ${arrayToHex(serialized)}');
+      print('serialized: $serialized\n' '   ${arrayToHex(serialized)}');
       final number = signedBinaryToDecimal(serialized);
       expect(number, testnumber);
     });

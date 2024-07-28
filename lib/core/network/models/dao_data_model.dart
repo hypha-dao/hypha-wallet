@@ -1,5 +1,5 @@
 class DaoData {
-  final String docId;
+  final int docId;
   final String detailsDaoName;
   final String settingsDaoTitle;
   final String logoIPFSHash;
@@ -17,12 +17,13 @@ class DaoData {
 
   factory DaoData.fromJson(Map<String, dynamic> json) {
     final Map<String, dynamic> settings = json['settings'][0];
+    print('got settings result: $settings');
     List<String>? logoUrlAndType = settings['settings_logo_s']?.split(':');
     if (logoUrlAndType == null || logoUrlAndType.length != 2) {
       logoUrlAndType = ['', ''];
     }
     return DaoData(
-      docId: json['docId'],
+      docId: int.parse(json['docId']),
       detailsDaoName: json['details_daoName_n'],
       settingsDaoTitle: settings['settings_daoTitle_s'],
       logoIPFSHash: logoUrlAndType[0],

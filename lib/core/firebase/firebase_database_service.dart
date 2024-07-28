@@ -1,7 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:hypha_wallet/core/firebase/firebase_token_data.dart';
 import 'package:hypha_wallet/core/logging/log_helper.dart';
-import 'package:hypha_wallet/core/network/models/network.dart';
 
 class FirebaseDatabaseService {
   const FirebaseDatabaseService._();
@@ -95,31 +93,5 @@ class FirebaseDatabaseService {
         .doc(accountName)
         .snapshots()
         .map((DocumentSnapshot<Map<String, dynamic>> event) => List<String>.from(event.data()?['userTokens'] ?? []));
-  }
-
-  /// Get all tokens
-  Future<List<FirebaseTokenData>> getAllTokens(Network network) async {
-    print("getting tokens 'tokens/$network'");
-    // Access the collection
-    final CollectionReference tokens = FirebaseFirestore.instance.collection('tokens');
-
-    // Query the subcollection for the specified network
-    final QuerySnapshot querySnapshot = await tokens.doc(network.name).collection('tokens').get();
-
-    //final tokens = await db.collection('tokens/${network.name}').get();
-    final mappedTokens = querySnapshot.docs
-        .map(
-          (QueryDocumentSnapshot<Object?> token) => FirebaseTokenData(
-            network: network.name,
-            image: (token.data() as Map<String, dynamic>)['image'],
-            name: (token.data() as Map<String, dynamic>)['name'],
-            contract: (token.data() as Map<String, dynamic>)['contract'],
-            symbol: (token.data() as Map<String, dynamic>)['symbol'],
-            precision: (token.data() as Map<String, dynamic>)['precision'],
-          ),
-        )
-        .toList();
-
-    return mappedTokens;
   }
 }

@@ -27,7 +27,7 @@ class SettingsView extends StatelessWidget {
         return HyphaBodyWidget(
           pageState: state.pageState,
           loading: (context) => ColoredBox(
-            color: Theme.of(context).colorScheme.background,
+            color: Theme.of(context).colorScheme.surface,
             child: Center(
               child: SafeArea(
                 child: Column(
@@ -35,11 +35,11 @@ class SettingsView extends StatelessWidget {
                   children: [
                     Text(
                       'Deleting Account...',
-                      style: context.hyphaTextTheme.mediumTitles
-                          .copyWith(color: Theme.of(context).colorScheme.onBackground),
+                      style:
+                          context.hyphaTextTheme.mediumTitles.copyWith(color: Theme.of(context).colorScheme.onSurface),
                     ),
                     const SizedBox(height: 48),
-                    CircularProgressIndicator(color: Theme.of(context).colorScheme.onBackground),
+                    CircularProgressIndicator(color: Theme.of(context).colorScheme.onSurface),
                   ],
                 ),
               ),

@@ -48,7 +48,7 @@ class WalletBloc extends Bloc<WalletEvent, WalletState> {
       }
     }));
 
-    final Stream<List<WalletTokenData>> tokens = await _getUserTokensUseCase.run();
+    final Stream<List<WalletTokenData>> tokens = _getUserTokensUseCase.run();
     await emit.forEach(tokens, onData: (data) {
       return state.copyWith(pageState: PageState.success, tokens: data);
     });

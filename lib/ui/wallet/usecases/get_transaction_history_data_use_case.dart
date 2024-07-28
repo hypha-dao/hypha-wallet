@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
-import 'package:hypha_wallet/core/firebase/firebase_database_service.dart';
 import 'package:hypha_wallet/core/firebase/firebase_token_data.dart';
+import 'package:hypha_wallet/core/network/api/services/token_repository.dart';
 import 'package:hypha_wallet/core/network/models/transaction_model.dart';
 import 'package:hypha_wallet/core/network/repository/auth_repository.dart';
 import 'package:hypha_wallet/ui/architecture/result/result.dart';
@@ -11,18 +11,18 @@ import 'package:hypha_wallet/ui/wallet/components/wallet_transaction_tile.dart';
 
 class GetTransactionHistoryDataUseCase {
   final GetTransactionHistoryUseCase _getTransactionHistoryUseCase;
-  final FirebaseDatabaseService _firebaseDatabaseService;
+  final TokenRepositoryService _tokenRepository;
   final AuthRepository _authRepository;
 
   GetTransactionHistoryDataUseCase(
     this._getTransactionHistoryUseCase,
-    this._firebaseDatabaseService,
+    this._tokenRepository,
     this._authRepository,
   );
 
   Future<Result<List<WalletTransactionTileData>, HyphaError>> getTransferTransactionsForTokens() async {
     final user = _authRepository.authDataOrCrash;
-    final List<FirebaseTokenData> allTokens = await _firebaseDatabaseService.getAllTokens(user.userProfileData.network);
+    final List<FirebaseTokenData> allTokens = await _tokenRepository.getCurrentTokens(user.userProfileData.network);
 
     final result = await _getTransactionHistoryUseCase.run(true);
     if (result.isValue) {
@@ -47,7 +47,7 @@ class GetTransactionHistoryDataUseCase {
     required String symbol,
   }) async {
     final user = _authRepository.authDataOrCrash;
-    final List<FirebaseTokenData> allTokens = await _firebaseDatabaseService.getAllTokens(user.userProfileData.network);
+    final List<FirebaseTokenData> allTokens = await _tokenRepository.getCurrentTokens(user.userProfileData.network);
 
     final result = await _getTransactionHistoryUseCase.run(true);
     if (result.isValue) {
