@@ -169,50 +169,56 @@ mixin _$TokensSettingsEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() clearPageCommand,
+    required TResult Function() refresh,
     required TResult Function(WalletTokenData token) addTokenToUser,
     required TResult Function(WalletTokenData token) removeTokenToUser,
+    required TResult Function() clearPageCommand,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? clearPageCommand,
+    TResult? Function()? refresh,
     TResult? Function(WalletTokenData token)? addTokenToUser,
     TResult? Function(WalletTokenData token)? removeTokenToUser,
+    TResult? Function()? clearPageCommand,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? clearPageCommand,
+    TResult Function()? refresh,
     TResult Function(WalletTokenData token)? addTokenToUser,
     TResult Function(WalletTokenData token)? removeTokenToUser,
+    TResult Function()? clearPageCommand,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_ClearPageCommand value) clearPageCommand,
+    required TResult Function(_Refresh value) refresh,
     required TResult Function(_AddTokenToUser value) addTokenToUser,
     required TResult Function(_RemoveTokenToUser value) removeTokenToUser,
+    required TResult Function(_ClearPageCommand value) clearPageCommand,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_ClearPageCommand value)? clearPageCommand,
+    TResult? Function(_Refresh value)? refresh,
     TResult? Function(_AddTokenToUser value)? addTokenToUser,
     TResult? Function(_RemoveTokenToUser value)? removeTokenToUser,
+    TResult? Function(_ClearPageCommand value)? clearPageCommand,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_ClearPageCommand value)? clearPageCommand,
+    TResult Function(_Refresh value)? refresh,
     TResult Function(_AddTokenToUser value)? addTokenToUser,
     TResult Function(_RemoveTokenToUser value)? removeTokenToUser,
+    TResult Function(_ClearPageCommand value)? clearPageCommand,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -274,9 +280,10 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() clearPageCommand,
+    required TResult Function() refresh,
     required TResult Function(WalletTokenData token) addTokenToUser,
     required TResult Function(WalletTokenData token) removeTokenToUser,
+    required TResult Function() clearPageCommand,
   }) {
     return initial();
   }
@@ -285,9 +292,10 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? clearPageCommand,
+    TResult? Function()? refresh,
     TResult? Function(WalletTokenData token)? addTokenToUser,
     TResult? Function(WalletTokenData token)? removeTokenToUser,
+    TResult? Function()? clearPageCommand,
   }) {
     return initial?.call();
   }
@@ -296,9 +304,10 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? clearPageCommand,
+    TResult Function()? refresh,
     TResult Function(WalletTokenData token)? addTokenToUser,
     TResult Function(WalletTokenData token)? removeTokenToUser,
+    TResult Function()? clearPageCommand,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -311,9 +320,10 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_ClearPageCommand value) clearPageCommand,
+    required TResult Function(_Refresh value) refresh,
     required TResult Function(_AddTokenToUser value) addTokenToUser,
     required TResult Function(_RemoveTokenToUser value) removeTokenToUser,
+    required TResult Function(_ClearPageCommand value) clearPageCommand,
   }) {
     return initial(this);
   }
@@ -322,9 +332,10 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_ClearPageCommand value)? clearPageCommand,
+    TResult? Function(_Refresh value)? refresh,
     TResult? Function(_AddTokenToUser value)? addTokenToUser,
     TResult? Function(_RemoveTokenToUser value)? removeTokenToUser,
+    TResult? Function(_ClearPageCommand value)? clearPageCommand,
   }) {
     return initial?.call(this);
   }
@@ -333,9 +344,10 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_ClearPageCommand value)? clearPageCommand,
+    TResult Function(_Refresh value)? refresh,
     TResult Function(_AddTokenToUser value)? addTokenToUser,
     TResult Function(_RemoveTokenToUser value)? removeTokenToUser,
+    TResult Function(_ClearPageCommand value)? clearPageCommand,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -350,35 +362,34 @@ abstract class _Initial implements TokensSettingsEvent {
 }
 
 /// @nodoc
-abstract class _$$_ClearPageCommandCopyWith<$Res> {
-  factory _$$_ClearPageCommandCopyWith(
-          _$_ClearPageCommand value, $Res Function(_$_ClearPageCommand) then) =
-      __$$_ClearPageCommandCopyWithImpl<$Res>;
+abstract class _$$_RefreshCopyWith<$Res> {
+  factory _$$_RefreshCopyWith(
+          _$_Refresh value, $Res Function(_$_Refresh) then) =
+      __$$_RefreshCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_ClearPageCommandCopyWithImpl<$Res>
-    extends _$TokensSettingsEventCopyWithImpl<$Res, _$_ClearPageCommand>
-    implements _$$_ClearPageCommandCopyWith<$Res> {
-  __$$_ClearPageCommandCopyWithImpl(
-      _$_ClearPageCommand _value, $Res Function(_$_ClearPageCommand) _then)
+class __$$_RefreshCopyWithImpl<$Res>
+    extends _$TokensSettingsEventCopyWithImpl<$Res, _$_Refresh>
+    implements _$$_RefreshCopyWith<$Res> {
+  __$$_RefreshCopyWithImpl(_$_Refresh _value, $Res Function(_$_Refresh) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_ClearPageCommand implements _ClearPageCommand {
-  const _$_ClearPageCommand();
+class _$_Refresh implements _Refresh {
+  const _$_Refresh();
 
   @override
   String toString() {
-    return 'TokensSettingsEvent.clearPageCommand()';
+    return 'TokensSettingsEvent.refresh()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_ClearPageCommand);
+        (other.runtimeType == runtimeType && other is _$_Refresh);
   }
 
   @override
@@ -388,35 +399,38 @@ class _$_ClearPageCommand implements _ClearPageCommand {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() clearPageCommand,
+    required TResult Function() refresh,
     required TResult Function(WalletTokenData token) addTokenToUser,
     required TResult Function(WalletTokenData token) removeTokenToUser,
+    required TResult Function() clearPageCommand,
   }) {
-    return clearPageCommand();
+    return refresh();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? clearPageCommand,
+    TResult? Function()? refresh,
     TResult? Function(WalletTokenData token)? addTokenToUser,
     TResult? Function(WalletTokenData token)? removeTokenToUser,
+    TResult? Function()? clearPageCommand,
   }) {
-    return clearPageCommand?.call();
+    return refresh?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? clearPageCommand,
+    TResult Function()? refresh,
     TResult Function(WalletTokenData token)? addTokenToUser,
     TResult Function(WalletTokenData token)? removeTokenToUser,
+    TResult Function()? clearPageCommand,
     required TResult orElse(),
   }) {
-    if (clearPageCommand != null) {
-      return clearPageCommand();
+    if (refresh != null) {
+      return refresh();
     }
     return orElse();
   }
@@ -425,42 +439,45 @@ class _$_ClearPageCommand implements _ClearPageCommand {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_ClearPageCommand value) clearPageCommand,
+    required TResult Function(_Refresh value) refresh,
     required TResult Function(_AddTokenToUser value) addTokenToUser,
     required TResult Function(_RemoveTokenToUser value) removeTokenToUser,
+    required TResult Function(_ClearPageCommand value) clearPageCommand,
   }) {
-    return clearPageCommand(this);
+    return refresh(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_ClearPageCommand value)? clearPageCommand,
+    TResult? Function(_Refresh value)? refresh,
     TResult? Function(_AddTokenToUser value)? addTokenToUser,
     TResult? Function(_RemoveTokenToUser value)? removeTokenToUser,
+    TResult? Function(_ClearPageCommand value)? clearPageCommand,
   }) {
-    return clearPageCommand?.call(this);
+    return refresh?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_ClearPageCommand value)? clearPageCommand,
+    TResult Function(_Refresh value)? refresh,
     TResult Function(_AddTokenToUser value)? addTokenToUser,
     TResult Function(_RemoveTokenToUser value)? removeTokenToUser,
+    TResult Function(_ClearPageCommand value)? clearPageCommand,
     required TResult orElse(),
   }) {
-    if (clearPageCommand != null) {
-      return clearPageCommand(this);
+    if (refresh != null) {
+      return refresh(this);
     }
     return orElse();
   }
 }
 
-abstract class _ClearPageCommand implements TokensSettingsEvent {
-  const factory _ClearPageCommand() = _$_ClearPageCommand;
+abstract class _Refresh implements TokensSettingsEvent {
+  const factory _Refresh() = _$_Refresh;
 }
 
 /// @nodoc
@@ -528,9 +545,10 @@ class _$_AddTokenToUser implements _AddTokenToUser {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() clearPageCommand,
+    required TResult Function() refresh,
     required TResult Function(WalletTokenData token) addTokenToUser,
     required TResult Function(WalletTokenData token) removeTokenToUser,
+    required TResult Function() clearPageCommand,
   }) {
     return addTokenToUser(token);
   }
@@ -539,9 +557,10 @@ class _$_AddTokenToUser implements _AddTokenToUser {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? clearPageCommand,
+    TResult? Function()? refresh,
     TResult? Function(WalletTokenData token)? addTokenToUser,
     TResult? Function(WalletTokenData token)? removeTokenToUser,
+    TResult? Function()? clearPageCommand,
   }) {
     return addTokenToUser?.call(token);
   }
@@ -550,9 +569,10 @@ class _$_AddTokenToUser implements _AddTokenToUser {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? clearPageCommand,
+    TResult Function()? refresh,
     TResult Function(WalletTokenData token)? addTokenToUser,
     TResult Function(WalletTokenData token)? removeTokenToUser,
+    TResult Function()? clearPageCommand,
     required TResult orElse(),
   }) {
     if (addTokenToUser != null) {
@@ -565,9 +585,10 @@ class _$_AddTokenToUser implements _AddTokenToUser {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_ClearPageCommand value) clearPageCommand,
+    required TResult Function(_Refresh value) refresh,
     required TResult Function(_AddTokenToUser value) addTokenToUser,
     required TResult Function(_RemoveTokenToUser value) removeTokenToUser,
+    required TResult Function(_ClearPageCommand value) clearPageCommand,
   }) {
     return addTokenToUser(this);
   }
@@ -576,9 +597,10 @@ class _$_AddTokenToUser implements _AddTokenToUser {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_ClearPageCommand value)? clearPageCommand,
+    TResult? Function(_Refresh value)? refresh,
     TResult? Function(_AddTokenToUser value)? addTokenToUser,
     TResult? Function(_RemoveTokenToUser value)? removeTokenToUser,
+    TResult? Function(_ClearPageCommand value)? clearPageCommand,
   }) {
     return addTokenToUser?.call(this);
   }
@@ -587,9 +609,10 @@ class _$_AddTokenToUser implements _AddTokenToUser {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_ClearPageCommand value)? clearPageCommand,
+    TResult Function(_Refresh value)? refresh,
     TResult Function(_AddTokenToUser value)? addTokenToUser,
     TResult Function(_RemoveTokenToUser value)? removeTokenToUser,
+    TResult Function(_ClearPageCommand value)? clearPageCommand,
     required TResult orElse(),
   }) {
     if (addTokenToUser != null) {
@@ -675,9 +698,10 @@ class _$_RemoveTokenToUser implements _RemoveTokenToUser {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() clearPageCommand,
+    required TResult Function() refresh,
     required TResult Function(WalletTokenData token) addTokenToUser,
     required TResult Function(WalletTokenData token) removeTokenToUser,
+    required TResult Function() clearPageCommand,
   }) {
     return removeTokenToUser(token);
   }
@@ -686,9 +710,10 @@ class _$_RemoveTokenToUser implements _RemoveTokenToUser {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? clearPageCommand,
+    TResult? Function()? refresh,
     TResult? Function(WalletTokenData token)? addTokenToUser,
     TResult? Function(WalletTokenData token)? removeTokenToUser,
+    TResult? Function()? clearPageCommand,
   }) {
     return removeTokenToUser?.call(token);
   }
@@ -697,9 +722,10 @@ class _$_RemoveTokenToUser implements _RemoveTokenToUser {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? clearPageCommand,
+    TResult Function()? refresh,
     TResult Function(WalletTokenData token)? addTokenToUser,
     TResult Function(WalletTokenData token)? removeTokenToUser,
+    TResult Function()? clearPageCommand,
     required TResult orElse(),
   }) {
     if (removeTokenToUser != null) {
@@ -712,9 +738,10 @@ class _$_RemoveTokenToUser implements _RemoveTokenToUser {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_ClearPageCommand value) clearPageCommand,
+    required TResult Function(_Refresh value) refresh,
     required TResult Function(_AddTokenToUser value) addTokenToUser,
     required TResult Function(_RemoveTokenToUser value) removeTokenToUser,
+    required TResult Function(_ClearPageCommand value) clearPageCommand,
   }) {
     return removeTokenToUser(this);
   }
@@ -723,9 +750,10 @@ class _$_RemoveTokenToUser implements _RemoveTokenToUser {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_ClearPageCommand value)? clearPageCommand,
+    TResult? Function(_Refresh value)? refresh,
     TResult? Function(_AddTokenToUser value)? addTokenToUser,
     TResult? Function(_RemoveTokenToUser value)? removeTokenToUser,
+    TResult? Function(_ClearPageCommand value)? clearPageCommand,
   }) {
     return removeTokenToUser?.call(this);
   }
@@ -734,9 +762,10 @@ class _$_RemoveTokenToUser implements _RemoveTokenToUser {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_ClearPageCommand value)? clearPageCommand,
+    TResult Function(_Refresh value)? refresh,
     TResult Function(_AddTokenToUser value)? addTokenToUser,
     TResult Function(_RemoveTokenToUser value)? removeTokenToUser,
+    TResult Function(_ClearPageCommand value)? clearPageCommand,
     required TResult orElse(),
   }) {
     if (removeTokenToUser != null) {
@@ -754,6 +783,126 @@ abstract class _RemoveTokenToUser implements TokensSettingsEvent {
   @JsonKey(ignore: true)
   _$$_RemoveTokenToUserCopyWith<_$_RemoveTokenToUser> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_ClearPageCommandCopyWith<$Res> {
+  factory _$$_ClearPageCommandCopyWith(
+          _$_ClearPageCommand value, $Res Function(_$_ClearPageCommand) then) =
+      __$$_ClearPageCommandCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_ClearPageCommandCopyWithImpl<$Res>
+    extends _$TokensSettingsEventCopyWithImpl<$Res, _$_ClearPageCommand>
+    implements _$$_ClearPageCommandCopyWith<$Res> {
+  __$$_ClearPageCommandCopyWithImpl(
+      _$_ClearPageCommand _value, $Res Function(_$_ClearPageCommand) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_ClearPageCommand implements _ClearPageCommand {
+  const _$_ClearPageCommand();
+
+  @override
+  String toString() {
+    return 'TokensSettingsEvent.clearPageCommand()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_ClearPageCommand);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() refresh,
+    required TResult Function(WalletTokenData token) addTokenToUser,
+    required TResult Function(WalletTokenData token) removeTokenToUser,
+    required TResult Function() clearPageCommand,
+  }) {
+    return clearPageCommand();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? refresh,
+    TResult? Function(WalletTokenData token)? addTokenToUser,
+    TResult? Function(WalletTokenData token)? removeTokenToUser,
+    TResult? Function()? clearPageCommand,
+  }) {
+    return clearPageCommand?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? refresh,
+    TResult Function(WalletTokenData token)? addTokenToUser,
+    TResult Function(WalletTokenData token)? removeTokenToUser,
+    TResult Function()? clearPageCommand,
+    required TResult orElse(),
+  }) {
+    if (clearPageCommand != null) {
+      return clearPageCommand();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_AddTokenToUser value) addTokenToUser,
+    required TResult Function(_RemoveTokenToUser value) removeTokenToUser,
+    required TResult Function(_ClearPageCommand value) clearPageCommand,
+  }) {
+    return clearPageCommand(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_AddTokenToUser value)? addTokenToUser,
+    TResult? Function(_RemoveTokenToUser value)? removeTokenToUser,
+    TResult? Function(_ClearPageCommand value)? clearPageCommand,
+  }) {
+    return clearPageCommand?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_AddTokenToUser value)? addTokenToUser,
+    TResult Function(_RemoveTokenToUser value)? removeTokenToUser,
+    TResult Function(_ClearPageCommand value)? clearPageCommand,
+    required TResult orElse(),
+  }) {
+    if (clearPageCommand != null) {
+      return clearPageCommand(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ClearPageCommand implements TokensSettingsEvent {
+  const factory _ClearPageCommand() = _$_ClearPageCommand;
 }
 
 /// @nodoc

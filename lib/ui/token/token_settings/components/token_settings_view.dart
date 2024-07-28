@@ -5,6 +5,7 @@ import 'package:hypha_wallet/design/background/hypha_page_background.dart';
 import 'package:hypha_wallet/design/hypha_card.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
+import 'package:hypha_wallet/ui/architecture/interactor/page_states.dart';
 import 'package:hypha_wallet/ui/onboarding/components/onboarding_appbar.dart';
 import 'package:hypha_wallet/ui/token/token_settings/interactor/token_settings_bloc.dart';
 import 'package:hypha_wallet/ui/wallet/data/wallet_token_data.dart';
@@ -21,30 +22,52 @@ class TokensSettingsView extends StatelessWidget {
         appBar: const OnboardingAppbar(title: 'Available Tokens', subTitle: ''),
         body: BlocBuilder<TokensSettingsBloc, TokensSettingsState>(
           builder: (context, state) {
-            final systemTokens = state.tokens.where((t) => t.group == TokenGroup.system).toList();
-            final daoTokens = state.tokens.where((t) => t.group == TokenGroup.dao).toList();
-            final otherTokens = state.tokens.where((t) => t.group == TokenGroup.other).toList();
+            if (state.pageState == PageState.loading) {
+              return const Center(child: CircularProgressIndicator());
+            }
 
-            return ListView(
-              padding: const EdgeInsets.symmetric(vertical: 26, horizontal: 16),
-              children: [
-                if (systemTokens.isNotEmpty) ...[
-                  _buildGroupHeader(context, 'System Tokens'),
-                  ...systemTokens.map((token) => _buildTokenItem(context, token)),
+            return RefreshIndicator(
+              onRefresh: () async {
+                context.read<TokensSettingsBloc>().add(const TokensSettingsEvent.refresh());
+              },
+              child: CustomScrollView(
+                slivers: [
+                  SliverPadding(
+                    padding: const EdgeInsets.symmetric(vertical: 26, horizontal: 16),
+                    sliver: SliverList(
+                      delegate: SliverChildListDelegate([
+                        _buildTokenGroup(
+                            context, 'System Tokens', state.tokens.where((t) => t.group == TokenGroup.system).toList()),
+                        _buildTokenGroup(
+                            context, 'DAO Tokens', state.tokens.where((t) => t.group == TokenGroup.dao).toList()),
+                        _buildTokenGroup(
+                            context, 'Other Tokens', state.tokens.where((t) => t.group == TokenGroup.other).toList()),
+                      ]),
+                    ),
+                  ),
                 ],
-                if (daoTokens.isNotEmpty) ...[
-                  _buildGroupHeader(context, 'DAO Tokens'),
-                  ...daoTokens.map((token) => _buildTokenItem(context, token)),
-                ],
-                if (otherTokens.isNotEmpty) ...[
-                  _buildGroupHeader(context, 'Other Tokens'),
-                  ...otherTokens.map((token) => _buildTokenItem(context, token)),
-                ],
-              ],
+              ),
             );
           },
         ),
       ),
+    );
+  }
+
+  Widget _buildTokenGroup(BuildContext context, String title, List<WalletTokenData> tokens) {
+    if (tokens.isEmpty) return const SizedBox.shrink();
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _buildGroupHeader(context, title),
+        ListView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: tokens.length,
+          itemBuilder: (context, index) => _buildTokenItem(context, tokens[index]),
+        ),
+      ],
     );
   }
 
