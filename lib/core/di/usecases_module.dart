@@ -35,7 +35,11 @@ void _registerUseCasesModule() {
   _registerLazySingleton(() => TokenRepositoryService(_getIt<GraphQLService>()));
 
   _registerFactory(() => GetAllTokensUseCase(
-      _getIt<FirebaseDatabaseService>(), _getIt<AuthRepository>(), _getIt<TokenRepositoryService>()));
+        _getIt<FirebaseDatabaseService>(),
+        _getIt<AuthRepository>(),
+        _getIt<TokenRepositoryService>(),
+        _getIt<DaoService>(),
+      ));
   _registerFactory(() => GetTokenBalanceUseCase(_getIt<AuthRepository>(), _getIt<TokenService>()));
   _registerFactory(() => AddTokenToUserUseCase(
         _getIt<FirebaseDatabaseService>(),

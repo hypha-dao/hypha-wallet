@@ -1,8 +1,11 @@
 import 'package:hypha_wallet/core/firebase/firebase_token_data.dart';
 
+enum TokenGroup { system, dao, other }
+
 class WalletTokenData extends FirebaseTokenData {
   final double? userOwnedAmount;
   final bool selected;
+  final TokenGroup group;
 
   const WalletTokenData({
     required this.selected,
@@ -13,6 +16,7 @@ class WalletTokenData extends FirebaseTokenData {
     required super.contract,
     required super.symbol,
     required super.precision,
+    required this.group,
   });
 
   String get ownedAmountAndSymbol => '${userOwnedAmount?.toString() ?? '0'} $symbol';
@@ -27,6 +31,7 @@ class WalletTokenData extends FirebaseTokenData {
       symbol: symbol,
       userOwnedAmount: userOwnedAmount,
       precision: precision,
+      group: group,
     );
   }
 }

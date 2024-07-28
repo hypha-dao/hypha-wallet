@@ -44,6 +44,7 @@ class GetUserTokensUseCase {
           contract: token.contract,
           symbol: token.symbol,
           precision: token.precision,
+          group: TokenGroup.system,
         );
       }).toList();
     }).switchMap((value) => Stream.fromFuture(value));
