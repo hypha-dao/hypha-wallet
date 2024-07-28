@@ -1,5 +1,5 @@
 class DaoData {
-  final String docId;
+  final int docId;
   final String detailsDaoName;
   final String settingsDaoTitle;
   final String logoIPFSHash;
@@ -23,7 +23,7 @@ class DaoData {
       logoUrlAndType = ['', ''];
     }
     return DaoData(
-      docId: json['docId'],
+      docId: int.parse(json['docId']),
       detailsDaoName: json['details_daoName_n'],
       settingsDaoTitle: settings['settings_daoTitle_s'],
       logoIPFSHash: logoUrlAndType[0],
