@@ -19,12 +19,13 @@ class CreateAccountSuccessPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async {
+    return PopScope(
+      canPop: false,
+      onPopInvoked: (didPop) {
+        if (didPop) return;
         context.read<AuthenticationBloc>().add(
               const AuthenticationEvent.authenticationStatusChanged(UnAuthenticated()),
             );
-        return true;
       },
       child: HyphaPageBackground(
         withOpacity: false,

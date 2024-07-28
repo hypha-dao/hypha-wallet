@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hypha_wallet/core/network/models/dao_data_model.dart';
 import 'package:hypha_wallet/design/hypha_card.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
+import 'package:hypha_wallet/design/ipfs_image.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
-import 'package:hypha_wallet/ui/profile/components/ipfs_image.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class DaoWidget extends StatelessWidget {

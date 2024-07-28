@@ -43,15 +43,15 @@ class TokenRepositoryService {
     try {
       // Fetch tokens from Firebase
       final firebaseTokens = await _getTokensFromFirebase(network);
-      print("Tokens from Firebase: ${firebaseTokens.length}");
+      print('Tokens from Firebase: ${firebaseTokens.length}');
 
       // Fetch tokens from GraphQL
       final graphQLTokens = await _getTokensFromGraphQL(network);
-      print("Tokens from GraphQL: ${graphQLTokens.length}");
+      print('Tokens from GraphQL: ${graphQLTokens.length}');
 
       // Consolidate, deduplicate, and sort tokens
       final allTokens = _deduplicateAndSortTokens([...firebaseTokens, ...graphQLTokens]);
-      print("Total unique tokens: ${allTokens.length}");
+      print('Total unique tokens: ${allTokens.length}');
 
       // Update the stream
       _tokenStreamController.add(allTokens);
@@ -69,7 +69,7 @@ class TokenRepositoryService {
     }
     final sortedTokens = uniqueTokens.values.toList()
       ..sort((a, b) => a.symbol.toLowerCase().compareTo(b.symbol.toLowerCase()));
-    print("Deduplicated and sorted tokens: ${sortedTokens.length}");
+    print('Deduplicated and sorted tokens: ${sortedTokens.length}');
     return sortedTokens;
   }
 
@@ -77,7 +77,7 @@ class TokenRepositoryService {
     final CollectionReference tokens = _firestore.collection('tokens');
     final QuerySnapshot querySnapshot = await tokens.doc(network.name).collection('tokens').get();
     return querySnapshot.docs.map((QueryDocumentSnapshot<Object?> token) {
-      final data = token.data() as Map<String, dynamic>;
+      final data = token.data()! as Map<String, dynamic>;
       return FirebaseTokenData(
         network: network.name,
         image: data['image'],
@@ -110,7 +110,7 @@ class TokenRepositoryService {
   ''';
 
     // Format the query string for the GraphQL service
-    final formattedQuery = json.encode({"query": queryString.replaceAll(RegExp(r'\s+'), ' ').trim()});
+    final formattedQuery = json.encode({'query': queryString.replaceAll(RegExp(r'\s+'), ' ').trim()});
 
     final result = await _graphQLService.graphQLQuery(
       network: network,
@@ -119,12 +119,12 @@ class TokenRepositoryService {
 
     if (result.isValue) {
       print('GraphQL Response:');
-      print(JsonEncoder.withIndent('  ').convert(result.asValue!.value));
+      print(const JsonEncoder.withIndent('  ').convert(result.asValue!.value));
 
       // Check if there are any errors in the response
       if (result.asValue!.value['errors'] != null) {
         print('GraphQL Errors:');
-        print(JsonEncoder.withIndent('  ').convert(result.asValue!.value['errors']));
+        print(const JsonEncoder.withIndent('  ').convert(result.asValue!.value['errors']));
         throw Exception('GraphQL query failed: ${result.asValue!.value['errors']}');
       }
 
@@ -134,7 +134,7 @@ class TokenRepositoryService {
       for (final dao in data) {
         final settings = dao['settings'] as List<dynamic>;
         for (final setting in settings) {
-          String? imageUrl = _formatImageUrl(setting['settings_logo_s']);
+          final String? imageUrl = _formatImageUrl(setting['settings_logo_s']);
 
           if (setting['settings_rewardToken_a'] != null) {
             tokens.add(FirebaseTokenData(
@@ -181,7 +181,7 @@ class TokenRepositoryService {
     final parts = ipfsCid.split(':');
     if (parts.length != 2) return null;
     final cid = parts[0];
-    final extension = parts[1];
+    //final extension = parts[1];
     return 'https://4everland.io/ipfs/$cid';
   }
 
