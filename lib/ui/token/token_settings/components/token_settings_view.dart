@@ -26,7 +26,7 @@ class TokensSettingsView extends StatelessWidget {
             final otherTokens = state.tokens.where((t) => t.group == TokenGroup.other).toList();
 
             return ListView(
-              padding: const EdgeInsets.symmetric(vertical: 26, horizontal: 16),
+              padding: const EdgeInsets.only(top: 26),
               children: [
                 if (systemTokens.isNotEmpty) ...[
                   _buildGroupHeader(context, 'System Tokens'),
@@ -50,7 +50,7 @@ class TokensSettingsView extends StatelessWidget {
 
   Widget _buildGroupHeader(BuildContext context, String title) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(10, 16, 10, 8),
+      padding: const EdgeInsets.fromLTRB(26, 16, 26, 8),
       child: Text(
         title,
         style: context.hyphaTextTheme.smallTitles.copyWith(color: HyphaColors.primaryBlu),
@@ -60,38 +60,29 @@ class TokensSettingsView extends StatelessWidget {
 
   Widget _buildTokenItem(BuildContext context, WalletTokenData data) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 26, vertical: 8),
       child: HyphaCard(
-        child: Padding(
+        child: Container(
           padding: const EdgeInsets.all(16),
           child: Row(
+            mainAxisSize: MainAxisSize.max,
             children: [
-              SizedBox(
-                width: 44,
-                height: 44,
-                child: HyphaAvatarImage(
-                  imageFromUrl: data.image,
-                  imageRadius: 22,
-                  name: data.name,
-                ),
-              ),
-              const SizedBox(width: 16),
               Expanded(
+                flex: 1,
+                child: HyphaAvatarImage(imageFromUrl: data.image, imageRadius: 22, name: data.name),
+              ),
+              Expanded(
+                flex: 4,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text(
-                      data.name,
-                      style: context.hyphaTextTheme.reducedTitles,
-                      overflow: TextOverflow.ellipsis,
-                    ),
+                    Text(data.name, style: context.hyphaTextTheme.reducedTitles),
                     Text(
                       data.symbol,
                       style: context.hyphaTextTheme.ralMediumBody.copyWith(
                         color: HyphaColors.midGrey,
                       ),
-                      overflow: TextOverflow.ellipsis,
                     ),
                   ],
                 ),

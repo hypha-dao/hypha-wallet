@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
@@ -41,17 +40,46 @@ class HyphaAvatarImage extends StatelessWidget {
       );
     } else if (imageFromUrl != null) {
       image = ClipOval(
-        child: CachedNetworkImage(
-          imageUrl: imageFromUrl!,
+        child: Image.network(
+          imageFromUrl!,
           width: imageRadius * 2,
           height: imageRadius * 2,
           fit: BoxFit.cover,
-          placeholder: (context, url) => const CircularProgressIndicator(),
-          errorWidget: (context, url, error) => _buildFallbackAvatar(context),
+          errorBuilder: (_, __, ___) {
+            return Container(
+              width: imageRadius * 2,
+              height: imageRadius * 2,
+              decoration: const BoxDecoration(gradient: HyphaColors.gradientBlu, shape: BoxShape.circle),
+              child: Center(
+                child: Text(
+                  name!.characters.first.toUpperCase(),
+                  style: context.hyphaTextTheme.regular.copyWith(
+                    color: HyphaColors.white,
+                    fontSize: imageRadius,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            );
+          },
         ),
       );
     } else if (name != null) {
-      image = _buildFallbackAvatar(context);
+      image = Container(
+        width: imageRadius * 2,
+        height: imageRadius * 2,
+        decoration: const BoxDecoration(gradient: HyphaColors.gradientBlu, shape: BoxShape.circle),
+        child: Center(
+          child: Text(
+            name!.characters.first.toUpperCase(),
+            style: context.hyphaTextTheme.regular.copyWith(
+              color: HyphaColors.white,
+              fontSize: imageRadius,
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ),
+      );
     } else {
       image = Icon(HyphaIcons.image, size: imageRadius, color: context.textTheme.titleSmall?.color);
     }
@@ -80,24 +108,6 @@ class HyphaAvatarImage extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: view,
-    );
-  }
-
-  Widget _buildFallbackAvatar(BuildContext context) {
-    return Container(
-      width: imageRadius * 2,
-      height: imageRadius * 2,
-      decoration: const BoxDecoration(gradient: HyphaColors.gradientBlu, shape: BoxShape.circle),
-      child: Center(
-        child: Text(
-          name!.characters.first.toUpperCase(),
-          style: context.hyphaTextTheme.regular.copyWith(
-            color: HyphaColors.white,
-            fontSize: imageRadius,
-          ),
-          textAlign: TextAlign.center,
-        ),
-      ),
     );
   }
 }
