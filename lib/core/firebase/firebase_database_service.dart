@@ -21,7 +21,7 @@ class FirebaseDatabaseService {
     return db
         .collection('users')
         .doc(accountName)
-        .update(user)
+        .set(user, SetOptions(merge: true))
         .onError((e, _) => LogHelper.d('Error writing document: $e'));
   }
 
@@ -53,7 +53,7 @@ class FirebaseDatabaseService {
     return db
         .collection('users')
         .doc(accountName)
-        .update(token)
+        .set(token, SetOptions(merge: true))
         .onError((e, _) => LogHelper.d('Error writing document: $e'));
   }
 
@@ -69,7 +69,7 @@ class FirebaseDatabaseService {
     return db
         .collection('users')
         .doc(accountName)
-        .update(token)
+        .set(token, SetOptions(merge: true))
         .onError((e, _) => LogHelper.d('Error writing document: $e'));
   }
 
