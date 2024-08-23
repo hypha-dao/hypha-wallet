@@ -10,6 +10,7 @@ ProposalModel _$ProposalModelFromJson(Map<String, dynamic> json) =>
     ProposalModel(
       id: json['docId'] as String,
       daoName: json['daoName'] as String,
+      commitment: (json['details_timeShareX100_i'] as num?)?.toInt(),
       title: json['details_title_s'] as String?,
       unity: (json['details_ballotAlignment_i'] as num?)?.toInt(),
       quorum: (json['details_ballotQuorum_i'] as num?)?.toInt(),
@@ -26,6 +27,7 @@ Map<String, dynamic> _$ProposalModelToJson(ProposalModel instance) =>
     <String, dynamic>{
       'docId': instance.id,
       'daoName': instance.daoName,
+      'details_timeShareX100_i': instance.commitment,
       'details_title_s': instance.title,
       'details_ballotAlignment_i': instance.unity,
       'details_ballotQuorum_i': instance.quorum,
