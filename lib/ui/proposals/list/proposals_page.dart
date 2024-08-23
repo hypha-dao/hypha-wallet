@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart' as Get;
 import 'package:get_it/get_it.dart';
 import 'package:hypha_wallet/core/network/models/proposal_model.dart';
+import 'package:hypha_wallet/ui/proposals/details/proposal_details_page.dart';
 import 'package:hypha_wallet/ui/proposals/list/interactor/proposals_bloc.dart';
 
 class ProposalsPage extends StatelessWidget {
@@ -16,7 +18,10 @@ class ProposalsPage extends StatelessWidget {
         listener: (context, state) {
           state.command?.when(
             navigateToProposalDetails: (ProposalModel proposal) {
-                  // TODO: redirection
+              Get.Get.to(
+                () => const ProposalDetailsPage(),
+                transition: Get.Transition.rightToLeft,
+              );
             },
           );
 
