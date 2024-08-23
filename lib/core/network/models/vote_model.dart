@@ -2,7 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'vote_model.g.dart';
 
-enum VoteStatus { pass, abstain, fail, unknown }
+enum VoteStatus { pass, abstain, fail }
 
 @JsonSerializable()
 class VoteModel {

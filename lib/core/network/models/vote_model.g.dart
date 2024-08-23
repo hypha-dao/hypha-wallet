@@ -20,5 +20,4 @@ const _$VoteStatusEnumMap = {
   VoteStatus.pass: 'pass',
   VoteStatus.abstain: 'abstain',
   VoteStatus.fail: 'fail',
-  VoteStatus.unknown: 'unknown',
 };

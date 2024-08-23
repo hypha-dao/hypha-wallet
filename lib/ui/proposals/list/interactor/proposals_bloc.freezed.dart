@@ -245,19 +245,19 @@ abstract class _NavigateToProposalDetails implements PageCommand {
 mixin _$ProposalsEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
+    required TResult Function(bool refresh) initial,
     required TResult Function() clearPageCommand,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
+    TResult? Function(bool refresh)? initial,
     TResult? Function()? clearPageCommand,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
+    TResult Function(bool refresh)? initial,
     TResult Function()? clearPageCommand,
     required TResult orElse(),
   }) =>
@@ -309,6 +309,8 @@ abstract class _$$InitialImplCopyWith<$Res> {
   factory _$$InitialImplCopyWith(
           _$InitialImpl value, $Res Function(_$InitialImpl) then) =
       __$$InitialImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool refresh});
 }
 
 /// @nodoc
@@ -321,54 +323,80 @@ class __$$InitialImplCopyWithImpl<$Res>
 
   /// Create a copy of ProposalsEvent
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? refresh = null,
+  }) {
+    return _then(_$InitialImpl(
+      refresh: null == refresh
+          ? _value.refresh
+          : refresh // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$InitialImpl implements _Initial {
-  const _$InitialImpl();
+  const _$InitialImpl({this.refresh = false});
+
+  @override
+  @JsonKey()
+  final bool refresh;
 
   @override
   String toString() {
-    return 'ProposalsEvent.initial()';
+    return 'ProposalsEvent.initial(refresh: $refresh)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitialImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$InitialImpl &&
+            (identical(other.refresh, refresh) || other.refresh == refresh));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, refresh);
+
+  /// Create a copy of ProposalsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$InitialImplCopyWith<_$InitialImpl> get copyWith =>
+      __$$InitialImplCopyWithImpl<_$InitialImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
+    required TResult Function(bool refresh) initial,
     required TResult Function() clearPageCommand,
   }) {
-    return initial();
+    return initial(refresh);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
+    TResult? Function(bool refresh)? initial,
     TResult? Function()? clearPageCommand,
   }) {
-    return initial?.call();
+    return initial?.call(refresh);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
+    TResult Function(bool refresh)? initial,
     TResult Function()? clearPageCommand,
     required TResult orElse(),
   }) {
     if (initial != null) {
-      return initial();
+      return initial(refresh);
     }
     return orElse();
   }
@@ -406,7 +434,15 @@ class _$InitialImpl implements _Initial {
 }
 
 abstract class _Initial implements ProposalsEvent {
-  const factory _Initial() = _$InitialImpl;
+  const factory _Initial({final bool refresh}) = _$InitialImpl;
+
+  bool get refresh;
+
+  /// Create a copy of ProposalsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$InitialImplCopyWith<_$InitialImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -450,7 +486,7 @@ class _$ClearPageCommandImpl implements _ClearPageCommand {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
+    required TResult Function(bool refresh) initial,
     required TResult Function() clearPageCommand,
   }) {
     return clearPageCommand();
@@ -459,7 +495,7 @@ class _$ClearPageCommandImpl implements _ClearPageCommand {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
+    TResult? Function(bool refresh)? initial,
     TResult? Function()? clearPageCommand,
   }) {
     return clearPageCommand?.call();
@@ -468,7 +504,7 @@ class _$ClearPageCommandImpl implements _ClearPageCommand {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
+    TResult Function(bool refresh)? initial,
     TResult Function()? clearPageCommand,
     required TResult orElse(),
   }) {

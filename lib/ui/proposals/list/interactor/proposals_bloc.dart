@@ -21,7 +21,9 @@ class ProposalsBloc extends Bloc<ProposalsEvent, ProposalsState> {
   }
 
   Future<void> _initial(_Initial event, Emitter<ProposalsState> emit) async {
-    emit(state.copyWith(pageState: PageState.loading));
+    if(!event.refresh) {
+      emit(state.copyWith(pageState: PageState.loading));
+    }
 
     final Result<List<ProposalModel>, HyphaError> result = await _getProposalsUseCase.run();
 
