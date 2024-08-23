@@ -19,7 +19,7 @@ class ProposalsPage extends StatelessWidget {
           state.command?.when(
             navigateToProposalDetails: (ProposalModel proposal) {
               Get.Get.to(
-                () => const ProposalDetailsPage(),
+                () => ProposalDetailsPage(proposal),
                 transition: Get.Transition.rightToLeft,
               );
             },
