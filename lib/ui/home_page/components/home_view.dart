@@ -38,7 +38,7 @@ class HomeView extends StatelessWidget {
                           imageFromUrl: state.userProfileData?.userImage,
                           onTap: () {
                             context.read<BottomNavigationBloc>().add(
-                                  const BottomNavigationEvent.onPageSelected(BottomNavigationPage.profile),
+                                  const BottomNavigationEvent.onPageSelected(BottomNavigationPage.proposals),
                                 );
                           },
                         );
