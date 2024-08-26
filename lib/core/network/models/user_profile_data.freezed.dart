@@ -21,17 +21,12 @@ UserProfileData _$UserProfileDataFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$UserProfileData {
   String get accountName => throw _privateConstructorUsedError;
-
   Network get network => throw _privateConstructorUsedError;
-
   String? get userImage => throw _privateConstructorUsedError;
-
   String? get bio => throw _privateConstructorUsedError;
-
   String? get userName => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
   @JsonKey(ignore: true)
   $UserProfileDataCopyWith<UserProfileData> get copyWith =>
       throw _privateConstructorUsedError;
@@ -42,7 +37,6 @@ abstract class $UserProfileDataCopyWith<$Res> {
   factory $UserProfileDataCopyWith(
           UserProfileData value, $Res Function(UserProfileData) then) =
       _$UserProfileDataCopyWithImpl<$Res, UserProfileData>;
-
   @useResult
   $Res call(
       {String accountName,
@@ -59,7 +53,6 @@ class _$UserProfileDataCopyWithImpl<$Res, $Val extends UserProfileData>
 
   // ignore: unused_field
   final $Val _value;
-
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -103,7 +96,6 @@ abstract class _$$_UserProfileDataCopyWith<$Res>
   factory _$$_UserProfileDataCopyWith(
           _$_UserProfileData value, $Res Function(_$_UserProfileData) then) =
       __$$_UserProfileDataCopyWithImpl<$Res>;
-
   @override
   @useResult
   $Res call(
@@ -231,7 +223,6 @@ abstract class _UserProfileData extends UserProfileData {
       final String? userImage,
       final String? bio,
       final String? userName}) = _$_UserProfileData;
-
   _UserProfileData._() : super._();
 
   factory _UserProfileData.fromJson(Map<String, dynamic> json) =
@@ -239,19 +230,14 @@ abstract class _UserProfileData extends UserProfileData {
 
   @override
   String get accountName;
-
   @override
   Network get network;
-
   @override
   String? get userImage;
-
   @override
   String? get bio;
-
   @override
   String? get userName;
-
   @override
   @JsonKey(ignore: true)
   _$$_UserProfileDataCopyWith<_$_UserProfileData> get copyWith =>

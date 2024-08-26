@@ -24,7 +24,6 @@ mixin _$EditAccountEvent {
     required TResult Function(String value, Network network) onAccountChange,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
@@ -42,7 +41,6 @@ mixin _$EditAccountEvent {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
@@ -51,7 +49,6 @@ mixin _$EditAccountEvent {
     required TResult Function(_OnAccountChange value) onAccountChange,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
@@ -83,9 +80,9 @@ class _$EditAccountEventCopyWithImpl<$Res, $Val extends EditAccountEvent>
     implements $EditAccountEventCopyWith<$Res> {
   _$EditAccountEventCopyWithImpl(this._value, this._then);
 
-// ignore: unused_field
+  // ignore: unused_field
   final $Val _value;
-// ignore: unused_field
+  // ignore: unused_field
   final $Res Function($Val) _then;
 }
 
@@ -655,9 +652,9 @@ class _$EditAccountStateCopyWithImpl<$Res, $Val extends EditAccountState>
     implements $EditAccountStateCopyWith<$Res> {
   _$EditAccountStateCopyWithImpl(this._value, this._then);
 
-// ignore: unused_field
+  // ignore: unused_field
   final $Val _value;
-// ignore: unused_field
+  // ignore: unused_field
   final $Res Function($Val) _then;
 
   @pragma('vm:prefer-inline')
@@ -808,7 +805,7 @@ class _$_CreateAccountState extends _CreateAccountState {
   List<UserAccountRequirement> get userAccountRequirements {
     if (_userAccountRequirements is EqualUnmodifiableListView)
       return _userAccountRequirements;
-// ignore: implicit_dynamic_type
+    // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_userAccountRequirements);
   }
 
@@ -941,9 +938,9 @@ class _$PageCommandCopyWithImpl<$Res, $Val extends PageCommand>
     implements $PageCommandCopyWith<$Res> {
   _$PageCommandCopyWithImpl(this._value, this._then);
 
-// ignore: unused_field
+  // ignore: unused_field
   final $Val _value;
-// ignore: unused_field
+  // ignore: unused_field
   final $Res Function($Val) _then;
 }
 

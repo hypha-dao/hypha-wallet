@@ -17,14 +17,12 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$PageCommand {
   ScanQrCodeResultData get data => throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(ScanQrCodeResultData data)
         navigateToSignTransaction,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(ScanQrCodeResultData data)? navigateToSignTransaction,
@@ -36,14 +34,12 @@ mixin _$PageCommand {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_NavigateToSignTransaction value)
         navigateToSignTransaction,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_NavigateToSignTransaction value)?
@@ -77,9 +73,9 @@ class _$PageCommandCopyWithImpl<$Res, $Val extends PageCommand>
     implements $PageCommandCopyWith<$Res> {
   _$PageCommandCopyWithImpl(this._value, this._then);
 
-// ignore: unused_field
+  // ignore: unused_field
   final $Val _value;
-// ignore: unused_field
+  // ignore: unused_field
   final $Res Function($Val) _then;
 
   @pragma('vm:prefer-inline')
@@ -293,9 +289,9 @@ class _$PushNotificationsEventCopyWithImpl<$Res,
     implements $PushNotificationsEventCopyWith<$Res> {
   _$PushNotificationsEventCopyWithImpl(this._value, this._then);
 
-// ignore: unused_field
+  // ignore: unused_field
   final $Val _value;
-// ignore: unused_field
+  // ignore: unused_field
   final $Res Function($Val) _then;
 }
 
@@ -579,9 +575,9 @@ class _$PushNotificationsStateCopyWithImpl<$Res,
     implements $PushNotificationsStateCopyWith<$Res> {
   _$PushNotificationsStateCopyWithImpl(this._value, this._then);
 
-// ignore: unused_field
+  // ignore: unused_field
   final $Val _value;
-// ignore: unused_field
+  // ignore: unused_field
   final $Res Function($Val) _then;
 
   @pragma('vm:prefer-inline')

@@ -22,7 +22,6 @@ mixin _$PageCommand {
     required TResult Function() navigateBack,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? navigateToSuccess,
@@ -36,14 +35,12 @@ mixin _$PageCommand {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_NavigateToSuccess value) navigateToSuccess,
     required TResult Function(_NavigateBack value) navigateBack,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_NavigateToSuccess value)? navigateToSuccess,
@@ -71,9 +68,9 @@ class _$PageCommandCopyWithImpl<$Res, $Val extends PageCommand>
     implements $PageCommandCopyWith<$Res> {
   _$PageCommandCopyWithImpl(this._value, this._then);
 
-// ignore: unused_field
+  // ignore: unused_field
   final $Val _value;
-// ignore: unused_field
+  // ignore: unused_field
   final $Res Function($Val) _then;
 }
 
@@ -365,9 +362,9 @@ class _$ProfileEventCopyWithImpl<$Res, $Val extends ProfileEvent>
     implements $ProfileEventCopyWith<$Res> {
   _$ProfileEventCopyWithImpl(this._value, this._then);
 
-// ignore: unused_field
+  // ignore: unused_field
   final $Val _value;
-// ignore: unused_field
+  // ignore: unused_field
   final $Res Function($Val) _then;
 }
 
@@ -1420,9 +1417,9 @@ class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState>
     implements $ProfileStateCopyWith<$Res> {
   _$ProfileStateCopyWithImpl(this._value, this._then);
 
-// ignore: unused_field
+  // ignore: unused_field
   final $Val _value;
-// ignore: unused_field
+  // ignore: unused_field
   final $Res Function($Val) _then;
 
   @pragma('vm:prefer-inline')

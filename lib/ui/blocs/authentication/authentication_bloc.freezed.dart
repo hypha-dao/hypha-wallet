@@ -27,7 +27,6 @@ mixin _$AuthenticationEvent {
     required TResult Function(UserProfileData data) onUserProfileDataChanged,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
@@ -49,7 +48,6 @@ mixin _$AuthenticationEvent {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_InitialAuthentication value) initial,
@@ -64,7 +62,6 @@ mixin _$AuthenticationEvent {
         onUserProfileDataChanged,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitialAuthentication value)? initial,
@@ -106,9 +103,9 @@ class _$AuthenticationEventCopyWithImpl<$Res, $Val extends AuthenticationEvent>
     implements $AuthenticationEventCopyWith<$Res> {
   _$AuthenticationEventCopyWithImpl(this._value, this._then);
 
-// ignore: unused_field
+  // ignore: unused_field
   final $Val _value;
-// ignore: unused_field
+  // ignore: unused_field
   final $Res Function($Val) _then;
 }
 
@@ -1084,9 +1081,9 @@ class _$AuthenticationStateCopyWithImpl<$Res, $Val extends AuthenticationState>
     implements $AuthenticationStateCopyWith<$Res> {
   _$AuthenticationStateCopyWithImpl(this._value, this._then);
 
-// ignore: unused_field
+  // ignore: unused_field
   final $Val _value;
-// ignore: unused_field
+  // ignore: unused_field
   final $Res Function($Val) _then;
 
   @pragma('vm:prefer-inline')

@@ -21,7 +21,6 @@ mixin _$PageCommand {
     required TResult Function() navigateToTransactionDetails,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? navigateToTransactionDetails,
@@ -33,14 +32,12 @@ mixin _$PageCommand {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_NavigateToTransactionDetails value)
         navigateToTransactionDetails,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_NavigateToTransactionDetails value)?
@@ -68,9 +65,9 @@ class _$PageCommandCopyWithImpl<$Res, $Val extends PageCommand>
     implements $PageCommandCopyWith<$Res> {
   _$PageCommandCopyWithImpl(this._value, this._then);
 
-// ignore: unused_field
+  // ignore: unused_field
   final $Val _value;
-// ignore: unused_field
+  // ignore: unused_field
   final $Res Function($Val) _then;
 }
 
@@ -232,9 +229,9 @@ class _$TransactionDetailEventCopyWithImpl<$Res,
     implements $TransactionDetailEventCopyWith<$Res> {
   _$TransactionDetailEventCopyWithImpl(this._value, this._then);
 
-// ignore: unused_field
+  // ignore: unused_field
   final $Val _value;
-// ignore: unused_field
+  // ignore: unused_field
   final $Res Function($Val) _then;
 }
 
@@ -468,9 +465,9 @@ class _$TransactionDetailStateCopyWithImpl<$Res,
     implements $TransactionDetailStateCopyWith<$Res> {
   _$TransactionDetailStateCopyWithImpl(this._value, this._then);
 
-// ignore: unused_field
+  // ignore: unused_field
   final $Val _value;
-// ignore: unused_field
+  // ignore: unused_field
   final $Res Function($Val) _then;
 
   @pragma('vm:prefer-inline')

@@ -17,19 +17,12 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$PageCommand {
   String get title => throw _privateConstructorUsedError;
-
   String get subtitle => throw _privateConstructorUsedError;
-
   String get rationale => throw _privateConstructorUsedError;
-
   String get mainButtonText => throw _privateConstructorUsedError;
-
   String get image => throw _privateConstructorUsedError;
-
   List<String> get words => throw _privateConstructorUsedError;
-
   String get privateKey => throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
@@ -43,7 +36,6 @@ mixin _$PageCommand {
         showSecurityPopup,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(
@@ -71,13 +63,11 @@ mixin _$PageCommand {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ShowSecurityPopup value) showSecurityPopup,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ShowSecurityPopup value)? showSecurityPopup,
@@ -116,9 +106,9 @@ class _$PageCommandCopyWithImpl<$Res, $Val extends PageCommand>
     implements $PageCommandCopyWith<$Res> {
   _$PageCommandCopyWithImpl(this._value, this._then);
 
-// ignore: unused_field
+  // ignore: unused_field
   final $Val _value;
-// ignore: unused_field
+  // ignore: unused_field
   final $Res Function($Val) _then;
 
   @pragma('vm:prefer-inline')
@@ -262,7 +252,7 @@ class _$_ShowSecurityPopup implements _ShowSecurityPopup {
   @override
   List<String> get words {
     if (_words is EqualUnmodifiableListView) return _words;
-// ignore: implicit_dynamic_type
+    // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_words);
   }
 
@@ -504,9 +494,9 @@ class _$SettingsEventCopyWithImpl<$Res, $Val extends SettingsEvent>
     implements $SettingsEventCopyWith<$Res> {
   _$SettingsEventCopyWithImpl(this._value, this._then);
 
-// ignore: unused_field
+  // ignore: unused_field
   final $Val _value;
-// ignore: unused_field
+  // ignore: unused_field
   final $Res Function($Val) _then;
 }
 
@@ -1319,9 +1309,9 @@ class _$SettingsStateCopyWithImpl<$Res, $Val extends SettingsState>
     implements $SettingsStateCopyWith<$Res> {
   _$SettingsStateCopyWithImpl(this._value, this._then);
 
-// ignore: unused_field
+  // ignore: unused_field
   final $Val _value;
-// ignore: unused_field
+  // ignore: unused_field
   final $Res Function($Val) _then;
 
   @pragma('vm:prefer-inline')

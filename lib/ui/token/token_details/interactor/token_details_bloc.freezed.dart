@@ -21,7 +21,6 @@ mixin _$PageCommand {
     required TResult Function() navigateToSuccess,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? navigateToSuccess,
@@ -33,13 +32,11 @@ mixin _$PageCommand {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_NavigateTo value) navigateToSuccess,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_NavigateTo value)? navigateToSuccess,
@@ -65,9 +62,9 @@ class _$PageCommandCopyWithImpl<$Res, $Val extends PageCommand>
     implements $PageCommandCopyWith<$Res> {
   _$PageCommandCopyWithImpl(this._value, this._then);
 
-// ignore: unused_field
+  // ignore: unused_field
   final $Val _value;
-// ignore: unused_field
+  // ignore: unused_field
   final $Res Function($Val) _then;
 }
 
@@ -245,9 +242,9 @@ class _$TokenDetailsEventCopyWithImpl<$Res, $Val extends TokenDetailsEvent>
     implements $TokenDetailsEventCopyWith<$Res> {
   _$TokenDetailsEventCopyWithImpl(this._value, this._then);
 
-// ignore: unused_field
+  // ignore: unused_field
   final $Val _value;
-// ignore: unused_field
+  // ignore: unused_field
   final $Res Function($Val) _then;
 }
 
@@ -1108,9 +1105,9 @@ class _$TokenDetailsStateCopyWithImpl<$Res, $Val extends TokenDetailsState>
     implements $TokenDetailsStateCopyWith<$Res> {
   _$TokenDetailsStateCopyWithImpl(this._value, this._then);
 
-// ignore: unused_field
+  // ignore: unused_field
   final $Val _value;
-// ignore: unused_field
+  // ignore: unused_field
   final $Res Function($Val) _then;
 
   @pragma('vm:prefer-inline')
@@ -1260,7 +1257,7 @@ class _$_TokenDetailsState extends _TokenDetailsState {
   List<WalletTransactionTileData> get recentTransactions {
     if (_recentTransactions is EqualUnmodifiableListView)
       return _recentTransactions;
-// ignore: implicit_dynamic_type
+    // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_recentTransactions);
   }
 

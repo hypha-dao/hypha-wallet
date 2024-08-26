@@ -22,7 +22,6 @@ mixin _$ErrorHandlerEvent {
     required TResult Function() onClearPageCommand,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(HyphaError error)? onError,
@@ -36,14 +35,12 @@ mixin _$ErrorHandlerEvent {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_OnError value) onError,
     required TResult Function(_OnClearPageCommand value) onClearPageCommand,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_OnError value)? onError,
@@ -71,9 +68,9 @@ class _$ErrorHandlerEventCopyWithImpl<$Res, $Val extends ErrorHandlerEvent>
     implements $ErrorHandlerEventCopyWith<$Res> {
   _$ErrorHandlerEventCopyWithImpl(this._value, this._then);
 
-// ignore: unused_field
+  // ignore: unused_field
   final $Val _value;
-// ignore: unused_field
+  // ignore: unused_field
   final $Res Function($Val) _then;
 }
 
@@ -336,9 +333,9 @@ class _$ErrorHandlerStateCopyWithImpl<$Res, $Val extends ErrorHandlerState>
     implements $ErrorHandlerStateCopyWith<$Res> {
   _$ErrorHandlerStateCopyWithImpl(this._value, this._then);
 
-// ignore: unused_field
+  // ignore: unused_field
   final $Val _value;
-// ignore: unused_field
+  // ignore: unused_field
   final $Res Function($Val) _then;
 
   @pragma('vm:prefer-inline')
@@ -524,9 +521,9 @@ class _$PageCommandCopyWithImpl<$Res, $Val extends PageCommand>
     implements $PageCommandCopyWith<$Res> {
   _$PageCommandCopyWithImpl(this._value, this._then);
 
-// ignore: unused_field
+  // ignore: unused_field
   final $Val _value;
-// ignore: unused_field
+  // ignore: unused_field
   final $Res Function($Val) _then;
 }
 

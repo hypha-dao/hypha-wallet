@@ -24,7 +24,6 @@ mixin _$DeeplinkEvent {
     required TResult Function() clearInviteLink,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Uri link)? incomingFirebaseDeepLink,
@@ -42,7 +41,6 @@ mixin _$DeeplinkEvent {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_IncomingFirebaseDeepLink value)
@@ -52,7 +50,6 @@ mixin _$DeeplinkEvent {
     required TResult Function(_ClearInviteLink value) clearInviteLink,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_IncomingFirebaseDeepLink value)?
@@ -85,9 +82,9 @@ class _$DeeplinkEventCopyWithImpl<$Res, $Val extends DeeplinkEvent>
     implements $DeeplinkEventCopyWith<$Res> {
   _$DeeplinkEventCopyWithImpl(this._value, this._then);
 
-// ignore: unused_field
+  // ignore: unused_field
   final $Val _value;
-// ignore: unused_field
+  // ignore: unused_field
   final $Res Function($Val) _then;
 }
 
@@ -646,9 +643,9 @@ class _$DeeplinkStateCopyWithImpl<$Res, $Val extends DeeplinkState>
     implements $DeeplinkStateCopyWith<$Res> {
   _$DeeplinkStateCopyWithImpl(this._value, this._then);
 
-// ignore: unused_field
+  // ignore: unused_field
   final $Val _value;
-// ignore: unused_field
+  // ignore: unused_field
   final $Res Function($Val) _then;
 
   @pragma('vm:prefer-inline')
@@ -839,9 +836,9 @@ class _$PageCommandCopyWithImpl<$Res, $Val extends PageCommand>
     implements $PageCommandCopyWith<$Res> {
   _$PageCommandCopyWithImpl(this._value, this._then);
 
-// ignore: unused_field
+  // ignore: unused_field
   final $Val _value;
-// ignore: unused_field
+  // ignore: unused_field
   final $Res Function($Val) _then;
 }
 

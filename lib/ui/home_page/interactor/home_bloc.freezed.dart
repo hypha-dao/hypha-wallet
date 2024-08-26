@@ -23,7 +23,6 @@ mixin _$HomeEvent {
     required TResult Function(String value) onQRCodeScanned,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
@@ -39,7 +38,6 @@ mixin _$HomeEvent {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
@@ -47,7 +45,6 @@ mixin _$HomeEvent {
     required TResult Function(_OnQRCodeScanned value) onQRCodeScanned,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
@@ -76,9 +73,9 @@ class _$HomeEventCopyWithImpl<$Res, $Val extends HomeEvent>
     implements $HomeEventCopyWith<$Res> {
   _$HomeEventCopyWithImpl(this._value, this._then);
 
-// ignore: unused_field
+  // ignore: unused_field
   final $Val _value;
-// ignore: unused_field
+  // ignore: unused_field
   final $Res Function($Val) _then;
 }
 
@@ -462,9 +459,9 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
     implements $HomeStateCopyWith<$Res> {
   _$HomeStateCopyWithImpl(this._value, this._then);
 
-// ignore: unused_field
+  // ignore: unused_field
   final $Val _value;
-// ignore: unused_field
+  // ignore: unused_field
   final $Res Function($Val) _then;
 
   @pragma('vm:prefer-inline')
@@ -669,9 +666,9 @@ class _$PageCommandCopyWithImpl<$Res, $Val extends PageCommand>
     implements $PageCommandCopyWith<$Res> {
   _$PageCommandCopyWithImpl(this._value, this._then);
 
-// ignore: unused_field
+  // ignore: unused_field
   final $Val _value;
-// ignore: unused_field
+  // ignore: unused_field
   final $Res Function($Val) _then;
 
   @pragma('vm:prefer-inline')

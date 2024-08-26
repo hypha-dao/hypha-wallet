@@ -29,7 +29,6 @@ mixin _$ImportAccountEvent {
     required TResult Function() onImportTypeChangeTapped,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
@@ -57,7 +56,6 @@ mixin _$ImportAccountEvent {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
@@ -72,7 +70,6 @@ mixin _$ImportAccountEvent {
         onImportTypeChangeTapped,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
@@ -115,9 +112,9 @@ class _$ImportAccountEventCopyWithImpl<$Res, $Val extends ImportAccountEvent>
     implements $ImportAccountEventCopyWith<$Res> {
   _$ImportAccountEventCopyWithImpl(this._value, this._then);
 
-// ignore: unused_field
+  // ignore: unused_field
   final $Val _value;
-// ignore: unused_field
+  // ignore: unused_field
   final $Res Function($Val) _then;
 }
 
@@ -1664,9 +1661,9 @@ class _$ImportAccountStateCopyWithImpl<$Res, $Val extends ImportAccountState>
     implements $ImportAccountStateCopyWith<$Res> {
   _$ImportAccountStateCopyWithImpl(this._value, this._then);
 
-// ignore: unused_field
+  // ignore: unused_field
   final $Val _value;
-// ignore: unused_field
+  // ignore: unused_field
   final $Res Function($Val) _then;
 
   @pragma('vm:prefer-inline')
@@ -1850,7 +1847,7 @@ class _$_ImportAccountState extends _ImportAccountState {
   @JsonKey()
   Map<int, String> get userEnteredWords {
     if (_userEnteredWords is EqualUnmodifiableMapView) return _userEnteredWords;
-// ignore: implicit_dynamic_type
+    // ignore: implicit_dynamic_type
     return EqualUnmodifiableMapView(_userEnteredWords);
   }
 
@@ -1871,7 +1868,7 @@ class _$_ImportAccountState extends _ImportAccountState {
   @JsonKey()
   List<UserProfileData> get accounts {
     if (_accounts is EqualUnmodifiableListView) return _accounts;
-// ignore: implicit_dynamic_type
+    // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_accounts);
   }
 
@@ -2017,9 +2014,9 @@ class _$PageCommandCopyWithImpl<$Res, $Val extends PageCommand>
     implements $PageCommandCopyWith<$Res> {
   _$PageCommandCopyWithImpl(this._value, this._then);
 
-// ignore: unused_field
+  // ignore: unused_field
   final $Val _value;
-// ignore: unused_field
+  // ignore: unused_field
   final $Res Function($Val) _then;
 
   @pragma('vm:prefer-inline')
@@ -2079,7 +2076,7 @@ class _$_NavigateToAccountFound implements _NavigateToAccountFound {
   @override
   List<String> get accounts {
     if (_accounts is EqualUnmodifiableListView) return _accounts;
-// ignore: implicit_dynamic_type
+    // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_accounts);
   }
 
