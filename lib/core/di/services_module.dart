@@ -42,4 +42,6 @@ Future<void> _registerServicesModule() async {
   _registerLazySingleton<PermissionService>(() => PermissionServiceImplementation());
 
   _registerLazySingleton<ProfileService>(() => ProfileService(_getIt<RemoteConfigService>()));
+
+  _registerLazySingleton<ProposalService>(() => ProposalService(_getIt<GraphQLService>()));
 }
