@@ -12,7 +12,7 @@ part of 'authentication_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$AuthenticationEvent {
@@ -27,6 +27,7 @@ mixin _$AuthenticationEvent {
     required TResult Function(UserProfileData data) onUserProfileDataChanged,
   }) =>
       throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
@@ -48,6 +49,7 @@ mixin _$AuthenticationEvent {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_InitialAuthentication value) initial,
@@ -62,6 +64,7 @@ mixin _$AuthenticationEvent {
         onUserProfileDataChanged,
   }) =>
       throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitialAuthentication value)? initial,
@@ -103,39 +106,32 @@ class _$AuthenticationEventCopyWithImpl<$Res, $Val extends AuthenticationEvent>
     implements $AuthenticationEventCopyWith<$Res> {
   _$AuthenticationEventCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
+// ignore: unused_field
   final $Val _value;
-  // ignore: unused_field
+// ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of AuthenticationEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
-abstract class _$$InitialAuthenticationImplCopyWith<$Res> {
-  factory _$$InitialAuthenticationImplCopyWith(
-          _$InitialAuthenticationImpl value,
-          $Res Function(_$InitialAuthenticationImpl) then) =
-      __$$InitialAuthenticationImplCopyWithImpl<$Res>;
+abstract class _$$_InitialAuthenticationCopyWith<$Res> {
+  factory _$$_InitialAuthenticationCopyWith(_$_InitialAuthentication value,
+          $Res Function(_$_InitialAuthentication) then) =
+      __$$_InitialAuthenticationCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$InitialAuthenticationImplCopyWithImpl<$Res>
-    extends _$AuthenticationEventCopyWithImpl<$Res, _$InitialAuthenticationImpl>
-    implements _$$InitialAuthenticationImplCopyWith<$Res> {
-  __$$InitialAuthenticationImplCopyWithImpl(_$InitialAuthenticationImpl _value,
-      $Res Function(_$InitialAuthenticationImpl) _then)
+class __$$_InitialAuthenticationCopyWithImpl<$Res>
+    extends _$AuthenticationEventCopyWithImpl<$Res, _$_InitialAuthentication>
+    implements _$$_InitialAuthenticationCopyWith<$Res> {
+  __$$_InitialAuthenticationCopyWithImpl(_$_InitialAuthentication _value,
+      $Res Function(_$_InitialAuthentication) _then)
       : super(_value, _then);
-
-  /// Create a copy of AuthenticationEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$InitialAuthenticationImpl implements _InitialAuthentication {
-  const _$InitialAuthenticationImpl();
+class _$_InitialAuthentication implements _InitialAuthentication {
+  const _$_InitialAuthentication();
 
   @override
   String toString() {
@@ -143,10 +139,9 @@ class _$InitialAuthenticationImpl implements _InitialAuthentication {
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$InitialAuthenticationImpl);
+        (other.runtimeType == runtimeType && other is _$_InitialAuthentication);
   }
 
   @override
@@ -251,37 +246,35 @@ class _$InitialAuthenticationImpl implements _InitialAuthentication {
 }
 
 abstract class _InitialAuthentication implements AuthenticationEvent {
-  const factory _InitialAuthentication() = _$InitialAuthenticationImpl;
+  const factory _InitialAuthentication() = _$_InitialAuthentication;
 }
 
 /// @nodoc
-abstract class _$$AuthenticationStatusChangedImplCopyWith<$Res> {
-  factory _$$AuthenticationStatusChangedImplCopyWith(
-          _$AuthenticationStatusChangedImpl value,
-          $Res Function(_$AuthenticationStatusChangedImpl) then) =
-      __$$AuthenticationStatusChangedImplCopyWithImpl<$Res>;
+abstract class _$$_AuthenticationStatusChangedCopyWith<$Res> {
+  factory _$$_AuthenticationStatusChangedCopyWith(
+          _$_AuthenticationStatusChanged value,
+          $Res Function(_$_AuthenticationStatusChanged) then) =
+      __$$_AuthenticationStatusChangedCopyWithImpl<$Res>;
   @useResult
   $Res call({AuthenticationStatus status});
 }
 
 /// @nodoc
-class __$$AuthenticationStatusChangedImplCopyWithImpl<$Res>
+class __$$_AuthenticationStatusChangedCopyWithImpl<$Res>
     extends _$AuthenticationEventCopyWithImpl<$Res,
-        _$AuthenticationStatusChangedImpl>
-    implements _$$AuthenticationStatusChangedImplCopyWith<$Res> {
-  __$$AuthenticationStatusChangedImplCopyWithImpl(
-      _$AuthenticationStatusChangedImpl _value,
-      $Res Function(_$AuthenticationStatusChangedImpl) _then)
+        _$_AuthenticationStatusChanged>
+    implements _$$_AuthenticationStatusChangedCopyWith<$Res> {
+  __$$_AuthenticationStatusChangedCopyWithImpl(
+      _$_AuthenticationStatusChanged _value,
+      $Res Function(_$_AuthenticationStatusChanged) _then)
       : super(_value, _then);
 
-  /// Create a copy of AuthenticationEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? status = null,
   }) {
-    return _then(_$AuthenticationStatusChangedImpl(
+    return _then(_$_AuthenticationStatusChanged(
       null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -292,9 +285,8 @@ class __$$AuthenticationStatusChangedImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$AuthenticationStatusChangedImpl
-    implements _AuthenticationStatusChanged {
-  const _$AuthenticationStatusChangedImpl(this.status);
+class _$_AuthenticationStatusChanged implements _AuthenticationStatusChanged {
+  const _$_AuthenticationStatusChanged(this.status);
 
   @override
   final AuthenticationStatus status;
@@ -305,24 +297,22 @@ class _$AuthenticationStatusChangedImpl
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AuthenticationStatusChangedImpl &&
+            other is _$_AuthenticationStatusChanged &&
             (identical(other.status, status) || other.status == status));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, status);
 
-  /// Create a copy of AuthenticationEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$AuthenticationStatusChangedImplCopyWith<_$AuthenticationStatusChangedImpl>
-      get copyWith => __$$AuthenticationStatusChangedImplCopyWithImpl<
-          _$AuthenticationStatusChangedImpl>(this, _$identity);
+  _$$_AuthenticationStatusChangedCopyWith<_$_AuthenticationStatusChanged>
+      get copyWith => __$$_AuthenticationStatusChangedCopyWithImpl<
+          _$_AuthenticationStatusChanged>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -424,41 +414,34 @@ class _$AuthenticationStatusChangedImpl
 
 abstract class _AuthenticationStatusChanged implements AuthenticationEvent {
   const factory _AuthenticationStatusChanged(
-      final AuthenticationStatus status) = _$AuthenticationStatusChangedImpl;
+      final AuthenticationStatus status) = _$_AuthenticationStatusChanged;
 
   AuthenticationStatus get status;
-
-  /// Create a copy of AuthenticationEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$AuthenticationStatusChangedImplCopyWith<_$AuthenticationStatusChangedImpl>
+  @JsonKey(ignore: true)
+  _$$_AuthenticationStatusChangedCopyWith<_$_AuthenticationStatusChanged>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$AttemptToAuthenticateImplCopyWith<$Res> {
-  factory _$$AttemptToAuthenticateImplCopyWith(
-          _$AttemptToAuthenticateImpl value,
-          $Res Function(_$AttemptToAuthenticateImpl) then) =
-      __$$AttemptToAuthenticateImplCopyWithImpl<$Res>;
+abstract class _$$_AttemptToAuthenticateCopyWith<$Res> {
+  factory _$$_AttemptToAuthenticateCopyWith(_$_AttemptToAuthenticate value,
+          $Res Function(_$_AttemptToAuthenticate) then) =
+      __$$_AttemptToAuthenticateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$AttemptToAuthenticateImplCopyWithImpl<$Res>
-    extends _$AuthenticationEventCopyWithImpl<$Res, _$AttemptToAuthenticateImpl>
-    implements _$$AttemptToAuthenticateImplCopyWith<$Res> {
-  __$$AttemptToAuthenticateImplCopyWithImpl(_$AttemptToAuthenticateImpl _value,
-      $Res Function(_$AttemptToAuthenticateImpl) _then)
+class __$$_AttemptToAuthenticateCopyWithImpl<$Res>
+    extends _$AuthenticationEventCopyWithImpl<$Res, _$_AttemptToAuthenticate>
+    implements _$$_AttemptToAuthenticateCopyWith<$Res> {
+  __$$_AttemptToAuthenticateCopyWithImpl(_$_AttemptToAuthenticate _value,
+      $Res Function(_$_AttemptToAuthenticate) _then)
       : super(_value, _then);
-
-  /// Create a copy of AuthenticationEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$AttemptToAuthenticateImpl implements _AttemptToAuthenticate {
-  const _$AttemptToAuthenticateImpl();
+class _$_AttemptToAuthenticate implements _AttemptToAuthenticate {
+  const _$_AttemptToAuthenticate();
 
   @override
   String toString() {
@@ -466,10 +449,9 @@ class _$AttemptToAuthenticateImpl implements _AttemptToAuthenticate {
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$AttemptToAuthenticateImpl);
+        (other.runtimeType == runtimeType && other is _$_AttemptToAuthenticate);
   }
 
   @override
@@ -574,34 +556,32 @@ class _$AttemptToAuthenticateImpl implements _AttemptToAuthenticate {
 }
 
 abstract class _AttemptToAuthenticate implements AuthenticationEvent {
-  const factory _AttemptToAuthenticate() = _$AttemptToAuthenticateImpl;
+  const factory _AttemptToAuthenticate() = _$_AttemptToAuthenticate;
 }
 
 /// @nodoc
-abstract class _$$OnFCMTokenChangedImplCopyWith<$Res> {
-  factory _$$OnFCMTokenChangedImplCopyWith(_$OnFCMTokenChangedImpl value,
-          $Res Function(_$OnFCMTokenChangedImpl) then) =
-      __$$OnFCMTokenChangedImplCopyWithImpl<$Res>;
+abstract class _$$_OnFCMTokenChangedCopyWith<$Res> {
+  factory _$$_OnFCMTokenChangedCopyWith(_$_OnFCMTokenChanged value,
+          $Res Function(_$_OnFCMTokenChanged) then) =
+      __$$_OnFCMTokenChangedCopyWithImpl<$Res>;
   @useResult
   $Res call({String token});
 }
 
 /// @nodoc
-class __$$OnFCMTokenChangedImplCopyWithImpl<$Res>
-    extends _$AuthenticationEventCopyWithImpl<$Res, _$OnFCMTokenChangedImpl>
-    implements _$$OnFCMTokenChangedImplCopyWith<$Res> {
-  __$$OnFCMTokenChangedImplCopyWithImpl(_$OnFCMTokenChangedImpl _value,
-      $Res Function(_$OnFCMTokenChangedImpl) _then)
+class __$$_OnFCMTokenChangedCopyWithImpl<$Res>
+    extends _$AuthenticationEventCopyWithImpl<$Res, _$_OnFCMTokenChanged>
+    implements _$$_OnFCMTokenChangedCopyWith<$Res> {
+  __$$_OnFCMTokenChangedCopyWithImpl(
+      _$_OnFCMTokenChanged _value, $Res Function(_$_OnFCMTokenChanged) _then)
       : super(_value, _then);
 
-  /// Create a copy of AuthenticationEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? token = null,
   }) {
-    return _then(_$OnFCMTokenChangedImpl(
+    return _then(_$_OnFCMTokenChanged(
       null == token
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
@@ -612,8 +592,8 @@ class __$$OnFCMTokenChangedImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$OnFCMTokenChangedImpl implements _OnFCMTokenChanged {
-  const _$OnFCMTokenChangedImpl(this.token);
+class _$_OnFCMTokenChanged implements _OnFCMTokenChanged {
+  const _$_OnFCMTokenChanged(this.token);
 
   @override
   final String token;
@@ -624,23 +604,21 @@ class _$OnFCMTokenChangedImpl implements _OnFCMTokenChanged {
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$OnFCMTokenChangedImpl &&
+            other is _$_OnFCMTokenChanged &&
             (identical(other.token, token) || other.token == token));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, token);
 
-  /// Create a copy of AuthenticationEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$OnFCMTokenChangedImplCopyWith<_$OnFCMTokenChangedImpl> get copyWith =>
-      __$$OnFCMTokenChangedImplCopyWithImpl<_$OnFCMTokenChangedImpl>(
+  _$$_OnFCMTokenChangedCopyWith<_$_OnFCMTokenChanged> get copyWith =>
+      __$$_OnFCMTokenChangedCopyWithImpl<_$_OnFCMTokenChanged>(
           this, _$identity);
 
   @override
@@ -742,45 +720,38 @@ class _$OnFCMTokenChangedImpl implements _OnFCMTokenChanged {
 }
 
 abstract class _OnFCMTokenChanged implements AuthenticationEvent {
-  const factory _OnFCMTokenChanged(final String token) =
-      _$OnFCMTokenChangedImpl;
+  const factory _OnFCMTokenChanged(final String token) = _$_OnFCMTokenChanged;
 
   String get token;
-
-  /// Create a copy of AuthenticationEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$OnFCMTokenChangedImplCopyWith<_$OnFCMTokenChangedImpl> get copyWith =>
+  @JsonKey(ignore: true)
+  _$$_OnFCMTokenChangedCopyWith<_$_OnFCMTokenChanged> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$AuthenticationLogoutRequestedImplCopyWith<$Res> {
-  factory _$$AuthenticationLogoutRequestedImplCopyWith(
-          _$AuthenticationLogoutRequestedImpl value,
-          $Res Function(_$AuthenticationLogoutRequestedImpl) then) =
-      __$$AuthenticationLogoutRequestedImplCopyWithImpl<$Res>;
+abstract class _$$_AuthenticationLogoutRequestedCopyWith<$Res> {
+  factory _$$_AuthenticationLogoutRequestedCopyWith(
+          _$_AuthenticationLogoutRequested value,
+          $Res Function(_$_AuthenticationLogoutRequested) then) =
+      __$$_AuthenticationLogoutRequestedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$AuthenticationLogoutRequestedImplCopyWithImpl<$Res>
+class __$$_AuthenticationLogoutRequestedCopyWithImpl<$Res>
     extends _$AuthenticationEventCopyWithImpl<$Res,
-        _$AuthenticationLogoutRequestedImpl>
-    implements _$$AuthenticationLogoutRequestedImplCopyWith<$Res> {
-  __$$AuthenticationLogoutRequestedImplCopyWithImpl(
-      _$AuthenticationLogoutRequestedImpl _value,
-      $Res Function(_$AuthenticationLogoutRequestedImpl) _then)
+        _$_AuthenticationLogoutRequested>
+    implements _$$_AuthenticationLogoutRequestedCopyWith<$Res> {
+  __$$_AuthenticationLogoutRequestedCopyWithImpl(
+      _$_AuthenticationLogoutRequested _value,
+      $Res Function(_$_AuthenticationLogoutRequested) _then)
       : super(_value, _then);
-
-  /// Create a copy of AuthenticationEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$AuthenticationLogoutRequestedImpl
+class _$_AuthenticationLogoutRequested
     implements _AuthenticationLogoutRequested {
-  const _$AuthenticationLogoutRequestedImpl();
+  const _$_AuthenticationLogoutRequested();
 
   @override
   String toString() {
@@ -788,10 +759,10 @@ class _$AuthenticationLogoutRequestedImpl
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AuthenticationLogoutRequestedImpl);
+            other is _$_AuthenticationLogoutRequested);
   }
 
   @override
@@ -897,15 +868,15 @@ class _$AuthenticationLogoutRequestedImpl
 
 abstract class _AuthenticationLogoutRequested implements AuthenticationEvent {
   const factory _AuthenticationLogoutRequested() =
-      _$AuthenticationLogoutRequestedImpl;
+      _$_AuthenticationLogoutRequested;
 }
 
 /// @nodoc
-abstract class _$$OnAuthenticatedDataChangedImplCopyWith<$Res> {
-  factory _$$OnAuthenticatedDataChangedImplCopyWith(
-          _$OnAuthenticatedDataChangedImpl value,
-          $Res Function(_$OnAuthenticatedDataChangedImpl) then) =
-      __$$OnAuthenticatedDataChangedImplCopyWithImpl<$Res>;
+abstract class _$$_OnAuthenticatedDataChangedCopyWith<$Res> {
+  factory _$$_OnAuthenticatedDataChangedCopyWith(
+          _$_OnAuthenticatedDataChanged value,
+          $Res Function(_$_OnAuthenticatedDataChanged) then) =
+      __$$_OnAuthenticatedDataChangedCopyWithImpl<$Res>;
   @useResult
   $Res call({UserProfileData data});
 
@@ -913,23 +884,21 @@ abstract class _$$OnAuthenticatedDataChangedImplCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$OnAuthenticatedDataChangedImplCopyWithImpl<$Res>
+class __$$_OnAuthenticatedDataChangedCopyWithImpl<$Res>
     extends _$AuthenticationEventCopyWithImpl<$Res,
-        _$OnAuthenticatedDataChangedImpl>
-    implements _$$OnAuthenticatedDataChangedImplCopyWith<$Res> {
-  __$$OnAuthenticatedDataChangedImplCopyWithImpl(
-      _$OnAuthenticatedDataChangedImpl _value,
-      $Res Function(_$OnAuthenticatedDataChangedImpl) _then)
+        _$_OnAuthenticatedDataChanged>
+    implements _$$_OnAuthenticatedDataChangedCopyWith<$Res> {
+  __$$_OnAuthenticatedDataChangedCopyWithImpl(
+      _$_OnAuthenticatedDataChanged _value,
+      $Res Function(_$_OnAuthenticatedDataChanged) _then)
       : super(_value, _then);
 
-  /// Create a copy of AuthenticationEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? data = null,
   }) {
-    return _then(_$OnAuthenticatedDataChangedImpl(
+    return _then(_$_OnAuthenticatedDataChanged(
       null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
@@ -937,8 +906,6 @@ class __$$OnAuthenticatedDataChangedImplCopyWithImpl<$Res>
     ));
   }
 
-  /// Create a copy of AuthenticationEvent
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $UserProfileDataCopyWith<$Res> get data {
@@ -950,8 +917,8 @@ class __$$OnAuthenticatedDataChangedImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$OnAuthenticatedDataChangedImpl implements _OnAuthenticatedDataChanged {
-  const _$OnAuthenticatedDataChangedImpl(this.data);
+class _$_OnAuthenticatedDataChanged implements _OnAuthenticatedDataChanged {
+  const _$_OnAuthenticatedDataChanged(this.data);
 
   @override
   final UserProfileData data;
@@ -962,24 +929,22 @@ class _$OnAuthenticatedDataChangedImpl implements _OnAuthenticatedDataChanged {
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$OnAuthenticatedDataChangedImpl &&
+            other is _$_OnAuthenticatedDataChanged &&
             (identical(other.data, data) || other.data == data));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, data);
 
-  /// Create a copy of AuthenticationEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$OnAuthenticatedDataChangedImplCopyWith<_$OnAuthenticatedDataChangedImpl>
-      get copyWith => __$$OnAuthenticatedDataChangedImplCopyWithImpl<
-          _$OnAuthenticatedDataChangedImpl>(this, _$identity);
+  _$$_OnAuthenticatedDataChangedCopyWith<_$_OnAuthenticatedDataChanged>
+      get copyWith => __$$_OnAuthenticatedDataChangedCopyWithImpl<
+          _$_OnAuthenticatedDataChanged>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1081,14 +1046,11 @@ class _$OnAuthenticatedDataChangedImpl implements _OnAuthenticatedDataChanged {
 
 abstract class _OnAuthenticatedDataChanged implements AuthenticationEvent {
   const factory _OnAuthenticatedDataChanged(final UserProfileData data) =
-      _$OnAuthenticatedDataChangedImpl;
+      _$_OnAuthenticatedDataChanged;
 
   UserProfileData get data;
-
-  /// Create a copy of AuthenticationEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$OnAuthenticatedDataChangedImplCopyWith<_$OnAuthenticatedDataChangedImpl>
+  @JsonKey(ignore: true)
+  _$$_OnAuthenticatedDataChangedCopyWith<_$_OnAuthenticatedDataChanged>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -1098,9 +1060,7 @@ mixin _$AuthenticationState {
   UserProfileData? get userProfileData => throw _privateConstructorUsedError;
   UserAuthData? get userAuthData => throw _privateConstructorUsedError;
 
-  /// Create a copy of AuthenticationState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $AuthenticationStateCopyWith<AuthenticationState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1124,13 +1084,11 @@ class _$AuthenticationStateCopyWithImpl<$Res, $Val extends AuthenticationState>
     implements $AuthenticationStateCopyWith<$Res> {
   _$AuthenticationStateCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
+// ignore: unused_field
   final $Val _value;
-  // ignore: unused_field
+// ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of AuthenticationState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1154,8 +1112,6 @@ class _$AuthenticationStateCopyWithImpl<$Res, $Val extends AuthenticationState>
     ) as $Val);
   }
 
-  /// Create a copy of AuthenticationState
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $UserProfileDataCopyWith<$Res>? get userProfileData {
@@ -1170,11 +1126,11 @@ class _$AuthenticationStateCopyWithImpl<$Res, $Val extends AuthenticationState>
 }
 
 /// @nodoc
-abstract class _$$AuthenticationStateImplCopyWith<$Res>
+abstract class _$$_AuthenticationStateCopyWith<$Res>
     implements $AuthenticationStateCopyWith<$Res> {
-  factory _$$AuthenticationStateImplCopyWith(_$AuthenticationStateImpl value,
-          $Res Function(_$AuthenticationStateImpl) then) =
-      __$$AuthenticationStateImplCopyWithImpl<$Res>;
+  factory _$$_AuthenticationStateCopyWith(_$_AuthenticationState value,
+          $Res Function(_$_AuthenticationState) then) =
+      __$$_AuthenticationStateCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -1187,15 +1143,13 @@ abstract class _$$AuthenticationStateImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$AuthenticationStateImplCopyWithImpl<$Res>
-    extends _$AuthenticationStateCopyWithImpl<$Res, _$AuthenticationStateImpl>
-    implements _$$AuthenticationStateImplCopyWith<$Res> {
-  __$$AuthenticationStateImplCopyWithImpl(_$AuthenticationStateImpl _value,
-      $Res Function(_$AuthenticationStateImpl) _then)
+class __$$_AuthenticationStateCopyWithImpl<$Res>
+    extends _$AuthenticationStateCopyWithImpl<$Res, _$_AuthenticationState>
+    implements _$$_AuthenticationStateCopyWith<$Res> {
+  __$$_AuthenticationStateCopyWithImpl(_$_AuthenticationState _value,
+      $Res Function(_$_AuthenticationState) _then)
       : super(_value, _then);
 
-  /// Create a copy of AuthenticationState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1203,7 +1157,7 @@ class __$$AuthenticationStateImplCopyWithImpl<$Res>
     Object? userProfileData = freezed,
     Object? userAuthData = freezed,
   }) {
-    return _then(_$AuthenticationStateImpl(
+    return _then(_$_AuthenticationState(
       authStatus: null == authStatus
           ? _value.authStatus
           : authStatus // ignore: cast_nullable_to_non_nullable
@@ -1222,8 +1176,8 @@ class __$$AuthenticationStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$AuthenticationStateImpl implements _AuthenticationState {
-  const _$AuthenticationStateImpl(
+class _$_AuthenticationState implements _AuthenticationState {
+  const _$_AuthenticationState(
       {this.authStatus = const Unknown(),
       this.userProfileData,
       this.userAuthData});
@@ -1242,10 +1196,10 @@ class _$AuthenticationStateImpl implements _AuthenticationState {
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AuthenticationStateImpl &&
+            other is _$_AuthenticationState &&
             (identical(other.authStatus, authStatus) ||
                 other.authStatus == authStatus) &&
             (identical(other.userProfileData, userProfileData) ||
@@ -1258,13 +1212,11 @@ class _$AuthenticationStateImpl implements _AuthenticationState {
   int get hashCode =>
       Object.hash(runtimeType, authStatus, userProfileData, userAuthData);
 
-  /// Create a copy of AuthenticationState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$AuthenticationStateImplCopyWith<_$AuthenticationStateImpl> get copyWith =>
-      __$$AuthenticationStateImplCopyWithImpl<_$AuthenticationStateImpl>(
+  _$$_AuthenticationStateCopyWith<_$_AuthenticationState> get copyWith =>
+      __$$_AuthenticationStateCopyWithImpl<_$_AuthenticationState>(
           this, _$identity);
 }
 
@@ -1272,7 +1224,7 @@ abstract class _AuthenticationState implements AuthenticationState {
   const factory _AuthenticationState(
       {final AuthenticationStatus authStatus,
       final UserProfileData? userProfileData,
-      final UserAuthData? userAuthData}) = _$AuthenticationStateImpl;
+      final UserAuthData? userAuthData}) = _$_AuthenticationState;
 
   @override
   AuthenticationStatus get authStatus;
@@ -1280,11 +1232,8 @@ abstract class _AuthenticationState implements AuthenticationState {
   UserProfileData? get userProfileData;
   @override
   UserAuthData? get userAuthData;
-
-  /// Create a copy of AuthenticationState
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$AuthenticationStateImplCopyWith<_$AuthenticationStateImpl> get copyWith =>
+  @JsonKey(ignore: true)
+  _$$_AuthenticationStateCopyWith<_$_AuthenticationState> get copyWith =>
       throw _privateConstructorUsedError;
 }

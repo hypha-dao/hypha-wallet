@@ -12,7 +12,7 @@ part of 'wallet_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$PageCommand {
@@ -21,6 +21,7 @@ mixin _$PageCommand {
     required TResult Function() navigateToSuccess,
   }) =>
       throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? navigateToSuccess,
@@ -32,11 +33,13 @@ mixin _$PageCommand {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_NavigateTo value) navigateToSuccess,
   }) =>
       throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_NavigateTo value)? navigateToSuccess,
@@ -62,38 +65,32 @@ class _$PageCommandCopyWithImpl<$Res, $Val extends PageCommand>
     implements $PageCommandCopyWith<$Res> {
   _$PageCommandCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
+// ignore: unused_field
   final $Val _value;
-  // ignore: unused_field
+// ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of PageCommand
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
-abstract class _$$NavigateToImplCopyWith<$Res> {
-  factory _$$NavigateToImplCopyWith(
-          _$NavigateToImpl value, $Res Function(_$NavigateToImpl) then) =
-      __$$NavigateToImplCopyWithImpl<$Res>;
+abstract class _$$_NavigateToCopyWith<$Res> {
+  factory _$$_NavigateToCopyWith(
+          _$_NavigateTo value, $Res Function(_$_NavigateTo) then) =
+      __$$_NavigateToCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$NavigateToImplCopyWithImpl<$Res>
-    extends _$PageCommandCopyWithImpl<$Res, _$NavigateToImpl>
-    implements _$$NavigateToImplCopyWith<$Res> {
-  __$$NavigateToImplCopyWithImpl(
-      _$NavigateToImpl _value, $Res Function(_$NavigateToImpl) _then)
+class __$$_NavigateToCopyWithImpl<$Res>
+    extends _$PageCommandCopyWithImpl<$Res, _$_NavigateTo>
+    implements _$$_NavigateToCopyWith<$Res> {
+  __$$_NavigateToCopyWithImpl(
+      _$_NavigateTo _value, $Res Function(_$_NavigateTo) _then)
       : super(_value, _then);
-
-  /// Create a copy of PageCommand
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$NavigateToImpl implements _NavigateTo {
-  const _$NavigateToImpl();
+class _$_NavigateTo implements _NavigateTo {
+  const _$_NavigateTo();
 
   @override
   String toString() {
@@ -101,9 +98,9 @@ class _$NavigateToImpl implements _NavigateTo {
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$NavigateToImpl);
+        (other.runtimeType == runtimeType && other is _$_NavigateTo);
   }
 
   @override
@@ -167,7 +164,7 @@ class _$NavigateToImpl implements _NavigateTo {
 }
 
 abstract class _NavigateTo implements PageCommand {
-  const factory _NavigateTo() = _$NavigateToImpl;
+  const factory _NavigateTo() = _$_NavigateTo;
 }
 
 /// @nodoc
@@ -242,38 +239,31 @@ class _$WalletEventCopyWithImpl<$Res, $Val extends WalletEvent>
     implements $WalletEventCopyWith<$Res> {
   _$WalletEventCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
+// ignore: unused_field
   final $Val _value;
-  // ignore: unused_field
+// ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of WalletEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
-abstract class _$$InitialImplCopyWith<$Res> {
-  factory _$$InitialImplCopyWith(
-          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
-      __$$InitialImplCopyWithImpl<$Res>;
+abstract class _$$_InitialCopyWith<$Res> {
+  factory _$$_InitialCopyWith(
+          _$_Initial value, $Res Function(_$_Initial) then) =
+      __$$_InitialCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$InitialImplCopyWithImpl<$Res>
-    extends _$WalletEventCopyWithImpl<$Res, _$InitialImpl>
-    implements _$$InitialImplCopyWith<$Res> {
-  __$$InitialImplCopyWithImpl(
-      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
+class __$$_InitialCopyWithImpl<$Res>
+    extends _$WalletEventCopyWithImpl<$Res, _$_Initial>
+    implements _$$_InitialCopyWith<$Res> {
+  __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
       : super(_value, _then);
-
-  /// Create a copy of WalletEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$InitialImpl implements _Initial {
-  const _$InitialImpl();
+class _$_Initial implements _Initial {
+  const _$_Initial();
 
   @override
   String toString() {
@@ -281,9 +271,9 @@ class _$InitialImpl implements _Initial {
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitialImpl);
+        (other.runtimeType == runtimeType && other is _$_Initial);
   }
 
   @override
@@ -371,32 +361,29 @@ class _$InitialImpl implements _Initial {
 }
 
 abstract class _Initial implements WalletEvent {
-  const factory _Initial() = _$InitialImpl;
+  const factory _Initial() = _$_Initial;
 }
 
 /// @nodoc
-abstract class _$$OnRefreshImplCopyWith<$Res> {
-  factory _$$OnRefreshImplCopyWith(
-          _$OnRefreshImpl value, $Res Function(_$OnRefreshImpl) then) =
-      __$$OnRefreshImplCopyWithImpl<$Res>;
+abstract class _$$_OnRefreshCopyWith<$Res> {
+  factory _$$_OnRefreshCopyWith(
+          _$_OnRefresh value, $Res Function(_$_OnRefresh) then) =
+      __$$_OnRefreshCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$OnRefreshImplCopyWithImpl<$Res>
-    extends _$WalletEventCopyWithImpl<$Res, _$OnRefreshImpl>
-    implements _$$OnRefreshImplCopyWith<$Res> {
-  __$$OnRefreshImplCopyWithImpl(
-      _$OnRefreshImpl _value, $Res Function(_$OnRefreshImpl) _then)
+class __$$_OnRefreshCopyWithImpl<$Res>
+    extends _$WalletEventCopyWithImpl<$Res, _$_OnRefresh>
+    implements _$$_OnRefreshCopyWith<$Res> {
+  __$$_OnRefreshCopyWithImpl(
+      _$_OnRefresh _value, $Res Function(_$_OnRefresh) _then)
       : super(_value, _then);
-
-  /// Create a copy of WalletEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$OnRefreshImpl implements _OnRefresh {
-  const _$OnRefreshImpl();
+class _$_OnRefresh implements _OnRefresh {
+  const _$_OnRefresh();
 
   @override
   String toString() {
@@ -404,9 +391,9 @@ class _$OnRefreshImpl implements _OnRefresh {
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$OnRefreshImpl);
+        (other.runtimeType == runtimeType && other is _$_OnRefresh);
   }
 
   @override
@@ -494,32 +481,29 @@ class _$OnRefreshImpl implements _OnRefresh {
 }
 
 abstract class _OnRefresh implements WalletEvent {
-  const factory _OnRefresh() = _$OnRefreshImpl;
+  const factory _OnRefresh() = _$_OnRefresh;
 }
 
 /// @nodoc
-abstract class _$$ClearPageCommandImplCopyWith<$Res> {
-  factory _$$ClearPageCommandImplCopyWith(_$ClearPageCommandImpl value,
-          $Res Function(_$ClearPageCommandImpl) then) =
-      __$$ClearPageCommandImplCopyWithImpl<$Res>;
+abstract class _$$_ClearPageCommandCopyWith<$Res> {
+  factory _$$_ClearPageCommandCopyWith(
+          _$_ClearPageCommand value, $Res Function(_$_ClearPageCommand) then) =
+      __$$_ClearPageCommandCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$ClearPageCommandImplCopyWithImpl<$Res>
-    extends _$WalletEventCopyWithImpl<$Res, _$ClearPageCommandImpl>
-    implements _$$ClearPageCommandImplCopyWith<$Res> {
-  __$$ClearPageCommandImplCopyWithImpl(_$ClearPageCommandImpl _value,
-      $Res Function(_$ClearPageCommandImpl) _then)
+class __$$_ClearPageCommandCopyWithImpl<$Res>
+    extends _$WalletEventCopyWithImpl<$Res, _$_ClearPageCommand>
+    implements _$$_ClearPageCommandCopyWith<$Res> {
+  __$$_ClearPageCommandCopyWithImpl(
+      _$_ClearPageCommand _value, $Res Function(_$_ClearPageCommand) _then)
       : super(_value, _then);
-
-  /// Create a copy of WalletEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$ClearPageCommandImpl implements _ClearPageCommand {
-  const _$ClearPageCommandImpl();
+class _$_ClearPageCommand implements _ClearPageCommand {
+  const _$_ClearPageCommand();
 
   @override
   String toString() {
@@ -527,9 +511,9 @@ class _$ClearPageCommandImpl implements _ClearPageCommand {
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ClearPageCommandImpl);
+        (other.runtimeType == runtimeType && other is _$_ClearPageCommand);
   }
 
   @override
@@ -617,35 +601,32 @@ class _$ClearPageCommandImpl implements _ClearPageCommand {
 }
 
 abstract class _ClearPageCommand implements WalletEvent {
-  const factory _ClearPageCommand() = _$ClearPageCommandImpl;
+  const factory _ClearPageCommand() = _$_ClearPageCommand;
 }
 
 /// @nodoc
-abstract class _$$OnTransactionsChangedImplCopyWith<$Res> {
-  factory _$$OnTransactionsChangedImplCopyWith(
-          _$OnTransactionsChangedImpl value,
-          $Res Function(_$OnTransactionsChangedImpl) then) =
-      __$$OnTransactionsChangedImplCopyWithImpl<$Res>;
+abstract class _$$_OnTransactionsChangedCopyWith<$Res> {
+  factory _$$_OnTransactionsChangedCopyWith(_$_OnTransactionsChanged value,
+          $Res Function(_$_OnTransactionsChanged) then) =
+      __$$_OnTransactionsChangedCopyWithImpl<$Res>;
   @useResult
   $Res call({Result<List<WalletTransactionTileData>, HyphaError> value});
 }
 
 /// @nodoc
-class __$$OnTransactionsChangedImplCopyWithImpl<$Res>
-    extends _$WalletEventCopyWithImpl<$Res, _$OnTransactionsChangedImpl>
-    implements _$$OnTransactionsChangedImplCopyWith<$Res> {
-  __$$OnTransactionsChangedImplCopyWithImpl(_$OnTransactionsChangedImpl _value,
-      $Res Function(_$OnTransactionsChangedImpl) _then)
+class __$$_OnTransactionsChangedCopyWithImpl<$Res>
+    extends _$WalletEventCopyWithImpl<$Res, _$_OnTransactionsChanged>
+    implements _$$_OnTransactionsChangedCopyWith<$Res> {
+  __$$_OnTransactionsChangedCopyWithImpl(_$_OnTransactionsChanged _value,
+      $Res Function(_$_OnTransactionsChanged) _then)
       : super(_value, _then);
 
-  /// Create a copy of WalletEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? value = null,
   }) {
-    return _then(_$OnTransactionsChangedImpl(
+    return _then(_$_OnTransactionsChanged(
       null == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
@@ -656,8 +637,8 @@ class __$$OnTransactionsChangedImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$OnTransactionsChangedImpl implements _OnTransactionsChanged {
-  const _$OnTransactionsChangedImpl(this.value);
+class _$_OnTransactionsChanged implements _OnTransactionsChanged {
+  const _$_OnTransactionsChanged(this.value);
 
   @override
   final Result<List<WalletTransactionTileData>, HyphaError> value;
@@ -668,24 +649,22 @@ class _$OnTransactionsChangedImpl implements _OnTransactionsChanged {
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$OnTransactionsChangedImpl &&
+            other is _$_OnTransactionsChanged &&
             (identical(other.value, value) || other.value == value));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, value);
 
-  /// Create a copy of WalletEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$OnTransactionsChangedImplCopyWith<_$OnTransactionsChangedImpl>
-      get copyWith => __$$OnTransactionsChangedImplCopyWithImpl<
-          _$OnTransactionsChangedImpl>(this, _$identity);
+  _$$_OnTransactionsChangedCopyWith<_$_OnTransactionsChanged> get copyWith =>
+      __$$_OnTransactionsChangedCopyWithImpl<_$_OnTransactionsChanged>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -771,15 +750,12 @@ class _$OnTransactionsChangedImpl implements _OnTransactionsChanged {
 abstract class _OnTransactionsChanged implements WalletEvent {
   const factory _OnTransactionsChanged(
           final Result<List<WalletTransactionTileData>, HyphaError> value) =
-      _$OnTransactionsChangedImpl;
+      _$_OnTransactionsChanged;
 
   Result<List<WalletTransactionTileData>, HyphaError> get value;
-
-  /// Create a copy of WalletEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$OnTransactionsChangedImplCopyWith<_$OnTransactionsChangedImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$$_OnTransactionsChangedCopyWith<_$_OnTransactionsChanged> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -791,9 +767,7 @@ mixin _$WalletState {
   List<WalletTransactionTileData> get recentTransactions =>
       throw _privateConstructorUsedError;
 
-  /// Create a copy of WalletState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $WalletStateCopyWith<WalletState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -819,13 +793,11 @@ class _$WalletStateCopyWithImpl<$Res, $Val extends WalletState>
     implements $WalletStateCopyWith<$Res> {
   _$WalletStateCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
+// ignore: unused_field
   final $Val _value;
-  // ignore: unused_field
+// ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of WalletState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -859,8 +831,6 @@ class _$WalletStateCopyWithImpl<$Res, $Val extends WalletState>
     ) as $Val);
   }
 
-  /// Create a copy of WalletState
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PageCommandCopyWith<$Res>? get command {
@@ -875,11 +845,11 @@ class _$WalletStateCopyWithImpl<$Res, $Val extends WalletState>
 }
 
 /// @nodoc
-abstract class _$$WalletStateImplCopyWith<$Res>
+abstract class _$$_WalletStateCopyWith<$Res>
     implements $WalletStateCopyWith<$Res> {
-  factory _$$WalletStateImplCopyWith(
-          _$WalletStateImpl value, $Res Function(_$WalletStateImpl) then) =
-      __$$WalletStateImplCopyWithImpl<$Res>;
+  factory _$$_WalletStateCopyWith(
+          _$_WalletState value, $Res Function(_$_WalletState) then) =
+      __$$_WalletStateCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -894,15 +864,13 @@ abstract class _$$WalletStateImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$WalletStateImplCopyWithImpl<$Res>
-    extends _$WalletStateCopyWithImpl<$Res, _$WalletStateImpl>
-    implements _$$WalletStateImplCopyWith<$Res> {
-  __$$WalletStateImplCopyWithImpl(
-      _$WalletStateImpl _value, $Res Function(_$WalletStateImpl) _then)
+class __$$_WalletStateCopyWithImpl<$Res>
+    extends _$WalletStateCopyWithImpl<$Res, _$_WalletState>
+    implements _$$_WalletStateCopyWith<$Res> {
+  __$$_WalletStateCopyWithImpl(
+      _$_WalletState _value, $Res Function(_$_WalletState) _then)
       : super(_value, _then);
 
-  /// Create a copy of WalletState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -912,7 +880,7 @@ class __$$WalletStateImplCopyWithImpl<$Res>
     Object? tokens = null,
     Object? recentTransactions = null,
   }) {
-    return _then(_$WalletStateImpl(
+    return _then(_$_WalletState(
       pageState: null == pageState
           ? _value.pageState
           : pageState // ignore: cast_nullable_to_non_nullable
@@ -939,8 +907,8 @@ class __$$WalletStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$WalletStateImpl extends _WalletState {
-  const _$WalletStateImpl(
+class _$_WalletState extends _WalletState {
+  const _$_WalletState(
       {this.pageState = PageState.initial,
       this.command,
       this.loadingTransaction = true,
@@ -963,7 +931,7 @@ class _$WalletStateImpl extends _WalletState {
   @JsonKey()
   List<WalletTokenData> get tokens {
     if (_tokens is EqualUnmodifiableListView) return _tokens;
-    // ignore: implicit_dynamic_type
+// ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_tokens);
   }
 
@@ -973,7 +941,7 @@ class _$WalletStateImpl extends _WalletState {
   List<WalletTransactionTileData> get recentTransactions {
     if (_recentTransactions is EqualUnmodifiableListView)
       return _recentTransactions;
-    // ignore: implicit_dynamic_type
+// ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_recentTransactions);
   }
 
@@ -983,10 +951,10 @@ class _$WalletStateImpl extends _WalletState {
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$WalletStateImpl &&
+            other is _$_WalletState &&
             (identical(other.pageState, pageState) ||
                 other.pageState == pageState) &&
             (identical(other.command, command) || other.command == command) &&
@@ -1006,13 +974,11 @@ class _$WalletStateImpl extends _WalletState {
       const DeepCollectionEquality().hash(_tokens),
       const DeepCollectionEquality().hash(_recentTransactions));
 
-  /// Create a copy of WalletState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$WalletStateImplCopyWith<_$WalletStateImpl> get copyWith =>
-      __$$WalletStateImplCopyWithImpl<_$WalletStateImpl>(this, _$identity);
+  _$$_WalletStateCopyWith<_$_WalletState> get copyWith =>
+      __$$_WalletStateCopyWithImpl<_$_WalletState>(this, _$identity);
 }
 
 abstract class _WalletState extends WalletState {
@@ -1022,7 +988,7 @@ abstract class _WalletState extends WalletState {
           final bool loadingTransaction,
           final List<WalletTokenData> tokens,
           final List<WalletTransactionTileData> recentTransactions}) =
-      _$WalletStateImpl;
+      _$_WalletState;
   const _WalletState._() : super._();
 
   @override
@@ -1035,11 +1001,8 @@ abstract class _WalletState extends WalletState {
   List<WalletTokenData> get tokens;
   @override
   List<WalletTransactionTileData> get recentTransactions;
-
-  /// Create a copy of WalletState
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$WalletStateImplCopyWith<_$WalletStateImpl> get copyWith =>
+  @JsonKey(ignore: true)
+  _$$_WalletStateCopyWith<_$_WalletState> get copyWith =>
       throw _privateConstructorUsedError;
 }

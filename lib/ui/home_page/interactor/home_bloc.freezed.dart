@@ -12,7 +12,7 @@ part of 'home_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$HomeEvent {
@@ -23,6 +23,7 @@ mixin _$HomeEvent {
     required TResult Function(String value) onQRCodeScanned,
   }) =>
       throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
@@ -38,6 +39,7 @@ mixin _$HomeEvent {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
@@ -45,6 +47,7 @@ mixin _$HomeEvent {
     required TResult Function(_OnQRCodeScanned value) onQRCodeScanned,
   }) =>
       throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
@@ -73,38 +76,31 @@ class _$HomeEventCopyWithImpl<$Res, $Val extends HomeEvent>
     implements $HomeEventCopyWith<$Res> {
   _$HomeEventCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
+// ignore: unused_field
   final $Val _value;
-  // ignore: unused_field
+// ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of HomeEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
-abstract class _$$InitialImplCopyWith<$Res> {
-  factory _$$InitialImplCopyWith(
-          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
-      __$$InitialImplCopyWithImpl<$Res>;
+abstract class _$$_InitialCopyWith<$Res> {
+  factory _$$_InitialCopyWith(
+          _$_Initial value, $Res Function(_$_Initial) then) =
+      __$$_InitialCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$InitialImplCopyWithImpl<$Res>
-    extends _$HomeEventCopyWithImpl<$Res, _$InitialImpl>
-    implements _$$InitialImplCopyWith<$Res> {
-  __$$InitialImplCopyWithImpl(
-      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
+class __$$_InitialCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$_Initial>
+    implements _$$_InitialCopyWith<$Res> {
+  __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
       : super(_value, _then);
-
-  /// Create a copy of HomeEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$InitialImpl implements _Initial {
-  const _$InitialImpl();
+class _$_Initial implements _Initial {
+  const _$_Initial();
 
   @override
   String toString() {
@@ -112,9 +108,9 @@ class _$InitialImpl implements _Initial {
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitialImpl);
+        (other.runtimeType == runtimeType && other is _$_Initial);
   }
 
   @override
@@ -190,32 +186,29 @@ class _$InitialImpl implements _Initial {
 }
 
 abstract class _Initial implements HomeEvent {
-  const factory _Initial() = _$InitialImpl;
+  const factory _Initial() = _$_Initial;
 }
 
 /// @nodoc
-abstract class _$$ClearPageCommandImplCopyWith<$Res> {
-  factory _$$ClearPageCommandImplCopyWith(_$ClearPageCommandImpl value,
-          $Res Function(_$ClearPageCommandImpl) then) =
-      __$$ClearPageCommandImplCopyWithImpl<$Res>;
+abstract class _$$_ClearPageCommandCopyWith<$Res> {
+  factory _$$_ClearPageCommandCopyWith(
+          _$_ClearPageCommand value, $Res Function(_$_ClearPageCommand) then) =
+      __$$_ClearPageCommandCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$ClearPageCommandImplCopyWithImpl<$Res>
-    extends _$HomeEventCopyWithImpl<$Res, _$ClearPageCommandImpl>
-    implements _$$ClearPageCommandImplCopyWith<$Res> {
-  __$$ClearPageCommandImplCopyWithImpl(_$ClearPageCommandImpl _value,
-      $Res Function(_$ClearPageCommandImpl) _then)
+class __$$_ClearPageCommandCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$_ClearPageCommand>
+    implements _$$_ClearPageCommandCopyWith<$Res> {
+  __$$_ClearPageCommandCopyWithImpl(
+      _$_ClearPageCommand _value, $Res Function(_$_ClearPageCommand) _then)
       : super(_value, _then);
-
-  /// Create a copy of HomeEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$ClearPageCommandImpl implements _ClearPageCommand {
-  const _$ClearPageCommandImpl();
+class _$_ClearPageCommand implements _ClearPageCommand {
+  const _$_ClearPageCommand();
 
   @override
   String toString() {
@@ -223,9 +216,9 @@ class _$ClearPageCommandImpl implements _ClearPageCommand {
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ClearPageCommandImpl);
+        (other.runtimeType == runtimeType && other is _$_ClearPageCommand);
   }
 
   @override
@@ -301,34 +294,32 @@ class _$ClearPageCommandImpl implements _ClearPageCommand {
 }
 
 abstract class _ClearPageCommand implements HomeEvent {
-  const factory _ClearPageCommand() = _$ClearPageCommandImpl;
+  const factory _ClearPageCommand() = _$_ClearPageCommand;
 }
 
 /// @nodoc
-abstract class _$$OnQRCodeScannedImplCopyWith<$Res> {
-  factory _$$OnQRCodeScannedImplCopyWith(_$OnQRCodeScannedImpl value,
-          $Res Function(_$OnQRCodeScannedImpl) then) =
-      __$$OnQRCodeScannedImplCopyWithImpl<$Res>;
+abstract class _$$_OnQRCodeScannedCopyWith<$Res> {
+  factory _$$_OnQRCodeScannedCopyWith(
+          _$_OnQRCodeScanned value, $Res Function(_$_OnQRCodeScanned) then) =
+      __$$_OnQRCodeScannedCopyWithImpl<$Res>;
   @useResult
   $Res call({String value});
 }
 
 /// @nodoc
-class __$$OnQRCodeScannedImplCopyWithImpl<$Res>
-    extends _$HomeEventCopyWithImpl<$Res, _$OnQRCodeScannedImpl>
-    implements _$$OnQRCodeScannedImplCopyWith<$Res> {
-  __$$OnQRCodeScannedImplCopyWithImpl(
-      _$OnQRCodeScannedImpl _value, $Res Function(_$OnQRCodeScannedImpl) _then)
+class __$$_OnQRCodeScannedCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$_OnQRCodeScanned>
+    implements _$$_OnQRCodeScannedCopyWith<$Res> {
+  __$$_OnQRCodeScannedCopyWithImpl(
+      _$_OnQRCodeScanned _value, $Res Function(_$_OnQRCodeScanned) _then)
       : super(_value, _then);
 
-  /// Create a copy of HomeEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? value = null,
   }) {
-    return _then(_$OnQRCodeScannedImpl(
+    return _then(_$_OnQRCodeScanned(
       null == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
@@ -339,8 +330,8 @@ class __$$OnQRCodeScannedImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$OnQRCodeScannedImpl implements _OnQRCodeScanned {
-  const _$OnQRCodeScannedImpl(this.value);
+class _$_OnQRCodeScanned implements _OnQRCodeScanned {
+  const _$_OnQRCodeScanned(this.value);
 
   @override
   final String value;
@@ -351,24 +342,21 @@ class _$OnQRCodeScannedImpl implements _OnQRCodeScanned {
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$OnQRCodeScannedImpl &&
+            other is _$_OnQRCodeScanned &&
             (identical(other.value, value) || other.value == value));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, value);
 
-  /// Create a copy of HomeEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$OnQRCodeScannedImplCopyWith<_$OnQRCodeScannedImpl> get copyWith =>
-      __$$OnQRCodeScannedImplCopyWithImpl<_$OnQRCodeScannedImpl>(
-          this, _$identity);
+  _$$_OnQRCodeScannedCopyWith<_$_OnQRCodeScanned> get copyWith =>
+      __$$_OnQRCodeScannedCopyWithImpl<_$_OnQRCodeScanned>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -440,14 +428,11 @@ class _$OnQRCodeScannedImpl implements _OnQRCodeScanned {
 }
 
 abstract class _OnQRCodeScanned implements HomeEvent {
-  const factory _OnQRCodeScanned(final String value) = _$OnQRCodeScannedImpl;
+  const factory _OnQRCodeScanned(final String value) = _$_OnQRCodeScanned;
 
   String get value;
-
-  /// Create a copy of HomeEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$OnQRCodeScannedImplCopyWith<_$OnQRCodeScannedImpl> get copyWith =>
+  @JsonKey(ignore: true)
+  _$$_OnQRCodeScannedCopyWith<_$_OnQRCodeScanned> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -457,9 +442,7 @@ mixin _$HomeState {
   bool get isLoading => throw _privateConstructorUsedError;
   PageCommand? get command => throw _privateConstructorUsedError;
 
-  /// Create a copy of HomeState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $HomeStateCopyWith<HomeState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -479,13 +462,11 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
     implements $HomeStateCopyWith<$Res> {
   _$HomeStateCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
+// ignore: unused_field
   final $Val _value;
-  // ignore: unused_field
+// ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of HomeState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -509,8 +490,6 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
     ) as $Val);
   }
 
-  /// Create a copy of HomeState
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PageCommandCopyWith<$Res>? get command {
@@ -525,11 +504,10 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
 }
 
 /// @nodoc
-abstract class _$$HomeStateImplCopyWith<$Res>
-    implements $HomeStateCopyWith<$Res> {
-  factory _$$HomeStateImplCopyWith(
-          _$HomeStateImpl value, $Res Function(_$HomeStateImpl) then) =
-      __$$HomeStateImplCopyWithImpl<$Res>;
+abstract class _$$_HomeStateCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
+  factory _$$_HomeStateCopyWith(
+          _$_HomeState value, $Res Function(_$_HomeState) then) =
+      __$$_HomeStateCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({PageState pageState, bool isLoading, PageCommand? command});
@@ -539,15 +517,13 @@ abstract class _$$HomeStateImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$HomeStateImplCopyWithImpl<$Res>
-    extends _$HomeStateCopyWithImpl<$Res, _$HomeStateImpl>
-    implements _$$HomeStateImplCopyWith<$Res> {
-  __$$HomeStateImplCopyWithImpl(
-      _$HomeStateImpl _value, $Res Function(_$HomeStateImpl) _then)
+class __$$_HomeStateCopyWithImpl<$Res>
+    extends _$HomeStateCopyWithImpl<$Res, _$_HomeState>
+    implements _$$_HomeStateCopyWith<$Res> {
+  __$$_HomeStateCopyWithImpl(
+      _$_HomeState _value, $Res Function(_$_HomeState) _then)
       : super(_value, _then);
 
-  /// Create a copy of HomeState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -555,7 +531,7 @@ class __$$HomeStateImplCopyWithImpl<$Res>
     Object? isLoading = null,
     Object? command = freezed,
   }) {
-    return _then(_$HomeStateImpl(
+    return _then(_$_HomeState(
       pageState: null == pageState
           ? _value.pageState
           : pageState // ignore: cast_nullable_to_non_nullable
@@ -574,8 +550,8 @@ class __$$HomeStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$HomeStateImpl implements _HomeState {
-  const _$HomeStateImpl(
+class _$_HomeState implements _HomeState {
+  const _$_HomeState(
       {this.pageState = PageState.initial,
       this.isLoading = false,
       this.command});
@@ -595,10 +571,10 @@ class _$HomeStateImpl implements _HomeState {
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$HomeStateImpl &&
+            other is _$_HomeState &&
             (identical(other.pageState, pageState) ||
                 other.pageState == pageState) &&
             (identical(other.isLoading, isLoading) ||
@@ -609,20 +585,18 @@ class _$HomeStateImpl implements _HomeState {
   @override
   int get hashCode => Object.hash(runtimeType, pageState, isLoading, command);
 
-  /// Create a copy of HomeState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$HomeStateImplCopyWith<_$HomeStateImpl> get copyWith =>
-      __$$HomeStateImplCopyWithImpl<_$HomeStateImpl>(this, _$identity);
+  _$$_HomeStateCopyWith<_$_HomeState> get copyWith =>
+      __$$_HomeStateCopyWithImpl<_$_HomeState>(this, _$identity);
 }
 
 abstract class _HomeState implements HomeState {
   const factory _HomeState(
       {final PageState pageState,
       final bool isLoading,
-      final PageCommand? command}) = _$HomeStateImpl;
+      final PageCommand? command}) = _$_HomeState;
 
   @override
   PageState get pageState;
@@ -630,12 +604,9 @@ abstract class _HomeState implements HomeState {
   bool get isLoading;
   @override
   PageCommand? get command;
-
-  /// Create a copy of HomeState
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$HomeStateImplCopyWith<_$HomeStateImpl> get copyWith =>
+  @JsonKey(ignore: true)
+  _$$_HomeStateCopyWith<_$_HomeState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -679,9 +650,7 @@ mixin _$PageCommand {
   }) =>
       throw _privateConstructorUsedError;
 
-  /// Create a copy of PageCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $PageCommandCopyWith<PageCommand> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -700,13 +669,11 @@ class _$PageCommandCopyWithImpl<$Res, $Val extends PageCommand>
     implements $PageCommandCopyWith<$Res> {
   _$PageCommandCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
+// ignore: unused_field
   final $Val _value;
-  // ignore: unused_field
+// ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of PageCommand
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -722,34 +689,32 @@ class _$PageCommandCopyWithImpl<$Res, $Val extends PageCommand>
 }
 
 /// @nodoc
-abstract class _$$NavigateToTransactionDetailsImplCopyWith<$Res>
+abstract class _$$_NavigateToTransactionDetailsCopyWith<$Res>
     implements $PageCommandCopyWith<$Res> {
-  factory _$$NavigateToTransactionDetailsImplCopyWith(
-          _$NavigateToTransactionDetailsImpl value,
-          $Res Function(_$NavigateToTransactionDetailsImpl) then) =
-      __$$NavigateToTransactionDetailsImplCopyWithImpl<$Res>;
+  factory _$$_NavigateToTransactionDetailsCopyWith(
+          _$_NavigateToTransactionDetails value,
+          $Res Function(_$_NavigateToTransactionDetails) then) =
+      __$$_NavigateToTransactionDetailsCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({ScanQrCodeResultData data});
 }
 
 /// @nodoc
-class __$$NavigateToTransactionDetailsImplCopyWithImpl<$Res>
-    extends _$PageCommandCopyWithImpl<$Res, _$NavigateToTransactionDetailsImpl>
-    implements _$$NavigateToTransactionDetailsImplCopyWith<$Res> {
-  __$$NavigateToTransactionDetailsImplCopyWithImpl(
-      _$NavigateToTransactionDetailsImpl _value,
-      $Res Function(_$NavigateToTransactionDetailsImpl) _then)
+class __$$_NavigateToTransactionDetailsCopyWithImpl<$Res>
+    extends _$PageCommandCopyWithImpl<$Res, _$_NavigateToTransactionDetails>
+    implements _$$_NavigateToTransactionDetailsCopyWith<$Res> {
+  __$$_NavigateToTransactionDetailsCopyWithImpl(
+      _$_NavigateToTransactionDetails _value,
+      $Res Function(_$_NavigateToTransactionDetails) _then)
       : super(_value, _then);
 
-  /// Create a copy of PageCommand
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? data = null,
   }) {
-    return _then(_$NavigateToTransactionDetailsImpl(
+    return _then(_$_NavigateToTransactionDetails(
       null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
@@ -760,9 +725,8 @@ class __$$NavigateToTransactionDetailsImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$NavigateToTransactionDetailsImpl
-    implements _NavigateToTransactionDetails {
-  const _$NavigateToTransactionDetailsImpl(this.data);
+class _$_NavigateToTransactionDetails implements _NavigateToTransactionDetails {
+  const _$_NavigateToTransactionDetails(this.data);
 
   @override
   final ScanQrCodeResultData data;
@@ -773,25 +737,22 @@ class _$NavigateToTransactionDetailsImpl
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$NavigateToTransactionDetailsImpl &&
+            other is _$_NavigateToTransactionDetails &&
             (identical(other.data, data) || other.data == data));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, data);
 
-  /// Create a copy of PageCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$NavigateToTransactionDetailsImplCopyWith<
-          _$NavigateToTransactionDetailsImpl>
-      get copyWith => __$$NavigateToTransactionDetailsImplCopyWithImpl<
-          _$NavigateToTransactionDetailsImpl>(this, _$identity);
+  _$$_NavigateToTransactionDetailsCopyWith<_$_NavigateToTransactionDetails>
+      get copyWith => __$$_NavigateToTransactionDetailsCopyWithImpl<
+          _$_NavigateToTransactionDetails>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -856,16 +817,12 @@ class _$NavigateToTransactionDetailsImpl
 
 abstract class _NavigateToTransactionDetails implements PageCommand {
   const factory _NavigateToTransactionDetails(final ScanQrCodeResultData data) =
-      _$NavigateToTransactionDetailsImpl;
+      _$_NavigateToTransactionDetails;
 
   @override
   ScanQrCodeResultData get data;
-
-  /// Create a copy of PageCommand
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$NavigateToTransactionDetailsImplCopyWith<
-          _$NavigateToTransactionDetailsImpl>
+  @JsonKey(ignore: true)
+  _$$_NavigateToTransactionDetailsCopyWith<_$_NavigateToTransactionDetails>
       get copyWith => throw _privateConstructorUsedError;
 }

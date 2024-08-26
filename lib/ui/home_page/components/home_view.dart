@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_getx_widget.dart';
+import 'package:get/get.dart' as GetX;
 import 'package:hypha_wallet/design/avatar_image/hypha_avatar_image.dart';
 import 'package:hypha_wallet/design/background/hypha_page_background.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
@@ -10,7 +9,6 @@ import 'package:hypha_wallet/ui/blocs/authentication/authentication_bloc.dart';
 import 'package:hypha_wallet/ui/home_page/components/scanner_widget.dart';
 import 'package:hypha_wallet/ui/home_page/interactor/home_bloc.dart';
 import 'package:hypha_wallet/ui/profile/profile_page.dart';
-import 'package:get/get.dart' as GetX;
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});

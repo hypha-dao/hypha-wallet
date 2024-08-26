@@ -12,7 +12,7 @@ part of 'import_account_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$ImportAccountEvent {
@@ -29,6 +29,7 @@ mixin _$ImportAccountEvent {
     required TResult Function() onImportTypeChangeTapped,
   }) =>
       throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
@@ -56,6 +57,7 @@ mixin _$ImportAccountEvent {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
@@ -70,6 +72,7 @@ mixin _$ImportAccountEvent {
         onImportTypeChangeTapped,
   }) =>
       throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
@@ -112,38 +115,31 @@ class _$ImportAccountEventCopyWithImpl<$Res, $Val extends ImportAccountEvent>
     implements $ImportAccountEventCopyWith<$Res> {
   _$ImportAccountEventCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
+// ignore: unused_field
   final $Val _value;
-  // ignore: unused_field
+// ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of ImportAccountEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
-abstract class _$$InitialImplCopyWith<$Res> {
-  factory _$$InitialImplCopyWith(
-          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
-      __$$InitialImplCopyWithImpl<$Res>;
+abstract class _$$_InitialCopyWith<$Res> {
+  factory _$$_InitialCopyWith(
+          _$_Initial value, $Res Function(_$_Initial) then) =
+      __$$_InitialCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$InitialImplCopyWithImpl<$Res>
-    extends _$ImportAccountEventCopyWithImpl<$Res, _$InitialImpl>
-    implements _$$InitialImplCopyWith<$Res> {
-  __$$InitialImplCopyWithImpl(
-      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
+class __$$_InitialCopyWithImpl<$Res>
+    extends _$ImportAccountEventCopyWithImpl<$Res, _$_Initial>
+    implements _$$_InitialCopyWith<$Res> {
+  __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
       : super(_value, _then);
-
-  /// Create a copy of ImportAccountEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$InitialImpl implements _Initial {
-  const _$InitialImpl();
+class _$_Initial implements _Initial {
+  const _$_Initial();
 
   @override
   String toString() {
@@ -151,9 +147,9 @@ class _$InitialImpl implements _Initial {
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitialImpl);
+        (other.runtimeType == runtimeType && other is _$_Initial);
   }
 
   @override
@@ -267,32 +263,29 @@ class _$InitialImpl implements _Initial {
 }
 
 abstract class _Initial implements ImportAccountEvent {
-  const factory _Initial() = _$InitialImpl;
+  const factory _Initial() = _$_Initial;
 }
 
 /// @nodoc
-abstract class _$$ClearPageCommandImplCopyWith<$Res> {
-  factory _$$ClearPageCommandImplCopyWith(_$ClearPageCommandImpl value,
-          $Res Function(_$ClearPageCommandImpl) then) =
-      __$$ClearPageCommandImplCopyWithImpl<$Res>;
+abstract class _$$_ClearPageCommandCopyWith<$Res> {
+  factory _$$_ClearPageCommandCopyWith(
+          _$_ClearPageCommand value, $Res Function(_$_ClearPageCommand) then) =
+      __$$_ClearPageCommandCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$ClearPageCommandImplCopyWithImpl<$Res>
-    extends _$ImportAccountEventCopyWithImpl<$Res, _$ClearPageCommandImpl>
-    implements _$$ClearPageCommandImplCopyWith<$Res> {
-  __$$ClearPageCommandImplCopyWithImpl(_$ClearPageCommandImpl _value,
-      $Res Function(_$ClearPageCommandImpl) _then)
+class __$$_ClearPageCommandCopyWithImpl<$Res>
+    extends _$ImportAccountEventCopyWithImpl<$Res, _$_ClearPageCommand>
+    implements _$$_ClearPageCommandCopyWith<$Res> {
+  __$$_ClearPageCommandCopyWithImpl(
+      _$_ClearPageCommand _value, $Res Function(_$_ClearPageCommand) _then)
       : super(_value, _then);
-
-  /// Create a copy of ImportAccountEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$ClearPageCommandImpl implements _ClearPageCommand {
-  const _$ClearPageCommandImpl();
+class _$_ClearPageCommand implements _ClearPageCommand {
+  const _$_ClearPageCommand();
 
   @override
   String toString() {
@@ -300,9 +293,9 @@ class _$ClearPageCommandImpl implements _ClearPageCommand {
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ClearPageCommandImpl);
+        (other.runtimeType == runtimeType && other is _$_ClearPageCommand);
   }
 
   @override
@@ -416,35 +409,33 @@ class _$ClearPageCommandImpl implements _ClearPageCommand {
 }
 
 abstract class _ClearPageCommand implements ImportAccountEvent {
-  const factory _ClearPageCommand() = _$ClearPageCommandImpl;
+  const factory _ClearPageCommand() = _$_ClearPageCommand;
 }
 
 /// @nodoc
-abstract class _$$OnWordChangeImplCopyWith<$Res> {
-  factory _$$OnWordChangeImplCopyWith(
-          _$OnWordChangeImpl value, $Res Function(_$OnWordChangeImpl) then) =
-      __$$OnWordChangeImplCopyWithImpl<$Res>;
+abstract class _$$_OnWordChangeCopyWith<$Res> {
+  factory _$$_OnWordChangeCopyWith(
+          _$_OnWordChange value, $Res Function(_$_OnWordChange) then) =
+      __$$_OnWordChangeCopyWithImpl<$Res>;
   @useResult
   $Res call({String word, int index});
 }
 
 /// @nodoc
-class __$$OnWordChangeImplCopyWithImpl<$Res>
-    extends _$ImportAccountEventCopyWithImpl<$Res, _$OnWordChangeImpl>
-    implements _$$OnWordChangeImplCopyWith<$Res> {
-  __$$OnWordChangeImplCopyWithImpl(
-      _$OnWordChangeImpl _value, $Res Function(_$OnWordChangeImpl) _then)
+class __$$_OnWordChangeCopyWithImpl<$Res>
+    extends _$ImportAccountEventCopyWithImpl<$Res, _$_OnWordChange>
+    implements _$$_OnWordChangeCopyWith<$Res> {
+  __$$_OnWordChangeCopyWithImpl(
+      _$_OnWordChange _value, $Res Function(_$_OnWordChange) _then)
       : super(_value, _then);
 
-  /// Create a copy of ImportAccountEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? word = null,
     Object? index = null,
   }) {
-    return _then(_$OnWordChangeImpl(
+    return _then(_$_OnWordChange(
       null == word
           ? _value.word
           : word // ignore: cast_nullable_to_non_nullable
@@ -459,8 +450,8 @@ class __$$OnWordChangeImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$OnWordChangeImpl implements _OnWordChange {
-  const _$OnWordChangeImpl(this.word, this.index);
+class _$_OnWordChange implements _OnWordChange {
+  const _$_OnWordChange(this.word, this.index);
 
   @override
   final String word;
@@ -473,10 +464,10 @@ class _$OnWordChangeImpl implements _OnWordChange {
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$OnWordChangeImpl &&
+            other is _$_OnWordChange &&
             (identical(other.word, word) || other.word == word) &&
             (identical(other.index, index) || other.index == index));
   }
@@ -484,13 +475,11 @@ class _$OnWordChangeImpl implements _OnWordChange {
   @override
   int get hashCode => Object.hash(runtimeType, word, index);
 
-  /// Create a copy of ImportAccountEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$OnWordChangeImplCopyWith<_$OnWordChangeImpl> get copyWith =>
-      __$$OnWordChangeImplCopyWithImpl<_$OnWordChangeImpl>(this, _$identity);
+  _$$_OnWordChangeCopyWith<_$_OnWordChange> get copyWith =>
+      __$$_OnWordChangeCopyWithImpl<_$_OnWordChange>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -601,43 +590,38 @@ class _$OnWordChangeImpl implements _OnWordChange {
 
 abstract class _OnWordChange implements ImportAccountEvent {
   const factory _OnWordChange(final String word, final int index) =
-      _$OnWordChangeImpl;
+      _$_OnWordChange;
 
   String get word;
   int get index;
-
-  /// Create a copy of ImportAccountEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$OnWordChangeImplCopyWith<_$OnWordChangeImpl> get copyWith =>
+  @JsonKey(ignore: true)
+  _$$_OnWordChangeCopyWith<_$_OnWordChange> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$OnActionButtonTappedImplCopyWith<$Res> {
-  factory _$$OnActionButtonTappedImplCopyWith(_$OnActionButtonTappedImpl value,
-          $Res Function(_$OnActionButtonTappedImpl) then) =
-      __$$OnActionButtonTappedImplCopyWithImpl<$Res>;
+abstract class _$$_OnActionButtonTappedCopyWith<$Res> {
+  factory _$$_OnActionButtonTappedCopyWith(_$_OnActionButtonTapped value,
+          $Res Function(_$_OnActionButtonTapped) then) =
+      __$$_OnActionButtonTappedCopyWithImpl<$Res>;
   @useResult
   $Res call({bool findByWords});
 }
 
 /// @nodoc
-class __$$OnActionButtonTappedImplCopyWithImpl<$Res>
-    extends _$ImportAccountEventCopyWithImpl<$Res, _$OnActionButtonTappedImpl>
-    implements _$$OnActionButtonTappedImplCopyWith<$Res> {
-  __$$OnActionButtonTappedImplCopyWithImpl(_$OnActionButtonTappedImpl _value,
-      $Res Function(_$OnActionButtonTappedImpl) _then)
+class __$$_OnActionButtonTappedCopyWithImpl<$Res>
+    extends _$ImportAccountEventCopyWithImpl<$Res, _$_OnActionButtonTapped>
+    implements _$$_OnActionButtonTappedCopyWith<$Res> {
+  __$$_OnActionButtonTappedCopyWithImpl(_$_OnActionButtonTapped _value,
+      $Res Function(_$_OnActionButtonTapped) _then)
       : super(_value, _then);
 
-  /// Create a copy of ImportAccountEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? findByWords = null,
   }) {
-    return _then(_$OnActionButtonTappedImpl(
+    return _then(_$_OnActionButtonTapped(
       null == findByWords
           ? _value.findByWords
           : findByWords // ignore: cast_nullable_to_non_nullable
@@ -648,8 +632,8 @@ class __$$OnActionButtonTappedImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$OnActionButtonTappedImpl implements _OnActionButtonTapped {
-  const _$OnActionButtonTappedImpl(this.findByWords);
+class _$_OnActionButtonTapped implements _OnActionButtonTapped {
+  const _$_OnActionButtonTapped(this.findByWords);
 
   @override
   final bool findByWords;
@@ -660,10 +644,10 @@ class _$OnActionButtonTappedImpl implements _OnActionButtonTapped {
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$OnActionButtonTappedImpl &&
+            other is _$_OnActionButtonTapped &&
             (identical(other.findByWords, findByWords) ||
                 other.findByWords == findByWords));
   }
@@ -671,15 +655,12 @@ class _$OnActionButtonTappedImpl implements _OnActionButtonTapped {
   @override
   int get hashCode => Object.hash(runtimeType, findByWords);
 
-  /// Create a copy of ImportAccountEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$OnActionButtonTappedImplCopyWith<_$OnActionButtonTappedImpl>
-      get copyWith =>
-          __$$OnActionButtonTappedImplCopyWithImpl<_$OnActionButtonTappedImpl>(
-              this, _$identity);
+  _$$_OnActionButtonTappedCopyWith<_$_OnActionButtonTapped> get copyWith =>
+      __$$_OnActionButtonTappedCopyWithImpl<_$_OnActionButtonTapped>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -790,40 +771,34 @@ class _$OnActionButtonTappedImpl implements _OnActionButtonTapped {
 
 abstract class _OnActionButtonTapped implements ImportAccountEvent {
   const factory _OnActionButtonTapped(final bool findByWords) =
-      _$OnActionButtonTappedImpl;
+      _$_OnActionButtonTapped;
 
   bool get findByWords;
-
-  /// Create a copy of ImportAccountEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$OnActionButtonTappedImplCopyWith<_$OnActionButtonTappedImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$$_OnActionButtonTappedCopyWith<_$_OnActionButtonTapped> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$OnUserPastedWordsImplCopyWith<$Res> {
-  factory _$$OnUserPastedWordsImplCopyWith(_$OnUserPastedWordsImpl value,
-          $Res Function(_$OnUserPastedWordsImpl) then) =
-      __$$OnUserPastedWordsImplCopyWithImpl<$Res>;
+abstract class _$$_OnUserPastedWordsCopyWith<$Res> {
+  factory _$$_OnUserPastedWordsCopyWith(_$_OnUserPastedWords value,
+          $Res Function(_$_OnUserPastedWords) then) =
+      __$$_OnUserPastedWordsCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$OnUserPastedWordsImplCopyWithImpl<$Res>
-    extends _$ImportAccountEventCopyWithImpl<$Res, _$OnUserPastedWordsImpl>
-    implements _$$OnUserPastedWordsImplCopyWith<$Res> {
-  __$$OnUserPastedWordsImplCopyWithImpl(_$OnUserPastedWordsImpl _value,
-      $Res Function(_$OnUserPastedWordsImpl) _then)
+class __$$_OnUserPastedWordsCopyWithImpl<$Res>
+    extends _$ImportAccountEventCopyWithImpl<$Res, _$_OnUserPastedWords>
+    implements _$$_OnUserPastedWordsCopyWith<$Res> {
+  __$$_OnUserPastedWordsCopyWithImpl(
+      _$_OnUserPastedWords _value, $Res Function(_$_OnUserPastedWords) _then)
       : super(_value, _then);
-
-  /// Create a copy of ImportAccountEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$OnUserPastedWordsImpl implements _OnUserPastedWords {
-  const _$OnUserPastedWordsImpl();
+class _$_OnUserPastedWords implements _OnUserPastedWords {
+  const _$_OnUserPastedWords();
 
   @override
   String toString() {
@@ -831,9 +806,9 @@ class _$OnUserPastedWordsImpl implements _OnUserPastedWords {
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$OnUserPastedWordsImpl);
+        (other.runtimeType == runtimeType && other is _$_OnUserPastedWords);
   }
 
   @override
@@ -947,34 +922,32 @@ class _$OnUserPastedWordsImpl implements _OnUserPastedWords {
 }
 
 abstract class _OnUserPastedWords implements ImportAccountEvent {
-  const factory _OnUserPastedWords() = _$OnUserPastedWordsImpl;
+  const factory _OnUserPastedWords() = _$_OnUserPastedWords;
 }
 
 /// @nodoc
-abstract class _$$OnPrivateKeyChangedImplCopyWith<$Res> {
-  factory _$$OnPrivateKeyChangedImplCopyWith(_$OnPrivateKeyChangedImpl value,
-          $Res Function(_$OnPrivateKeyChangedImpl) then) =
-      __$$OnPrivateKeyChangedImplCopyWithImpl<$Res>;
+abstract class _$$_OnPrivateKeyChangedCopyWith<$Res> {
+  factory _$$_OnPrivateKeyChangedCopyWith(_$_OnPrivateKeyChanged value,
+          $Res Function(_$_OnPrivateKeyChanged) then) =
+      __$$_OnPrivateKeyChangedCopyWithImpl<$Res>;
   @useResult
   $Res call({String privateKey});
 }
 
 /// @nodoc
-class __$$OnPrivateKeyChangedImplCopyWithImpl<$Res>
-    extends _$ImportAccountEventCopyWithImpl<$Res, _$OnPrivateKeyChangedImpl>
-    implements _$$OnPrivateKeyChangedImplCopyWith<$Res> {
-  __$$OnPrivateKeyChangedImplCopyWithImpl(_$OnPrivateKeyChangedImpl _value,
-      $Res Function(_$OnPrivateKeyChangedImpl) _then)
+class __$$_OnPrivateKeyChangedCopyWithImpl<$Res>
+    extends _$ImportAccountEventCopyWithImpl<$Res, _$_OnPrivateKeyChanged>
+    implements _$$_OnPrivateKeyChangedCopyWith<$Res> {
+  __$$_OnPrivateKeyChangedCopyWithImpl(_$_OnPrivateKeyChanged _value,
+      $Res Function(_$_OnPrivateKeyChanged) _then)
       : super(_value, _then);
 
-  /// Create a copy of ImportAccountEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? privateKey = null,
   }) {
-    return _then(_$OnPrivateKeyChangedImpl(
+    return _then(_$_OnPrivateKeyChanged(
       null == privateKey
           ? _value.privateKey
           : privateKey // ignore: cast_nullable_to_non_nullable
@@ -985,8 +958,8 @@ class __$$OnPrivateKeyChangedImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$OnPrivateKeyChangedImpl implements _OnPrivateKeyChanged {
-  const _$OnPrivateKeyChangedImpl(this.privateKey);
+class _$_OnPrivateKeyChanged implements _OnPrivateKeyChanged {
+  const _$_OnPrivateKeyChanged(this.privateKey);
 
   @override
   final String privateKey;
@@ -997,10 +970,10 @@ class _$OnPrivateKeyChangedImpl implements _OnPrivateKeyChanged {
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$OnPrivateKeyChangedImpl &&
+            other is _$_OnPrivateKeyChanged &&
             (identical(other.privateKey, privateKey) ||
                 other.privateKey == privateKey));
   }
@@ -1008,13 +981,11 @@ class _$OnPrivateKeyChangedImpl implements _OnPrivateKeyChanged {
   @override
   int get hashCode => Object.hash(runtimeType, privateKey);
 
-  /// Create a copy of ImportAccountEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$OnPrivateKeyChangedImplCopyWith<_$OnPrivateKeyChangedImpl> get copyWith =>
-      __$$OnPrivateKeyChangedImplCopyWithImpl<_$OnPrivateKeyChangedImpl>(
+  _$$_OnPrivateKeyChangedCopyWith<_$_OnPrivateKeyChanged> get copyWith =>
+      __$$_OnPrivateKeyChangedCopyWithImpl<_$_OnPrivateKeyChanged>(
           this, _$identity);
 
   @override
@@ -1126,42 +1097,37 @@ class _$OnPrivateKeyChangedImpl implements _OnPrivateKeyChanged {
 
 abstract class _OnPrivateKeyChanged implements ImportAccountEvent {
   const factory _OnPrivateKeyChanged(final String privateKey) =
-      _$OnPrivateKeyChangedImpl;
+      _$_OnPrivateKeyChanged;
 
   String get privateKey;
-
-  /// Create a copy of ImportAccountEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$OnPrivateKeyChangedImplCopyWith<_$OnPrivateKeyChangedImpl> get copyWith =>
+  @JsonKey(ignore: true)
+  _$$_OnPrivateKeyChangedCopyWith<_$_OnPrivateKeyChanged> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$FindAccountByKeyImplCopyWith<$Res> {
-  factory _$$FindAccountByKeyImplCopyWith(_$FindAccountByKeyImpl value,
-          $Res Function(_$FindAccountByKeyImpl) then) =
-      __$$FindAccountByKeyImplCopyWithImpl<$Res>;
+abstract class _$$_FindAccountByKeyCopyWith<$Res> {
+  factory _$$_FindAccountByKeyCopyWith(
+          _$_FindAccountByKey value, $Res Function(_$_FindAccountByKey) then) =
+      __$$_FindAccountByKeyCopyWithImpl<$Res>;
   @useResult
   $Res call({String privateKey});
 }
 
 /// @nodoc
-class __$$FindAccountByKeyImplCopyWithImpl<$Res>
-    extends _$ImportAccountEventCopyWithImpl<$Res, _$FindAccountByKeyImpl>
-    implements _$$FindAccountByKeyImplCopyWith<$Res> {
-  __$$FindAccountByKeyImplCopyWithImpl(_$FindAccountByKeyImpl _value,
-      $Res Function(_$FindAccountByKeyImpl) _then)
+class __$$_FindAccountByKeyCopyWithImpl<$Res>
+    extends _$ImportAccountEventCopyWithImpl<$Res, _$_FindAccountByKey>
+    implements _$$_FindAccountByKeyCopyWith<$Res> {
+  __$$_FindAccountByKeyCopyWithImpl(
+      _$_FindAccountByKey _value, $Res Function(_$_FindAccountByKey) _then)
       : super(_value, _then);
 
-  /// Create a copy of ImportAccountEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? privateKey = null,
   }) {
-    return _then(_$FindAccountByKeyImpl(
+    return _then(_$_FindAccountByKey(
       null == privateKey
           ? _value.privateKey
           : privateKey // ignore: cast_nullable_to_non_nullable
@@ -1172,8 +1138,8 @@ class __$$FindAccountByKeyImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$FindAccountByKeyImpl implements _FindAccountByKey {
-  const _$FindAccountByKeyImpl(this.privateKey);
+class _$_FindAccountByKey implements _FindAccountByKey {
+  const _$_FindAccountByKey(this.privateKey);
 
   @override
   final String privateKey;
@@ -1184,10 +1150,10 @@ class _$FindAccountByKeyImpl implements _FindAccountByKey {
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$FindAccountByKeyImpl &&
+            other is _$_FindAccountByKey &&
             (identical(other.privateKey, privateKey) ||
                 other.privateKey == privateKey));
   }
@@ -1195,14 +1161,11 @@ class _$FindAccountByKeyImpl implements _FindAccountByKey {
   @override
   int get hashCode => Object.hash(runtimeType, privateKey);
 
-  /// Create a copy of ImportAccountEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$FindAccountByKeyImplCopyWith<_$FindAccountByKeyImpl> get copyWith =>
-      __$$FindAccountByKeyImplCopyWithImpl<_$FindAccountByKeyImpl>(
-          this, _$identity);
+  _$$_FindAccountByKeyCopyWith<_$_FindAccountByKey> get copyWith =>
+      __$$_FindAccountByKeyCopyWithImpl<_$_FindAccountByKey>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1313,22 +1276,19 @@ class _$FindAccountByKeyImpl implements _FindAccountByKey {
 
 abstract class _FindAccountByKey implements ImportAccountEvent {
   const factory _FindAccountByKey(final String privateKey) =
-      _$FindAccountByKeyImpl;
+      _$_FindAccountByKey;
 
   String get privateKey;
-
-  /// Create a copy of ImportAccountEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$FindAccountByKeyImplCopyWith<_$FindAccountByKeyImpl> get copyWith =>
+  @JsonKey(ignore: true)
+  _$$_FindAccountByKeyCopyWith<_$_FindAccountByKey> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$OnAccountSelectedImplCopyWith<$Res> {
-  factory _$$OnAccountSelectedImplCopyWith(_$OnAccountSelectedImpl value,
-          $Res Function(_$OnAccountSelectedImpl) then) =
-      __$$OnAccountSelectedImplCopyWithImpl<$Res>;
+abstract class _$$_OnAccountSelectedCopyWith<$Res> {
+  factory _$$_OnAccountSelectedCopyWith(_$_OnAccountSelected value,
+          $Res Function(_$_OnAccountSelected) then) =
+      __$$_OnAccountSelectedCopyWithImpl<$Res>;
   @useResult
   $Res call({UserProfileData accountData});
 
@@ -1336,21 +1296,19 @@ abstract class _$$OnAccountSelectedImplCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$OnAccountSelectedImplCopyWithImpl<$Res>
-    extends _$ImportAccountEventCopyWithImpl<$Res, _$OnAccountSelectedImpl>
-    implements _$$OnAccountSelectedImplCopyWith<$Res> {
-  __$$OnAccountSelectedImplCopyWithImpl(_$OnAccountSelectedImpl _value,
-      $Res Function(_$OnAccountSelectedImpl) _then)
+class __$$_OnAccountSelectedCopyWithImpl<$Res>
+    extends _$ImportAccountEventCopyWithImpl<$Res, _$_OnAccountSelected>
+    implements _$$_OnAccountSelectedCopyWith<$Res> {
+  __$$_OnAccountSelectedCopyWithImpl(
+      _$_OnAccountSelected _value, $Res Function(_$_OnAccountSelected) _then)
       : super(_value, _then);
 
-  /// Create a copy of ImportAccountEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? accountData = null,
   }) {
-    return _then(_$OnAccountSelectedImpl(
+    return _then(_$_OnAccountSelected(
       null == accountData
           ? _value.accountData
           : accountData // ignore: cast_nullable_to_non_nullable
@@ -1358,8 +1316,6 @@ class __$$OnAccountSelectedImplCopyWithImpl<$Res>
     ));
   }
 
-  /// Create a copy of ImportAccountEvent
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $UserProfileDataCopyWith<$Res> get accountData {
@@ -1371,8 +1327,8 @@ class __$$OnAccountSelectedImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$OnAccountSelectedImpl implements _OnAccountSelected {
-  const _$OnAccountSelectedImpl(this.accountData);
+class _$_OnAccountSelected implements _OnAccountSelected {
+  const _$_OnAccountSelected(this.accountData);
 
   @override
   final UserProfileData accountData;
@@ -1383,10 +1339,10 @@ class _$OnAccountSelectedImpl implements _OnAccountSelected {
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$OnAccountSelectedImpl &&
+            other is _$_OnAccountSelected &&
             (identical(other.accountData, accountData) ||
                 other.accountData == accountData));
   }
@@ -1394,13 +1350,11 @@ class _$OnAccountSelectedImpl implements _OnAccountSelected {
   @override
   int get hashCode => Object.hash(runtimeType, accountData);
 
-  /// Create a copy of ImportAccountEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$OnAccountSelectedImplCopyWith<_$OnAccountSelectedImpl> get copyWith =>
-      __$$OnAccountSelectedImplCopyWithImpl<_$OnAccountSelectedImpl>(
+  _$$_OnAccountSelectedCopyWith<_$_OnAccountSelected> get copyWith =>
+      __$$_OnAccountSelectedCopyWithImpl<_$_OnAccountSelected>(
           this, _$identity);
 
   @override
@@ -1512,43 +1466,35 @@ class _$OnAccountSelectedImpl implements _OnAccountSelected {
 
 abstract class _OnAccountSelected implements ImportAccountEvent {
   const factory _OnAccountSelected(final UserProfileData accountData) =
-      _$OnAccountSelectedImpl;
+      _$_OnAccountSelected;
 
   UserProfileData get accountData;
-
-  /// Create a copy of ImportAccountEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$OnAccountSelectedImplCopyWith<_$OnAccountSelectedImpl> get copyWith =>
+  @JsonKey(ignore: true)
+  _$$_OnAccountSelectedCopyWith<_$_OnAccountSelected> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$OnImportTypeChangeTappedImplCopyWith<$Res> {
-  factory _$$OnImportTypeChangeTappedImplCopyWith(
-          _$OnImportTypeChangeTappedImpl value,
-          $Res Function(_$OnImportTypeChangeTappedImpl) then) =
-      __$$OnImportTypeChangeTappedImplCopyWithImpl<$Res>;
+abstract class _$$_OnImportTypeChangeTappedCopyWith<$Res> {
+  factory _$$_OnImportTypeChangeTappedCopyWith(
+          _$_OnImportTypeChangeTapped value,
+          $Res Function(_$_OnImportTypeChangeTapped) then) =
+      __$$_OnImportTypeChangeTappedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$OnImportTypeChangeTappedImplCopyWithImpl<$Res>
-    extends _$ImportAccountEventCopyWithImpl<$Res,
-        _$OnImportTypeChangeTappedImpl>
-    implements _$$OnImportTypeChangeTappedImplCopyWith<$Res> {
-  __$$OnImportTypeChangeTappedImplCopyWithImpl(
-      _$OnImportTypeChangeTappedImpl _value,
-      $Res Function(_$OnImportTypeChangeTappedImpl) _then)
+class __$$_OnImportTypeChangeTappedCopyWithImpl<$Res>
+    extends _$ImportAccountEventCopyWithImpl<$Res, _$_OnImportTypeChangeTapped>
+    implements _$$_OnImportTypeChangeTappedCopyWith<$Res> {
+  __$$_OnImportTypeChangeTappedCopyWithImpl(_$_OnImportTypeChangeTapped _value,
+      $Res Function(_$_OnImportTypeChangeTapped) _then)
       : super(_value, _then);
-
-  /// Create a copy of ImportAccountEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$OnImportTypeChangeTappedImpl implements _OnImportTypeChangeTapped {
-  const _$OnImportTypeChangeTappedImpl();
+class _$_OnImportTypeChangeTapped implements _OnImportTypeChangeTapped {
+  const _$_OnImportTypeChangeTapped();
 
   @override
   String toString() {
@@ -1556,10 +1502,10 @@ class _$OnImportTypeChangeTappedImpl implements _OnImportTypeChangeTapped {
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$OnImportTypeChangeTappedImpl);
+            other is _$_OnImportTypeChangeTapped);
   }
 
   @override
@@ -1673,7 +1619,7 @@ class _$OnImportTypeChangeTappedImpl implements _OnImportTypeChangeTapped {
 }
 
 abstract class _OnImportTypeChangeTapped implements ImportAccountEvent {
-  const factory _OnImportTypeChangeTapped() = _$OnImportTypeChangeTappedImpl;
+  const factory _OnImportTypeChangeTapped() = _$_OnImportTypeChangeTapped;
 }
 
 /// @nodoc
@@ -1688,9 +1634,7 @@ mixin _$ImportAccountState {
   bool get isPartialLoading => throw _privateConstructorUsedError;
   List<UserProfileData> get accounts => throw _privateConstructorUsedError;
 
-  /// Create a copy of ImportAccountState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $ImportAccountStateCopyWith<ImportAccountState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1720,13 +1664,11 @@ class _$ImportAccountStateCopyWithImpl<$Res, $Val extends ImportAccountState>
     implements $ImportAccountStateCopyWith<$Res> {
   _$ImportAccountStateCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
+// ignore: unused_field
   final $Val _value;
-  // ignore: unused_field
+// ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ImportAccountState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1780,8 +1722,6 @@ class _$ImportAccountStateCopyWithImpl<$Res, $Val extends ImportAccountState>
     ) as $Val);
   }
 
-  /// Create a copy of ImportAccountState
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PageCommandCopyWith<$Res>? get command {
@@ -1796,11 +1736,11 @@ class _$ImportAccountStateCopyWithImpl<$Res, $Val extends ImportAccountState>
 }
 
 /// @nodoc
-abstract class _$$ImportAccountStateImplCopyWith<$Res>
+abstract class _$$_ImportAccountStateCopyWith<$Res>
     implements $ImportAccountStateCopyWith<$Res> {
-  factory _$$ImportAccountStateImplCopyWith(_$ImportAccountStateImpl value,
-          $Res Function(_$ImportAccountStateImpl) then) =
-      __$$ImportAccountStateImplCopyWithImpl<$Res>;
+  factory _$$_ImportAccountStateCopyWith(_$_ImportAccountState value,
+          $Res Function(_$_ImportAccountState) then) =
+      __$$_ImportAccountStateCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -1819,15 +1759,13 @@ abstract class _$$ImportAccountStateImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$ImportAccountStateImplCopyWithImpl<$Res>
-    extends _$ImportAccountStateCopyWithImpl<$Res, _$ImportAccountStateImpl>
-    implements _$$ImportAccountStateImplCopyWith<$Res> {
-  __$$ImportAccountStateImplCopyWithImpl(_$ImportAccountStateImpl _value,
-      $Res Function(_$ImportAccountStateImpl) _then)
+class __$$_ImportAccountStateCopyWithImpl<$Res>
+    extends _$ImportAccountStateCopyWithImpl<$Res, _$_ImportAccountState>
+    implements _$$_ImportAccountStateCopyWith<$Res> {
+  __$$_ImportAccountStateCopyWithImpl(
+      _$_ImportAccountState _value, $Res Function(_$_ImportAccountState) _then)
       : super(_value, _then);
 
-  /// Create a copy of ImportAccountState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1841,7 +1779,7 @@ class __$$ImportAccountStateImplCopyWithImpl<$Res>
     Object? isPartialLoading = null,
     Object? accounts = null,
   }) {
-    return _then(_$ImportAccountStateImpl(
+    return _then(_$_ImportAccountState(
       pageState: null == pageState
           ? _value.pageState
           : pageState // ignore: cast_nullable_to_non_nullable
@@ -1884,8 +1822,8 @@ class __$$ImportAccountStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ImportAccountStateImpl extends _ImportAccountState {
-  const _$ImportAccountStateImpl(
+class _$_ImportAccountState extends _ImportAccountState {
+  const _$_ImportAccountState(
       {this.pageState = PageState.initial,
       this.accountImportType = AccountImportType.words,
       this.command,
@@ -1912,7 +1850,7 @@ class _$ImportAccountStateImpl extends _ImportAccountState {
   @JsonKey()
   Map<int, String> get userEnteredWords {
     if (_userEnteredWords is EqualUnmodifiableMapView) return _userEnteredWords;
-    // ignore: implicit_dynamic_type
+// ignore: implicit_dynamic_type
     return EqualUnmodifiableMapView(_userEnteredWords);
   }
 
@@ -1933,7 +1871,7 @@ class _$ImportAccountStateImpl extends _ImportAccountState {
   @JsonKey()
   List<UserProfileData> get accounts {
     if (_accounts is EqualUnmodifiableListView) return _accounts;
-    // ignore: implicit_dynamic_type
+// ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_accounts);
   }
 
@@ -1943,10 +1881,10 @@ class _$ImportAccountStateImpl extends _ImportAccountState {
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ImportAccountStateImpl &&
+            other is _$_ImportAccountState &&
             (identical(other.pageState, pageState) ||
                 other.pageState == pageState) &&
             (identical(other.accountImportType, accountImportType) ||
@@ -1978,13 +1916,11 @@ class _$ImportAccountStateImpl extends _ImportAccountState {
       isPartialLoading,
       const DeepCollectionEquality().hash(_accounts));
 
-  /// Create a copy of ImportAccountState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ImportAccountStateImplCopyWith<_$ImportAccountStateImpl> get copyWith =>
-      __$$ImportAccountStateImplCopyWithImpl<_$ImportAccountStateImpl>(
+  _$$_ImportAccountStateCopyWith<_$_ImportAccountState> get copyWith =>
+      __$$_ImportAccountStateCopyWithImpl<_$_ImportAccountState>(
           this, _$identity);
 }
 
@@ -1998,7 +1934,7 @@ abstract class _ImportAccountState extends ImportAccountState {
       final bool isPrivateKeyValid,
       final bool showNoAccountsFound,
       final bool isPartialLoading,
-      final List<UserProfileData> accounts}) = _$ImportAccountStateImpl;
+      final List<UserProfileData> accounts}) = _$_ImportAccountState;
   const _ImportAccountState._() : super._();
 
   @override
@@ -2019,12 +1955,9 @@ abstract class _ImportAccountState extends ImportAccountState {
   bool get isPartialLoading;
   @override
   List<UserProfileData> get accounts;
-
-  /// Create a copy of ImportAccountState
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ImportAccountStateImplCopyWith<_$ImportAccountStateImpl> get copyWith =>
+  @JsonKey(ignore: true)
+  _$$_ImportAccountStateCopyWith<_$_ImportAccountState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -2065,9 +1998,7 @@ mixin _$PageCommand {
   }) =>
       throw _privateConstructorUsedError;
 
-  /// Create a copy of PageCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $PageCommandCopyWith<PageCommand> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2086,13 +2017,11 @@ class _$PageCommandCopyWithImpl<$Res, $Val extends PageCommand>
     implements $PageCommandCopyWith<$Res> {
   _$PageCommandCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
+// ignore: unused_field
   final $Val _value;
-  // ignore: unused_field
+// ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of PageCommand
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2108,34 +2037,30 @@ class _$PageCommandCopyWithImpl<$Res, $Val extends PageCommand>
 }
 
 /// @nodoc
-abstract class _$$NavigateToAccountFoundImplCopyWith<$Res>
+abstract class _$$_NavigateToAccountFoundCopyWith<$Res>
     implements $PageCommandCopyWith<$Res> {
-  factory _$$NavigateToAccountFoundImplCopyWith(
-          _$NavigateToAccountFoundImpl value,
-          $Res Function(_$NavigateToAccountFoundImpl) then) =
-      __$$NavigateToAccountFoundImplCopyWithImpl<$Res>;
+  factory _$$_NavigateToAccountFoundCopyWith(_$_NavigateToAccountFound value,
+          $Res Function(_$_NavigateToAccountFound) then) =
+      __$$_NavigateToAccountFoundCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<String> accounts});
 }
 
 /// @nodoc
-class __$$NavigateToAccountFoundImplCopyWithImpl<$Res>
-    extends _$PageCommandCopyWithImpl<$Res, _$NavigateToAccountFoundImpl>
-    implements _$$NavigateToAccountFoundImplCopyWith<$Res> {
-  __$$NavigateToAccountFoundImplCopyWithImpl(
-      _$NavigateToAccountFoundImpl _value,
-      $Res Function(_$NavigateToAccountFoundImpl) _then)
+class __$$_NavigateToAccountFoundCopyWithImpl<$Res>
+    extends _$PageCommandCopyWithImpl<$Res, _$_NavigateToAccountFound>
+    implements _$$_NavigateToAccountFoundCopyWith<$Res> {
+  __$$_NavigateToAccountFoundCopyWithImpl(_$_NavigateToAccountFound _value,
+      $Res Function(_$_NavigateToAccountFound) _then)
       : super(_value, _then);
 
-  /// Create a copy of PageCommand
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? accounts = null,
   }) {
-    return _then(_$NavigateToAccountFoundImpl(
+    return _then(_$_NavigateToAccountFound(
       null == accounts
           ? _value._accounts
           : accounts // ignore: cast_nullable_to_non_nullable
@@ -2146,15 +2071,15 @@ class __$$NavigateToAccountFoundImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$NavigateToAccountFoundImpl implements _NavigateToAccountFound {
-  const _$NavigateToAccountFoundImpl(final List<String> accounts)
+class _$_NavigateToAccountFound implements _NavigateToAccountFound {
+  const _$_NavigateToAccountFound(final List<String> accounts)
       : _accounts = accounts;
 
   final List<String> _accounts;
   @override
   List<String> get accounts {
     if (_accounts is EqualUnmodifiableListView) return _accounts;
-    // ignore: implicit_dynamic_type
+// ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_accounts);
   }
 
@@ -2164,10 +2089,10 @@ class _$NavigateToAccountFoundImpl implements _NavigateToAccountFound {
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$NavigateToAccountFoundImpl &&
+            other is _$_NavigateToAccountFound &&
             const DeepCollectionEquality().equals(other._accounts, _accounts));
   }
 
@@ -2175,14 +2100,12 @@ class _$NavigateToAccountFoundImpl implements _NavigateToAccountFound {
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(_accounts));
 
-  /// Create a copy of PageCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$NavigateToAccountFoundImplCopyWith<_$NavigateToAccountFoundImpl>
-      get copyWith => __$$NavigateToAccountFoundImplCopyWithImpl<
-          _$NavigateToAccountFoundImpl>(this, _$identity);
+  _$$_NavigateToAccountFoundCopyWith<_$_NavigateToAccountFound> get copyWith =>
+      __$$_NavigateToAccountFoundCopyWithImpl<_$_NavigateToAccountFound>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -2244,15 +2167,12 @@ class _$NavigateToAccountFoundImpl implements _NavigateToAccountFound {
 
 abstract class _NavigateToAccountFound implements PageCommand {
   const factory _NavigateToAccountFound(final List<String> accounts) =
-      _$NavigateToAccountFoundImpl;
+      _$_NavigateToAccountFound;
 
   @override
   List<String> get accounts;
-
-  /// Create a copy of PageCommand
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$NavigateToAccountFoundImplCopyWith<_$NavigateToAccountFoundImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$$_NavigateToAccountFoundCopyWith<_$_NavigateToAccountFound> get copyWith =>
+      throw _privateConstructorUsedError;
 }

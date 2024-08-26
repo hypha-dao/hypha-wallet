@@ -12,16 +12,18 @@ part of 'send_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$PageCommand {
   String get transactionId => throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String transactionId) navigateToSendSuccess,
   }) =>
       throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String transactionId)? navigateToSendSuccess,
@@ -33,12 +35,14 @@ mixin _$PageCommand {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_NavigateToSendSuccess value)
         navigateToSendSuccess,
   }) =>
       throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_NavigateToSendSuccess value)? navigateToSendSuccess,
@@ -51,9 +55,7 @@ mixin _$PageCommand {
   }) =>
       throw _privateConstructorUsedError;
 
-  /// Create a copy of PageCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $PageCommandCopyWith<PageCommand> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -72,13 +74,11 @@ class _$PageCommandCopyWithImpl<$Res, $Val extends PageCommand>
     implements $PageCommandCopyWith<$Res> {
   _$PageCommandCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
+// ignore: unused_field
   final $Val _value;
-  // ignore: unused_field
+// ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of PageCommand
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -94,33 +94,30 @@ class _$PageCommandCopyWithImpl<$Res, $Val extends PageCommand>
 }
 
 /// @nodoc
-abstract class _$$NavigateToSendSuccessImplCopyWith<$Res>
+abstract class _$$_NavigateToSendSuccessCopyWith<$Res>
     implements $PageCommandCopyWith<$Res> {
-  factory _$$NavigateToSendSuccessImplCopyWith(
-          _$NavigateToSendSuccessImpl value,
-          $Res Function(_$NavigateToSendSuccessImpl) then) =
-      __$$NavigateToSendSuccessImplCopyWithImpl<$Res>;
+  factory _$$_NavigateToSendSuccessCopyWith(_$_NavigateToSendSuccess value,
+          $Res Function(_$_NavigateToSendSuccess) then) =
+      __$$_NavigateToSendSuccessCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String transactionId});
 }
 
 /// @nodoc
-class __$$NavigateToSendSuccessImplCopyWithImpl<$Res>
-    extends _$PageCommandCopyWithImpl<$Res, _$NavigateToSendSuccessImpl>
-    implements _$$NavigateToSendSuccessImplCopyWith<$Res> {
-  __$$NavigateToSendSuccessImplCopyWithImpl(_$NavigateToSendSuccessImpl _value,
-      $Res Function(_$NavigateToSendSuccessImpl) _then)
+class __$$_NavigateToSendSuccessCopyWithImpl<$Res>
+    extends _$PageCommandCopyWithImpl<$Res, _$_NavigateToSendSuccess>
+    implements _$$_NavigateToSendSuccessCopyWith<$Res> {
+  __$$_NavigateToSendSuccessCopyWithImpl(_$_NavigateToSendSuccess _value,
+      $Res Function(_$_NavigateToSendSuccess) _then)
       : super(_value, _then);
 
-  /// Create a copy of PageCommand
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? transactionId = null,
   }) {
-    return _then(_$NavigateToSendSuccessImpl(
+    return _then(_$_NavigateToSendSuccess(
       null == transactionId
           ? _value.transactionId
           : transactionId // ignore: cast_nullable_to_non_nullable
@@ -131,8 +128,8 @@ class __$$NavigateToSendSuccessImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$NavigateToSendSuccessImpl implements _NavigateToSendSuccess {
-  const _$NavigateToSendSuccessImpl(this.transactionId);
+class _$_NavigateToSendSuccess implements _NavigateToSendSuccess {
+  const _$_NavigateToSendSuccess(this.transactionId);
 
   @override
   final String transactionId;
@@ -143,10 +140,10 @@ class _$NavigateToSendSuccessImpl implements _NavigateToSendSuccess {
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$NavigateToSendSuccessImpl &&
+            other is _$_NavigateToSendSuccess &&
             (identical(other.transactionId, transactionId) ||
                 other.transactionId == transactionId));
   }
@@ -154,14 +151,12 @@ class _$NavigateToSendSuccessImpl implements _NavigateToSendSuccess {
   @override
   int get hashCode => Object.hash(runtimeType, transactionId);
 
-  /// Create a copy of PageCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$NavigateToSendSuccessImplCopyWith<_$NavigateToSendSuccessImpl>
-      get copyWith => __$$NavigateToSendSuccessImplCopyWithImpl<
-          _$NavigateToSendSuccessImpl>(this, _$identity);
+  _$$_NavigateToSendSuccessCopyWith<_$_NavigateToSendSuccess> get copyWith =>
+      __$$_NavigateToSendSuccessCopyWithImpl<_$_NavigateToSendSuccess>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -223,17 +218,14 @@ class _$NavigateToSendSuccessImpl implements _NavigateToSendSuccess {
 
 abstract class _NavigateToSendSuccess implements PageCommand {
   const factory _NavigateToSendSuccess(final String transactionId) =
-      _$NavigateToSendSuccessImpl;
+      _$_NavigateToSendSuccess;
 
   @override
   String get transactionId;
-
-  /// Create a copy of PageCommand
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$NavigateToSendSuccessImplCopyWith<_$NavigateToSendSuccessImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$$_NavigateToSendSuccessCopyWith<_$_NavigateToSendSuccess> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -320,38 +312,31 @@ class _$SendEventCopyWithImpl<$Res, $Val extends SendEvent>
     implements $SendEventCopyWith<$Res> {
   _$SendEventCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
+// ignore: unused_field
   final $Val _value;
-  // ignore: unused_field
+// ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of SendEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
-abstract class _$$InitialImplCopyWith<$Res> {
-  factory _$$InitialImplCopyWith(
-          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
-      __$$InitialImplCopyWithImpl<$Res>;
+abstract class _$$_InitialCopyWith<$Res> {
+  factory _$$_InitialCopyWith(
+          _$_Initial value, $Res Function(_$_Initial) then) =
+      __$$_InitialCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$InitialImplCopyWithImpl<$Res>
-    extends _$SendEventCopyWithImpl<$Res, _$InitialImpl>
-    implements _$$InitialImplCopyWith<$Res> {
-  __$$InitialImplCopyWithImpl(
-      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
+class __$$_InitialCopyWithImpl<$Res>
+    extends _$SendEventCopyWithImpl<$Res, _$_Initial>
+    implements _$$_InitialCopyWith<$Res> {
+  __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
       : super(_value, _then);
-
-  /// Create a copy of SendEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$InitialImpl implements _Initial {
-  const _$InitialImpl();
+class _$_Initial implements _Initial {
+  const _$_Initial();
 
   @override
   String toString() {
@@ -359,9 +344,9 @@ class _$InitialImpl implements _Initial {
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitialImpl);
+        (other.runtimeType == runtimeType && other is _$_Initial);
   }
 
   @override
@@ -462,32 +447,29 @@ class _$InitialImpl implements _Initial {
 }
 
 abstract class _Initial implements SendEvent {
-  const factory _Initial() = _$InitialImpl;
+  const factory _Initial() = _$_Initial;
 }
 
 /// @nodoc
-abstract class _$$OnRefreshImplCopyWith<$Res> {
-  factory _$$OnRefreshImplCopyWith(
-          _$OnRefreshImpl value, $Res Function(_$OnRefreshImpl) then) =
-      __$$OnRefreshImplCopyWithImpl<$Res>;
+abstract class _$$_OnRefreshCopyWith<$Res> {
+  factory _$$_OnRefreshCopyWith(
+          _$_OnRefresh value, $Res Function(_$_OnRefresh) then) =
+      __$$_OnRefreshCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$OnRefreshImplCopyWithImpl<$Res>
-    extends _$SendEventCopyWithImpl<$Res, _$OnRefreshImpl>
-    implements _$$OnRefreshImplCopyWith<$Res> {
-  __$$OnRefreshImplCopyWithImpl(
-      _$OnRefreshImpl _value, $Res Function(_$OnRefreshImpl) _then)
+class __$$_OnRefreshCopyWithImpl<$Res>
+    extends _$SendEventCopyWithImpl<$Res, _$_OnRefresh>
+    implements _$$_OnRefreshCopyWith<$Res> {
+  __$$_OnRefreshCopyWithImpl(
+      _$_OnRefresh _value, $Res Function(_$_OnRefresh) _then)
       : super(_value, _then);
-
-  /// Create a copy of SendEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$OnRefreshImpl implements _OnRefresh {
-  const _$OnRefreshImpl();
+class _$_OnRefresh implements _OnRefresh {
+  const _$_OnRefresh();
 
   @override
   String toString() {
@@ -495,9 +477,9 @@ class _$OnRefreshImpl implements _OnRefresh {
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$OnRefreshImpl);
+        (other.runtimeType == runtimeType && other is _$_OnRefresh);
   }
 
   @override
@@ -598,32 +580,29 @@ class _$OnRefreshImpl implements _OnRefresh {
 }
 
 abstract class _OnRefresh implements SendEvent {
-  const factory _OnRefresh() = _$OnRefreshImpl;
+  const factory _OnRefresh() = _$_OnRefresh;
 }
 
 /// @nodoc
-abstract class _$$ClearPageCommandImplCopyWith<$Res> {
-  factory _$$ClearPageCommandImplCopyWith(_$ClearPageCommandImpl value,
-          $Res Function(_$ClearPageCommandImpl) then) =
-      __$$ClearPageCommandImplCopyWithImpl<$Res>;
+abstract class _$$_ClearPageCommandCopyWith<$Res> {
+  factory _$$_ClearPageCommandCopyWith(
+          _$_ClearPageCommand value, $Res Function(_$_ClearPageCommand) then) =
+      __$$_ClearPageCommandCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$ClearPageCommandImplCopyWithImpl<$Res>
-    extends _$SendEventCopyWithImpl<$Res, _$ClearPageCommandImpl>
-    implements _$$ClearPageCommandImplCopyWith<$Res> {
-  __$$ClearPageCommandImplCopyWithImpl(_$ClearPageCommandImpl _value,
-      $Res Function(_$ClearPageCommandImpl) _then)
+class __$$_ClearPageCommandCopyWithImpl<$Res>
+    extends _$SendEventCopyWithImpl<$Res, _$_ClearPageCommand>
+    implements _$$_ClearPageCommandCopyWith<$Res> {
+  __$$_ClearPageCommandCopyWithImpl(
+      _$_ClearPageCommand _value, $Res Function(_$_ClearPageCommand) _then)
       : super(_value, _then);
-
-  /// Create a copy of SendEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$ClearPageCommandImpl implements _ClearPageCommand {
-  const _$ClearPageCommandImpl();
+class _$_ClearPageCommand implements _ClearPageCommand {
+  const _$_ClearPageCommand();
 
   @override
   String toString() {
@@ -631,9 +610,9 @@ class _$ClearPageCommandImpl implements _ClearPageCommand {
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ClearPageCommandImpl);
+        (other.runtimeType == runtimeType && other is _$_ClearPageCommand);
   }
 
   @override
@@ -734,34 +713,32 @@ class _$ClearPageCommandImpl implements _ClearPageCommand {
 }
 
 abstract class _ClearPageCommand implements SendEvent {
-  const factory _ClearPageCommand() = _$ClearPageCommandImpl;
+  const factory _ClearPageCommand() = _$_ClearPageCommand;
 }
 
 /// @nodoc
-abstract class _$$OnPercentageTappedImplCopyWith<$Res> {
-  factory _$$OnPercentageTappedImplCopyWith(_$OnPercentageTappedImpl value,
-          $Res Function(_$OnPercentageTappedImpl) then) =
-      __$$OnPercentageTappedImplCopyWithImpl<$Res>;
+abstract class _$$_OnPercentageTappedCopyWith<$Res> {
+  factory _$$_OnPercentageTappedCopyWith(_$_OnPercentageTapped value,
+          $Res Function(_$_OnPercentageTapped) then) =
+      __$$_OnPercentageTappedCopyWithImpl<$Res>;
   @useResult
   $Res call({AmountPercentage amountPercentage});
 }
 
 /// @nodoc
-class __$$OnPercentageTappedImplCopyWithImpl<$Res>
-    extends _$SendEventCopyWithImpl<$Res, _$OnPercentageTappedImpl>
-    implements _$$OnPercentageTappedImplCopyWith<$Res> {
-  __$$OnPercentageTappedImplCopyWithImpl(_$OnPercentageTappedImpl _value,
-      $Res Function(_$OnPercentageTappedImpl) _then)
+class __$$_OnPercentageTappedCopyWithImpl<$Res>
+    extends _$SendEventCopyWithImpl<$Res, _$_OnPercentageTapped>
+    implements _$$_OnPercentageTappedCopyWith<$Res> {
+  __$$_OnPercentageTappedCopyWithImpl(
+      _$_OnPercentageTapped _value, $Res Function(_$_OnPercentageTapped) _then)
       : super(_value, _then);
 
-  /// Create a copy of SendEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? amountPercentage = null,
   }) {
-    return _then(_$OnPercentageTappedImpl(
+    return _then(_$_OnPercentageTapped(
       null == amountPercentage
           ? _value.amountPercentage
           : amountPercentage // ignore: cast_nullable_to_non_nullable
@@ -772,8 +749,8 @@ class __$$OnPercentageTappedImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$OnPercentageTappedImpl implements _OnPercentageTapped {
-  const _$OnPercentageTappedImpl(this.amountPercentage);
+class _$_OnPercentageTapped implements _OnPercentageTapped {
+  const _$_OnPercentageTapped(this.amountPercentage);
 
   @override
   final AmountPercentage amountPercentage;
@@ -784,10 +761,10 @@ class _$OnPercentageTappedImpl implements _OnPercentageTapped {
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$OnPercentageTappedImpl &&
+            other is _$_OnPercentageTapped &&
             (identical(other.amountPercentage, amountPercentage) ||
                 other.amountPercentage == amountPercentage));
   }
@@ -795,13 +772,11 @@ class _$OnPercentageTappedImpl implements _OnPercentageTapped {
   @override
   int get hashCode => Object.hash(runtimeType, amountPercentage);
 
-  /// Create a copy of SendEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$OnPercentageTappedImplCopyWith<_$OnPercentageTappedImpl> get copyWith =>
-      __$$OnPercentageTappedImplCopyWithImpl<_$OnPercentageTappedImpl>(
+  _$$_OnPercentageTappedCopyWith<_$_OnPercentageTapped> get copyWith =>
+      __$$_OnPercentageTappedCopyWithImpl<_$_OnPercentageTapped>(
           this, _$identity);
 
   @override
@@ -900,42 +875,37 @@ class _$OnPercentageTappedImpl implements _OnPercentageTapped {
 
 abstract class _OnPercentageTapped implements SendEvent {
   const factory _OnPercentageTapped(final AmountPercentage amountPercentage) =
-      _$OnPercentageTappedImpl;
+      _$_OnPercentageTapped;
 
   AmountPercentage get amountPercentage;
-
-  /// Create a copy of SendEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$OnPercentageTappedImplCopyWith<_$OnPercentageTappedImpl> get copyWith =>
+  @JsonKey(ignore: true)
+  _$$_OnPercentageTappedCopyWith<_$_OnPercentageTapped> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$OnKeypadTappedImplCopyWith<$Res> {
-  factory _$$OnKeypadTappedImplCopyWith(_$OnKeypadTappedImpl value,
-          $Res Function(_$OnKeypadTappedImpl) then) =
-      __$$OnKeypadTappedImplCopyWithImpl<$Res>;
+abstract class _$$_OnKeypadTappedCopyWith<$Res> {
+  factory _$$_OnKeypadTappedCopyWith(
+          _$_OnKeypadTapped value, $Res Function(_$_OnKeypadTapped) then) =
+      __$$_OnKeypadTappedCopyWithImpl<$Res>;
   @useResult
   $Res call({KeypadKey tappedKey});
 }
 
 /// @nodoc
-class __$$OnKeypadTappedImplCopyWithImpl<$Res>
-    extends _$SendEventCopyWithImpl<$Res, _$OnKeypadTappedImpl>
-    implements _$$OnKeypadTappedImplCopyWith<$Res> {
-  __$$OnKeypadTappedImplCopyWithImpl(
-      _$OnKeypadTappedImpl _value, $Res Function(_$OnKeypadTappedImpl) _then)
+class __$$_OnKeypadTappedCopyWithImpl<$Res>
+    extends _$SendEventCopyWithImpl<$Res, _$_OnKeypadTapped>
+    implements _$$_OnKeypadTappedCopyWith<$Res> {
+  __$$_OnKeypadTappedCopyWithImpl(
+      _$_OnKeypadTapped _value, $Res Function(_$_OnKeypadTapped) _then)
       : super(_value, _then);
 
-  /// Create a copy of SendEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? tappedKey = null,
   }) {
-    return _then(_$OnKeypadTappedImpl(
+    return _then(_$_OnKeypadTapped(
       null == tappedKey
           ? _value.tappedKey
           : tappedKey // ignore: cast_nullable_to_non_nullable
@@ -946,8 +916,8 @@ class __$$OnKeypadTappedImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$OnKeypadTappedImpl implements _OnKeypadTapped {
-  const _$OnKeypadTappedImpl(this.tappedKey);
+class _$_OnKeypadTapped implements _OnKeypadTapped {
+  const _$_OnKeypadTapped(this.tappedKey);
 
   @override
   final KeypadKey tappedKey;
@@ -958,10 +928,10 @@ class _$OnKeypadTappedImpl implements _OnKeypadTapped {
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$OnKeypadTappedImpl &&
+            other is _$_OnKeypadTapped &&
             (identical(other.tappedKey, tappedKey) ||
                 other.tappedKey == tappedKey));
   }
@@ -969,14 +939,11 @@ class _$OnKeypadTappedImpl implements _OnKeypadTapped {
   @override
   int get hashCode => Object.hash(runtimeType, tappedKey);
 
-  /// Create a copy of SendEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$OnKeypadTappedImplCopyWith<_$OnKeypadTappedImpl> get copyWith =>
-      __$$OnKeypadTappedImplCopyWithImpl<_$OnKeypadTappedImpl>(
-          this, _$identity);
+  _$$_OnKeypadTappedCopyWith<_$_OnKeypadTapped> get copyWith =>
+      __$$_OnKeypadTappedCopyWithImpl<_$_OnKeypadTapped>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1073,43 +1040,37 @@ class _$OnKeypadTappedImpl implements _OnKeypadTapped {
 }
 
 abstract class _OnKeypadTapped implements SendEvent {
-  const factory _OnKeypadTapped(final KeypadKey tappedKey) =
-      _$OnKeypadTappedImpl;
+  const factory _OnKeypadTapped(final KeypadKey tappedKey) = _$_OnKeypadTapped;
 
   KeypadKey get tappedKey;
-
-  /// Create a copy of SendEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$OnKeypadTappedImplCopyWith<_$OnKeypadTappedImpl> get copyWith =>
+  @JsonKey(ignore: true)
+  _$$_OnKeypadTappedCopyWith<_$_OnKeypadTapped> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$OnMemoEnteredImplCopyWith<$Res> {
-  factory _$$OnMemoEnteredImplCopyWith(
-          _$OnMemoEnteredImpl value, $Res Function(_$OnMemoEnteredImpl) then) =
-      __$$OnMemoEnteredImplCopyWithImpl<$Res>;
+abstract class _$$_OnMemoEnteredCopyWith<$Res> {
+  factory _$$_OnMemoEnteredCopyWith(
+          _$_OnMemoEntered value, $Res Function(_$_OnMemoEntered) then) =
+      __$$_OnMemoEnteredCopyWithImpl<$Res>;
   @useResult
   $Res call({String? memo});
 }
 
 /// @nodoc
-class __$$OnMemoEnteredImplCopyWithImpl<$Res>
-    extends _$SendEventCopyWithImpl<$Res, _$OnMemoEnteredImpl>
-    implements _$$OnMemoEnteredImplCopyWith<$Res> {
-  __$$OnMemoEnteredImplCopyWithImpl(
-      _$OnMemoEnteredImpl _value, $Res Function(_$OnMemoEnteredImpl) _then)
+class __$$_OnMemoEnteredCopyWithImpl<$Res>
+    extends _$SendEventCopyWithImpl<$Res, _$_OnMemoEntered>
+    implements _$$_OnMemoEnteredCopyWith<$Res> {
+  __$$_OnMemoEnteredCopyWithImpl(
+      _$_OnMemoEntered _value, $Res Function(_$_OnMemoEntered) _then)
       : super(_value, _then);
 
-  /// Create a copy of SendEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? memo = freezed,
   }) {
-    return _then(_$OnMemoEnteredImpl(
+    return _then(_$_OnMemoEntered(
       freezed == memo
           ? _value.memo
           : memo // ignore: cast_nullable_to_non_nullable
@@ -1120,8 +1081,8 @@ class __$$OnMemoEnteredImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$OnMemoEnteredImpl implements _OnMemoEntered {
-  const _$OnMemoEnteredImpl(this.memo);
+class _$_OnMemoEntered implements _OnMemoEntered {
+  const _$_OnMemoEntered(this.memo);
 
   @override
   final String? memo;
@@ -1132,23 +1093,21 @@ class _$OnMemoEnteredImpl implements _OnMemoEntered {
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$OnMemoEnteredImpl &&
+            other is _$_OnMemoEntered &&
             (identical(other.memo, memo) || other.memo == memo));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, memo);
 
-  /// Create a copy of SendEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$OnMemoEnteredImplCopyWith<_$OnMemoEnteredImpl> get copyWith =>
-      __$$OnMemoEnteredImplCopyWithImpl<_$OnMemoEnteredImpl>(this, _$identity);
+  _$$_OnMemoEnteredCopyWith<_$_OnMemoEntered> get copyWith =>
+      __$$_OnMemoEnteredCopyWithImpl<_$_OnMemoEntered>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1245,40 +1204,34 @@ class _$OnMemoEnteredImpl implements _OnMemoEntered {
 }
 
 abstract class _OnMemoEntered implements SendEvent {
-  const factory _OnMemoEntered(final String? memo) = _$OnMemoEnteredImpl;
+  const factory _OnMemoEntered(final String? memo) = _$_OnMemoEntered;
 
   String? get memo;
-
-  /// Create a copy of SendEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$OnMemoEnteredImplCopyWith<_$OnMemoEnteredImpl> get copyWith =>
+  @JsonKey(ignore: true)
+  _$$_OnMemoEnteredCopyWith<_$_OnMemoEntered> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$OnSendTappedImplCopyWith<$Res> {
-  factory _$$OnSendTappedImplCopyWith(
-          _$OnSendTappedImpl value, $Res Function(_$OnSendTappedImpl) then) =
-      __$$OnSendTappedImplCopyWithImpl<$Res>;
+abstract class _$$_OnSendTappedCopyWith<$Res> {
+  factory _$$_OnSendTappedCopyWith(
+          _$_OnSendTapped value, $Res Function(_$_OnSendTapped) then) =
+      __$$_OnSendTappedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$OnSendTappedImplCopyWithImpl<$Res>
-    extends _$SendEventCopyWithImpl<$Res, _$OnSendTappedImpl>
-    implements _$$OnSendTappedImplCopyWith<$Res> {
-  __$$OnSendTappedImplCopyWithImpl(
-      _$OnSendTappedImpl _value, $Res Function(_$OnSendTappedImpl) _then)
+class __$$_OnSendTappedCopyWithImpl<$Res>
+    extends _$SendEventCopyWithImpl<$Res, _$_OnSendTapped>
+    implements _$$_OnSendTappedCopyWith<$Res> {
+  __$$_OnSendTappedCopyWithImpl(
+      _$_OnSendTapped _value, $Res Function(_$_OnSendTapped) _then)
       : super(_value, _then);
-
-  /// Create a copy of SendEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$OnSendTappedImpl implements _OnSendTapped {
-  const _$OnSendTappedImpl();
+class _$_OnSendTapped implements _OnSendTapped {
+  const _$_OnSendTapped();
 
   @override
   String toString() {
@@ -1286,9 +1239,9 @@ class _$OnSendTappedImpl implements _OnSendTapped {
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$OnSendTappedImpl);
+        (other.runtimeType == runtimeType && other is _$_OnSendTapped);
   }
 
   @override
@@ -1389,7 +1342,7 @@ class _$OnSendTappedImpl implements _OnSendTapped {
 }
 
 abstract class _OnSendTapped implements SendEvent {
-  const factory _OnSendTapped() = _$OnSendTappedImpl;
+  const factory _OnSendTapped() = _$_OnSendTapped;
 }
 
 /// @nodoc
@@ -1402,9 +1355,7 @@ mixin _$SendState {
   WalletTokenData get tokenData => throw _privateConstructorUsedError;
   bool get isSendButtonLoading => throw _privateConstructorUsedError;
 
-  /// Create a copy of SendState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $SendStateCopyWith<SendState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1432,13 +1383,11 @@ class _$SendStateCopyWithImpl<$Res, $Val extends SendState>
     implements $SendStateCopyWith<$Res> {
   _$SendStateCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
+// ignore: unused_field
   final $Val _value;
-  // ignore: unused_field
+// ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of SendState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1482,8 +1431,6 @@ class _$SendStateCopyWithImpl<$Res, $Val extends SendState>
     ) as $Val);
   }
 
-  /// Create a copy of SendState
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PageCommandCopyWith<$Res>? get command {
@@ -1496,8 +1443,6 @@ class _$SendStateCopyWithImpl<$Res, $Val extends SendState>
     });
   }
 
-  /// Create a copy of SendState
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $UserProfileDataCopyWith<$Res> get receiverUser {
@@ -1508,11 +1453,10 @@ class _$SendStateCopyWithImpl<$Res, $Val extends SendState>
 }
 
 /// @nodoc
-abstract class _$$SendStateImplCopyWith<$Res>
-    implements $SendStateCopyWith<$Res> {
-  factory _$$SendStateImplCopyWith(
-          _$SendStateImpl value, $Res Function(_$SendStateImpl) then) =
-      __$$SendStateImplCopyWithImpl<$Res>;
+abstract class _$$_SendStateCopyWith<$Res> implements $SendStateCopyWith<$Res> {
+  factory _$$_SendStateCopyWith(
+          _$_SendState value, $Res Function(_$_SendState) then) =
+      __$$_SendStateCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -1531,15 +1475,13 @@ abstract class _$$SendStateImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$SendStateImplCopyWithImpl<$Res>
-    extends _$SendStateCopyWithImpl<$Res, _$SendStateImpl>
-    implements _$$SendStateImplCopyWith<$Res> {
-  __$$SendStateImplCopyWithImpl(
-      _$SendStateImpl _value, $Res Function(_$SendStateImpl) _then)
+class __$$_SendStateCopyWithImpl<$Res>
+    extends _$SendStateCopyWithImpl<$Res, _$_SendState>
+    implements _$$_SendStateCopyWith<$Res> {
+  __$$_SendStateCopyWithImpl(
+      _$_SendState _value, $Res Function(_$_SendState) _then)
       : super(_value, _then);
 
-  /// Create a copy of SendState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1551,7 +1493,7 @@ class __$$SendStateImplCopyWithImpl<$Res>
     Object? tokenData = null,
     Object? isSendButtonLoading = null,
   }) {
-    return _then(_$SendStateImpl(
+    return _then(_$_SendState(
       pageState: null == pageState
           ? _value.pageState
           : pageState // ignore: cast_nullable_to_non_nullable
@@ -1586,8 +1528,8 @@ class __$$SendStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SendStateImpl extends _SendState {
-  const _$SendStateImpl(
+class _$_SendState extends _SendState {
+  const _$_SendState(
       {this.pageState = PageState.initial,
       this.command,
       this.userEnteredAmount = null,
@@ -1622,10 +1564,10 @@ class _$SendStateImpl extends _SendState {
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SendStateImpl &&
+            other is _$_SendState &&
             (identical(other.pageState, pageState) ||
                 other.pageState == pageState) &&
             (identical(other.command, command) || other.command == command) &&
@@ -1644,13 +1586,11 @@ class _$SendStateImpl extends _SendState {
   int get hashCode => Object.hash(runtimeType, pageState, command,
       userEnteredAmount, memo, receiverUser, tokenData, isSendButtonLoading);
 
-  /// Create a copy of SendState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$SendStateImplCopyWith<_$SendStateImpl> get copyWith =>
-      __$$SendStateImplCopyWithImpl<_$SendStateImpl>(this, _$identity);
+  _$$_SendStateCopyWith<_$_SendState> get copyWith =>
+      __$$_SendStateCopyWithImpl<_$_SendState>(this, _$identity);
 }
 
 abstract class _SendState extends SendState {
@@ -1661,7 +1601,7 @@ abstract class _SendState extends SendState {
       final String? memo,
       required final UserProfileData receiverUser,
       required final WalletTokenData tokenData,
-      final bool isSendButtonLoading}) = _$SendStateImpl;
+      final bool isSendButtonLoading}) = _$_SendState;
   const _SendState._() : super._();
 
   @override
@@ -1678,11 +1618,8 @@ abstract class _SendState extends SendState {
   WalletTokenData get tokenData;
   @override
   bool get isSendButtonLoading;
-
-  /// Create a copy of SendState
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SendStateImplCopyWith<_$SendStateImpl> get copyWith =>
+  @JsonKey(ignore: true)
+  _$$_SendStateCopyWith<_$_SendState> get copyWith =>
       throw _privateConstructorUsedError;
 }

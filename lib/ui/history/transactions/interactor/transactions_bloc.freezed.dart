@@ -12,7 +12,7 @@ part of 'transactions_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$PageCommand {
@@ -21,6 +21,7 @@ mixin _$PageCommand {
     required TResult Function() navigateToTransactionDetails,
   }) =>
       throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? navigateToTransactionDetails,
@@ -32,12 +33,14 @@ mixin _$PageCommand {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_NavigateToTransactionDetails value)
         navigateToTransactionDetails,
   }) =>
       throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_NavigateToTransactionDetails value)?
@@ -65,41 +68,34 @@ class _$PageCommandCopyWithImpl<$Res, $Val extends PageCommand>
     implements $PageCommandCopyWith<$Res> {
   _$PageCommandCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
+// ignore: unused_field
   final $Val _value;
-  // ignore: unused_field
+// ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of PageCommand
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
-abstract class _$$NavigateToTransactionDetailsImplCopyWith<$Res> {
-  factory _$$NavigateToTransactionDetailsImplCopyWith(
-          _$NavigateToTransactionDetailsImpl value,
-          $Res Function(_$NavigateToTransactionDetailsImpl) then) =
-      __$$NavigateToTransactionDetailsImplCopyWithImpl<$Res>;
+abstract class _$$_NavigateToTransactionDetailsCopyWith<$Res> {
+  factory _$$_NavigateToTransactionDetailsCopyWith(
+          _$_NavigateToTransactionDetails value,
+          $Res Function(_$_NavigateToTransactionDetails) then) =
+      __$$_NavigateToTransactionDetailsCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$NavigateToTransactionDetailsImplCopyWithImpl<$Res>
-    extends _$PageCommandCopyWithImpl<$Res, _$NavigateToTransactionDetailsImpl>
-    implements _$$NavigateToTransactionDetailsImplCopyWith<$Res> {
-  __$$NavigateToTransactionDetailsImplCopyWithImpl(
-      _$NavigateToTransactionDetailsImpl _value,
-      $Res Function(_$NavigateToTransactionDetailsImpl) _then)
+class __$$_NavigateToTransactionDetailsCopyWithImpl<$Res>
+    extends _$PageCommandCopyWithImpl<$Res, _$_NavigateToTransactionDetails>
+    implements _$$_NavigateToTransactionDetailsCopyWith<$Res> {
+  __$$_NavigateToTransactionDetailsCopyWithImpl(
+      _$_NavigateToTransactionDetails _value,
+      $Res Function(_$_NavigateToTransactionDetails) _then)
       : super(_value, _then);
-
-  /// Create a copy of PageCommand
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$NavigateToTransactionDetailsImpl
-    implements _NavigateToTransactionDetails {
-  const _$NavigateToTransactionDetailsImpl();
+class _$_NavigateToTransactionDetails implements _NavigateToTransactionDetails {
+  const _$_NavigateToTransactionDetails();
 
   @override
   String toString() {
@@ -107,10 +103,10 @@ class _$NavigateToTransactionDetailsImpl
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$NavigateToTransactionDetailsImpl);
+            other is _$_NavigateToTransactionDetails);
   }
 
   @override
@@ -178,7 +174,7 @@ class _$NavigateToTransactionDetailsImpl
 
 abstract class _NavigateToTransactionDetails implements PageCommand {
   const factory _NavigateToTransactionDetails() =
-      _$NavigateToTransactionDetailsImpl;
+      _$_NavigateToTransactionDetails;
 }
 
 /// @nodoc
@@ -235,38 +231,31 @@ class _$TransactionsEventCopyWithImpl<$Res, $Val extends TransactionsEvent>
     implements $TransactionsEventCopyWith<$Res> {
   _$TransactionsEventCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
+// ignore: unused_field
   final $Val _value;
-  // ignore: unused_field
+// ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of TransactionsEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
-abstract class _$$InitialImplCopyWith<$Res> {
-  factory _$$InitialImplCopyWith(
-          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
-      __$$InitialImplCopyWithImpl<$Res>;
+abstract class _$$_InitialCopyWith<$Res> {
+  factory _$$_InitialCopyWith(
+          _$_Initial value, $Res Function(_$_Initial) then) =
+      __$$_InitialCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$InitialImplCopyWithImpl<$Res>
-    extends _$TransactionsEventCopyWithImpl<$Res, _$InitialImpl>
-    implements _$$InitialImplCopyWith<$Res> {
-  __$$InitialImplCopyWithImpl(
-      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
+class __$$_InitialCopyWithImpl<$Res>
+    extends _$TransactionsEventCopyWithImpl<$Res, _$_Initial>
+    implements _$$_InitialCopyWith<$Res> {
+  __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
       : super(_value, _then);
-
-  /// Create a copy of TransactionsEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$InitialImpl implements _Initial {
-  const _$InitialImpl();
+class _$_Initial implements _Initial {
+  const _$_Initial();
 
   @override
   String toString() {
@@ -274,9 +263,9 @@ class _$InitialImpl implements _Initial {
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitialImpl);
+        (other.runtimeType == runtimeType && other is _$_Initial);
   }
 
   @override
@@ -346,32 +335,29 @@ class _$InitialImpl implements _Initial {
 }
 
 abstract class _Initial implements TransactionsEvent {
-  const factory _Initial() = _$InitialImpl;
+  const factory _Initial() = _$_Initial;
 }
 
 /// @nodoc
-abstract class _$$ClearPageCommandImplCopyWith<$Res> {
-  factory _$$ClearPageCommandImplCopyWith(_$ClearPageCommandImpl value,
-          $Res Function(_$ClearPageCommandImpl) then) =
-      __$$ClearPageCommandImplCopyWithImpl<$Res>;
+abstract class _$$_ClearPageCommandCopyWith<$Res> {
+  factory _$$_ClearPageCommandCopyWith(
+          _$_ClearPageCommand value, $Res Function(_$_ClearPageCommand) then) =
+      __$$_ClearPageCommandCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$ClearPageCommandImplCopyWithImpl<$Res>
-    extends _$TransactionsEventCopyWithImpl<$Res, _$ClearPageCommandImpl>
-    implements _$$ClearPageCommandImplCopyWith<$Res> {
-  __$$ClearPageCommandImplCopyWithImpl(_$ClearPageCommandImpl _value,
-      $Res Function(_$ClearPageCommandImpl) _then)
+class __$$_ClearPageCommandCopyWithImpl<$Res>
+    extends _$TransactionsEventCopyWithImpl<$Res, _$_ClearPageCommand>
+    implements _$$_ClearPageCommandCopyWith<$Res> {
+  __$$_ClearPageCommandCopyWithImpl(
+      _$_ClearPageCommand _value, $Res Function(_$_ClearPageCommand) _then)
       : super(_value, _then);
-
-  /// Create a copy of TransactionsEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$ClearPageCommandImpl implements _ClearPageCommand {
-  const _$ClearPageCommandImpl();
+class _$_ClearPageCommand implements _ClearPageCommand {
+  const _$_ClearPageCommand();
 
   @override
   String toString() {
@@ -379,9 +365,9 @@ class _$ClearPageCommandImpl implements _ClearPageCommand {
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ClearPageCommandImpl);
+        (other.runtimeType == runtimeType && other is _$_ClearPageCommand);
   }
 
   @override
@@ -451,7 +437,7 @@ class _$ClearPageCommandImpl implements _ClearPageCommand {
 }
 
 abstract class _ClearPageCommand implements TransactionsEvent {
-  const factory _ClearPageCommand() = _$ClearPageCommandImpl;
+  const factory _ClearPageCommand() = _$_ClearPageCommand;
 }
 
 /// @nodoc
@@ -460,9 +446,7 @@ mixin _$TransactionsState {
   List<TransactionModel> get transactions => throw _privateConstructorUsedError;
   PageCommand? get command => throw _privateConstructorUsedError;
 
-  /// Create a copy of TransactionsState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $TransactionsStateCopyWith<TransactionsState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -486,13 +470,11 @@ class _$TransactionsStateCopyWithImpl<$Res, $Val extends TransactionsState>
     implements $TransactionsStateCopyWith<$Res> {
   _$TransactionsStateCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
+// ignore: unused_field
   final $Val _value;
-  // ignore: unused_field
+// ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of TransactionsState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -516,8 +498,6 @@ class _$TransactionsStateCopyWithImpl<$Res, $Val extends TransactionsState>
     ) as $Val);
   }
 
-  /// Create a copy of TransactionsState
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PageCommandCopyWith<$Res>? get command {
@@ -532,11 +512,11 @@ class _$TransactionsStateCopyWithImpl<$Res, $Val extends TransactionsState>
 }
 
 /// @nodoc
-abstract class _$$TransactionsStateImplCopyWith<$Res>
+abstract class _$$_TransactionsStateCopyWith<$Res>
     implements $TransactionsStateCopyWith<$Res> {
-  factory _$$TransactionsStateImplCopyWith(_$TransactionsStateImpl value,
-          $Res Function(_$TransactionsStateImpl) then) =
-      __$$TransactionsStateImplCopyWithImpl<$Res>;
+  factory _$$_TransactionsStateCopyWith(_$_TransactionsState value,
+          $Res Function(_$_TransactionsState) then) =
+      __$$_TransactionsStateCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -549,15 +529,13 @@ abstract class _$$TransactionsStateImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$TransactionsStateImplCopyWithImpl<$Res>
-    extends _$TransactionsStateCopyWithImpl<$Res, _$TransactionsStateImpl>
-    implements _$$TransactionsStateImplCopyWith<$Res> {
-  __$$TransactionsStateImplCopyWithImpl(_$TransactionsStateImpl _value,
-      $Res Function(_$TransactionsStateImpl) _then)
+class __$$_TransactionsStateCopyWithImpl<$Res>
+    extends _$TransactionsStateCopyWithImpl<$Res, _$_TransactionsState>
+    implements _$$_TransactionsStateCopyWith<$Res> {
+  __$$_TransactionsStateCopyWithImpl(
+      _$_TransactionsState _value, $Res Function(_$_TransactionsState) _then)
       : super(_value, _then);
 
-  /// Create a copy of TransactionsState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -565,7 +543,7 @@ class __$$TransactionsStateImplCopyWithImpl<$Res>
     Object? transactions = null,
     Object? command = freezed,
   }) {
-    return _then(_$TransactionsStateImpl(
+    return _then(_$_TransactionsState(
       pageState: null == pageState
           ? _value.pageState
           : pageState // ignore: cast_nullable_to_non_nullable
@@ -584,8 +562,8 @@ class __$$TransactionsStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$TransactionsStateImpl implements _TransactionsState {
-  const _$TransactionsStateImpl(
+class _$_TransactionsState implements _TransactionsState {
+  const _$_TransactionsState(
       {this.pageState = PageState.initial,
       final List<TransactionModel> transactions = const [],
       this.command})
@@ -599,7 +577,7 @@ class _$TransactionsStateImpl implements _TransactionsState {
   @JsonKey()
   List<TransactionModel> get transactions {
     if (_transactions is EqualUnmodifiableListView) return _transactions;
-    // ignore: implicit_dynamic_type
+// ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_transactions);
   }
 
@@ -612,10 +590,10 @@ class _$TransactionsStateImpl implements _TransactionsState {
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$TransactionsStateImpl &&
+            other is _$_TransactionsState &&
             (identical(other.pageState, pageState) ||
                 other.pageState == pageState) &&
             const DeepCollectionEquality()
@@ -627,13 +605,11 @@ class _$TransactionsStateImpl implements _TransactionsState {
   int get hashCode => Object.hash(runtimeType, pageState,
       const DeepCollectionEquality().hash(_transactions), command);
 
-  /// Create a copy of TransactionsState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$TransactionsStateImplCopyWith<_$TransactionsStateImpl> get copyWith =>
-      __$$TransactionsStateImplCopyWithImpl<_$TransactionsStateImpl>(
+  _$$_TransactionsStateCopyWith<_$_TransactionsState> get copyWith =>
+      __$$_TransactionsStateCopyWithImpl<_$_TransactionsState>(
           this, _$identity);
 }
 
@@ -641,7 +617,7 @@ abstract class _TransactionsState implements TransactionsState {
   const factory _TransactionsState(
       {final PageState pageState,
       final List<TransactionModel> transactions,
-      final PageCommand? command}) = _$TransactionsStateImpl;
+      final PageCommand? command}) = _$_TransactionsState;
 
   @override
   PageState get pageState;
@@ -649,11 +625,8 @@ abstract class _TransactionsState implements TransactionsState {
   List<TransactionModel> get transactions;
   @override
   PageCommand? get command;
-
-  /// Create a copy of TransactionsState
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$TransactionsStateImplCopyWith<_$TransactionsStateImpl> get copyWith =>
+  @JsonKey(ignore: true)
+  _$$_TransactionsStateCopyWith<_$_TransactionsState> get copyWith =>
       throw _privateConstructorUsedError;
 }

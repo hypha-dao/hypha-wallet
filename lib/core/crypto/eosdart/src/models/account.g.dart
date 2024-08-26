@@ -8,7 +8,7 @@ part of 'account.dart';
 
 Account _$AccountFromJson(Map<String, dynamic> json) => Account(
       json['account_name'] as String?,
-      (json['head_block_num'] as num?)?.toInt(),
+      json['head_block_num'] as int?,
     )
       ..headBlockTime = json['head_block_time'] == null
           ? null
@@ -100,7 +100,7 @@ Map<String, dynamic> _$PermissionToJson(Permission instance) =>
     };
 
 RequiredAuth _$RequiredAuthFromJson(Map<String, dynamic> json) => RequiredAuth()
-  ..threshold = (json['threshold'] as num?)?.toInt()
+  ..threshold = json['threshold'] as int?
   ..keys = (json['keys'] as List<dynamic>?)
       ?.map(
           (e) => e == null ? null : AuthKey.fromJson(e as Map<String, dynamic>))
@@ -118,7 +118,7 @@ Map<String, dynamic> _$RequiredAuthToJson(RequiredAuth instance) =>
 
 AuthKey _$AuthKeyFromJson(Map<String, dynamic> json) => AuthKey()
   ..key = json['key'] as String?
-  ..weight = (json['weight'] as num?)?.toInt();
+  ..weight = json['weight'] as int?;
 
 Map<String, dynamic> _$AuthKeyToJson(AuthKey instance) => <String, dynamic>{
       'key': instance.key,
@@ -193,7 +193,7 @@ VoterInfo _$VoterInfoFromJson(Map<String, dynamic> json) => VoterInfo()
   ..staked = ConversionHelper.getIntFromJson(json['staked'])
   ..lastVoteWeight = json['last_vote_weight'] as String?
   ..proxiedVoteWeight = json['proxied_vote_weight'] as String?
-  ..isProxy = (json['is_proxy'] as num?)?.toInt();
+  ..isProxy = json['is_proxy'] as int?;
 
 Map<String, dynamic> _$VoterInfoToJson(VoterInfo instance) => <String, dynamic>{
       'owner': instance.owner,

@@ -12,7 +12,7 @@ part of 'profile_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$PageCommand {
@@ -22,6 +22,7 @@ mixin _$PageCommand {
     required TResult Function() navigateBack,
   }) =>
       throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? navigateToSuccess,
@@ -35,12 +36,14 @@ mixin _$PageCommand {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_NavigateToSuccess value) navigateToSuccess,
     required TResult Function(_NavigateBack value) navigateBack,
   }) =>
       throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_NavigateToSuccess value)? navigateToSuccess,
@@ -68,38 +71,32 @@ class _$PageCommandCopyWithImpl<$Res, $Val extends PageCommand>
     implements $PageCommandCopyWith<$Res> {
   _$PageCommandCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
+// ignore: unused_field
   final $Val _value;
-  // ignore: unused_field
+// ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of PageCommand
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
-abstract class _$$NavigateToSuccessImplCopyWith<$Res> {
-  factory _$$NavigateToSuccessImplCopyWith(_$NavigateToSuccessImpl value,
-          $Res Function(_$NavigateToSuccessImpl) then) =
-      __$$NavigateToSuccessImplCopyWithImpl<$Res>;
+abstract class _$$_NavigateToSuccessCopyWith<$Res> {
+  factory _$$_NavigateToSuccessCopyWith(_$_NavigateToSuccess value,
+          $Res Function(_$_NavigateToSuccess) then) =
+      __$$_NavigateToSuccessCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$NavigateToSuccessImplCopyWithImpl<$Res>
-    extends _$PageCommandCopyWithImpl<$Res, _$NavigateToSuccessImpl>
-    implements _$$NavigateToSuccessImplCopyWith<$Res> {
-  __$$NavigateToSuccessImplCopyWithImpl(_$NavigateToSuccessImpl _value,
-      $Res Function(_$NavigateToSuccessImpl) _then)
+class __$$_NavigateToSuccessCopyWithImpl<$Res>
+    extends _$PageCommandCopyWithImpl<$Res, _$_NavigateToSuccess>
+    implements _$$_NavigateToSuccessCopyWith<$Res> {
+  __$$_NavigateToSuccessCopyWithImpl(
+      _$_NavigateToSuccess _value, $Res Function(_$_NavigateToSuccess) _then)
       : super(_value, _then);
-
-  /// Create a copy of PageCommand
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$NavigateToSuccessImpl implements _NavigateToSuccess {
-  const _$NavigateToSuccessImpl();
+class _$_NavigateToSuccess implements _NavigateToSuccess {
+  const _$_NavigateToSuccess();
 
   @override
   String toString() {
@@ -107,9 +104,9 @@ class _$NavigateToSuccessImpl implements _NavigateToSuccess {
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$NavigateToSuccessImpl);
+        (other.runtimeType == runtimeType && other is _$_NavigateToSuccess);
   }
 
   @override
@@ -179,32 +176,29 @@ class _$NavigateToSuccessImpl implements _NavigateToSuccess {
 }
 
 abstract class _NavigateToSuccess implements PageCommand {
-  const factory _NavigateToSuccess() = _$NavigateToSuccessImpl;
+  const factory _NavigateToSuccess() = _$_NavigateToSuccess;
 }
 
 /// @nodoc
-abstract class _$$NavigateBackImplCopyWith<$Res> {
-  factory _$$NavigateBackImplCopyWith(
-          _$NavigateBackImpl value, $Res Function(_$NavigateBackImpl) then) =
-      __$$NavigateBackImplCopyWithImpl<$Res>;
+abstract class _$$_NavigateBackCopyWith<$Res> {
+  factory _$$_NavigateBackCopyWith(
+          _$_NavigateBack value, $Res Function(_$_NavigateBack) then) =
+      __$$_NavigateBackCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$NavigateBackImplCopyWithImpl<$Res>
-    extends _$PageCommandCopyWithImpl<$Res, _$NavigateBackImpl>
-    implements _$$NavigateBackImplCopyWith<$Res> {
-  __$$NavigateBackImplCopyWithImpl(
-      _$NavigateBackImpl _value, $Res Function(_$NavigateBackImpl) _then)
+class __$$_NavigateBackCopyWithImpl<$Res>
+    extends _$PageCommandCopyWithImpl<$Res, _$_NavigateBack>
+    implements _$$_NavigateBackCopyWith<$Res> {
+  __$$_NavigateBackCopyWithImpl(
+      _$_NavigateBack _value, $Res Function(_$_NavigateBack) _then)
       : super(_value, _then);
-
-  /// Create a copy of PageCommand
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$NavigateBackImpl implements _NavigateBack {
-  const _$NavigateBackImpl();
+class _$_NavigateBack implements _NavigateBack {
+  const _$_NavigateBack();
 
   @override
   String toString() {
@@ -212,9 +206,9 @@ class _$NavigateBackImpl implements _NavigateBack {
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$NavigateBackImpl);
+        (other.runtimeType == runtimeType && other is _$_NavigateBack);
   }
 
   @override
@@ -284,7 +278,7 @@ class _$NavigateBackImpl implements _NavigateBack {
 }
 
 abstract class _NavigateBack implements PageCommand {
-  const factory _NavigateBack() = _$NavigateBackImpl;
+  const factory _NavigateBack() = _$_NavigateBack;
 }
 
 /// @nodoc
@@ -371,38 +365,31 @@ class _$ProfileEventCopyWithImpl<$Res, $Val extends ProfileEvent>
     implements $ProfileEventCopyWith<$Res> {
   _$ProfileEventCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
+// ignore: unused_field
   final $Val _value;
-  // ignore: unused_field
+// ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of ProfileEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
-abstract class _$$InitialImplCopyWith<$Res> {
-  factory _$$InitialImplCopyWith(
-          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
-      __$$InitialImplCopyWithImpl<$Res>;
+abstract class _$$_InitialCopyWith<$Res> {
+  factory _$$_InitialCopyWith(
+          _$_Initial value, $Res Function(_$_Initial) then) =
+      __$$_InitialCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$InitialImplCopyWithImpl<$Res>
-    extends _$ProfileEventCopyWithImpl<$Res, _$InitialImpl>
-    implements _$$InitialImplCopyWith<$Res> {
-  __$$InitialImplCopyWithImpl(
-      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
+class __$$_InitialCopyWithImpl<$Res>
+    extends _$ProfileEventCopyWithImpl<$Res, _$_Initial>
+    implements _$$_InitialCopyWith<$Res> {
+  __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
       : super(_value, _then);
-
-  /// Create a copy of ProfileEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$InitialImpl implements _Initial {
-  const _$InitialImpl();
+class _$_Initial implements _Initial {
+  const _$_Initial();
 
   @override
   String toString() {
@@ -410,9 +397,9 @@ class _$InitialImpl implements _Initial {
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitialImpl);
+        (other.runtimeType == runtimeType && other is _$_Initial);
   }
 
   @override
@@ -512,32 +499,29 @@ class _$InitialImpl implements _Initial {
 }
 
 abstract class _Initial implements ProfileEvent {
-  const factory _Initial() = _$InitialImpl;
+  const factory _Initial() = _$_Initial;
 }
 
 /// @nodoc
-abstract class _$$OnRefreshImplCopyWith<$Res> {
-  factory _$$OnRefreshImplCopyWith(
-          _$OnRefreshImpl value, $Res Function(_$OnRefreshImpl) then) =
-      __$$OnRefreshImplCopyWithImpl<$Res>;
+abstract class _$$_OnRefreshCopyWith<$Res> {
+  factory _$$_OnRefreshCopyWith(
+          _$_OnRefresh value, $Res Function(_$_OnRefresh) then) =
+      __$$_OnRefreshCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$OnRefreshImplCopyWithImpl<$Res>
-    extends _$ProfileEventCopyWithImpl<$Res, _$OnRefreshImpl>
-    implements _$$OnRefreshImplCopyWith<$Res> {
-  __$$OnRefreshImplCopyWithImpl(
-      _$OnRefreshImpl _value, $Res Function(_$OnRefreshImpl) _then)
+class __$$_OnRefreshCopyWithImpl<$Res>
+    extends _$ProfileEventCopyWithImpl<$Res, _$_OnRefresh>
+    implements _$$_OnRefreshCopyWith<$Res> {
+  __$$_OnRefreshCopyWithImpl(
+      _$_OnRefresh _value, $Res Function(_$_OnRefresh) _then)
       : super(_value, _then);
-
-  /// Create a copy of ProfileEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$OnRefreshImpl implements _OnRefresh {
-  const _$OnRefreshImpl();
+class _$_OnRefresh implements _OnRefresh {
+  const _$_OnRefresh();
 
   @override
   String toString() {
@@ -545,9 +529,9 @@ class _$OnRefreshImpl implements _OnRefresh {
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$OnRefreshImpl);
+        (other.runtimeType == runtimeType && other is _$_OnRefresh);
   }
 
   @override
@@ -647,32 +631,29 @@ class _$OnRefreshImpl implements _OnRefresh {
 }
 
 abstract class _OnRefresh implements ProfileEvent {
-  const factory _OnRefresh() = _$OnRefreshImpl;
+  const factory _OnRefresh() = _$_OnRefresh;
 }
 
 /// @nodoc
-abstract class _$$ClearPageCommandImplCopyWith<$Res> {
-  factory _$$ClearPageCommandImplCopyWith(_$ClearPageCommandImpl value,
-          $Res Function(_$ClearPageCommandImpl) then) =
-      __$$ClearPageCommandImplCopyWithImpl<$Res>;
+abstract class _$$_ClearPageCommandCopyWith<$Res> {
+  factory _$$_ClearPageCommandCopyWith(
+          _$_ClearPageCommand value, $Res Function(_$_ClearPageCommand) then) =
+      __$$_ClearPageCommandCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$ClearPageCommandImplCopyWithImpl<$Res>
-    extends _$ProfileEventCopyWithImpl<$Res, _$ClearPageCommandImpl>
-    implements _$$ClearPageCommandImplCopyWith<$Res> {
-  __$$ClearPageCommandImplCopyWithImpl(_$ClearPageCommandImpl _value,
-      $Res Function(_$ClearPageCommandImpl) _then)
+class __$$_ClearPageCommandCopyWithImpl<$Res>
+    extends _$ProfileEventCopyWithImpl<$Res, _$_ClearPageCommand>
+    implements _$$_ClearPageCommandCopyWith<$Res> {
+  __$$_ClearPageCommandCopyWithImpl(
+      _$_ClearPageCommand _value, $Res Function(_$_ClearPageCommand) _then)
       : super(_value, _then);
-
-  /// Create a copy of ProfileEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$ClearPageCommandImpl implements _ClearPageCommand {
-  const _$ClearPageCommandImpl();
+class _$_ClearPageCommand implements _ClearPageCommand {
+  const _$_ClearPageCommand();
 
   @override
   String toString() {
@@ -680,9 +661,9 @@ class _$ClearPageCommandImpl implements _ClearPageCommand {
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ClearPageCommandImpl);
+        (other.runtimeType == runtimeType && other is _$_ClearPageCommand);
   }
 
   @override
@@ -782,34 +763,31 @@ class _$ClearPageCommandImpl implements _ClearPageCommand {
 }
 
 abstract class _ClearPageCommand implements ProfileEvent {
-  const factory _ClearPageCommand() = _$ClearPageCommandImpl;
+  const factory _ClearPageCommand() = _$_ClearPageCommand;
 }
 
 /// @nodoc
-abstract class _$$SetNameImplCopyWith<$Res> {
-  factory _$$SetNameImplCopyWith(
-          _$SetNameImpl value, $Res Function(_$SetNameImpl) then) =
-      __$$SetNameImplCopyWithImpl<$Res>;
+abstract class _$$_SetNameCopyWith<$Res> {
+  factory _$$_SetNameCopyWith(
+          _$_SetName value, $Res Function(_$_SetName) then) =
+      __$$_SetNameCopyWithImpl<$Res>;
   @useResult
   $Res call({String name});
 }
 
 /// @nodoc
-class __$$SetNameImplCopyWithImpl<$Res>
-    extends _$ProfileEventCopyWithImpl<$Res, _$SetNameImpl>
-    implements _$$SetNameImplCopyWith<$Res> {
-  __$$SetNameImplCopyWithImpl(
-      _$SetNameImpl _value, $Res Function(_$SetNameImpl) _then)
+class __$$_SetNameCopyWithImpl<$Res>
+    extends _$ProfileEventCopyWithImpl<$Res, _$_SetName>
+    implements _$$_SetNameCopyWith<$Res> {
+  __$$_SetNameCopyWithImpl(_$_SetName _value, $Res Function(_$_SetName) _then)
       : super(_value, _then);
 
-  /// Create a copy of ProfileEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? name = null,
   }) {
-    return _then(_$SetNameImpl(
+    return _then(_$_SetName(
       null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -820,8 +798,8 @@ class __$$SetNameImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SetNameImpl implements _SetName {
-  const _$SetNameImpl(this.name);
+class _$_SetName implements _SetName {
+  const _$_SetName(this.name);
 
   @override
   final String name;
@@ -832,23 +810,21 @@ class _$SetNameImpl implements _SetName {
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SetNameImpl &&
+            other is _$_SetName &&
             (identical(other.name, name) || other.name == name));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, name);
 
-  /// Create a copy of ProfileEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$SetNameImplCopyWith<_$SetNameImpl> get copyWith =>
-      __$$SetNameImplCopyWithImpl<_$SetNameImpl>(this, _$identity);
+  _$$_SetNameCopyWith<_$_SetName> get copyWith =>
+      __$$_SetNameCopyWithImpl<_$_SetName>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -944,42 +920,35 @@ class _$SetNameImpl implements _SetName {
 }
 
 abstract class _SetName implements ProfileEvent {
-  const factory _SetName(final String name) = _$SetNameImpl;
+  const factory _SetName(final String name) = _$_SetName;
 
   String get name;
-
-  /// Create a copy of ProfileEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SetNameImplCopyWith<_$SetNameImpl> get copyWith =>
+  @JsonKey(ignore: true)
+  _$$_SetNameCopyWith<_$_SetName> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$SetBioImplCopyWith<$Res> {
-  factory _$$SetBioImplCopyWith(
-          _$SetBioImpl value, $Res Function(_$SetBioImpl) then) =
-      __$$SetBioImplCopyWithImpl<$Res>;
+abstract class _$$_SetBioCopyWith<$Res> {
+  factory _$$_SetBioCopyWith(_$_SetBio value, $Res Function(_$_SetBio) then) =
+      __$$_SetBioCopyWithImpl<$Res>;
   @useResult
   $Res call({String bio});
 }
 
 /// @nodoc
-class __$$SetBioImplCopyWithImpl<$Res>
-    extends _$ProfileEventCopyWithImpl<$Res, _$SetBioImpl>
-    implements _$$SetBioImplCopyWith<$Res> {
-  __$$SetBioImplCopyWithImpl(
-      _$SetBioImpl _value, $Res Function(_$SetBioImpl) _then)
+class __$$_SetBioCopyWithImpl<$Res>
+    extends _$ProfileEventCopyWithImpl<$Res, _$_SetBio>
+    implements _$$_SetBioCopyWith<$Res> {
+  __$$_SetBioCopyWithImpl(_$_SetBio _value, $Res Function(_$_SetBio) _then)
       : super(_value, _then);
 
-  /// Create a copy of ProfileEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? bio = null,
   }) {
-    return _then(_$SetBioImpl(
+    return _then(_$_SetBio(
       null == bio
           ? _value.bio
           : bio // ignore: cast_nullable_to_non_nullable
@@ -990,8 +959,8 @@ class __$$SetBioImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SetBioImpl implements _SetBio {
-  const _$SetBioImpl(this.bio);
+class _$_SetBio implements _SetBio {
+  const _$_SetBio(this.bio);
 
   @override
   final String bio;
@@ -1002,23 +971,21 @@ class _$SetBioImpl implements _SetBio {
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SetBioImpl &&
+            other is _$_SetBio &&
             (identical(other.bio, bio) || other.bio == bio));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, bio);
 
-  /// Create a copy of ProfileEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$SetBioImplCopyWith<_$SetBioImpl> get copyWith =>
-      __$$SetBioImplCopyWithImpl<_$SetBioImpl>(this, _$identity);
+  _$$_SetBioCopyWith<_$_SetBio> get copyWith =>
+      __$$_SetBioCopyWithImpl<_$_SetBio>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1114,42 +1081,37 @@ class _$SetBioImpl implements _SetBio {
 }
 
 abstract class _SetBio implements ProfileEvent {
-  const factory _SetBio(final String bio) = _$SetBioImpl;
+  const factory _SetBio(final String bio) = _$_SetBio;
 
   String get bio;
-
-  /// Create a copy of ProfileEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SetBioImplCopyWith<_$SetBioImpl> get copyWith =>
+  @JsonKey(ignore: true)
+  _$$_SetBioCopyWith<_$_SetBio> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$SetAvatarImageImplCopyWith<$Res> {
-  factory _$$SetAvatarImageImplCopyWith(_$SetAvatarImageImpl value,
-          $Res Function(_$SetAvatarImageImpl) then) =
-      __$$SetAvatarImageImplCopyWithImpl<$Res>;
+abstract class _$$_SetAvatarImageCopyWith<$Res> {
+  factory _$$_SetAvatarImageCopyWith(
+          _$_SetAvatarImage value, $Res Function(_$_SetAvatarImage) then) =
+      __$$_SetAvatarImageCopyWithImpl<$Res>;
   @useResult
   $Res call({XFile image});
 }
 
 /// @nodoc
-class __$$SetAvatarImageImplCopyWithImpl<$Res>
-    extends _$ProfileEventCopyWithImpl<$Res, _$SetAvatarImageImpl>
-    implements _$$SetAvatarImageImplCopyWith<$Res> {
-  __$$SetAvatarImageImplCopyWithImpl(
-      _$SetAvatarImageImpl _value, $Res Function(_$SetAvatarImageImpl) _then)
+class __$$_SetAvatarImageCopyWithImpl<$Res>
+    extends _$ProfileEventCopyWithImpl<$Res, _$_SetAvatarImage>
+    implements _$$_SetAvatarImageCopyWith<$Res> {
+  __$$_SetAvatarImageCopyWithImpl(
+      _$_SetAvatarImage _value, $Res Function(_$_SetAvatarImage) _then)
       : super(_value, _then);
 
-  /// Create a copy of ProfileEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? image = null,
   }) {
-    return _then(_$SetAvatarImageImpl(
+    return _then(_$_SetAvatarImage(
       null == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -1160,8 +1122,8 @@ class __$$SetAvatarImageImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SetAvatarImageImpl implements _SetAvatarImage {
-  const _$SetAvatarImageImpl(this.image);
+class _$_SetAvatarImage implements _SetAvatarImage {
+  const _$_SetAvatarImage(this.image);
 
   @override
   final XFile image;
@@ -1172,24 +1134,21 @@ class _$SetAvatarImageImpl implements _SetAvatarImage {
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SetAvatarImageImpl &&
+            other is _$_SetAvatarImage &&
             (identical(other.image, image) || other.image == image));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, image);
 
-  /// Create a copy of ProfileEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$SetAvatarImageImplCopyWith<_$SetAvatarImageImpl> get copyWith =>
-      __$$SetAvatarImageImplCopyWithImpl<_$SetAvatarImageImpl>(
-          this, _$identity);
+  _$$_SetAvatarImageCopyWith<_$_SetAvatarImage> get copyWith =>
+      __$$_SetAvatarImageCopyWithImpl<_$_SetAvatarImage>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1285,40 +1244,34 @@ class _$SetAvatarImageImpl implements _SetAvatarImage {
 }
 
 abstract class _SetAvatarImage implements ProfileEvent {
-  const factory _SetAvatarImage(final XFile image) = _$SetAvatarImageImpl;
+  const factory _SetAvatarImage(final XFile image) = _$_SetAvatarImage;
 
   XFile get image;
-
-  /// Create a copy of ProfileEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SetAvatarImageImplCopyWith<_$SetAvatarImageImpl> get copyWith =>
+  @JsonKey(ignore: true)
+  _$$_SetAvatarImageCopyWith<_$_SetAvatarImage> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$OnRemoveImageTappedImplCopyWith<$Res> {
-  factory _$$OnRemoveImageTappedImplCopyWith(_$OnRemoveImageTappedImpl value,
-          $Res Function(_$OnRemoveImageTappedImpl) then) =
-      __$$OnRemoveImageTappedImplCopyWithImpl<$Res>;
+abstract class _$$_OnRemoveImageTappedCopyWith<$Res> {
+  factory _$$_OnRemoveImageTappedCopyWith(_$_OnRemoveImageTapped value,
+          $Res Function(_$_OnRemoveImageTapped) then) =
+      __$$_OnRemoveImageTappedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$OnRemoveImageTappedImplCopyWithImpl<$Res>
-    extends _$ProfileEventCopyWithImpl<$Res, _$OnRemoveImageTappedImpl>
-    implements _$$OnRemoveImageTappedImplCopyWith<$Res> {
-  __$$OnRemoveImageTappedImplCopyWithImpl(_$OnRemoveImageTappedImpl _value,
-      $Res Function(_$OnRemoveImageTappedImpl) _then)
+class __$$_OnRemoveImageTappedCopyWithImpl<$Res>
+    extends _$ProfileEventCopyWithImpl<$Res, _$_OnRemoveImageTapped>
+    implements _$$_OnRemoveImageTappedCopyWith<$Res> {
+  __$$_OnRemoveImageTappedCopyWithImpl(_$_OnRemoveImageTapped _value,
+      $Res Function(_$_OnRemoveImageTapped) _then)
       : super(_value, _then);
-
-  /// Create a copy of ProfileEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$OnRemoveImageTappedImpl implements _OnRemoveImageTapped {
-  const _$OnRemoveImageTappedImpl();
+class _$_OnRemoveImageTapped implements _OnRemoveImageTapped {
+  const _$_OnRemoveImageTapped();
 
   @override
   String toString() {
@@ -1326,10 +1279,9 @@ class _$OnRemoveImageTappedImpl implements _OnRemoveImageTapped {
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$OnRemoveImageTappedImpl);
+        (other.runtimeType == runtimeType && other is _$_OnRemoveImageTapped);
   }
 
   @override
@@ -1429,7 +1381,7 @@ class _$OnRemoveImageTappedImpl implements _OnRemoveImageTapped {
 }
 
 abstract class _OnRemoveImageTapped implements ProfileEvent {
-  const factory _OnRemoveImageTapped() = _$OnRemoveImageTappedImpl;
+  const factory _OnRemoveImageTapped() = _$_OnRemoveImageTapped;
 }
 
 /// @nodoc
@@ -1441,9 +1393,7 @@ mixin _$ProfileState {
   bool get showUpdateImageLoading => throw _privateConstructorUsedError;
   bool get showUpdateNameLoading => throw _privateConstructorUsedError;
 
-  /// Create a copy of ProfileState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $ProfileStateCopyWith<ProfileState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1470,13 +1420,11 @@ class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState>
     implements $ProfileStateCopyWith<$Res> {
   _$ProfileStateCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
+// ignore: unused_field
   final $Val _value;
-  // ignore: unused_field
+// ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ProfileState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1515,8 +1463,6 @@ class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState>
     ) as $Val);
   }
 
-  /// Create a copy of ProfileState
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PageCommandCopyWith<$Res>? get command {
@@ -1531,11 +1477,11 @@ class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState>
 }
 
 /// @nodoc
-abstract class _$$ProfileStateImplCopyWith<$Res>
+abstract class _$$_ProfileStateCopyWith<$Res>
     implements $ProfileStateCopyWith<$Res> {
-  factory _$$ProfileStateImplCopyWith(
-          _$ProfileStateImpl value, $Res Function(_$ProfileStateImpl) then) =
-      __$$ProfileStateImplCopyWithImpl<$Res>;
+  factory _$$_ProfileStateCopyWith(
+          _$_ProfileState value, $Res Function(_$_ProfileState) then) =
+      __$$_ProfileStateCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -1551,15 +1497,13 @@ abstract class _$$ProfileStateImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$ProfileStateImplCopyWithImpl<$Res>
-    extends _$ProfileStateCopyWithImpl<$Res, _$ProfileStateImpl>
-    implements _$$ProfileStateImplCopyWith<$Res> {
-  __$$ProfileStateImplCopyWithImpl(
-      _$ProfileStateImpl _value, $Res Function(_$ProfileStateImpl) _then)
+class __$$_ProfileStateCopyWithImpl<$Res>
+    extends _$ProfileStateCopyWithImpl<$Res, _$_ProfileState>
+    implements _$$_ProfileStateCopyWith<$Res> {
+  __$$_ProfileStateCopyWithImpl(
+      _$_ProfileState _value, $Res Function(_$_ProfileState) _then)
       : super(_value, _then);
 
-  /// Create a copy of ProfileState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1570,7 +1514,7 @@ class __$$ProfileStateImplCopyWithImpl<$Res>
     Object? showUpdateImageLoading = null,
     Object? showUpdateNameLoading = null,
   }) {
-    return _then(_$ProfileStateImpl(
+    return _then(_$_ProfileState(
       pageState: null == pageState
           ? _value.pageState
           : pageState // ignore: cast_nullable_to_non_nullable
@@ -1601,8 +1545,8 @@ class __$$ProfileStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ProfileStateImpl extends _ProfileState {
-  const _$ProfileStateImpl(
+class _$_ProfileState extends _ProfileState {
+  const _$_ProfileState(
       {this.pageState = PageState.initial,
       this.command,
       this.profileData,
@@ -1634,10 +1578,10 @@ class _$ProfileStateImpl extends _ProfileState {
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ProfileStateImpl &&
+            other is _$_ProfileState &&
             (identical(other.pageState, pageState) ||
                 other.pageState == pageState) &&
             (identical(other.command, command) || other.command == command) &&
@@ -1655,13 +1599,11 @@ class _$ProfileStateImpl extends _ProfileState {
   int get hashCode => Object.hash(runtimeType, pageState, command, profileData,
       showUpdateBioLoading, showUpdateImageLoading, showUpdateNameLoading);
 
-  /// Create a copy of ProfileState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ProfileStateImplCopyWith<_$ProfileStateImpl> get copyWith =>
-      __$$ProfileStateImplCopyWithImpl<_$ProfileStateImpl>(this, _$identity);
+  _$$_ProfileStateCopyWith<_$_ProfileState> get copyWith =>
+      __$$_ProfileStateCopyWithImpl<_$_ProfileState>(this, _$identity);
 }
 
 abstract class _ProfileState extends ProfileState {
@@ -1671,7 +1613,7 @@ abstract class _ProfileState extends ProfileState {
       final ProfileData? profileData,
       final bool showUpdateBioLoading,
       final bool showUpdateImageLoading,
-      final bool showUpdateNameLoading}) = _$ProfileStateImpl;
+      final bool showUpdateNameLoading}) = _$_ProfileState;
   const _ProfileState._() : super._();
 
   @override
@@ -1686,11 +1628,8 @@ abstract class _ProfileState extends ProfileState {
   bool get showUpdateImageLoading;
   @override
   bool get showUpdateNameLoading;
-
-  /// Create a copy of ProfileState
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ProfileStateImplCopyWith<_$ProfileStateImpl> get copyWith =>
+  @JsonKey(ignore: true)
+  _$$_ProfileStateCopyWith<_$_ProfileState> get copyWith =>
       throw _privateConstructorUsedError;
 }

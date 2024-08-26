@@ -14,11 +14,11 @@ Block _$BlockFromJson(Map<String, dynamic> json) => Block(
           ? null
           : DateTime.parse(json['timestamp'] as String)
       ..producer = json['producer'] as String?
-      ..confirmed = (json['confirmed'] as num?)?.toInt()
+      ..confirmed = json['confirmed'] as int?
       ..previous = json['previous'] as String?
       ..transactionMRoot = json['transaction_mroot'] as String?
       ..actionMRoot = json['action_mroot'] as String?
-      ..scheduleVersion = (json['schedule_version'] as num?)?.toInt()
+      ..scheduleVersion = json['schedule_version'] as int?
       ..newProducers = json['new_producers']
       ..headerExtensions = json['header_extensions'] as List<dynamic>?
       ..producerSignature = json['producer_signature'] as String?
@@ -28,7 +28,7 @@ Block _$BlockFromJson(Map<String, dynamic> json) => Block(
               : TransactionReceipt.fromJson(e as Map<String, dynamic>))
           .toList()
       ..blockExtensions = json['block_extensions'] as List<dynamic>?
-      ..refBlockPrefix = (json['ref_block_prefix'] as num?)?.toInt();
+      ..refBlockPrefix = json['ref_block_prefix'] as int?;
 
 Map<String, dynamic> _$BlockToJson(Block instance) => <String, dynamic>{
       'id': instance.id,

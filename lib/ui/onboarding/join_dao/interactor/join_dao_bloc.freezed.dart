@@ -12,7 +12,7 @@ part of 'join_dao_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$JoinDaoEvent {
@@ -22,6 +22,7 @@ mixin _$JoinDaoEvent {
     required TResult Function() onYesTapped,
   }) =>
       throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
@@ -35,12 +36,14 @@ mixin _$JoinDaoEvent {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_OnYesTapped value) onYesTapped,
   }) =>
       throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
@@ -68,38 +71,31 @@ class _$JoinDaoEventCopyWithImpl<$Res, $Val extends JoinDaoEvent>
     implements $JoinDaoEventCopyWith<$Res> {
   _$JoinDaoEventCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
+// ignore: unused_field
   final $Val _value;
-  // ignore: unused_field
+// ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of JoinDaoEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
-abstract class _$$InitialImplCopyWith<$Res> {
-  factory _$$InitialImplCopyWith(
-          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
-      __$$InitialImplCopyWithImpl<$Res>;
+abstract class _$$_InitialCopyWith<$Res> {
+  factory _$$_InitialCopyWith(
+          _$_Initial value, $Res Function(_$_Initial) then) =
+      __$$_InitialCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$InitialImplCopyWithImpl<$Res>
-    extends _$JoinDaoEventCopyWithImpl<$Res, _$InitialImpl>
-    implements _$$InitialImplCopyWith<$Res> {
-  __$$InitialImplCopyWithImpl(
-      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
+class __$$_InitialCopyWithImpl<$Res>
+    extends _$JoinDaoEventCopyWithImpl<$Res, _$_Initial>
+    implements _$$_InitialCopyWith<$Res> {
+  __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
       : super(_value, _then);
-
-  /// Create a copy of JoinDaoEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$InitialImpl implements _Initial {
-  const _$InitialImpl();
+class _$_Initial implements _Initial {
+  const _$_Initial();
 
   @override
   String toString() {
@@ -107,9 +103,9 @@ class _$InitialImpl implements _Initial {
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitialImpl);
+        (other.runtimeType == runtimeType && other is _$_Initial);
   }
 
   @override
@@ -179,32 +175,29 @@ class _$InitialImpl implements _Initial {
 }
 
 abstract class _Initial implements JoinDaoEvent {
-  const factory _Initial() = _$InitialImpl;
+  const factory _Initial() = _$_Initial;
 }
 
 /// @nodoc
-abstract class _$$OnYesTappedImplCopyWith<$Res> {
-  factory _$$OnYesTappedImplCopyWith(
-          _$OnYesTappedImpl value, $Res Function(_$OnYesTappedImpl) then) =
-      __$$OnYesTappedImplCopyWithImpl<$Res>;
+abstract class _$$_OnYesTappedCopyWith<$Res> {
+  factory _$$_OnYesTappedCopyWith(
+          _$_OnYesTapped value, $Res Function(_$_OnYesTapped) then) =
+      __$$_OnYesTappedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$OnYesTappedImplCopyWithImpl<$Res>
-    extends _$JoinDaoEventCopyWithImpl<$Res, _$OnYesTappedImpl>
-    implements _$$OnYesTappedImplCopyWith<$Res> {
-  __$$OnYesTappedImplCopyWithImpl(
-      _$OnYesTappedImpl _value, $Res Function(_$OnYesTappedImpl) _then)
+class __$$_OnYesTappedCopyWithImpl<$Res>
+    extends _$JoinDaoEventCopyWithImpl<$Res, _$_OnYesTapped>
+    implements _$$_OnYesTappedCopyWith<$Res> {
+  __$$_OnYesTappedCopyWithImpl(
+      _$_OnYesTapped _value, $Res Function(_$_OnYesTapped) _then)
       : super(_value, _then);
-
-  /// Create a copy of JoinDaoEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$OnYesTappedImpl implements _OnYesTapped {
-  const _$OnYesTappedImpl();
+class _$_OnYesTapped implements _OnYesTapped {
+  const _$_OnYesTapped();
 
   @override
   String toString() {
@@ -212,9 +205,9 @@ class _$OnYesTappedImpl implements _OnYesTapped {
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$OnYesTappedImpl);
+        (other.runtimeType == runtimeType && other is _$_OnYesTapped);
   }
 
   @override
@@ -284,7 +277,7 @@ class _$OnYesTappedImpl implements _OnYesTapped {
 }
 
 abstract class _OnYesTapped implements JoinDaoEvent {
-  const factory _OnYesTapped() = _$OnYesTappedImpl;
+  const factory _OnYesTapped() = _$_OnYesTapped;
 }
 
 /// @nodoc
@@ -293,9 +286,7 @@ mixin _$JoinDaoState {
   bool get isButtonLoading => throw _privateConstructorUsedError;
   String get daoName => throw _privateConstructorUsedError;
 
-  /// Create a copy of JoinDaoState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $JoinDaoStateCopyWith<JoinDaoState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -314,13 +305,11 @@ class _$JoinDaoStateCopyWithImpl<$Res, $Val extends JoinDaoState>
     implements $JoinDaoStateCopyWith<$Res> {
   _$JoinDaoStateCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
+// ignore: unused_field
   final $Val _value;
-  // ignore: unused_field
+// ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of JoinDaoState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -346,26 +335,24 @@ class _$JoinDaoStateCopyWithImpl<$Res, $Val extends JoinDaoState>
 }
 
 /// @nodoc
-abstract class _$$JoinDaoStateImplCopyWith<$Res>
+abstract class _$$_JoinDaoStateCopyWith<$Res>
     implements $JoinDaoStateCopyWith<$Res> {
-  factory _$$JoinDaoStateImplCopyWith(
-          _$JoinDaoStateImpl value, $Res Function(_$JoinDaoStateImpl) then) =
-      __$$JoinDaoStateImplCopyWithImpl<$Res>;
+  factory _$$_JoinDaoStateCopyWith(
+          _$_JoinDaoState value, $Res Function(_$_JoinDaoState) then) =
+      __$$_JoinDaoStateCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({PageState pageState, bool isButtonLoading, String daoName});
 }
 
 /// @nodoc
-class __$$JoinDaoStateImplCopyWithImpl<$Res>
-    extends _$JoinDaoStateCopyWithImpl<$Res, _$JoinDaoStateImpl>
-    implements _$$JoinDaoStateImplCopyWith<$Res> {
-  __$$JoinDaoStateImplCopyWithImpl(
-      _$JoinDaoStateImpl _value, $Res Function(_$JoinDaoStateImpl) _then)
+class __$$_JoinDaoStateCopyWithImpl<$Res>
+    extends _$JoinDaoStateCopyWithImpl<$Res, _$_JoinDaoState>
+    implements _$$_JoinDaoStateCopyWith<$Res> {
+  __$$_JoinDaoStateCopyWithImpl(
+      _$_JoinDaoState _value, $Res Function(_$_JoinDaoState) _then)
       : super(_value, _then);
 
-  /// Create a copy of JoinDaoState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -373,7 +360,7 @@ class __$$JoinDaoStateImplCopyWithImpl<$Res>
     Object? isButtonLoading = null,
     Object? daoName = null,
   }) {
-    return _then(_$JoinDaoStateImpl(
+    return _then(_$_JoinDaoState(
       pageState: null == pageState
           ? _value.pageState
           : pageState // ignore: cast_nullable_to_non_nullable
@@ -392,8 +379,8 @@ class __$$JoinDaoStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$JoinDaoStateImpl extends _JoinDaoState {
-  const _$JoinDaoStateImpl(
+class _$_JoinDaoState extends _JoinDaoState {
+  const _$_JoinDaoState(
       {this.pageState = PageState.initial,
       this.isButtonLoading = false,
       this.daoName = ''})
@@ -415,10 +402,10 @@ class _$JoinDaoStateImpl extends _JoinDaoState {
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$JoinDaoStateImpl &&
+            other is _$_JoinDaoState &&
             (identical(other.pageState, pageState) ||
                 other.pageState == pageState) &&
             (identical(other.isButtonLoading, isButtonLoading) ||
@@ -430,20 +417,18 @@ class _$JoinDaoStateImpl extends _JoinDaoState {
   int get hashCode =>
       Object.hash(runtimeType, pageState, isButtonLoading, daoName);
 
-  /// Create a copy of JoinDaoState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$JoinDaoStateImplCopyWith<_$JoinDaoStateImpl> get copyWith =>
-      __$$JoinDaoStateImplCopyWithImpl<_$JoinDaoStateImpl>(this, _$identity);
+  _$$_JoinDaoStateCopyWith<_$_JoinDaoState> get copyWith =>
+      __$$_JoinDaoStateCopyWithImpl<_$_JoinDaoState>(this, _$identity);
 }
 
 abstract class _JoinDaoState extends JoinDaoState {
   const factory _JoinDaoState(
       {final PageState pageState,
       final bool isButtonLoading,
-      final String daoName}) = _$JoinDaoStateImpl;
+      final String daoName}) = _$_JoinDaoState;
   const _JoinDaoState._() : super._();
 
   @override
@@ -452,11 +437,8 @@ abstract class _JoinDaoState extends JoinDaoState {
   bool get isButtonLoading;
   @override
   String get daoName;
-
-  /// Create a copy of JoinDaoState
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$JoinDaoStateImplCopyWith<_$JoinDaoStateImpl> get copyWith =>
+  @JsonKey(ignore: true)
+  _$$_JoinDaoStateCopyWith<_$_JoinDaoState> get copyWith =>
       throw _privateConstructorUsedError;
 }

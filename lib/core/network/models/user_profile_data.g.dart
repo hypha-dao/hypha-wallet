@@ -6,9 +6,8 @@ part of 'user_profile_data.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$UserProfileDataImpl _$$UserProfileDataImplFromJson(
-        Map<String, dynamic> json) =>
-    _$UserProfileDataImpl(
+_$_UserProfileData _$$_UserProfileDataFromJson(Map<String, dynamic> json) =>
+    _$_UserProfileData(
       accountName: json['accountName'] as String,
       network: $enumDecodeNullable(_$NetworkEnumMap, json['network']) ??
           Network.telos,
@@ -17,8 +16,7 @@ _$UserProfileDataImpl _$$UserProfileDataImplFromJson(
       userName: json['userName'] as String? ?? null,
     );
 
-Map<String, dynamic> _$$UserProfileDataImplToJson(
-        _$UserProfileDataImpl instance) =>
+Map<String, dynamic> _$$_UserProfileDataToJson(_$_UserProfileData instance) =>
     <String, dynamic>{
       'accountName': instance.accountName,
       'network': _$NetworkEnumMap[instance.network]!,

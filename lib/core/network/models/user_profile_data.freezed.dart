@@ -12,7 +12,7 @@ part of 'user_profile_data.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 UserProfileData _$UserProfileDataFromJson(Map<String, dynamic> json) {
   return _UserProfileData.fromJson(json);
@@ -21,17 +21,18 @@ UserProfileData _$UserProfileDataFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$UserProfileData {
   String get accountName => throw _privateConstructorUsedError;
+
   Network get network => throw _privateConstructorUsedError;
+
   String? get userImage => throw _privateConstructorUsedError;
+
   String? get bio => throw _privateConstructorUsedError;
+
   String? get userName => throw _privateConstructorUsedError;
 
-  /// Serializes this UserProfileData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of UserProfileData
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $UserProfileDataCopyWith<UserProfileData> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -41,6 +42,7 @@ abstract class $UserProfileDataCopyWith<$Res> {
   factory $UserProfileDataCopyWith(
           UserProfileData value, $Res Function(UserProfileData) then) =
       _$UserProfileDataCopyWithImpl<$Res, UserProfileData>;
+
   @useResult
   $Res call(
       {String accountName,
@@ -57,11 +59,10 @@ class _$UserProfileDataCopyWithImpl<$Res, $Val extends UserProfileData>
 
   // ignore: unused_field
   final $Val _value;
+
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of UserProfileData
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -97,11 +98,12 @@ class _$UserProfileDataCopyWithImpl<$Res, $Val extends UserProfileData>
 }
 
 /// @nodoc
-abstract class _$$UserProfileDataImplCopyWith<$Res>
+abstract class _$$_UserProfileDataCopyWith<$Res>
     implements $UserProfileDataCopyWith<$Res> {
-  factory _$$UserProfileDataImplCopyWith(_$UserProfileDataImpl value,
-          $Res Function(_$UserProfileDataImpl) then) =
-      __$$UserProfileDataImplCopyWithImpl<$Res>;
+  factory _$$_UserProfileDataCopyWith(
+          _$_UserProfileData value, $Res Function(_$_UserProfileData) then) =
+      __$$_UserProfileDataCopyWithImpl<$Res>;
+
   @override
   @useResult
   $Res call(
@@ -113,15 +115,13 @@ abstract class _$$UserProfileDataImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$UserProfileDataImplCopyWithImpl<$Res>
-    extends _$UserProfileDataCopyWithImpl<$Res, _$UserProfileDataImpl>
-    implements _$$UserProfileDataImplCopyWith<$Res> {
-  __$$UserProfileDataImplCopyWithImpl(
-      _$UserProfileDataImpl _value, $Res Function(_$UserProfileDataImpl) _then)
+class __$$_UserProfileDataCopyWithImpl<$Res>
+    extends _$UserProfileDataCopyWithImpl<$Res, _$_UserProfileData>
+    implements _$$_UserProfileDataCopyWith<$Res> {
+  __$$_UserProfileDataCopyWithImpl(
+      _$_UserProfileData _value, $Res Function(_$_UserProfileData) _then)
       : super(_value, _then);
 
-  /// Create a copy of UserProfileData
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -131,7 +131,7 @@ class __$$UserProfileDataImplCopyWithImpl<$Res>
     Object? bio = freezed,
     Object? userName = freezed,
   }) {
-    return _then(_$UserProfileDataImpl(
+    return _then(_$_UserProfileData(
       accountName: null == accountName
           ? _value.accountName
           : accountName // ignore: cast_nullable_to_non_nullable
@@ -158,8 +158,8 @@ class __$$UserProfileDataImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$UserProfileDataImpl extends _UserProfileData {
-  _$UserProfileDataImpl(
+class _$_UserProfileData extends _UserProfileData {
+  _$_UserProfileData(
       {required this.accountName,
       this.network = Network.telos,
       this.userImage = null,
@@ -167,8 +167,8 @@ class _$UserProfileDataImpl extends _UserProfileData {
       this.userName = null})
       : super._();
 
-  factory _$UserProfileDataImpl.fromJson(Map<String, dynamic> json) =>
-      _$$UserProfileDataImplFromJson(json);
+  factory _$_UserProfileData.fromJson(Map<String, dynamic> json) =>
+      _$$_UserProfileDataFromJson(json);
 
   @override
   final String accountName;
@@ -191,10 +191,10 @@ class _$UserProfileDataImpl extends _UserProfileData {
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$UserProfileDataImpl &&
+            other is _$_UserProfileData &&
             (identical(other.accountName, accountName) ||
                 other.accountName == accountName) &&
             (identical(other.network, network) || other.network == network) &&
@@ -205,23 +205,20 @@ class _$UserProfileDataImpl extends _UserProfileData {
                 other.userName == userName));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode =>
       Object.hash(runtimeType, accountName, network, userImage, bio, userName);
 
-  /// Create a copy of UserProfileData
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$UserProfileDataImplCopyWith<_$UserProfileDataImpl> get copyWith =>
-      __$$UserProfileDataImplCopyWithImpl<_$UserProfileDataImpl>(
-          this, _$identity);
+  _$$_UserProfileDataCopyWith<_$_UserProfileData> get copyWith =>
+      __$$_UserProfileDataCopyWithImpl<_$_UserProfileData>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$UserProfileDataImplToJson(
+    return _$$_UserProfileDataToJson(
       this,
     );
   }
@@ -233,27 +230,30 @@ abstract class _UserProfileData extends UserProfileData {
       final Network network,
       final String? userImage,
       final String? bio,
-      final String? userName}) = _$UserProfileDataImpl;
+      final String? userName}) = _$_UserProfileData;
+
   _UserProfileData._() : super._();
 
   factory _UserProfileData.fromJson(Map<String, dynamic> json) =
-      _$UserProfileDataImpl.fromJson;
+      _$_UserProfileData.fromJson;
 
   @override
   String get accountName;
+
   @override
   Network get network;
+
   @override
   String? get userImage;
+
   @override
   String? get bio;
+
   @override
   String? get userName;
 
-  /// Create a copy of UserProfileData
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$UserProfileDataImplCopyWith<_$UserProfileDataImpl> get copyWith =>
+  @JsonKey(ignore: true)
+  _$$_UserProfileDataCopyWith<_$_UserProfileData> get copyWith =>
       throw _privateConstructorUsedError;
 }
