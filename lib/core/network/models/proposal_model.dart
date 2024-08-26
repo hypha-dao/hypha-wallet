@@ -8,7 +8,6 @@ class ProposalModel {
   @JsonKey(name: 'docId')
   final String id;
   final String daoName;
-  final String daoImageUrl;
   @JsonKey(name: 'details_timeShareX100_i')
   final int? commitment;
   @JsonKey(name: 'details_title_s')
@@ -20,12 +19,10 @@ class ProposalModel {
   @JsonKey(name: 'ballot_expiration_t')
   final DateTime? expiration;
   final String creator;
-  final String creatorImageUrl;
-  final bool voted;
   @JsonKey(name: 'vote')
   final List<VoteModel>? votes;
 
-  ProposalModel({required this.daoImageUrl,required this.creatorImageUrl,required this.voted,required this.id, required this.daoName, this.commitment, this.title, this.unity, this.quorum, this.expiration, required this.creator, this.votes});
+  ProposalModel({required this.id, required this.daoName, this.commitment, this.title, this.unity, this.quorum, this.expiration, required this.creator, this.votes});
 
   factory ProposalModel.fromJson(Map<String, dynamic> json) {
     if (json.containsKey('original')) {

@@ -12,7 +12,7 @@ part of 'error_handler_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$ErrorHandlerEvent {
@@ -72,30 +72,36 @@ class _$ErrorHandlerEventCopyWithImpl<$Res, $Val extends ErrorHandlerEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of ErrorHandlerEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
-abstract class _$$_OnErrorCopyWith<$Res> {
-  factory _$$_OnErrorCopyWith(
-          _$_OnError value, $Res Function(_$_OnError) then) =
-      __$$_OnErrorCopyWithImpl<$Res>;
+abstract class _$$OnErrorImplCopyWith<$Res> {
+  factory _$$OnErrorImplCopyWith(
+          _$OnErrorImpl value, $Res Function(_$OnErrorImpl) then) =
+      __$$OnErrorImplCopyWithImpl<$Res>;
   @useResult
   $Res call({HyphaError error});
 }
 
 /// @nodoc
-class __$$_OnErrorCopyWithImpl<$Res>
-    extends _$ErrorHandlerEventCopyWithImpl<$Res, _$_OnError>
-    implements _$$_OnErrorCopyWith<$Res> {
-  __$$_OnErrorCopyWithImpl(_$_OnError _value, $Res Function(_$_OnError) _then)
+class __$$OnErrorImplCopyWithImpl<$Res>
+    extends _$ErrorHandlerEventCopyWithImpl<$Res, _$OnErrorImpl>
+    implements _$$OnErrorImplCopyWith<$Res> {
+  __$$OnErrorImplCopyWithImpl(
+      _$OnErrorImpl _value, $Res Function(_$OnErrorImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ErrorHandlerEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? error = null,
   }) {
-    return _then(_$_OnError(
+    return _then(_$OnErrorImpl(
       null == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -106,8 +112,8 @@ class __$$_OnErrorCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_OnError implements _OnError {
-  const _$_OnError(this.error);
+class _$OnErrorImpl implements _OnError {
+  const _$OnErrorImpl(this.error);
 
   @override
   final HyphaError error;
@@ -118,21 +124,23 @@ class _$_OnError implements _OnError {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_OnError &&
+            other is _$OnErrorImpl &&
             (identical(other.error, error) || other.error == error));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, error);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ErrorHandlerEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$_OnErrorCopyWith<_$_OnError> get copyWith =>
-      __$$_OnErrorCopyWithImpl<_$_OnError>(this, _$identity);
+  _$$OnErrorImplCopyWith<_$OnErrorImpl> get copyWith =>
+      __$$OnErrorImplCopyWithImpl<_$OnErrorImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -198,34 +206,40 @@ class _$_OnError implements _OnError {
 }
 
 abstract class _OnError implements ErrorHandlerEvent {
-  const factory _OnError(final HyphaError error) = _$_OnError;
+  const factory _OnError(final HyphaError error) = _$OnErrorImpl;
 
   HyphaError get error;
-  @JsonKey(ignore: true)
-  _$$_OnErrorCopyWith<_$_OnError> get copyWith =>
+
+  /// Create a copy of ErrorHandlerEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$OnErrorImplCopyWith<_$OnErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_OnClearPageCommandCopyWith<$Res> {
-  factory _$$_OnClearPageCommandCopyWith(_$_OnClearPageCommand value,
-          $Res Function(_$_OnClearPageCommand) then) =
-      __$$_OnClearPageCommandCopyWithImpl<$Res>;
+abstract class _$$OnClearPageCommandImplCopyWith<$Res> {
+  factory _$$OnClearPageCommandImplCopyWith(_$OnClearPageCommandImpl value,
+          $Res Function(_$OnClearPageCommandImpl) then) =
+      __$$OnClearPageCommandImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_OnClearPageCommandCopyWithImpl<$Res>
-    extends _$ErrorHandlerEventCopyWithImpl<$Res, _$_OnClearPageCommand>
-    implements _$$_OnClearPageCommandCopyWith<$Res> {
-  __$$_OnClearPageCommandCopyWithImpl(
-      _$_OnClearPageCommand _value, $Res Function(_$_OnClearPageCommand) _then)
+class __$$OnClearPageCommandImplCopyWithImpl<$Res>
+    extends _$ErrorHandlerEventCopyWithImpl<$Res, _$OnClearPageCommandImpl>
+    implements _$$OnClearPageCommandImplCopyWith<$Res> {
+  __$$OnClearPageCommandImplCopyWithImpl(_$OnClearPageCommandImpl _value,
+      $Res Function(_$OnClearPageCommandImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of ErrorHandlerEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$_OnClearPageCommand implements _OnClearPageCommand {
-  const _$_OnClearPageCommand();
+class _$OnClearPageCommandImpl implements _OnClearPageCommand {
+  const _$OnClearPageCommandImpl();
 
   @override
   String toString() {
@@ -233,9 +247,9 @@ class _$_OnClearPageCommand implements _OnClearPageCommand {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_OnClearPageCommand);
+        (other.runtimeType == runtimeType && other is _$OnClearPageCommandImpl);
   }
 
   @override
@@ -305,14 +319,16 @@ class _$_OnClearPageCommand implements _OnClearPageCommand {
 }
 
 abstract class _OnClearPageCommand implements ErrorHandlerEvent {
-  const factory _OnClearPageCommand() = _$_OnClearPageCommand;
+  const factory _OnClearPageCommand() = _$OnClearPageCommandImpl;
 }
 
 /// @nodoc
 mixin _$ErrorHandlerState {
   PageCommand? get pageCommand => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ErrorHandlerState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ErrorHandlerStateCopyWith<ErrorHandlerState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -338,6 +354,8 @@ class _$ErrorHandlerStateCopyWithImpl<$Res, $Val extends ErrorHandlerState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ErrorHandlerState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -351,6 +369,8 @@ class _$ErrorHandlerStateCopyWithImpl<$Res, $Val extends ErrorHandlerState>
     ) as $Val);
   }
 
+  /// Create a copy of ErrorHandlerState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PageCommandCopyWith<$Res>? get pageCommand {
@@ -365,11 +385,11 @@ class _$ErrorHandlerStateCopyWithImpl<$Res, $Val extends ErrorHandlerState>
 }
 
 /// @nodoc
-abstract class _$$_ErrorHandlerStateCopyWith<$Res>
+abstract class _$$ErrorHandlerStateImplCopyWith<$Res>
     implements $ErrorHandlerStateCopyWith<$Res> {
-  factory _$$_ErrorHandlerStateCopyWith(_$_ErrorHandlerState value,
-          $Res Function(_$_ErrorHandlerState) then) =
-      __$$_ErrorHandlerStateCopyWithImpl<$Res>;
+  factory _$$ErrorHandlerStateImplCopyWith(_$ErrorHandlerStateImpl value,
+          $Res Function(_$ErrorHandlerStateImpl) then) =
+      __$$ErrorHandlerStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({PageCommand? pageCommand});
@@ -379,19 +399,21 @@ abstract class _$$_ErrorHandlerStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ErrorHandlerStateCopyWithImpl<$Res>
-    extends _$ErrorHandlerStateCopyWithImpl<$Res, _$_ErrorHandlerState>
-    implements _$$_ErrorHandlerStateCopyWith<$Res> {
-  __$$_ErrorHandlerStateCopyWithImpl(
-      _$_ErrorHandlerState _value, $Res Function(_$_ErrorHandlerState) _then)
+class __$$ErrorHandlerStateImplCopyWithImpl<$Res>
+    extends _$ErrorHandlerStateCopyWithImpl<$Res, _$ErrorHandlerStateImpl>
+    implements _$$ErrorHandlerStateImplCopyWith<$Res> {
+  __$$ErrorHandlerStateImplCopyWithImpl(_$ErrorHandlerStateImpl _value,
+      $Res Function(_$ErrorHandlerStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ErrorHandlerState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? pageCommand = freezed,
   }) {
-    return _then(_$_ErrorHandlerState(
+    return _then(_$ErrorHandlerStateImpl(
       pageCommand: freezed == pageCommand
           ? _value.pageCommand
           : pageCommand // ignore: cast_nullable_to_non_nullable
@@ -402,8 +424,8 @@ class __$$_ErrorHandlerStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ErrorHandlerState implements _ErrorHandlerState {
-  const _$_ErrorHandlerState({this.pageCommand = null});
+class _$ErrorHandlerStateImpl implements _ErrorHandlerState {
+  const _$ErrorHandlerStateImpl({this.pageCommand = null});
 
   @override
   @JsonKey()
@@ -415,10 +437,10 @@ class _$_ErrorHandlerState implements _ErrorHandlerState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ErrorHandlerState &&
+            other is _$ErrorHandlerStateImpl &&
             (identical(other.pageCommand, pageCommand) ||
                 other.pageCommand == pageCommand));
   }
@@ -426,23 +448,28 @@ class _$_ErrorHandlerState implements _ErrorHandlerState {
   @override
   int get hashCode => Object.hash(runtimeType, pageCommand);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ErrorHandlerState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ErrorHandlerStateCopyWith<_$_ErrorHandlerState> get copyWith =>
-      __$$_ErrorHandlerStateCopyWithImpl<_$_ErrorHandlerState>(
+  _$$ErrorHandlerStateImplCopyWith<_$ErrorHandlerStateImpl> get copyWith =>
+      __$$ErrorHandlerStateImplCopyWithImpl<_$ErrorHandlerStateImpl>(
           this, _$identity);
 }
 
 abstract class _ErrorHandlerState implements ErrorHandlerState {
   const factory _ErrorHandlerState({final PageCommand? pageCommand}) =
-      _$_ErrorHandlerState;
+      _$ErrorHandlerStateImpl;
 
   @override
   PageCommand? get pageCommand;
+
+  /// Create a copy of ErrorHandlerState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
-  _$$_ErrorHandlerStateCopyWith<_$_ErrorHandlerState> get copyWith =>
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ErrorHandlerStateImplCopyWith<_$ErrorHandlerStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -525,28 +552,34 @@ class _$PageCommandCopyWithImpl<$Res, $Val extends PageCommand>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of PageCommand
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
-abstract class _$$_RequestForceUpdateCopyWith<$Res> {
-  factory _$$_RequestForceUpdateCopyWith(_$_RequestForceUpdate value,
-          $Res Function(_$_RequestForceUpdate) then) =
-      __$$_RequestForceUpdateCopyWithImpl<$Res>;
+abstract class _$$RequestForceUpdateImplCopyWith<$Res> {
+  factory _$$RequestForceUpdateImplCopyWith(_$RequestForceUpdateImpl value,
+          $Res Function(_$RequestForceUpdateImpl) then) =
+      __$$RequestForceUpdateImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_RequestForceUpdateCopyWithImpl<$Res>
-    extends _$PageCommandCopyWithImpl<$Res, _$_RequestForceUpdate>
-    implements _$$_RequestForceUpdateCopyWith<$Res> {
-  __$$_RequestForceUpdateCopyWithImpl(
-      _$_RequestForceUpdate _value, $Res Function(_$_RequestForceUpdate) _then)
+class __$$RequestForceUpdateImplCopyWithImpl<$Res>
+    extends _$PageCommandCopyWithImpl<$Res, _$RequestForceUpdateImpl>
+    implements _$$RequestForceUpdateImplCopyWith<$Res> {
+  __$$RequestForceUpdateImplCopyWithImpl(_$RequestForceUpdateImpl _value,
+      $Res Function(_$RequestForceUpdateImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of PageCommand
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$_RequestForceUpdate implements _RequestForceUpdate {
-  const _$_RequestForceUpdate();
+class _$RequestForceUpdateImpl implements _RequestForceUpdate {
+  const _$RequestForceUpdateImpl();
 
   @override
   String toString() {
@@ -554,9 +587,9 @@ class _$_RequestForceUpdate implements _RequestForceUpdate {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_RequestForceUpdate);
+        (other.runtimeType == runtimeType && other is _$RequestForceUpdateImpl);
   }
 
   @override
@@ -647,29 +680,32 @@ class _$_RequestForceUpdate implements _RequestForceUpdate {
 }
 
 abstract class _RequestForceUpdate implements PageCommand {
-  const factory _RequestForceUpdate() = _$_RequestForceUpdate;
+  const factory _RequestForceUpdate() = _$RequestForceUpdateImpl;
 }
 
 /// @nodoc
-abstract class _$$_ShowReLoginDialogCopyWith<$Res> {
-  factory _$$_ShowReLoginDialogCopyWith(_$_ShowReLoginDialog value,
-          $Res Function(_$_ShowReLoginDialog) then) =
-      __$$_ShowReLoginDialogCopyWithImpl<$Res>;
+abstract class _$$ShowReLoginDialogImplCopyWith<$Res> {
+  factory _$$ShowReLoginDialogImplCopyWith(_$ShowReLoginDialogImpl value,
+          $Res Function(_$ShowReLoginDialogImpl) then) =
+      __$$ShowReLoginDialogImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_ShowReLoginDialogCopyWithImpl<$Res>
-    extends _$PageCommandCopyWithImpl<$Res, _$_ShowReLoginDialog>
-    implements _$$_ShowReLoginDialogCopyWith<$Res> {
-  __$$_ShowReLoginDialogCopyWithImpl(
-      _$_ShowReLoginDialog _value, $Res Function(_$_ShowReLoginDialog) _then)
+class __$$ShowReLoginDialogImplCopyWithImpl<$Res>
+    extends _$PageCommandCopyWithImpl<$Res, _$ShowReLoginDialogImpl>
+    implements _$$ShowReLoginDialogImplCopyWith<$Res> {
+  __$$ShowReLoginDialogImplCopyWithImpl(_$ShowReLoginDialogImpl _value,
+      $Res Function(_$ShowReLoginDialogImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of PageCommand
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$_ShowReLoginDialog implements _ShowReLoginDialog {
-  const _$_ShowReLoginDialog();
+class _$ShowReLoginDialogImpl implements _ShowReLoginDialog {
+  const _$ShowReLoginDialogImpl();
 
   @override
   String toString() {
@@ -677,9 +713,9 @@ class _$_ShowReLoginDialog implements _ShowReLoginDialog {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_ShowReLoginDialog);
+        (other.runtimeType == runtimeType && other is _$ShowReLoginDialogImpl);
   }
 
   @override
@@ -770,31 +806,35 @@ class _$_ShowReLoginDialog implements _ShowReLoginDialog {
 }
 
 abstract class _ShowReLoginDialog implements PageCommand {
-  const factory _ShowReLoginDialog() = _$_ShowReLoginDialog;
+  const factory _ShowReLoginDialog() = _$ShowReLoginDialogImpl;
 }
 
 /// @nodoc
-abstract class _$$_ShowConnectivityErrorDialogCopyWith<$Res> {
-  factory _$$_ShowConnectivityErrorDialogCopyWith(
-          _$_ShowConnectivityErrorDialog value,
-          $Res Function(_$_ShowConnectivityErrorDialog) then) =
-      __$$_ShowConnectivityErrorDialogCopyWithImpl<$Res>;
+abstract class _$$ShowConnectivityErrorDialogImplCopyWith<$Res> {
+  factory _$$ShowConnectivityErrorDialogImplCopyWith(
+          _$ShowConnectivityErrorDialogImpl value,
+          $Res Function(_$ShowConnectivityErrorDialogImpl) then) =
+      __$$ShowConnectivityErrorDialogImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_ShowConnectivityErrorDialogCopyWithImpl<$Res>
-    extends _$PageCommandCopyWithImpl<$Res, _$_ShowConnectivityErrorDialog>
-    implements _$$_ShowConnectivityErrorDialogCopyWith<$Res> {
-  __$$_ShowConnectivityErrorDialogCopyWithImpl(
-      _$_ShowConnectivityErrorDialog _value,
-      $Res Function(_$_ShowConnectivityErrorDialog) _then)
+class __$$ShowConnectivityErrorDialogImplCopyWithImpl<$Res>
+    extends _$PageCommandCopyWithImpl<$Res, _$ShowConnectivityErrorDialogImpl>
+    implements _$$ShowConnectivityErrorDialogImplCopyWith<$Res> {
+  __$$ShowConnectivityErrorDialogImplCopyWithImpl(
+      _$ShowConnectivityErrorDialogImpl _value,
+      $Res Function(_$ShowConnectivityErrorDialogImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of PageCommand
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$_ShowConnectivityErrorDialog implements _ShowConnectivityErrorDialog {
-  const _$_ShowConnectivityErrorDialog();
+class _$ShowConnectivityErrorDialogImpl
+    implements _ShowConnectivityErrorDialog {
+  const _$ShowConnectivityErrorDialogImpl();
 
   @override
   String toString() {
@@ -802,10 +842,10 @@ class _$_ShowConnectivityErrorDialog implements _ShowConnectivityErrorDialog {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ShowConnectivityErrorDialog);
+            other is _$ShowConnectivityErrorDialogImpl);
   }
 
   @override
@@ -896,32 +936,35 @@ class _$_ShowConnectivityErrorDialog implements _ShowConnectivityErrorDialog {
 }
 
 abstract class _ShowConnectivityErrorDialog implements PageCommand {
-  const factory _ShowConnectivityErrorDialog() = _$_ShowConnectivityErrorDialog;
+  const factory _ShowConnectivityErrorDialog() =
+      _$ShowConnectivityErrorDialogImpl;
 }
 
 /// @nodoc
-abstract class _$$_ShowErrorDialogCopyWith<$Res> {
-  factory _$$_ShowErrorDialogCopyWith(
-          _$_ShowErrorDialog value, $Res Function(_$_ShowErrorDialog) then) =
-      __$$_ShowErrorDialogCopyWithImpl<$Res>;
+abstract class _$$ShowErrorDialogImplCopyWith<$Res> {
+  factory _$$ShowErrorDialogImplCopyWith(_$ShowErrorDialogImpl value,
+          $Res Function(_$ShowErrorDialogImpl) then) =
+      __$$ShowErrorDialogImplCopyWithImpl<$Res>;
   @useResult
   $Res call({HyphaError hyphaError});
 }
 
 /// @nodoc
-class __$$_ShowErrorDialogCopyWithImpl<$Res>
-    extends _$PageCommandCopyWithImpl<$Res, _$_ShowErrorDialog>
-    implements _$$_ShowErrorDialogCopyWith<$Res> {
-  __$$_ShowErrorDialogCopyWithImpl(
-      _$_ShowErrorDialog _value, $Res Function(_$_ShowErrorDialog) _then)
+class __$$ShowErrorDialogImplCopyWithImpl<$Res>
+    extends _$PageCommandCopyWithImpl<$Res, _$ShowErrorDialogImpl>
+    implements _$$ShowErrorDialogImplCopyWith<$Res> {
+  __$$ShowErrorDialogImplCopyWithImpl(
+      _$ShowErrorDialogImpl _value, $Res Function(_$ShowErrorDialogImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PageCommand
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? hyphaError = null,
   }) {
-    return _then(_$_ShowErrorDialog(
+    return _then(_$ShowErrorDialogImpl(
       null == hyphaError
           ? _value.hyphaError
           : hyphaError // ignore: cast_nullable_to_non_nullable
@@ -932,8 +975,8 @@ class __$$_ShowErrorDialogCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ShowErrorDialog implements _ShowErrorDialog {
-  const _$_ShowErrorDialog(this.hyphaError);
+class _$ShowErrorDialogImpl implements _ShowErrorDialog {
+  const _$ShowErrorDialogImpl(this.hyphaError);
 
   @override
   final HyphaError hyphaError;
@@ -944,10 +987,10 @@ class _$_ShowErrorDialog implements _ShowErrorDialog {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ShowErrorDialog &&
+            other is _$ShowErrorDialogImpl &&
             (identical(other.hyphaError, hyphaError) ||
                 other.hyphaError == hyphaError));
   }
@@ -955,11 +998,14 @@ class _$_ShowErrorDialog implements _ShowErrorDialog {
   @override
   int get hashCode => Object.hash(runtimeType, hyphaError);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PageCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ShowErrorDialogCopyWith<_$_ShowErrorDialog> get copyWith =>
-      __$$_ShowErrorDialogCopyWithImpl<_$_ShowErrorDialog>(this, _$identity);
+  _$$ShowErrorDialogImplCopyWith<_$ShowErrorDialogImpl> get copyWith =>
+      __$$ShowErrorDialogImplCopyWithImpl<_$ShowErrorDialogImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1047,37 +1093,42 @@ class _$_ShowErrorDialog implements _ShowErrorDialog {
 
 abstract class _ShowErrorDialog implements PageCommand {
   const factory _ShowErrorDialog(final HyphaError hyphaError) =
-      _$_ShowErrorDialog;
+      _$ShowErrorDialogImpl;
 
   HyphaError get hyphaError;
-  @JsonKey(ignore: true)
-  _$$_ShowErrorDialogCopyWith<_$_ShowErrorDialog> get copyWith =>
+
+  /// Create a copy of PageCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ShowErrorDialogImplCopyWith<_$ShowErrorDialogImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_ShowErrorMessageCopyWith<$Res> {
-  factory _$$_ShowErrorMessageCopyWith(
-          _$_ShowErrorMessage value, $Res Function(_$_ShowErrorMessage) then) =
-      __$$_ShowErrorMessageCopyWithImpl<$Res>;
+abstract class _$$ShowErrorMessageImplCopyWith<$Res> {
+  factory _$$ShowErrorMessageImplCopyWith(_$ShowErrorMessageImpl value,
+          $Res Function(_$ShowErrorMessageImpl) then) =
+      __$$ShowErrorMessageImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String message});
 }
 
 /// @nodoc
-class __$$_ShowErrorMessageCopyWithImpl<$Res>
-    extends _$PageCommandCopyWithImpl<$Res, _$_ShowErrorMessage>
-    implements _$$_ShowErrorMessageCopyWith<$Res> {
-  __$$_ShowErrorMessageCopyWithImpl(
-      _$_ShowErrorMessage _value, $Res Function(_$_ShowErrorMessage) _then)
+class __$$ShowErrorMessageImplCopyWithImpl<$Res>
+    extends _$PageCommandCopyWithImpl<$Res, _$ShowErrorMessageImpl>
+    implements _$$ShowErrorMessageImplCopyWith<$Res> {
+  __$$ShowErrorMessageImplCopyWithImpl(_$ShowErrorMessageImpl _value,
+      $Res Function(_$ShowErrorMessageImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PageCommand
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? message = null,
   }) {
-    return _then(_$_ShowErrorMessage(
+    return _then(_$ShowErrorMessageImpl(
       null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -1088,8 +1139,8 @@ class __$$_ShowErrorMessageCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ShowErrorMessage implements _ShowErrorMessage {
-  const _$_ShowErrorMessage(this.message);
+class _$ShowErrorMessageImpl implements _ShowErrorMessage {
+  const _$ShowErrorMessageImpl(this.message);
 
   @override
   final String message;
@@ -1100,21 +1151,24 @@ class _$_ShowErrorMessage implements _ShowErrorMessage {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ShowErrorMessage &&
+            other is _$ShowErrorMessageImpl &&
             (identical(other.message, message) || other.message == message));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, message);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PageCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ShowErrorMessageCopyWith<_$_ShowErrorMessage> get copyWith =>
-      __$$_ShowErrorMessageCopyWithImpl<_$_ShowErrorMessage>(this, _$identity);
+  _$$ShowErrorMessageImplCopyWith<_$ShowErrorMessageImpl> get copyWith =>
+      __$$ShowErrorMessageImplCopyWithImpl<_$ShowErrorMessageImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1201,10 +1255,14 @@ class _$_ShowErrorMessage implements _ShowErrorMessage {
 }
 
 abstract class _ShowErrorMessage implements PageCommand {
-  const factory _ShowErrorMessage(final String message) = _$_ShowErrorMessage;
+  const factory _ShowErrorMessage(final String message) =
+      _$ShowErrorMessageImpl;
 
   String get message;
-  @JsonKey(ignore: true)
-  _$$_ShowErrorMessageCopyWith<_$_ShowErrorMessage> get copyWith =>
+
+  /// Create a copy of PageCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ShowErrorMessageImplCopyWith<_$ShowErrorMessageImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

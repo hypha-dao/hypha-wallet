@@ -12,7 +12,7 @@ part of 'settings_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$PageCommand {
@@ -80,7 +80,9 @@ mixin _$PageCommand {
   }) =>
       throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PageCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PageCommandCopyWith<PageCommand> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -111,6 +113,8 @@ class _$PageCommandCopyWithImpl<$Res, $Val extends PageCommand>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PageCommand
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -156,11 +160,11 @@ class _$PageCommandCopyWithImpl<$Res, $Val extends PageCommand>
 }
 
 /// @nodoc
-abstract class _$$_ShowSecurityPopupCopyWith<$Res>
+abstract class _$$ShowSecurityPopupImplCopyWith<$Res>
     implements $PageCommandCopyWith<$Res> {
-  factory _$$_ShowSecurityPopupCopyWith(_$_ShowSecurityPopup value,
-          $Res Function(_$_ShowSecurityPopup) then) =
-      __$$_ShowSecurityPopupCopyWithImpl<$Res>;
+  factory _$$ShowSecurityPopupImplCopyWith(_$ShowSecurityPopupImpl value,
+          $Res Function(_$ShowSecurityPopupImpl) then) =
+      __$$ShowSecurityPopupImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -174,13 +178,15 @@ abstract class _$$_ShowSecurityPopupCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ShowSecurityPopupCopyWithImpl<$Res>
-    extends _$PageCommandCopyWithImpl<$Res, _$_ShowSecurityPopup>
-    implements _$$_ShowSecurityPopupCopyWith<$Res> {
-  __$$_ShowSecurityPopupCopyWithImpl(
-      _$_ShowSecurityPopup _value, $Res Function(_$_ShowSecurityPopup) _then)
+class __$$ShowSecurityPopupImplCopyWithImpl<$Res>
+    extends _$PageCommandCopyWithImpl<$Res, _$ShowSecurityPopupImpl>
+    implements _$$ShowSecurityPopupImplCopyWith<$Res> {
+  __$$ShowSecurityPopupImplCopyWithImpl(_$ShowSecurityPopupImpl _value,
+      $Res Function(_$ShowSecurityPopupImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PageCommand
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -192,7 +198,7 @@ class __$$_ShowSecurityPopupCopyWithImpl<$Res>
     Object? words = null,
     Object? privateKey = null,
   }) {
-    return _then(_$_ShowSecurityPopup(
+    return _then(_$ShowSecurityPopupImpl(
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -227,8 +233,8 @@ class __$$_ShowSecurityPopupCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ShowSecurityPopup implements _ShowSecurityPopup {
-  const _$_ShowSecurityPopup(
+class _$ShowSecurityPopupImpl implements _ShowSecurityPopup {
+  const _$ShowSecurityPopupImpl(
       {required this.title,
       required this.subtitle,
       required this.rationale,
@@ -265,10 +271,10 @@ class _$_ShowSecurityPopup implements _ShowSecurityPopup {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ShowSecurityPopup &&
+            other is _$ShowSecurityPopupImpl &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.subtitle, subtitle) ||
                 other.subtitle == subtitle) &&
@@ -293,11 +299,13 @@ class _$_ShowSecurityPopup implements _ShowSecurityPopup {
       const DeepCollectionEquality().hash(_words),
       privateKey);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PageCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ShowSecurityPopupCopyWith<_$_ShowSecurityPopup> get copyWith =>
-      __$$_ShowSecurityPopupCopyWithImpl<_$_ShowSecurityPopup>(
+  _$$ShowSecurityPopupImplCopyWith<_$ShowSecurityPopupImpl> get copyWith =>
+      __$$ShowSecurityPopupImplCopyWithImpl<_$ShowSecurityPopupImpl>(
           this, _$identity);
 
   @override
@@ -392,7 +400,7 @@ abstract class _ShowSecurityPopup implements PageCommand {
       required final String mainButtonText,
       required final String image,
       required final List<String> words,
-      required final String privateKey}) = _$_ShowSecurityPopup;
+      required final String privateKey}) = _$ShowSecurityPopupImpl;
 
   @override
   String get title;
@@ -408,9 +416,12 @@ abstract class _ShowSecurityPopup implements PageCommand {
   List<String> get words;
   @override
   String get privateKey;
+
+  /// Create a copy of PageCommand
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
-  _$$_ShowSecurityPopupCopyWith<_$_ShowSecurityPopup> get copyWith =>
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ShowSecurityPopupImplCopyWith<_$ShowSecurityPopupImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -498,27 +509,34 @@ class _$SettingsEventCopyWithImpl<$Res, $Val extends SettingsEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of SettingsEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
-abstract class _$$_InitialCopyWith<$Res> {
-  factory _$$_InitialCopyWith(
-          _$_Initial value, $Res Function(_$_Initial) then) =
-      __$$_InitialCopyWithImpl<$Res>;
+abstract class _$$InitialImplCopyWith<$Res> {
+  factory _$$InitialImplCopyWith(
+          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
+      __$$InitialImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_InitialCopyWithImpl<$Res>
-    extends _$SettingsEventCopyWithImpl<$Res, _$_Initial>
-    implements _$$_InitialCopyWith<$Res> {
-  __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
+class __$$InitialImplCopyWithImpl<$Res>
+    extends _$SettingsEventCopyWithImpl<$Res, _$InitialImpl>
+    implements _$$InitialImplCopyWith<$Res> {
+  __$$InitialImplCopyWithImpl(
+      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of SettingsEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$_Initial implements _Initial {
-  const _$_Initial();
+class _$InitialImpl implements _Initial {
+  const _$InitialImpl();
 
   @override
   String toString() {
@@ -526,9 +544,9 @@ class _$_Initial implements _Initial {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Initial);
+        (other.runtimeType == runtimeType && other is _$InitialImpl);
   }
 
   @override
@@ -624,29 +642,32 @@ class _$_Initial implements _Initial {
 }
 
 abstract class _Initial implements SettingsEvent {
-  const factory _Initial() = _$_Initial;
+  const factory _Initial() = _$InitialImpl;
 }
 
 /// @nodoc
-abstract class _$$_OnThemeChangedCopyWith<$Res> {
-  factory _$$_OnThemeChangedCopyWith(
-          _$_OnThemeChanged value, $Res Function(_$_OnThemeChanged) then) =
-      __$$_OnThemeChangedCopyWithImpl<$Res>;
+abstract class _$$OnThemeChangedImplCopyWith<$Res> {
+  factory _$$OnThemeChangedImplCopyWith(_$OnThemeChangedImpl value,
+          $Res Function(_$OnThemeChangedImpl) then) =
+      __$$OnThemeChangedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_OnThemeChangedCopyWithImpl<$Res>
-    extends _$SettingsEventCopyWithImpl<$Res, _$_OnThemeChanged>
-    implements _$$_OnThemeChangedCopyWith<$Res> {
-  __$$_OnThemeChangedCopyWithImpl(
-      _$_OnThemeChanged _value, $Res Function(_$_OnThemeChanged) _then)
+class __$$OnThemeChangedImplCopyWithImpl<$Res>
+    extends _$SettingsEventCopyWithImpl<$Res, _$OnThemeChangedImpl>
+    implements _$$OnThemeChangedImplCopyWith<$Res> {
+  __$$OnThemeChangedImplCopyWithImpl(
+      _$OnThemeChangedImpl _value, $Res Function(_$OnThemeChangedImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of SettingsEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$_OnThemeChanged implements _OnThemeChanged {
-  const _$_OnThemeChanged();
+class _$OnThemeChangedImpl implements _OnThemeChanged {
+  const _$OnThemeChangedImpl();
 
   @override
   String toString() {
@@ -654,9 +675,9 @@ class _$_OnThemeChanged implements _OnThemeChanged {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_OnThemeChanged);
+        (other.runtimeType == runtimeType && other is _$OnThemeChangedImpl);
   }
 
   @override
@@ -752,29 +773,32 @@ class _$_OnThemeChanged implements _OnThemeChanged {
 }
 
 abstract class _OnThemeChanged implements SettingsEvent {
-  const factory _OnThemeChanged() = _$_OnThemeChanged;
+  const factory _OnThemeChanged() = _$OnThemeChangedImpl;
 }
 
 /// @nodoc
-abstract class _$$_ClearPageCommandCopyWith<$Res> {
-  factory _$$_ClearPageCommandCopyWith(
-          _$_ClearPageCommand value, $Res Function(_$_ClearPageCommand) then) =
-      __$$_ClearPageCommandCopyWithImpl<$Res>;
+abstract class _$$ClearPageCommandImplCopyWith<$Res> {
+  factory _$$ClearPageCommandImplCopyWith(_$ClearPageCommandImpl value,
+          $Res Function(_$ClearPageCommandImpl) then) =
+      __$$ClearPageCommandImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_ClearPageCommandCopyWithImpl<$Res>
-    extends _$SettingsEventCopyWithImpl<$Res, _$_ClearPageCommand>
-    implements _$$_ClearPageCommandCopyWith<$Res> {
-  __$$_ClearPageCommandCopyWithImpl(
-      _$_ClearPageCommand _value, $Res Function(_$_ClearPageCommand) _then)
+class __$$ClearPageCommandImplCopyWithImpl<$Res>
+    extends _$SettingsEventCopyWithImpl<$Res, _$ClearPageCommandImpl>
+    implements _$$ClearPageCommandImplCopyWith<$Res> {
+  __$$ClearPageCommandImplCopyWithImpl(_$ClearPageCommandImpl _value,
+      $Res Function(_$ClearPageCommandImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of SettingsEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$_ClearPageCommand implements _ClearPageCommand {
-  const _$_ClearPageCommand();
+class _$ClearPageCommandImpl implements _ClearPageCommand {
+  const _$ClearPageCommandImpl();
 
   @override
   String toString() {
@@ -782,9 +806,9 @@ class _$_ClearPageCommand implements _ClearPageCommand {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_ClearPageCommand);
+        (other.runtimeType == runtimeType && other is _$ClearPageCommandImpl);
   }
 
   @override
@@ -880,29 +904,33 @@ class _$_ClearPageCommand implements _ClearPageCommand {
 }
 
 abstract class _ClearPageCommand implements SettingsEvent {
-  const factory _ClearPageCommand() = _$_ClearPageCommand;
+  const factory _ClearPageCommand() = _$ClearPageCommandImpl;
 }
 
 /// @nodoc
-abstract class _$$_OnSecureAccountTappedCopyWith<$Res> {
-  factory _$$_OnSecureAccountTappedCopyWith(_$_OnSecureAccountTapped value,
-          $Res Function(_$_OnSecureAccountTapped) then) =
-      __$$_OnSecureAccountTappedCopyWithImpl<$Res>;
+abstract class _$$OnSecureAccountTappedImplCopyWith<$Res> {
+  factory _$$OnSecureAccountTappedImplCopyWith(
+          _$OnSecureAccountTappedImpl value,
+          $Res Function(_$OnSecureAccountTappedImpl) then) =
+      __$$OnSecureAccountTappedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_OnSecureAccountTappedCopyWithImpl<$Res>
-    extends _$SettingsEventCopyWithImpl<$Res, _$_OnSecureAccountTapped>
-    implements _$$_OnSecureAccountTappedCopyWith<$Res> {
-  __$$_OnSecureAccountTappedCopyWithImpl(_$_OnSecureAccountTapped _value,
-      $Res Function(_$_OnSecureAccountTapped) _then)
+class __$$OnSecureAccountTappedImplCopyWithImpl<$Res>
+    extends _$SettingsEventCopyWithImpl<$Res, _$OnSecureAccountTappedImpl>
+    implements _$$OnSecureAccountTappedImplCopyWith<$Res> {
+  __$$OnSecureAccountTappedImplCopyWithImpl(_$OnSecureAccountTappedImpl _value,
+      $Res Function(_$OnSecureAccountTappedImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of SettingsEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$_OnSecureAccountTapped implements _OnSecureAccountTapped {
-  const _$_OnSecureAccountTapped();
+class _$OnSecureAccountTappedImpl implements _OnSecureAccountTapped {
+  const _$OnSecureAccountTappedImpl();
 
   @override
   String toString() {
@@ -910,9 +938,10 @@ class _$_OnSecureAccountTapped implements _OnSecureAccountTapped {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_OnSecureAccountTapped);
+        (other.runtimeType == runtimeType &&
+            other is _$OnSecureAccountTappedImpl);
   }
 
   @override
@@ -1008,29 +1037,33 @@ class _$_OnSecureAccountTapped implements _OnSecureAccountTapped {
 }
 
 abstract class _OnSecureAccountTapped implements SettingsEvent {
-  const factory _OnSecureAccountTapped() = _$_OnSecureAccountTapped;
+  const factory _OnSecureAccountTapped() = _$OnSecureAccountTappedImpl;
 }
 
 /// @nodoc
-abstract class _$$_OnDeleteAccountTappedCopyWith<$Res> {
-  factory _$$_OnDeleteAccountTappedCopyWith(_$_OnDeleteAccountTapped value,
-          $Res Function(_$_OnDeleteAccountTapped) then) =
-      __$$_OnDeleteAccountTappedCopyWithImpl<$Res>;
+abstract class _$$OnDeleteAccountTappedImplCopyWith<$Res> {
+  factory _$$OnDeleteAccountTappedImplCopyWith(
+          _$OnDeleteAccountTappedImpl value,
+          $Res Function(_$OnDeleteAccountTappedImpl) then) =
+      __$$OnDeleteAccountTappedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_OnDeleteAccountTappedCopyWithImpl<$Res>
-    extends _$SettingsEventCopyWithImpl<$Res, _$_OnDeleteAccountTapped>
-    implements _$$_OnDeleteAccountTappedCopyWith<$Res> {
-  __$$_OnDeleteAccountTappedCopyWithImpl(_$_OnDeleteAccountTapped _value,
-      $Res Function(_$_OnDeleteAccountTapped) _then)
+class __$$OnDeleteAccountTappedImplCopyWithImpl<$Res>
+    extends _$SettingsEventCopyWithImpl<$Res, _$OnDeleteAccountTappedImpl>
+    implements _$$OnDeleteAccountTappedImplCopyWith<$Res> {
+  __$$OnDeleteAccountTappedImplCopyWithImpl(_$OnDeleteAccountTappedImpl _value,
+      $Res Function(_$OnDeleteAccountTappedImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of SettingsEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$_OnDeleteAccountTapped implements _OnDeleteAccountTapped {
-  const _$_OnDeleteAccountTapped();
+class _$OnDeleteAccountTappedImpl implements _OnDeleteAccountTapped {
+  const _$OnDeleteAccountTappedImpl();
 
   @override
   String toString() {
@@ -1038,9 +1071,10 @@ class _$_OnDeleteAccountTapped implements _OnDeleteAccountTapped {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_OnDeleteAccountTapped);
+        (other.runtimeType == runtimeType &&
+            other is _$OnDeleteAccountTappedImpl);
   }
 
   @override
@@ -1136,29 +1170,32 @@ class _$_OnDeleteAccountTapped implements _OnDeleteAccountTapped {
 }
 
 abstract class _OnDeleteAccountTapped implements SettingsEvent {
-  const factory _OnDeleteAccountTapped() = _$_OnDeleteAccountTapped;
+  const factory _OnDeleteAccountTapped() = _$OnDeleteAccountTappedImpl;
 }
 
 /// @nodoc
-abstract class _$$_OnShowSettingsCopyWith<$Res> {
-  factory _$$_OnShowSettingsCopyWith(
-          _$_OnShowSettings value, $Res Function(_$_OnShowSettings) then) =
-      __$$_OnShowSettingsCopyWithImpl<$Res>;
+abstract class _$$OnShowSettingsImplCopyWith<$Res> {
+  factory _$$OnShowSettingsImplCopyWith(_$OnShowSettingsImpl value,
+          $Res Function(_$OnShowSettingsImpl) then) =
+      __$$OnShowSettingsImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_OnShowSettingsCopyWithImpl<$Res>
-    extends _$SettingsEventCopyWithImpl<$Res, _$_OnShowSettings>
-    implements _$$_OnShowSettingsCopyWith<$Res> {
-  __$$_OnShowSettingsCopyWithImpl(
-      _$_OnShowSettings _value, $Res Function(_$_OnShowSettings) _then)
+class __$$OnShowSettingsImplCopyWithImpl<$Res>
+    extends _$SettingsEventCopyWithImpl<$Res, _$OnShowSettingsImpl>
+    implements _$$OnShowSettingsImplCopyWith<$Res> {
+  __$$OnShowSettingsImplCopyWithImpl(
+      _$OnShowSettingsImpl _value, $Res Function(_$OnShowSettingsImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of SettingsEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$_OnShowSettings implements _OnShowSettings {
-  const _$_OnShowSettings();
+class _$OnShowSettingsImpl implements _OnShowSettings {
+  const _$OnShowSettingsImpl();
 
   @override
   String toString() {
@@ -1166,9 +1203,9 @@ class _$_OnShowSettings implements _OnShowSettings {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_OnShowSettings);
+        (other.runtimeType == runtimeType && other is _$OnShowSettingsImpl);
   }
 
   @override
@@ -1264,7 +1301,7 @@ class _$_OnShowSettings implements _OnShowSettings {
 }
 
 abstract class _OnShowSettings implements SettingsEvent {
-  const factory _OnShowSettings() = _$_OnShowSettings;
+  const factory _OnShowSettings() = _$OnShowSettingsImpl;
 }
 
 /// @nodoc
@@ -1279,7 +1316,9 @@ mixin _$SettingsState {
   String? get version => throw _privateConstructorUsedError;
   PageCommand? get command => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SettingsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SettingsStateCopyWith<SettingsState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1314,6 +1353,8 @@ class _$SettingsStateCopyWithImpl<$Res, $Val extends SettingsState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SettingsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1367,6 +1408,8 @@ class _$SettingsStateCopyWithImpl<$Res, $Val extends SettingsState>
     ) as $Val);
   }
 
+  /// Create a copy of SettingsState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PageCommandCopyWith<$Res>? get command {
@@ -1381,11 +1424,11 @@ class _$SettingsStateCopyWithImpl<$Res, $Val extends SettingsState>
 }
 
 /// @nodoc
-abstract class _$$_SettingsStateCopyWith<$Res>
+abstract class _$$SettingsStateImplCopyWith<$Res>
     implements $SettingsStateCopyWith<$Res> {
-  factory _$$_SettingsStateCopyWith(
-          _$_SettingsState value, $Res Function(_$_SettingsState) then) =
-      __$$_SettingsStateCopyWithImpl<$Res>;
+  factory _$$SettingsStateImplCopyWith(
+          _$SettingsStateImpl value, $Res Function(_$SettingsStateImpl) then) =
+      __$$SettingsStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -1404,13 +1447,15 @@ abstract class _$$_SettingsStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_SettingsStateCopyWithImpl<$Res>
-    extends _$SettingsStateCopyWithImpl<$Res, _$_SettingsState>
-    implements _$$_SettingsStateCopyWith<$Res> {
-  __$$_SettingsStateCopyWithImpl(
-      _$_SettingsState _value, $Res Function(_$_SettingsState) _then)
+class __$$SettingsStateImplCopyWithImpl<$Res>
+    extends _$SettingsStateCopyWithImpl<$Res, _$SettingsStateImpl>
+    implements _$$SettingsStateImplCopyWith<$Res> {
+  __$$SettingsStateImplCopyWithImpl(
+      _$SettingsStateImpl _value, $Res Function(_$SettingsStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SettingsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1424,7 +1469,7 @@ class __$$_SettingsStateCopyWithImpl<$Res>
     Object? version = freezed,
     Object? command = freezed,
   }) {
-    return _then(_$_SettingsState(
+    return _then(_$SettingsStateImpl(
       pageState: null == pageState
           ? _value.pageState
           : pageState // ignore: cast_nullable_to_non_nullable
@@ -1467,8 +1512,8 @@ class __$$_SettingsStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_SettingsState implements _SettingsState {
-  const _$_SettingsState(
+class _$SettingsStateImpl implements _SettingsState {
+  const _$SettingsStateImpl(
       {this.pageState = PageState.success,
       this.themeMode = ThemeMode.dark,
       this.showSecurityNotification = true,
@@ -1508,10 +1553,10 @@ class _$_SettingsState implements _SettingsState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_SettingsState &&
+            other is _$SettingsStateImpl &&
             (identical(other.pageState, pageState) ||
                 other.pageState == pageState) &&
             (identical(other.themeMode, themeMode) ||
@@ -1543,11 +1588,13 @@ class _$_SettingsState implements _SettingsState {
       version,
       command);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SettingsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$_SettingsStateCopyWith<_$_SettingsState> get copyWith =>
-      __$$_SettingsStateCopyWithImpl<_$_SettingsState>(this, _$identity);
+  _$$SettingsStateImplCopyWith<_$SettingsStateImpl> get copyWith =>
+      __$$SettingsStateImplCopyWithImpl<_$SettingsStateImpl>(this, _$identity);
 }
 
 abstract class _SettingsState implements SettingsState {
@@ -1560,7 +1607,7 @@ abstract class _SettingsState implements SettingsState {
       final String? packageName,
       final String? buildNumber,
       final String? version,
-      final PageCommand? command}) = _$_SettingsState;
+      final PageCommand? command}) = _$SettingsStateImpl;
 
   @override
   PageState get pageState;
@@ -1580,8 +1627,11 @@ abstract class _SettingsState implements SettingsState {
   String? get version;
   @override
   PageCommand? get command;
+
+  /// Create a copy of SettingsState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
-  _$$_SettingsStateCopyWith<_$_SettingsState> get copyWith =>
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$SettingsStateImplCopyWith<_$SettingsStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -6,8 +6,7 @@ import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.d
 import 'package:hypha_wallet/ui/bottom_navigation/interactor/bottom_navigation_bloc.dart';
 import 'package:hypha_wallet/ui/history/transactions/transactions_page.dart';
 import 'package:hypha_wallet/ui/home_page/home_page.dart';
-import 'package:hypha_wallet/ui/profile/profile_page.dart';
-import 'package:hypha_wallet/ui/proposals/proposals_page.dart';
+import 'package:hypha_wallet/ui/proposals/list/proposals_page.dart';
 import 'package:hypha_wallet/ui/settings/interactor/settings_bloc.dart';
 import 'package:hypha_wallet/ui/settings/settings_page.dart';
 import 'package:hypha_wallet/ui/wallet/wallet_page.dart';

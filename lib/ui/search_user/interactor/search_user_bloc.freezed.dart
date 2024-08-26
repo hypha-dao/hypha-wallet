@@ -12,7 +12,7 @@ part of 'search_user_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$PageCommand {
@@ -66,28 +66,34 @@ class _$PageCommandCopyWithImpl<$Res, $Val extends PageCommand>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of PageCommand
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
-abstract class _$$_NavigateToCopyWith<$Res> {
-  factory _$$_NavigateToCopyWith(
-          _$_NavigateTo value, $Res Function(_$_NavigateTo) then) =
-      __$$_NavigateToCopyWithImpl<$Res>;
+abstract class _$$NavigateToImplCopyWith<$Res> {
+  factory _$$NavigateToImplCopyWith(
+          _$NavigateToImpl value, $Res Function(_$NavigateToImpl) then) =
+      __$$NavigateToImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_NavigateToCopyWithImpl<$Res>
-    extends _$PageCommandCopyWithImpl<$Res, _$_NavigateTo>
-    implements _$$_NavigateToCopyWith<$Res> {
-  __$$_NavigateToCopyWithImpl(
-      _$_NavigateTo _value, $Res Function(_$_NavigateTo) _then)
+class __$$NavigateToImplCopyWithImpl<$Res>
+    extends _$PageCommandCopyWithImpl<$Res, _$NavigateToImpl>
+    implements _$$NavigateToImplCopyWith<$Res> {
+  __$$NavigateToImplCopyWithImpl(
+      _$NavigateToImpl _value, $Res Function(_$NavigateToImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of PageCommand
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$_NavigateTo implements _NavigateTo {
-  const _$_NavigateTo();
+class _$NavigateToImpl implements _NavigateTo {
+  const _$NavigateToImpl();
 
   @override
   String toString() {
@@ -95,9 +101,9 @@ class _$_NavigateTo implements _NavigateTo {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_NavigateTo);
+        (other.runtimeType == runtimeType && other is _$NavigateToImpl);
   }
 
   @override
@@ -161,7 +167,7 @@ class _$_NavigateTo implements _NavigateTo {
 }
 
 abstract class _NavigateTo implements PageCommand {
-  const factory _NavigateTo() = _$_NavigateTo;
+  const factory _NavigateTo() = _$NavigateToImpl;
 }
 
 /// @nodoc
@@ -240,27 +246,34 @@ class _$SearchUserEventCopyWithImpl<$Res, $Val extends SearchUserEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of SearchUserEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
-abstract class _$$_InitialCopyWith<$Res> {
-  factory _$$_InitialCopyWith(
-          _$_Initial value, $Res Function(_$_Initial) then) =
-      __$$_InitialCopyWithImpl<$Res>;
+abstract class _$$InitialImplCopyWith<$Res> {
+  factory _$$InitialImplCopyWith(
+          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
+      __$$InitialImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_InitialCopyWithImpl<$Res>
-    extends _$SearchUserEventCopyWithImpl<$Res, _$_Initial>
-    implements _$$_InitialCopyWith<$Res> {
-  __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
+class __$$InitialImplCopyWithImpl<$Res>
+    extends _$SearchUserEventCopyWithImpl<$Res, _$InitialImpl>
+    implements _$$InitialImplCopyWith<$Res> {
+  __$$InitialImplCopyWithImpl(
+      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of SearchUserEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$_Initial implements _Initial {
-  const _$_Initial();
+class _$InitialImpl implements _Initial {
+  const _$InitialImpl();
 
   @override
   String toString() {
@@ -268,9 +281,9 @@ class _$_Initial implements _Initial {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Initial);
+        (other.runtimeType == runtimeType && other is _$InitialImpl);
   }
 
   @override
@@ -358,29 +371,32 @@ class _$_Initial implements _Initial {
 }
 
 abstract class _Initial implements SearchUserEvent {
-  const factory _Initial() = _$_Initial;
+  const factory _Initial() = _$InitialImpl;
 }
 
 /// @nodoc
-abstract class _$$_OnRefreshCopyWith<$Res> {
-  factory _$$_OnRefreshCopyWith(
-          _$_OnRefresh value, $Res Function(_$_OnRefresh) then) =
-      __$$_OnRefreshCopyWithImpl<$Res>;
+abstract class _$$OnRefreshImplCopyWith<$Res> {
+  factory _$$OnRefreshImplCopyWith(
+          _$OnRefreshImpl value, $Res Function(_$OnRefreshImpl) then) =
+      __$$OnRefreshImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_OnRefreshCopyWithImpl<$Res>
-    extends _$SearchUserEventCopyWithImpl<$Res, _$_OnRefresh>
-    implements _$$_OnRefreshCopyWith<$Res> {
-  __$$_OnRefreshCopyWithImpl(
-      _$_OnRefresh _value, $Res Function(_$_OnRefresh) _then)
+class __$$OnRefreshImplCopyWithImpl<$Res>
+    extends _$SearchUserEventCopyWithImpl<$Res, _$OnRefreshImpl>
+    implements _$$OnRefreshImplCopyWith<$Res> {
+  __$$OnRefreshImplCopyWithImpl(
+      _$OnRefreshImpl _value, $Res Function(_$OnRefreshImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of SearchUserEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$_OnRefresh implements _OnRefresh {
-  const _$_OnRefresh();
+class _$OnRefreshImpl implements _OnRefresh {
+  const _$OnRefreshImpl();
 
   @override
   String toString() {
@@ -388,9 +404,9 @@ class _$_OnRefresh implements _OnRefresh {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_OnRefresh);
+        (other.runtimeType == runtimeType && other is _$OnRefreshImpl);
   }
 
   @override
@@ -478,29 +494,32 @@ class _$_OnRefresh implements _OnRefresh {
 }
 
 abstract class _OnRefresh implements SearchUserEvent {
-  const factory _OnRefresh() = _$_OnRefresh;
+  const factory _OnRefresh() = _$OnRefreshImpl;
 }
 
 /// @nodoc
-abstract class _$$_ClearPageCommandCopyWith<$Res> {
-  factory _$$_ClearPageCommandCopyWith(
-          _$_ClearPageCommand value, $Res Function(_$_ClearPageCommand) then) =
-      __$$_ClearPageCommandCopyWithImpl<$Res>;
+abstract class _$$ClearPageCommandImplCopyWith<$Res> {
+  factory _$$ClearPageCommandImplCopyWith(_$ClearPageCommandImpl value,
+          $Res Function(_$ClearPageCommandImpl) then) =
+      __$$ClearPageCommandImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_ClearPageCommandCopyWithImpl<$Res>
-    extends _$SearchUserEventCopyWithImpl<$Res, _$_ClearPageCommand>
-    implements _$$_ClearPageCommandCopyWith<$Res> {
-  __$$_ClearPageCommandCopyWithImpl(
-      _$_ClearPageCommand _value, $Res Function(_$_ClearPageCommand) _then)
+class __$$ClearPageCommandImplCopyWithImpl<$Res>
+    extends _$SearchUserEventCopyWithImpl<$Res, _$ClearPageCommandImpl>
+    implements _$$ClearPageCommandImplCopyWith<$Res> {
+  __$$ClearPageCommandImplCopyWithImpl(_$ClearPageCommandImpl _value,
+      $Res Function(_$ClearPageCommandImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of SearchUserEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$_ClearPageCommand implements _ClearPageCommand {
-  const _$_ClearPageCommand();
+class _$ClearPageCommandImpl implements _ClearPageCommand {
+  const _$ClearPageCommandImpl();
 
   @override
   String toString() {
@@ -508,9 +527,9 @@ class _$_ClearPageCommand implements _ClearPageCommand {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_ClearPageCommand);
+        (other.runtimeType == runtimeType && other is _$ClearPageCommandImpl);
   }
 
   @override
@@ -598,32 +617,34 @@ class _$_ClearPageCommand implements _ClearPageCommand {
 }
 
 abstract class _ClearPageCommand implements SearchUserEvent {
-  const factory _ClearPageCommand() = _$_ClearPageCommand;
+  const factory _ClearPageCommand() = _$ClearPageCommandImpl;
 }
 
 /// @nodoc
-abstract class _$$_OnSearchQueryChangedCopyWith<$Res> {
-  factory _$$_OnSearchQueryChangedCopyWith(_$_OnSearchQueryChanged value,
-          $Res Function(_$_OnSearchQueryChanged) then) =
-      __$$_OnSearchQueryChangedCopyWithImpl<$Res>;
+abstract class _$$OnSearchQueryChangedImplCopyWith<$Res> {
+  factory _$$OnSearchQueryChangedImplCopyWith(_$OnSearchQueryChangedImpl value,
+          $Res Function(_$OnSearchQueryChangedImpl) then) =
+      __$$OnSearchQueryChangedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String query});
 }
 
 /// @nodoc
-class __$$_OnSearchQueryChangedCopyWithImpl<$Res>
-    extends _$SearchUserEventCopyWithImpl<$Res, _$_OnSearchQueryChanged>
-    implements _$$_OnSearchQueryChangedCopyWith<$Res> {
-  __$$_OnSearchQueryChangedCopyWithImpl(_$_OnSearchQueryChanged _value,
-      $Res Function(_$_OnSearchQueryChanged) _then)
+class __$$OnSearchQueryChangedImplCopyWithImpl<$Res>
+    extends _$SearchUserEventCopyWithImpl<$Res, _$OnSearchQueryChangedImpl>
+    implements _$$OnSearchQueryChangedImplCopyWith<$Res> {
+  __$$OnSearchQueryChangedImplCopyWithImpl(_$OnSearchQueryChangedImpl _value,
+      $Res Function(_$OnSearchQueryChangedImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SearchUserEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? query = null,
   }) {
-    return _then(_$_OnSearchQueryChanged(
+    return _then(_$OnSearchQueryChangedImpl(
       null == query
           ? _value.query
           : query // ignore: cast_nullable_to_non_nullable
@@ -634,8 +655,8 @@ class __$$_OnSearchQueryChangedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_OnSearchQueryChanged implements _OnSearchQueryChanged {
-  const _$_OnSearchQueryChanged(this.query);
+class _$OnSearchQueryChangedImpl implements _OnSearchQueryChanged {
+  const _$OnSearchQueryChangedImpl(this.query);
 
   @override
   final String query;
@@ -646,22 +667,25 @@ class _$_OnSearchQueryChanged implements _OnSearchQueryChanged {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_OnSearchQueryChanged &&
+            other is _$OnSearchQueryChangedImpl &&
             (identical(other.query, query) || other.query == query));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, query);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SearchUserEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$_OnSearchQueryChangedCopyWith<_$_OnSearchQueryChanged> get copyWith =>
-      __$$_OnSearchQueryChangedCopyWithImpl<_$_OnSearchQueryChanged>(
-          this, _$identity);
+  _$$OnSearchQueryChangedImplCopyWith<_$OnSearchQueryChangedImpl>
+      get copyWith =>
+          __$$OnSearchQueryChangedImplCopyWithImpl<_$OnSearchQueryChangedImpl>(
+              this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -746,34 +770,40 @@ class _$_OnSearchQueryChanged implements _OnSearchQueryChanged {
 
 abstract class _OnSearchQueryChanged implements SearchUserEvent {
   const factory _OnSearchQueryChanged(final String query) =
-      _$_OnSearchQueryChanged;
+      _$OnSearchQueryChangedImpl;
 
   String get query;
-  @JsonKey(ignore: true)
-  _$$_OnSearchQueryChangedCopyWith<_$_OnSearchQueryChanged> get copyWith =>
-      throw _privateConstructorUsedError;
+
+  /// Create a copy of SearchUserEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$OnSearchQueryChangedImplCopyWith<_$OnSearchQueryChangedImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_OnClearIconTappedCopyWith<$Res> {
-  factory _$$_OnClearIconTappedCopyWith(_$_OnClearIconTapped value,
-          $Res Function(_$_OnClearIconTapped) then) =
-      __$$_OnClearIconTappedCopyWithImpl<$Res>;
+abstract class _$$OnClearIconTappedImplCopyWith<$Res> {
+  factory _$$OnClearIconTappedImplCopyWith(_$OnClearIconTappedImpl value,
+          $Res Function(_$OnClearIconTappedImpl) then) =
+      __$$OnClearIconTappedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_OnClearIconTappedCopyWithImpl<$Res>
-    extends _$SearchUserEventCopyWithImpl<$Res, _$_OnClearIconTapped>
-    implements _$$_OnClearIconTappedCopyWith<$Res> {
-  __$$_OnClearIconTappedCopyWithImpl(
-      _$_OnClearIconTapped _value, $Res Function(_$_OnClearIconTapped) _then)
+class __$$OnClearIconTappedImplCopyWithImpl<$Res>
+    extends _$SearchUserEventCopyWithImpl<$Res, _$OnClearIconTappedImpl>
+    implements _$$OnClearIconTappedImplCopyWith<$Res> {
+  __$$OnClearIconTappedImplCopyWithImpl(_$OnClearIconTappedImpl _value,
+      $Res Function(_$OnClearIconTappedImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of SearchUserEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$_OnClearIconTapped implements _OnClearIconTapped {
-  const _$_OnClearIconTapped();
+class _$OnClearIconTappedImpl implements _OnClearIconTapped {
+  const _$OnClearIconTappedImpl();
 
   @override
   String toString() {
@@ -781,9 +811,9 @@ class _$_OnClearIconTapped implements _OnClearIconTapped {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_OnClearIconTapped);
+        (other.runtimeType == runtimeType && other is _$OnClearIconTappedImpl);
   }
 
   @override
@@ -871,7 +901,7 @@ class _$_OnClearIconTapped implements _OnClearIconTapped {
 }
 
 abstract class _OnClearIconTapped implements SearchUserEvent {
-  const factory _OnClearIconTapped() = _$_OnClearIconTapped;
+  const factory _OnClearIconTapped() = _$OnClearIconTappedImpl;
 }
 
 /// @nodoc
@@ -882,7 +912,9 @@ mixin _$SearchUserState {
   bool get showClearIcon => throw _privateConstructorUsedError;
   PageCommand? get command => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SearchUserState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SearchUserStateCopyWith<SearchUserState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -913,6 +945,8 @@ class _$SearchUserStateCopyWithImpl<$Res, $Val extends SearchUserState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SearchUserState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -946,6 +980,8 @@ class _$SearchUserStateCopyWithImpl<$Res, $Val extends SearchUserState>
     ) as $Val);
   }
 
+  /// Create a copy of SearchUserState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PageCommandCopyWith<$Res>? get command {
@@ -960,11 +996,11 @@ class _$SearchUserStateCopyWithImpl<$Res, $Val extends SearchUserState>
 }
 
 /// @nodoc
-abstract class _$$_SearchUserStateCopyWith<$Res>
+abstract class _$$SearchUserStateImplCopyWith<$Res>
     implements $SearchUserStateCopyWith<$Res> {
-  factory _$$_SearchUserStateCopyWith(
-          _$_SearchUserState value, $Res Function(_$_SearchUserState) then) =
-      __$$_SearchUserStateCopyWithImpl<$Res>;
+  factory _$$SearchUserStateImplCopyWith(_$SearchUserStateImpl value,
+          $Res Function(_$SearchUserStateImpl) then) =
+      __$$SearchUserStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -979,13 +1015,15 @@ abstract class _$$_SearchUserStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_SearchUserStateCopyWithImpl<$Res>
-    extends _$SearchUserStateCopyWithImpl<$Res, _$_SearchUserState>
-    implements _$$_SearchUserStateCopyWith<$Res> {
-  __$$_SearchUserStateCopyWithImpl(
-      _$_SearchUserState _value, $Res Function(_$_SearchUserState) _then)
+class __$$SearchUserStateImplCopyWithImpl<$Res>
+    extends _$SearchUserStateCopyWithImpl<$Res, _$SearchUserStateImpl>
+    implements _$$SearchUserStateImplCopyWith<$Res> {
+  __$$SearchUserStateImplCopyWithImpl(
+      _$SearchUserStateImpl _value, $Res Function(_$SearchUserStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SearchUserState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -995,7 +1033,7 @@ class __$$_SearchUserStateCopyWithImpl<$Res>
     Object? showClearIcon = null,
     Object? command = freezed,
   }) {
-    return _then(_$_SearchUserState(
+    return _then(_$SearchUserStateImpl(
       pageState: null == pageState
           ? _value.pageState
           : pageState // ignore: cast_nullable_to_non_nullable
@@ -1022,8 +1060,8 @@ class __$$_SearchUserStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_SearchUserState extends _SearchUserState {
-  const _$_SearchUserState(
+class _$SearchUserStateImpl extends _SearchUserState {
+  const _$SearchUserStateImpl(
       {this.pageState = PageState.initial,
       final List<UserProfileData> users = const [],
       this.searchQuery = '',
@@ -1059,10 +1097,10 @@ class _$_SearchUserState extends _SearchUserState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_SearchUserState &&
+            other is _$SearchUserStateImpl &&
             (identical(other.pageState, pageState) ||
                 other.pageState == pageState) &&
             const DeepCollectionEquality().equals(other._users, _users) &&
@@ -1082,11 +1120,14 @@ class _$_SearchUserState extends _SearchUserState {
       showClearIcon,
       command);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SearchUserState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$_SearchUserStateCopyWith<_$_SearchUserState> get copyWith =>
-      __$$_SearchUserStateCopyWithImpl<_$_SearchUserState>(this, _$identity);
+  _$$SearchUserStateImplCopyWith<_$SearchUserStateImpl> get copyWith =>
+      __$$SearchUserStateImplCopyWithImpl<_$SearchUserStateImpl>(
+          this, _$identity);
 }
 
 abstract class _SearchUserState extends SearchUserState {
@@ -1095,7 +1136,7 @@ abstract class _SearchUserState extends SearchUserState {
       final List<UserProfileData> users,
       final String searchQuery,
       final bool showClearIcon,
-      final PageCommand? command}) = _$_SearchUserState;
+      final PageCommand? command}) = _$SearchUserStateImpl;
   const _SearchUserState._() : super._();
 
   @override
@@ -1108,8 +1149,11 @@ abstract class _SearchUserState extends SearchUserState {
   bool get showClearIcon;
   @override
   PageCommand? get command;
+
+  /// Create a copy of SearchUserState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
-  _$$_SearchUserStateCopyWith<_$_SearchUserState> get copyWith =>
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$SearchUserStateImplCopyWith<_$SearchUserStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

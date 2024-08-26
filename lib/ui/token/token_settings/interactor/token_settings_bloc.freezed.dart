@@ -12,7 +12,7 @@ part of 'token_settings_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$PageCommand {
@@ -66,28 +66,34 @@ class _$PageCommandCopyWithImpl<$Res, $Val extends PageCommand>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of PageCommand
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
-abstract class _$$_NavigateToCopyWith<$Res> {
-  factory _$$_NavigateToCopyWith(
-          _$_NavigateTo value, $Res Function(_$_NavigateTo) then) =
-      __$$_NavigateToCopyWithImpl<$Res>;
+abstract class _$$NavigateToImplCopyWith<$Res> {
+  factory _$$NavigateToImplCopyWith(
+          _$NavigateToImpl value, $Res Function(_$NavigateToImpl) then) =
+      __$$NavigateToImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_NavigateToCopyWithImpl<$Res>
-    extends _$PageCommandCopyWithImpl<$Res, _$_NavigateTo>
-    implements _$$_NavigateToCopyWith<$Res> {
-  __$$_NavigateToCopyWithImpl(
-      _$_NavigateTo _value, $Res Function(_$_NavigateTo) _then)
+class __$$NavigateToImplCopyWithImpl<$Res>
+    extends _$PageCommandCopyWithImpl<$Res, _$NavigateToImpl>
+    implements _$$NavigateToImplCopyWith<$Res> {
+  __$$NavigateToImplCopyWithImpl(
+      _$NavigateToImpl _value, $Res Function(_$NavigateToImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of PageCommand
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$_NavigateTo implements _NavigateTo {
-  const _$_NavigateTo();
+class _$NavigateToImpl implements _NavigateTo {
+  const _$NavigateToImpl();
 
   @override
   String toString() {
@@ -95,9 +101,9 @@ class _$_NavigateTo implements _NavigateTo {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_NavigateTo);
+        (other.runtimeType == runtimeType && other is _$NavigateToImpl);
   }
 
   @override
@@ -161,7 +167,7 @@ class _$_NavigateTo implements _NavigateTo {
 }
 
 abstract class _NavigateTo implements PageCommand {
-  const factory _NavigateTo() = _$_NavigateTo;
+  const factory _NavigateTo() = _$NavigateToImpl;
 }
 
 /// @nodoc
@@ -240,27 +246,34 @@ class _$TokensSettingsEventCopyWithImpl<$Res, $Val extends TokensSettingsEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of TokensSettingsEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
-abstract class _$$_InitialCopyWith<$Res> {
-  factory _$$_InitialCopyWith(
-          _$_Initial value, $Res Function(_$_Initial) then) =
-      __$$_InitialCopyWithImpl<$Res>;
+abstract class _$$InitialImplCopyWith<$Res> {
+  factory _$$InitialImplCopyWith(
+          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
+      __$$InitialImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_InitialCopyWithImpl<$Res>
-    extends _$TokensSettingsEventCopyWithImpl<$Res, _$_Initial>
-    implements _$$_InitialCopyWith<$Res> {
-  __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
+class __$$InitialImplCopyWithImpl<$Res>
+    extends _$TokensSettingsEventCopyWithImpl<$Res, _$InitialImpl>
+    implements _$$InitialImplCopyWith<$Res> {
+  __$$InitialImplCopyWithImpl(
+      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of TokensSettingsEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$_Initial implements _Initial {
-  const _$_Initial();
+class _$InitialImpl implements _Initial {
+  const _$InitialImpl();
 
   @override
   String toString() {
@@ -268,9 +281,9 @@ class _$_Initial implements _Initial {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Initial);
+        (other.runtimeType == runtimeType && other is _$InitialImpl);
   }
 
   @override
@@ -358,28 +371,32 @@ class _$_Initial implements _Initial {
 }
 
 abstract class _Initial implements TokensSettingsEvent {
-  const factory _Initial() = _$_Initial;
+  const factory _Initial() = _$InitialImpl;
 }
 
 /// @nodoc
-abstract class _$$_RefreshCopyWith<$Res> {
-  factory _$$_RefreshCopyWith(
-          _$_Refresh value, $Res Function(_$_Refresh) then) =
-      __$$_RefreshCopyWithImpl<$Res>;
+abstract class _$$RefreshImplCopyWith<$Res> {
+  factory _$$RefreshImplCopyWith(
+          _$RefreshImpl value, $Res Function(_$RefreshImpl) then) =
+      __$$RefreshImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_RefreshCopyWithImpl<$Res>
-    extends _$TokensSettingsEventCopyWithImpl<$Res, _$_Refresh>
-    implements _$$_RefreshCopyWith<$Res> {
-  __$$_RefreshCopyWithImpl(_$_Refresh _value, $Res Function(_$_Refresh) _then)
+class __$$RefreshImplCopyWithImpl<$Res>
+    extends _$TokensSettingsEventCopyWithImpl<$Res, _$RefreshImpl>
+    implements _$$RefreshImplCopyWith<$Res> {
+  __$$RefreshImplCopyWithImpl(
+      _$RefreshImpl _value, $Res Function(_$RefreshImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of TokensSettingsEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$_Refresh implements _Refresh {
-  const _$_Refresh();
+class _$RefreshImpl implements _Refresh {
+  const _$RefreshImpl();
 
   @override
   String toString() {
@@ -387,9 +404,9 @@ class _$_Refresh implements _Refresh {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Refresh);
+        (other.runtimeType == runtimeType && other is _$RefreshImpl);
   }
 
   @override
@@ -477,32 +494,34 @@ class _$_Refresh implements _Refresh {
 }
 
 abstract class _Refresh implements TokensSettingsEvent {
-  const factory _Refresh() = _$_Refresh;
+  const factory _Refresh() = _$RefreshImpl;
 }
 
 /// @nodoc
-abstract class _$$_AddTokenToUserCopyWith<$Res> {
-  factory _$$_AddTokenToUserCopyWith(
-          _$_AddTokenToUser value, $Res Function(_$_AddTokenToUser) then) =
-      __$$_AddTokenToUserCopyWithImpl<$Res>;
+abstract class _$$AddTokenToUserImplCopyWith<$Res> {
+  factory _$$AddTokenToUserImplCopyWith(_$AddTokenToUserImpl value,
+          $Res Function(_$AddTokenToUserImpl) then) =
+      __$$AddTokenToUserImplCopyWithImpl<$Res>;
   @useResult
   $Res call({WalletTokenData token});
 }
 
 /// @nodoc
-class __$$_AddTokenToUserCopyWithImpl<$Res>
-    extends _$TokensSettingsEventCopyWithImpl<$Res, _$_AddTokenToUser>
-    implements _$$_AddTokenToUserCopyWith<$Res> {
-  __$$_AddTokenToUserCopyWithImpl(
-      _$_AddTokenToUser _value, $Res Function(_$_AddTokenToUser) _then)
+class __$$AddTokenToUserImplCopyWithImpl<$Res>
+    extends _$TokensSettingsEventCopyWithImpl<$Res, _$AddTokenToUserImpl>
+    implements _$$AddTokenToUserImplCopyWith<$Res> {
+  __$$AddTokenToUserImplCopyWithImpl(
+      _$AddTokenToUserImpl _value, $Res Function(_$AddTokenToUserImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TokensSettingsEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? token = null,
   }) {
-    return _then(_$_AddTokenToUser(
+    return _then(_$AddTokenToUserImpl(
       null == token
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
@@ -513,8 +532,8 @@ class __$$_AddTokenToUserCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_AddTokenToUser implements _AddTokenToUser {
-  const _$_AddTokenToUser(this.token);
+class _$AddTokenToUserImpl implements _AddTokenToUser {
+  const _$AddTokenToUserImpl(this.token);
 
   @override
   final WalletTokenData token;
@@ -525,21 +544,24 @@ class _$_AddTokenToUser implements _AddTokenToUser {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_AddTokenToUser &&
+            other is _$AddTokenToUserImpl &&
             (identical(other.token, token) || other.token == token));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, token);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TokensSettingsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$_AddTokenToUserCopyWith<_$_AddTokenToUser> get copyWith =>
-      __$$_AddTokenToUserCopyWithImpl<_$_AddTokenToUser>(this, _$identity);
+  _$$AddTokenToUserImplCopyWith<_$AddTokenToUserImpl> get copyWith =>
+      __$$AddTokenToUserImplCopyWithImpl<_$AddTokenToUserImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -624,37 +646,42 @@ class _$_AddTokenToUser implements _AddTokenToUser {
 
 abstract class _AddTokenToUser implements TokensSettingsEvent {
   const factory _AddTokenToUser(final WalletTokenData token) =
-      _$_AddTokenToUser;
+      _$AddTokenToUserImpl;
 
   WalletTokenData get token;
-  @JsonKey(ignore: true)
-  _$$_AddTokenToUserCopyWith<_$_AddTokenToUser> get copyWith =>
+
+  /// Create a copy of TokensSettingsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$AddTokenToUserImplCopyWith<_$AddTokenToUserImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_RemoveTokenToUserCopyWith<$Res> {
-  factory _$$_RemoveTokenToUserCopyWith(_$_RemoveTokenToUser value,
-          $Res Function(_$_RemoveTokenToUser) then) =
-      __$$_RemoveTokenToUserCopyWithImpl<$Res>;
+abstract class _$$RemoveTokenToUserImplCopyWith<$Res> {
+  factory _$$RemoveTokenToUserImplCopyWith(_$RemoveTokenToUserImpl value,
+          $Res Function(_$RemoveTokenToUserImpl) then) =
+      __$$RemoveTokenToUserImplCopyWithImpl<$Res>;
   @useResult
   $Res call({WalletTokenData token});
 }
 
 /// @nodoc
-class __$$_RemoveTokenToUserCopyWithImpl<$Res>
-    extends _$TokensSettingsEventCopyWithImpl<$Res, _$_RemoveTokenToUser>
-    implements _$$_RemoveTokenToUserCopyWith<$Res> {
-  __$$_RemoveTokenToUserCopyWithImpl(
-      _$_RemoveTokenToUser _value, $Res Function(_$_RemoveTokenToUser) _then)
+class __$$RemoveTokenToUserImplCopyWithImpl<$Res>
+    extends _$TokensSettingsEventCopyWithImpl<$Res, _$RemoveTokenToUserImpl>
+    implements _$$RemoveTokenToUserImplCopyWith<$Res> {
+  __$$RemoveTokenToUserImplCopyWithImpl(_$RemoveTokenToUserImpl _value,
+      $Res Function(_$RemoveTokenToUserImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TokensSettingsEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? token = null,
   }) {
-    return _then(_$_RemoveTokenToUser(
+    return _then(_$RemoveTokenToUserImpl(
       null == token
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
@@ -665,8 +692,8 @@ class __$$_RemoveTokenToUserCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_RemoveTokenToUser implements _RemoveTokenToUser {
-  const _$_RemoveTokenToUser(this.token);
+class _$RemoveTokenToUserImpl implements _RemoveTokenToUser {
+  const _$RemoveTokenToUserImpl(this.token);
 
   @override
   final WalletTokenData token;
@@ -677,21 +704,23 @@ class _$_RemoveTokenToUser implements _RemoveTokenToUser {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_RemoveTokenToUser &&
+            other is _$RemoveTokenToUserImpl &&
             (identical(other.token, token) || other.token == token));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, token);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TokensSettingsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$_RemoveTokenToUserCopyWith<_$_RemoveTokenToUser> get copyWith =>
-      __$$_RemoveTokenToUserCopyWithImpl<_$_RemoveTokenToUser>(
+  _$$RemoveTokenToUserImplCopyWith<_$RemoveTokenToUserImpl> get copyWith =>
+      __$$RemoveTokenToUserImplCopyWithImpl<_$RemoveTokenToUserImpl>(
           this, _$identity);
 
   @override
@@ -777,34 +806,40 @@ class _$_RemoveTokenToUser implements _RemoveTokenToUser {
 
 abstract class _RemoveTokenToUser implements TokensSettingsEvent {
   const factory _RemoveTokenToUser(final WalletTokenData token) =
-      _$_RemoveTokenToUser;
+      _$RemoveTokenToUserImpl;
 
   WalletTokenData get token;
-  @JsonKey(ignore: true)
-  _$$_RemoveTokenToUserCopyWith<_$_RemoveTokenToUser> get copyWith =>
+
+  /// Create a copy of TokensSettingsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$RemoveTokenToUserImplCopyWith<_$RemoveTokenToUserImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_ClearPageCommandCopyWith<$Res> {
-  factory _$$_ClearPageCommandCopyWith(
-          _$_ClearPageCommand value, $Res Function(_$_ClearPageCommand) then) =
-      __$$_ClearPageCommandCopyWithImpl<$Res>;
+abstract class _$$ClearPageCommandImplCopyWith<$Res> {
+  factory _$$ClearPageCommandImplCopyWith(_$ClearPageCommandImpl value,
+          $Res Function(_$ClearPageCommandImpl) then) =
+      __$$ClearPageCommandImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_ClearPageCommandCopyWithImpl<$Res>
-    extends _$TokensSettingsEventCopyWithImpl<$Res, _$_ClearPageCommand>
-    implements _$$_ClearPageCommandCopyWith<$Res> {
-  __$$_ClearPageCommandCopyWithImpl(
-      _$_ClearPageCommand _value, $Res Function(_$_ClearPageCommand) _then)
+class __$$ClearPageCommandImplCopyWithImpl<$Res>
+    extends _$TokensSettingsEventCopyWithImpl<$Res, _$ClearPageCommandImpl>
+    implements _$$ClearPageCommandImplCopyWith<$Res> {
+  __$$ClearPageCommandImplCopyWithImpl(_$ClearPageCommandImpl _value,
+      $Res Function(_$ClearPageCommandImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of TokensSettingsEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$_ClearPageCommand implements _ClearPageCommand {
-  const _$_ClearPageCommand();
+class _$ClearPageCommandImpl implements _ClearPageCommand {
+  const _$ClearPageCommandImpl();
 
   @override
   String toString() {
@@ -812,9 +847,9 @@ class _$_ClearPageCommand implements _ClearPageCommand {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_ClearPageCommand);
+        (other.runtimeType == runtimeType && other is _$ClearPageCommandImpl);
   }
 
   @override
@@ -902,7 +937,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
 }
 
 abstract class _ClearPageCommand implements TokensSettingsEvent {
-  const factory _ClearPageCommand() = _$_ClearPageCommand;
+  const factory _ClearPageCommand() = _$ClearPageCommandImpl;
 }
 
 /// @nodoc
@@ -911,7 +946,9 @@ mixin _$TokensSettingsState {
   PageCommand? get command => throw _privateConstructorUsedError;
   List<WalletTokenData> get tokens => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TokensSettingsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TokensSettingsStateCopyWith<TokensSettingsState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -940,6 +977,8 @@ class _$TokensSettingsStateCopyWithImpl<$Res, $Val extends TokensSettingsState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TokensSettingsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -963,6 +1002,8 @@ class _$TokensSettingsStateCopyWithImpl<$Res, $Val extends TokensSettingsState>
     ) as $Val);
   }
 
+  /// Create a copy of TokensSettingsState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PageCommandCopyWith<$Res>? get command {
@@ -977,11 +1018,11 @@ class _$TokensSettingsStateCopyWithImpl<$Res, $Val extends TokensSettingsState>
 }
 
 /// @nodoc
-abstract class _$$_TokensSettingsStateCopyWith<$Res>
+abstract class _$$TokensSettingsStateImplCopyWith<$Res>
     implements $TokensSettingsStateCopyWith<$Res> {
-  factory _$$_TokensSettingsStateCopyWith(_$_TokensSettingsState value,
-          $Res Function(_$_TokensSettingsState) then) =
-      __$$_TokensSettingsStateCopyWithImpl<$Res>;
+  factory _$$TokensSettingsStateImplCopyWith(_$TokensSettingsStateImpl value,
+          $Res Function(_$TokensSettingsStateImpl) then) =
+      __$$TokensSettingsStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -994,13 +1035,15 @@ abstract class _$$_TokensSettingsStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_TokensSettingsStateCopyWithImpl<$Res>
-    extends _$TokensSettingsStateCopyWithImpl<$Res, _$_TokensSettingsState>
-    implements _$$_TokensSettingsStateCopyWith<$Res> {
-  __$$_TokensSettingsStateCopyWithImpl(_$_TokensSettingsState _value,
-      $Res Function(_$_TokensSettingsState) _then)
+class __$$TokensSettingsStateImplCopyWithImpl<$Res>
+    extends _$TokensSettingsStateCopyWithImpl<$Res, _$TokensSettingsStateImpl>
+    implements _$$TokensSettingsStateImplCopyWith<$Res> {
+  __$$TokensSettingsStateImplCopyWithImpl(_$TokensSettingsStateImpl _value,
+      $Res Function(_$TokensSettingsStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TokensSettingsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1008,7 +1051,7 @@ class __$$_TokensSettingsStateCopyWithImpl<$Res>
     Object? command = freezed,
     Object? tokens = null,
   }) {
-    return _then(_$_TokensSettingsState(
+    return _then(_$TokensSettingsStateImpl(
       pageState: null == pageState
           ? _value.pageState
           : pageState // ignore: cast_nullable_to_non_nullable
@@ -1027,8 +1070,8 @@ class __$$_TokensSettingsStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_TokensSettingsState extends _TokensSettingsState {
-  const _$_TokensSettingsState(
+class _$TokensSettingsStateImpl extends _TokensSettingsState {
+  const _$TokensSettingsStateImpl(
       {this.pageState = PageState.initial,
       this.command,
       final List<WalletTokenData> tokens = const []})
@@ -1055,10 +1098,10 @@ class _$_TokensSettingsState extends _TokensSettingsState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TokensSettingsState &&
+            other is _$TokensSettingsStateImpl &&
             (identical(other.pageState, pageState) ||
                 other.pageState == pageState) &&
             (identical(other.command, command) || other.command == command) &&
@@ -1069,11 +1112,13 @@ class _$_TokensSettingsState extends _TokensSettingsState {
   int get hashCode => Object.hash(runtimeType, pageState, command,
       const DeepCollectionEquality().hash(_tokens));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TokensSettingsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TokensSettingsStateCopyWith<_$_TokensSettingsState> get copyWith =>
-      __$$_TokensSettingsStateCopyWithImpl<_$_TokensSettingsState>(
+  _$$TokensSettingsStateImplCopyWith<_$TokensSettingsStateImpl> get copyWith =>
+      __$$TokensSettingsStateImplCopyWithImpl<_$TokensSettingsStateImpl>(
           this, _$identity);
 }
 
@@ -1081,7 +1126,7 @@ abstract class _TokensSettingsState extends TokensSettingsState {
   const factory _TokensSettingsState(
       {final PageState pageState,
       final PageCommand? command,
-      final List<WalletTokenData> tokens}) = _$_TokensSettingsState;
+      final List<WalletTokenData> tokens}) = _$TokensSettingsStateImpl;
   const _TokensSettingsState._() : super._();
 
   @override
@@ -1090,8 +1135,11 @@ abstract class _TokensSettingsState extends TokensSettingsState {
   PageCommand? get command;
   @override
   List<WalletTokenData> get tokens;
+
+  /// Create a copy of TokensSettingsState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
-  _$$_TokensSettingsStateCopyWith<_$_TokensSettingsState> get copyWith =>
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$TokensSettingsStateImplCopyWith<_$TokensSettingsStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

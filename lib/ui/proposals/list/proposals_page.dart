@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hypha_wallet/core/network/models/proposal_model.dart';
+import 'package:hypha_wallet/ui/proposals/list/components/proposals_view.dart';
 import 'package:hypha_wallet/ui/proposals/list/interactor/proposals_bloc.dart';
 
 class ProposalsPage extends StatelessWidget {
@@ -22,7 +23,7 @@ class ProposalsPage extends StatelessWidget {
 
           context.read<ProposalsBloc>().add(const ProposalsEvent.clearPageCommand());
         },
-        child: Container(),
+        child: const ProposalsView(),
       ),
     );
   }

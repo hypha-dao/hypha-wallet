@@ -12,7 +12,7 @@ part of 'push_notifications_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$PageCommand {
@@ -54,7 +54,9 @@ mixin _$PageCommand {
   }) =>
       throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PageCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PageCommandCopyWith<PageCommand> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -78,6 +80,8 @@ class _$PageCommandCopyWithImpl<$Res, $Val extends PageCommand>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PageCommand
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -93,32 +97,34 @@ class _$PageCommandCopyWithImpl<$Res, $Val extends PageCommand>
 }
 
 /// @nodoc
-abstract class _$$_NavigateToSignTransactionCopyWith<$Res>
+abstract class _$$NavigateToSignTransactionImplCopyWith<$Res>
     implements $PageCommandCopyWith<$Res> {
-  factory _$$_NavigateToSignTransactionCopyWith(
-          _$_NavigateToSignTransaction value,
-          $Res Function(_$_NavigateToSignTransaction) then) =
-      __$$_NavigateToSignTransactionCopyWithImpl<$Res>;
+  factory _$$NavigateToSignTransactionImplCopyWith(
+          _$NavigateToSignTransactionImpl value,
+          $Res Function(_$NavigateToSignTransactionImpl) then) =
+      __$$NavigateToSignTransactionImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({ScanQrCodeResultData data});
 }
 
 /// @nodoc
-class __$$_NavigateToSignTransactionCopyWithImpl<$Res>
-    extends _$PageCommandCopyWithImpl<$Res, _$_NavigateToSignTransaction>
-    implements _$$_NavigateToSignTransactionCopyWith<$Res> {
-  __$$_NavigateToSignTransactionCopyWithImpl(
-      _$_NavigateToSignTransaction _value,
-      $Res Function(_$_NavigateToSignTransaction) _then)
+class __$$NavigateToSignTransactionImplCopyWithImpl<$Res>
+    extends _$PageCommandCopyWithImpl<$Res, _$NavigateToSignTransactionImpl>
+    implements _$$NavigateToSignTransactionImplCopyWith<$Res> {
+  __$$NavigateToSignTransactionImplCopyWithImpl(
+      _$NavigateToSignTransactionImpl _value,
+      $Res Function(_$NavigateToSignTransactionImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PageCommand
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? data = null,
   }) {
-    return _then(_$_NavigateToSignTransaction(
+    return _then(_$NavigateToSignTransactionImpl(
       null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
@@ -129,8 +135,8 @@ class __$$_NavigateToSignTransactionCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_NavigateToSignTransaction implements _NavigateToSignTransaction {
-  const _$_NavigateToSignTransaction(this.data);
+class _$NavigateToSignTransactionImpl implements _NavigateToSignTransaction {
+  const _$NavigateToSignTransactionImpl(this.data);
 
   @override
   final ScanQrCodeResultData data;
@@ -141,22 +147,24 @@ class _$_NavigateToSignTransaction implements _NavigateToSignTransaction {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_NavigateToSignTransaction &&
+            other is _$NavigateToSignTransactionImpl &&
             (identical(other.data, data) || other.data == data));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, data);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PageCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$_NavigateToSignTransactionCopyWith<_$_NavigateToSignTransaction>
-      get copyWith => __$$_NavigateToSignTransactionCopyWithImpl<
-          _$_NavigateToSignTransaction>(this, _$identity);
+  _$$NavigateToSignTransactionImplCopyWith<_$NavigateToSignTransactionImpl>
+      get copyWith => __$$NavigateToSignTransactionImplCopyWithImpl<
+          _$NavigateToSignTransactionImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -221,13 +229,16 @@ class _$_NavigateToSignTransaction implements _NavigateToSignTransaction {
 
 abstract class _NavigateToSignTransaction implements PageCommand {
   const factory _NavigateToSignTransaction(final ScanQrCodeResultData data) =
-      _$_NavigateToSignTransaction;
+      _$NavigateToSignTransactionImpl;
 
   @override
   ScanQrCodeResultData get data;
+
+  /// Create a copy of PageCommand
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
-  _$$_NavigateToSignTransactionCopyWith<_$_NavigateToSignTransaction>
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$NavigateToSignTransactionImplCopyWith<_$NavigateToSignTransactionImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -293,28 +304,34 @@ class _$PushNotificationsEventCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of PushNotificationsEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
-abstract class _$$_ClearPageCommandCopyWith<$Res> {
-  factory _$$_ClearPageCommandCopyWith(
-          _$_ClearPageCommand value, $Res Function(_$_ClearPageCommand) then) =
-      __$$_ClearPageCommandCopyWithImpl<$Res>;
+abstract class _$$ClearPageCommandImplCopyWith<$Res> {
+  factory _$$ClearPageCommandImplCopyWith(_$ClearPageCommandImpl value,
+          $Res Function(_$ClearPageCommandImpl) then) =
+      __$$ClearPageCommandImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_ClearPageCommandCopyWithImpl<$Res>
-    extends _$PushNotificationsEventCopyWithImpl<$Res, _$_ClearPageCommand>
-    implements _$$_ClearPageCommandCopyWith<$Res> {
-  __$$_ClearPageCommandCopyWithImpl(
-      _$_ClearPageCommand _value, $Res Function(_$_ClearPageCommand) _then)
+class __$$ClearPageCommandImplCopyWithImpl<$Res>
+    extends _$PushNotificationsEventCopyWithImpl<$Res, _$ClearPageCommandImpl>
+    implements _$$ClearPageCommandImplCopyWith<$Res> {
+  __$$ClearPageCommandImplCopyWithImpl(_$ClearPageCommandImpl _value,
+      $Res Function(_$ClearPageCommandImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of PushNotificationsEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$_ClearPageCommand implements _ClearPageCommand {
-  const _$_ClearPageCommand();
+class _$ClearPageCommandImpl implements _ClearPageCommand {
+  const _$ClearPageCommandImpl();
 
   @override
   String toString() {
@@ -322,9 +339,9 @@ class _$_ClearPageCommand implements _ClearPageCommand {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_ClearPageCommand);
+        (other.runtimeType == runtimeType && other is _$ClearPageCommandImpl);
   }
 
   @override
@@ -397,33 +414,35 @@ class _$_ClearPageCommand implements _ClearPageCommand {
 }
 
 abstract class _ClearPageCommand implements PushNotificationsEvent {
-  const factory _ClearPageCommand() = _$_ClearPageCommand;
+  const factory _ClearPageCommand() = _$ClearPageCommandImpl;
 }
 
 /// @nodoc
-abstract class _$$_OnMessageReceivedCopyWith<$Res> {
-  factory _$$_OnMessageReceivedCopyWith(_$_OnMessageReceived value,
-          $Res Function(_$_OnMessageReceived) then) =
-      __$$_OnMessageReceivedCopyWithImpl<$Res>;
+abstract class _$$OnMessageReceivedImplCopyWith<$Res> {
+  factory _$$OnMessageReceivedImplCopyWith(_$OnMessageReceivedImpl value,
+          $Res Function(_$OnMessageReceivedImpl) then) =
+      __$$OnMessageReceivedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({RemoteMessage message, bool isBackground});
 }
 
 /// @nodoc
-class __$$_OnMessageReceivedCopyWithImpl<$Res>
-    extends _$PushNotificationsEventCopyWithImpl<$Res, _$_OnMessageReceived>
-    implements _$$_OnMessageReceivedCopyWith<$Res> {
-  __$$_OnMessageReceivedCopyWithImpl(
-      _$_OnMessageReceived _value, $Res Function(_$_OnMessageReceived) _then)
+class __$$OnMessageReceivedImplCopyWithImpl<$Res>
+    extends _$PushNotificationsEventCopyWithImpl<$Res, _$OnMessageReceivedImpl>
+    implements _$$OnMessageReceivedImplCopyWith<$Res> {
+  __$$OnMessageReceivedImplCopyWithImpl(_$OnMessageReceivedImpl _value,
+      $Res Function(_$OnMessageReceivedImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PushNotificationsEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? message = null,
     Object? isBackground = null,
   }) {
-    return _then(_$_OnMessageReceived(
+    return _then(_$OnMessageReceivedImpl(
       null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -438,8 +457,8 @@ class __$$_OnMessageReceivedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_OnMessageReceived implements _OnMessageReceived {
-  const _$_OnMessageReceived(this.message, this.isBackground);
+class _$OnMessageReceivedImpl implements _OnMessageReceived {
+  const _$OnMessageReceivedImpl(this.message, this.isBackground);
 
   @override
   final RemoteMessage message;
@@ -452,10 +471,10 @@ class _$_OnMessageReceived implements _OnMessageReceived {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_OnMessageReceived &&
+            other is _$OnMessageReceivedImpl &&
             (identical(other.message, message) || other.message == message) &&
             (identical(other.isBackground, isBackground) ||
                 other.isBackground == isBackground));
@@ -464,11 +483,13 @@ class _$_OnMessageReceived implements _OnMessageReceived {
   @override
   int get hashCode => Object.hash(runtimeType, message, isBackground);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PushNotificationsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$_OnMessageReceivedCopyWith<_$_OnMessageReceived> get copyWith =>
-      __$$_OnMessageReceivedCopyWithImpl<_$_OnMessageReceived>(
+  _$$OnMessageReceivedImplCopyWith<_$OnMessageReceivedImpl> get copyWith =>
+      __$$OnMessageReceivedImplCopyWithImpl<_$OnMessageReceivedImpl>(
           this, _$identity);
 
   @override
@@ -540,12 +561,15 @@ class _$_OnMessageReceived implements _OnMessageReceived {
 abstract class _OnMessageReceived implements PushNotificationsEvent {
   const factory _OnMessageReceived(
           final RemoteMessage message, final bool isBackground) =
-      _$_OnMessageReceived;
+      _$OnMessageReceivedImpl;
 
   RemoteMessage get message;
   bool get isBackground;
-  @JsonKey(ignore: true)
-  _$$_OnMessageReceivedCopyWith<_$_OnMessageReceived> get copyWith =>
+
+  /// Create a copy of PushNotificationsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$OnMessageReceivedImplCopyWith<_$OnMessageReceivedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -553,7 +577,9 @@ abstract class _OnMessageReceived implements PushNotificationsEvent {
 mixin _$PushNotificationsState {
   PageCommand? get command => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PushNotificationsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PushNotificationsStateCopyWith<PushNotificationsState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -580,6 +606,8 @@ class _$PushNotificationsStateCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PushNotificationsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -593,6 +621,8 @@ class _$PushNotificationsStateCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of PushNotificationsState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PageCommandCopyWith<$Res>? get command {
@@ -607,11 +637,12 @@ class _$PushNotificationsStateCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_PushNotificationsStateCopyWith<$Res>
+abstract class _$$PushNotificationsStateImplCopyWith<$Res>
     implements $PushNotificationsStateCopyWith<$Res> {
-  factory _$$_PushNotificationsStateCopyWith(_$_PushNotificationsState value,
-          $Res Function(_$_PushNotificationsState) then) =
-      __$$_PushNotificationsStateCopyWithImpl<$Res>;
+  factory _$$PushNotificationsStateImplCopyWith(
+          _$PushNotificationsStateImpl value,
+          $Res Function(_$PushNotificationsStateImpl) then) =
+      __$$PushNotificationsStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({PageCommand? command});
@@ -621,20 +652,23 @@ abstract class _$$_PushNotificationsStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_PushNotificationsStateCopyWithImpl<$Res>
+class __$$PushNotificationsStateImplCopyWithImpl<$Res>
     extends _$PushNotificationsStateCopyWithImpl<$Res,
-        _$_PushNotificationsState>
-    implements _$$_PushNotificationsStateCopyWith<$Res> {
-  __$$_PushNotificationsStateCopyWithImpl(_$_PushNotificationsState _value,
-      $Res Function(_$_PushNotificationsState) _then)
+        _$PushNotificationsStateImpl>
+    implements _$$PushNotificationsStateImplCopyWith<$Res> {
+  __$$PushNotificationsStateImplCopyWithImpl(
+      _$PushNotificationsStateImpl _value,
+      $Res Function(_$PushNotificationsStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PushNotificationsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? command = freezed,
   }) {
-    return _then(_$_PushNotificationsState(
+    return _then(_$PushNotificationsStateImpl(
       command: freezed == command
           ? _value.command
           : command // ignore: cast_nullable_to_non_nullable
@@ -645,8 +679,8 @@ class __$$_PushNotificationsStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_PushNotificationsState implements _PushNotificationsState {
-  const _$_PushNotificationsState({this.command});
+class _$PushNotificationsStateImpl implements _PushNotificationsState {
+  const _$PushNotificationsStateImpl({this.command});
 
   @override
   final PageCommand? command;
@@ -657,32 +691,37 @@ class _$_PushNotificationsState implements _PushNotificationsState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_PushNotificationsState &&
+            other is _$PushNotificationsStateImpl &&
             (identical(other.command, command) || other.command == command));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, command);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PushNotificationsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$_PushNotificationsStateCopyWith<_$_PushNotificationsState> get copyWith =>
-      __$$_PushNotificationsStateCopyWithImpl<_$_PushNotificationsState>(
-          this, _$identity);
+  _$$PushNotificationsStateImplCopyWith<_$PushNotificationsStateImpl>
+      get copyWith => __$$PushNotificationsStateImplCopyWithImpl<
+          _$PushNotificationsStateImpl>(this, _$identity);
 }
 
 abstract class _PushNotificationsState implements PushNotificationsState {
   const factory _PushNotificationsState({final PageCommand? command}) =
-      _$_PushNotificationsState;
+      _$PushNotificationsStateImpl;
 
   @override
   PageCommand? get command;
+
+  /// Create a copy of PushNotificationsState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
-  _$$_PushNotificationsStateCopyWith<_$_PushNotificationsState> get copyWith =>
-      throw _privateConstructorUsedError;
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$PushNotificationsStateImplCopyWith<_$PushNotificationsStateImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

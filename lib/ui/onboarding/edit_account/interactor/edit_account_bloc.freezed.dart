@@ -12,7 +12,7 @@ part of 'edit_account_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$EditAccountEvent {
@@ -84,27 +84,34 @@ class _$EditAccountEventCopyWithImpl<$Res, $Val extends EditAccountEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of EditAccountEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
-abstract class _$$_InitialCopyWith<$Res> {
-  factory _$$_InitialCopyWith(
-          _$_Initial value, $Res Function(_$_Initial) then) =
-      __$$_InitialCopyWithImpl<$Res>;
+abstract class _$$InitialImplCopyWith<$Res> {
+  factory _$$InitialImplCopyWith(
+          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
+      __$$InitialImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_InitialCopyWithImpl<$Res>
-    extends _$EditAccountEventCopyWithImpl<$Res, _$_Initial>
-    implements _$$_InitialCopyWith<$Res> {
-  __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
+class __$$InitialImplCopyWithImpl<$Res>
+    extends _$EditAccountEventCopyWithImpl<$Res, _$InitialImpl>
+    implements _$$InitialImplCopyWith<$Res> {
+  __$$InitialImplCopyWithImpl(
+      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of EditAccountEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$_Initial implements _Initial {
-  const _$_Initial();
+class _$InitialImpl implements _Initial {
+  const _$InitialImpl();
 
   @override
   String toString() {
@@ -112,9 +119,9 @@ class _$_Initial implements _Initial {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Initial);
+        (other.runtimeType == runtimeType && other is _$InitialImpl);
   }
 
   @override
@@ -196,32 +203,34 @@ class _$_Initial implements _Initial {
 }
 
 abstract class _Initial implements EditAccountEvent {
-  const factory _Initial() = _$_Initial;
+  const factory _Initial() = _$InitialImpl;
 }
 
 /// @nodoc
-abstract class _$$_OnNextPressedCopyWith<$Res> {
-  factory _$$_OnNextPressedCopyWith(
-          _$_OnNextPressed value, $Res Function(_$_OnNextPressed) then) =
-      __$$_OnNextPressedCopyWithImpl<$Res>;
+abstract class _$$OnNextPressedImplCopyWith<$Res> {
+  factory _$$OnNextPressedImplCopyWith(
+          _$OnNextPressedImpl value, $Res Function(_$OnNextPressedImpl) then) =
+      __$$OnNextPressedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({InviteLinkData inviteLinkData});
 }
 
 /// @nodoc
-class __$$_OnNextPressedCopyWithImpl<$Res>
-    extends _$EditAccountEventCopyWithImpl<$Res, _$_OnNextPressed>
-    implements _$$_OnNextPressedCopyWith<$Res> {
-  __$$_OnNextPressedCopyWithImpl(
-      _$_OnNextPressed _value, $Res Function(_$_OnNextPressed) _then)
+class __$$OnNextPressedImplCopyWithImpl<$Res>
+    extends _$EditAccountEventCopyWithImpl<$Res, _$OnNextPressedImpl>
+    implements _$$OnNextPressedImplCopyWith<$Res> {
+  __$$OnNextPressedImplCopyWithImpl(
+      _$OnNextPressedImpl _value, $Res Function(_$OnNextPressedImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of EditAccountEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? inviteLinkData = null,
   }) {
-    return _then(_$_OnNextPressed(
+    return _then(_$OnNextPressedImpl(
       null == inviteLinkData
           ? _value.inviteLinkData
           : inviteLinkData // ignore: cast_nullable_to_non_nullable
@@ -232,8 +241,8 @@ class __$$_OnNextPressedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_OnNextPressed implements _OnNextPressed {
-  const _$_OnNextPressed(this.inviteLinkData);
+class _$OnNextPressedImpl implements _OnNextPressed {
+  const _$OnNextPressedImpl(this.inviteLinkData);
 
   @override
   final InviteLinkData inviteLinkData;
@@ -244,10 +253,10 @@ class _$_OnNextPressed implements _OnNextPressed {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_OnNextPressed &&
+            other is _$OnNextPressedImpl &&
             (identical(other.inviteLinkData, inviteLinkData) ||
                 other.inviteLinkData == inviteLinkData));
   }
@@ -255,11 +264,13 @@ class _$_OnNextPressed implements _OnNextPressed {
   @override
   int get hashCode => Object.hash(runtimeType, inviteLinkData);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of EditAccountEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$_OnNextPressedCopyWith<_$_OnNextPressed> get copyWith =>
-      __$$_OnNextPressedCopyWithImpl<_$_OnNextPressed>(this, _$identity);
+  _$$OnNextPressedImplCopyWith<_$OnNextPressedImpl> get copyWith =>
+      __$$OnNextPressedImplCopyWithImpl<_$OnNextPressedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -338,34 +349,40 @@ class _$_OnNextPressed implements _OnNextPressed {
 
 abstract class _OnNextPressed implements EditAccountEvent {
   const factory _OnNextPressed(final InviteLinkData inviteLinkData) =
-      _$_OnNextPressed;
+      _$OnNextPressedImpl;
 
   InviteLinkData get inviteLinkData;
-  @JsonKey(ignore: true)
-  _$$_OnNextPressedCopyWith<_$_OnNextPressed> get copyWith =>
+
+  /// Create a copy of EditAccountEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$OnNextPressedImplCopyWith<_$OnNextPressedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_ClearPageCommandCopyWith<$Res> {
-  factory _$$_ClearPageCommandCopyWith(
-          _$_ClearPageCommand value, $Res Function(_$_ClearPageCommand) then) =
-      __$$_ClearPageCommandCopyWithImpl<$Res>;
+abstract class _$$ClearPageCommandImplCopyWith<$Res> {
+  factory _$$ClearPageCommandImplCopyWith(_$ClearPageCommandImpl value,
+          $Res Function(_$ClearPageCommandImpl) then) =
+      __$$ClearPageCommandImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_ClearPageCommandCopyWithImpl<$Res>
-    extends _$EditAccountEventCopyWithImpl<$Res, _$_ClearPageCommand>
-    implements _$$_ClearPageCommandCopyWith<$Res> {
-  __$$_ClearPageCommandCopyWithImpl(
-      _$_ClearPageCommand _value, $Res Function(_$_ClearPageCommand) _then)
+class __$$ClearPageCommandImplCopyWithImpl<$Res>
+    extends _$EditAccountEventCopyWithImpl<$Res, _$ClearPageCommandImpl>
+    implements _$$ClearPageCommandImplCopyWith<$Res> {
+  __$$ClearPageCommandImplCopyWithImpl(_$ClearPageCommandImpl _value,
+      $Res Function(_$ClearPageCommandImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of EditAccountEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$_ClearPageCommand implements _ClearPageCommand {
-  const _$_ClearPageCommand();
+class _$ClearPageCommandImpl implements _ClearPageCommand {
+  const _$ClearPageCommandImpl();
 
   @override
   String toString() {
@@ -373,9 +390,9 @@ class _$_ClearPageCommand implements _ClearPageCommand {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_ClearPageCommand);
+        (other.runtimeType == runtimeType && other is _$ClearPageCommandImpl);
   }
 
   @override
@@ -457,33 +474,35 @@ class _$_ClearPageCommand implements _ClearPageCommand {
 }
 
 abstract class _ClearPageCommand implements EditAccountEvent {
-  const factory _ClearPageCommand() = _$_ClearPageCommand;
+  const factory _ClearPageCommand() = _$ClearPageCommandImpl;
 }
 
 /// @nodoc
-abstract class _$$_OnAccountChangeCopyWith<$Res> {
-  factory _$$_OnAccountChangeCopyWith(
-          _$_OnAccountChange value, $Res Function(_$_OnAccountChange) then) =
-      __$$_OnAccountChangeCopyWithImpl<$Res>;
+abstract class _$$OnAccountChangeImplCopyWith<$Res> {
+  factory _$$OnAccountChangeImplCopyWith(_$OnAccountChangeImpl value,
+          $Res Function(_$OnAccountChangeImpl) then) =
+      __$$OnAccountChangeImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String value, Network network});
 }
 
 /// @nodoc
-class __$$_OnAccountChangeCopyWithImpl<$Res>
-    extends _$EditAccountEventCopyWithImpl<$Res, _$_OnAccountChange>
-    implements _$$_OnAccountChangeCopyWith<$Res> {
-  __$$_OnAccountChangeCopyWithImpl(
-      _$_OnAccountChange _value, $Res Function(_$_OnAccountChange) _then)
+class __$$OnAccountChangeImplCopyWithImpl<$Res>
+    extends _$EditAccountEventCopyWithImpl<$Res, _$OnAccountChangeImpl>
+    implements _$$OnAccountChangeImplCopyWith<$Res> {
+  __$$OnAccountChangeImplCopyWithImpl(
+      _$OnAccountChangeImpl _value, $Res Function(_$OnAccountChangeImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of EditAccountEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? value = null,
     Object? network = null,
   }) {
-    return _then(_$_OnAccountChange(
+    return _then(_$OnAccountChangeImpl(
       null == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
@@ -498,8 +517,8 @@ class __$$_OnAccountChangeCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_OnAccountChange implements _OnAccountChange {
-  const _$_OnAccountChange(this.value, this.network);
+class _$OnAccountChangeImpl implements _OnAccountChange {
+  const _$OnAccountChangeImpl(this.value, this.network);
 
   @override
   final String value;
@@ -512,10 +531,10 @@ class _$_OnAccountChange implements _OnAccountChange {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_OnAccountChange &&
+            other is _$OnAccountChangeImpl &&
             (identical(other.value, value) || other.value == value) &&
             (identical(other.network, network) || other.network == network));
   }
@@ -523,11 +542,14 @@ class _$_OnAccountChange implements _OnAccountChange {
   @override
   int get hashCode => Object.hash(runtimeType, value, network);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of EditAccountEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$_OnAccountChangeCopyWith<_$_OnAccountChange> get copyWith =>
-      __$$_OnAccountChangeCopyWithImpl<_$_OnAccountChange>(this, _$identity);
+  _$$OnAccountChangeImplCopyWith<_$OnAccountChangeImpl> get copyWith =>
+      __$$OnAccountChangeImplCopyWithImpl<_$OnAccountChangeImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -606,12 +628,15 @@ class _$_OnAccountChange implements _OnAccountChange {
 
 abstract class _OnAccountChange implements EditAccountEvent {
   const factory _OnAccountChange(final String value, final Network network) =
-      _$_OnAccountChange;
+      _$OnAccountChangeImpl;
 
   String get value;
   Network get network;
-  @JsonKey(ignore: true)
-  _$$_OnAccountChangeCopyWith<_$_OnAccountChange> get copyWith =>
+
+  /// Create a copy of EditAccountEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$OnAccountChangeImplCopyWith<_$OnAccountChangeImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -625,7 +650,9 @@ mixin _$EditAccountState {
   List<UserAccountRequirement> get userAccountRequirements =>
       throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of EditAccountState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $EditAccountStateCopyWith<EditAccountState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -657,6 +684,8 @@ class _$EditAccountStateCopyWithImpl<$Res, $Val extends EditAccountState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of EditAccountState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -695,6 +724,8 @@ class _$EditAccountStateCopyWithImpl<$Res, $Val extends EditAccountState>
     ) as $Val);
   }
 
+  /// Create a copy of EditAccountState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PageCommandCopyWith<$Res>? get command {
@@ -709,11 +740,11 @@ class _$EditAccountStateCopyWithImpl<$Res, $Val extends EditAccountState>
 }
 
 /// @nodoc
-abstract class _$$_CreateAccountStateCopyWith<$Res>
+abstract class _$$CreateAccountStateImplCopyWith<$Res>
     implements $EditAccountStateCopyWith<$Res> {
-  factory _$$_CreateAccountStateCopyWith(_$_CreateAccountState value,
-          $Res Function(_$_CreateAccountState) then) =
-      __$$_CreateAccountStateCopyWithImpl<$Res>;
+  factory _$$CreateAccountStateImplCopyWith(_$CreateAccountStateImpl value,
+          $Res Function(_$CreateAccountStateImpl) then) =
+      __$$CreateAccountStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -729,13 +760,15 @@ abstract class _$$_CreateAccountStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_CreateAccountStateCopyWithImpl<$Res>
-    extends _$EditAccountStateCopyWithImpl<$Res, _$_CreateAccountState>
-    implements _$$_CreateAccountStateCopyWith<$Res> {
-  __$$_CreateAccountStateCopyWithImpl(
-      _$_CreateAccountState _value, $Res Function(_$_CreateAccountState) _then)
+class __$$CreateAccountStateImplCopyWithImpl<$Res>
+    extends _$EditAccountStateCopyWithImpl<$Res, _$CreateAccountStateImpl>
+    implements _$$CreateAccountStateImplCopyWith<$Res> {
+  __$$CreateAccountStateImplCopyWithImpl(_$CreateAccountStateImpl _value,
+      $Res Function(_$CreateAccountStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of EditAccountState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -746,7 +779,7 @@ class __$$_CreateAccountStateCopyWithImpl<$Res>
     Object? command = freezed,
     Object? userAccountRequirements = null,
   }) {
-    return _then(_$_CreateAccountState(
+    return _then(_$CreateAccountStateImpl(
       pageState: null == pageState
           ? _value.pageState
           : pageState // ignore: cast_nullable_to_non_nullable
@@ -777,8 +810,8 @@ class __$$_CreateAccountStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_CreateAccountState extends _CreateAccountState {
-  const _$_CreateAccountState(
+class _$CreateAccountStateImpl extends _CreateAccountState {
+  const _$CreateAccountStateImpl(
       {this.pageState = PageState.initial,
       this.image,
       required this.userName,
@@ -815,10 +848,10 @@ class _$_CreateAccountState extends _CreateAccountState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_CreateAccountState &&
+            other is _$CreateAccountStateImpl &&
             (identical(other.pageState, pageState) ||
                 other.pageState == pageState) &&
             (identical(other.image, image) || other.image == image) &&
@@ -841,11 +874,13 @@ class _$_CreateAccountState extends _CreateAccountState {
       command,
       const DeepCollectionEquality().hash(_userAccountRequirements));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of EditAccountState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CreateAccountStateCopyWith<_$_CreateAccountState> get copyWith =>
-      __$$_CreateAccountStateCopyWithImpl<_$_CreateAccountState>(
+  _$$CreateAccountStateImplCopyWith<_$CreateAccountStateImpl> get copyWith =>
+      __$$CreateAccountStateImplCopyWithImpl<_$CreateAccountStateImpl>(
           this, _$identity);
 }
 
@@ -857,7 +892,7 @@ abstract class _CreateAccountState extends EditAccountState {
           final String? userAccount,
           final PageCommand? command,
           final List<UserAccountRequirement> userAccountRequirements}) =
-      _$_CreateAccountState;
+      _$CreateAccountStateImpl;
   const _CreateAccountState._() : super._();
 
   @override
@@ -872,9 +907,12 @@ abstract class _CreateAccountState extends EditAccountState {
   PageCommand? get command;
   @override
   List<UserAccountRequirement> get userAccountRequirements;
+
+  /// Create a copy of EditAccountState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
-  _$$_CreateAccountStateCopyWith<_$_CreateAccountState> get copyWith =>
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$CreateAccountStateImplCopyWith<_$CreateAccountStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -942,28 +980,34 @@ class _$PageCommandCopyWithImpl<$Res, $Val extends PageCommand>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of PageCommand
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
-abstract class _$$_ShowLoadingDialogCopyWith<$Res> {
-  factory _$$_ShowLoadingDialogCopyWith(_$_ShowLoadingDialog value,
-          $Res Function(_$_ShowLoadingDialog) then) =
-      __$$_ShowLoadingDialogCopyWithImpl<$Res>;
+abstract class _$$ShowLoadingDialogImplCopyWith<$Res> {
+  factory _$$ShowLoadingDialogImplCopyWith(_$ShowLoadingDialogImpl value,
+          $Res Function(_$ShowLoadingDialogImpl) then) =
+      __$$ShowLoadingDialogImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_ShowLoadingDialogCopyWithImpl<$Res>
-    extends _$PageCommandCopyWithImpl<$Res, _$_ShowLoadingDialog>
-    implements _$$_ShowLoadingDialogCopyWith<$Res> {
-  __$$_ShowLoadingDialogCopyWithImpl(
-      _$_ShowLoadingDialog _value, $Res Function(_$_ShowLoadingDialog) _then)
+class __$$ShowLoadingDialogImplCopyWithImpl<$Res>
+    extends _$PageCommandCopyWithImpl<$Res, _$ShowLoadingDialogImpl>
+    implements _$$ShowLoadingDialogImplCopyWith<$Res> {
+  __$$ShowLoadingDialogImplCopyWithImpl(_$ShowLoadingDialogImpl _value,
+      $Res Function(_$ShowLoadingDialogImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of PageCommand
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$_ShowLoadingDialog implements _ShowLoadingDialog {
-  const _$_ShowLoadingDialog();
+class _$ShowLoadingDialogImpl implements _ShowLoadingDialog {
+  const _$ShowLoadingDialogImpl();
 
   @override
   String toString() {
@@ -971,9 +1015,9 @@ class _$_ShowLoadingDialog implements _ShowLoadingDialog {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_ShowLoadingDialog);
+        (other.runtimeType == runtimeType && other is _$ShowLoadingDialogImpl);
   }
 
   @override
@@ -1049,29 +1093,32 @@ class _$_ShowLoadingDialog implements _ShowLoadingDialog {
 }
 
 abstract class _ShowLoadingDialog implements PageCommand {
-  const factory _ShowLoadingDialog() = _$_ShowLoadingDialog;
+  const factory _ShowLoadingDialog() = _$ShowLoadingDialogImpl;
 }
 
 /// @nodoc
-abstract class _$$_HideLoadingDialogCopyWith<$Res> {
-  factory _$$_HideLoadingDialogCopyWith(_$_HideLoadingDialog value,
-          $Res Function(_$_HideLoadingDialog) then) =
-      __$$_HideLoadingDialogCopyWithImpl<$Res>;
+abstract class _$$HideLoadingDialogImplCopyWith<$Res> {
+  factory _$$HideLoadingDialogImplCopyWith(_$HideLoadingDialogImpl value,
+          $Res Function(_$HideLoadingDialogImpl) then) =
+      __$$HideLoadingDialogImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_HideLoadingDialogCopyWithImpl<$Res>
-    extends _$PageCommandCopyWithImpl<$Res, _$_HideLoadingDialog>
-    implements _$$_HideLoadingDialogCopyWith<$Res> {
-  __$$_HideLoadingDialogCopyWithImpl(
-      _$_HideLoadingDialog _value, $Res Function(_$_HideLoadingDialog) _then)
+class __$$HideLoadingDialogImplCopyWithImpl<$Res>
+    extends _$PageCommandCopyWithImpl<$Res, _$HideLoadingDialogImpl>
+    implements _$$HideLoadingDialogImplCopyWith<$Res> {
+  __$$HideLoadingDialogImplCopyWithImpl(_$HideLoadingDialogImpl _value,
+      $Res Function(_$HideLoadingDialogImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of PageCommand
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$_HideLoadingDialog implements _HideLoadingDialog {
-  const _$_HideLoadingDialog();
+class _$HideLoadingDialogImpl implements _HideLoadingDialog {
+  const _$HideLoadingDialogImpl();
 
   @override
   String toString() {
@@ -1079,9 +1126,9 @@ class _$_HideLoadingDialog implements _HideLoadingDialog {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_HideLoadingDialog);
+        (other.runtimeType == runtimeType && other is _$HideLoadingDialogImpl);
   }
 
   @override
@@ -1157,29 +1204,32 @@ class _$_HideLoadingDialog implements _HideLoadingDialog {
 }
 
 abstract class _HideLoadingDialog implements PageCommand {
-  const factory _HideLoadingDialog() = _$_HideLoadingDialog;
+  const factory _HideLoadingDialog() = _$HideLoadingDialogImpl;
 }
 
 /// @nodoc
-abstract class _$$_NavigateToSuccessCopyWith<$Res> {
-  factory _$$_NavigateToSuccessCopyWith(_$_NavigateToSuccess value,
-          $Res Function(_$_NavigateToSuccess) then) =
-      __$$_NavigateToSuccessCopyWithImpl<$Res>;
+abstract class _$$NavigateToSuccessImplCopyWith<$Res> {
+  factory _$$NavigateToSuccessImplCopyWith(_$NavigateToSuccessImpl value,
+          $Res Function(_$NavigateToSuccessImpl) then) =
+      __$$NavigateToSuccessImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_NavigateToSuccessCopyWithImpl<$Res>
-    extends _$PageCommandCopyWithImpl<$Res, _$_NavigateToSuccess>
-    implements _$$_NavigateToSuccessCopyWith<$Res> {
-  __$$_NavigateToSuccessCopyWithImpl(
-      _$_NavigateToSuccess _value, $Res Function(_$_NavigateToSuccess) _then)
+class __$$NavigateToSuccessImplCopyWithImpl<$Res>
+    extends _$PageCommandCopyWithImpl<$Res, _$NavigateToSuccessImpl>
+    implements _$$NavigateToSuccessImplCopyWith<$Res> {
+  __$$NavigateToSuccessImplCopyWithImpl(_$NavigateToSuccessImpl _value,
+      $Res Function(_$NavigateToSuccessImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of PageCommand
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$_NavigateToSuccess implements _NavigateToSuccess {
-  const _$_NavigateToSuccess();
+class _$NavigateToSuccessImpl implements _NavigateToSuccess {
+  const _$NavigateToSuccessImpl();
 
   @override
   String toString() {
@@ -1187,9 +1237,9 @@ class _$_NavigateToSuccess implements _NavigateToSuccess {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_NavigateToSuccess);
+        (other.runtimeType == runtimeType && other is _$NavigateToSuccessImpl);
   }
 
   @override
@@ -1265,5 +1315,5 @@ class _$_NavigateToSuccess implements _NavigateToSuccess {
 }
 
 abstract class _NavigateToSuccess implements PageCommand {
-  const factory _NavigateToSuccess() = _$_NavigateToSuccess;
+  const factory _NavigateToSuccess() = _$NavigateToSuccessImpl;
 }

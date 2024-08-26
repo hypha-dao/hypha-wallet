@@ -12,7 +12,7 @@ part of 'deeplink_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$DeeplinkEvent {
@@ -86,32 +86,38 @@ class _$DeeplinkEventCopyWithImpl<$Res, $Val extends DeeplinkEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of DeeplinkEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
-abstract class _$$_IncomingFirebaseDeepLinkCopyWith<$Res> {
-  factory _$$_IncomingFirebaseDeepLinkCopyWith(
-          _$_IncomingFirebaseDeepLink value,
-          $Res Function(_$_IncomingFirebaseDeepLink) then) =
-      __$$_IncomingFirebaseDeepLinkCopyWithImpl<$Res>;
+abstract class _$$IncomingFirebaseDeepLinkImplCopyWith<$Res> {
+  factory _$$IncomingFirebaseDeepLinkImplCopyWith(
+          _$IncomingFirebaseDeepLinkImpl value,
+          $Res Function(_$IncomingFirebaseDeepLinkImpl) then) =
+      __$$IncomingFirebaseDeepLinkImplCopyWithImpl<$Res>;
   @useResult
   $Res call({Uri link});
 }
 
 /// @nodoc
-class __$$_IncomingFirebaseDeepLinkCopyWithImpl<$Res>
-    extends _$DeeplinkEventCopyWithImpl<$Res, _$_IncomingFirebaseDeepLink>
-    implements _$$_IncomingFirebaseDeepLinkCopyWith<$Res> {
-  __$$_IncomingFirebaseDeepLinkCopyWithImpl(_$_IncomingFirebaseDeepLink _value,
-      $Res Function(_$_IncomingFirebaseDeepLink) _then)
+class __$$IncomingFirebaseDeepLinkImplCopyWithImpl<$Res>
+    extends _$DeeplinkEventCopyWithImpl<$Res, _$IncomingFirebaseDeepLinkImpl>
+    implements _$$IncomingFirebaseDeepLinkImplCopyWith<$Res> {
+  __$$IncomingFirebaseDeepLinkImplCopyWithImpl(
+      _$IncomingFirebaseDeepLinkImpl _value,
+      $Res Function(_$IncomingFirebaseDeepLinkImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DeeplinkEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? link = null,
   }) {
-    return _then(_$_IncomingFirebaseDeepLink(
+    return _then(_$IncomingFirebaseDeepLinkImpl(
       null == link
           ? _value.link
           : link // ignore: cast_nullable_to_non_nullable
@@ -122,8 +128,8 @@ class __$$_IncomingFirebaseDeepLinkCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_IncomingFirebaseDeepLink implements _IncomingFirebaseDeepLink {
-  const _$_IncomingFirebaseDeepLink(this.link);
+class _$IncomingFirebaseDeepLinkImpl implements _IncomingFirebaseDeepLink {
+  const _$IncomingFirebaseDeepLinkImpl(this.link);
 
   @override
   final Uri link;
@@ -134,22 +140,24 @@ class _$_IncomingFirebaseDeepLink implements _IncomingFirebaseDeepLink {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_IncomingFirebaseDeepLink &&
+            other is _$IncomingFirebaseDeepLinkImpl &&
             (identical(other.link, link) || other.link == link));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, link);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DeeplinkEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$_IncomingFirebaseDeepLinkCopyWith<_$_IncomingFirebaseDeepLink>
-      get copyWith => __$$_IncomingFirebaseDeepLinkCopyWithImpl<
-          _$_IncomingFirebaseDeepLink>(this, _$identity);
+  _$$IncomingFirebaseDeepLinkImplCopyWith<_$IncomingFirebaseDeepLinkImpl>
+      get copyWith => __$$IncomingFirebaseDeepLinkImplCopyWithImpl<
+          _$IncomingFirebaseDeepLinkImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -230,37 +238,42 @@ class _$_IncomingFirebaseDeepLink implements _IncomingFirebaseDeepLink {
 
 abstract class _IncomingFirebaseDeepLink implements DeeplinkEvent {
   const factory _IncomingFirebaseDeepLink(final Uri link) =
-      _$_IncomingFirebaseDeepLink;
+      _$IncomingFirebaseDeepLinkImpl;
 
   Uri get link;
-  @JsonKey(ignore: true)
-  _$$_IncomingFirebaseDeepLinkCopyWith<_$_IncomingFirebaseDeepLink>
+
+  /// Create a copy of DeeplinkEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$IncomingFirebaseDeepLinkImplCopyWith<_$IncomingFirebaseDeepLinkImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_IncomingESRLinkCopyWith<$Res> {
-  factory _$$_IncomingESRLinkCopyWith(
-          _$_IncomingESRLink value, $Res Function(_$_IncomingESRLink) then) =
-      __$$_IncomingESRLinkCopyWithImpl<$Res>;
+abstract class _$$IncomingESRLinkImplCopyWith<$Res> {
+  factory _$$IncomingESRLinkImplCopyWith(_$IncomingESRLinkImpl value,
+          $Res Function(_$IncomingESRLinkImpl) then) =
+      __$$IncomingESRLinkImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String link});
 }
 
 /// @nodoc
-class __$$_IncomingESRLinkCopyWithImpl<$Res>
-    extends _$DeeplinkEventCopyWithImpl<$Res, _$_IncomingESRLink>
-    implements _$$_IncomingESRLinkCopyWith<$Res> {
-  __$$_IncomingESRLinkCopyWithImpl(
-      _$_IncomingESRLink _value, $Res Function(_$_IncomingESRLink) _then)
+class __$$IncomingESRLinkImplCopyWithImpl<$Res>
+    extends _$DeeplinkEventCopyWithImpl<$Res, _$IncomingESRLinkImpl>
+    implements _$$IncomingESRLinkImplCopyWith<$Res> {
+  __$$IncomingESRLinkImplCopyWithImpl(
+      _$IncomingESRLinkImpl _value, $Res Function(_$IncomingESRLinkImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DeeplinkEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? link = null,
   }) {
-    return _then(_$_IncomingESRLink(
+    return _then(_$IncomingESRLinkImpl(
       null == link
           ? _value.link
           : link // ignore: cast_nullable_to_non_nullable
@@ -271,8 +284,8 @@ class __$$_IncomingESRLinkCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_IncomingESRLink implements _IncomingESRLink {
-  const _$_IncomingESRLink(this.link);
+class _$IncomingESRLinkImpl implements _IncomingESRLink {
+  const _$IncomingESRLinkImpl(this.link);
 
   @override
   final String link;
@@ -283,21 +296,24 @@ class _$_IncomingESRLink implements _IncomingESRLink {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_IncomingESRLink &&
+            other is _$IncomingESRLinkImpl &&
             (identical(other.link, link) || other.link == link));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, link);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DeeplinkEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$_IncomingESRLinkCopyWith<_$_IncomingESRLink> get copyWith =>
-      __$$_IncomingESRLinkCopyWithImpl<_$_IncomingESRLink>(this, _$identity);
+  _$$IncomingESRLinkImplCopyWith<_$IncomingESRLinkImpl> get copyWith =>
+      __$$IncomingESRLinkImplCopyWithImpl<_$IncomingESRLinkImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -377,34 +393,40 @@ class _$_IncomingESRLink implements _IncomingESRLink {
 }
 
 abstract class _IncomingESRLink implements DeeplinkEvent {
-  const factory _IncomingESRLink(final String link) = _$_IncomingESRLink;
+  const factory _IncomingESRLink(final String link) = _$IncomingESRLinkImpl;
 
   String get link;
-  @JsonKey(ignore: true)
-  _$$_IncomingESRLinkCopyWith<_$_IncomingESRLink> get copyWith =>
+
+  /// Create a copy of DeeplinkEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$IncomingESRLinkImplCopyWith<_$IncomingESRLinkImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_ClearPageCommandCopyWith<$Res> {
-  factory _$$_ClearPageCommandCopyWith(
-          _$_ClearPageCommand value, $Res Function(_$_ClearPageCommand) then) =
-      __$$_ClearPageCommandCopyWithImpl<$Res>;
+abstract class _$$ClearPageCommandImplCopyWith<$Res> {
+  factory _$$ClearPageCommandImplCopyWith(_$ClearPageCommandImpl value,
+          $Res Function(_$ClearPageCommandImpl) then) =
+      __$$ClearPageCommandImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_ClearPageCommandCopyWithImpl<$Res>
-    extends _$DeeplinkEventCopyWithImpl<$Res, _$_ClearPageCommand>
-    implements _$$_ClearPageCommandCopyWith<$Res> {
-  __$$_ClearPageCommandCopyWithImpl(
-      _$_ClearPageCommand _value, $Res Function(_$_ClearPageCommand) _then)
+class __$$ClearPageCommandImplCopyWithImpl<$Res>
+    extends _$DeeplinkEventCopyWithImpl<$Res, _$ClearPageCommandImpl>
+    implements _$$ClearPageCommandImplCopyWith<$Res> {
+  __$$ClearPageCommandImplCopyWithImpl(_$ClearPageCommandImpl _value,
+      $Res Function(_$ClearPageCommandImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of DeeplinkEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$_ClearPageCommand implements _ClearPageCommand {
-  const _$_ClearPageCommand();
+class _$ClearPageCommandImpl implements _ClearPageCommand {
+  const _$ClearPageCommandImpl();
 
   @override
   String toString() {
@@ -412,9 +434,9 @@ class _$_ClearPageCommand implements _ClearPageCommand {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_ClearPageCommand);
+        (other.runtimeType == runtimeType && other is _$ClearPageCommandImpl);
   }
 
   @override
@@ -498,29 +520,32 @@ class _$_ClearPageCommand implements _ClearPageCommand {
 }
 
 abstract class _ClearPageCommand implements DeeplinkEvent {
-  const factory _ClearPageCommand() = _$_ClearPageCommand;
+  const factory _ClearPageCommand() = _$ClearPageCommandImpl;
 }
 
 /// @nodoc
-abstract class _$$_ClearInviteLinkCopyWith<$Res> {
-  factory _$$_ClearInviteLinkCopyWith(
-          _$_ClearInviteLink value, $Res Function(_$_ClearInviteLink) then) =
-      __$$_ClearInviteLinkCopyWithImpl<$Res>;
+abstract class _$$ClearInviteLinkImplCopyWith<$Res> {
+  factory _$$ClearInviteLinkImplCopyWith(_$ClearInviteLinkImpl value,
+          $Res Function(_$ClearInviteLinkImpl) then) =
+      __$$ClearInviteLinkImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_ClearInviteLinkCopyWithImpl<$Res>
-    extends _$DeeplinkEventCopyWithImpl<$Res, _$_ClearInviteLink>
-    implements _$$_ClearInviteLinkCopyWith<$Res> {
-  __$$_ClearInviteLinkCopyWithImpl(
-      _$_ClearInviteLink _value, $Res Function(_$_ClearInviteLink) _then)
+class __$$ClearInviteLinkImplCopyWithImpl<$Res>
+    extends _$DeeplinkEventCopyWithImpl<$Res, _$ClearInviteLinkImpl>
+    implements _$$ClearInviteLinkImplCopyWith<$Res> {
+  __$$ClearInviteLinkImplCopyWithImpl(
+      _$ClearInviteLinkImpl _value, $Res Function(_$ClearInviteLinkImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of DeeplinkEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$_ClearInviteLink implements _ClearInviteLink {
-  const _$_ClearInviteLink();
+class _$ClearInviteLinkImpl implements _ClearInviteLink {
+  const _$ClearInviteLinkImpl();
 
   @override
   String toString() {
@@ -528,9 +553,9 @@ class _$_ClearInviteLink implements _ClearInviteLink {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_ClearInviteLink);
+        (other.runtimeType == runtimeType && other is _$ClearInviteLinkImpl);
   }
 
   @override
@@ -614,7 +639,7 @@ class _$_ClearInviteLink implements _ClearInviteLink {
 }
 
 abstract class _ClearInviteLink implements DeeplinkEvent {
-  const factory _ClearInviteLink() = _$_ClearInviteLink;
+  const factory _ClearInviteLink() = _$ClearInviteLinkImpl;
 }
 
 /// @nodoc
@@ -622,7 +647,9 @@ mixin _$DeeplinkState {
   InviteLinkData? get inviteLinkData => throw _privateConstructorUsedError;
   PageCommand? get command => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DeeplinkState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DeeplinkStateCopyWith<DeeplinkState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -648,6 +675,8 @@ class _$DeeplinkStateCopyWithImpl<$Res, $Val extends DeeplinkState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of DeeplinkState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -666,6 +695,8 @@ class _$DeeplinkStateCopyWithImpl<$Res, $Val extends DeeplinkState>
     ) as $Val);
   }
 
+  /// Create a copy of DeeplinkState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PageCommandCopyWith<$Res>? get command {
@@ -680,11 +711,11 @@ class _$DeeplinkStateCopyWithImpl<$Res, $Val extends DeeplinkState>
 }
 
 /// @nodoc
-abstract class _$$_DeeplinkStateCopyWith<$Res>
+abstract class _$$DeeplinkStateImplCopyWith<$Res>
     implements $DeeplinkStateCopyWith<$Res> {
-  factory _$$_DeeplinkStateCopyWith(
-          _$_DeeplinkState value, $Res Function(_$_DeeplinkState) then) =
-      __$$_DeeplinkStateCopyWithImpl<$Res>;
+  factory _$$DeeplinkStateImplCopyWith(
+          _$DeeplinkStateImpl value, $Res Function(_$DeeplinkStateImpl) then) =
+      __$$DeeplinkStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({InviteLinkData? inviteLinkData, PageCommand? command});
@@ -694,20 +725,22 @@ abstract class _$$_DeeplinkStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_DeeplinkStateCopyWithImpl<$Res>
-    extends _$DeeplinkStateCopyWithImpl<$Res, _$_DeeplinkState>
-    implements _$$_DeeplinkStateCopyWith<$Res> {
-  __$$_DeeplinkStateCopyWithImpl(
-      _$_DeeplinkState _value, $Res Function(_$_DeeplinkState) _then)
+class __$$DeeplinkStateImplCopyWithImpl<$Res>
+    extends _$DeeplinkStateCopyWithImpl<$Res, _$DeeplinkStateImpl>
+    implements _$$DeeplinkStateImplCopyWith<$Res> {
+  __$$DeeplinkStateImplCopyWithImpl(
+      _$DeeplinkStateImpl _value, $Res Function(_$DeeplinkStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DeeplinkState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? inviteLinkData = freezed,
     Object? command = freezed,
   }) {
-    return _then(_$_DeeplinkState(
+    return _then(_$DeeplinkStateImpl(
       inviteLinkData: freezed == inviteLinkData
           ? _value.inviteLinkData
           : inviteLinkData // ignore: cast_nullable_to_non_nullable
@@ -722,8 +755,8 @@ class __$$_DeeplinkStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_DeeplinkState implements _DeeplinkState {
-  const _$_DeeplinkState({this.inviteLinkData, this.command});
+class _$DeeplinkStateImpl implements _DeeplinkState {
+  const _$DeeplinkStateImpl({this.inviteLinkData, this.command});
 
   @override
   final InviteLinkData? inviteLinkData;
@@ -736,10 +769,10 @@ class _$_DeeplinkState implements _DeeplinkState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_DeeplinkState &&
+            other is _$DeeplinkStateImpl &&
             (identical(other.inviteLinkData, inviteLinkData) ||
                 other.inviteLinkData == inviteLinkData) &&
             (identical(other.command, command) || other.command == command));
@@ -748,25 +781,30 @@ class _$_DeeplinkState implements _DeeplinkState {
   @override
   int get hashCode => Object.hash(runtimeType, inviteLinkData, command);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DeeplinkState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$_DeeplinkStateCopyWith<_$_DeeplinkState> get copyWith =>
-      __$$_DeeplinkStateCopyWithImpl<_$_DeeplinkState>(this, _$identity);
+  _$$DeeplinkStateImplCopyWith<_$DeeplinkStateImpl> get copyWith =>
+      __$$DeeplinkStateImplCopyWithImpl<_$DeeplinkStateImpl>(this, _$identity);
 }
 
 abstract class _DeeplinkState implements DeeplinkState {
   const factory _DeeplinkState(
       {final InviteLinkData? inviteLinkData,
-      final PageCommand? command}) = _$_DeeplinkState;
+      final PageCommand? command}) = _$DeeplinkStateImpl;
 
   @override
   InviteLinkData? get inviteLinkData;
   @override
   PageCommand? get command;
+
+  /// Create a copy of DeeplinkState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
-  _$$_DeeplinkStateCopyWith<_$_DeeplinkState> get copyWith =>
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DeeplinkStateImplCopyWith<_$DeeplinkStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -840,28 +878,36 @@ class _$PageCommandCopyWithImpl<$Res, $Val extends PageCommand>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of PageCommand
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
-abstract class _$$_NavigateToCreateAccountCopyWith<$Res> {
-  factory _$$_NavigateToCreateAccountCopyWith(_$_NavigateToCreateAccount value,
-          $Res Function(_$_NavigateToCreateAccount) then) =
-      __$$_NavigateToCreateAccountCopyWithImpl<$Res>;
+abstract class _$$NavigateToCreateAccountImplCopyWith<$Res> {
+  factory _$$NavigateToCreateAccountImplCopyWith(
+          _$NavigateToCreateAccountImpl value,
+          $Res Function(_$NavigateToCreateAccountImpl) then) =
+      __$$NavigateToCreateAccountImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_NavigateToCreateAccountCopyWithImpl<$Res>
-    extends _$PageCommandCopyWithImpl<$Res, _$_NavigateToCreateAccount>
-    implements _$$_NavigateToCreateAccountCopyWith<$Res> {
-  __$$_NavigateToCreateAccountCopyWithImpl(_$_NavigateToCreateAccount _value,
-      $Res Function(_$_NavigateToCreateAccount) _then)
+class __$$NavigateToCreateAccountImplCopyWithImpl<$Res>
+    extends _$PageCommandCopyWithImpl<$Res, _$NavigateToCreateAccountImpl>
+    implements _$$NavigateToCreateAccountImplCopyWith<$Res> {
+  __$$NavigateToCreateAccountImplCopyWithImpl(
+      _$NavigateToCreateAccountImpl _value,
+      $Res Function(_$NavigateToCreateAccountImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of PageCommand
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$_NavigateToCreateAccount implements _NavigateToCreateAccount {
-  const _$_NavigateToCreateAccount();
+class _$NavigateToCreateAccountImpl implements _NavigateToCreateAccount {
+  const _$NavigateToCreateAccountImpl();
 
   @override
   String toString() {
@@ -869,10 +915,10 @@ class _$_NavigateToCreateAccount implements _NavigateToCreateAccount {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_NavigateToCreateAccount);
+            other is _$NavigateToCreateAccountImpl);
   }
 
   @override
@@ -954,32 +1000,34 @@ class _$_NavigateToCreateAccount implements _NavigateToCreateAccount {
 }
 
 abstract class _NavigateToCreateAccount implements PageCommand {
-  const factory _NavigateToCreateAccount() = _$_NavigateToCreateAccount;
+  const factory _NavigateToCreateAccount() = _$NavigateToCreateAccountImpl;
 }
 
 /// @nodoc
-abstract class _$$_ShowJoinDaoRationaleCopyWith<$Res> {
-  factory _$$_ShowJoinDaoRationaleCopyWith(_$_ShowJoinDaoRationale value,
-          $Res Function(_$_ShowJoinDaoRationale) then) =
-      __$$_ShowJoinDaoRationaleCopyWithImpl<$Res>;
+abstract class _$$ShowJoinDaoRationaleImplCopyWith<$Res> {
+  factory _$$ShowJoinDaoRationaleImplCopyWith(_$ShowJoinDaoRationaleImpl value,
+          $Res Function(_$ShowJoinDaoRationaleImpl) then) =
+      __$$ShowJoinDaoRationaleImplCopyWithImpl<$Res>;
   @useResult
   $Res call({InviteLinkData inviteLinkData});
 }
 
 /// @nodoc
-class __$$_ShowJoinDaoRationaleCopyWithImpl<$Res>
-    extends _$PageCommandCopyWithImpl<$Res, _$_ShowJoinDaoRationale>
-    implements _$$_ShowJoinDaoRationaleCopyWith<$Res> {
-  __$$_ShowJoinDaoRationaleCopyWithImpl(_$_ShowJoinDaoRationale _value,
-      $Res Function(_$_ShowJoinDaoRationale) _then)
+class __$$ShowJoinDaoRationaleImplCopyWithImpl<$Res>
+    extends _$PageCommandCopyWithImpl<$Res, _$ShowJoinDaoRationaleImpl>
+    implements _$$ShowJoinDaoRationaleImplCopyWith<$Res> {
+  __$$ShowJoinDaoRationaleImplCopyWithImpl(_$ShowJoinDaoRationaleImpl _value,
+      $Res Function(_$ShowJoinDaoRationaleImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PageCommand
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? inviteLinkData = null,
   }) {
-    return _then(_$_ShowJoinDaoRationale(
+    return _then(_$ShowJoinDaoRationaleImpl(
       null == inviteLinkData
           ? _value.inviteLinkData
           : inviteLinkData // ignore: cast_nullable_to_non_nullable
@@ -990,8 +1038,8 @@ class __$$_ShowJoinDaoRationaleCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ShowJoinDaoRationale implements _ShowJoinDaoRationale {
-  const _$_ShowJoinDaoRationale(this.inviteLinkData);
+class _$ShowJoinDaoRationaleImpl implements _ShowJoinDaoRationale {
+  const _$ShowJoinDaoRationaleImpl(this.inviteLinkData);
 
   @override
   final InviteLinkData inviteLinkData;
@@ -1002,10 +1050,10 @@ class _$_ShowJoinDaoRationale implements _ShowJoinDaoRationale {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ShowJoinDaoRationale &&
+            other is _$ShowJoinDaoRationaleImpl &&
             (identical(other.inviteLinkData, inviteLinkData) ||
                 other.inviteLinkData == inviteLinkData));
   }
@@ -1013,12 +1061,15 @@ class _$_ShowJoinDaoRationale implements _ShowJoinDaoRationale {
   @override
   int get hashCode => Object.hash(runtimeType, inviteLinkData);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PageCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ShowJoinDaoRationaleCopyWith<_$_ShowJoinDaoRationale> get copyWith =>
-      __$$_ShowJoinDaoRationaleCopyWithImpl<_$_ShowJoinDaoRationale>(
-          this, _$identity);
+  _$$ShowJoinDaoRationaleImplCopyWith<_$ShowJoinDaoRationaleImpl>
+      get copyWith =>
+          __$$ShowJoinDaoRationaleImplCopyWithImpl<_$ShowJoinDaoRationaleImpl>(
+              this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1097,39 +1148,45 @@ class _$_ShowJoinDaoRationale implements _ShowJoinDaoRationale {
 
 abstract class _ShowJoinDaoRationale implements PageCommand {
   const factory _ShowJoinDaoRationale(final InviteLinkData inviteLinkData) =
-      _$_ShowJoinDaoRationale;
+      _$ShowJoinDaoRationaleImpl;
 
   InviteLinkData get inviteLinkData;
-  @JsonKey(ignore: true)
-  _$$_ShowJoinDaoRationaleCopyWith<_$_ShowJoinDaoRationale> get copyWith =>
-      throw _privateConstructorUsedError;
+
+  /// Create a copy of PageCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ShowJoinDaoRationaleImplCopyWith<_$ShowJoinDaoRationaleImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_ESRLinkNavigateToSignTransactionCopyWith<$Res> {
-  factory _$$_ESRLinkNavigateToSignTransactionCopyWith(
-          _$_ESRLinkNavigateToSignTransaction value,
-          $Res Function(_$_ESRLinkNavigateToSignTransaction) then) =
-      __$$_ESRLinkNavigateToSignTransactionCopyWithImpl<$Res>;
+abstract class _$$ESRLinkNavigateToSignTransactionImplCopyWith<$Res> {
+  factory _$$ESRLinkNavigateToSignTransactionImplCopyWith(
+          _$ESRLinkNavigateToSignTransactionImpl value,
+          $Res Function(_$ESRLinkNavigateToSignTransactionImpl) then) =
+      __$$ESRLinkNavigateToSignTransactionImplCopyWithImpl<$Res>;
   @useResult
   $Res call({ScanQrCodeResultData data});
 }
 
 /// @nodoc
-class __$$_ESRLinkNavigateToSignTransactionCopyWithImpl<$Res>
-    extends _$PageCommandCopyWithImpl<$Res, _$_ESRLinkNavigateToSignTransaction>
-    implements _$$_ESRLinkNavigateToSignTransactionCopyWith<$Res> {
-  __$$_ESRLinkNavigateToSignTransactionCopyWithImpl(
-      _$_ESRLinkNavigateToSignTransaction _value,
-      $Res Function(_$_ESRLinkNavigateToSignTransaction) _then)
+class __$$ESRLinkNavigateToSignTransactionImplCopyWithImpl<$Res>
+    extends _$PageCommandCopyWithImpl<$Res,
+        _$ESRLinkNavigateToSignTransactionImpl>
+    implements _$$ESRLinkNavigateToSignTransactionImplCopyWith<$Res> {
+  __$$ESRLinkNavigateToSignTransactionImplCopyWithImpl(
+      _$ESRLinkNavigateToSignTransactionImpl _value,
+      $Res Function(_$ESRLinkNavigateToSignTransactionImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PageCommand
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? data = null,
   }) {
-    return _then(_$_ESRLinkNavigateToSignTransaction(
+    return _then(_$ESRLinkNavigateToSignTransactionImpl(
       null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
@@ -1140,9 +1197,9 @@ class __$$_ESRLinkNavigateToSignTransactionCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ESRLinkNavigateToSignTransaction
+class _$ESRLinkNavigateToSignTransactionImpl
     implements _ESRLinkNavigateToSignTransaction {
-  const _$_ESRLinkNavigateToSignTransaction(this.data);
+  const _$ESRLinkNavigateToSignTransactionImpl(this.data);
 
   @override
   final ScanQrCodeResultData data;
@@ -1153,23 +1210,25 @@ class _$_ESRLinkNavigateToSignTransaction
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ESRLinkNavigateToSignTransaction &&
+            other is _$ESRLinkNavigateToSignTransactionImpl &&
             (identical(other.data, data) || other.data == data));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, data);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PageCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ESRLinkNavigateToSignTransactionCopyWith<
-          _$_ESRLinkNavigateToSignTransaction>
-      get copyWith => __$$_ESRLinkNavigateToSignTransactionCopyWithImpl<
-          _$_ESRLinkNavigateToSignTransaction>(this, _$identity);
+  _$$ESRLinkNavigateToSignTransactionImplCopyWith<
+          _$ESRLinkNavigateToSignTransactionImpl>
+      get copyWith => __$$ESRLinkNavigateToSignTransactionImplCopyWithImpl<
+          _$ESRLinkNavigateToSignTransactionImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1248,11 +1307,14 @@ class _$_ESRLinkNavigateToSignTransaction
 
 abstract class _ESRLinkNavigateToSignTransaction implements PageCommand {
   const factory _ESRLinkNavigateToSignTransaction(
-      final ScanQrCodeResultData data) = _$_ESRLinkNavigateToSignTransaction;
+      final ScanQrCodeResultData data) = _$ESRLinkNavigateToSignTransactionImpl;
 
   ScanQrCodeResultData get data;
-  @JsonKey(ignore: true)
-  _$$_ESRLinkNavigateToSignTransactionCopyWith<
-          _$_ESRLinkNavigateToSignTransaction>
+
+  /// Create a copy of PageCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ESRLinkNavigateToSignTransactionImplCopyWith<
+          _$ESRLinkNavigateToSignTransactionImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

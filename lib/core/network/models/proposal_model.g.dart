@@ -8,9 +8,6 @@ part of 'proposal_model.dart';
 
 ProposalModel _$ProposalModelFromJson(Map<String, dynamic> json) =>
     ProposalModel(
-      daoImageUrl: json['daoImageUrl'] as String,
-      creatorImageUrl: json['creatorImageUrl'] as String,
-      voted: json['creatorImageUrl'] as bool,
       id: json['docId'] as String,
       daoName: json['daoName'] as String,
       commitment: (json['details_timeShareX100_i'] as num?)?.toInt(),

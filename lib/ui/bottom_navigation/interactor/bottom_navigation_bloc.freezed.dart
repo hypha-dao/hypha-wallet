@@ -12,7 +12,7 @@ part of 'bottom_navigation_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$BottomNavigationEvent {
@@ -79,30 +79,36 @@ class _$BottomNavigationEventCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of BottomNavigationEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
-abstract class _$$_InitialCopyWith<$Res> {
-  factory _$$_InitialCopyWith(
-          _$_Initial value, $Res Function(_$_Initial) then) =
-      __$$_InitialCopyWithImpl<$Res>;
+abstract class _$$InitialImplCopyWith<$Res> {
+  factory _$$InitialImplCopyWith(
+          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
+      __$$InitialImplCopyWithImpl<$Res>;
   @useResult
   $Res call({BottomNavigationPage? initialPage});
 }
 
 /// @nodoc
-class __$$_InitialCopyWithImpl<$Res>
-    extends _$BottomNavigationEventCopyWithImpl<$Res, _$_Initial>
-    implements _$$_InitialCopyWith<$Res> {
-  __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
+class __$$InitialImplCopyWithImpl<$Res>
+    extends _$BottomNavigationEventCopyWithImpl<$Res, _$InitialImpl>
+    implements _$$InitialImplCopyWith<$Res> {
+  __$$InitialImplCopyWithImpl(
+      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of BottomNavigationEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? initialPage = freezed,
   }) {
-    return _then(_$_Initial(
+    return _then(_$InitialImpl(
       freezed == initialPage
           ? _value.initialPage
           : initialPage // ignore: cast_nullable_to_non_nullable
@@ -113,8 +119,8 @@ class __$$_InitialCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Initial implements _Initial {
-  const _$_Initial(this.initialPage);
+class _$InitialImpl implements _Initial {
+  const _$InitialImpl(this.initialPage);
 
   @override
   final BottomNavigationPage? initialPage;
@@ -125,10 +131,10 @@ class _$_Initial implements _Initial {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Initial &&
+            other is _$InitialImpl &&
             (identical(other.initialPage, initialPage) ||
                 other.initialPage == initialPage));
   }
@@ -136,11 +142,13 @@ class _$_Initial implements _Initial {
   @override
   int get hashCode => Object.hash(runtimeType, initialPage);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BottomNavigationEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$_InitialCopyWith<_$_Initial> get copyWith =>
-      __$$_InitialCopyWithImpl<_$_Initial>(this, _$identity);
+  _$$InitialImplCopyWith<_$InitialImpl> get copyWith =>
+      __$$InitialImplCopyWithImpl<_$InitialImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -212,34 +220,41 @@ class _$_Initial implements _Initial {
 }
 
 abstract class _Initial implements BottomNavigationEvent {
-  const factory _Initial(final BottomNavigationPage? initialPage) = _$_Initial;
+  const factory _Initial(final BottomNavigationPage? initialPage) =
+      _$InitialImpl;
 
   BottomNavigationPage? get initialPage;
-  @JsonKey(ignore: true)
-  _$$_InitialCopyWith<_$_Initial> get copyWith =>
+
+  /// Create a copy of BottomNavigationEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$InitialImplCopyWith<_$InitialImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_ClearPageCommandCopyWith<$Res> {
-  factory _$$_ClearPageCommandCopyWith(
-          _$_ClearPageCommand value, $Res Function(_$_ClearPageCommand) then) =
-      __$$_ClearPageCommandCopyWithImpl<$Res>;
+abstract class _$$ClearPageCommandImplCopyWith<$Res> {
+  factory _$$ClearPageCommandImplCopyWith(_$ClearPageCommandImpl value,
+          $Res Function(_$ClearPageCommandImpl) then) =
+      __$$ClearPageCommandImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_ClearPageCommandCopyWithImpl<$Res>
-    extends _$BottomNavigationEventCopyWithImpl<$Res, _$_ClearPageCommand>
-    implements _$$_ClearPageCommandCopyWith<$Res> {
-  __$$_ClearPageCommandCopyWithImpl(
-      _$_ClearPageCommand _value, $Res Function(_$_ClearPageCommand) _then)
+class __$$ClearPageCommandImplCopyWithImpl<$Res>
+    extends _$BottomNavigationEventCopyWithImpl<$Res, _$ClearPageCommandImpl>
+    implements _$$ClearPageCommandImplCopyWith<$Res> {
+  __$$ClearPageCommandImplCopyWithImpl(_$ClearPageCommandImpl _value,
+      $Res Function(_$ClearPageCommandImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of BottomNavigationEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$_ClearPageCommand implements _ClearPageCommand {
-  const _$_ClearPageCommand();
+class _$ClearPageCommandImpl implements _ClearPageCommand {
+  const _$ClearPageCommandImpl();
 
   @override
   String toString() {
@@ -247,9 +262,9 @@ class _$_ClearPageCommand implements _ClearPageCommand {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_ClearPageCommand);
+        (other.runtimeType == runtimeType && other is _$ClearPageCommandImpl);
   }
 
   @override
@@ -325,32 +340,34 @@ class _$_ClearPageCommand implements _ClearPageCommand {
 }
 
 abstract class _ClearPageCommand implements BottomNavigationEvent {
-  const factory _ClearPageCommand() = _$_ClearPageCommand;
+  const factory _ClearPageCommand() = _$ClearPageCommandImpl;
 }
 
 /// @nodoc
-abstract class _$$_OnPageSelectedCopyWith<$Res> {
-  factory _$$_OnPageSelectedCopyWith(
-          _$_OnPageSelected value, $Res Function(_$_OnPageSelected) then) =
-      __$$_OnPageSelectedCopyWithImpl<$Res>;
+abstract class _$$OnPageSelectedImplCopyWith<$Res> {
+  factory _$$OnPageSelectedImplCopyWith(_$OnPageSelectedImpl value,
+          $Res Function(_$OnPageSelectedImpl) then) =
+      __$$OnPageSelectedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({BottomNavigationPage page});
 }
 
 /// @nodoc
-class __$$_OnPageSelectedCopyWithImpl<$Res>
-    extends _$BottomNavigationEventCopyWithImpl<$Res, _$_OnPageSelected>
-    implements _$$_OnPageSelectedCopyWith<$Res> {
-  __$$_OnPageSelectedCopyWithImpl(
-      _$_OnPageSelected _value, $Res Function(_$_OnPageSelected) _then)
+class __$$OnPageSelectedImplCopyWithImpl<$Res>
+    extends _$BottomNavigationEventCopyWithImpl<$Res, _$OnPageSelectedImpl>
+    implements _$$OnPageSelectedImplCopyWith<$Res> {
+  __$$OnPageSelectedImplCopyWithImpl(
+      _$OnPageSelectedImpl _value, $Res Function(_$OnPageSelectedImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of BottomNavigationEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? page = null,
   }) {
-    return _then(_$_OnPageSelected(
+    return _then(_$OnPageSelectedImpl(
       null == page
           ? _value.page
           : page // ignore: cast_nullable_to_non_nullable
@@ -361,8 +378,8 @@ class __$$_OnPageSelectedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_OnPageSelected implements _OnPageSelected {
-  const _$_OnPageSelected(this.page);
+class _$OnPageSelectedImpl implements _OnPageSelected {
+  const _$OnPageSelectedImpl(this.page);
 
   @override
   final BottomNavigationPage page;
@@ -373,21 +390,24 @@ class _$_OnPageSelected implements _OnPageSelected {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_OnPageSelected &&
+            other is _$OnPageSelectedImpl &&
             (identical(other.page, page) || other.page == page));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, page);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BottomNavigationEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$_OnPageSelectedCopyWith<_$_OnPageSelected> get copyWith =>
-      __$$_OnPageSelectedCopyWithImpl<_$_OnPageSelected>(this, _$identity);
+  _$$OnPageSelectedImplCopyWith<_$OnPageSelectedImpl> get copyWith =>
+      __$$OnPageSelectedImplCopyWithImpl<_$OnPageSelectedImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -460,11 +480,14 @@ class _$_OnPageSelected implements _OnPageSelected {
 
 abstract class _OnPageSelected implements BottomNavigationEvent {
   const factory _OnPageSelected(final BottomNavigationPage page) =
-      _$_OnPageSelected;
+      _$OnPageSelectedImpl;
 
   BottomNavigationPage get page;
-  @JsonKey(ignore: true)
-  _$$_OnPageSelectedCopyWith<_$_OnPageSelected> get copyWith =>
+
+  /// Create a copy of BottomNavigationEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$OnPageSelectedImplCopyWith<_$OnPageSelectedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -475,7 +498,9 @@ mixin _$BottomNavigationState {
   List<BottomNavigationPage> get allPages => throw _privateConstructorUsedError;
   BottomNavigationPage get selectedPage => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BottomNavigationState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $BottomNavigationStateCopyWith<BottomNavigationState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -506,6 +531,8 @@ class _$BottomNavigationStateCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of BottomNavigationState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -534,6 +561,8 @@ class _$BottomNavigationStateCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of BottomNavigationState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PageCommandCopyWith<$Res>? get command {
@@ -548,11 +577,12 @@ class _$BottomNavigationStateCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_BottomNavigationStateCopyWith<$Res>
+abstract class _$$BottomNavigationStateImplCopyWith<$Res>
     implements $BottomNavigationStateCopyWith<$Res> {
-  factory _$$_BottomNavigationStateCopyWith(_$_BottomNavigationState value,
-          $Res Function(_$_BottomNavigationState) then) =
-      __$$_BottomNavigationStateCopyWithImpl<$Res>;
+  factory _$$BottomNavigationStateImplCopyWith(
+          _$BottomNavigationStateImpl value,
+          $Res Function(_$BottomNavigationStateImpl) then) =
+      __$$BottomNavigationStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -566,13 +596,16 @@ abstract class _$$_BottomNavigationStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_BottomNavigationStateCopyWithImpl<$Res>
-    extends _$BottomNavigationStateCopyWithImpl<$Res, _$_BottomNavigationState>
-    implements _$$_BottomNavigationStateCopyWith<$Res> {
-  __$$_BottomNavigationStateCopyWithImpl(_$_BottomNavigationState _value,
-      $Res Function(_$_BottomNavigationState) _then)
+class __$$BottomNavigationStateImplCopyWithImpl<$Res>
+    extends _$BottomNavigationStateCopyWithImpl<$Res,
+        _$BottomNavigationStateImpl>
+    implements _$$BottomNavigationStateImplCopyWith<$Res> {
+  __$$BottomNavigationStateImplCopyWithImpl(_$BottomNavigationStateImpl _value,
+      $Res Function(_$BottomNavigationStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of BottomNavigationState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -581,7 +614,7 @@ class __$$_BottomNavigationStateCopyWithImpl<$Res>
     Object? allPages = null,
     Object? selectedPage = null,
   }) {
-    return _then(_$_BottomNavigationState(
+    return _then(_$BottomNavigationStateImpl(
       pageState: null == pageState
           ? _value.pageState
           : pageState // ignore: cast_nullable_to_non_nullable
@@ -604,8 +637,8 @@ class __$$_BottomNavigationStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_BottomNavigationState extends _BottomNavigationState {
-  const _$_BottomNavigationState(
+class _$BottomNavigationStateImpl extends _BottomNavigationState {
+  const _$BottomNavigationStateImpl(
       {this.pageState = PageState.initial,
       this.command,
       final List<BottomNavigationPage> allPages = const [],
@@ -637,10 +670,10 @@ class _$_BottomNavigationState extends _BottomNavigationState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_BottomNavigationState &&
+            other is _$BottomNavigationStateImpl &&
             (identical(other.pageState, pageState) ||
                 other.pageState == pageState) &&
             (identical(other.command, command) || other.command == command) &&
@@ -653,12 +686,14 @@ class _$_BottomNavigationState extends _BottomNavigationState {
   int get hashCode => Object.hash(runtimeType, pageState, command,
       const DeepCollectionEquality().hash(_allPages), selectedPage);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BottomNavigationState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$_BottomNavigationStateCopyWith<_$_BottomNavigationState> get copyWith =>
-      __$$_BottomNavigationStateCopyWithImpl<_$_BottomNavigationState>(
-          this, _$identity);
+  _$$BottomNavigationStateImplCopyWith<_$BottomNavigationStateImpl>
+      get copyWith => __$$BottomNavigationStateImplCopyWithImpl<
+          _$BottomNavigationStateImpl>(this, _$identity);
 }
 
 abstract class _BottomNavigationState extends BottomNavigationState {
@@ -666,7 +701,7 @@ abstract class _BottomNavigationState extends BottomNavigationState {
       {final PageState pageState,
       final PageCommand? command,
       final List<BottomNavigationPage> allPages,
-      final BottomNavigationPage selectedPage}) = _$_BottomNavigationState;
+      final BottomNavigationPage selectedPage}) = _$BottomNavigationStateImpl;
   const _BottomNavigationState._() : super._();
 
   @override
@@ -677,10 +712,13 @@ abstract class _BottomNavigationState extends BottomNavigationState {
   List<BottomNavigationPage> get allPages;
   @override
   BottomNavigationPage get selectedPage;
+
+  /// Create a copy of BottomNavigationState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
-  _$$_BottomNavigationStateCopyWith<_$_BottomNavigationState> get copyWith =>
-      throw _privateConstructorUsedError;
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$BottomNavigationStateImplCopyWith<_$BottomNavigationStateImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -735,28 +773,34 @@ class _$PageCommandCopyWithImpl<$Res, $Val extends PageCommand>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of PageCommand
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
-abstract class _$$_NavigateToCopyWith<$Res> {
-  factory _$$_NavigateToCopyWith(
-          _$_NavigateTo value, $Res Function(_$_NavigateTo) then) =
-      __$$_NavigateToCopyWithImpl<$Res>;
+abstract class _$$NavigateToImplCopyWith<$Res> {
+  factory _$$NavigateToImplCopyWith(
+          _$NavigateToImpl value, $Res Function(_$NavigateToImpl) then) =
+      __$$NavigateToImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_NavigateToCopyWithImpl<$Res>
-    extends _$PageCommandCopyWithImpl<$Res, _$_NavigateTo>
-    implements _$$_NavigateToCopyWith<$Res> {
-  __$$_NavigateToCopyWithImpl(
-      _$_NavigateTo _value, $Res Function(_$_NavigateTo) _then)
+class __$$NavigateToImplCopyWithImpl<$Res>
+    extends _$PageCommandCopyWithImpl<$Res, _$NavigateToImpl>
+    implements _$$NavigateToImplCopyWith<$Res> {
+  __$$NavigateToImplCopyWithImpl(
+      _$NavigateToImpl _value, $Res Function(_$NavigateToImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of PageCommand
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$_NavigateTo implements _NavigateTo {
-  const _$_NavigateTo();
+class _$NavigateToImpl implements _NavigateTo {
+  const _$NavigateToImpl();
 
   @override
   String toString() {
@@ -764,9 +808,9 @@ class _$_NavigateTo implements _NavigateTo {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_NavigateTo);
+        (other.runtimeType == runtimeType && other is _$NavigateToImpl);
   }
 
   @override
@@ -830,5 +874,5 @@ class _$_NavigateTo implements _NavigateTo {
 }
 
 abstract class _NavigateTo implements PageCommand {
-  const factory _NavigateTo() = _$_NavigateTo;
+  const factory _NavigateTo() = _$NavigateToImpl;
 }
