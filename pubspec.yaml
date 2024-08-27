@@ -150,6 +150,10 @@ dependencies:
   # Added for image loading
   cached_network_image: ^3.2.0
 
+  # Indicate percentage
+  percent_indicator: ^4.2.3
+
+
 dependency_overrides:
   dio: ^5.3.0
 

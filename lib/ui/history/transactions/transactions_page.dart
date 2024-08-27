@@ -17,7 +17,6 @@ class TransactionsPage extends StatelessWidget {
           state.command?.when(
             navigateToTransactionDetails: () {},
           );
-
           context.read<TransactionsBloc>().add(const TransactionsEvent.clearPageCommand());
         },
         child: const TransactionsView(),
