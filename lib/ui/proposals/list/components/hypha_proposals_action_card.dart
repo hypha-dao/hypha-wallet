@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart' as Get;
+import 'package:hypha_wallet/core/extension/proposal_model_extensions.dart';
 import 'package:hypha_wallet/core/network/models/proposal_model.dart';
-import 'package:hypha_wallet/core/network/models/proposal_model_extensions.dart';
 import 'package:hypha_wallet/core/network/models/vote_model.dart';
 import 'package:hypha_wallet/design/avatar_image/hypha_avatar_image.dart';
 import 'package:hypha_wallet/design/dividers/hypha_divider.dart';
@@ -10,6 +11,7 @@ import 'package:hypha_wallet/design/hypha_card.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 import 'package:hypha_wallet/ui/blocs/authentication/authentication_bloc.dart';
+import 'package:hypha_wallet/ui/proposals/details/proposal_details_page.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class HyphaProposalsActionCard extends StatelessWidget {
@@ -25,7 +27,12 @@ class HyphaProposalsActionCard extends StatelessWidget {
         HyphaCard(
           child: InkWell(
             borderRadius: BorderRadius.circular(16),
-            onTap: () {},
+            onTap: () {
+              Get.Get.to(
+                ProposalDetailsPage(proposalModel),
+                transition: Get.Transition.rightToLeft,
+              );
+            },
             child: Padding(
               padding: const EdgeInsets.all(22),
               child: Column(
