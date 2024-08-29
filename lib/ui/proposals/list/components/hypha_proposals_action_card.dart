@@ -25,59 +25,50 @@ class HyphaProposalsActionCard extends StatelessWidget {
       children: [
         _buildVoteStatusOverlay(context),
         HyphaCard(
-          child: InkWell(
-            borderRadius: BorderRadius.circular(16),
-            onTap: () {
-              Get.Get.to(
-                ProposalDetailsPage(proposalModel),
-                transition: Get.Transition.rightToLeft,
-              );
-            },
-            child: Padding(
-              padding: const EdgeInsets.all(22),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _buildHeader(
-                    context,
-                    proposalModel.daoName,
-                    'https://etudestech.com/wp-content/uploads/2023/05/midjourney-scaled.jpeg',
-                  ),
-                  const SizedBox(height: 18),
-                  const HyphaDivider(),
-                  const SizedBox(height: 18),
-                  _buildProposalRoleAssignment(
-                    context,
-                    proposalModel.commitment ?? 0,
-                    proposalModel.title ?? 'No title set for this proposal.',
-                  ),
-                  const SizedBox(height: 20),
-                  _buildProposalPercentageIndicator(
-                    context,
-                    'Unity',
-                    proposalModel.unityToPercent(),
-                  ),
-                  const SizedBox(height: 20),
-                  _buildProposalPercentageIndicator(
-                    context,
-                    'Quorum',
-                    proposalModel.quorumToPercent(),
-                  ),
-                  const SizedBox(height: 20),
-                  _buildProposalExpirationInfo(
-                    context,
-                    proposalModel.formatExpiration(),
-                  ),
-                  const SizedBox(height: 16),
-                  const HyphaDivider(),
-                  const SizedBox(height: 16),
-                  _buildProposalCardFooter(
-                    context,
-                    proposalModel.creator,
-                    'https://etudestech.com/wp-content/uploads/2023/05/midjourney-scaled.jpeg',
-                  ),
-                ],
-              ),
+          child: Padding(
+            padding: const EdgeInsets.all(22),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _buildHeader(
+                  context,
+                  proposalModel.daoName,
+                  'https://etudestech.com/wp-content/uploads/2023/05/midjourney-scaled.jpeg',
+                ),
+                const SizedBox(height: 18),
+                const HyphaDivider(),
+                const SizedBox(height: 18),
+                _buildProposalRoleAssignment(
+                  context,
+                  proposalModel.commitment ?? 0,
+                  proposalModel.title ?? 'No title set for this proposal.',
+                ),
+                const SizedBox(height: 20),
+                _buildProposalPercentageIndicator(
+                  context,
+                  'Unity',
+                  proposalModel.unityToPercent(),
+                ),
+                const SizedBox(height: 20),
+                _buildProposalPercentageIndicator(
+                  context,
+                  'Quorum',
+                  proposalModel.quorumToPercent(),
+                ),
+                const SizedBox(height: 20),
+                _buildProposalExpirationInfo(
+                  context,
+                  proposalModel.formatExpiration(),
+                ),
+                const SizedBox(height: 16),
+                const HyphaDivider(),
+                const SizedBox(height: 16),
+                _buildProposalCardFooter(
+                  context,
+                  proposalModel.creator,
+                  'https://etudestech.com/wp-content/uploads/2023/05/midjourney-scaled.jpeg',
+                ),
+              ],
             ),
           ),
         ),
@@ -260,7 +251,12 @@ class HyphaProposalsActionCard extends StatelessWidget {
         ),
         const Spacer(),
         GestureDetector(
-          onTap: () {},
+          onTap: () {
+            Get.Get.to(
+              ProposalDetailsPage(proposalModel),
+              transition: Get.Transition.rightToLeft,
+            );
+          },
           child: Container(
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
             decoration: BoxDecoration(
