@@ -1,10 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hypha_wallet/core/extension/proposal_model_extensions.dart';
 import 'package:hypha_wallet/core/network/models/proposal_model.dart';
 import 'package:hypha_wallet/core/network/models/vote_model.dart';
-import 'package:hypha_wallet/design/avatar_image/hypha_avatar_image.dart';
 import 'package:hypha_wallet/design/dividers/hypha_divider.dart';
 import 'package:hypha_wallet/design/hypha_card.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
