@@ -79,14 +79,16 @@ class ProposalsView extends StatelessWidget {
                   child: HyphaBodyWidget(
                     pageState: state.pageState,
                     success:(context) =>  Padding(
-                      padding: const EdgeInsets.all(22),
+                      padding: const EdgeInsets.symmetric(horizontal: 22),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          const SizedBox(height: 22,),
                           Text('${state.proposals.length} Active Proposals',style: context.hyphaTextTheme.ralMediumBody.copyWith(color: HyphaColors.midGrey ),),
                           const SizedBox(height: 20,),
                           Expanded(
                             child: ListView.separated(
+                              padding: const EdgeInsets.only(bottom: 22),
                                 itemBuilder: (BuildContext context,int index) =>  HyphaProposalsActionCard(proposalModel: state.proposals[index],),
                                 separatorBuilder: (BuildContext context, int index) {
                                   return const SizedBox(height: 16);

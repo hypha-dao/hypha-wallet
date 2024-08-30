@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hypha_wallet/core/extension/proposal_model_extensions.dart';
 import 'package:hypha_wallet/core/network/models/proposal_model.dart';
-import 'package:hypha_wallet/core/network/models/proposal_model_extensions.dart';
 import 'package:hypha_wallet/core/network/models/vote_model.dart';
 import 'package:hypha_wallet/design/avatar_image/hypha_avatar_image.dart';
 import 'package:hypha_wallet/design/dividers/hypha_divider.dart';
@@ -126,11 +126,13 @@ class HyphaProposalsActionCard extends StatelessWidget {
           onTap: () {},
         ),
         const SizedBox(width: 5),
-        Expanded(
+        Flexible(
           child: Text(
             daoName,
             style: context.hyphaTextTheme.ralMediumSmallNote
-                .copyWith(color: HyphaColors.white),
+                .copyWith(color: context.isDarkTheme
+                ? HyphaColors.white
+                : HyphaColors.darkBlack,),
             maxLines: 1,
           ),
         ),

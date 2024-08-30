@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:hypha_wallet/core/network/models/dao_data_model.dart';
 import 'package:hypha_wallet/design/hypha_card.dart';
@@ -58,15 +59,20 @@ class DaoWidget extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(width: 8),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(dao.settingsDaoTitle, style: context.hyphaTextTheme.smallTitles),
-                          Text(
-                            'dao.hypha.earth/${dao.settingsDaoUrl}',
-                            style: context.hyphaTextTheme.reducedTitles.copyWith(color: HyphaColors.primaryBlu),
-                          ),
-                        ],
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(dao.settingsDaoTitle, style: context.hyphaTextTheme.smallTitles),
+                            AutoSizeText(
+                              minFontSize: 12,
+                              'dao.hypha.earth/${dao.settingsDaoUrl}',
+                              style: context.hyphaTextTheme.reducedTitles.copyWith(color: HyphaColors.primaryBlu),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ],
+                        ),
                       )
                     ],
                   ),
