@@ -64,9 +64,10 @@ class _ProposalDetailsViewState extends State<ProposalDetailsView> {
           title: const Text('Proposal Details'),
         ),
         body: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
+          padding: const EdgeInsets.symmetric(horizontal: 30),
           child: ListView(
             children: [
+              const SizedBox(height: 20),
               /// Header
               ProposalHeader(
                 widget.proposalModel.daoName,
@@ -350,6 +351,7 @@ class _ProposalDetailsViewState extends State<ProposalDetailsView> {
                   ),
                 ),
               ),
+              const SizedBox(height: 20),
             ],
           ),
         ),
