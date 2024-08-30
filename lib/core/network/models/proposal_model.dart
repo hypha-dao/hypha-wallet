@@ -30,4 +30,9 @@ class ProposalModel {
     }
     return _$ProposalModelFromJson(json);
   }
+
+  List<String> fetchVotersByStatus(VoteStatus voteStatus) => votes
+        ?.where((vote) => vote.voteStatus == voteStatus)
+        .map((vote) => vote.voter)
+        .toList() ?? [];
 }

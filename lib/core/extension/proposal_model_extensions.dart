@@ -27,5 +27,6 @@ extension ProposalModelTimeFormatting on ProposalModel {
   }
   double quorumToPercent() => quorum==null?0:quorum!*.01;
   double unityToPercent() => unity==null?0:unity!*.01;
+  double commitmentToPercent() => commitment == null ? 0 : commitment! * .01;
 }
 
