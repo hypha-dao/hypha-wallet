@@ -21,6 +21,7 @@ class TransactionDetailView extends StatelessWidget {
           child: Scaffold(
             backgroundColor: HyphaColors.transparent,
             appBar: AppBar(
+              scrolledUnderElevation: 0,
               centerTitle: true,
               title: Text('Transaction Details', style: context.hyphaTextTheme.smallTitles),
               backgroundColor: HyphaColors.transparent,
