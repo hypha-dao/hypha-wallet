@@ -27,21 +27,19 @@ class HyphaBodyWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Builder(
-        builder: (context) {
-          switch (pageState) {
-            case PageState.initial:
-              return initial?.call(context) ?? const SizedBox.shrink();
-            case PageState.loading:
-              return loading?.call(context) ?? const Center(child: CircularProgressIndicator.adaptive());
-            case PageState.failure:
-              return failure?.call(context) ?? const HyphaErrorWidget();
-            case PageState.success:
-              return GestureDetector(onTap: () => FocusScope.of(context).unfocus(), child: success(context));
-          }
-        },
-      ),
+    return Builder(
+      builder: (context) {
+        switch (pageState) {
+          case PageState.initial:
+            return initial?.call(context) ?? const SizedBox.shrink();
+          case PageState.loading:
+            return loading?.call(context) ?? const Center(child: CircularProgressIndicator.adaptive());
+          case PageState.failure:
+            return failure?.call(context) ?? const HyphaErrorWidget();
+          case PageState.success:
+            return GestureDetector(onTap: () => FocusScope.of(context).unfocus(), child: success(context));
+        }
+      },
     );
   }
 }

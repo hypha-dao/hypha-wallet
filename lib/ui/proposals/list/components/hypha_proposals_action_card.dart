@@ -124,11 +124,13 @@ class HyphaProposalsActionCard extends StatelessWidget {
           onTap: () {},
         ),
         const SizedBox(width: 5),
-        Expanded(
+        Flexible(
           child: Text(
             daoName,
             style: context.hyphaTextTheme.ralMediumSmallNote
-                .copyWith(color: HyphaColors.white),
+                .copyWith(color: context.isDarkTheme
+                ? HyphaColors.white
+                : HyphaColors.darkBlack,),
             maxLines: 1,
           ),
         ),
