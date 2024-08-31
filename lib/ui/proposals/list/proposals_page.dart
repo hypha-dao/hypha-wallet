@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:hypha_wallet/core/network/models/proposal_model.dart';
 import 'package:hypha_wallet/ui/proposals/list/components/proposals_view.dart';
 import 'package:hypha_wallet/ui/proposals/list/interactor/proposals_bloc.dart';
 
@@ -12,19 +11,7 @@ class ProposalsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => GetIt.I.get<ProposalsBloc>()..add(const ProposalsEvent.initial()),
-      child: BlocListener<ProposalsBloc, ProposalsState>(
-        listenWhen: (previous, current) => previous.command != current.command,
-        listener: (context, state) {
-          state.command?.when(
-            navigateToProposalDetails: (ProposalModel proposal) {
-                  // TODO: redirection
-            },
-          );
-
-          context.read<ProposalsBloc>().add(const ProposalsEvent.clearPageCommand());
-        },
-        child: const ProposalsView(),
-      ),
+      child: const ProposalsView(),
     );
   }
 }
