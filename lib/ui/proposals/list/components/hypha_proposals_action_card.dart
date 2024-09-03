@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart' as Get;
 import 'package:hypha_wallet/core/extension/proposal_model_extensions.dart';
 import 'package:hypha_wallet/core/network/models/proposal_model.dart';
 import 'package:hypha_wallet/core/network/models/vote_model.dart';
@@ -13,6 +14,8 @@ import 'package:hypha_wallet/ui/proposals/components/proposal_button.dart';
 import 'package:hypha_wallet/ui/proposals/components/proposal_expiration_timer.dart';
 import 'package:hypha_wallet/ui/proposals/components/proposal_header.dart';
 import 'package:hypha_wallet/ui/proposals/components/proposal_percentage_indicator.dart';
+import 'package:hypha_wallet/ui/proposals/details/proposal_details_page.dart';
+import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class HyphaProposalsActionCard extends StatelessWidget {
   final ProposalModel proposalModel;

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart' as GetX;
-import 'package:hypha_wallet/core/network/models/proposal_model.dart';
 import 'package:hypha_wallet/design/avatar_image/hypha_avatar_image.dart';
 import 'package:hypha_wallet/design/background/hypha_page_background.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
@@ -79,14 +78,16 @@ class ProposalsView extends StatelessWidget {
                   child: HyphaBodyWidget(
                     pageState: state.pageState,
                     success:(context) =>  Padding(
-                      padding: const EdgeInsets.all(22),
+                      padding: const EdgeInsets.symmetric(horizontal: 22),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          const SizedBox(height: 22,),
                           Text('${state.proposals.length} Active Proposals',style: context.hyphaTextTheme.ralMediumBody.copyWith(color: HyphaColors.midGrey ),),
                           const SizedBox(height: 20,),
                           Expanded(
                             child: ListView.separated(
+                              padding: const EdgeInsets.only(bottom: 22),
                                 itemBuilder: (BuildContext context,int index) =>  HyphaProposalsActionCard(proposalModel: state.proposals[index],),
                                 separatorBuilder: (BuildContext context, int index) {
                                   return const SizedBox(height: 16);

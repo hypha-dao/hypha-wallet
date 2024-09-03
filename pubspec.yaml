@@ -37,6 +37,11 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
 
+
+  # Resize text size based on the available place.
+  auto_size_text: ^3.0.0
+
+
   # UI and Navigation
   get: ^4.6.5
 

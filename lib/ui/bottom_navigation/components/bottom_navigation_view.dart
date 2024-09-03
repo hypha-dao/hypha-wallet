@@ -21,7 +21,6 @@ class BottomNavigationView extends StatelessWidget {
     return BlocBuilder<BottomNavigationBloc, BottomNavigationState>(
       builder: (context, BottomNavigationState state) {
         return Scaffold(
-            extendBody: true,
             bottomNavigationBar: DecoratedBox(
               decoration: BoxDecoration(
                 color: context.isDarkTheme

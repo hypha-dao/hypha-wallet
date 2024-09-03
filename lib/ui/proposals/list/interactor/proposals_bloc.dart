@@ -7,7 +7,6 @@ import 'package:hypha_wallet/ui/architecture/interactor/page_states.dart';
 import 'package:hypha_wallet/ui/architecture/result/result.dart';
 import 'package:hypha_wallet/ui/proposals/list/usecases/get_proposals_use_case.dart';
 
-part 'page_command.dart';
 part 'proposals_bloc.freezed.dart';
 part 'proposals_event.dart';
 part 'proposals_state.dart';
