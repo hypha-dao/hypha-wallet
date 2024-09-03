@@ -10,7 +10,7 @@ import 'package:hypha_wallet/design/buttons/hypha_app_button.dart';
 import 'package:hypha_wallet/design/dividers/hypha_divider.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
-import 'package:hypha_wallet/ui/proposals/components/proposal_admin.dart';
+import 'package:hypha_wallet/ui/proposals/components/proposal_creator.dart';
 import 'package:hypha_wallet/ui/proposals/components/proposal_button.dart';
 import 'package:hypha_wallet/ui/proposals/components/proposal_expiration_timer.dart';
 import 'package:hypha_wallet/ui/proposals/components/proposal_header.dart';
@@ -112,7 +112,7 @@ class _ProposalDetailsViewState extends State<ProposalDetailsView> {
                   style: context.hyphaTextTheme.mediumTitles,
                 ),
               ),
-              ProposalAdmin(
+              ProposalCreator(
                 widget.proposalModel.creator,
                 'https://etudestech.com/wp-content/uploads/2023/05/midjourney-scaled.jpeg',
               ),

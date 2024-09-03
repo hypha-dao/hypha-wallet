@@ -9,13 +9,12 @@ import 'package:hypha_wallet/design/hypha_card.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 import 'package:hypha_wallet/ui/blocs/authentication/authentication_bloc.dart';
-import 'package:hypha_wallet/ui/proposals/components/proposal_admin.dart';
 import 'package:hypha_wallet/ui/proposals/components/proposal_button.dart';
+import 'package:hypha_wallet/ui/proposals/components/proposal_creator.dart';
 import 'package:hypha_wallet/ui/proposals/components/proposal_expiration_timer.dart';
 import 'package:hypha_wallet/ui/proposals/components/proposal_header.dart';
 import 'package:hypha_wallet/ui/proposals/components/proposal_percentage_indicator.dart';
 import 'package:hypha_wallet/ui/proposals/details/proposal_details_page.dart';
-import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class HyphaProposalsActionCard extends StatelessWidget {
   final ProposalModel proposalModel;
@@ -28,53 +27,51 @@ class HyphaProposalsActionCard extends StatelessWidget {
       children: [
         _buildVoteStatusOverlay(context),
         HyphaCard(
-          child: InkWell(
-            borderRadius: BorderRadius.circular(16),
-            onTap: () {
-            },
-            child: Padding(
-              padding: const EdgeInsets.all(22),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  ProposalHeader(
-                    proposalModel.daoName,
-                    'https://etudestech.com/wp-content/uploads/2023/05/midjourney-scaled.jpeg',
-                  ),
-                  const SizedBox(height: 18),
-                  const HyphaDivider(),
-                  const SizedBox(height: 18),
-                  _buildProposalRoleAssignment(
-                    context,
-                    proposalModel.commitment ?? 0,
-                    proposalModel.title ?? 'No title set for this proposal.',
-                  ),
-                  const SizedBox(height: 20),
-                  ProposalPercentageIndicator(
+          child: Padding(
+            padding: const EdgeInsets.all(22),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ProposalHeader(
+                  proposalModel.daoName,
+                  'https://etudestech.com/wp-content/uploads/2023/05/midjourney-scaled.jpeg',
+                ),
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 18),
+                  child: HyphaDivider(),
+                ),
+                _buildProposalRoleAssignment(
+                  context,
+                  proposalModel.commitment ?? 0,
+                  proposalModel.title ?? 'No title set for this proposal.',
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 20),
+                  child: ProposalPercentageIndicator(
                     'Unity',
                     proposalModel.unityToPercent(),
                     HyphaColors.success
                   ),
-                  const SizedBox(height: 20),
-                  ProposalPercentageIndicator(
-                    'Quorum',
-                    proposalModel.quorumToPercent(),
-                      HyphaColors.success
-                  ),
-                  const SizedBox(height: 20),
-                  ProposalExpirationTimer(
-                    proposalModel.formatExpiration(),
-                  ),
-                  const SizedBox(height: 16),
-                  const HyphaDivider(),
-                  const SizedBox(height: 16),
-                  _buildProposalCardFooter(
-                    context,
-                    proposalModel.creator,
-                    'https://etudestech.com/wp-content/uploads/2023/05/midjourney-scaled.jpeg',
-                  ),
-                ],
-              ),
+                ),
+                ProposalPercentageIndicator(
+                  'Quorum',
+                  proposalModel.quorumToPercent(),
+                    HyphaColors.success
+                ),
+                const SizedBox(height: 20),
+                ProposalExpirationTimer(
+                  proposalModel.formatExpiration(),
+                ),
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 16),
+                  child: HyphaDivider(),
+                ),
+                _buildProposalCardFooter(
+                  context,
+                  proposalModel.creator,
+                  'https://etudestech.com/wp-content/uploads/2023/05/midjourney-scaled.jpeg',
+                ),
+              ],
             ),
           ),
         ),
@@ -154,14 +151,19 @@ class HyphaProposalsActionCard extends StatelessWidget {
     );
   }
 
-  Widget _buildProposalCardFooter(BuildContext context, String adminName, String adminImageUrl) {
+  Widget _buildProposalCardFooter(BuildContext context, String creatorName, String creatorImageUrl) {
     return Row(
       children: [
-        Expanded(child: ProposalAdmin(adminName, adminImageUrl)),
+        Expanded(child: ProposalCreator(creatorName, creatorImageUrl)),
         ProposalButton(
             'Details',
             Icons.arrow_forward_ios,
-                () {}
+                () {
+                  Get.Get.to(
+                    ProposalDetailsPage(proposalModel),
+                    transition: Get.Transition.rightToLeft,
+                  );
+                }
         ),
       ],
     );
