@@ -6,8 +6,12 @@ extension ProposalModelTimeFormatting on ProposalModel {
 
     final now = DateTime.now();
     final expirationDate = expiration!.toLocal();
-    final difference = expirationDate.difference(now);
 
+    if (expirationDate.isBefore(now)) {
+      return 'Expired';
+    }
+
+    final difference = expirationDate.difference(now);
     final days = difference.inDays;
     final hours = difference.inHours % 24;
     final minutes = difference.inMinutes % 60;

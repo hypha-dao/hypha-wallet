@@ -136,6 +136,7 @@ void _registerBlocsModule() {
 
   _registerFactory(() => ProposalsBloc(
     _getIt<GetProposalsUseCase>(),
+    _getIt<FetchProfileUseCase>(),
     _getIt<ErrorHandlerManager>(),
   ));
 }
