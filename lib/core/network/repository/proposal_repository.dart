@@ -1,4 +1,5 @@
 import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
+import 'package:hypha_wallet/core/extension/proposal_model_extensions.dart';
 import 'package:hypha_wallet/core/logging/log_helper.dart';
 import 'package:hypha_wallet/core/network/api/services/proposal_service.dart';
 import 'package:hypha_wallet/core/network/models/dao_data_model.dart';
@@ -67,8 +68,8 @@ class ProposalRepository {
 
       final now = DateTime.now();
 
-      final isAExpired = a.expiration != null && a.expiration!.isBefore(now);
-      final isBExpired = b.expiration != null && b.expiration!.isBefore(now);
+      final isAExpired = a.expiration != null && a.isExpired();
+      final isBExpired = b.expiration != null && b.isExpired();
 
       if (isAExpired && !isBExpired) {
         return 1;
