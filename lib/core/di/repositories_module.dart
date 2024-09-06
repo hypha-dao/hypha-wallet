@@ -23,5 +23,5 @@ void _registerRepositoriesModule() {
 
   _registerLazySingleton(() => TransactionHistoryRepository(service: _getIt<TransactionHistoryService>()));
 
-  _registerLazySingleton(() => ProposalRepository(_getIt<ProposalService>()));
+  _registerLazySingleton(() => ProposalRepository(_getIt<ProposalService>(),_getIt<ProfileService>()));
 }
