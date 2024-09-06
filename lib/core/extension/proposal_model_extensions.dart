@@ -4,13 +4,11 @@ extension ProposalModelTimeFormatting on ProposalModel {
   String formatExpiration() {
     if (expiration == null) return 'Expired';
 
-    final expirationDate = expiration!.toLocal();
-
     if (isExpired()) {
       return 'Expired';
     }
 
-    final difference = expirationDate.difference(DateTime.now());
+    final difference = expiration!.toLocal().difference(DateTime.now());
     final days = difference.inDays;
     final hours = difference.inHours % 24;
     final minutes = difference.inMinutes % 60;

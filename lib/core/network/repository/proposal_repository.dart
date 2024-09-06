@@ -66,8 +66,6 @@ class ProposalRepository {
         return daoNameComparison;
       }
 
-      final now = DateTime.now();
-
       final isAExpired = a.expiration != null && a.isExpired();
       final isBExpired = b.expiration != null && b.isExpired();
 
@@ -77,7 +75,7 @@ class ProposalRepository {
         return -1;
       }
 
-      return a.expiration?.compareTo(b.expiration ?? now) ?? 0;
+      return a.expiration?.compareTo(b.expiration ?? DateTime.now()) ?? 0;
     });
   }
 }
