@@ -1,4 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:hypha_wallet/core/network/models/proposal_model.dart';
+import 'package:hypha_wallet/design/hypha_colors.dart';
 
 extension ProposalModelTimeFormatting on ProposalModel {
   String formatExpiration() {
@@ -30,5 +32,6 @@ extension ProposalModelTimeFormatting on ProposalModel {
   double unityToPercent() => unity==null?0:unity!*.01;
   double commitmentToPercent() => commitment == null ? 0 : commitment! * .01;
   bool isExpired() => expiration!.toLocal().isBefore(DateTime.now());
+  Color percentageColor()=> quorumToPercent()>=.2 && unityToPercent()>=.8 ?HyphaColors.success:HyphaColors.error;
 }
 

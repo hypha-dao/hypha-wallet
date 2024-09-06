@@ -50,13 +50,13 @@ class HyphaProposalsActionCard extends StatelessWidget {
                   child: ProposalPercentageIndicator(
                     'Unity',
                     proposalModel.unityToPercent(),
-                    HyphaColors.success
+                    proposalModel.percentageColor()
                   ),
                 ),
                 ProposalPercentageIndicator(
                   'Quorum',
                   proposalModel.quorumToPercent(),
-                    HyphaColors.success
+                  proposalModel.percentageColor()
                 ),
                 const SizedBox(height: 20),
                 ProposalExpirationTimer(
