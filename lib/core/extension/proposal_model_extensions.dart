@@ -4,10 +4,11 @@ extension ProposalModelTimeFormatting on ProposalModel {
   String formatExpiration() {
     if (expiration == null) return 'Expired';
 
-    final now = DateTime.now();
-    final expirationDate = expiration!.toLocal();
-    final difference = expirationDate.difference(now);
+    if (isExpired()) {
+      return 'Expired';
+    }
 
+    final difference = expiration!.toLocal().difference(DateTime.now());
     final days = difference.inDays;
     final hours = difference.inHours % 24;
     final minutes = difference.inMinutes % 60;
@@ -27,5 +28,7 @@ extension ProposalModelTimeFormatting on ProposalModel {
   }
   double quorumToPercent() => quorum==null?0:quorum!*.01;
   double unityToPercent() => unity==null?0:unity!*.01;
+  double commitmentToPercent() => commitment == null ? 0 : commitment! * .01;
+  bool isExpired() => expiration!.toLocal().isBefore(DateTime.now());
 }
 

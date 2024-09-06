@@ -61,7 +61,7 @@ class HyphaTheme {
         systemOverlayStyle: const SystemUiOverlayStyle(
           // Status bar brightness (optional)
           statusBarIconBrightness: Brightness.light, // For Android (light icons)
-          statusBarBrightness: Brightness.dark, // For iOS (light icons)
+          statusBarBrightness: Brightness.light, // For iOS (dark icons)
         ),
       ),
       bottomNavigationBarTheme: AppBottomNavigationTheme.bottomNavigationThemeData(lightColorScheme),
