@@ -32,6 +32,6 @@ extension ProposalModelTimeFormatting on ProposalModel {
   double unityToPercent() => unity==null?0:unity!*.01;
   double commitmentToPercent() => commitment == null ? 0 : commitment! * .01;
   bool isExpired() => expiration!.toLocal().isBefore(DateTime.now());
-  Color percentageColor()=> quorumToPercent()>=.2 && unityToPercent()>=.8 ?HyphaColors.success:HyphaColors.error;
+  bool isPassing()=>quorumToPercent()>=.2 && unityToPercent()>=.8;
 }
 
