@@ -11,8 +11,8 @@ class VoteModel {
 
   @JsonKey(name: 'vote_vote_s')
   final VoteStatus voteStatus;
-
-  VoteModel(this.voter, this.voteStatus);
+  String? voterImageUrl;
+  VoteModel(this.voterImageUrl,this.voter, this.voteStatus);
 
   factory VoteModel.fromJson(Map<String, dynamic> json) => _$VoteModelFromJson(json);
 }
