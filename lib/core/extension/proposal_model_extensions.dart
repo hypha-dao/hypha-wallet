@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
 import 'package:hypha_wallet/core/network/models/proposal_model.dart';
-import 'package:hypha_wallet/design/hypha_colors.dart';
 
 extension ProposalModelTimeFormatting on ProposalModel {
   String formatExpiration() {
