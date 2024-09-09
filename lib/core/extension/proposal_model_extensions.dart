@@ -30,6 +30,8 @@ extension ProposalModelTimeFormatting on ProposalModel {
   double unityToPercent() => unity==null?0:unity!*.01;
   double commitmentToPercent() => commitment == null ? 0 : commitment! * .01;
   bool isExpired() => expiration!.toLocal().isBefore(DateTime.now());
+  // TODO(saif): Replace hardcoded values (.2 and .8) with dynamic values fetched from the server.
+  // These thresholds are relative to each DAO and should be retrieved from the DAO settings.
   bool isPassing()=>quorumToPercent()>=.2 && unityToPercent()>=.8;
 }
 
