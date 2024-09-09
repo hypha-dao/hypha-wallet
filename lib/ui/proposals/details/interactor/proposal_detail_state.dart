@@ -4,7 +4,6 @@ part of 'proposal_detail_bloc.dart';
 class ProposalDetailState with _$ProposalDetailState {
   const factory ProposalDetailState({
     @Default(PageState.initial) PageState pageState,
-     ProposalDetailsModel? proposalDetails,
-    PageCommand? command,
+     ProposalDetailsModel? proposalDetailsModel,
   }) = _ProposalDetailState;
 }

@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_utils/src/extensions/context_extensions.dart';
+import 'package:hypha_wallet/core/network/models/vote_model.dart';
 import 'package:hypha_wallet/design/avatar_image/hypha_avatar_image.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 
 class ProposalVoters extends StatelessWidget {
-  final List<String> voters;
+  final List<VoteModel> votes;
 
-  const ProposalVoters(this.voters, {super.key});
+  const ProposalVoters(this.votes, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,7 @@ class ProposalVoters extends StatelessWidget {
       height: 50,
       child: Stack(
         children: List.generate(
-          voters.take(9).length,
+          votes.take(9).length,
           (index) {
             return Positioned(
               left: index * 30.0,
@@ -34,7 +35,7 @@ class ProposalVoters extends StatelessWidget {
                       ),
                       child: Center(
                         child: Text(
-                          '+${voters.length - 8}',
+                          '+${votes.length - 8}',
                           style: context.hyphaTextTheme.reducedTitles.copyWith(
                             color: context.isDarkMode
                                 ? HyphaColors.offWhite
@@ -43,9 +44,9 @@ class ProposalVoters extends StatelessWidget {
                         ),
                       ),
                     )
-                  : const HyphaAvatarImage(
+                  : HyphaAvatarImage(
                       imageRadius: 24,
-                      imageFromUrl: 'https://etudestech.com/wp-content/uploads/2023/05/midjourney-scaled.jpeg',
+                      imageFromUrl: votes[index].voterImageUrl,
                     ),
             );
           },

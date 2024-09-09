@@ -84,4 +84,6 @@ void _registerUseCasesModule() {
   _registerFactory(() => GetDaoNameUseCase(_getIt<DaoService>()));
 
   _registerFactory(() => GetProposalsUseCase(_getIt<AuthRepository>(), _getIt<ProposalRepository>()));
+
+  _registerFactory(() => GetProposalDetailsUseCase(_getIt<AuthRepository>(), _getIt<ProposalRepository>()));
 }

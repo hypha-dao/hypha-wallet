@@ -26,6 +26,7 @@ class ProposalHeader extends StatelessWidget {
           ),
         ),
         const SizedBox(width: 10),
+        // TODO(Zied-Saif): figure this out
         Text(
           'Marketing Circle',
           style: context.hyphaTextTheme.ralMediumSmallNote,
