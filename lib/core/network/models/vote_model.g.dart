@@ -7,6 +7,7 @@ part of 'vote_model.dart';
 // **************************************************************************
 
 VoteModel _$VoteModelFromJson(Map<String, dynamic> json) => VoteModel(
+      json['voterImageUrl'] as String?,
       json['vote_voter_n'] as String,
       $enumDecode(_$VoteStatusEnumMap, json['vote_vote_s']),
     );
@@ -14,6 +15,7 @@ VoteModel _$VoteModelFromJson(Map<String, dynamic> json) => VoteModel(
 Map<String, dynamic> _$VoteModelToJson(VoteModel instance) => <String, dynamic>{
       'vote_voter_n': instance.voter,
       'vote_vote_s': _$VoteStatusEnumMap[instance.voteStatus]!,
+      'voterImageUrl': instance.voterImageUrl,
     };
 
 const _$VoteStatusEnumMap = {

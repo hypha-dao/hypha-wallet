@@ -161,12 +161,16 @@ class HyphaProposalsActionCard extends StatelessWidget {
     return Row(
       children: [
         Expanded(child: ProposalCreator(creatorName, creatorImageUrl)),
-        ProposalButton('Details', Icons.arrow_forward_ios, () {
-          Get.Get.to(
-            ProposalDetailsPage(proposalModel),
-            transition: Get.Transition.rightToLeft,
-          );
-        }),
+        ProposalButton(
+            'Details',
+            Icons.arrow_forward_ios,
+                () {
+                  Get.Get.to(
+                    ProposalDetailsPage(proposalId: proposalModel.id,),
+                    transition: Get.Transition.rightToLeft,
+                  );
+                }
+        ),
       ],
     );
   }

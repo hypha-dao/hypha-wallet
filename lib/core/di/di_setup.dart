@@ -97,7 +97,6 @@ import 'package:hypha_wallet/ui/wallet/usecases/get_transaction_history_data_use
 import 'package:hypha_wallet/ui/wallet/usecases/get_user_tokens_use_case.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:rx_shared_preferences/rx_shared_preferences.dart';
-
 part 'api_module.dart';
 part 'bloc_module.dart';
 part 'firebase_module.dart';
