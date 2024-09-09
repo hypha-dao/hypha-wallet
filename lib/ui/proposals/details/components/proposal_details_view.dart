@@ -309,7 +309,7 @@ class _ProposalDetailsViewState extends State<ProposalDetailsView> {
                   child: ProposalPercentageIndicator(
                     index == 0 ? 'Unity' : 'Quorum',
                       index == 0 ? widget.proposalModel.unityToPercent() : widget.proposalModel.quorumToPercent(),
-                      HyphaColors.success
+                      widget.proposalModel.isPassing()?HyphaColors.success:HyphaColors.error
                   ),
                 ),
               ),

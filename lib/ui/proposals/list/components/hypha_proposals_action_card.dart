@@ -50,14 +50,17 @@ class HyphaProposalsActionCard extends StatelessWidget {
                   child: ProposalPercentageIndicator(
                     'Unity',
                     proposalModel.unityToPercent(),
-                    HyphaColors.success
+                    proposalModel.isPassing()
+                        ? HyphaColors.success
+                        : HyphaColors.error,
                   ),
                 ),
                 ProposalPercentageIndicator(
-                  'Quorum',
-                  proposalModel.quorumToPercent(),
-                    HyphaColors.success
-                ),
+                    'Quorum',
+                    proposalModel.quorumToPercent(),
+                    proposalModel.isPassing()
+                        ? HyphaColors.success
+                        : HyphaColors.error),
                 const SizedBox(height: 20),
                 ProposalExpirationTimer(
                   proposalModel.formatExpiration(),
@@ -116,7 +119,8 @@ class HyphaProposalsActionCard extends StatelessWidget {
     );
   }
 
-  Widget _buildProposalRoleAssignment(BuildContext context, int commitment, String title) {
+  Widget _buildProposalRoleAssignment(
+      BuildContext context, int commitment, String title) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -146,12 +150,14 @@ class HyphaProposalsActionCard extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 5),
       child: Text(
         text,
-        style: context.hyphaTextTheme.ralMediumSmallNote.copyWith(color: HyphaColors.midGrey),
+        style: context.hyphaTextTheme.ralMediumSmallNote
+            .copyWith(color: HyphaColors.midGrey),
       ),
     );
   }
 
-  Widget _buildProposalCardFooter(BuildContext context, String creatorName, String creatorImageUrl) {
+  Widget _buildProposalCardFooter(
+      BuildContext context, String creatorName, String creatorImageUrl) {
     return Row(
       children: [
         Expanded(child: ProposalCreator(creatorName, creatorImageUrl)),
