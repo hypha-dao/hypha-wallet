@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get_utils/src/extensions/context_extensions.dart';
-import 'package:hypha_wallet/core/extension/proposal_model_extensions.dart';
-import 'package:hypha_wallet/core/network/models/proposal_model.dart';
+import 'package:hypha_wallet/core/extension/base_proposal_model_extension.dart';
+import 'package:hypha_wallet/core/extension/proposal_details_model_extension.dart';
+import 'package:hypha_wallet/core/network/models/proposal_details_model.dart';
 import 'package:hypha_wallet/core/network/models/vote_model.dart';
 import 'package:hypha_wallet/design/avatar_image/hypha_avatar_image.dart';
 import 'package:hypha_wallet/design/background/hypha_page_background.dart';
@@ -10,47 +12,42 @@ import 'package:hypha_wallet/design/buttons/hypha_app_button.dart';
 import 'package:hypha_wallet/design/dividers/hypha_divider.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
-import 'package:hypha_wallet/ui/proposals/components/proposal_creator.dart';
 import 'package:hypha_wallet/ui/proposals/components/proposal_button.dart';
+import 'package:hypha_wallet/ui/proposals/components/proposal_creator.dart';
 import 'package:hypha_wallet/ui/proposals/components/proposal_expiration_timer.dart';
 import 'package:hypha_wallet/ui/proposals/components/proposal_header.dart';
 import 'package:hypha_wallet/ui/proposals/components/proposal_percentage_indicator.dart';
 import 'package:hypha_wallet/ui/proposals/details/components/proposal_voters.dart';
+import 'package:hypha_wallet/ui/proposals/details/interactor/proposal_detail_bloc.dart';
+import 'package:hypha_wallet/ui/shared/hypha_body_widget.dart';
 
 class ProposalDetailsView extends StatefulWidget {
-  final ProposalModel proposalModel;
-
-  const ProposalDetailsView(this.proposalModel, {super.key});
+  const ProposalDetailsView({super.key});
 
   @override
   State<ProposalDetailsView> createState() => _ProposalDetailsViewState();
 }
 
 class _ProposalDetailsViewState extends State<ProposalDetailsView> {
-  final ValueNotifier<bool> _isShown = ValueNotifier<bool>(true);
-  final ValueNotifier<bool> _isOverflowing = ValueNotifier<bool>(false);
-  final ValueNotifier<bool> _isExpanded = ValueNotifier<bool>(false);
-  late List<String> passVoters = widget.proposalModel.fetchVotersByStatus(VoteStatus.pass);
-  late List<String> failVoters = widget.proposalModel.fetchVotersByStatus(VoteStatus.fail);
-
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _checkIfTextIsOverflowing();
-    });
-  }
+  final ValueNotifier<bool?> _isShownNotifier = ValueNotifier<bool?>(null);
+  final ValueNotifier<bool> _isOverflowingNotifier = ValueNotifier<bool>(false);
+  final ValueNotifier<bool> _isExpandedNotifier = ValueNotifier<bool>(false);
+  final ValueNotifier<String?> _detailsNotifier = ValueNotifier<String?>(null);
 
   void _checkIfTextIsOverflowing() {
     final TextPainter textPainter = TextPainter(
-      text: TextSpan(text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel lacus eget enim tincidunt viverra eget sit amet ex. Phasellus bibendum congue porta. Aenean pellentesque ut dolor pharetra volutpat. Proin ut eleifend dolor, sed faucibus ipsum. Vestibulum sollicitudin nibh ut ligula sollicitudin, vitae convallis arcu egestas. Vivamus sollicitudin leo non elit blandit rutrum. Morbi auctor neque ipsum, et varius dolor finibus eget. Curabitur pulvinar arcu sit amet porta posuere. Cras mollis massa id neque tempus, a cursus leo interdum. Etiam ut dolor vel ex ullamcorper tempor vel vel tellus. Praesent hendrerit lobortis interdum. Fusce posuere in neque iaculis ullamcorper. Vivamus vestibulum posuere purus, quis sagittis ex interdum vel. Donec convallis augue et nisl sodales, et luctus massa ultrices.', style: context.hyphaTextTheme.ralMediumBody),
+      text: TextSpan(text: _detailsNotifier.value),
       maxLines: 3,
       textDirection: TextDirection.ltr,
     )..layout(maxWidth: context.size!.width);
 
     if (textPainter.didExceedMaxLines) {
-      _isOverflowing.value = true;
+      _isOverflowingNotifier.value = true;
     }
+  }
+
+  void _initSwitchValue(ProposalDetailsModel proposalDetailsModel) {
+    _isShownNotifier.value = proposalDetailsModel.utilityAmount != null;
   }
 
   @override
@@ -63,298 +60,322 @@ class _ProposalDetailsViewState extends State<ProposalDetailsView> {
           scrolledUnderElevation: 0,
           title: const Text('Proposal Details'),
         ),
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30),
-          child: ListView(
-            children: [
-              const SizedBox(height: 20),
-              /// Header
-              ProposalHeader(
-                widget.proposalModel.daoName,
-                'https://etudestech.com/wp-content/uploads/2023/05/midjourney-scaled.jpeg',
-              ),
-              const Padding(
-                padding: EdgeInsets.only(top: 10, bottom: 20),
-                child: HyphaDivider(),
-              ),
-              /// Main Section
-              Wrap(
-                children: List.generate(
-                  widget.proposalModel.commitment != null ? 3 : 2,
-                  (index) => Padding(
-                    padding: const EdgeInsets.only(right: 10),
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: context.isDarkMode
-                              ? HyphaColors.white
-                              : HyphaColors.lightBlack,
-                        ),
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Text(
-                        index == 0
-                            ? 'Role Assignment'
-                            : index == 1
+        body: BlocBuilder<ProposalDetailBloc, ProposalDetailState>(
+        builder: (context, state) {
+          return HyphaBodyWidget(pageState: state.pageState, success: (context) {
+            final ProposalDetailsModel _proposalDetailsModel = state.proposalDetailsModel!;
+            final List<VoteModel> passVoters = _proposalDetailsModel.fetchVotersByStatus(VoteStatus.pass);
+            final List<VoteModel> failVoters = _proposalDetailsModel.fetchVotersByStatus(VoteStatus.fail);
+            _detailsNotifier.value = _proposalDetailsModel.description;
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              _checkIfTextIsOverflowing();
+              _initSwitchValue(_proposalDetailsModel);
+            });
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30),
+              child: ListView(
+                children: [
+                  const SizedBox(height: 20),
+                  /// Header
+                  // TODO(Saif): display DAO image
+                  ProposalHeader(
+                    _proposalDetailsModel.daoName ?? '',
+                    'https://etudestech.com/wp-content/uploads/2023/05/midjourney-scaled.jpeg',
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.only(top: 10, bottom: 20),
+                    child: HyphaDivider(),
+                  ),
+                  /// Main Section
+                  Wrap(
+                    children: List.generate(
+                      _proposalDetailsModel.commitment != null ? 3 : 2,
+                          (index) => Padding(
+                        padding: const EdgeInsets.only(right: 10),
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: context.isDarkMode
+                                  ? HyphaColors.white
+                                  : HyphaColors.lightBlack,
+                            ),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          // TODO(Zied-Saif): figure these out (B6 and Role)
+                          child: Text(
+                            index == 0
+                                ? 'Role ${_proposalDetailsModel.type}'
+                                : index == 1
                                 ? 'B6'
-                                : '${widget.proposalModel.commitment}%',
-                        style: context.hyphaTextTheme.ralBold,
+                                : '${_proposalDetailsModel.commitment}%',
+                            style: context.hyphaTextTheme.ralBold,
+                          ),
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 20),
-                child: Text(
-                  widget.proposalModel.title ?? 'No title set for this proposal.',
-                  style: context.hyphaTextTheme.mediumTitles,
-                ),
-              ),
-              ProposalCreator(
-                widget.proposalModel.creator,
-                'https://etudestech.com/wp-content/uploads/2023/05/midjourney-scaled.jpeg',
-              ),
-              ...List.generate(
-                2,
-                (index) => Padding(
-                  padding: const EdgeInsets.only(top: 20),
-                  child: ProposalPercentageIndicator(
-                    index == 0 ? 'Commitment' : 'Token Mix Percentage',
-                      index == 0 ? widget.proposalModel.commitmentToPercent() : .4,
-                      HyphaColors.lightBlue
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 20),
+                    child: Text(
+                      _proposalDetailsModel.title ?? 'No title',
+                      style: context.hyphaTextTheme.mediumTitles,
+                    ),
                   ),
-                ),
-              ),
-              const SizedBox(height: 20),
-              Text(
-                'Duration',
-                style: context.hyphaTextTheme.ralMediumSmallNote.copyWith(color: HyphaColors.midGrey),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                child: Text(
-                  '12 Cycles',
-                  style: context.hyphaTextTheme.reducedTitles,
-                ),
-              ),
-              ...List.generate(
-                2,
-                (index) => Text(
-                  'Starting on Monday',
-                  style: context.hyphaTextTheme.ralMediumBody.copyWith(color: HyphaColors.midGrey),
-                ),
-              ),
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 20),
-                child: HyphaDivider(),
-              ),
-              /// Rewards Section
-              ValueListenableBuilder<bool>(
-                valueListenable: _isShown,
-                builder: (context, isShown, child) {
-                  return isShown ? Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Reward for 1 cycle',
-                        style: context.hyphaTextTheme.ralMediumSmallNote.copyWith(color: HyphaColors.midGrey),
+                  // TODO(Saif): display creator image
+                  ProposalCreator(
+                    _proposalDetailsModel.creator,
+                    'https://etudestech.com/wp-content/uploads/2023/05/midjourney-scaled.jpeg',
+                  ),
+                  ...List.generate(
+                    2,
+                        (index) => Padding(
+                      padding: const EdgeInsets.only(top: 20),
+                      child: ProposalPercentageIndicator(
+                          index == 0 ? 'Commitment' : 'Token Mix Percentage',
+                          index == 0 ? _proposalDetailsModel.commitmentToPercent() : _proposalDetailsModel.tokenMixToPercent(),
+                          HyphaColors.lightBlue
                       ),
-                      ...List.generate(
-                          3,
-                              (index) => Padding(
-                            padding: const EdgeInsets.only(top: 10),
-                            child: Row(
-                              children: [
-                                const HyphaAvatarImage(
-                                  imageRadius: 24,
-                                  imageFromUrl:
-                                  'https://etudestech.com/wp-content/uploads/2023/05/midjourney-scaled.jpeg',
-                                ),
-                                const SizedBox(width: 10),
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                    ),
+                  ),
+                  if (!(_proposalDetailsModel.cycleCount == null && _proposalDetailsModel.cycleStartDate == null)) ...[
+                    const SizedBox(height: 20),
+                    Text(
+                      'Duration',
+                      style: context.hyphaTextTheme.ralMediumSmallNote.copyWith(color: HyphaColors.midGrey),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      child: Text(
+                        '${_proposalDetailsModel.cycleCount} Cycles',
+                        style: context.hyphaTextTheme.reducedTitles,
+                      ),
+                    ),
+                    ...List.generate(
+                      2,
+                          (index) => Text(
+                        index == 0 ? 'Starting on ${_proposalDetailsModel.formatCycleStartDate()}' :
+                        'Ending on ${_proposalDetailsModel.cycleEndDate()}',
+                        style: context.hyphaTextTheme.ralMediumBody.copyWith(color: HyphaColors.midGrey),
+                      ),
+                    ),
+                  ],
+                  const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 20),
+                    child: HyphaDivider(),
+                  ),
+                  /// Rewards Section
+                  // TODO(Zied): implement the logic
+                  if (!(_proposalDetailsModel.utilityAmount == null && _proposalDetailsModel.utilityAmountPerPeriod == null)) ... [
+                    ValueListenableBuilder<bool?>(
+                      valueListenable: _isShownNotifier,
+                      builder: (BuildContext context, bool? isShown, Widget? child) {
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Reward for 1 cycle',
+                              style: context.hyphaTextTheme.ralMediumSmallNote.copyWith(color: HyphaColors.midGrey),
+                            ),
+                            ...List.generate(
+                                3,
+                                    (index) => Padding(
+                                  padding: const EdgeInsets.only(top: 10),
+                                  child: Row(
                                     children: [
-                                      Text(
-                                        'Hypha',
-                                        style: context.hyphaTextTheme.reducedTitles,
-                                        overflow: TextOverflow.ellipsis,
+                                      const HyphaAvatarImage(
+                                        imageRadius: 24,
+                                        imageFromUrl: 'https://etudestech.com/wp-content/uploads/2023/05/midjourney-scaled.jpeg',
                                       ),
-                                      Text(
-                                        'Utility Token',
-                                        style: context.hyphaTextTheme.ralMediumBody.copyWith(color: HyphaColors.midGrey),
-                                        overflow: TextOverflow.ellipsis,
+                                      const SizedBox(width: 10),
+                                      Expanded(
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                            _proposalDetailsModel.tokenTitle(index) ?? '',
+                                              style: context.hyphaTextTheme.reducedTitles,
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                            Text(
+                                              index == 0 ? 'Utility Token' : index == 1 ? 'Voice Token' : 'Cash Token',
+                                              style: context.hyphaTextTheme.ralMediumBody.copyWith(color: HyphaColors.midGrey),
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                          ],
+                                        ),
                                       ),
+                                      const SizedBox(width: 10),
+                                      Text(
+                                        _proposalDetailsModel.tokenValue(index, isShown ?? false) ?? '',
+                                        style: context.hyphaTextTheme.bigTitles.copyWith(fontWeight: FontWeight.normal),
+                                      )
                                     ],
                                   ),
-                                ),
-                                const SizedBox(width: 10),
-                                Text(
-                                  '3,200.00',
-                                  style: context.hyphaTextTheme.bigTitles.copyWith(fontWeight: FontWeight.normal),
-                                ),
-                              ],
-                            ),
-                          )),
-                      const SizedBox(height: 10)
-                    ],
-                  ) : const SizedBox.shrink();
-                },
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    child: Text(
-                      'Show rewards for 1 cycle',
-                      style: context.hyphaTextTheme.ralMediumBody.copyWith(color: HyphaColors.midGrey),
-                      overflow: TextOverflow.ellipsis,
+                                )),
+                            const SizedBox(height: 10)
+                          ],
+                        );
+                      },
                     ),
-                  ),
-                  const SizedBox(width: 10),
-                  ValueListenableBuilder<bool>(
-                    valueListenable: _isShown,
-                    builder: (BuildContext context, bool value, Widget? child) {
-                      return Switch(
-                        value: value,
-                        onChanged: (newValue) {
-                          _isShown.value = newValue;
-                        },
-                      );
-                    },
-                  ),
-                ],
-              ),
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 20),
-                child: HyphaDivider(),
-              ),
-              /// Details Section
-              Text(
-                'Proposal Details',
-                style: context.hyphaTextTheme.ralMediumSmallNote.copyWith(color: HyphaColors.midGrey),
-              ),
-              ValueListenableBuilder<bool>(
-                valueListenable: _isExpanded,
-                builder: (context, isExpanded, child) {
-                  return Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10),
-                        child: Text(
-                          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel lacus eget enim tincidunt viverra eget sit amet ex. Phasellus bibendum congue porta. Aenean pellentesque ut dolor pharetra volutpat. Proin ut eleifend dolor, sed faucibus ipsum. Vestibulum sollicitudin nibh ut ligula sollicitudin, vitae convallis arcu egestas. Vivamus sollicitudin leo non elit blandit rutrum. Morbi auctor neque ipsum, et varius dolor finibus eget. Curabitur pulvinar arcu sit amet porta posuere. Cras mollis massa id neque tempus, a cursus leo interdum. Etiam ut dolor vel ex ullamcorper tempor vel vel tellus. Praesent hendrerit lobortis interdum. Fusce posuere in neque iaculis ullamcorper. Vivamus vestibulum posuere purus, quis sagittis ex interdum vel. Donec convallis augue et nisl sodales, et luctus massa ultrices.',
-                          style: context.hyphaTextTheme.ralMediumBody,
-                          maxLines: isExpanded ? null : 3,
-                          overflow: isExpanded ? TextOverflow.visible : TextOverflow.ellipsis,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: Text(
+                            'Show rewards for 1 cycle',
+                            style: context.hyphaTextTheme.ralMediumBody.copyWith(color: HyphaColors.midGrey),
+                            overflow: TextOverflow.ellipsis,
+                          ),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 20),
-                        child: Row(
-                          children: [
-                            const Expanded(child: HyphaDivider()),
-                            ValueListenableBuilder<bool>(
-                              valueListenable: _isOverflowing,
-                              builder: (context, isOverflowing, child) {
-                                return isOverflowing
-                                    ? ProposalButton(
-                                  isExpanded ? 'Collapse' : 'Expand',
-                                  isExpanded
-                                      ? Icons.keyboard_arrow_up_outlined
-                                      : Icons.keyboard_arrow_down_outlined,
-                                      () => _isExpanded.value = !isExpanded,
-                                )
-                                    : const SizedBox.shrink();
+                        const SizedBox(width: 10),
+                        ValueListenableBuilder<bool?>(
+                          valueListenable: _isShownNotifier,
+                          builder: (BuildContext context, bool? value, Widget? child) {
+                            return _isShownNotifier.value != null ? Switch(
+                              value: value!,
+                              onChanged: (newValue) {
+                                _isShownNotifier.value = newValue;
                               },
+                            ) : const SizedBox.shrink();
+                          },
+                        ),
+                      ],
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.symmetric(vertical: 20),
+                      child: HyphaDivider(),
+                    ),
+                  ],
+                  /// Details Section
+                  if (_proposalDetailsModel.description != null) ... [
+                    Text(
+                      'Proposal Details',
+                      style: context.hyphaTextTheme.ralMediumSmallNote.copyWith(color: HyphaColors.midGrey),
+                    ),
+                    ValueListenableBuilder<bool>(
+                      valueListenable: _isExpandedNotifier,
+                      builder: (context, isExpanded, child) {
+                        return Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(top: 10),
+                              child: Text(
+                                _proposalDetailsModel.description ?? '',
+                                style: context.hyphaTextTheme.ralMediumBody,
+                                maxLines: isExpanded ? null : 3,
+                                overflow: isExpanded ? TextOverflow.visible : TextOverflow.ellipsis,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 20),
+                              child: Row(
+                                children: [
+                                  const Expanded(child: HyphaDivider()),
+                                  ValueListenableBuilder<bool>(
+                                    valueListenable: _isOverflowingNotifier,
+                                    builder: (context, isOverflowing, child) {
+                                      return isOverflowing
+                                          ? ProposalButton(
+                                        isExpanded ? 'Collapse' : 'Expand',
+                                        isExpanded
+                                            ? Icons.keyboard_arrow_up_outlined
+                                            : Icons.keyboard_arrow_down_outlined,
+                                            () => _isExpandedNotifier.value = !isExpanded,
+                                      )
+                                          : const SizedBox.shrink();
+                                    },
+                                  ),
+                                ],
+                              ),
                             ),
                           ],
-                        ),
+                        );
+                      },
+                    ),
+                  ],
+                  /// Voting Scores Section
+                  Text(
+                    'Voting Scores',
+                    style: context.hyphaTextTheme.ralMediumSmallNote.copyWith(color: HyphaColors.midGrey),
+                  ),
+                  if(passVoters.isNotEmpty) ... [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      child: Text(
+                        '${passVoters.length} members voted Yes',
+                        style: context.hyphaTextTheme.reducedTitles,
                       ),
-                    ],
-                  );
-                },
-              ),
-              /// Voting Scores Section
-              Text(
-                'Voting Scores',
-                style: context.hyphaTextTheme.ralMediumSmallNote.copyWith(color: HyphaColors.midGrey),
-              ),
-              if(passVoters.isNotEmpty) ... [
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  child: Text(
-                    '${passVoters.length} members voted Yes',
-                    style: context.hyphaTextTheme.reducedTitles,
+                    ),
+                    ProposalVoters(passVoters)
+                  ],
+                  if(failVoters.isNotEmpty) ... [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      child: Text(
+                        '${failVoters.length} members voted No',
+                        style: context.hyphaTextTheme.reducedTitles,
+                      ),
+                    ),
+                    ProposalVoters(failVoters)
+                  ],
+                  const SizedBox(height: 20),
+                  ...List.generate(
+                    2,
+                        (index) => Padding(
+                      padding: const EdgeInsets.only(bottom: 20),
+                      child: ProposalPercentageIndicator(
+                          index == 0 ? 'Unity' : 'Quorum',
+                          index == 0 ? _proposalDetailsModel.unityToPercent() : _proposalDetailsModel.quorumToPercent(),
+                          _proposalDetailsModel.isPassing() ? HyphaColors.success : HyphaColors.error
+                      ),
+                    ),
                   ),
-                ),
-                ProposalVoters(passVoters)
-              ],
-              if(failVoters.isNotEmpty) ... [
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  child: Text(
-                    '${failVoters.length} members voted No',
-                    style: context.hyphaTextTheme.reducedTitles,
+                  const HyphaDivider(),
+                  /// Expiration Timer
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 20),
+                    child: ProposalExpirationTimer(
+                      _proposalDetailsModel.formatExpiration(),
+                    ),
                   ),
-                ),
-                ProposalVoters(failVoters)
-              ],
-              const SizedBox(height: 20),
-              ...List.generate(
-                2,
-                (index) => Padding(
-                  padding: const EdgeInsets.only(bottom: 20),
-                  child: ProposalPercentageIndicator(
-                    index == 0 ? 'Unity' : 'Quorum',
-                      index == 0 ? widget.proposalModel.unityToPercent() : widget.proposalModel.quorumToPercent(),
-                      widget.proposalModel.isPassing()?HyphaColors.success:HyphaColors.error
+                  const HyphaDivider(),
+                  /// Vote Section
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 20),
+                    child: Text(
+                      'Cast your Vote',
+                      style: context.hyphaTextTheme.smallTitles,
+                    ),
                   ),
-                ),
-              ),
-              const HyphaDivider(),
-              /// Expiration Timer
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 20),
-                child: ProposalExpirationTimer(
-                  widget.proposalModel.formatExpiration(),
-                ),
-              ),
-              const HyphaDivider(),
-              /// Vote Section
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 20),
-                child: Text(
-                  'Cast your Vote',
-                  style: context.hyphaTextTheme.smallTitles,
-                ),
-              ),
-              ...List.generate(
-                3,
-                (index) => Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  child: HyphaAppButton(
-                    title: index == 0
-                        ? 'Yes'
-                        : index == 1
+                  ...List.generate(
+                    3,
+                        (index) => Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      child: HyphaAppButton(
+                        title: index == 0
+                            ? 'Yes'
+                            : index == 1
                             ? 'Abstain'
                             : 'No',
-                    onPressed: () async {},
-                    buttonType: ButtonType.danger,
-                    buttonColor: index == 0
-                        ? HyphaColors.success
-                        : index == 1
-                        ? HyphaColors.lightBlack
-                        : HyphaColors.error,
+                        onPressed: () async {},
+                        buttonType: ButtonType.danger,
+                        buttonColor: index == 0
+                            ? HyphaColors.success
+                            : index == 1
+                            ? HyphaColors.lightBlack
+                            : HyphaColors.error,
 
+                      ),
+                    ),
                   ),
-                ),
+                  const SizedBox(height: 20),
+                ],
               ),
-              const SizedBox(height: 20),
-            ],
-          ),
-        ),
+            );
+          });
+        },
+      ),
       ),
     );
   }

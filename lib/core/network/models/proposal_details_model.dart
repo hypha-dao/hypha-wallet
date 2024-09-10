@@ -1,16 +1,11 @@
+import 'package:hypha_wallet/core/network/models/base_proposal_model.dart';
 import 'package:hypha_wallet/core/network/models/vote_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'proposal_details_model.g.dart';
 
 @JsonSerializable()
-class ProposalDetailsModel {
-  @JsonKey(name: 'docId')
-  final String id;
-
-  @JsonKey(name: 'creator')
-  final String creator;
-
+class ProposalDetailsModel extends BaseProposalModel {
   @JsonKey(name: '__typename')
   final String type;
 
@@ -26,73 +21,49 @@ class ProposalDetailsModel {
   @JsonKey(name: 'start')
   final DateTime? cycleStartDate;
 
-  @JsonKey(name: 'details_pegAmount_a')
+  @JsonKey(name: 'details_rewardAmount_a')
   final String? utilityAmount;
 
   @JsonKey(name: 'details_voiceAmount_a')
   final String? voiceAmount;
 
-  @JsonKey(name: 'details_rewardAmount_a')
+  @JsonKey(name: 'details_pegAmount_a')
   final String? cashAmount;
 
-  @JsonKey(name: 'details_pegSalaryPerPeriod_a')
+  @JsonKey(name: 'details_rewardSalaryPerPeriod_a')
   final String? utilityAmountPerPeriod;
 
   @JsonKey(name: 'details_voiceSalaryPerPeriod_a')
   final String? voiceAmountPerPeriod;
 
-  @JsonKey(name: 'details_rewardSalaryPerPeriod_a')
+  @JsonKey(name: 'details_pegSalaryPerPeriod_a')
   final String? cashAmountPerPeriod;
 
-  @JsonKey(name: 'ballot_expiration_t')
-  final DateTime? expiration;
-
-  @JsonKey(name: 'details_timeShareX100_i')
-  final int? commitment;
-
-  final int? unity;
-  @JsonKey(name: 'details_ballotQuorum_i')
-  final int? quorum;
-  @JsonKey(name: 'details_title_s')
-  final String? title;
-
-  @JsonKey(name: 'dao')
-  final String? daoName;
   @JsonKey(name: 'details_description_s')
   final String? description;
 
-  @JsonKey(name: 'pass')
-  final int? votedYesCount;
-  @JsonKey(name: 'fail')
-  final int? votedNoCount;
-
-  @JsonKey(name: 'vote')
-  final List<VoteModel>? voters;
-
-  ProposalDetailsModel(
-    this.creator,
-    this.type,
-    this.creationDate,
+  ProposalDetailsModel({
+    required super.id,
+    required super.creator,
+    required this.type,
+    required this.creationDate,
+    super.daoName,
+    super.commitment,
+    super.title,
+    super.unity,
+    super.quorum,
+    super.expiration,
+    super.votes,
+    this.tokenMixPercentage,
+    this.cycleCount,
+    this.cycleStartDate,
+    this.utilityAmount,
+    this.voiceAmount,
+    this.cashAmount,
     this.utilityAmountPerPeriod,
     this.voiceAmountPerPeriod,
     this.cashAmountPerPeriod,
-    this.unity,
-    this.quorum,
-    this.voters,
-    this.daoName,
-    this.votedYesCount,
-    this.votedNoCount, {
-    required this.id,
-    this.title,
-    this.commitment,
-    this.tokenMixPercentage,
-    this.cycleCount,
-    this.cashAmount,
-    this.cycleStartDate,
-    this.voiceAmount,
-    this.utilityAmount,
-    this.description,
-    this.expiration,
+    this.description
   });
 
   factory ProposalDetailsModel.fromJson(Map<String, dynamic> json) {
@@ -106,9 +77,15 @@ class ProposalDetailsModel {
         json['start']=null;
       }
     }
-    json['dao'] = json['dao'][0]['settings'][0]['settings_daoTitle_s'];
+    // TODO(Saif): check this
+    if(json['dao'] != null) {
+      json['dao'] = json['dao'][0]['settings'][0]['settings_daoTitle_s'];
+    }
     return _$ProposalDetailsModelFromJson(json);
   }
 
-  Map<String, dynamic> toJson() => _$ProposalDetailsModelToJson(this);
+  List<VoteModel> fetchVotersByStatus(VoteStatus voteStatus) => votes
+      ?.where((vote) => vote.voteStatus == voteStatus)
+      .map((vote) => vote)
+      .toList() ?? [];
 }

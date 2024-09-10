@@ -1,5 +1,5 @@
 import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
-import 'package:hypha_wallet/core/extension/proposal_model_extensions.dart';
+import 'package:hypha_wallet/core/extension/base_proposal_model_extension.dart';
 import 'package:hypha_wallet/core/logging/log_helper.dart';
 import 'package:hypha_wallet/core/network/api/services/proposal_service.dart';
 import 'package:hypha_wallet/core/network/models/dao_data_model.dart';
@@ -58,20 +58,20 @@ class ProposalRepository {
       final String daoName = dao['details_daoName_n'];
       final List<dynamic> proposals = dao['proposal'] as List<dynamic>;
       return proposals.map((dynamic proposal) {
-        return ProposalModel.fromJson({...{'daoName': daoName}, ...proposal});
+        return ProposalModel.fromJson({...{'dao': daoName}, ...proposal});
       });
     }).toList();
   }
 
   void sortProposals(List<ProposalModel> proposals) {
     proposals.sort((a, b) {
-      final daoNameComparison = a.daoName.compareTo(b.daoName);
+      final int daoNameComparison = (a.daoName ?? '').compareTo(b.daoName ?? '');
       if (daoNameComparison != 0) {
         return daoNameComparison;
       }
 
-      final isAExpired = a.expiration != null && a.isExpired();
-      final isBExpired = b.expiration != null && b.isExpired();
+      final bool isAExpired = a.expiration != null && a.isExpired();
+      final bool isBExpired = b.expiration != null && b.isExpired();
 
       if (isAExpired && !isBExpired) {
         return 1;
@@ -97,13 +97,13 @@ class ProposalRepository {
         final Map<String, dynamic> response = result.valueOrCrash;
         final ProposalDetailsModel proposalDetails =
         ProposalDetailsModel.fromJson(response['data']['getDocument']);
-        if (proposalDetails.voters != null) {
-          for (int i = 0; i < proposalDetails.voters!.length; i++) {
+        if (proposalDetails.votes != null) {
+          for (int i = 0; i < proposalDetails.votes!.length; i++) {
             final Result<ProfileData, HyphaError> voterData =
             await _profileService
-                .getProfile(proposalDetails.voters![i].voter);
+                .getProfile(proposalDetails.votes![i].voter);
             if (voterData.isValue) {
-              proposalDetails.voters![i].voterImageUrl =
+              proposalDetails.votes![i].voterImageUrl =
                   voterData.asValue!.value.avatarUrl;
             }
           }

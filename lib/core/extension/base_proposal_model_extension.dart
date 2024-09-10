@@ -1,6 +1,6 @@
-import 'package:hypha_wallet/core/network/models/proposal_model.dart';
+import 'package:hypha_wallet/core/network/models/base_proposal_model.dart';
 
-extension ProposalModelTimeFormatting on ProposalModel {
+extension BaseProposalModelExtension on BaseProposalModel {
   String formatExpiration() {
     if (expiration == null) return 'Expired';
 
@@ -32,6 +32,5 @@ extension ProposalModelTimeFormatting on ProposalModel {
   bool isExpired() => expiration!.toLocal().isBefore(DateTime.now());
   // TODO(saif): Replace hardcoded values (.2 and .8) with dynamic values fetched from the server.
   // These thresholds are relative to each DAO and should be retrieved from the DAO settings.
-  bool isPassing()=>quorumToPercent()>=.2 && unityToPercent()>=.8;
+  bool isPassing() => quorumToPercent() >= .2 && unityToPercent() >= .8;
 }
-

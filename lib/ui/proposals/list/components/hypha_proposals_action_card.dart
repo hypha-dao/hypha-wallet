@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart' as Get;
-import 'package:hypha_wallet/core/extension/proposal_model_extensions.dart';
+import 'package:hypha_wallet/core/extension/base_proposal_model_extension.dart';
 import 'package:hypha_wallet/core/network/models/proposal_model.dart';
 import 'package:hypha_wallet/core/network/models/vote_model.dart';
 import 'package:hypha_wallet/design/dividers/hypha_divider.dart';
@@ -33,7 +33,7 @@ class HyphaProposalsActionCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 ProposalHeader(
-                  proposalModel.daoName,
+                  proposalModel.daoName ?? '',
                   'https://etudestech.com/wp-content/uploads/2023/05/midjourney-scaled.jpeg',
                 ),
                 const Padding(
@@ -43,7 +43,7 @@ class HyphaProposalsActionCard extends StatelessWidget {
                 _buildProposalRoleAssignment(
                   context,
                   proposalModel.commitment ?? 0,
-                  proposalModel.title ?? 'No title set for this proposal.',
+                  proposalModel.title ?? 'No title',
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 20),
@@ -126,6 +126,7 @@ class HyphaProposalsActionCard extends StatelessWidget {
       children: [
         Row(
           children: [
+            // TODO(Zied-Saif): figure these out (B6 and Role)
             _buildProposalInfoText(context, 'Role Assignment'),
             _buildProposalInfoText(context, 'B6'),
             _buildProposalInfoText(context, '$commitment%'),
