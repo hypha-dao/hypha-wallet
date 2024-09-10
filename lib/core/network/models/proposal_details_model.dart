@@ -21,22 +21,22 @@ class ProposalDetailsModel extends BaseProposalModel {
   @JsonKey(name: 'start')
   final DateTime? cycleStartDate;
 
-  @JsonKey(name: 'details_pegAmount_a')
+  @JsonKey(name: 'details_rewardAmount_a')
   final String? utilityAmount;
 
   @JsonKey(name: 'details_voiceAmount_a')
   final String? voiceAmount;
 
-  @JsonKey(name: 'details_rewardAmount_a')
+  @JsonKey(name: 'details_pegAmount_a')
   final String? cashAmount;
 
-  @JsonKey(name: 'details_pegSalaryPerPeriod_a')
+  @JsonKey(name: 'details_rewardSalaryPerPeriod_a')
   final String? utilityAmountPerPeriod;
 
   @JsonKey(name: 'details_voiceSalaryPerPeriod_a')
   final String? voiceAmountPerPeriod;
 
-  @JsonKey(name: 'details_rewardSalaryPerPeriod_a')
+  @JsonKey(name: 'details_pegSalaryPerPeriod_a')
   final String? cashAmountPerPeriod;
 
   @JsonKey(name: 'details_description_s')

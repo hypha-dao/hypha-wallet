@@ -29,7 +29,7 @@ class ProposalDetailsView extends StatefulWidget {
 }
 
 class _ProposalDetailsViewState extends State<ProposalDetailsView> {
-  final ValueNotifier<bool> _isShownNotifier = ValueNotifier<bool>(true);
+  final ValueNotifier<bool?> _isShownNotifier = ValueNotifier<bool?>(null);
   final ValueNotifier<bool> _isOverflowingNotifier = ValueNotifier<bool>(false);
   final ValueNotifier<bool> _isExpandedNotifier = ValueNotifier<bool>(false);
   final ValueNotifier<String?> _detailsNotifier = ValueNotifier<String?>(null);
@@ -44,6 +44,10 @@ class _ProposalDetailsViewState extends State<ProposalDetailsView> {
     if (textPainter.didExceedMaxLines) {
       _isOverflowingNotifier.value = true;
     }
+  }
+
+  void _initSwitchValue(ProposalDetailsModel proposalDetailsModel) {
+    _isShownNotifier.value = proposalDetailsModel.utilityAmount != null;
   }
 
   @override
@@ -65,6 +69,7 @@ class _ProposalDetailsViewState extends State<ProposalDetailsView> {
             _detailsNotifier.value = _proposalDetailsModel.description;
             WidgetsBinding.instance.addPostFrameCallback((_) {
               _checkIfTextIsOverflowing();
+              _initSwitchValue(_proposalDetailsModel);
             });
             return Padding(
               padding: const EdgeInsets.symmetric(horizontal: 30),
@@ -162,9 +167,9 @@ class _ProposalDetailsViewState extends State<ProposalDetailsView> {
                   /// Rewards Section
                   // TODO(Zied): implement the logic
                   if (!(_proposalDetailsModel.utilityAmount == null && _proposalDetailsModel.utilityAmountPerPeriod == null)) ... [
-                    ValueListenableBuilder<bool>(
+                    ValueListenableBuilder<bool?>(
                       valueListenable: _isShownNotifier,
-                      builder: (context, isShown, child) {
+                      builder: (BuildContext context, bool? isShown, Widget? child) {
                         return Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -202,7 +207,7 @@ class _ProposalDetailsViewState extends State<ProposalDetailsView> {
                                       ),
                                       const SizedBox(width: 10),
                                       Text(
-                                        _proposalDetailsModel.tokenValue(index) ?? '',
+                                        _proposalDetailsModel.tokenValue(index, isShown ?? false) ?? '',
                                         style: context.hyphaTextTheme.bigTitles.copyWith(fontWeight: FontWeight.normal),
                                       )
                                     ],
@@ -224,15 +229,15 @@ class _ProposalDetailsViewState extends State<ProposalDetailsView> {
                           ),
                         ),
                         const SizedBox(width: 10),
-                        ValueListenableBuilder<bool>(
+                        ValueListenableBuilder<bool?>(
                           valueListenable: _isShownNotifier,
-                          builder: (BuildContext context, bool value, Widget? child) {
-                            return Switch(
-                              value: value,
+                          builder: (BuildContext context, bool? value, Widget? child) {
+                            return _isShownNotifier.value != null ? Switch(
+                              value: value!,
                               onChanged: (newValue) {
                                 _isShownNotifier.value = newValue;
                               },
-                            );
+                            ) : const SizedBox.shrink();
                           },
                         ),
                       ],

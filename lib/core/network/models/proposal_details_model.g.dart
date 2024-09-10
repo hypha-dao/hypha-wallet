@@ -29,12 +29,13 @@ ProposalDetailsModel _$ProposalDetailsModelFromJson(
       cycleStartDate: json['start'] == null
           ? null
           : DateTime.parse(json['start'] as String),
-      utilityAmount: json['details_pegAmount_a'] as String?,
+      utilityAmount: json['details_rewardAmount_a'] as String?,
       voiceAmount: json['details_voiceAmount_a'] as String?,
-      cashAmount: json['details_rewardAmount_a'] as String?,
-      utilityAmountPerPeriod: json['details_pegSalaryPerPeriod_a'] as String?,
+      cashAmount: json['details_pegAmount_a'] as String?,
+      utilityAmountPerPeriod:
+          json['details_rewardSalaryPerPeriod_a'] as String?,
       voiceAmountPerPeriod: json['details_voiceSalaryPerPeriod_a'] as String?,
-      cashAmountPerPeriod: json['details_rewardSalaryPerPeriod_a'] as String?,
+      cashAmountPerPeriod: json['details_pegSalaryPerPeriod_a'] as String?,
       description: json['details_description_s'] as String?,
     );
 
@@ -55,11 +56,11 @@ Map<String, dynamic> _$ProposalDetailsModelToJson(
       'details_deferredPercX100_i': instance.tokenMixPercentage,
       'details_periodCount_i': instance.cycleCount,
       'start': instance.cycleStartDate?.toIso8601String(),
-      'details_pegAmount_a': instance.utilityAmount,
+      'details_rewardAmount_a': instance.utilityAmount,
       'details_voiceAmount_a': instance.voiceAmount,
-      'details_rewardAmount_a': instance.cashAmount,
-      'details_pegSalaryPerPeriod_a': instance.utilityAmountPerPeriod,
+      'details_pegAmount_a': instance.cashAmount,
+      'details_rewardSalaryPerPeriod_a': instance.utilityAmountPerPeriod,
       'details_voiceSalaryPerPeriod_a': instance.voiceAmountPerPeriod,
-      'details_rewardSalaryPerPeriod_a': instance.cashAmountPerPeriod,
+      'details_pegSalaryPerPeriod_a': instance.cashAmountPerPeriod,
       'details_description_s': instance.description,
     };

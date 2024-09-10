@@ -13,13 +13,13 @@ extension ProposalDetailsModelExtension on ProposalDetailsModel {
 
     switch (index) {
       case 0:
-        input = cashAmount ?? cashAmountPerPeriod!;
+        input = utilityAmount ?? utilityAmountPerPeriod!;
         break;
       case 1:
         input = voiceAmount ?? voiceAmountPerPeriod!;
         break;
       case 2:
-        input = utilityAmount ?? utilityAmountPerPeriod!;
+        input = cashAmount ?? cashAmountPerPeriod!;
         break;
       default:
         return null;
@@ -39,18 +39,19 @@ extension ProposalDetailsModelExtension on ProposalDetailsModel {
     return null;
   }
 
-  String? tokenValue(int index) {
+  // TODO(Saif): adjust this function
+  String? tokenValue(int index, bool isOneCycleRewardsShown) {
     String input;
 
     switch (index) {
       case 0:
-        input = cashAmount ?? cashAmountPerPeriod!;
+        input = utilityAmount ?? utilityAmountPerPeriod!;
         break;
       case 1:
         input = voiceAmount ?? voiceAmountPerPeriod!;
         break;
       case 2:
-        input = utilityAmount ?? utilityAmountPerPeriod!;
+        input = cashAmount ?? cashAmountPerPeriod!;
         break;
       default:
         return null;
