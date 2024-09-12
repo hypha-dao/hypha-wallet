@@ -77,11 +77,7 @@ class _ProposalDetailsViewState extends State<ProposalDetailsView> {
                 children: [
                   const SizedBox(height: 20),
                   /// Header
-                  // TODO(Saif): display DAO image
-                  ProposalHeader(
-                    _proposalDetailsModel.daoName ?? '',
-                    'https://etudestech.com/wp-content/uploads/2023/05/midjourney-scaled.jpeg',
-                  ),
+                  ProposalHeader(_proposalDetailsModel.dao),
                   const Padding(
                     padding: EdgeInsets.only(top: 10, bottom: 20),
                     child: HyphaDivider(),

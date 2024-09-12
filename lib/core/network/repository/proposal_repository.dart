@@ -25,7 +25,8 @@ class ProposalRepository {
 
     final List<ProposalModel> allProposals = [];
 
-    for (final Result<Map<String, dynamic>, HyphaError> result in futureResults) {
+    for (int i = 0; i < futureResults.length; i++) {
+      final Result<Map<String, dynamic>, HyphaError> result = futureResults[i];
 
       if (result.isValue) {
         final Map<String, dynamic> response = result.asValue!.value;
@@ -36,7 +37,7 @@ class ProposalRepository {
         }
 
         try {
-          final List<ProposalModel> proposals = _parseProposalsFromResponse(response);
+          final List<ProposalModel> proposals = _parseProposalsFromResponse(response, daos[i]);
           allProposals.addAll(proposals);
         } catch (e, stackTrace) {
           LogHelper.e('Error parsing data into proposal model', error: e, stacktrace: stackTrace);
@@ -52,20 +53,19 @@ class ProposalRepository {
     return Result.value(allProposals);
   }
 
-  List<ProposalModel> _parseProposalsFromResponse(Map<String, dynamic> response) {
+  List<ProposalModel> _parseProposalsFromResponse(Map<String, dynamic> response, DaoData daoData) {
     final List<dynamic> proposalsData = response['data']['queryDao'];
     return proposalsData.expand((dao) {
-      final String daoName = dao['details_daoName_n'];
       final List<dynamic> proposals = dao['proposal'] as List<dynamic>;
       return proposals.map((dynamic proposal) {
-        return ProposalModel.fromJson({...{'dao': daoName}, ...proposal});
+        return ProposalModel.fromJson({...{'dao': daoData.toJson()}, ...proposal});
       });
     }).toList();
   }
 
   void sortProposals(List<ProposalModel> proposals) {
     proposals.sort((a, b) {
-      final int daoNameComparison = (a.daoName ?? '').compareTo(b.daoName ?? '');
+      final int daoNameComparison = (a.dao?.settingsDaoTitle ?? '').compareTo(b.dao?.settingsDaoTitle ?? '');
       if (daoNameComparison != 0) {
         return daoNameComparison;
       }

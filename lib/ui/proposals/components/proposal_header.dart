@@ -1,26 +1,35 @@
 import 'package:flutter/material.dart';
-import 'package:hypha_wallet/design/avatar_image/hypha_avatar_image.dart';
+import 'package:hypha_wallet/core/network/models/dao_data_model.dart';
+import 'package:hypha_wallet/design/ipfs_image.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 
 class ProposalHeader extends StatelessWidget {
-  final String daoName;
-  final String daoImageUrl;
-
-  const ProposalHeader(this.daoName, this.daoImageUrl, {super.key});
+  final DaoData? _daoData;
+  const ProposalHeader(this._daoData, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        HyphaAvatarImage(
-          imageRadius: 20,
-          name: '',
-          imageFromUrl: daoImageUrl,
+        Container(
+          width: 48,
+          height: 48,
+          decoration: const BoxDecoration(
+            shape: BoxShape.circle,
+            color:
+            Colors.white,
+          ),
+          child: ClipOval(
+            child: IpfsImage(
+              ipfsHash: _daoData?.logoIPFSHash ?? '',
+              type: _daoData?.logoType ?? '',
+            ),
+          ),
         ),
         const SizedBox(width: 4),
         Flexible(
           child: Text(
-            daoName,
+            _daoData?.settingsDaoTitle ?? '',
             style: context.hyphaTextTheme.ralMediumSmallNote.copyWith(fontWeight: FontWeight.bold),
             overflow: TextOverflow.ellipsis,
           ),

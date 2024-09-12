@@ -1,3 +1,8 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'dao_data_model.g.dart';
+
+@JsonSerializable()
 class DaoData {
   final int docId;
   final String detailsDaoName;
@@ -31,4 +36,8 @@ class DaoData {
       settingsDaoUrl: settings['settings_daoUrl_s'] ?? '',
     );
   }
+
+  factory DaoData.fromJson2(Map<String, dynamic> json) => _$DaoDataFromJson(json);
+
+  Map<String, dynamic> toJson() => _$DaoDataToJson(this);
 }

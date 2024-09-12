@@ -17,9 +17,9 @@ import 'package:hypha_wallet/ui/proposals/components/proposal_percentage_indicat
 import 'package:hypha_wallet/ui/proposals/details/proposal_details_page.dart';
 
 class HyphaProposalsActionCard extends StatelessWidget {
-  final ProposalModel proposalModel;
+  final ProposalModel _proposalModel;
 
-  const HyphaProposalsActionCard({required this.proposalModel, super.key});
+  const HyphaProposalsActionCard(this._proposalModel, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,38 +32,35 @@ class HyphaProposalsActionCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                ProposalHeader(
-                  proposalModel.daoName ?? '',
-                  'https://etudestech.com/wp-content/uploads/2023/05/midjourney-scaled.jpeg',
-                ),
+                ProposalHeader(_proposalModel.dao),
                 const Padding(
                   padding: EdgeInsets.symmetric(vertical: 18),
                   child: HyphaDivider(),
                 ),
                 _buildProposalRoleAssignment(
                   context,
-                  proposalModel.commitment ?? 0,
-                  proposalModel.title ?? 'No title',
+                  _proposalModel.commitment ?? 0,
+                  _proposalModel.title ?? 'No title',
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 20),
                   child: ProposalPercentageIndicator(
                     'Unity',
-                    proposalModel.unityToPercent(),
-                    proposalModel.isPassing()
+                    _proposalModel.unityToPercent(),
+                    _proposalModel.isPassing()
                         ? HyphaColors.success
                         : HyphaColors.error,
                   ),
                 ),
                 ProposalPercentageIndicator(
                     'Quorum',
-                    proposalModel.quorumToPercent(),
-                    proposalModel.isPassing()
+                    _proposalModel.quorumToPercent(),
+                    _proposalModel.isPassing()
                         ? HyphaColors.success
                         : HyphaColors.error),
                 const SizedBox(height: 20),
                 ProposalExpirationTimer(
-                  proposalModel.formatExpiration(),
+                  _proposalModel.formatExpiration(),
                 ),
                 const Padding(
                   padding: EdgeInsets.symmetric(vertical: 16),
@@ -71,7 +68,7 @@ class HyphaProposalsActionCard extends StatelessWidget {
                 ),
                 _buildProposalCardFooter(
                   context,
-                  proposalModel.creator,
+                  _proposalModel.creator,
                   'https://etudestech.com/wp-content/uploads/2023/05/midjourney-scaled.jpeg',
                 ),
               ],
@@ -85,10 +82,10 @@ class HyphaProposalsActionCard extends StatelessWidget {
   Widget _buildVoteStatusOverlay(BuildContext context) {
     return BlocBuilder<AuthenticationBloc, AuthenticationState>(
       builder: (context, state) {
-        final myVoteIndex = proposalModel.votes?.indexWhere((element) =>
+        final myVoteIndex = _proposalModel.votes?.indexWhere((element) =>
             element.voter == state.userProfileData?.userNameOrAccount);
         if (myVoteIndex == null || myVoteIndex == -1) return const SizedBox();
-        final voteStatus = proposalModel.votes![myVoteIndex].voteStatus;
+        final voteStatus = _proposalModel.votes![myVoteIndex].voteStatus;
         final color = voteStatus == VoteStatus.pass
             ? HyphaColors.success
             : voteStatus == VoteStatus.fail
@@ -167,7 +164,7 @@ class HyphaProposalsActionCard extends StatelessWidget {
             Icons.arrow_forward_ios,
                 () {
                   Get.Get.to(
-                    ProposalDetailsPage(proposalId: proposalModel.id,),
+                    ProposalDetailsPage(proposalId: _proposalModel.id,),
                     transition: Get.Transition.rightToLeft,
                   );
                 }

@@ -13,7 +13,9 @@ ProposalDetailsModel _$ProposalDetailsModelFromJson(
       creator: json['creator'] as String,
       type: json['__typename'] as String,
       creationDate: DateTime.parse(json['createdDate'] as String),
-      daoName: json['dao'] as String?,
+      dao: json['dao'] == null
+          ? null
+          : DaoData.fromJson(json['dao'] as Map<String, dynamic>),
       commitment: (json['details_timeShareX100_i'] as num?)?.toInt(),
       title: json['details_title_s'] as String?,
       unity: (json['details_ballotAlignment_i'] as num?)?.toInt(),
@@ -43,7 +45,7 @@ Map<String, dynamic> _$ProposalDetailsModelToJson(
         ProposalDetailsModel instance) =>
     <String, dynamic>{
       'docId': instance.id,
-      'dao': instance.daoName,
+      'dao': instance.dao,
       'details_timeShareX100_i': instance.commitment,
       'details_title_s': instance.title,
       'details_ballotAlignment_i': instance.unity,
