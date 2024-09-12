@@ -9,6 +9,7 @@ import 'package:hypha_wallet/design/hypha_card.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 import 'package:hypha_wallet/ui/blocs/authentication/authentication_bloc.dart';
+import 'package:hypha_wallet/ui/profile/interactor/profile_data.dart';
 import 'package:hypha_wallet/ui/proposals/components/proposal_button.dart';
 import 'package:hypha_wallet/ui/proposals/components/proposal_creator.dart';
 import 'package:hypha_wallet/ui/proposals/components/proposal_expiration_timer.dart';
@@ -68,8 +69,7 @@ class HyphaProposalsActionCard extends StatelessWidget {
                 ),
                 _buildProposalCardFooter(
                   context,
-                  _proposalModel.creator,
-                  'https://etudestech.com/wp-content/uploads/2023/05/midjourney-scaled.jpeg',
+                  _proposalModel.creator
                 ),
               ],
             ),
@@ -154,11 +154,10 @@ class HyphaProposalsActionCard extends StatelessWidget {
     );
   }
 
-  Widget _buildProposalCardFooter(
-      BuildContext context, String creatorName, String creatorImageUrl) {
+  Widget _buildProposalCardFooter(BuildContext context, ProfileData? creator) {
     return Row(
       children: [
-        Expanded(child: ProposalCreator(creatorName, creatorImageUrl)),
+        Expanded(child: ProposalCreator(creator)),
         ProposalButton(
             'Details',
             Icons.arrow_forward_ios,

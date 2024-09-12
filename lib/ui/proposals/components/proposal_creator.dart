@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:hypha_wallet/design/avatar_image/hypha_avatar_image.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
+import 'package:hypha_wallet/ui/profile/interactor/profile_data.dart';
 
 class ProposalCreator extends StatelessWidget {
-  final String creatorName;
-  final String creatorImageUrl;
-  const ProposalCreator(this.creatorName, this.creatorImageUrl, {super.key});
+  final ProfileData? creator;
+  const ProposalCreator(this.creator, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,12 +14,12 @@ class ProposalCreator extends StatelessWidget {
       children: [
         HyphaAvatarImage(
           imageRadius: 24,
-          imageFromUrl: creatorImageUrl,
+          imageFromUrl: creator?.avatarUrl ?? '',
         ),
         const SizedBox(width: 10),
         Expanded(
           child: Text(
-            creatorName,
+            creator?.name ?? '',
             style: context.hyphaTextTheme.ralMediumSmallNote.copyWith(color: HyphaColors.midGrey),
           ),
         ),

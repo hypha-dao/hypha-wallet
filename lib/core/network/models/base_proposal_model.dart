@@ -1,5 +1,6 @@
 import 'package:hypha_wallet/core/network/models/dao_data_model.dart';
 import 'package:hypha_wallet/core/network/models/vote_model.dart';
+import 'package:hypha_wallet/ui/profile/interactor/profile_data.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 @JsonSerializable()
@@ -8,7 +9,7 @@ abstract class BaseProposalModel {
   final String id;
 
   @JsonKey(name: 'dao')
-  final DaoData? dao;
+  DaoData? dao;
 
   @JsonKey(name: 'details_timeShareX100_i')
   final int? commitment;
@@ -26,7 +27,7 @@ abstract class BaseProposalModel {
   final DateTime? expiration;
 
   @JsonKey(name: 'creator')
-  final String creator;
+  ProfileData? creator;
 
   @JsonKey(name: 'vote')
   final List<VoteModel>? votes;
@@ -39,7 +40,7 @@ abstract class BaseProposalModel {
     this.unity,
     this.quorum,
     this.expiration,
-    required this.creator,
+    this.creator,
     this.votes,
   });
 }

@@ -10,9 +10,11 @@ ProposalDetailsModel _$ProposalDetailsModelFromJson(
         Map<String, dynamic> json) =>
     ProposalDetailsModel(
       id: json['docId'] as String,
-      creator: json['creator'] as String,
       type: json['__typename'] as String,
       creationDate: DateTime.parse(json['createdDate'] as String),
+      creator: json['creator'] == null
+          ? null
+          : ProfileData.fromJson(json['creator'] as Map<String, dynamic>),
       dao: json['dao'] == null
           ? null
           : DaoData.fromJson(json['dao'] as Map<String, dynamic>),

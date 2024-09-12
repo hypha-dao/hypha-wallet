@@ -37,7 +37,7 @@ class ProposalRepository {
         }
 
         try {
-          final List<ProposalModel> proposals = _parseProposalsFromResponse(response, daos[i]);
+          final List<ProposalModel> proposals = await _parseProposalsFromResponse(response, daos[i]);
           allProposals.addAll(proposals);
         } catch (e, stackTrace) {
           LogHelper.e('Error parsing data into proposal model', error: e, stacktrace: stackTrace);
@@ -53,14 +53,26 @@ class ProposalRepository {
     return Result.value(allProposals);
   }
 
-  List<ProposalModel> _parseProposalsFromResponse(Map<String, dynamic> response, DaoData daoData) {
+  Future<List<ProposalModel>> _parseProposalsFromResponse(Map<String, dynamic> response, DaoData daoData) async {
     final List<dynamic> proposalsData = response['data']['queryDao'];
-    return proposalsData.expand((dao) {
+
+    final List<Future<ProposalModel>> proposalFutures = proposalsData.expand((dao) {
       final List<dynamic> proposals = dao['proposal'] as List<dynamic>;
-      return proposals.map((dynamic proposal) {
-        return ProposalModel.fromJson({...{'dao': daoData.toJson()}, ...proposal});
+      return proposals.map((dynamic proposal) async {
+        final Result<ProfileData, HyphaError> creator = await _profileService.getProfile(proposal['creator']);
+        proposal['creator'] = null;
+
+        final ProposalModel proposalModel = ProposalModel.fromJson(proposal);
+        if (creator.isValue) {
+          proposalModel.creator = creator.asValue!.value;
+        }
+        proposalModel.dao = daoData;
+
+        return proposalModel;
       });
     }).toList();
+
+    return Future.wait(proposalFutures);
   }
 
   void sortProposals(List<ProposalModel> proposals) {

@@ -1,6 +1,7 @@
 import 'package:hypha_wallet/core/network/models/base_proposal_model.dart';
 import 'package:hypha_wallet/core/network/models/dao_data_model.dart';
 import 'package:hypha_wallet/core/network/models/vote_model.dart';
+import 'package:hypha_wallet/ui/profile/interactor/profile_data.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'proposal_details_model.g.dart';
@@ -45,7 +46,6 @@ class ProposalDetailsModel extends BaseProposalModel {
 
   ProposalDetailsModel({
     required super.id,
-    required super.creator,
     required this.type,
     required this.creationDate,
     super.dao,
@@ -54,6 +54,7 @@ class ProposalDetailsModel extends BaseProposalModel {
     super.unity,
     super.quorum,
     super.expiration,
+    super.creator,
     super.votes,
     this.tokenMixPercentage,
     this.cycleCount,
@@ -78,6 +79,7 @@ class ProposalDetailsModel extends BaseProposalModel {
     }
     // TODO(Saif): check this
     json['dao'] = null;
+    json['creator'] = null;
     /*if(json['dao'] != null) {
       json['dao'] = json['dao'][0]['settings'][0]['settings_daoTitle_s'];
     }*/

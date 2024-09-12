@@ -119,10 +119,7 @@ class _ProposalDetailsViewState extends State<ProposalDetailsView> {
                     ),
                   ),
                   // TODO(Saif): display creator image
-                  ProposalCreator(
-                    _proposalDetailsModel.creator,
-                    'https://etudestech.com/wp-content/uploads/2023/05/midjourney-scaled.jpeg',
-                  ),
+                  //ProposalCreator(_proposalDetailsModel.creator),
                   ...List.generate(
                     2,
                         (index) => Padding(
