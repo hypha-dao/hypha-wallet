@@ -26,7 +26,7 @@ class ProposalHeader extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(width: 4),
+        const SizedBox(width: 10),
         Flexible(
           child: Text(
             _daoData?.settingsDaoTitle ?? '',

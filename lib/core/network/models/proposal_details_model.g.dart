@@ -12,9 +12,6 @@ ProposalDetailsModel _$ProposalDetailsModelFromJson(
       id: json['docId'] as String,
       type: json['__typename'] as String,
       creationDate: DateTime.parse(json['createdDate'] as String),
-      creator: json['creator'] == null
-          ? null
-          : ProfileData.fromJson(json['creator'] as Map<String, dynamic>),
       dao: json['dao'] == null
           ? null
           : DaoData.fromJson(json['dao'] as Map<String, dynamic>),
@@ -25,6 +22,9 @@ ProposalDetailsModel _$ProposalDetailsModelFromJson(
       expiration: json['ballot_expiration_t'] == null
           ? null
           : DateTime.parse(json['ballot_expiration_t'] as String),
+      creator: json['creator'] == null
+          ? null
+          : ProfileData.fromJson(json['creator'] as Map<String, dynamic>),
       votes: (json['vote'] as List<dynamic>?)
           ?.map((e) => VoteModel.fromJson(e as Map<String, dynamic>))
           .toList(),
