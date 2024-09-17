@@ -14,7 +14,7 @@ class ProposalCreator extends StatelessWidget {
       children: [
         HyphaAvatarImage(
           imageRadius: 24,
-          imageFromUrl: creator?.avatarUrl ?? '',
+          imageFromUrl: creator?.avatarUrl,
         ),
         const SizedBox(width: 10),
         Expanded(
