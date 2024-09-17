@@ -19,5 +19,11 @@ class ProposalModel extends BaseProposalModel{
     super.creator,
     super.votes,
   });
-  factory ProposalModel.fromJson(Map<String, dynamic> json) => _$ProposalModelFromJson(json);
+
+  factory ProposalModel.fromJson(Map<String, dynamic> json) {
+    if (json.containsKey('original')) {
+      json['details_title_s'] = json['original'][0]['details_title_s'];
+    }
+    return _$ProposalModelFromJson(json);
+  }
 }

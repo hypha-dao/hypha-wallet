@@ -250,6 +250,7 @@ class _ProposalDetailsViewState extends State<ProposalDetailsView> {
                       valueListenable: _isExpandedNotifier,
                       builder: (context, isExpanded, child) {
                         return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
                               padding: const EdgeInsets.only(top: 10),
