@@ -8,7 +8,6 @@ abstract class BaseProposalModel {
   @JsonKey(name: 'docId')
   final String id;
 
-  @JsonKey(name: 'dao')
   DaoData? dao;
 
   @JsonKey(name: 'details_timeShareX100_i')
@@ -26,7 +25,6 @@ abstract class BaseProposalModel {
   @JsonKey(name: 'ballot_expiration_t')
   final DateTime? expiration;
 
-  @JsonKey(name: 'creator')
   ProfileData? creator;
 
   @JsonKey(name: 'vote')

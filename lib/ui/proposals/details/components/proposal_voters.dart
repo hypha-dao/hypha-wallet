@@ -47,6 +47,7 @@ class ProposalVoters extends StatelessWidget {
                   : HyphaAvatarImage(
                       imageRadius: 24,
                       imageFromUrl: votes[index].voterImageUrl,
+                      name: votes[index].voter,
                     ),
             );
           },
