@@ -77,11 +77,7 @@ class _ProposalDetailsViewState extends State<ProposalDetailsView> {
                 children: [
                   const SizedBox(height: 20),
                   /// Header
-                  // TODO(Saif): display DAO image
-                  ProposalHeader(
-                    _proposalDetailsModel.daoName ?? '',
-                    'https://etudestech.com/wp-content/uploads/2023/05/midjourney-scaled.jpeg',
-                  ),
+                  ProposalHeader(_proposalDetailsModel.dao),
                   const Padding(
                     padding: EdgeInsets.only(top: 10, bottom: 20),
                     child: HyphaDivider(),
@@ -123,10 +119,7 @@ class _ProposalDetailsViewState extends State<ProposalDetailsView> {
                     ),
                   ),
                   // TODO(Saif): display creator image
-                  ProposalCreator(
-                    _proposalDetailsModel.creator,
-                    'https://etudestech.com/wp-content/uploads/2023/05/midjourney-scaled.jpeg',
-                  ),
+                  //ProposalCreator(_proposalDetailsModel.creator),
                   ...List.generate(
                     2,
                         (index) => Padding(
@@ -257,6 +250,7 @@ class _ProposalDetailsViewState extends State<ProposalDetailsView> {
                       valueListenable: _isExpandedNotifier,
                       builder: (context, isExpanded, child) {
                         return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
                               padding: const EdgeInsets.only(top: 10),

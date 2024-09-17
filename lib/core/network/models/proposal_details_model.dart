@@ -1,5 +1,7 @@
 import 'package:hypha_wallet/core/network/models/base_proposal_model.dart';
+import 'package:hypha_wallet/core/network/models/dao_data_model.dart';
 import 'package:hypha_wallet/core/network/models/vote_model.dart';
+import 'package:hypha_wallet/ui/profile/interactor/profile_data.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'proposal_details_model.g.dart';
@@ -44,15 +46,15 @@ class ProposalDetailsModel extends BaseProposalModel {
 
   ProposalDetailsModel({
     required super.id,
-    required super.creator,
     required this.type,
     required this.creationDate,
-    super.daoName,
+    super.dao,
     super.commitment,
     super.title,
     super.unity,
     super.quorum,
     super.expiration,
+    super.creator,
     super.votes,
     this.tokenMixPercentage,
     this.cycleCount,
@@ -67,8 +69,6 @@ class ProposalDetailsModel extends BaseProposalModel {
   });
 
   factory ProposalDetailsModel.fromJson(Map<String, dynamic> json) {
-    json['pass'] = json['pass']['count'];
-    json['fail'] = json['fail']['count'];
     if(json['start'] is List){
       if((json['start'] as List).isNotEmpty){
         json['start'] = json['start'][0]['details_startTime_t'];
@@ -78,9 +78,11 @@ class ProposalDetailsModel extends BaseProposalModel {
       }
     }
     // TODO(Saif): check this
-    if(json['dao'] != null) {
+    json['dao'] = null;
+    json['creator'] = null;
+    /*if(json['dao'] != null) {
       json['dao'] = json['dao'][0]['settings'][0]['settings_daoTitle_s'];
-    }
+    }*/
     return _$ProposalDetailsModelFromJson(json);
   }
 

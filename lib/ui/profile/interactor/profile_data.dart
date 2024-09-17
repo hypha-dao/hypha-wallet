@@ -31,8 +31,11 @@ class ProfileData {
     required this.daos,
   });
 
-  factory ProfileData.fromJson(Map<String, dynamic> json, Network network, List<DaoData> daos) {
-    final account = json['eosAccount'];
+  factory ProfileData.fromJson(
+      Map<String, dynamic> json, {
+        Network network = Network.telos,
+        List<DaoData> daos = const [],
+      }) {    final account = json['eosAccount'];
     final avatarUrl = json['avatarUrl'];
     final publicData = json['publicData'];
     final name = publicData['name'];
@@ -48,6 +51,8 @@ class ProfileData {
       daos: daos,
     );
   }
+
+  Map<String, dynamic> toJson() => {};
 
   ProfileData updateBio(String? bio) => ProfileData(
         name: name,

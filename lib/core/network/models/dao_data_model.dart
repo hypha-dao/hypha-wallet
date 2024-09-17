@@ -31,4 +31,6 @@ class DaoData {
       settingsDaoUrl: settings['settings_daoUrl_s'] ?? '',
     );
   }
+
+  Map<String, dynamic> toJson() => {};
 }

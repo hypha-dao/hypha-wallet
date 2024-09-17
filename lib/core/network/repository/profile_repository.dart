@@ -26,8 +26,7 @@ class ProfileService {
           .get(url);
       if (response.statusCode == 200) {
         final map = Map<String, dynamic>.from(response.data);
-        return Result.value(ProfileData.fromJson(
-            map, user is UserProfileData ? user.network : Network.telos, []));
+        return Result.value(ProfileData.fromJson(map,network: user is UserProfileData ? user.network : Network.telos));
       } else {
         LogHelper.i('get profile error status code: ${response.statusMessage}');
         return Result.error(HyphaError(

@@ -10,10 +10,11 @@ ProposalDetailsModel _$ProposalDetailsModelFromJson(
         Map<String, dynamic> json) =>
     ProposalDetailsModel(
       id: json['docId'] as String,
-      creator: json['creator'] as String,
       type: json['__typename'] as String,
       creationDate: DateTime.parse(json['createdDate'] as String),
-      daoName: json['dao'] as String?,
+      dao: json['dao'] == null
+          ? null
+          : DaoData.fromJson(json['dao'] as Map<String, dynamic>),
       commitment: (json['details_timeShareX100_i'] as num?)?.toInt(),
       title: json['details_title_s'] as String?,
       unity: (json['details_ballotAlignment_i'] as num?)?.toInt(),
@@ -21,6 +22,9 @@ ProposalDetailsModel _$ProposalDetailsModelFromJson(
       expiration: json['ballot_expiration_t'] == null
           ? null
           : DateTime.parse(json['ballot_expiration_t'] as String),
+      creator: json['creator'] == null
+          ? null
+          : ProfileData.fromJson(json['creator'] as Map<String, dynamic>),
       votes: (json['vote'] as List<dynamic>?)
           ?.map((e) => VoteModel.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -43,7 +47,7 @@ Map<String, dynamic> _$ProposalDetailsModelToJson(
         ProposalDetailsModel instance) =>
     <String, dynamic>{
       'docId': instance.id,
-      'dao': instance.daoName,
+      'dao': instance.dao,
       'details_timeShareX100_i': instance.commitment,
       'details_title_s': instance.title,
       'details_ballotAlignment_i': instance.unity,

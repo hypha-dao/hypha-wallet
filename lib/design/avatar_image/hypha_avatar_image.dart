@@ -53,6 +53,7 @@ class HyphaAvatarImage extends StatelessWidget {
     } else if (name != null) {
       image = _buildFallbackAvatar(context);
     } else {
+      // TODO(Zied): change the icon
       image = Icon(HyphaIcons.image, size: imageRadius, color: context.textTheme.titleSmall?.color);
     }
 

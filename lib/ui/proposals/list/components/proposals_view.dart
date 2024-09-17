@@ -103,9 +103,7 @@ class ProposalsView extends StatelessWidget {
                                   padding: const EdgeInsets.only(bottom: 22),
                                   itemBuilder: (BuildContext context,
                                           int index) =>
-                                      HyphaProposalsActionCard(
-                                        proposalModel: state.proposals[index],
-                                      ),
+                                      HyphaProposalsActionCard(state.proposals[index]),
                                   separatorBuilder:
                                       (BuildContext context, int index) {
                                     return const SizedBox(height: 16);
