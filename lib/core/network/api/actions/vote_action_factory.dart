@@ -1,3 +1,4 @@
+import 'package:hypha_wallet/core/crypto/eosdart/eosdart.dart';
 import 'package:hypha_wallet/core/crypto/seeds_esr/eos_action.dart';
 
 class Voteactionfactory {
@@ -17,6 +18,11 @@ class Voteactionfactory {
         'voter': voter,
         'proposal_id': proposalId,
         'vote': vote,
-      };
+      }
+      ..authorization = [
+        Authorization()
+          ..actor = voter
+          ..permission = 'active'
+      ];
   }
 }
