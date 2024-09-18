@@ -22,8 +22,8 @@ class BottomNavigationBloc extends Bloc<BottomNavigationEvent, BottomNavigationS
             allPages: [
               BottomNavigationPage.home,
               if (_remoteConfigService.isWalletEnabled) BottomNavigationPage.wallet,
+              BottomNavigationPage.proposals,
               BottomNavigationPage.transactions,
-              BottomNavigationPage.profile,
               BottomNavigationPage.settings,
             ],
           ),

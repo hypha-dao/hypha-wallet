@@ -133,4 +133,10 @@ void _registerBlocsModule() {
         _getIt<SearchForMemberUseCase>(),
         _getIt<AuthRepository>(),
       ));
+
+  _registerFactory(() => ProposalsBloc(
+    _getIt<GetProposalsUseCase>(),
+    _getIt<FetchProfileUseCase>(),
+    _getIt<ErrorHandlerManager>(),
+  ));
 }

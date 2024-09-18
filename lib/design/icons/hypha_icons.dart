@@ -17,14 +17,14 @@
 ///         License:   SIL ()
 ///         Homepage:  http://fortawesome.github.com/Font-Awesome/
 ///
-import 'package:flutter/widgets.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class HyphaIcons {
   HyphaIcons._();
 
   static const _kFontFam = 'HyphaIcons';
   static const String? _kFontPkg = null;
-
   static const IconData cancel_circled = IconData(0xe801, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData dollar_sign = IconData(0xe802, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData bell = IconData(0xe803, fontFamily: _kFontFam, fontPackage: _kFontPkg);
@@ -39,6 +39,7 @@ class HyphaIcons {
   static const IconData history_b = IconData(0xe80a, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData image_svgrepo_com = IconData(0xe80b, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData profile_b = IconData(0xe80c, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData  proposals_b = IconData(0xf62d, fontFamily: 'CupertinoIcons', fontPackage: 'cupertino_icons');
   static const IconData home_b = IconData(0xe80d, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData settings_b = IconData(0xe80e, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData wallet_b = IconData(0xe80f, fontFamily: _kFontFam, fontPackage: _kFontPkg);

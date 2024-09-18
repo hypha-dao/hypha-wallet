@@ -22,4 +22,6 @@ void _registerRepositoriesModule() {
   _registerLazySingleton(() => UserAccountRepository(userService: _getIt<UserAccountService>(), memberService: _getIt<HyphaMemberService>()));
 
   _registerLazySingleton(() => TransactionHistoryRepository(service: _getIt<TransactionHistoryService>()));
+
+  _registerLazySingleton(() => ProposalRepository(_getIt<ProposalService>(),_getIt<ProfileService>()));
 }

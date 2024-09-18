@@ -12,6 +12,7 @@ class HyphaAppButton extends StatelessWidget {
   final bool isFullWidth;
   final EdgeInsets margin;
   final ButtonType buttonType;
+  final Color? buttonColor;
 
   const HyphaAppButton({
     super.key,
@@ -23,12 +24,13 @@ class HyphaAppButton extends StatelessWidget {
     this.isFullWidth = true,
     this.margin = EdgeInsets.zero,
     this.buttonType = ButtonType.primary,
+    this.buttonColor,
   });
 
   @override
   Widget build(BuildContext context) {
     final borderRadius = BorderRadius.circular(80);
-    final buttonColor = buttonType.appButtonColor(isActive, context.isDarkTheme);
+    final Color? btnColor = buttonColor ?? buttonType.appButtonColor(isActive, context.isDarkTheme);
     final Color textColor = buttonType.appButtonTextColor(isActive, context.isDarkTheme);
 
     final body = Builder(
@@ -48,7 +50,7 @@ class HyphaAppButton extends StatelessWidget {
           items.add(
             Text(
               title.toUpperCase(),
-              style: context.hyphaTextTheme.buttons.copyWith(color: textColor, fontWeight: FontWeight.w900),
+              style: context.hyphaTextTheme.buttons.copyWith(color: textColor),
             ),
           );
         }
@@ -89,7 +91,7 @@ class HyphaAppButton extends StatelessWidget {
         onPressed: () {
           onPressed?.call();
         },
-        color: buttonColor,
+        color: btnColor,
         child: child,
       ),
     );

@@ -4,10 +4,11 @@ void _registerUseCasesModule() {
   _registerFactory(() => CheckAccountAvailabilityUseCase(_getIt<UserAccountRepository>()));
   _registerFactory(() => FindAvailableAccountUseCase(_getIt<UserAccountRepository>()));
   _registerFactory(() => CreateAccountUseCase(_getIt<AuthRepository>(), _getIt<InviteService>()));
-  _registerFactory(() => FetchProfileUseCase(
-        _getIt<ProfileService>(),
-        _getIt<HyphaSharedPrefs>(),
-        _getIt<DaoService>(),
+  _registerLazySingleton(() => FetchProfileUseCase(
+    _getIt<AuthRepository>(),
+    _getIt<ProfileService>(),
+    _getIt<HyphaSharedPrefs>(),
+    _getIt<DaoService>(),
       ));
   _registerFactory(() => GenerateKeyFromSeedsPassportWordsUseCase(_getIt<CryptoAuthService>()));
   _registerFactory(() => GenerateKeyFromRecoveryWordsUseCase(_getIt<CryptoAuthService>()));
@@ -81,4 +82,8 @@ void _registerUseCasesModule() {
       ));
 
   _registerFactory(() => GetDaoNameUseCase(_getIt<DaoService>()));
+
+  _registerFactory(() => GetProposalsUseCase(_getIt<AuthRepository>(), _getIt<ProposalRepository>()));
+
+  _registerFactory(() => GetProposalDetailsUseCase(_getIt<AuthRepository>(), _getIt<ProposalRepository>()));
 }

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart' as GetX;
 import 'package:hypha_wallet/design/avatar_image/hypha_avatar_image.dart';
 import 'package:hypha_wallet/design/background/hypha_page_background.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 import 'package:hypha_wallet/ui/blocs/authentication/authentication_bloc.dart';
-import 'package:hypha_wallet/ui/bottom_navigation/components/bottom_navigation_view.dart';
-import 'package:hypha_wallet/ui/bottom_navigation/interactor/bottom_navigation_bloc.dart';
 import 'package:hypha_wallet/ui/home_page/components/scanner_widget.dart';
 import 'package:hypha_wallet/ui/home_page/interactor/home_bloc.dart';
+import 'package:hypha_wallet/ui/profile/profile_page.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -37,9 +37,10 @@ class HomeView extends StatelessWidget {
                           name: state.userProfileData?.userName ?? state.userProfileData?.accountName,
                           imageFromUrl: state.userProfileData?.userImage,
                           onTap: () {
-                            context.read<BottomNavigationBloc>().add(
-                                  const BottomNavigationEvent.onPageSelected(BottomNavigationPage.profile),
-                                );
+                            GetX.Get.to(
+                              const ProfilePage(),
+                              transition: GetX.Transition.rightToLeft,
+                            );
                           },
                         );
                       },

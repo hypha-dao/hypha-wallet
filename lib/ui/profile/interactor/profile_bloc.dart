@@ -52,12 +52,12 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
 
   Future<void> _initial(_Initial event, Emitter<ProfileState> emit) async {
     emit(state.copyWith(pageState: PageState.loading));
-    final userData = _authRepository.authDataOrCrash;
-    final Result<ProfileData, HyphaError> result = await _fetchProfileUseCase.run(userData.userProfileData);
+    final Result<ProfileData, HyphaError> result = await _fetchProfileUseCase.run();
     if (result.isValue) {
       emit(state.copyWith(pageState: PageState.success, profileData: result.asValue!.value));
     } else {
       // if loading fails, show saved user data.
+      final userData = _authRepository.authDataOrCrash;
       final profileData = ProfileData(
         name: userData.userProfileData.userName,
         account: userData.userProfileData.accountName,
@@ -113,10 +113,9 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   FutureOr<void> _setAvatarImage(_SetAvatarImage event, Emitter<ProfileState> emit) async {
     emit(state.copyWith(showUpdateImageLoading: true));
     final result = await _setImageUseCase.run(event.image, state.profileData!.user);
-    final userData = _authRepository.authDataOrCrash;
 
     if (result.isValue) {
-      final Result<ProfileData, HyphaError> profileResult = await _fetchProfileUseCase.run(userData.userProfileData);
+      final Result<ProfileData, HyphaError> profileResult = await _fetchProfileUseCase.run();
       if (profileResult.isValue) {
         final profile = profileResult.asValue!.value;
         emit(state.copyWith(showUpdateImageLoading: false, profileData: profile));
