@@ -4,6 +4,7 @@ import 'package:async/async.dart';
 import 'package:dio/dio.dart' as dio;
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:hypha_wallet/core/crypto/eosdart/eosdart.dart';
+import 'package:hypha_wallet/core/crypto/seeds_esr/eos_action.dart';
 import 'package:hypha_wallet/core/crypto/seeds_esr/eos_transaction.dart';
 import 'package:hypha_wallet/core/local/models/user_auth_data.dart';
 import 'package:hypha_wallet/core/local/services/secure_storage_service.dart';
@@ -79,6 +80,21 @@ class EOSService {
       network: fromUser.network,
     );
     return sendTransaction(user: fromUser, eosTransaction: transferTransaction);
+  }
+
+  /// Run a single action from signer account
+  Future<Result<String>> runAction({
+    required UserProfileData signer,
+    required EOSAction action,
+  }) async {
+    if (action.authorization == null) {
+      final auth = Authorization()
+        ..actor = signer.accountName
+        ..permission = 'active';
+      action.authorization = [auth];
+    }
+    final transferTransaction = EOSTransaction([action], signer.network);
+    return sendTransaction(user: signer, eosTransaction: transferTransaction);
   }
 
   Future<Result<dynamic>> deleteBlockchainAccount({
