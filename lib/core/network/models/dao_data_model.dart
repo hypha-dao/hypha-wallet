@@ -1,4 +1,6 @@
-class DaoData {
+import 'package:equatable/equatable.dart';
+
+class DaoData extends Equatable{
   final int docId;
   final String detailsDaoName;
   final String settingsDaoTitle;
@@ -6,7 +8,7 @@ class DaoData {
   final String logoType;
   final String settingsDaoUrl;
 
-  DaoData({
+  const DaoData({
     required this.docId,
     required this.detailsDaoName,
     required this.settingsDaoTitle,
@@ -14,6 +16,16 @@ class DaoData {
     required this.logoType,
     required this.settingsDaoUrl,
   });
+
+  @override
+  List<Object?> get props => [
+    docId,
+    detailsDaoName,
+    settingsDaoTitle,
+    logoIPFSHash,
+    logoType,
+    settingsDaoUrl,
+  ];
 
   factory DaoData.fromJson(Map<String, dynamic> json) {
     final Map<String, dynamic> settings = json['settings'][0];

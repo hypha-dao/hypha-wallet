@@ -7,7 +7,9 @@ import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 import 'package:hypha_wallet/ui/blocs/authentication/authentication_bloc.dart';
 import 'package:hypha_wallet/ui/profile/profile_page.dart';
-import 'package:hypha_wallet/ui/proposals/filter/filter_page.dart';
+import 'package:hypha_wallet/ui/proposals/filter/filter_proposals_page.dart';
+import 'package:hypha_wallet/ui/proposals/filter/interactor/filter_proposals_bloc.dart';
+import 'package:hypha_wallet/ui/proposals/filter/interactor/filter_status.dart';
 import 'package:hypha_wallet/ui/proposals/list/components/hypha_proposals_action_card.dart';
 import 'package:hypha_wallet/ui/proposals/list/interactor/proposals_bloc.dart';
 import 'package:hypha_wallet/ui/shared/hypha_body_widget.dart';
@@ -64,7 +66,7 @@ class ProposalsView extends StatelessWidget {
                 onRefresh: () async {
                   context
                       .read<ProposalsBloc>()
-                      .add(const ProposalsEvent.initial());
+                      .add(const ProposalsEvent.initial(refresh: true));
                 },
                 child: Container(
                   margin: const EdgeInsets.only(top: 20),
@@ -91,7 +93,7 @@ class ProposalsView extends StatelessWidget {
                             height: 22,
                           ),
                           Text(
-                            '${state.proposals.length} Active Proposals',
+                            '${state.proposals.length} ${context.read<ProposalsBloc>().filterStatus.string} Proposal${state.proposals.length == 1 ? '' : 's'}',
                             style: context.hyphaTextTheme.ralMediumBody
                                 .copyWith(color: HyphaColors.midGrey),
                           ),
@@ -117,8 +119,8 @@ class ProposalsView extends StatelessWidget {
             floatingActionButton: IconButton(
                 onPressed: () {
                   GetX.Get.to(
-                    const FilterPage(),
-                    transition: GetX.Transition.leftToRight,
+                          () => const FilterProposalsPage(),
+                      transition: GetX.Transition.leftToRight
                   );
                 },
                 icon: const CircleAvatar(
