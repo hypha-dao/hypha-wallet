@@ -25,7 +25,6 @@ class FilterProposalsBloc extends Bloc<FilterProposalsEvent, FilterProposalsStat
   final AggregateDaoProposalCountsUseCase _aggregateDaoProposalCountsUseCase;
   final GetDaosFromProposalCountsUseCase _getDaosFromProposalCountsUseCase;
   final ErrorHandlerManager _errorHandlerManager;
-  late bool _isCalled;
 
   FilterProposalsBloc(
       this._proposalsBloc,
@@ -38,7 +37,6 @@ class FilterProposalsBloc extends Bloc<FilterProposalsEvent, FilterProposalsStat
     on<_ClearPageCommand>((_, emit) => emit(state.copyWith(command: null)));
     on<_SaveFilters>(_saveFilters);
 
-    _isCalled = false;
     add(const FilterProposalsEvent.initial());
   }
 
@@ -54,7 +52,7 @@ class FilterProposalsBloc extends Bloc<FilterProposalsEvent, FilterProposalsStat
     final Result<ProfileData, HyphaError> profileResult = await _fetchProfileUseCase.run();
 
     if (profileResult.isValue) {
-      if (!_isCalled && _proposalsBloc.state.pageState == PageState.success) {
+      if (_proposalsBloc.state.pageState == PageState.success) {
         final List<DaoProposalCountEntity> daoProposalCounts = _aggregateDaoProposalCountsUseCase.run(_proposalsBloc.state.proposals, profileResult.asValue!.value.daos);
         emit(state.copyWith(pageState: PageState.success, daoProposalCounts: daoProposalCounts));
       }
