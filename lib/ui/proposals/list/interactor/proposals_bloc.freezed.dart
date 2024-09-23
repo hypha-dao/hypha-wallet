@@ -17,19 +17,27 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$ProposalsEvent {
   bool get refresh => throw _privateConstructorUsedError;
+  List<DaoData>? get daos => throw _privateConstructorUsedError;
+  FilterStatus get filterStatus => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(bool refresh) initial,
+    required TResult Function(
+            bool refresh, List<DaoData>? daos, FilterStatus filterStatus)
+        initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool refresh)? initial,
+    TResult? Function(
+            bool refresh, List<DaoData>? daos, FilterStatus filterStatus)?
+        initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool refresh)? initial,
+    TResult Function(
+            bool refresh, List<DaoData>? daos, FilterStatus filterStatus)?
+        initial,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -63,7 +71,7 @@ abstract class $ProposalsEventCopyWith<$Res> {
           ProposalsEvent value, $Res Function(ProposalsEvent) then) =
       _$ProposalsEventCopyWithImpl<$Res, ProposalsEvent>;
   @useResult
-  $Res call({bool refresh});
+  $Res call({bool refresh, List<DaoData>? daos, FilterStatus filterStatus});
 }
 
 /// @nodoc
@@ -82,12 +90,22 @@ class _$ProposalsEventCopyWithImpl<$Res, $Val extends ProposalsEvent>
   @override
   $Res call({
     Object? refresh = null,
+    Object? daos = freezed,
+    Object? filterStatus = null,
   }) {
     return _then(_value.copyWith(
       refresh: null == refresh
           ? _value.refresh
           : refresh // ignore: cast_nullable_to_non_nullable
               as bool,
+      daos: freezed == daos
+          ? _value.daos
+          : daos // ignore: cast_nullable_to_non_nullable
+              as List<DaoData>?,
+      filterStatus: null == filterStatus
+          ? _value.filterStatus
+          : filterStatus // ignore: cast_nullable_to_non_nullable
+              as FilterStatus,
     ) as $Val);
   }
 }
@@ -100,7 +118,7 @@ abstract class _$$InitialImplCopyWith<$Res>
       __$$InitialImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool refresh});
+  $Res call({bool refresh, List<DaoData>? daos, FilterStatus filterStatus});
 }
 
 /// @nodoc
@@ -117,12 +135,22 @@ class __$$InitialImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? refresh = null,
+    Object? daos = freezed,
+    Object? filterStatus = null,
   }) {
     return _then(_$InitialImpl(
       refresh: null == refresh
           ? _value.refresh
           : refresh // ignore: cast_nullable_to_non_nullable
               as bool,
+      daos: freezed == daos
+          ? _value._daos
+          : daos // ignore: cast_nullable_to_non_nullable
+              as List<DaoData>?,
+      filterStatus: null == filterStatus
+          ? _value.filterStatus
+          : filterStatus // ignore: cast_nullable_to_non_nullable
+              as FilterStatus,
     ));
   }
 }
@@ -130,15 +158,32 @@ class __$$InitialImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$InitialImpl implements _Initial {
-  const _$InitialImpl({this.refresh = false});
+  const _$InitialImpl(
+      {this.refresh = false,
+      final List<DaoData>? daos,
+      this.filterStatus = FilterStatus.active})
+      : _daos = daos;
 
   @override
   @JsonKey()
   final bool refresh;
+  final List<DaoData>? _daos;
+  @override
+  List<DaoData>? get daos {
+    final value = _daos;
+    if (value == null) return null;
+    if (_daos is EqualUnmodifiableListView) return _daos;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  @JsonKey()
+  final FilterStatus filterStatus;
 
   @override
   String toString() {
-    return 'ProposalsEvent.initial(refresh: $refresh)';
+    return 'ProposalsEvent.initial(refresh: $refresh, daos: $daos, filterStatus: $filterStatus)';
   }
 
   @override
@@ -146,11 +191,15 @@ class _$InitialImpl implements _Initial {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$InitialImpl &&
-            (identical(other.refresh, refresh) || other.refresh == refresh));
+            (identical(other.refresh, refresh) || other.refresh == refresh) &&
+            const DeepCollectionEquality().equals(other._daos, _daos) &&
+            (identical(other.filterStatus, filterStatus) ||
+                other.filterStatus == filterStatus));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, refresh);
+  int get hashCode => Object.hash(runtimeType, refresh,
+      const DeepCollectionEquality().hash(_daos), filterStatus);
 
   /// Create a copy of ProposalsEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -163,27 +212,33 @@ class _$InitialImpl implements _Initial {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(bool refresh) initial,
+    required TResult Function(
+            bool refresh, List<DaoData>? daos, FilterStatus filterStatus)
+        initial,
   }) {
-    return initial(refresh);
+    return initial(refresh, daos, filterStatus);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool refresh)? initial,
+    TResult? Function(
+            bool refresh, List<DaoData>? daos, FilterStatus filterStatus)?
+        initial,
   }) {
-    return initial?.call(refresh);
+    return initial?.call(refresh, daos, filterStatus);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool refresh)? initial,
+    TResult Function(
+            bool refresh, List<DaoData>? daos, FilterStatus filterStatus)?
+        initial,
     required TResult orElse(),
   }) {
     if (initial != null) {
-      return initial(refresh);
+      return initial(refresh, daos, filterStatus);
     }
     return orElse();
   }
@@ -218,10 +273,17 @@ class _$InitialImpl implements _Initial {
 }
 
 abstract class _Initial implements ProposalsEvent {
-  const factory _Initial({final bool refresh}) = _$InitialImpl;
+  const factory _Initial(
+      {final bool refresh,
+      final List<DaoData>? daos,
+      final FilterStatus filterStatus}) = _$InitialImpl;
 
   @override
   bool get refresh;
+  @override
+  List<DaoData>? get daos;
+  @override
+  FilterStatus get filterStatus;
 
   /// Create a copy of ProposalsEvent
   /// with the given fields replaced by the non-null parameter values.

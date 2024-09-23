@@ -9,6 +9,7 @@ import 'package:hypha_wallet/design/avatar_image/hypha_avatar_image.dart';
 import 'package:hypha_wallet/design/background/hypha_page_background.dart';
 import 'package:hypha_wallet/design/buttons/button_type.dart';
 import 'package:hypha_wallet/design/buttons/hypha_app_button.dart';
+import 'package:hypha_wallet/design/dao_image.dart';
 import 'package:hypha_wallet/design/dividers/hypha_divider.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
@@ -158,8 +159,7 @@ class _ProposalDetailsViewState extends State<ProposalDetailsView> {
                     child: HyphaDivider(),
                   ),
                   /// Rewards Section
-                  // TODO(Zied): implement the logic
-                  if (!(_proposalDetailsModel.utilityAmount == null && _proposalDetailsModel.utilityAmountPerPeriod == null)) ... [
+                  if (_proposalDetailsModel.utilityAmount != null || _proposalDetailsModel.utilityAmountPerPeriod != null) ... [
                     ValueListenableBuilder<bool?>(
                       valueListenable: _isShownNotifier,
                       builder: (BuildContext context, bool? isShown, Widget? child) {
@@ -176,10 +176,7 @@ class _ProposalDetailsViewState extends State<ProposalDetailsView> {
                                   padding: const EdgeInsets.only(top: 10),
                                   child: Row(
                                     children: [
-                                      const HyphaAvatarImage(
-                                        imageRadius: 24,
-                                        imageFromUrl: 'https://etudestech.com/wp-content/uploads/2023/05/midjourney-scaled.jpeg',
-                                      ),
+                                      DaoImage(_proposalDetailsModel.dao),
                                       const SizedBox(width: 10),
                                       Expanded(
                                         child: Column(

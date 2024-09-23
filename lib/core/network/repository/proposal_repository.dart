@@ -9,6 +9,7 @@ import 'package:hypha_wallet/core/network/models/user_profile_data.dart';
 import 'package:hypha_wallet/core/network/repository/profile_repository.dart';
 import 'package:hypha_wallet/ui/architecture/result/result.dart';
 import 'package:hypha_wallet/ui/profile/interactor/profile_data.dart';
+import 'package:hypha_wallet/ui/proposals/filter/interactor/filter_status.dart';
 
 class ProposalRepository {
   final ProposalService _proposalService;
@@ -16,9 +17,9 @@ class ProposalRepository {
 
   ProposalRepository(this._proposalService, this._profileService);
 
-  Future<Result<List<ProposalModel>, HyphaError>> getProposals(UserProfileData user, List<DaoData> daos) async {
-    final List<Future<Result<Map<String, dynamic>, HyphaError>>> futures = daos.map((dao) {
-      return _proposalService.getProposals(user, dao.docId);
+  Future<Result<List<ProposalModel>, HyphaError>> getProposals(UserProfileData user, List<DaoData> daos, FilterStatus filterStatus) async {
+    final List<Future<Result<Map<String, dynamic>, HyphaError>>> futures = daos.map((DaoData dao) {
+      return filterStatus == FilterStatus.active ? _proposalService.getActiveProposals(user, dao.docId) : _proposalService.getPastProposals(user, dao.docId);
     }).toList();
 
     final List<Result<Map<String, dynamic>, HyphaError>> futureResults = await Future.wait(futures);
@@ -37,7 +38,7 @@ class ProposalRepository {
         }
 
         try {
-          final List<ProposalModel> proposals = await _parseProposalsFromResponse(response, daos[i]);
+          final List<ProposalModel> proposals = await _parseProposalsFromResponse(response, daos[i], filterStatus);
           allProposals.addAll(proposals);
         } catch (e, stackTrace) {
           LogHelper.e('Error parsing data into proposal model', error: e, stacktrace: stackTrace);
@@ -53,11 +54,11 @@ class ProposalRepository {
     return Result.value(allProposals);
   }
 
-  Future<List<ProposalModel>> _parseProposalsFromResponse(Map<String, dynamic> response, DaoData daoData) async {
+  Future<List<ProposalModel>> _parseProposalsFromResponse(Map<String, dynamic> response, DaoData daoData, FilterStatus filterStatus) async {
     final List<dynamic> proposalsData = response['data']['queryDao'];
 
     final List<Future<ProposalModel>> proposalFutures = proposalsData.expand((dao) {
-      final List<dynamic> proposals = dao['proposal'] as List<dynamic>;
+      final List<dynamic> proposals = dao[filterStatus == FilterStatus.active ? 'proposal' : 'votable'] as List<dynamic>;
       return proposals.map((dynamic proposal) async {
         final Result<ProfileData, HyphaError> creator = await _profileService.getProfile(proposal['creator']);
         proposal['creator'] = null;

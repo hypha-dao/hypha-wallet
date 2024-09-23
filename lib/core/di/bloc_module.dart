@@ -134,9 +134,17 @@ void _registerBlocsModule() {
         _getIt<AuthRepository>(),
       ));
 
-  _registerFactory(() => ProposalsBloc(
+  _registerLazySingleton(() => ProposalsBloc(
     _getIt<GetProposalsUseCase>(),
     _getIt<FetchProfileUseCase>(),
+    _getIt<ErrorHandlerManager>(),
+  ));
+
+  _registerLazySingleton(() => FilterProposalsBloc(
+    _getIt<ProposalsBloc>(),
+    _getIt<FetchProfileUseCase>(),
+    _getIt<AggregateDaoProposalCountsUseCase>(),
+    _getIt<GetDaosFromProposalCountsUseCase>(),
     _getIt<ErrorHandlerManager>(),
   ));
 }
