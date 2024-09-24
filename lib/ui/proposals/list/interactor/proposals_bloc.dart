@@ -39,6 +39,7 @@ class ProposalsBloc extends Bloc<ProposalsEvent, ProposalsState> {
 
     final Result<ProfileData, HyphaError> profileResult = await _fetchProfileUseCase.run();
 
+    // TODO(Zied): DAOs may be empty list due to crash or user has no DAO, so refactor
     if (profileResult.isValue && profileResult.asValue!.value.daos.isNotEmpty) {
       await _fetchAndEmitProposals(emit, profileResult.asValue!.value.daos, filterStatus);
     } else {
