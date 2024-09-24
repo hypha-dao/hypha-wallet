@@ -6,12 +6,11 @@ import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 
 class HyphaProposalHistoryCard extends StatelessWidget {
-  final DaoData? dao;
-  final String? title;
-  final String? subTitle;
+  final DaoData dao;
+  final String subTitle;
 
   const HyphaProposalHistoryCard(
-      {this.dao, this.title, this.subTitle, super.key});
+      {required this.dao, required this.subTitle, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +21,7 @@ class HyphaProposalHistoryCard extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
         child: Row(
           children: [
-            if (dao != null) DaoImage(dao),
+            DaoImage(dao),
             const SizedBox(
               width: 10,
             ),
@@ -30,15 +29,14 @@ class HyphaProposalHistoryCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  title ?? dao!.settingsDaoTitle,
+                  dao.settingsDaoTitle,
                   style: context.hyphaTextTheme.smallTitles,
                 ),
-                if (subTitle != null)
-                  Text(
-                    subTitle!,
-                    style: context.hyphaTextTheme.ralMediumBody
-                        .copyWith(color: HyphaColors.midGrey),
-                  ),
+                Text(
+                  subTitle,
+                  style: context.hyphaTextTheme.ralMediumBody
+                      .copyWith(color: HyphaColors.midGrey),
+                ),
               ],
             ),
             const Spacer(),
