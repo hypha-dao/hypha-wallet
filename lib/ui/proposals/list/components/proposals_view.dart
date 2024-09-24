@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart' as GetX;
+import 'package:hypha_wallet/core/network/models/dao_data_model.dart';
 import 'package:hypha_wallet/design/avatar_image/hypha_avatar_image.dart';
 import 'package:hypha_wallet/design/background/hypha_page_background.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
@@ -8,8 +9,8 @@ import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.d
 import 'package:hypha_wallet/ui/blocs/authentication/authentication_bloc.dart';
 import 'package:hypha_wallet/ui/profile/profile_page.dart';
 import 'package:hypha_wallet/ui/proposals/filter/filter_proposals_page.dart';
-import 'package:hypha_wallet/ui/proposals/filter/interactor/filter_proposals_bloc.dart';
 import 'package:hypha_wallet/ui/proposals/filter/interactor/filter_status.dart';
+import 'package:hypha_wallet/ui/proposals/list/components/hypha_proposal_history_card.dart';
 import 'package:hypha_wallet/ui/proposals/list/components/hypha_proposals_action_card.dart';
 import 'package:hypha_wallet/ui/proposals/list/interactor/proposals_bloc.dart';
 import 'package:hypha_wallet/ui/shared/hypha_body_widget.dart';
@@ -21,6 +22,7 @@ class ProposalsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ProposalsBloc, ProposalsState>(
         builder: (context, state) {
+      print(state.proposals[0].dao);
       return HyphaPageBackground(
           backgroundTexture: 'assets/images/graphics/wallet_background.png',
           withOpacity: false,
@@ -101,16 +103,62 @@ class ProposalsView extends StatelessWidget {
                             height: 20,
                           ),
                           Expanded(
-                              child: ListView.separated(
-                                  padding: const EdgeInsets.only(bottom: 22),
-                                  itemBuilder: (BuildContext context,
-                                          int index) =>
-                                      HyphaProposalsActionCard(state.proposals[index]),
-                                  separatorBuilder:
-                                      (BuildContext context, int index) {
-                                    return const SizedBox(height: 16);
-                                  },
-                                  itemCount: state.proposals.length)),
+                            child: SingleChildScrollView(
+                              physics: const BouncingScrollPhysics(),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  ListView.separated(
+                                      physics:
+                                          const NeverScrollableScrollPhysics(),
+                                      shrinkWrap: true,
+                                      padding:
+                                          const EdgeInsets.only(bottom: 22),
+                                      itemBuilder:
+                                          (BuildContext context, int index) =>
+                                              HyphaProposalsActionCard(
+                                                  state.proposals[index]),
+                                      separatorBuilder:
+                                          (BuildContext context, int index) {
+                                        return const SizedBox(height: 16);
+                                      },
+                                      itemCount: state.proposals.length),
+                                  const SizedBox(
+                                    height: 30,
+                                  ),
+                                  Text(
+                                    'See Proposals History',
+                                    style: context.hyphaTextTheme.ralMediumBody
+                                        .copyWith(color: HyphaColors.midGrey),
+                                  ),
+                                  ...List.generate(
+                                    2,
+                                    (index) {
+                                      return Container(
+                                          margin: const EdgeInsets.symmetric(
+                                              vertical: 10),
+                                          child: const HyphaProposalHistoryCard(
+                                            dao: DaoData(
+                                                docId: 67176,
+                                                detailsDaoName: 't4rcvben2fe4',
+                                                settingsDaoTitle:
+                                                    'Think-it Collective',
+                                                logoIPFSHash:
+                                                    'QmVB8q28U1bjfi51reQMaU7XwP4FThWj39DrU5G8MriMS9',
+                                                logoType: 'png',
+                                                settingsDaoUrl:
+                                                    'think-it-collective'),
+                                            subTitle: '1,234 Past Proposals',
+                                          ));
+                                    },
+                                  ),
+                                  const SizedBox(
+                                    height: 90,
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -118,13 +166,11 @@ class ProposalsView extends StatelessWidget {
                 )),
             floatingActionButton: IconButton(
                 onPressed: () {
-                  GetX.Get.to(
-                          () => const FilterProposalsPage(),
-                      transition: GetX.Transition.leftToRight
-                  );
+                  GetX.Get.to(() => const FilterProposalsPage(),
+                      transition: GetX.Transition.leftToRight);
                 },
                 icon: const CircleAvatar(
-                    radius: 30,
+                    radius: 25,
                     backgroundImage: AssetImage(
                         'assets/images/graphics/wallet_background.png'),
                     child: Icon(Icons.filter_alt_outlined,
