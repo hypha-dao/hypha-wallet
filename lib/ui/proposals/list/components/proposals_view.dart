@@ -22,7 +22,6 @@ class ProposalsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ProposalsBloc, ProposalsState>(
         builder: (context, state) {
-      print(state.proposals[0].dao);
       return HyphaPageBackground(
           backgroundTexture: 'assets/images/graphics/wallet_background.png',
           withOpacity: false,
