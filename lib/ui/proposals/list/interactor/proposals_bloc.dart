@@ -9,6 +9,7 @@ import 'package:hypha_wallet/ui/architecture/result/result.dart';
 import 'package:hypha_wallet/ui/profile/interactor/profile_data.dart';
 import 'package:hypha_wallet/ui/profile/usecases/fetch_profile_use_case.dart';
 import 'package:hypha_wallet/ui/proposals/filter/interactor/filter_status.dart';
+import 'package:hypha_wallet/ui/proposals/list/interactor/get_proposals_use_case_input.dart';
 import 'package:hypha_wallet/ui/proposals/list/usecases/get_proposals_use_case.dart';
 
 part 'proposals_bloc.freezed.dart';
@@ -49,7 +50,7 @@ class ProposalsBloc extends Bloc<ProposalsEvent, ProposalsState> {
   }
 
   Future<void> _fetchAndEmitProposals(Emitter<ProposalsState> emit, List<DaoData> daos, FilterStatus filterStatus) async {
-    final Result<List<ProposalModel>, HyphaError> proposalsResult = await _getProposalsUseCase.run(daos, filterStatus);
+    final Result<List<ProposalModel>, HyphaError> proposalsResult = await _getProposalsUseCase.run(GetProposalsUseCaseInput(daos, filterStatus));
 
     if (proposalsResult.isValue) {
       emit(state.copyWith(pageState: PageState.success, proposals: proposalsResult.asValue!.value));
