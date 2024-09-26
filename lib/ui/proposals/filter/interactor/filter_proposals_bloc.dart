@@ -11,7 +11,6 @@ import 'package:hypha_wallet/ui/profile/usecases/fetch_profile_use_case.dart';
 import 'package:hypha_wallet/ui/proposals/filter/interactor/dao_proposal_count_entity.dart';
 import 'package:hypha_wallet/ui/proposals/filter/interactor/filter_status.dart';
 import 'package:hypha_wallet/ui/proposals/filter/usecases/aggregate_dao_proposal_counts_use_case.dart';
-import 'package:hypha_wallet/ui/proposals/filter/usecases/get_daos_from_proposal_counts_use_case.dart';
 import 'package:hypha_wallet/ui/proposals/list/interactor/proposals_bloc.dart';
 
 part 'page_command.dart';
@@ -23,14 +22,12 @@ class FilterProposalsBloc extends Bloc<FilterProposalsEvent, FilterProposalsStat
   final ProposalsBloc _proposalsBloc;
   final FetchProfileUseCase _fetchProfileUseCase;
   final AggregateDaoProposalCountsUseCase _aggregateDaoProposalCountsUseCase;
-  final GetDaosFromProposalCountsUseCase _getDaosFromProposalCountsUseCase;
   final ErrorHandlerManager _errorHandlerManager;
 
   FilterProposalsBloc(
       this._proposalsBloc,
       this._fetchProfileUseCase,
       this._aggregateDaoProposalCountsUseCase,
-      this._getDaosFromProposalCountsUseCase,
       this._errorHandlerManager,
       ) : super(const FilterProposalsState()) {
     on<_Initial>(_initial);
@@ -40,11 +37,13 @@ class FilterProposalsBloc extends Bloc<FilterProposalsEvent, FilterProposalsStat
     add(const FilterProposalsEvent.initial());
   }
 
-  final ValueNotifier<int?> _selectedDaoIndexNotifier = ValueNotifier<int?>(null);
+  final ValueNotifier<int?> _selectedDaoIndexNotifier = ValueNotifier<int?>(0);
   final ValueNotifier<int> _selectedStatusIndexNotifier = ValueNotifier<int>(0);
+  List<int>? _daoIds;
 
   ValueNotifier<int?> get selectedDaoIndexNotifier => _selectedDaoIndexNotifier;
   ValueNotifier<int> get selectedStatusIndexNotifier => _selectedStatusIndexNotifier;
+  List<int>? get daoIds => _daoIds;
 
   Future<void> _initial(_Initial event, Emitter<FilterProposalsState> emit) async {
     emit(state.copyWith(pageState: PageState.loading));
@@ -76,7 +75,8 @@ class FilterProposalsBloc extends Bloc<FilterProposalsEvent, FilterProposalsStat
   }
 
   Future<void> _saveFilters(_SaveFilters event, Emitter<FilterProposalsState> emit) async {
-    _proposalsBloc.add(ProposalsEvent.initial(daos: _getDaosFromProposalCountsUseCase.run(event.daoProposalCounts), filterStatus: event.filterStatus));
+    _daoIds = event.daoProposalCounts.map((DaoProposalCountEntity daoProposalCount) => daoProposalCount.dao.docId).toList();
+    _proposalsBloc.add(ProposalsEvent.initial(filterStatus: event.filterStatus));
     emit(state.copyWith(command: const PageCommand.navigateToProposals()));
   }
 }

@@ -24,6 +24,7 @@ class ProposalsBloc extends Bloc<ProposalsEvent, ProposalsState> {
     on<_Initial>(_initial);
   }
 
+  List<DaoData>? _daos;
   FilterStatus filterStatus = FilterStatus.active;
 
   Future<void> _initial(_Initial event, Emitter<ProposalsState> emit) async {
@@ -32,19 +33,19 @@ class ProposalsBloc extends Bloc<ProposalsEvent, ProposalsState> {
       filterStatus = event.filterStatus;
     }
 
-    if (event.daos != null) {
-      await _fetchAndEmitProposals(emit, event.daos!, filterStatus);
-      return;
-    }
+    if (_daos == null) {
+      final Result<ProfileData, HyphaError> profileResult = await _fetchProfileUseCase.run();
 
-    final Result<ProfileData, HyphaError> profileResult = await _fetchProfileUseCase.run();
-
-    if (profileResult.isValue && profileResult.asValue!.value.daos.isNotEmpty) {
-      await _fetchAndEmitProposals(emit, profileResult.asValue!.value.daos, filterStatus);
+      if (profileResult.isValue && profileResult.asValue!.value.daos.isNotEmpty) {
+        _daos = profileResult.asValue!.value.daos;
+        await _fetchAndEmitProposals(emit, _daos!, filterStatus);
+      } else {
+        final HyphaError error = profileResult.isError ? profileResult.asError!.error : HyphaError.api('Failed to retrieve DAOs');
+        await _errorHandlerManager.handlerError(error);
+        emit(state.copyWith(pageState: PageState.failure));
+      }
     } else {
-      final HyphaError error = profileResult.isError ? profileResult.asError!.error : HyphaError.api('Failed to retrieve DAOs');
-      await _errorHandlerManager.handlerError(error);
-      emit(state.copyWith(pageState: PageState.failure));
+      await _fetchAndEmitProposals(emit, _daos!, filterStatus);
     }
   }
 

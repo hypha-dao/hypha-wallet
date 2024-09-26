@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hypha_wallet/core/network/models/dao_data_model.dart';
-import 'package:hypha_wallet/design/avatar_image/hypha_avatar_image.dart';
+import 'package:hypha_wallet/design/dao_image.dart';
 import 'package:hypha_wallet/design/hypha_card.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
-import 'package:hypha_wallet/design/ipfs_image.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
-import 'package:hypha_wallet/design/dao_image.dart';
 
 class HyphaFilterCard extends StatelessWidget {
   final DaoData? dao;
@@ -21,7 +19,7 @@ class HyphaFilterCard extends StatelessWidget {
     // TODO(Saif): fix the card height (filter by status)
     return GestureDetector(
       onTap: () {
-        valueNotifier.value = index;
+        valueNotifier.value = valueNotifier.value == index ? null : index;
       },
       child: HyphaCard(
           child: Padding(
