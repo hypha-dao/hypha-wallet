@@ -45,10 +45,6 @@ class _ProposalDetailsViewState extends State<ProposalDetailsView> {
     }
   }
 
-  // void _initSwitchValue(ProposalDetailsModel proposalDetailsModel) {
-  //   _isShownNotifier.value = proposalDetailsModel.utilityAmount != null;
-  // }
-
   @override
   Widget build(BuildContext context) {
     return HyphaPageBackground(
@@ -68,7 +64,6 @@ class _ProposalDetailsViewState extends State<ProposalDetailsView> {
               _detailsNotifier.value = _proposalDetailsModel.description;
               WidgetsBinding.instance.addPostFrameCallback((_) {
                 _checkIfTextIsOverflowing();
-                // _initSwitchValue(_proposalDetailsModel);
               });
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 30),
