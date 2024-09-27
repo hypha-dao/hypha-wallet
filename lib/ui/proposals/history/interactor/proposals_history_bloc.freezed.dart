@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'proposals_bloc.dart';
+part of 'proposals_history_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,22 +15,21 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$ProposalsEvent {
+mixin _$ProposalsHistoryEvent {
   bool get refresh => throw _privateConstructorUsedError;
-  FilterStatus get filterStatus => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(bool refresh, FilterStatus filterStatus) initial,
+    required TResult Function(bool refresh) initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool refresh, FilterStatus filterStatus)? initial,
+    TResult? Function(bool refresh)? initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool refresh, FilterStatus filterStatus)? initial,
+    TResult Function(bool refresh)? initial,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -51,89 +50,80 @@ mixin _$ProposalsEvent {
   }) =>
       throw _privateConstructorUsedError;
 
-  /// Create a copy of ProposalsEvent
+  /// Create a copy of ProposalsHistoryEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $ProposalsEventCopyWith<ProposalsEvent> get copyWith =>
+  $ProposalsHistoryEventCopyWith<ProposalsHistoryEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ProposalsEventCopyWith<$Res> {
-  factory $ProposalsEventCopyWith(
-          ProposalsEvent value, $Res Function(ProposalsEvent) then) =
-      _$ProposalsEventCopyWithImpl<$Res, ProposalsEvent>;
+abstract class $ProposalsHistoryEventCopyWith<$Res> {
+  factory $ProposalsHistoryEventCopyWith(ProposalsHistoryEvent value,
+          $Res Function(ProposalsHistoryEvent) then) =
+      _$ProposalsHistoryEventCopyWithImpl<$Res, ProposalsHistoryEvent>;
   @useResult
-  $Res call({bool refresh, FilterStatus filterStatus});
+  $Res call({bool refresh});
 }
 
 /// @nodoc
-class _$ProposalsEventCopyWithImpl<$Res, $Val extends ProposalsEvent>
-    implements $ProposalsEventCopyWith<$Res> {
-  _$ProposalsEventCopyWithImpl(this._value, this._then);
+class _$ProposalsHistoryEventCopyWithImpl<$Res,
+        $Val extends ProposalsHistoryEvent>
+    implements $ProposalsHistoryEventCopyWith<$Res> {
+  _$ProposalsHistoryEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ProposalsEvent
+  /// Create a copy of ProposalsHistoryEvent
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? refresh = null,
-    Object? filterStatus = null,
   }) {
     return _then(_value.copyWith(
       refresh: null == refresh
           ? _value.refresh
           : refresh // ignore: cast_nullable_to_non_nullable
               as bool,
-      filterStatus: null == filterStatus
-          ? _value.filterStatus
-          : filterStatus // ignore: cast_nullable_to_non_nullable
-              as FilterStatus,
     ) as $Val);
   }
 }
 
 /// @nodoc
 abstract class _$$InitialImplCopyWith<$Res>
-    implements $ProposalsEventCopyWith<$Res> {
+    implements $ProposalsHistoryEventCopyWith<$Res> {
   factory _$$InitialImplCopyWith(
           _$InitialImpl value, $Res Function(_$InitialImpl) then) =
       __$$InitialImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool refresh, FilterStatus filterStatus});
+  $Res call({bool refresh});
 }
 
 /// @nodoc
 class __$$InitialImplCopyWithImpl<$Res>
-    extends _$ProposalsEventCopyWithImpl<$Res, _$InitialImpl>
+    extends _$ProposalsHistoryEventCopyWithImpl<$Res, _$InitialImpl>
     implements _$$InitialImplCopyWith<$Res> {
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ProposalsEvent
+  /// Create a copy of ProposalsHistoryEvent
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? refresh = null,
-    Object? filterStatus = null,
   }) {
     return _then(_$InitialImpl(
       refresh: null == refresh
           ? _value.refresh
           : refresh // ignore: cast_nullable_to_non_nullable
               as bool,
-      filterStatus: null == filterStatus
-          ? _value.filterStatus
-          : filterStatus // ignore: cast_nullable_to_non_nullable
-              as FilterStatus,
     ));
   }
 }
@@ -141,19 +131,15 @@ class __$$InitialImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$InitialImpl implements _Initial {
-  const _$InitialImpl(
-      {this.refresh = false, this.filterStatus = FilterStatus.active});
+  const _$InitialImpl({this.refresh = false});
 
   @override
   @JsonKey()
   final bool refresh;
-  @override
-  @JsonKey()
-  final FilterStatus filterStatus;
 
   @override
   String toString() {
-    return 'ProposalsEvent.initial(refresh: $refresh, filterStatus: $filterStatus)';
+    return 'ProposalsHistoryEvent.initial(refresh: $refresh)';
   }
 
   @override
@@ -161,15 +147,13 @@ class _$InitialImpl implements _Initial {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$InitialImpl &&
-            (identical(other.refresh, refresh) || other.refresh == refresh) &&
-            (identical(other.filterStatus, filterStatus) ||
-                other.filterStatus == filterStatus));
+            (identical(other.refresh, refresh) || other.refresh == refresh));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, refresh, filterStatus);
+  int get hashCode => Object.hash(runtimeType, refresh);
 
-  /// Create a copy of ProposalsEvent
+  /// Create a copy of ProposalsHistoryEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -180,27 +164,27 @@ class _$InitialImpl implements _Initial {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(bool refresh, FilterStatus filterStatus) initial,
+    required TResult Function(bool refresh) initial,
   }) {
-    return initial(refresh, filterStatus);
+    return initial(refresh);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool refresh, FilterStatus filterStatus)? initial,
+    TResult? Function(bool refresh)? initial,
   }) {
-    return initial?.call(refresh, filterStatus);
+    return initial?.call(refresh);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool refresh, FilterStatus filterStatus)? initial,
+    TResult Function(bool refresh)? initial,
     required TResult orElse(),
   }) {
     if (initial != null) {
-      return initial(refresh, filterStatus);
+      return initial(refresh);
     }
     return orElse();
   }
@@ -234,16 +218,13 @@ class _$InitialImpl implements _Initial {
   }
 }
 
-abstract class _Initial implements ProposalsEvent {
-  const factory _Initial(
-      {final bool refresh, final FilterStatus filterStatus}) = _$InitialImpl;
+abstract class _Initial implements ProposalsHistoryEvent {
+  const factory _Initial({final bool refresh}) = _$InitialImpl;
 
   @override
   bool get refresh;
-  @override
-  FilterStatus get filterStatus;
 
-  /// Create a copy of ProposalsEvent
+  /// Create a copy of ProposalsHistoryEvent
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -252,37 +233,38 @@ abstract class _Initial implements ProposalsEvent {
 }
 
 /// @nodoc
-mixin _$ProposalsState {
+mixin _$ProposalsHistoryState {
   PageState get pageState => throw _privateConstructorUsedError;
   List<ProposalModel> get proposals => throw _privateConstructorUsedError;
 
-  /// Create a copy of ProposalsState
+  /// Create a copy of ProposalsHistoryState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $ProposalsStateCopyWith<ProposalsState> get copyWith =>
+  $ProposalsHistoryStateCopyWith<ProposalsHistoryState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ProposalsStateCopyWith<$Res> {
-  factory $ProposalsStateCopyWith(
-          ProposalsState value, $Res Function(ProposalsState) then) =
-      _$ProposalsStateCopyWithImpl<$Res, ProposalsState>;
+abstract class $ProposalsHistoryStateCopyWith<$Res> {
+  factory $ProposalsHistoryStateCopyWith(ProposalsHistoryState value,
+          $Res Function(ProposalsHistoryState) then) =
+      _$ProposalsHistoryStateCopyWithImpl<$Res, ProposalsHistoryState>;
   @useResult
   $Res call({PageState pageState, List<ProposalModel> proposals});
 }
 
 /// @nodoc
-class _$ProposalsStateCopyWithImpl<$Res, $Val extends ProposalsState>
-    implements $ProposalsStateCopyWith<$Res> {
-  _$ProposalsStateCopyWithImpl(this._value, this._then);
+class _$ProposalsHistoryStateCopyWithImpl<$Res,
+        $Val extends ProposalsHistoryState>
+    implements $ProposalsHistoryStateCopyWith<$Res> {
+  _$ProposalsHistoryStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ProposalsState
+  /// Create a copy of ProposalsHistoryState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -304,25 +286,27 @@ class _$ProposalsStateCopyWithImpl<$Res, $Val extends ProposalsState>
 }
 
 /// @nodoc
-abstract class _$$ProposalsStateImplCopyWith<$Res>
-    implements $ProposalsStateCopyWith<$Res> {
-  factory _$$ProposalsStateImplCopyWith(_$ProposalsStateImpl value,
-          $Res Function(_$ProposalsStateImpl) then) =
-      __$$ProposalsStateImplCopyWithImpl<$Res>;
+abstract class _$$ProposalsHistoryStateImplCopyWith<$Res>
+    implements $ProposalsHistoryStateCopyWith<$Res> {
+  factory _$$ProposalsHistoryStateImplCopyWith(
+          _$ProposalsHistoryStateImpl value,
+          $Res Function(_$ProposalsHistoryStateImpl) then) =
+      __$$ProposalsHistoryStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({PageState pageState, List<ProposalModel> proposals});
 }
 
 /// @nodoc
-class __$$ProposalsStateImplCopyWithImpl<$Res>
-    extends _$ProposalsStateCopyWithImpl<$Res, _$ProposalsStateImpl>
-    implements _$$ProposalsStateImplCopyWith<$Res> {
-  __$$ProposalsStateImplCopyWithImpl(
-      _$ProposalsStateImpl _value, $Res Function(_$ProposalsStateImpl) _then)
+class __$$ProposalsHistoryStateImplCopyWithImpl<$Res>
+    extends _$ProposalsHistoryStateCopyWithImpl<$Res,
+        _$ProposalsHistoryStateImpl>
+    implements _$$ProposalsHistoryStateImplCopyWith<$Res> {
+  __$$ProposalsHistoryStateImplCopyWithImpl(_$ProposalsHistoryStateImpl _value,
+      $Res Function(_$ProposalsHistoryStateImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ProposalsState
+  /// Create a copy of ProposalsHistoryState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -330,7 +314,7 @@ class __$$ProposalsStateImplCopyWithImpl<$Res>
     Object? pageState = null,
     Object? proposals = null,
   }) {
-    return _then(_$ProposalsStateImpl(
+    return _then(_$ProposalsHistoryStateImpl(
       pageState: null == pageState
           ? _value.pageState
           : pageState // ignore: cast_nullable_to_non_nullable
@@ -345,8 +329,8 @@ class __$$ProposalsStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ProposalsStateImpl implements _ProposalsState {
-  const _$ProposalsStateImpl(
+class _$ProposalsHistoryStateImpl implements _ProposalsHistoryState {
+  const _$ProposalsHistoryStateImpl(
       {this.pageState = PageState.initial,
       final List<ProposalModel> proposals = const []})
       : _proposals = proposals;
@@ -365,14 +349,14 @@ class _$ProposalsStateImpl implements _ProposalsState {
 
   @override
   String toString() {
-    return 'ProposalsState(pageState: $pageState, proposals: $proposals)';
+    return 'ProposalsHistoryState(pageState: $pageState, proposals: $proposals)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ProposalsStateImpl &&
+            other is _$ProposalsHistoryStateImpl &&
             (identical(other.pageState, pageState) ||
                 other.pageState == pageState) &&
             const DeepCollectionEquality()
@@ -383,30 +367,30 @@ class _$ProposalsStateImpl implements _ProposalsState {
   int get hashCode => Object.hash(
       runtimeType, pageState, const DeepCollectionEquality().hash(_proposals));
 
-  /// Create a copy of ProposalsState
+  /// Create a copy of ProposalsHistoryState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$ProposalsStateImplCopyWith<_$ProposalsStateImpl> get copyWith =>
-      __$$ProposalsStateImplCopyWithImpl<_$ProposalsStateImpl>(
-          this, _$identity);
+  _$$ProposalsHistoryStateImplCopyWith<_$ProposalsHistoryStateImpl>
+      get copyWith => __$$ProposalsHistoryStateImplCopyWithImpl<
+          _$ProposalsHistoryStateImpl>(this, _$identity);
 }
 
-abstract class _ProposalsState implements ProposalsState {
-  const factory _ProposalsState(
+abstract class _ProposalsHistoryState implements ProposalsHistoryState {
+  const factory _ProposalsHistoryState(
       {final PageState pageState,
-      final List<ProposalModel> proposals}) = _$ProposalsStateImpl;
+      final List<ProposalModel> proposals}) = _$ProposalsHistoryStateImpl;
 
   @override
   PageState get pageState;
   @override
   List<ProposalModel> get proposals;
 
-  /// Create a copy of ProposalsState
+  /// Create a copy of ProposalsHistoryState
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ProposalsStateImplCopyWith<_$ProposalsStateImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$ProposalsHistoryStateImplCopyWith<_$ProposalsHistoryStateImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

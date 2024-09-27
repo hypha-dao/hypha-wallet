@@ -10,6 +10,7 @@ import 'package:hypha_wallet/core/network/repository/profile_repository.dart';
 import 'package:hypha_wallet/ui/architecture/result/result.dart';
 import 'package:hypha_wallet/ui/profile/interactor/profile_data.dart';
 import 'package:hypha_wallet/ui/proposals/filter/interactor/filter_status.dart';
+import 'package:hypha_wallet/ui/proposals/list/interactor/get_proposals_use_case_input.dart';
 
 class ProposalRepository {
   final ProposalService _proposalService;
@@ -17,9 +18,9 @@ class ProposalRepository {
 
   ProposalRepository(this._proposalService, this._profileService);
 
-  Future<Result<List<ProposalModel>, HyphaError>> getProposals(UserProfileData user, List<DaoData> daos, FilterStatus filterStatus) async {
-    final List<Future<Result<Map<String, dynamic>, HyphaError>>> futures = daos.map((DaoData dao) {
-      return filterStatus == FilterStatus.active ? _proposalService.getActiveProposals(user, dao.docId) : _proposalService.getPastProposals(user, dao.docId);
+  Future<Result<List<ProposalModel>, HyphaError>> getProposals(UserProfileData user, GetProposalsUseCaseInput input) async {
+    final List<Future<Result<Map<String, dynamic>, HyphaError>>> futures = input.daos.map((DaoData dao) {
+      return input.filterStatus == FilterStatus.active ? _proposalService.getActiveProposals(user, dao.docId) : _proposalService.getPastProposals(user, dao.docId);
     }).toList();
 
     final List<Result<Map<String, dynamic>, HyphaError>> futureResults = await Future.wait(futures);
@@ -38,7 +39,7 @@ class ProposalRepository {
         }
 
         try {
-          final List<ProposalModel> proposals = await _parseProposalsFromResponse(response, daos[i], filterStatus);
+          final List<ProposalModel> proposals = await _parseProposalsFromResponse(response, input.daos[i], input.filterStatus);
           allProposals.addAll(proposals);
         } catch (e, stackTrace) {
           LogHelper.e('Error parsing data into proposal model', error: e, stacktrace: stackTrace);

@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart' as GetX;
+import 'package:get_it/get_it.dart';
+import 'package:hypha_wallet/core/extension/proposals_filter_extension.dart';
+import 'package:hypha_wallet/core/network/models/proposal_model.dart';
 import 'package:hypha_wallet/design/avatar_image/hypha_avatar_image.dart';
 import 'package:hypha_wallet/design/background/hypha_page_background.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 import 'package:hypha_wallet/ui/blocs/authentication/authentication_bloc.dart';
 import 'package:hypha_wallet/ui/profile/profile_page.dart';
+import 'package:hypha_wallet/ui/proposals/components/proposals_list.dart';
 import 'package:hypha_wallet/ui/proposals/filter/filter_proposals_page.dart';
 import 'package:hypha_wallet/ui/proposals/filter/interactor/filter_proposals_bloc.dart';
 import 'package:hypha_wallet/ui/proposals/filter/interactor/filter_status.dart';
-import 'package:hypha_wallet/ui/proposals/list/components/hypha_proposals_action_card.dart';
 import 'package:hypha_wallet/ui/proposals/list/interactor/proposals_bloc.dart';
 import 'package:hypha_wallet/ui/shared/hypha_body_widget.dart';
 
@@ -84,36 +87,30 @@ class ProposalsView extends StatelessWidget {
                   ),
                   child: HyphaBodyWidget(
                     pageState: state.pageState,
-                    success: (context) => Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 22),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const SizedBox(
-                            height: 22,
-                          ),
-                          Text(
-                            '${state.proposals.length} ${context.read<ProposalsBloc>().filterStatus.string} Proposal${state.proposals.length == 1 ? '' : 's'}',
-                            style: context.hyphaTextTheme.ralMediumBody
-                                .copyWith(color: HyphaColors.midGrey),
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          Expanded(
-                              child: ListView.separated(
-                                  padding: const EdgeInsets.only(bottom: 22),
-                                  itemBuilder: (BuildContext context,
-                                          int index) =>
-                                      HyphaProposalsActionCard(state.proposals[index]),
-                                  separatorBuilder:
-                                      (BuildContext context, int index) {
-                                    return const SizedBox(height: 16);
-                                  },
-                                  itemCount: state.proposals.length)),
-                        ],
-                      ),
-                    ),
+                    success: (context) {
+                      final List<int>? daoIds = GetIt.I.get<FilterProposalsBloc>().daoIds;
+                      final List<ProposalModel> proposals = daoIds != null ? state.proposals.filterByDao(daoIds) : state.proposals;
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 22),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const SizedBox(
+                              height: 22,
+                            ),
+                            Text(
+                              '${proposals.length} ${context.read<ProposalsBloc>().filterStatus.string} Proposal${proposals.length == 1 ? '' : 's'}',
+                              style: context.hyphaTextTheme.ralMediumBody
+                                  .copyWith(color: HyphaColors.midGrey),
+                            ),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                          Expanded(child: ProposalsList(proposals)),
+                          ],
+                        ),
+                      );
+                    },
                   ),
                 )),
             floatingActionButton: IconButton(
