@@ -74,7 +74,8 @@ class FilterProposalsView extends StatelessWidget {
                   HyphaAppButton(
                     title: 'SAVE FILTERS',
                     onPressed: () {
-                      filterProposalsBloc.add(FilterProposalsEvent.saveFilters(filterProposalsBloc.selectedDaoIndexNotifier.value == null ? state.daoProposalCounts: [state.daoProposalCounts[filterProposalsBloc.selectedDaoIndexNotifier.value!]], filterProposalsBloc.selectedStatusIndexNotifier.value == 0 ? FilterStatus.active : FilterStatus.past));
+                      final int? index = filterProposalsBloc.selectedDaoIndexNotifier.value;
+                      filterProposalsBloc.add(FilterProposalsEvent.saveFilters(index == null ? state.daoProposalCounts : [state.daoProposalCounts[index]], filterProposalsBloc.selectedStatusIndexNotifier.value == 0 ? FilterStatus.active : FilterStatus.past));
                     },
                   ),
                   const SizedBox(

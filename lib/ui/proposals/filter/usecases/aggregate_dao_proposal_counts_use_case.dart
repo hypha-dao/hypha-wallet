@@ -20,8 +20,9 @@ class AggregateDaoProposalCountsUseCase {
       }
     }
 
-    return daoProposalCounts.entries
-        .map((entry) => DaoProposalCountEntity(entry.key, entry.value))
-        .toList();
+    final List<MapEntry<DaoData, int>> sortedEntries = daoProposalCounts.entries.toList()
+      ..sort((a, b) => a.key.settingsDaoTitle.compareTo(b.key.settingsDaoTitle));
+
+    return sortedEntries.map((entry) => DaoProposalCountEntity(entry.key, entry.value)).toList();
   }
 }
