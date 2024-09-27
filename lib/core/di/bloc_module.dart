@@ -146,4 +146,12 @@ void _registerBlocsModule() {
     _getIt<AggregateDaoProposalCountsUseCase>(),
     _getIt<ErrorHandlerManager>(),
   ));
+
+  _registerFactoryWithParams<ProposalsHistoryBloc, DaoData, void>(
+        (dao, _) => ProposalsHistoryBloc(
+      _getIt<GetProposalsUseCase>(),
+      _getIt<ErrorHandlerManager>(),
+            dao
+    ),
+  );
 }

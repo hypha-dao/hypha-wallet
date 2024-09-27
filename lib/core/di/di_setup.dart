@@ -30,6 +30,7 @@ import 'package:hypha_wallet/core/network/api/services/token_service.dart';
 import 'package:hypha_wallet/core/network/api/services/transaction_history_service.dart';
 import 'package:hypha_wallet/core/network/api/services/user_account_service.dart';
 import 'package:hypha_wallet/core/network/ipfs/ipfs_manager.dart';
+import 'package:hypha_wallet/core/network/models/dao_data_model.dart';
 import 'package:hypha_wallet/core/network/models/network.dart';
 import 'package:hypha_wallet/core/network/models/user_profile_data.dart';
 import 'package:hypha_wallet/core/network/networking_manager.dart';
@@ -76,6 +77,7 @@ import 'package:hypha_wallet/ui/proposals/details/usecases/get_proposal_details_
 import 'package:hypha_wallet/ui/proposals/filter/interactor/filter_proposals_bloc.dart';
 import 'package:hypha_wallet/ui/proposals/filter/usecases/aggregate_dao_proposal_counts_use_case.dart';
 import 'package:hypha_wallet/ui/proposals/filter/usecases/get_daos_from_proposal_counts_use_case.dart';
+import 'package:hypha_wallet/ui/proposals/history/interactor/proposals_history_bloc.dart';
 import 'package:hypha_wallet/ui/proposals/list/interactor/proposals_bloc.dart';
 import 'package:hypha_wallet/ui/proposals/list/usecases/get_proposals_use_case.dart';
 import 'package:hypha_wallet/ui/search_user/interactor/search_user_bloc.dart';

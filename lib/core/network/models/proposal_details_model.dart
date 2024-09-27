@@ -1,3 +1,4 @@
+import 'package:hypha_wallet/core/extension/string_extension.dart'; // Add this import
 import 'package:hypha_wallet/core/network/models/base_proposal_model.dart';
 import 'package:hypha_wallet/core/network/models/dao_data_model.dart';
 import 'package:hypha_wallet/core/network/models/vote_model.dart';
@@ -8,6 +9,13 @@ part 'proposal_details_model.g.dart';
 
 @JsonSerializable()
 class ProposalDetailsModel extends BaseProposalModel {
+  double? get utilityAmountDouble => utilityAmount?.quantityAsDouble;
+  double? get voiceAmountDouble => voiceAmount?.quantityAsDouble;
+  double? get cashAmountDouble => cashAmount?.quantityAsDouble;
+  double? get utilityAmountPerPeriodDouble => utilityAmountPerPeriod?.quantityAsDouble;
+  double? get voiceAmountPerPeriodDouble => voiceAmountPerPeriod?.quantityAsDouble;
+  double? get cashAmountPerPeriodDouble => cashAmountPerPeriod?.quantityAsDouble;
+
   @JsonKey(name: '__typename')
   final String type;
 
@@ -44,37 +52,35 @@ class ProposalDetailsModel extends BaseProposalModel {
   @JsonKey(name: 'details_description_s')
   final String? description;
 
-  ProposalDetailsModel({
-    required super.id,
-    required this.type,
-    required this.creationDate,
-    super.dao,
-    super.commitment,
-    super.title,
-    super.unity,
-    super.quorum,
-    super.expiration,
-    super.creator,
-    super.votes,
-    this.tokenMixPercentage,
-    this.cycleCount,
-    this.cycleStartDate,
-    this.utilityAmount,
-    this.voiceAmount,
-    this.cashAmount,
-    this.utilityAmountPerPeriod,
-    this.voiceAmountPerPeriod,
-    this.cashAmountPerPeriod,
-    this.description
-  });
+  ProposalDetailsModel(
+      {required super.id,
+      required this.type,
+      required this.creationDate,
+      super.dao,
+      super.commitment,
+      super.title,
+      super.unity,
+      super.quorum,
+      super.expiration,
+      super.creator,
+      super.votes,
+      this.tokenMixPercentage,
+      this.cycleCount,
+      this.cycleStartDate,
+      this.utilityAmount,
+      this.voiceAmount,
+      this.cashAmount,
+      this.utilityAmountPerPeriod,
+      this.voiceAmountPerPeriod,
+      this.cashAmountPerPeriod,
+      this.description});
 
   factory ProposalDetailsModel.fromJson(Map<String, dynamic> json) {
-    if(json['start'] is List){
-      if((json['start'] as List).isNotEmpty){
+    if (json['start'] is List) {
+      if ((json['start'] as List).isNotEmpty) {
         json['start'] = json['start'][0]['details_startTime_t'];
-      }
-      else{
-        json['start']=null;
+      } else {
+        json['start'] = null;
       }
     }
     // TODO(Saif): check this
