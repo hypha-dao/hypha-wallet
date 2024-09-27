@@ -2,6 +2,7 @@ import 'package:hypha_wallet/core/network/models/base_proposal_model.dart';
 
 extension BaseProposalModelExtension on BaseProposalModel {
   String formatExpiration() {
+    // TODO(Zied-Saif): use another word instead of 'Expired'
     if (expiration == null) return 'Expired';
 
     if (isExpired()) {

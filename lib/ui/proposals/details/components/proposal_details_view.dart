@@ -141,7 +141,7 @@ class _ProposalDetailsViewState extends State<ProposalDetailsView> {
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10),
                       child: Text(
-                        '${_proposalDetailsModel.cycleCount} Cycles',
+                        '${_proposalDetailsModel.cycleCount} Cycle${_proposalDetailsModel.cycleCount == 1 ? '' : 's'}',
                         style: context.hyphaTextTheme.reducedTitles,
                       ),
                     ),
