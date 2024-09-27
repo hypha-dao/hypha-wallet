@@ -7,6 +7,7 @@ import 'package:hypha_wallet/core/network/models/proposal_model.dart';
 import 'package:hypha_wallet/ui/architecture/interactor/page_states.dart';
 import 'package:hypha_wallet/ui/architecture/result/result.dart';
 import 'package:hypha_wallet/ui/proposals/filter/interactor/filter_status.dart';
+import 'package:hypha_wallet/ui/proposals/list/interactor/get_proposals_use_case_input.dart';
 import 'package:hypha_wallet/ui/proposals/list/usecases/get_proposals_use_case.dart';
 
 part 'proposals_history_bloc.freezed.dart';
@@ -27,7 +28,7 @@ class ProposalsHistoryBloc extends Bloc<ProposalsHistoryEvent, ProposalsHistoryS
       emit(state.copyWith(pageState: PageState.loading));
     }
 
-    final Result<List<ProposalModel>, HyphaError> proposalsResult = await _getProposalsUseCase.run([_dao], FilterStatus.past);
+    final Result<List<ProposalModel>, HyphaError> proposalsResult = await _getProposalsUseCase.run(GetProposalsUseCaseInput([_dao], FilterStatus.past));
 
     if (proposalsResult.isValue) {
       emit(state.copyWith(pageState: PageState.success, proposals: proposalsResult.asValue!.value));
