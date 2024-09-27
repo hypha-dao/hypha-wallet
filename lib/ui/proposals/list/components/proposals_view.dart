@@ -12,6 +12,7 @@ import 'package:hypha_wallet/ui/blocs/authentication/authentication_bloc.dart';
 import 'package:hypha_wallet/ui/profile/profile_page.dart';
 import 'package:hypha_wallet/ui/proposals/components/proposals_list.dart';
 import 'package:hypha_wallet/ui/proposals/filter/filter_proposals_page.dart';
+import 'package:hypha_wallet/ui/proposals/filter/interactor/filter_proposals_bloc.dart';
 import 'package:hypha_wallet/ui/proposals/filter/interactor/filter_status.dart';
 import 'package:hypha_wallet/ui/proposals/list/interactor/proposals_bloc.dart';
 import 'package:hypha_wallet/ui/shared/hypha_body_widget.dart';

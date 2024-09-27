@@ -88,6 +88,4 @@ void _registerUseCasesModule() {
   _registerFactory(() => GetProposalDetailsUseCase(_getIt<AuthRepository>(), _getIt<ProposalRepository>()));
 
   _registerFactory(() => AggregateDaoProposalCountsUseCase());
-
-  _registerFactory(() => GetDaosFromProposalCountsUseCase());
 }
