@@ -28,7 +28,7 @@ class ProposalDetailsView extends StatefulWidget {
 }
 
 class _ProposalDetailsViewState extends State<ProposalDetailsView> {
-  final ValueNotifier<bool> _isShownNotifier = ValueNotifier<bool>(true);
+  final ValueNotifier<bool> _isRewardShownPerCycle = ValueNotifier<bool>(false);
   final ValueNotifier<bool> _isOverflowingNotifier = ValueNotifier<bool>(false);
   final ValueNotifier<bool> _isExpandedNotifier = ValueNotifier<bool>(false);
   final ValueNotifier<String?> _detailsNotifier = ValueNotifier<String?>(null);
@@ -57,302 +57,346 @@ class _ProposalDetailsViewState extends State<ProposalDetailsView> {
         ),
         body: BlocBuilder<ProposalDetailBloc, ProposalDetailState>(
           builder: (context, state) {
-            return HyphaBodyWidget(pageState: state.pageState, success: (context) {
-              final ProposalDetailsModel _proposalDetailsModel = state.proposalDetailsModel!;
-              final List<VoteModel> passVoters = _proposalDetailsModel.fetchVotersByStatus(VoteStatus.pass);
-              final List<VoteModel> failVoters = _proposalDetailsModel.fetchVotersByStatus(VoteStatus.fail);
-              _detailsNotifier.value = _proposalDetailsModel.description;
-              WidgetsBinding.instance.addPostFrameCallback((_) {
-                _checkIfTextIsOverflowing();
-              });
-              return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 30),
-                child: ListView(
-                  children: [
-                    const SizedBox(height: 20),
-                    /// Header
-                    ProposalHeader(_proposalDetailsModel.dao),
-                    const Padding(
-                      padding: EdgeInsets.only(top: 10, bottom: 20),
-                      child: HyphaDivider(),
-                    ),
-                    /// Main Section
-                    Wrap(
-                      children: List.generate(
-                        _proposalDetailsModel.commitment != null ? 3 : 2,
+            return HyphaBodyWidget(
+                pageState: state.pageState,
+                success: (context) {
+                  final ProposalDetailsModel _proposalDetailsModel =
+                      state.proposalDetailsModel!;
+                  final List<VoteModel> passVoters = _proposalDetailsModel
+                      .fetchVotersByStatus(VoteStatus.pass);
+                  final List<VoteModel> failVoters = _proposalDetailsModel
+                      .fetchVotersByStatus(VoteStatus.fail);
+                  _detailsNotifier.value = _proposalDetailsModel.description;
+                  WidgetsBinding.instance.addPostFrameCallback((_) {
+                    _checkIfTextIsOverflowing();
+                  });
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 30),
+                    child: ListView(
+                      children: [
+                        const SizedBox(height: 20),
+
+                        /// Header
+                        ProposalHeader(_proposalDetailsModel.dao),
+                        const Padding(
+                          padding: EdgeInsets.only(top: 10, bottom: 20),
+                          child: HyphaDivider(),
+                        ),
+
+                        /// Main Section
+                        Wrap(
+                          children: List.generate(
+                            _proposalDetailsModel.commitment != null ? 3 : 2,
                             (index) => Padding(
-                          padding: const EdgeInsets.only(right: 10),
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                color: context.isDarkMode
-                                    ? HyphaColors.white
-                                    : HyphaColors.lightBlack,
+                              padding: const EdgeInsets.only(right: 10),
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 10, vertical: 4),
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color: context.isDarkMode
+                                        ? HyphaColors.white
+                                        : HyphaColors.lightBlack,
+                                  ),
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                // TODO(Zied-Saif): figure these out (B6 and Role)
+                                child: Text(
+                                  index == 0
+                                      ? 'Role ${_proposalDetailsModel.type}'
+                                      : index == 1
+                                          ? 'B6'
+                                          : '${_proposalDetailsModel.commitment}%',
+                                  style: context.hyphaTextTheme.ralBold,
+                                ),
                               ),
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            // TODO(Zied-Saif): figure these out (B6 and Role)
-                            child: Text(
-                              index == 0
-                                  ? 'Role ${_proposalDetailsModel.type}'
-                                  : index == 1
-                                  ? 'B6'
-                                  : '${_proposalDetailsModel.commitment}%',
-                              style: context.hyphaTextTheme.ralBold,
                             ),
                           ),
                         ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 20),
-                      child: Text(
-                        _proposalDetailsModel.title ?? 'No title',
-                        style: context.hyphaTextTheme.mediumTitles,
-                      ),
-                    ),
-                    // TODO(Saif): display creator image
-                    //ProposalCreator(_proposalDetailsModel.creator),
-                    ...List.generate(
-                      2,
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 20),
+                          child: Text(
+                            _proposalDetailsModel.title ?? 'No title',
+                            style: context.hyphaTextTheme.mediumTitles,
+                          ),
+                        ),
+                        // TODO(Saif): display creator image
+                        //ProposalCreator(_proposalDetailsModel.creator),
+                        ...List.generate(
+                          2,
                           (index) => Padding(
-                        padding: const EdgeInsets.only(top: 20),
-                        child: ProposalPercentageIndicator(
-                            index == 0 ? 'Commitment' : 'Token Mix Percentage',
-                            index == 0 ? _proposalDetailsModel.commitmentToPercent() : _proposalDetailsModel.tokenMixToPercent(),
-                            HyphaColors.lightBlue
+                            padding: const EdgeInsets.only(top: 20),
+                            child: ProposalPercentageIndicator(
+                                index == 0
+                                    ? 'Commitment'
+                                    : 'Token Mix Percentage',
+                                index == 0
+                                    ? _proposalDetailsModel
+                                        .commitmentToPercent()
+                                    : _proposalDetailsModel.tokenMixToPercent(),
+                                HyphaColors.lightBlue),
+                          ),
                         ),
-                      ),
-                    ),
-                    if (!(_proposalDetailsModel.cycleCount == null && _proposalDetailsModel.cycleStartDate == null)) ...[
-                      const SizedBox(height: 20),
-                      Text(
-                        'Duration',
-                        style: context.hyphaTextTheme.ralMediumSmallNote.copyWith(color: HyphaColors.midGrey),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 10),
-                        child: Text(
-                          '${_proposalDetailsModel.cycleCount} Cycles',
-                          style: context.hyphaTextTheme.reducedTitles,
-                        ),
-                      ),
-                      ...List.generate(
-                        2,
-                            (index) => Text(
-                          index == 0 ? 'Starting on ${_proposalDetailsModel.formatCycleStartDate()}' :
-                          'Ending on ${_proposalDetailsModel.cycleEndDate()}',
-                          style: context.hyphaTextTheme.ralMediumBody.copyWith(color: HyphaColors.midGrey),
-                        ),
-                      ),
-                    ],
-                    const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 20),
-                      child: HyphaDivider(),
-                    ),
-                    /// Rewards Section
-                    if (_proposalDetailsModel.utilityAmount != null ||
-                        _proposalDetailsModel.utilityAmountPerPeriod != null ||
-                        _proposalDetailsModel.voiceAmount != null ||
-                        _proposalDetailsModel.voiceAmountPerPeriod != null ||
-                        _proposalDetailsModel.cashAmount != null ||
-                        _proposalDetailsModel.cashAmountPerPeriod != null) ...[
-                      ValueListenableBuilder<bool?>(
-                        valueListenable: _isShownNotifier,
-                        builder: (BuildContext context, bool? isShown, Widget? child) {
-                          return Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                _isShownNotifier.value?'Reward for 1 cycle':'Reward per period',
-                                style: context.hyphaTextTheme.ralMediumSmallNote.copyWith(color: HyphaColors.midGrey),
-                              ),
-
-                              _buildTokenRow(
-                                context,
-                                _proposalDetailsModel,
-                                0, // Token index for Utility
-                                'Utility Token',
-                                _isShownNotifier.value,
-                              ),
-                              _buildTokenRow(
-                                context,
-                                _proposalDetailsModel,
-                                1, // Token index for Voice
-                                'Voice Token',
-                                _isShownNotifier.value,
-                              ),
-                              _buildTokenRow(
-                                context,
-                                _proposalDetailsModel,
-                                2, // Token index for Cash
-                                'Cash Token',
-                                _isShownNotifier.value,
-                              ),
-
-                              const SizedBox(height: 10),
-                            ],
-                          );
-                        },
-                      ),
-                      if (_proposalDetailsModel.cycleCount!=null)Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
+                        if (!(_proposalDetailsModel.cycleCount == null &&
+                            _proposalDetailsModel.cycleStartDate == null)) ...[
+                          const SizedBox(height: 20),
+                          Text(
+                            'Duration',
+                            style: context.hyphaTextTheme.ralMediumSmallNote
+                                .copyWith(color: HyphaColors.midGrey),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 10),
                             child: Text(
-                              'Show rewards for 1 cycle',
-                              style: context.hyphaTextTheme.ralMediumBody.copyWith(color: HyphaColors.midGrey),
-                              overflow: TextOverflow.ellipsis,
+                              '${_proposalDetailsModel.cycleCount} Cycles',
+                              style: context.hyphaTextTheme.reducedTitles,
                             ),
                           ),
-                          const SizedBox(width: 10),
+                          ...List.generate(
+                            2,
+                            (index) => Text(
+                              index == 0
+                                  ? 'Starting on ${_proposalDetailsModel.formatCycleStartDate()}'
+                                  : 'Ending on ${_proposalDetailsModel.cycleEndDate()}',
+                              style: context.hyphaTextTheme.ralMediumBody
+                                  .copyWith(color: HyphaColors.midGrey),
+                            ),
+                          ),
+                        ],
+                        const Padding(
+                          padding: EdgeInsets.symmetric(vertical: 20),
+                          child: HyphaDivider(),
+                        ),
+
+                        /// Rewards Section
+                        if (_proposalDetailsModel.utilityAmount != null ||
+                            _proposalDetailsModel.utilityAmountPerPeriod !=
+                                null ||
+                            _proposalDetailsModel.voiceAmount != null ||
+                            _proposalDetailsModel.voiceAmountPerPeriod !=
+                                null ||
+                            _proposalDetailsModel.cashAmount != null ||
+                            _proposalDetailsModel.cashAmountPerPeriod !=
+                                null) ...[
                           ValueListenableBuilder<bool>(
-                            valueListenable: _isShownNotifier,
-                            builder: (BuildContext context, bool? value, Widget? child) {
-                              return Switch(
-                                value: value!,
-                                onChanged: (newValue) {
-                                  _isShownNotifier.value = newValue;
+                            valueListenable: _isRewardShownPerCycle,
+                            builder: (BuildContext context, bool isShown,
+                                Widget? child) {
+                              return Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    _isRewardShownPerCycle.value
+                                        ? 'Reward for one cycle'
+                                        : 'Reward for one period',
+                                    style: context
+                                        .hyphaTextTheme.ralMediumSmallNote
+                                        .copyWith(color: HyphaColors.midGrey),
+                                  ),
+                                  _buildTokenRow(
+                                    context,
+                                    _proposalDetailsModel,
+                                    0, // Token index for Utility
+                                    TokenType.utility,
+                                    _isRewardShownPerCycle.value,
+                                  ),
+                                  _buildTokenRow(
+                                    context,
+                                    _proposalDetailsModel,
+                                    1, // Token index for Voice
+                                    TokenType.voice,
+                                    _isRewardShownPerCycle.value,
+                                  ),
+                                  _buildTokenRow(
+                                    context,
+                                    _proposalDetailsModel,
+                                    2, // Token index for Cash
+                                    TokenType.cash,
+                                    _isRewardShownPerCycle.value,
+                                  ),
+                                  const SizedBox(height: 10),
+                                ],
+                              );
+                            },
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  'Show rewards for 1 cycle',
+                                  style: context.hyphaTextTheme.ralMediumBody
+                                      .copyWith(color: HyphaColors.midGrey),
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                              const SizedBox(width: 10),
+                              ValueListenableBuilder<bool>(
+                                valueListenable: _isRewardShownPerCycle,
+                                builder: (BuildContext context, bool? value,
+                                    Widget? child) {
+                                  return Switch(
+                                    value: value!,
+                                    onChanged: (newValue) {
+                                      _isRewardShownPerCycle.value = newValue;
+                                    },
+                                  );
                                 },
+                              ),
+                            ],
+                          ),
+                          const Padding(
+                            padding: EdgeInsets.symmetric(vertical: 20),
+                            child: HyphaDivider(),
+                          ),
+                        ],
+
+                        /// Details Section
+                        if (_proposalDetailsModel.description != null) ...[
+                          Text(
+                            'Proposal Details',
+                            style: context.hyphaTextTheme.ralMediumSmallNote
+                                .copyWith(color: HyphaColors.midGrey),
+                          ),
+                          ValueListenableBuilder<bool>(
+                            valueListenable: _isExpandedNotifier,
+                            builder: (context, isExpanded, child) {
+                              return Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 10),
+                                    child: Text(
+                                      _proposalDetailsModel.description ?? '',
+                                      style:
+                                          context.hyphaTextTheme.ralMediumBody,
+                                      maxLines: isExpanded ? null : 3,
+                                      overflow: isExpanded
+                                          ? TextOverflow.visible
+                                          : TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 20),
+                                    child: Row(
+                                      children: [
+                                        const Expanded(child: HyphaDivider()),
+                                        ValueListenableBuilder<bool>(
+                                          valueListenable:
+                                              _isOverflowingNotifier,
+                                          builder:
+                                              (context, isOverflowing, child) {
+                                            return isOverflowing
+                                                ? ProposalButton(
+                                                    isExpanded
+                                                        ? 'Collapse'
+                                                        : 'Expand',
+                                                    isExpanded
+                                                        ? Icons
+                                                            .keyboard_arrow_up_outlined
+                                                        : Icons
+                                                            .keyboard_arrow_down_outlined,
+                                                    () => _isExpandedNotifier
+                                                        .value = !isExpanded,
+                                                  )
+                                                : const SizedBox.shrink();
+                                          },
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
                               );
                             },
                           ),
                         ],
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.symmetric(vertical: 20),
-                        child: HyphaDivider(),
-                      ),
-                    ],
-                    /// Details Section
-                    if (_proposalDetailsModel.description != null) ... [
-                      Text(
-                        'Proposal Details',
-                        style: context.hyphaTextTheme.ralMediumSmallNote.copyWith(color: HyphaColors.midGrey),
-                      ),
-                      ValueListenableBuilder<bool>(
-                        valueListenable: _isExpandedNotifier,
-                        builder: (context, isExpanded, child) {
-                          return Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(top: 10),
-                                child: Text(
-                                  _proposalDetailsModel.description ?? '',
-                                  style: context.hyphaTextTheme.ralMediumBody,
-                                  maxLines: isExpanded ? null : 3,
-                                  overflow: isExpanded ? TextOverflow.visible : TextOverflow.ellipsis,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(vertical: 20),
-                                child: Row(
-                                  children: [
-                                    const Expanded(child: HyphaDivider()),
-                                    ValueListenableBuilder<bool>(
-                                      valueListenable: _isOverflowingNotifier,
-                                      builder: (context, isOverflowing, child) {
-                                        return isOverflowing
-                                            ? ProposalButton(
-                                          isExpanded ? 'Collapse' : 'Expand',
-                                          isExpanded
-                                              ? Icons.keyboard_arrow_up_outlined
-                                              : Icons.keyboard_arrow_down_outlined,
-                                              () => _isExpandedNotifier.value = !isExpanded,
-                                        )
-                                            : const SizedBox.shrink();
-                                      },
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          );
-                        },
-                      ),
-                    ],
-                    /// Voting Scores Section
-                    Text(
-                      'Voting Scores',
-                      style: context.hyphaTextTheme.ralMediumSmallNote.copyWith(color: HyphaColors.midGrey),
-                    ),
-                    if(passVoters.isNotEmpty) ... [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 10),
-                        child: Text(
-                          '${passVoters.length} members voted Yes',
-                          style: context.hyphaTextTheme.reducedTitles,
-                        ),
-                      ),
-                      ProposalVoters(passVoters)
-                    ],
-                    if(failVoters.isNotEmpty) ... [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 10),
-                        child: Text(
-                          '${failVoters.length} members voted No',
-                          style: context.hyphaTextTheme.reducedTitles,
-                        ),
-                      ),
-                      ProposalVoters(failVoters)
-                    ],
-                    const SizedBox(height: 20),
-                    ...List.generate(
-                      2,
-                          (index) => Padding(
-                        padding: const EdgeInsets.only(bottom: 20),
-                        child: ProposalPercentageIndicator(
-                            index == 0 ? 'Unity' : 'Quorum',
-                            index == 0 ? _proposalDetailsModel.unityToPercent() : _proposalDetailsModel.quorumToPercent(),
-                            _proposalDetailsModel.isPassing() ? HyphaColors.success : HyphaColors.error
-                        ),
-                      ),
-                    ),
-                    const HyphaDivider(),
-                    /// Expiration Timer
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 20),
-                      child: ProposalExpirationTimer(
-                        _proposalDetailsModel.formatExpiration(),
-                      ),
-                    ),
-                    const HyphaDivider(),
-                    /// Vote Section
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 20),
-                      child: Text(
-                        'Cast your Vote',
-                        style: context.hyphaTextTheme.smallTitles,
-                      ),
-                    ),
-                    ...List.generate(
-                      3,
-                          (index) => Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 10),
-                        child: HyphaAppButton(
-                          title: index == 0
-                              ? 'Yes'
-                              : index == 1
-                              ? 'Abstain'
-                              : 'No',
-                          onPressed: () async {},
-                          buttonType: ButtonType.danger,
-                          buttonColor: index == 0
-                              ? HyphaColors.success
-                              : index == 1
-                              ? HyphaColors.lightBlack
-                              : HyphaColors.error,
 
+                        /// Voting Scores Section
+                        Text(
+                          'Voting Scores',
+                          style: context.hyphaTextTheme.ralMediumSmallNote
+                              .copyWith(color: HyphaColors.midGrey),
                         ),
-                      ),
+                        if (passVoters.isNotEmpty) ...[
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 10),
+                            child: Text(
+                              '${passVoters.length} members voted Yes',
+                              style: context.hyphaTextTheme.reducedTitles,
+                            ),
+                          ),
+                          ProposalVoters(passVoters)
+                        ],
+                        if (failVoters.isNotEmpty) ...[
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 10),
+                            child: Text(
+                              '${failVoters.length} members voted No',
+                              style: context.hyphaTextTheme.reducedTitles,
+                            ),
+                          ),
+                          ProposalVoters(failVoters)
+                        ],
+                        const SizedBox(height: 20),
+                        ...List.generate(
+                          2,
+                          (index) => Padding(
+                            padding: const EdgeInsets.only(bottom: 20),
+                            child: ProposalPercentageIndicator(
+                                index == 0 ? 'Unity' : 'Quorum',
+                                index == 0
+                                    ? _proposalDetailsModel.unityToPercent()
+                                    : _proposalDetailsModel.quorumToPercent(),
+                                _proposalDetailsModel.isPassing()
+                                    ? HyphaColors.success
+                                    : HyphaColors.error),
+                          ),
+                        ),
+                        const HyphaDivider(),
+
+                        /// Expiration Timer
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 20),
+                          child: ProposalExpirationTimer(
+                            _proposalDetailsModel.formatExpiration(),
+                          ),
+                        ),
+                        const HyphaDivider(),
+
+                        /// Vote Section
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 20),
+                          child: Text(
+                            'Cast your Vote',
+                            style: context.hyphaTextTheme.smallTitles,
+                          ),
+                        ),
+                        ...List.generate(
+                          3,
+                          (index) => Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 10),
+                            child: HyphaAppButton(
+                              title: index == 0
+                                  ? 'Yes'
+                                  : index == 1
+                                      ? 'Abstain'
+                                      : 'No',
+                              onPressed: () async {},
+                              buttonType: ButtonType.danger,
+                              buttonColor: index == 0
+                                  ? HyphaColors.success
+                                  : index == 1
+                                      ? HyphaColors.lightBlack
+                                      : HyphaColors.error,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                      ],
                     ),
-                    const SizedBox(height: 20),
-                  ],
-                ),
-              );
-            });
+                  );
+                });
           },
         ),
       ),
@@ -364,24 +408,24 @@ Widget _buildTokenRow(
     BuildContext context,
     ProposalDetailsModel proposalDetailsModel,
     int tokenIndex,
-    String tokenType,
-    bool? isShown) {
-  String? amount;
+    TokenType tokenType,
+    bool isRewardShownPerCycle) {
+  double? tokenAmount;
 
   // Determine the amount and amountPerPeriod based on token type
   switch (tokenType) {
-    case 'Utility Token':
-      amount = proposalDetailsModel.tokenValue(0, isShown!);
+    case TokenType.utility:
+      tokenAmount = proposalDetailsModel.tokenValue(0, isRewardShownPerCycle);
       break;
-    case 'Voice Token':
-      amount = proposalDetailsModel.tokenValue(1, isShown!);
+    case TokenType.voice:
+      tokenAmount = proposalDetailsModel.tokenValue(1, isRewardShownPerCycle);
       break;
-    case 'Cash Token':
-      amount = proposalDetailsModel.tokenValue(2, isShown!);
+    case TokenType.cash:
+      tokenAmount = proposalDetailsModel.tokenValue(2, isRewardShownPerCycle);
       break;
   }
 
-  if (amount != null) {
+  if (tokenAmount != null) {
     return Padding(
       padding: const EdgeInsets.only(top: 10),
       child: Row(
@@ -398,8 +442,9 @@ Widget _buildTokenRow(
                   overflow: TextOverflow.ellipsis,
                 ),
                 Text(
-                  tokenType,
-                  style: context.hyphaTextTheme.ralMediumBody.copyWith(color: HyphaColors.midGrey),
+                  tokenType.name,
+                  style: context.hyphaTextTheme.ralMediumBody
+                      .copyWith(color: HyphaColors.midGrey),
                   overflow: TextOverflow.ellipsis,
                 ),
               ],
@@ -407,14 +452,14 @@ Widget _buildTokenRow(
           ),
           const SizedBox(width: 10),
           Text(
-            amount,
-            style: context.hyphaTextTheme.bigTitles.copyWith(fontWeight: FontWeight.normal),
+            tokenAmount.toStringAsFixed(2),
+            style: context.hyphaTextTheme.bigTitles
+                .copyWith(fontWeight: FontWeight.normal),
           ),
         ],
       ),
     );
   }
 
-  return const SizedBox.shrink(); // Return an empty widget if there's no data
+  return const SizedBox.shrink();
 }
-

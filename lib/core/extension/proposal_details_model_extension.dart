@@ -43,42 +43,53 @@ extension ProposalDetailsModelExtension on ProposalDetailsModel {
     return null;
   }
 
-  String? tokenValue(int index, bool isOneCycleRewardsShown) {
-    String? input;
-    String? perPeriodInput;
-
+  double? tokenValue(int index, bool isOneCycleRewardsShown) {
+    double? tokenAmount;
+    double? tokenAmountPerPeriod;
+    final int cycleDurationSec = 2629800;
+    final double periodsOnCycle = cycleDurationSec / periodDurationSec!;
     switch (index) {
       case 0:
-        input = utilityAmount;
-        perPeriodInput = utilityAmountPerPeriod;
+        tokenAmount = utilityAmountDouble;
+        tokenAmountPerPeriod = utilityAmountPerPeriodDouble;
         break;
       case 1:
-        input = voiceAmount;
-        perPeriodInput = voiceAmountPerPeriod;
+        tokenAmount = voiceAmountDouble;
+        tokenAmountPerPeriod = voiceAmountPerPeriodDouble;
         break;
       case 2:
-        input = cashAmount;
-        perPeriodInput = cashAmountPerPeriod;
+        tokenAmount = cashAmountDouble;
+        tokenAmountPerPeriod = cashAmountPerPeriodDouble;
 
         break;
       default:
         return null;
     }
-    final RegExp regExp = RegExp(r'(\d+(\.\d+)?)');
-    if (input != null) {
-      final match = regExp.firstMatch(input);
-      if (isOneCycleRewardsShown || cycleCount == 1) return match?.group(1);
-      return (double.parse((match?.group(1))!) * cycleCount!)
-          .toStringAsFixed(3);
+    if (tokenAmount != null) {
+      if (isOneCycleRewardsShown) return tokenAmount;
+      return tokenAmount / periodsOnCycle;
     }
-    if (perPeriodInput != null) {
-      final match = regExp.firstMatch(perPeriodInput);
-      if (isOneCycleRewardsShown && cycleCount != 1) {
-        return (double.parse((match?.group(1))!) / cycleCount!)
-            .toStringAsFixed(3);
+    if (tokenAmountPerPeriod != null) {
+      if (isOneCycleRewardsShown) {
+        return tokenAmountPerPeriod * periodsOnCycle;
       }
-      return match?.group(1);
+      return tokenAmountPerPeriod;
     }
-    return input;
+    return tokenAmount;
+  }
+}
+
+extension TokenTypeExtension on TokenType {
+  String get name {
+    switch (this) {
+      case TokenType.utility:
+        return 'Utility Token';
+      case TokenType.voice:
+        return 'Voice Token';
+      case TokenType.cash:
+        return 'Cash Token';
+      default:
+        return '';
+    }
   }
 }
