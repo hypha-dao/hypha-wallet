@@ -125,8 +125,4 @@ class ProposalDetailsModel extends BaseProposalModel {
           .map((vote) => vote)
           .toList() ??
       [];
-
-  void printParentDao() {
-    print(super.dao); // Access the dao from the parent class
-  }
 }
