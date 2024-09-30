@@ -4,14 +4,18 @@ import 'package:hypha_wallet/ui/proposals/list/components/hypha_proposals_action
 
 class ProposalsList extends StatelessWidget {
   final List<ProposalModel> proposals;
+  final bool isScrollable;
 
-  const ProposalsList(this.proposals, {super.key});
+  const ProposalsList(this.proposals, {this.isScrollable = true, super.key});
 
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
+      physics: isScrollable?const BouncingScrollPhysics():const NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
         padding: const EdgeInsets.only(bottom: 22),
-        itemBuilder: (BuildContext context, int index) => HyphaProposalsActionCard(proposals[index]),
+        itemBuilder: (BuildContext context, int index) =>
+            HyphaProposalsActionCard(proposals[index]),
         separatorBuilder: (BuildContext context, int index) {
           return const SizedBox(height: 16);
         },
