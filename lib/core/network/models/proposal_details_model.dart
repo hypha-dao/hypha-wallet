@@ -7,17 +7,34 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'proposal_details_model.g.dart';
 
+enum TokenType {
+  utility,
+  voice,
+  cash,
+}
+
 @JsonSerializable()
 class ProposalDetailsModel extends BaseProposalModel {
   double? get utilityAmountDouble => utilityAmount?.quantityAsDouble;
+
   double? get voiceAmountDouble => voiceAmount?.quantityAsDouble;
+
   double? get cashAmountDouble => cashAmount?.quantityAsDouble;
-  double? get utilityAmountPerPeriodDouble => utilityAmountPerPeriod?.quantityAsDouble;
-  double? get voiceAmountPerPeriodDouble => voiceAmountPerPeriod?.quantityAsDouble;
-  double? get cashAmountPerPeriodDouble => cashAmountPerPeriod?.quantityAsDouble;
+
+  double? get utilityAmountPerPeriodDouble =>
+      utilityAmountPerPeriod?.quantityAsDouble;
+
+  double? get voiceAmountPerPeriodDouble =>
+      voiceAmountPerPeriod?.quantityAsDouble;
+
+  double? get cashAmountPerPeriodDouble =>
+      cashAmountPerPeriod?.quantityAsDouble;
 
   @JsonKey(name: '__typename')
   final String type;
+
+  @JsonKey(name: 'settings_periodDurationSec_i')
+  final int? periodDurationSec;
 
   @JsonKey(name: 'createdDate')
   final DateTime creationDate;
@@ -73,9 +90,11 @@ class ProposalDetailsModel extends BaseProposalModel {
       this.utilityAmountPerPeriod,
       this.voiceAmountPerPeriod,
       this.cashAmountPerPeriod,
-      this.description});
+      this.description,
+      this.periodDurationSec});
 
   factory ProposalDetailsModel.fromJson(Map<String, dynamic> json) {
+    // Handle the 'start' field if it's a list
     if (json['start'] is List) {
       if ((json['start'] as List).isNotEmpty) {
         json['start'] = json['start'][0]['details_startTime_t'];
@@ -83,17 +102,27 @@ class ProposalDetailsModel extends BaseProposalModel {
         json['start'] = null;
       }
     }
-    // TODO(Saif): check this
+    if (json['dao'] is List) {
+      final daoList = json['dao'];
+      if (daoList.isNotEmpty &&
+          daoList[0] is Map &&
+          daoList[0]['settings'] is List) {
+        final settingsList = daoList[0]['settings'] as List;
+        if (settingsList.isNotEmpty && settingsList[0] is Map) {
+          json['settings_periodDurationSec_i'] =
+              settingsList[0]['settings_periodDurationSec_i'];
+        }
+      }
+    }
     json['dao'] = null;
     json['creator'] = null;
-    /*if(json['dao'] != null) {
-      json['dao'] = json['dao'][0]['settings'][0]['settings_daoTitle_s'];
-    }*/
     return _$ProposalDetailsModelFromJson(json);
   }
 
-  List<VoteModel> fetchVotersByStatus(VoteStatus voteStatus) => votes
-      ?.where((vote) => vote.voteStatus == voteStatus)
-      .map((vote) => vote)
-      .toList() ?? [];
+  List<VoteModel> fetchVotersByStatus(VoteStatus voteStatus) =>
+      votes
+          ?.where((vote) => vote.voteStatus == voteStatus)
+          .map((vote) => vote)
+          .toList() ??
+      [];
 }
