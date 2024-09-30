@@ -41,6 +41,8 @@ ProposalDetailsModel _$ProposalDetailsModelFromJson(
       voiceAmountPerPeriod: json['details_voiceSalaryPerPeriod_a'] as String?,
       cashAmountPerPeriod: json['details_pegSalaryPerPeriod_a'] as String?,
       description: json['details_description_s'] as String?,
+      periodDurationSec:
+          (json['settings_periodDurationSec_i'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$ProposalDetailsModelToJson(
@@ -56,6 +58,7 @@ Map<String, dynamic> _$ProposalDetailsModelToJson(
       'creator': instance.creator,
       'vote': instance.votes,
       '__typename': instance.type,
+      'settings_periodDurationSec_i': instance.periodDurationSec,
       'createdDate': instance.creationDate.toIso8601String(),
       'details_deferredPercX100_i': instance.tokenMixPercentage,
       'details_periodCount_i': instance.cycleCount,

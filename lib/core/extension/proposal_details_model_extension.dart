@@ -2,11 +2,15 @@ import 'package:hypha_wallet/core/network/models/proposal_details_model.dart';
 import 'package:intl/intl.dart';
 
 extension ProposalDetailsModelExtension on ProposalDetailsModel {
-  double tokenMixToPercent() => tokenMixPercentage == null ? 0 : tokenMixPercentage! * .01;
+  double tokenMixToPercent() =>
+      tokenMixPercentage == null ? 0 : tokenMixPercentage! * .01;
 
-  String formatCycleStartDate() => cycleStartDate != null ? DateFormat('EEEE, MMMM yyyy').format(cycleStartDate!) : '';
+  String formatCycleStartDate() => cycleStartDate != null
+      ? DateFormat('EEEE, MMMM yyyy').format(cycleStartDate!)
+      : '';
 
-  String cycleEndDate() => DateFormat('EEEE, MMMM yyyy').format(cycleStartDate!.add(Duration(days: cycleCount! * 7)));
+  String cycleEndDate() => DateFormat('EEEE, MMMM yyyy')
+      .format(cycleStartDate!.add(Duration(days: cycleCount! * 7)));
 
   String? tokenTitle(int index) {
     String input;
@@ -39,27 +43,53 @@ extension ProposalDetailsModelExtension on ProposalDetailsModel {
     return null;
   }
 
-  // TODO(Saif): adjust this function
-  String? tokenValue(int index, bool isOneCycleRewardsShown) {
-    String input;
-
+  double? tokenValue(int index, bool isOneCycleRewardsShown) {
+    double? tokenAmount;
+    double? tokenAmountPerPeriod;
+    final int cycleDurationSec = 2629800;
+    final double periodsOnCycle = cycleDurationSec / periodDurationSec!;
     switch (index) {
       case 0:
-        input = utilityAmount ?? utilityAmountPerPeriod!;
+        tokenAmount = utilityAmountDouble;
+        tokenAmountPerPeriod = utilityAmountPerPeriodDouble;
         break;
       case 1:
-        input = voiceAmount ?? voiceAmountPerPeriod!;
+        tokenAmount = voiceAmountDouble;
+        tokenAmountPerPeriod = voiceAmountPerPeriodDouble;
         break;
       case 2:
-        input = cashAmount ?? cashAmountPerPeriod!;
+        tokenAmount = cashAmountDouble;
+        tokenAmountPerPeriod = cashAmountPerPeriodDouble;
+
         break;
       default:
         return null;
     }
+    if (tokenAmount != null) {
+      if (isOneCycleRewardsShown) return tokenAmount;
+      return tokenAmount / periodsOnCycle;
+    }
+    if (tokenAmountPerPeriod != null) {
+      if (isOneCycleRewardsShown) {
+        return tokenAmountPerPeriod * periodsOnCycle;
+      }
+      return tokenAmountPerPeriod;
+    }
+    return tokenAmount;
+  }
+}
 
-    final RegExp regExp = RegExp(r'(\S+)\s');
-    final match = regExp.firstMatch(input);
-
-    return match?.group(1);
+extension TokenTypeExtension on TokenType {
+  String get name {
+    switch (this) {
+      case TokenType.utility:
+        return 'Utility Token';
+      case TokenType.voice:
+        return 'Voice Token';
+      case TokenType.cash:
+        return 'Cash Token';
+      default:
+        return '';
+    }
   }
 }
