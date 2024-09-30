@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart' as GetX;
 import 'package:hypha_wallet/core/network/models/dao_data_model.dart';
 import 'package:hypha_wallet/design/dao_image.dart';
 import 'package:hypha_wallet/design/hypha_card.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
+import 'package:hypha_wallet/ui/proposals/history/proposals_history_page.dart';
 
 class HyphaProposalHistoryCard extends StatelessWidget {
   final DaoData dao;
@@ -15,7 +17,10 @@ class HyphaProposalHistoryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        GetX.Get.to(() =>  ProposalsHistoryPage(dao),
+            transition: GetX.Transition.leftToRight);
+      },
       child: HyphaCard(
           child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),

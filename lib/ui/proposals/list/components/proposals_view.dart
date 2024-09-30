@@ -19,6 +19,8 @@ import 'package:hypha_wallet/ui/proposals/list/components/hypha_proposals_action
 import 'package:hypha_wallet/ui/proposals/list/interactor/proposals_bloc.dart';
 import 'package:hypha_wallet/ui/shared/hypha_body_widget.dart';
 
+import '../../filter/interactor/filter_proposals_bloc.dart';
+
 class ProposalsView extends StatelessWidget {
   const ProposalsView({super.key});
 
@@ -89,7 +91,10 @@ class ProposalsView extends StatelessWidget {
                   ),
                   child: HyphaBodyWidget(
                     pageState: state.pageState,
-                    success: (context) => Padding(
+                    success: (context) {
+                      final List<int>? daoIds = GetIt.I.get<FilterProposalsBloc>().daoIds;
+                      final List<ProposalModel> proposals = daoIds != null ? state.proposals.filterByDao(daoIds) : state.proposals;
+                      return Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 22),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -98,7 +103,7 @@ class ProposalsView extends StatelessWidget {
                             height: 22,
                           ),
                           Text(
-                            '${state.proposals.length} ${context.read<ProposalsBloc>().filterStatus.string} Proposal${state.proposals.length == 1 ? '' : 's'}',
+                            '${proposals.length} ${context.read<ProposalsBloc>().filterStatus.string} Proposal${proposals.length == 1 ? '' : 's'}',
                             style: context.hyphaTextTheme.ralMediumBody
                                 .copyWith(color: HyphaColors.midGrey),
                           ),
@@ -111,21 +116,7 @@ class ProposalsView extends StatelessWidget {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  ListView.separated(
-                                      physics:
-                                          const NeverScrollableScrollPhysics(),
-                                      shrinkWrap: true,
-                                      padding:
-                                          const EdgeInsets.only(bottom: 22),
-                                      itemBuilder:
-                                          (BuildContext context, int index) =>
-                                              HyphaProposalsActionCard(
-                                                  state.proposals[index]),
-                                      separatorBuilder:
-                                          (BuildContext context, int index) {
-                                        return const SizedBox(height: 16);
-                                      },
-                                      itemCount: state.proposals.length),
+                                  ProposalsList(proposals,isScrollable: false,),
                                   const SizedBox(
                                     height: 30,
                                   ),
@@ -164,30 +155,7 @@ class ProposalsView extends StatelessWidget {
                           ),
                         ],
                       ),
-                    ),
-                    success: (context) {
-                      final List<int>? daoIds = GetIt.I.get<FilterProposalsBloc>().daoIds;
-                      final List<ProposalModel> proposals = daoIds != null ? state.proposals.filterByDao(daoIds) : state.proposals;
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 22),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const SizedBox(
-                              height: 22,
-                            ),
-                            Text(
-                              '${proposals.length} ${context.read<ProposalsBloc>().filterStatus.string} Proposal${proposals.length == 1 ? '' : 's'}',
-                              style: context.hyphaTextTheme.ralMediumBody
-                                  .copyWith(color: HyphaColors.midGrey),
-                            ),
-                            const SizedBox(
-                              height: 20,
-                            ),
-                          Expanded(child: ProposalsList(proposals)),
-                          ],
-                        ),
-                      );
+                    );
                     },
                   ),
                 )),
