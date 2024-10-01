@@ -19,7 +19,11 @@ class HyphaFilterCard extends StatelessWidget {
     // TODO(Saif): fix the card height (filter by status)
     return GestureDetector(
       onTap: () {
-        valueNotifier.value = valueNotifier.value == index ? null : index;
+        if (valueNotifier.value != index) {
+          valueNotifier.value = index;
+        } else if (subTitle != null) {
+          valueNotifier.value = null;
+        }
       },
       child: HyphaCard(
           child: Padding(

@@ -33,5 +33,5 @@ extension BaseProposalModelExtension on BaseProposalModel {
   bool isExpired() => expiration!.toLocal().isBefore(DateTime.now());
   // TODO(saif): Replace hardcoded values (.2 and .8) with dynamic values fetched from the server.
   // These thresholds are relative to each DAO and should be retrieved from the DAO settings.
-  bool isPassing() => quorumToPercent() >= .2 && unityToPercent() >= .8;
+  bool isPassing() => (quorum ?? 0) >= (pastQuorum ?? 0) && (unity ?? 0) >= (pastUnity ?? 0);
 }
