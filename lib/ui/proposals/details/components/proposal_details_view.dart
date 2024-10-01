@@ -13,6 +13,7 @@ import 'package:hypha_wallet/design/dividers/hypha_divider.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 import 'package:hypha_wallet/ui/proposals/components/proposal_button.dart';
+import 'package:hypha_wallet/ui/proposals/components/proposal_creator.dart';
 import 'package:hypha_wallet/ui/proposals/components/proposal_expiration_timer.dart';
 import 'package:hypha_wallet/ui/proposals/components/proposal_header.dart';
 import 'package:hypha_wallet/ui/proposals/components/proposal_percentage_indicator.dart';
@@ -120,8 +121,7 @@ class _ProposalDetailsViewState extends State<ProposalDetailsView> {
                             style: context.hyphaTextTheme.mediumTitles,
                           ),
                         ),
-                        // TODO(Saif): display creator image
-                        //ProposalCreator(_proposalDetailsModel.creator),
+                        ProposalCreator(_proposalDetailsModel.creator),
                         ...List.generate(
                           2,
                           (index) => Padding(
