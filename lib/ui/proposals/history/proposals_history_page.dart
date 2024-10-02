@@ -7,12 +7,15 @@ import 'package:hypha_wallet/ui/proposals/history/interactor/proposals_history_b
 
 class ProposalsHistoryPage extends StatelessWidget {
   final DaoData _dao;
+
   const ProposalsHistoryPage(this._dao, {super.key});
 
+  // TODO(Zied): Refactor the logic to use the list of models already fetched from the proposal screen to avoid redundant fetching.
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => GetIt.I.get<ProposalsHistoryBloc>(param1: _dao)..add(const ProposalsHistoryEvent.initial()),
+      create: (context) => GetIt.I.get<ProposalsHistoryBloc>(param1: _dao)
+        ..add(const ProposalsHistoryEvent.initial()),
       child: const ProposalsHistoryView(),
     );
   }

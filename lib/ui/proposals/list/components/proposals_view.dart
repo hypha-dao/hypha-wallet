@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart' as GetX;
 import 'package:get_it/get_it.dart';
 import 'package:hypha_wallet/core/extension/proposals_filter_extension.dart';
-import 'package:hypha_wallet/core/network/models/dao_data_model.dart';
 import 'package:hypha_wallet/core/network/models/proposal_model.dart';
 import 'package:hypha_wallet/design/avatar_image/hypha_avatar_image.dart';
 import 'package:hypha_wallet/design/background/hypha_page_background.dart';
@@ -24,6 +23,8 @@ class ProposalsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final FilterStatus filterStatus =
+        context.watch<ProposalsBloc>().filterStatus;
     return BlocBuilder<ProposalsBloc, ProposalsState>(
         builder: (context, state) {
       return HyphaPageBackground(
@@ -104,7 +105,7 @@ class ProposalsView extends StatelessWidget {
                               height: 22,
                             ),
                             Text(
-                              '${proposals.length} ${context.read<ProposalsBloc>().filterStatus.string} Proposal${proposals.length == 1 ? '' : 's'}',
+                              '${proposals.length} ${filterStatus.string} Proposal${proposals.length == 1 ? '' : 's'}',
                               style: context.hyphaTextTheme.ralMediumBody
                                   .copyWith(color: HyphaColors.midGrey),
                             ),
@@ -121,41 +122,45 @@ class ProposalsView extends StatelessWidget {
                                       proposals,
                                       isScrollable: false,
                                     ),
-                                    const SizedBox(
-                                      height: 30,
+                                    SizedBox(
+                                      height:
+                                          filterStatus == FilterStatus.active
+                                              ? 30
+                                              : 90,
                                     ),
-                                    Text(
-                                      'See Proposals History',
-                                      style: context
-                                          .hyphaTextTheme.ralMediumBody
-                                          .copyWith(color: HyphaColors.midGrey),
-                                    ),
-                                    ...List.generate(
-                                      2,
-                                      (index) {
-                                        return Container(
-                                            margin: const EdgeInsets.symmetric(
-                                                vertical: 10),
-                                            child:
-                                                const HyphaProposalHistoryCard(
-                                              dao: DaoData(
-                                                  docId: 67176,
-                                                  detailsDaoName:
-                                                      't4rcvben2fe4',
-                                                  settingsDaoTitle:
-                                                      'Think-it Collective',
-                                                  logoIPFSHash:
-                                                      'QmVB8q28U1bjfi51reQMaU7XwP4FThWj39DrU5G8MriMS9',
-                                                  logoType: 'png',
-                                                  settingsDaoUrl:
-                                                      'think-it-collective'),
-                                              subTitle: '1,234 Past Proposals',
-                                            ));
-                                      },
-                                    ),
-                                    const SizedBox(
-                                      height: 100,
-                                    )
+                                    if (filterStatus == FilterStatus.active)
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            'See Proposals History',
+                                            style: context
+                                                .hyphaTextTheme.ralMediumBody
+                                                .copyWith(
+                                                    color: HyphaColors.midGrey),
+                                          ),
+                                          ...List.generate(
+                                              state.historyProposalsPerDao
+                                                  .length, (index) {
+                                            return Container(
+                                                margin:
+                                                    const EdgeInsets.symmetric(
+                                                        vertical: 10),
+                                                child: HyphaProposalHistoryCard(
+                                                  dao: state
+                                                      .historyProposalsPerDao[
+                                                          index]
+                                                      .dao,
+                                                  subTitle:
+                                                      '${state.historyProposalsPerDao[index].proposals.length} Past Proposals',
+                                                ));
+                                          }),
+                                          const SizedBox(
+                                            height: 100,
+                                          )
+                                        ],
+                                      ),
                                   ],
                                 ),
                               ),

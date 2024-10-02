@@ -3,6 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hypha_wallet/core/error_handler/error_handler_manager.dart';
 import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
 import 'package:hypha_wallet/core/network/models/dao_data_model.dart';
+import 'package:hypha_wallet/core/network/models/dao_proposals_model.dart';
 import 'package:hypha_wallet/core/network/models/proposal_model.dart';
 import 'package:hypha_wallet/ui/architecture/interactor/page_states.dart';
 import 'package:hypha_wallet/ui/architecture/result/result.dart';
@@ -13,7 +14,9 @@ import 'package:hypha_wallet/ui/proposals/list/interactor/get_proposals_use_case
 import 'package:hypha_wallet/ui/proposals/list/usecases/get_proposals_use_case.dart';
 
 part 'proposals_bloc.freezed.dart';
+
 part 'proposals_event.dart';
+
 part 'proposals_state.dart';
 
 class ProposalsBloc extends Bloc<ProposalsEvent, ProposalsState> {
@@ -21,11 +24,12 @@ class ProposalsBloc extends Bloc<ProposalsEvent, ProposalsState> {
   final FetchProfileUseCase _fetchProfileUseCase;
   final ErrorHandlerManager _errorHandlerManager;
 
-  ProposalsBloc(this._getProposalsUseCase, this._fetchProfileUseCase, this._errorHandlerManager) : super(const ProposalsState()) {
+  ProposalsBloc(this._getProposalsUseCase, this._fetchProfileUseCase,
+      this._errorHandlerManager)
+      : super(const ProposalsState()) {
     on<_Initial>(_initial);
   }
 
-  List<DaoData>? _daos;
   FilterStatus filterStatus = FilterStatus.active;
 
   Future<void> _initial(_Initial event, Emitter<ProposalsState> emit) async {
@@ -34,29 +38,43 @@ class ProposalsBloc extends Bloc<ProposalsEvent, ProposalsState> {
       filterStatus = event.filterStatus;
     }
 
-    if (_daos == null) {
-      final Result<ProfileData, HyphaError> profileResult = await _fetchProfileUseCase.run();
+    await _fetchAndEmitProposals(emit, filterStatus);
+  }
 
-      if (profileResult.isValue && profileResult.asValue!.value.daos.isNotEmpty) {
-        _daos = profileResult.asValue!.value.daos;
-        await _fetchAndEmitProposals(emit, _daos!, filterStatus);
+  Future<void> _fetchAndEmitProposals(
+      Emitter<ProposalsState> emit, FilterStatus filterStatus) async {
+    // Fetch DAOs
+    final Result<ProfileData, HyphaError> profileResult =
+        await _fetchProfileUseCase.run();
+
+    if (profileResult.isValue && profileResult.asValue!.value.daos.isNotEmpty) {
+      final List<DaoData> daos = profileResult.asValue!.value.daos;
+
+      // Fetch Proposals using the fetched DAOs
+      final Result<List<ProposalModel>, HyphaError> proposalsResult =
+          await _getProposalsUseCase
+              .run(GetProposalsUseCaseInput(daos, filterStatus));
+
+      final Result<List<DaoProposalsModel>, HyphaError>
+          historyProposalsPerDaoResult = await _getProposalsUseCase
+              .run1(GetProposalsUseCaseInput(daos, FilterStatus.past));
+
+      if (proposalsResult.isValue && historyProposalsPerDaoResult.isValue) {
+        // Emit both daos and proposals in one state
+        emit(state.copyWith(
+          pageState: PageState.success,
+          historyProposalsPerDao: historyProposalsPerDaoResult.asValue!.value,
+          proposals: proposalsResult.asValue!.value,
+        ));
       } else {
-        final HyphaError error = profileResult.isError ? profileResult.asError!.error : HyphaError.api('Failed to retrieve DAOs');
-        await _errorHandlerManager.handlerError(error);
+        await _errorHandlerManager.handlerError(proposalsResult.asError!.error);
         emit(state.copyWith(pageState: PageState.failure));
       }
     } else {
-      await _fetchAndEmitProposals(emit, _daos!, filterStatus);
-    }
-  }
-
-  Future<void> _fetchAndEmitProposals(Emitter<ProposalsState> emit, List<DaoData> daos, FilterStatus filterStatus) async {
-    final Result<List<ProposalModel>, HyphaError> proposalsResult = await _getProposalsUseCase.run(GetProposalsUseCaseInput(daos, filterStatus));
-
-    if (proposalsResult.isValue) {
-      emit(state.copyWith(pageState: PageState.success, proposals: proposalsResult.asValue!.value));
-    } else {
-      await _errorHandlerManager.handlerError(proposalsResult.asError!.error);
+      final HyphaError error = profileResult.isError
+          ? profileResult.asError!.error
+          : HyphaError.api('Failed to retrieve DAOs');
+      await _errorHandlerManager.handlerError(error);
       emit(state.copyWith(pageState: PageState.failure));
     }
   }

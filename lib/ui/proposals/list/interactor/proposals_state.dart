@@ -5,5 +5,6 @@ class ProposalsState with _$ProposalsState {
   const factory ProposalsState({
     @Default(PageState.initial) PageState pageState,
     @Default([]) List<ProposalModel> proposals,
+    @Default([]) List<DaoProposalsModel> historyProposalsPerDao,
   }) = _ProposalsState;
 }

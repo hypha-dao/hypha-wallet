@@ -3,6 +3,7 @@ import 'package:hypha_wallet/core/extension/base_proposal_model_extension.dart';
 import 'package:hypha_wallet/core/logging/log_helper.dart';
 import 'package:hypha_wallet/core/network/api/services/proposal_service.dart';
 import 'package:hypha_wallet/core/network/models/dao_data_model.dart';
+import 'package:hypha_wallet/core/network/models/dao_proposals_model.dart';
 import 'package:hypha_wallet/core/network/models/proposal_details_model.dart';
 import 'package:hypha_wallet/core/network/models/proposal_model.dart';
 import 'package:hypha_wallet/core/network/models/user_profile_data.dart';
@@ -18,12 +19,17 @@ class ProposalRepository {
 
   ProposalRepository(this._proposalService, this._profileService);
 
-  Future<Result<List<ProposalModel>, HyphaError>> getProposals(UserProfileData user, GetProposalsUseCaseInput input) async {
-    final List<Future<Result<Map<String, dynamic>, HyphaError>>> futures = input.daos.map((DaoData dao) {
-      return input.filterStatus == FilterStatus.active ? _proposalService.getActiveProposals(user, dao.docId) : _proposalService.getPastProposals(user, dao.docId);
+  Future<Result<List<ProposalModel>, HyphaError>> getProposals(
+      UserProfileData user, GetProposalsUseCaseInput input) async {
+    final List<Future<Result<Map<String, dynamic>, HyphaError>>> futures =
+        input.daos.map((DaoData dao) {
+      return input.filterStatus == FilterStatus.active
+          ? _proposalService.getActiveProposals(user, dao.docId)
+          : _proposalService.getPastProposals(user, dao.docId);
     }).toList();
 
-    final List<Result<Map<String, dynamic>, HyphaError>> futureResults = await Future.wait(futures);
+    final List<Result<Map<String, dynamic>, HyphaError>> futureResults =
+        await Future.wait(futures);
 
     final List<ProposalModel> allProposals = [];
 
@@ -39,11 +45,15 @@ class ProposalRepository {
         }
 
         try {
-          final List<ProposalModel> proposals = await _parseProposalsFromResponse(response, input.daos[i], input.filterStatus);
+          final List<ProposalModel> proposals =
+              await _parseProposalsFromResponse(
+                  response, input.daos[i], input.filterStatus);
           allProposals.addAll(proposals);
         } catch (e, stackTrace) {
-          LogHelper.e('Error parsing data into proposal model', error: e, stacktrace: stackTrace);
-          return Result.error(HyphaError.generic('Error parsing data into proposal model'));
+          LogHelper.e('Error parsing data into proposal model',
+              error: e, stacktrace: stackTrace);
+          return Result.error(
+              HyphaError.generic('Error parsing data into proposal model'));
         }
       } else {
         LogHelper.e('GraphQL query failed', error: result.asError!.error);
@@ -55,13 +65,69 @@ class ProposalRepository {
     return Result.value(allProposals);
   }
 
-  Future<List<ProposalModel>> _parseProposalsFromResponse(Map<String, dynamic> response, DaoData daoData, FilterStatus filterStatus) async {
+  Future<Result<List<DaoProposalsModel>, HyphaError>> getHistoryProposalsPerDao(
+      UserProfileData user, GetProposalsUseCaseInput input) async {
+    // Fetch past proposals for all DAOs
+    final List<Future<Result<Map<String, dynamic>, HyphaError>>> futures =
+        input.daos.map((DaoData dao) {
+      return _proposalService.getPastProposals(
+          user, dao.docId); // Fetch proposals using integer docId
+    }).toList();
+
+    final List<Result<Map<String, dynamic>, HyphaError>> futureResults =
+        await Future.wait(futures);
+
+    final List<DaoProposalsModel> daoProposalsList = [];
+
+    for (int i = 0; i < futureResults.length; i++) {
+      final Result<Map<String, dynamic>, HyphaError> result = futureResults[i];
+
+      if (result.isValue) {
+        final Map<String, dynamic> response = result.asValue!.value;
+        if (response['errors'] != null) {
+          LogHelper.e('GraphQL query failed', error: response['errors']);
+          return Result.error(HyphaError.api('GraphQL query failed'));
+        }
+
+        try {
+          // Parse proposals for the current DAO
+          final List<ProposalModel> proposals =
+              await _parseProposalsFromResponse(
+                  response, input.daos[i], input.filterStatus);
+
+          // Create a DaoProposalsModel instance with the current DAO and its proposals
+          daoProposalsList
+              .add(DaoProposalsModel(dao: input.daos[i], proposals: proposals));
+        } catch (e, stackTrace) {
+          LogHelper.e('Error parsing data into proposal model',
+              error: e, stacktrace: stackTrace);
+          return Result.error(
+              HyphaError.generic('Error parsing data into proposal model'));
+        }
+      } else {
+        LogHelper.e('GraphQL query failed', error: result.asError!.error);
+        return Result.error(result.asError!.error);
+      }
+    }
+
+    // Return the list of DaoProposalsModel
+    return Result.value(daoProposalsList);
+  }
+
+  Future<List<ProposalModel>> _parseProposalsFromResponse(
+      Map<String, dynamic> response,
+      DaoData daoData,
+      FilterStatus filterStatus) async {
     final List<dynamic> proposalsData = response['data']['queryDao'];
 
-    final List<Future<ProposalModel>> proposalFutures = proposalsData.expand((dao) {
-      final List<dynamic> proposals = dao[filterStatus == FilterStatus.active ? 'proposal' : 'votable'] as List<dynamic>;
+    final List<Future<ProposalModel>> proposalFutures =
+        proposalsData.expand((dao) {
+      final List<dynamic> proposals =
+          dao[filterStatus == FilterStatus.active ? 'proposal' : 'votable']
+              as List<dynamic>;
       return proposals.map((dynamic proposal) async {
-        final Result<ProfileData, HyphaError> creator = await _profileService.getProfile(proposal['creator']);
+        final Result<ProfileData, HyphaError> creator =
+            await _profileService.getProfile(proposal['creator']);
         proposal['creator'] = null;
 
         final ProposalModel proposalModel = ProposalModel.fromJson(proposal);
@@ -79,7 +145,8 @@ class ProposalRepository {
 
   void sortProposals(List<ProposalModel> proposals) {
     proposals.sort((a, b) {
-      final int daoNameComparison = (a.dao?.settingsDaoTitle ?? '').compareTo(b.dao?.settingsDaoTitle ?? '');
+      final int daoNameComparison = (a.dao?.settingsDaoTitle ?? '')
+          .compareTo(b.dao?.settingsDaoTitle ?? '');
       if (daoNameComparison != 0) {
         return daoNameComparison;
       }
@@ -96,10 +163,11 @@ class ProposalRepository {
       return a.expiration?.compareTo(b.expiration ?? DateTime.now()) ?? 0;
     });
   }
+
   Future<Result<ProposalDetailsModel, HyphaError>> getProposalDetails(
       String proposalId, UserProfileData user) async {
     final Result<Map<String, dynamic>, HyphaError> result =
-    await _proposalService.getProposalDetails(proposalId, user);
+        await _proposalService.getProposalDetails(proposalId, user);
     if (result.isValue) {
       if (result.asValue!.value['errors'] != null) {
         LogHelper.e('GraphQL query failed',
@@ -110,12 +178,12 @@ class ProposalRepository {
       try {
         final Map<String, dynamic> response = result.valueOrCrash;
         final ProposalDetailsModel proposalDetails =
-        ProposalDetailsModel.fromJson(response['data']['getDocument']);
+            ProposalDetailsModel.fromJson(response['data']['getDocument']);
         if (proposalDetails.votes != null) {
           for (int i = 0; i < proposalDetails.votes!.length; i++) {
             final Result<ProfileData, HyphaError> voterData =
-            await _profileService
-                .getProfile(proposalDetails.votes![i].voter);
+                await _profileService
+                    .getProfile(proposalDetails.votes![i].voter);
             if (voterData.isValue) {
               proposalDetails.votes![i].voterImageUrl =
                   voterData.asValue!.value.avatarUrl;
