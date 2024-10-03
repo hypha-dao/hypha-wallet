@@ -1,9 +1,11 @@
 import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
 import 'package:hypha_wallet/core/extension/base_proposal_model_extension.dart';
 import 'package:hypha_wallet/core/logging/log_helper.dart';
+import 'package:hypha_wallet/core/network/api/services/dao_service.dart';
 import 'package:hypha_wallet/core/network/api/services/proposal_service.dart';
 import 'package:hypha_wallet/core/network/models/dao_data_model.dart';
 import 'package:hypha_wallet/core/network/models/dao_proposals_model.dart';
+import 'package:hypha_wallet/core/network/models/network.dart';
 import 'package:hypha_wallet/core/network/models/proposal_details_model.dart';
 import 'package:hypha_wallet/core/network/models/proposal_model.dart';
 import 'package:hypha_wallet/core/network/models/user_profile_data.dart';
@@ -16,8 +18,13 @@ import 'package:hypha_wallet/ui/proposals/list/interactor/get_proposals_use_case
 class ProposalRepository {
   final ProposalService _proposalService;
   final ProfileService _profileService;
+  final DaoService _daoService;
 
-  ProposalRepository(this._proposalService, this._profileService);
+
+
+  ProposalRepository(
+      this._daoService,
+      this._proposalService, this._profileService);
 
   Future<Result<List<ProposalModel>, HyphaError>> getProposals(
       UserProfileData user, GetProposalsUseCaseInput input) async {
@@ -143,7 +150,7 @@ class ProposalRepository {
     return Future.wait(proposalFutures);
   }
 
-  void sortProposals(List<ProposalModel> proposals) {
+  void sortProposals(List<ProposalModel> proposals,) {
     proposals.sort((a, b) {
       final int daoNameComparison = (a.dao?.settingsDaoTitle ?? '')
           .compareTo(b.dao?.settingsDaoTitle ?? '');
@@ -177,7 +184,9 @@ class ProposalRepository {
 
       try {
         final Map<String, dynamic> response = result.valueOrCrash;
-        final ProposalDetailsModel proposalDetails =
+        final Result<DaoData?, HyphaError> dao= await _daoService.getDaoById(network: Network.telos, daoId:response['data']['getDocument']['dao'][0]['docId'] );
+        final Result<ProfileData, HyphaError> creator = await _profileService.getProfile(response['data']['getDocument']['creator']);
+            final ProposalDetailsModel proposalDetails =
             ProposalDetailsModel.fromJson(response['data']['getDocument']);
         if (proposalDetails.votes != null) {
           for (int i = 0; i < proposalDetails.votes!.length; i++) {
@@ -190,6 +199,8 @@ class ProposalRepository {
             }
           }
         }
+        proposalDetails.creator=creator.asValue!.value;
+        proposalDetails.dao=dao.asValue!.value;
         return Result.value(proposalDetails);
       } catch (e, stackTrace) {
         LogHelper.e('Error parsing data into proposal details model',
