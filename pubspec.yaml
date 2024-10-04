@@ -112,7 +112,7 @@ dependencies:
   google_fonts: ^4.0.4
 
   # formatting
-  intl: ^0.18.0
+  intl: ^0.19.0
 
   flutter_svg: ^2.0.5
 
@@ -158,6 +158,11 @@ dependencies:
   # Indicate percentage
   percent_indicator: ^4.2.3
 
+  # Editor
+  flutter_quill: ^10.7.5
+
+ # Page indicator
+  smooth_page_indicator: ^1.2.0+3
 
 dependency_overrides:
   dio: ^5.3.0
