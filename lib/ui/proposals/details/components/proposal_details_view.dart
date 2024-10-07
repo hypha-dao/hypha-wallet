@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get_utils/src/extensions/context_extensions.dart';
+import 'package:get/get.dart';
 import 'package:hypha_wallet/core/extension/base_proposal_model_extension.dart';
 import 'package:hypha_wallet/core/extension/proposal_details_model_extension.dart';
 import 'package:hypha_wallet/core/network/models/proposal_details_model.dart';
@@ -12,6 +12,7 @@ import 'package:hypha_wallet/design/dao_image.dart';
 import 'package:hypha_wallet/design/dividers/hypha_divider.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
+import 'package:hypha_wallet/ui/blocs/authentication/authentication_bloc.dart';
 import 'package:hypha_wallet/ui/proposals/components/proposal_button.dart';
 import 'package:hypha_wallet/ui/proposals/components/proposal_creator.dart';
 import 'package:hypha_wallet/ui/proposals/components/proposal_expiration_timer.dart';
@@ -33,6 +34,7 @@ class _ProposalDetailsViewState extends State<ProposalDetailsView> {
   final ValueNotifier<bool> _isOverflowingNotifier = ValueNotifier<bool>(false);
   final ValueNotifier<bool> _isExpandedNotifier = ValueNotifier<bool>(false);
   final ValueNotifier<String?> _detailsNotifier = ValueNotifier<String?>(null);
+  final ValueNotifier<bool> _changeVoteNotifier = ValueNotifier<bool>(false);
 
   void _checkIfTextIsOverflowing() {
     final TextPainter textPainter = TextPainter(
@@ -44,6 +46,15 @@ class _ProposalDetailsViewState extends State<ProposalDetailsView> {
     if (textPainter.didExceedMaxLines) {
       _isOverflowingNotifier.value = true;
     }
+  }
+
+  VoteModel? _userVote(BuildContext context, List<VoteModel>? voters) {
+    final userProfileData =
+        context.read<AuthenticationBloc>().state.userProfileData;
+    final myVoteIndex = voters?.indexWhere(
+        (element) => element.voter == userProfileData?.accountName);
+    if (myVoteIndex == null || myVoteIndex == -1) return null;
+    return voters![myVoteIndex];
   }
 
   @override
@@ -61,6 +72,8 @@ class _ProposalDetailsViewState extends State<ProposalDetailsView> {
             return HyphaBodyWidget(
                 pageState: state.pageState,
                 success: (context) {
+                  final VoteModel? userVote =
+                      _userVote(context, state.proposalDetailsModel!.votes);
                   final ProposalDetailsModel _proposalDetailsModel =
                       state.proposalDetailsModel!;
                   final List<VoteModel> passVoters = _proposalDetailsModel
@@ -372,25 +385,28 @@ class _ProposalDetailsViewState extends State<ProposalDetailsView> {
                             style: context.hyphaTextTheme.smallTitles,
                           ),
                         ),
-                        ...List.generate(
-                          3,
-                          (index) => Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 10),
-                            child: HyphaAppButton(
-                              title: index == 0
-                                  ? 'Yes'
-                                  : index == 1
-                                      ? 'Abstain'
-                                      : 'No',
-                              onPressed: () async {},
-                              buttonType: ButtonType.danger,
-                              buttonColor: index == 0
-                                  ? HyphaColors.success
-                                  : index == 1
-                                      ? HyphaColors.lightBlack
-                                      : HyphaColors.error,
-                            ),
-                          ),
+                        ValueListenableBuilder<bool>(
+                          valueListenable: _changeVoteNotifier,
+                          builder: (context, isChangingVote, child) =>
+                              userVote != null && isChangingVote == false
+                                  ? HyphaAppButton(
+                                      onPressed: () {
+                                        _changeVoteNotifier.value = true;
+                                      },
+                                      buttonType: ButtonType.danger,
+                                      buttonColor: {
+                                            VoteStatus.pass:
+                                                HyphaColors.success,
+                                            VoteStatus.fail: HyphaColors.error,
+                                          }[userVote.voteStatus] ??
+                                          HyphaColors.lightBlack,
+                                      title: {
+                                            VoteStatus.pass: 'You Voted Yes',
+                                            VoteStatus.fail: 'You Voted No',
+                                          }[userVote.voteStatus] ??
+                                          'You chose to abstain',
+                                    )
+                                  : _buildVoteWidget(context),
                         ),
                         const SizedBox(height: 20),
                       ],
@@ -403,6 +419,49 @@ class _ProposalDetailsViewState extends State<ProposalDetailsView> {
     );
   }
 }
+
+Widget _buildVoteWidget(BuildContext context) => Column(
+      children: List.generate(
+        3,
+        (index) => Padding(
+          padding: const EdgeInsets.symmetric(vertical: 10),
+          child: HyphaAppButton(
+            title: index == 0
+                ? 'Yes'
+                : index == 1
+                    ? 'Abstain'
+                    : 'No',
+            onPressed: () async {
+              late final VoteStatus voteStatus;
+
+              // Determine the vote status based on the index
+              switch (index) {
+                case 0:
+                  voteStatus = VoteStatus.pass;
+                  break;
+                case 1:
+                  voteStatus = VoteStatus.abstain;
+                  break;
+                default:
+                  voteStatus = VoteStatus.fail;
+                  break;
+              }
+
+              // Get the bloc instances
+              final proposalDetailBloc = context.read<ProposalDetailBloc>();
+              // Dispatch the castVote event
+              proposalDetailBloc.add(ProposalDetailEvent.castVote(voteStatus));
+            },
+            buttonType: ButtonType.danger,
+            buttonColor: index == 0
+                ? HyphaColors.success
+                : index == 1
+                    ? HyphaColors.lightBlack
+                    : HyphaColors.error,
+          ),
+        ),
+      ),
+    );
 
 Widget _buildTokenRow(
     BuildContext context,

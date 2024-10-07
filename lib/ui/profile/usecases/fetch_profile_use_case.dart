@@ -31,7 +31,6 @@ class FetchProfileUseCase {
 
     final Result<List<DaoData>, HyphaError> daosResult = futureResults.first as Result<List<DaoData>, HyphaError>;
     final Result<ProfileData, HyphaError> profileResult = futureResults.last as Result<ProfileData, HyphaError>;
-
     if (profileResult.isValue && daosResult.isValue) {
       var profile = profileResult.asValue!.value;
       profile = profile.updateDaos(daosResult.asValue!.value);
