@@ -11,6 +11,7 @@ import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.d
 import 'package:hypha_wallet/ui/blocs/authentication/authentication_bloc.dart';
 import 'package:hypha_wallet/ui/profile/profile_page.dart';
 import 'package:hypha_wallet/ui/proposals/components/proposals_list.dart';
+import 'package:hypha_wallet/ui/proposals/creation/proposal_creation_page.dart';
 import 'package:hypha_wallet/ui/proposals/filter/filter_proposals_page.dart';
 import 'package:hypha_wallet/ui/proposals/filter/interactor/filter_proposals_bloc.dart';
 import 'package:hypha_wallet/ui/proposals/filter/interactor/filter_status.dart';
@@ -172,7 +173,9 @@ class ProposalsView extends StatelessWidget {
                   ),
                 )),
             floatingActionButton: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  GetX.Get.to(() => const ProposalCreationPage(), transition: GetX.Transition.leftToRight);
+                },
                 icon: const CircleAvatar(
                     radius: 30,
                     backgroundImage: AssetImage(
