@@ -12,11 +12,11 @@ class HyphaFilterCard extends StatelessWidget {
   final dynamic valueNotifier;
   final int index;
 
-  const HyphaFilterCard(this.valueNotifier, this.index, {this.dao, this.title, this.subTitle, super.key});
+  const HyphaFilterCard(this.valueNotifier, this.index,
+      {this.dao, this.title, this.subTitle, super.key});
 
   @override
   Widget build(BuildContext context) {
-    // TODO(Saif): fix the card height (filter by status)
     return GestureDetector(
       onTap: () {
         if (valueNotifier.value != index) {
@@ -26,12 +26,12 @@ class HyphaFilterCard extends StatelessWidget {
         }
       },
       child: HyphaCard(
-          child: Padding(
+          child: Container(
+        height: dao != null ? null : 54,
         padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
         child: Row(
           children: [
-            if (dao != null)
-              DaoImage(dao),
+            if (dao != null) DaoImage(dao),
             const SizedBox(
               width: 10,
             ),
@@ -45,7 +45,8 @@ class HyphaFilterCard extends StatelessWidget {
                 if (subTitle != null)
                   Text(
                     subTitle!,
-                    style: context.hyphaTextTheme.ralMediumBody.copyWith(color: HyphaColors.midGrey),
+                    style: context.hyphaTextTheme.ralMediumBody
+                        .copyWith(color: HyphaColors.midGrey),
                   ),
               ],
             ),
@@ -53,11 +54,16 @@ class HyphaFilterCard extends StatelessWidget {
             ValueListenableBuilder<dynamic>(
               valueListenable: valueNotifier,
               builder: (context, selectedIndex, child) {
-                return Visibility(
-                  visible: selectedIndex == index,
-                  child: const CircleAvatar(
-                    radius: 12,
-                    backgroundColor: HyphaColors.primaryBlu,
+                return CircleAvatar(
+                  radius: 12,
+                  backgroundColor: selectedIndex == index
+                      ? HyphaColors.primaryBlu
+                      : HyphaColors.midGrey.withOpacity(.3),
+                  child: CircleAvatar(
+                    radius: selectedIndex == index ? 4 : 10.5,
+                    backgroundColor: selectedIndex == index
+                        ? HyphaColors.white
+                        : HyphaColors.lightBlack,
                   ),
                 );
               },

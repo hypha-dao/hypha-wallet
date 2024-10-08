@@ -255,6 +255,8 @@ abstract class _Initial implements ProposalsEvent {
 mixin _$ProposalsState {
   PageState get pageState => throw _privateConstructorUsedError;
   List<ProposalModel> get proposals => throw _privateConstructorUsedError;
+  List<DaoProposalsModel> get historyProposalsPerDao =>
+      throw _privateConstructorUsedError;
 
   /// Create a copy of ProposalsState
   /// with the given fields replaced by the non-null parameter values.
@@ -269,7 +271,10 @@ abstract class $ProposalsStateCopyWith<$Res> {
           ProposalsState value, $Res Function(ProposalsState) then) =
       _$ProposalsStateCopyWithImpl<$Res, ProposalsState>;
   @useResult
-  $Res call({PageState pageState, List<ProposalModel> proposals});
+  $Res call(
+      {PageState pageState,
+      List<ProposalModel> proposals,
+      List<DaoProposalsModel> historyProposalsPerDao});
 }
 
 /// @nodoc
@@ -289,6 +294,7 @@ class _$ProposalsStateCopyWithImpl<$Res, $Val extends ProposalsState>
   $Res call({
     Object? pageState = null,
     Object? proposals = null,
+    Object? historyProposalsPerDao = null,
   }) {
     return _then(_value.copyWith(
       pageState: null == pageState
@@ -299,6 +305,10 @@ class _$ProposalsStateCopyWithImpl<$Res, $Val extends ProposalsState>
           ? _value.proposals
           : proposals // ignore: cast_nullable_to_non_nullable
               as List<ProposalModel>,
+      historyProposalsPerDao: null == historyProposalsPerDao
+          ? _value.historyProposalsPerDao
+          : historyProposalsPerDao // ignore: cast_nullable_to_non_nullable
+              as List<DaoProposalsModel>,
     ) as $Val);
   }
 }
@@ -311,7 +321,10 @@ abstract class _$$ProposalsStateImplCopyWith<$Res>
       __$$ProposalsStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({PageState pageState, List<ProposalModel> proposals});
+  $Res call(
+      {PageState pageState,
+      List<ProposalModel> proposals,
+      List<DaoProposalsModel> historyProposalsPerDao});
 }
 
 /// @nodoc
@@ -329,6 +342,7 @@ class __$$ProposalsStateImplCopyWithImpl<$Res>
   $Res call({
     Object? pageState = null,
     Object? proposals = null,
+    Object? historyProposalsPerDao = null,
   }) {
     return _then(_$ProposalsStateImpl(
       pageState: null == pageState
@@ -339,6 +353,10 @@ class __$$ProposalsStateImplCopyWithImpl<$Res>
           ? _value._proposals
           : proposals // ignore: cast_nullable_to_non_nullable
               as List<ProposalModel>,
+      historyProposalsPerDao: null == historyProposalsPerDao
+          ? _value._historyProposalsPerDao
+          : historyProposalsPerDao // ignore: cast_nullable_to_non_nullable
+              as List<DaoProposalsModel>,
     ));
   }
 }
@@ -348,8 +366,10 @@ class __$$ProposalsStateImplCopyWithImpl<$Res>
 class _$ProposalsStateImpl implements _ProposalsState {
   const _$ProposalsStateImpl(
       {this.pageState = PageState.initial,
-      final List<ProposalModel> proposals = const []})
-      : _proposals = proposals;
+      final List<ProposalModel> proposals = const [],
+      final List<DaoProposalsModel> historyProposalsPerDao = const []})
+      : _proposals = proposals,
+        _historyProposalsPerDao = historyProposalsPerDao;
 
   @override
   @JsonKey()
@@ -363,9 +383,19 @@ class _$ProposalsStateImpl implements _ProposalsState {
     return EqualUnmodifiableListView(_proposals);
   }
 
+  final List<DaoProposalsModel> _historyProposalsPerDao;
+  @override
+  @JsonKey()
+  List<DaoProposalsModel> get historyProposalsPerDao {
+    if (_historyProposalsPerDao is EqualUnmodifiableListView)
+      return _historyProposalsPerDao;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_historyProposalsPerDao);
+  }
+
   @override
   String toString() {
-    return 'ProposalsState(pageState: $pageState, proposals: $proposals)';
+    return 'ProposalsState(pageState: $pageState, proposals: $proposals, historyProposalsPerDao: $historyProposalsPerDao)';
   }
 
   @override
@@ -376,12 +406,17 @@ class _$ProposalsStateImpl implements _ProposalsState {
             (identical(other.pageState, pageState) ||
                 other.pageState == pageState) &&
             const DeepCollectionEquality()
-                .equals(other._proposals, _proposals));
+                .equals(other._proposals, _proposals) &&
+            const DeepCollectionEquality().equals(
+                other._historyProposalsPerDao, _historyProposalsPerDao));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, pageState, const DeepCollectionEquality().hash(_proposals));
+      runtimeType,
+      pageState,
+      const DeepCollectionEquality().hash(_proposals),
+      const DeepCollectionEquality().hash(_historyProposalsPerDao));
 
   /// Create a copy of ProposalsState
   /// with the given fields replaced by the non-null parameter values.
@@ -395,13 +430,17 @@ class _$ProposalsStateImpl implements _ProposalsState {
 
 abstract class _ProposalsState implements ProposalsState {
   const factory _ProposalsState(
-      {final PageState pageState,
-      final List<ProposalModel> proposals}) = _$ProposalsStateImpl;
+          {final PageState pageState,
+          final List<ProposalModel> proposals,
+          final List<DaoProposalsModel> historyProposalsPerDao}) =
+      _$ProposalsStateImpl;
 
   @override
   PageState get pageState;
   @override
   List<ProposalModel> get proposals;
+  @override
+  List<DaoProposalsModel> get historyProposalsPerDao;
 
   /// Create a copy of ProposalsState
   /// with the given fields replaced by the non-null parameter values.

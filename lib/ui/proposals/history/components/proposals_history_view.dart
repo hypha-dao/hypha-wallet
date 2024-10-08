@@ -14,6 +14,7 @@ class ProposalsHistoryView extends StatelessWidget {
     return Scaffold(
         backgroundColor: context.isDarkMode ? HyphaColors.darkBlack : HyphaColors.offWhite,
         appBar: AppBar(
+          scrolledUnderElevation: 0,
           title: const Text('Proposals History'),
         ),
         body: RefreshIndicator(

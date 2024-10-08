@@ -4,7 +4,6 @@ import 'package:get/get.dart' as GetX;
 import 'package:get_it/get_it.dart';
 import 'package:hypha_wallet/core/extension/proposals_filter_extension.dart';
 import 'package:hypha_wallet/core/network/models/proposal_model.dart';
-import 'package:hypha_wallet/core/network/models/dao_data_model.dart';
 import 'package:hypha_wallet/design/avatar_image/hypha_avatar_image.dart';
 import 'package:hypha_wallet/design/background/hypha_page_background.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
@@ -12,20 +11,21 @@ import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.d
 import 'package:hypha_wallet/ui/blocs/authentication/authentication_bloc.dart';
 import 'package:hypha_wallet/ui/profile/profile_page.dart';
 import 'package:hypha_wallet/ui/proposals/components/proposals_list.dart';
+import 'package:hypha_wallet/ui/proposals/creation/proposal_creation_page.dart';
 import 'package:hypha_wallet/ui/proposals/filter/filter_proposals_page.dart';
+import 'package:hypha_wallet/ui/proposals/filter/interactor/filter_proposals_bloc.dart';
 import 'package:hypha_wallet/ui/proposals/filter/interactor/filter_status.dart';
 import 'package:hypha_wallet/ui/proposals/list/components/hypha_proposal_history_card.dart';
-import 'package:hypha_wallet/ui/proposals/list/components/hypha_proposals_action_card.dart';
 import 'package:hypha_wallet/ui/proposals/list/interactor/proposals_bloc.dart';
 import 'package:hypha_wallet/ui/shared/hypha_body_widget.dart';
-
-import '../../filter/interactor/filter_proposals_bloc.dart';
 
 class ProposalsView extends StatelessWidget {
   const ProposalsView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final FilterStatus filterStatus =
+        context.watch<ProposalsBloc>().filterStatus;
     return BlocBuilder<ProposalsBloc, ProposalsState>(
         builder: (context, state) {
       return HyphaPageBackground(
@@ -92,84 +92,95 @@ class ProposalsView extends StatelessWidget {
                   child: HyphaBodyWidget(
                     pageState: state.pageState,
                     success: (context) {
-                      final List<int>? daoIds = GetIt.I.get<FilterProposalsBloc>().daoIds;
-                      final List<ProposalModel> proposals = daoIds != null ? state.proposals.filterByDao(daoIds) : state.proposals;
+                      final List<int>? daoIds =
+                          GetIt.I.get<FilterProposalsBloc>().daoIds;
+                      final List<ProposalModel> proposals = daoIds != null
+                          ? state.proposals.filterByDao(daoIds)
+                          : state.proposals;
                       return Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 22),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const SizedBox(
-                            height: 22,
-                          ),
-                          Text(
-                            '${proposals.length} ${context.read<ProposalsBloc>().filterStatus.string} Proposal${proposals.length == 1 ? '' : 's'}',
-                            style: context.hyphaTextTheme.ralMediumBody
-                                .copyWith(color: HyphaColors.midGrey),
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          Expanded(
-                            child: SingleChildScrollView(
-                              physics: const BouncingScrollPhysics(),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  ProposalsList(proposals,isScrollable: false,),
-                                  const SizedBox(
-                                    height: 30,
-                                  ),
-                                  Text(
-                                    'See Proposals History',
-                                    style: context.hyphaTextTheme.ralMediumBody
-                                        .copyWith(color: HyphaColors.midGrey),
-                                  ),
-                                  ...List.generate(
-                                    2,
-                                    (index) {
-                                      return Container(
-                                          margin: const EdgeInsets.symmetric(
-                                              vertical: 10),
-                                          child: const HyphaProposalHistoryCard(
-                                            dao: DaoData(
-                                                docId: 67176,
-                                                detailsDaoName: 't4rcvben2fe4',
-                                                settingsDaoTitle:
-                                                    'Think-it Collective',
-                                                logoIPFSHash:
-                                                    'QmVB8q28U1bjfi51reQMaU7XwP4FThWj39DrU5G8MriMS9',
-                                                logoType: 'png',
-                                                settingsDaoUrl:
-                                                    'think-it-collective'),
-                                            subTitle: '1,234 Past Proposals',
-                                          ));
-                                    },
-                                  ),
-                                  const SizedBox(
-                                    height: 90,
-                                  )
-                                ],
+                        padding: const EdgeInsets.symmetric(horizontal: 22),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const SizedBox(
+                              height: 22,
+                            ),
+                            Text(
+                              '${proposals.length} ${filterStatus.string} Proposal${proposals.length == 1 ? '' : 's'}',
+                              style: context.hyphaTextTheme.ralMediumBody
+                                  .copyWith(color: HyphaColors.midGrey),
+                            ),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            Expanded(
+                              child: SingleChildScrollView(
+                                physics: const BouncingScrollPhysics(),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    ProposalsList(
+                                      proposals,
+                                      isScrollable: false,
+                                    ),
+                                    SizedBox(
+                                      height:
+                                          filterStatus == FilterStatus.active
+                                              ? 30
+                                              : 90,
+                                    ),
+                                    if (filterStatus == FilterStatus.active)
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            'See Proposals History',
+                                            style: context
+                                                .hyphaTextTheme.ralMediumBody
+                                                .copyWith(
+                                                    color: HyphaColors.midGrey),
+                                          ),
+                                          ...List.generate(
+                                              state.historyProposalsPerDao
+                                                  .length, (index) {
+                                            return Container(
+                                                margin:
+                                                    const EdgeInsets.symmetric(
+                                                        vertical: 10),
+                                                child: HyphaProposalHistoryCard(
+                                                  dao: state
+                                                      .historyProposalsPerDao[
+                                                          index]
+                                                      .dao,
+                                                  subTitle:
+                                                      '${state.historyProposalsPerDao[index].proposals.length} Past Proposals',
+                                                ));
+                                          }),
+                                          const SizedBox(
+                                            height: 100,
+                                          )
+                                        ],
+                                      ),
+                                  ],
+                                ),
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                    );
+                          ],
+                        ),
+                      );
                     },
                   ),
                 )),
             floatingActionButton: IconButton(
                 onPressed: () {
-                  GetX.Get.to(() => const FilterProposalsPage(),
-                      transition: GetX.Transition.leftToRight);
+                  GetX.Get.to(() => const ProposalCreationPage(), transition: GetX.Transition.leftToRight);
                 },
                 icon: const CircleAvatar(
-                    radius: 25,
+                    radius: 30,
                     backgroundImage: AssetImage(
                         'assets/images/graphics/wallet_background.png'),
-                    child: Icon(Icons.filter_alt_outlined,
-                        color: HyphaColors.white))),
+                    child: Icon(Icons.add, color: HyphaColors.white))),
           ));
     });
   }
@@ -182,16 +193,14 @@ class _NewProposalButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text(
-          'New Proposal',
-          style: context.hyphaTextTheme.regular
-              .copyWith(color: Colors.white, fontSize: 12),
-        ),
         const SizedBox(width: 10),
         GestureDetector(
-          onTap: () {},
+          onTap: () {
+            GetX.Get.to(() => const FilterProposalsPage(),
+                transition: GetX.Transition.leftToRight);
+          },
           child: Container(
-            width: 38,
+            padding: const EdgeInsets.symmetric(horizontal: 8),
             height: 38,
             decoration: BoxDecoration(
               color: context.isDarkMode
@@ -199,11 +208,26 @@ class _NewProposalButton extends StatelessWidget {
                   : HyphaColors.offWhite,
               borderRadius: BorderRadius.circular(12),
             ),
-            child: Icon(Icons.add_outlined,
-                size: 25,
-                color: context.isDarkMode
-                    ? HyphaColors.white
-                    : HyphaColors.darkBlack),
+            child: Row(
+              children: [
+                const SizedBox(
+                  width: 8,
+                ),
+                Text(
+                  'Filter',
+                  style: context.hyphaTextTheme.regular
+                      .copyWith(color: Colors.white, fontSize: 13),
+                ),
+                const SizedBox(
+                  width: 4,
+                ),
+                Icon(Icons.filter_list_rounded,
+                    size: 25,
+                    color: context.isDarkMode
+                        ? HyphaColors.white
+                        : HyphaColors.darkBlack),
+              ],
+            ),
           ),
         ),
       ],
