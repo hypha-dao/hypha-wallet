@@ -53,8 +53,8 @@ class _ProposalDetailsViewState extends State<ProposalDetailsView> {
         context.read<AuthenticationBloc>().state.userProfileData;
     final myVoteIndex = voters?.indexWhere(
         (element) => element.voter == userProfileData?.accountName);
-    if (myVoteIndex == null || myVoteIndex == -1) return null;
-    return voters![myVoteIndex];
+    if (myVoteIndex == null || myVoteIndex == -1 || voters == null) return null;
+    return voters[myVoteIndex];
   }
 
   @override
@@ -375,39 +375,50 @@ class _ProposalDetailsViewState extends State<ProposalDetailsView> {
                             _proposalDetailsModel.formatExpiration(),
                           ),
                         ),
-                        const HyphaDivider(),
 
                         /// Vote Section
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 20),
-                          child: Text(
-                            'Cast your Vote',
-                            style: context.hyphaTextTheme.smallTitles,
+                        if (_proposalDetailsModel.formatExpiration() !=
+                            'Expired')
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const HyphaDivider(),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 20),
+                                child: Text(
+                                  'Cast your Vote',
+                                  style: context.hyphaTextTheme.smallTitles,
+                                ),
+                              ),
+                              ValueListenableBuilder<bool>(
+                                valueListenable: _changeVoteNotifier,
+                                builder: (context, isChangingVote, child) =>
+                                    userVote != null && isChangingVote == false
+                                        ? HyphaAppButton(
+                                            onPressed: () {
+                                              _changeVoteNotifier.value = true;
+                                            },
+                                            buttonType: ButtonType.danger,
+                                            buttonColor: {
+                                                  VoteStatus.pass:
+                                                      HyphaColors.success,
+                                                  VoteStatus.fail:
+                                                      HyphaColors.error,
+                                                }[userVote.voteStatus] ??
+                                                HyphaColors.lightBlack,
+                                            title: {
+                                                  VoteStatus.pass:
+                                                      'You Voted Yes',
+                                                  VoteStatus.fail:
+                                                      'You Voted No',
+                                                }[userVote.voteStatus] ??
+                                                'You chose to abstain',
+                                          )
+                                        : _buildVoteWidget(context),
+                              ),
+                            ],
                           ),
-                        ),
-                        ValueListenableBuilder<bool>(
-                          valueListenable: _changeVoteNotifier,
-                          builder: (context, isChangingVote, child) =>
-                              userVote != null && isChangingVote == false
-                                  ? HyphaAppButton(
-                                      onPressed: () {
-                                        _changeVoteNotifier.value = true;
-                                      },
-                                      buttonType: ButtonType.danger,
-                                      buttonColor: {
-                                            VoteStatus.pass:
-                                                HyphaColors.success,
-                                            VoteStatus.fail: HyphaColors.error,
-                                          }[userVote.voteStatus] ??
-                                          HyphaColors.lightBlack,
-                                      title: {
-                                            VoteStatus.pass: 'You Voted Yes',
-                                            VoteStatus.fail: 'You Voted No',
-                                          }[userVote.voteStatus] ??
-                                          'You chose to abstain',
-                                    )
-                                  : _buildVoteWidget(context),
-                        ),
                         const SizedBox(height: 20),
                       ],
                     ),
