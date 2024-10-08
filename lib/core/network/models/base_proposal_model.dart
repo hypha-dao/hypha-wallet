@@ -16,11 +16,18 @@ abstract class BaseProposalModel {
   @JsonKey(name: 'details_title_s')
   final String? title;
 
+  final double? unity;
+
+  final double? quorum;
+
   @JsonKey(name: 'details_ballotAlignment_i')
-  final int? unity;
+  final int? pastUnity;
 
   @JsonKey(name: 'details_ballotQuorum_i')
-  final int? quorum;
+  final int? pastQuorum;
+
+  @JsonKey(name: 'details_ballotSupply_a')
+  final int? supply;
 
   @JsonKey(name: 'ballot_expiration_t')
   final DateTime? expiration;
@@ -37,6 +44,9 @@ abstract class BaseProposalModel {
     this.title,
     this.unity,
     this.quorum,
+    this.pastUnity,
+    this.pastQuorum,
+    this.supply,
     this.expiration,
     this.creator,
     this.votes,

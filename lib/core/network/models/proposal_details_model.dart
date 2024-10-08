@@ -1,4 +1,5 @@
-import 'package:hypha_wallet/core/extension/string_extension.dart'; // Add this import
+import 'package:hypha_wallet/core/extension/string_extension.dart';
+import 'package:hypha_wallet/core/extension/vote_tally_extension.dart';
 import 'package:hypha_wallet/core/network/models/base_proposal_model.dart';
 import 'package:hypha_wallet/core/network/models/dao_data_model.dart';
 import 'package:hypha_wallet/core/network/models/vote_model.dart';
@@ -78,6 +79,8 @@ class ProposalDetailsModel extends BaseProposalModel {
       super.title,
       super.unity,
       super.quorum,
+        super.pastUnity,
+      super.pastQuorum,
       super.expiration,
       super.creator,
       super.votes,
@@ -116,6 +119,9 @@ class ProposalDetailsModel extends BaseProposalModel {
     }
     json['dao'] = null;
     json['creator'] = null;
+
+    json.calculateUnityAndQuorum();
+
     return _$ProposalDetailsModelFromJson(json);
   }
 

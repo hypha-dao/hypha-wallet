@@ -19,7 +19,11 @@ class HyphaFilterCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        valueNotifier.value = valueNotifier.value == index ? null : index;
+        if (valueNotifier.value != index) {
+          valueNotifier.value = index;
+        } else if (subTitle != null) {
+          valueNotifier.value = null;
+        }
       },
       child: HyphaCard(
           child: Container(
