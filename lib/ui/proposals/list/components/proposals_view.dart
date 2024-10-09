@@ -74,6 +74,7 @@ class ProposalsView extends StatelessWidget {
                   context
                       .read<ProposalsBloc>()
                       .add(const ProposalsEvent.initial(refresh: true));
+
                 },
                 child: Container(
                   margin: const EdgeInsets.only(top: 20),
@@ -172,7 +173,8 @@ class ProposalsView extends StatelessWidget {
                     },
                   ),
                 )),
-            floatingActionButton: IconButton(
+            floatingActionButton:context
+                .read<ProposalsBloc>().daos.isEmpty?null: IconButton(
                 onPressed: () {
                   GetX.Get.to(() => const ProposalCreationPage(), transition: GetX.Transition.leftToRight);
                 },

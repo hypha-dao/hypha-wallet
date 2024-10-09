@@ -23,7 +23,7 @@ class ProposalsBloc extends Bloc<ProposalsEvent, ProposalsState> {
   final GetProposalsUseCase _getProposalsUseCase;
   final FetchProfileUseCase _fetchProfileUseCase;
   final ErrorHandlerManager _errorHandlerManager;
-
+  List<DaoData> daos=[];
   ProposalsBloc(this._getProposalsUseCase, this._fetchProfileUseCase,
       this._errorHandlerManager)
       : super(const ProposalsState()) {
@@ -48,7 +48,7 @@ class ProposalsBloc extends Bloc<ProposalsEvent, ProposalsState> {
         await _fetchProfileUseCase.run();
 
     if (profileResult.isValue && profileResult.asValue!.value.daos.isNotEmpty) {
-      final List<DaoData> daos = profileResult.asValue!.value.daos;
+      daos = profileResult.asValue!.value.daos;
 
       // Fetch Proposals using the fetched DAOs
       final Result<List<ProposalModel>, HyphaError> proposalsResult =
