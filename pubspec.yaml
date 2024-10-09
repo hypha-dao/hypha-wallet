@@ -161,8 +161,11 @@ dependencies:
   # Editor
   flutter_quill: ^10.7.5
 
- # Page indicator
+  # Page indicator
   smooth_page_indicator: ^1.2.0+3
+
+  # Records
+  tuple: ^2.0.2
 
 dependency_overrides:
   dio: ^5.3.0
