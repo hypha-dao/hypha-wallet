@@ -5,6 +5,8 @@ import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.d
 import 'package:hypha_wallet/ui/proposals/creation/components/proposal_creation_view.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import 'components/outcome_selection_view.dart';
+
 class ProposalCreationPage extends StatelessWidget {
   const ProposalCreationPage({super.key});
 
@@ -63,7 +65,7 @@ class ProposalCreationPage extends StatelessWidget {
           ],
         ),
       ),
-      body: const ProposalCreationView(),
+      body:  DaoSelectionView(),
     );
   }
 }
