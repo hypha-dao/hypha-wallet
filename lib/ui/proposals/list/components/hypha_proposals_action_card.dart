@@ -60,9 +60,7 @@ class HyphaProposalsActionCard extends StatelessWidget {
                         ? HyphaColors.success
                         : HyphaColors.error),
                 const SizedBox(height: 20),
-                ProposalExpirationTimer(
-                  _proposalModel.formatExpiration(),
-                ),
+                ProposalExpirationTimer(_proposalModel.formatExpiration(),),
                 const Padding(
                   padding: EdgeInsets.symmetric(vertical: 16),
                   child: HyphaDivider(),
@@ -83,7 +81,7 @@ class HyphaProposalsActionCard extends StatelessWidget {
     return BlocBuilder<AuthenticationBloc, AuthenticationState>(
       builder: (context, state) {
         final myVoteIndex = _proposalModel.votes?.indexWhere((element) =>
-            element.voter == state.userProfileData?.userNameOrAccount);
+            element.voter == state.userProfileData?.accountName);
         if (myVoteIndex == null || myVoteIndex == -1) return const SizedBox();
         final voteStatus = _proposalModel.votes![myVoteIndex].voteStatus;
         final color = voteStatus == VoteStatus.pass
@@ -105,7 +103,7 @@ class HyphaProposalsActionCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(16),
           ),
           width: double.infinity,
-          height: 460,
+          height: 475,
           child: Text(
             statusText,
             style: context.hyphaTextTheme.smallTitles
