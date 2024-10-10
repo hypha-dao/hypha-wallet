@@ -5,14 +5,14 @@ import 'package:hypha_wallet/design/hypha_card.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 
-class HyphaFilterCard extends StatelessWidget {
+class HyphaOptionCard extends StatelessWidget {
   final DaoData? dao;
   final String? title;
   final String? subTitle;
   final dynamic valueNotifier;
   final int index;
 
-  const HyphaFilterCard(this.valueNotifier, this.index,
+  const HyphaOptionCard(this.valueNotifier, this.index,
       {this.dao, this.title, this.subTitle, super.key});
 
   @override
