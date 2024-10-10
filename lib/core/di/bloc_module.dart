@@ -154,4 +154,6 @@ void _registerBlocsModule() {
             dao
     ),
   );
+
+  _registerFactory(() => ProposalCreationBloc());
 }

@@ -1,17 +1,20 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_quill/flutter_quill.dart';
 import 'package:get/get_utils/src/extensions/context_extensions.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
+import 'package:hypha_wallet/ui/proposals/creation/interactor/proposal_creation_bloc.dart';
 
-class ProposalCreationView extends StatefulWidget {
-  const ProposalCreationView({super.key});
+class ProposalContentView extends StatefulWidget {
+  const ProposalContentView({super.key});
 
   @override
-  State<ProposalCreationView> createState() => _ProposalCreationViewState();
+  State<ProposalContentView> createState() => _ProposalContentViewState();
 }
 
-class _ProposalCreationViewState extends State<ProposalCreationView> {
+class _ProposalContentViewState extends State<ProposalContentView> {
   final TextEditingController _titleController = TextEditingController();
   final QuillController _quillController = QuillController.basic();
   final ScrollController _scrollController = ScrollController();
@@ -22,6 +25,10 @@ class _ProposalCreationViewState extends State<ProposalCreationView> {
   void initState() {
     super.initState();
 
+    _titleController.addListener(() {
+      context.read<ProposalCreationBloc>().add(ProposalCreationEvent.updateProposal({'title': _titleController.text.isEmpty ? null : _titleController.text}));
+    });
+
     _focusNode.addListener(() {
       _isEditingNotifier.value = _focusNode.hasFocus;
       if (_focusNode.hasFocus) {
@@ -30,6 +37,9 @@ class _ProposalCreationViewState extends State<ProposalCreationView> {
     });
 
     _quillController.document.changes.listen((event) {
+      final String plainText = _quillController.document.toPlainText();
+      final String json = jsonEncode(_quillController.document.toDelta().toJson());
+      context.read<ProposalCreationBloc>().add(ProposalCreationEvent.updateProposal({'details': plainText.length == 1 ? null : json}));
       _scrollToBottom();
     });
   }
@@ -87,10 +97,12 @@ class _ProposalCreationViewState extends State<ProposalCreationView> {
                 decoration: InputDecoration(
                   filled: true,
                   fillColor: context.isDarkMode ? HyphaColors.lightBlack : HyphaColors.white,
+                  hintText: 'Your Proposal Title',
+                  hintStyle: context.hyphaTextTheme.ralMediumBody.copyWith(color: HyphaColors.midGrey),
                   labelText: 'Title',
                   labelStyle: TextStyle(
                     color: _titleController.text.isEmpty
-                        ? (context.isDarkMode ? HyphaColors.midGrey : HyphaColors.black)
+                        ? (context.isDarkMode ? HyphaColors.offWhite : HyphaColors.black)
                         : HyphaColors.primaryBlu,
                   ),
                   floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -147,6 +159,27 @@ class _ProposalCreationViewState extends State<ProposalCreationView> {
                       ),
                     ),
                   ),
+                  Positioned.fill(
+                    child: GestureDetector(
+                      onTap: () {
+                        _focusNode.requestFocus();
+                      },
+                      child: StreamBuilder(
+                        stream: _quillController.document.changes,
+                        builder: (context, snapshot) {
+                          return _quillController.document.isEmpty()
+                              ? Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 6.0),
+                            child: Text(
+                              'Your Proposal Details',
+                              style: context.hyphaTextTheme.ralMediumBody.copyWith(color: HyphaColors.midGrey),
+                            ),
+                          )
+                              : const SizedBox.shrink();
+                        },
+                      ),
+                    ),
+                  ),
                   Positioned(
                     left: 12,
                     top: -6,
@@ -155,7 +188,7 @@ class _ProposalCreationViewState extends State<ProposalCreationView> {
                       style: context.hyphaTextTheme.ralMediumLabel.copyWith(
                         color: _quillController.document.isEmpty()
                             ? (context.isDarkMode
-                            ? HyphaColors.midGrey
+                            ? HyphaColors.offWhite
                             : HyphaColors.black)
                             : HyphaColors.primaryBlu,
                       ),
