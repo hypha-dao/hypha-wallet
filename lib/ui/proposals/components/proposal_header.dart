@@ -9,7 +9,7 @@ class ProposalHeader extends StatelessWidget {
   final String? _text;
 
   // TODO(Zied-Saif): figure this out
-  const ProposalHeader(this._dao, {String text = 'Marketing Circle', super.key}) : _text = text;
+  const ProposalHeader(this._dao, {String text = '', super.key}) : _text = text;
 
   @override
   Widget build(BuildContext context) {
