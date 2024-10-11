@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:hypha_wallet/core/network/models/dao_data_model.dart';
 import 'package:hypha_wallet/design/dao_image.dart';
+import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 
 class ProposalHeader extends StatelessWidget {
   final DaoData? _dao;
-  const ProposalHeader(this._dao, {super.key});
+  final String? _text;
+
+  // TODO(Zied-Saif): figure this out
+  const ProposalHeader(this._dao, {String text = '', super.key}) : _text = text;
 
   @override
   Widget build(BuildContext context) {
@@ -16,15 +20,14 @@ class ProposalHeader extends StatelessWidget {
         Flexible(
           child: Text(
             _dao?.settingsDaoTitle ?? '',
-            style: context.hyphaTextTheme.ralMediumSmallNote.copyWith(fontWeight: FontWeight.bold),
+            style: context.hyphaTextTheme.ralMediumSmallNote.copyWith(fontWeight: FontWeight.bold, color: HyphaColors.offWhite),
             overflow: TextOverflow.ellipsis,
           ),
         ),
         const SizedBox(width: 10),
-        // TODO(Zied-Saif): figure this out
         Text(
-          'Marketing Circle',
-          style: context.hyphaTextTheme.ralMediumSmallNote,
+          _text!,
+          style: context.hyphaTextTheme.ralMediumSmallNote.copyWith(color: HyphaColors.midGrey),
         ),
       ],
     );
