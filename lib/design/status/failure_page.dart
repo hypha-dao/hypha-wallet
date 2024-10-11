@@ -10,10 +10,12 @@ import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 import 'package:hypha_wallet/ui/bottom_navigation/hypha_bottom_navigation.dart';
 
-class SignTransactionFailedPage extends StatelessWidget {
+class FailurePage extends StatelessWidget {
   final HyphaError error;
+  final String text1;
+  final String text2;
 
-  const SignTransactionFailedPage(this.error, {super.key});
+  const FailurePage(this.error, {super.key, this.text1 = 'This transaction ', this.text2 = 'Please try again by triggering the transaction from the website or app. Sorry for the inconvenience.'});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +27,7 @@ class SignTransactionFailedPage extends StatelessWidget {
         ),
         children: <TextSpan>[
           TextSpan(
-            text: 'This transaction ',
+            text: text1,
             style: context.hyphaTextTheme.regular.copyWith(color: HyphaColors.error),
           ),
           const TextSpan(text: ' '),
@@ -63,7 +65,7 @@ class SignTransactionFailedPage extends StatelessWidget {
                     failedText,
                     const SizedBox(height: 16),
                     Text(
-                      'Please try again by triggering the transaction from the website or app. Sorry for the inconvenience.',
+                      text2,
                       style: context.hyphaTextTheme.ralMediumBody.copyWith(color: HyphaColors.midGrey),
                       textAlign: TextAlign.center,
                     ),

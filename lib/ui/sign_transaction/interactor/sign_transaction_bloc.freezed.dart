@@ -12,14 +12,13 @@ part of 'sign_transaction_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$PageCommand {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(SignSuccessTransactionType type)
-        navigateToTransactionSuccess,
+    required TResult Function(SuccessType type) navigateToTransactionSuccess,
     required TResult Function(ErrorResult<String, HyphaError> errorResult)
         navigateToTransactionFailed,
     required TResult Function() navigateAway,
@@ -27,8 +26,7 @@ mixin _$PageCommand {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(SignSuccessTransactionType type)?
-        navigateToTransactionSuccess,
+    TResult? Function(SuccessType type)? navigateToTransactionSuccess,
     TResult? Function(ErrorResult<String, HyphaError> errorResult)?
         navigateToTransactionFailed,
     TResult? Function()? navigateAway,
@@ -36,8 +34,7 @@ mixin _$PageCommand {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(SignSuccessTransactionType type)?
-        navigateToTransactionSuccess,
+    TResult Function(SuccessType type)? navigateToTransactionSuccess,
     TResult Function(ErrorResult<String, HyphaError> errorResult)?
         navigateToTransactionFailed,
     TResult Function()? navigateAway,
@@ -90,48 +87,54 @@ class _$PageCommandCopyWithImpl<$Res, $Val extends PageCommand>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of PageCommand
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
-abstract class _$$_NavigateToTransactionSuccessCopyWith<$Res> {
-  factory _$$_NavigateToTransactionSuccessCopyWith(
-          _$_NavigateToTransactionSuccess value,
-          $Res Function(_$_NavigateToTransactionSuccess) then) =
-      __$$_NavigateToTransactionSuccessCopyWithImpl<$Res>;
+abstract class _$$NavigateToTransactionSuccessImplCopyWith<$Res> {
+  factory _$$NavigateToTransactionSuccessImplCopyWith(
+          _$NavigateToTransactionSuccessImpl value,
+          $Res Function(_$NavigateToTransactionSuccessImpl) then) =
+      __$$NavigateToTransactionSuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({SignSuccessTransactionType type});
+  $Res call({SuccessType type});
 }
 
 /// @nodoc
-class __$$_NavigateToTransactionSuccessCopyWithImpl<$Res>
-    extends _$PageCommandCopyWithImpl<$Res, _$_NavigateToTransactionSuccess>
-    implements _$$_NavigateToTransactionSuccessCopyWith<$Res> {
-  __$$_NavigateToTransactionSuccessCopyWithImpl(
-      _$_NavigateToTransactionSuccess _value,
-      $Res Function(_$_NavigateToTransactionSuccess) _then)
+class __$$NavigateToTransactionSuccessImplCopyWithImpl<$Res>
+    extends _$PageCommandCopyWithImpl<$Res, _$NavigateToTransactionSuccessImpl>
+    implements _$$NavigateToTransactionSuccessImplCopyWith<$Res> {
+  __$$NavigateToTransactionSuccessImplCopyWithImpl(
+      _$NavigateToTransactionSuccessImpl _value,
+      $Res Function(_$NavigateToTransactionSuccessImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PageCommand
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? type = null,
   }) {
-    return _then(_$_NavigateToTransactionSuccess(
+    return _then(_$NavigateToTransactionSuccessImpl(
       null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as SignSuccessTransactionType,
+              as SuccessType,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_NavigateToTransactionSuccess implements _NavigateToTransactionSuccess {
-  const _$_NavigateToTransactionSuccess(this.type);
+class _$NavigateToTransactionSuccessImpl
+    implements _NavigateToTransactionSuccess {
+  const _$NavigateToTransactionSuccessImpl(this.type);
 
   @override
-  final SignSuccessTransactionType type;
+  final SuccessType type;
 
   @override
   String toString() {
@@ -139,28 +142,30 @@ class _$_NavigateToTransactionSuccess implements _NavigateToTransactionSuccess {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_NavigateToTransactionSuccess &&
+            other is _$NavigateToTransactionSuccessImpl &&
             (identical(other.type, type) || other.type == type));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, type);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PageCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$_NavigateToTransactionSuccessCopyWith<_$_NavigateToTransactionSuccess>
-      get copyWith => __$$_NavigateToTransactionSuccessCopyWithImpl<
-          _$_NavigateToTransactionSuccess>(this, _$identity);
+  _$$NavigateToTransactionSuccessImplCopyWith<
+          _$NavigateToTransactionSuccessImpl>
+      get copyWith => __$$NavigateToTransactionSuccessImplCopyWithImpl<
+          _$NavigateToTransactionSuccessImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(SignSuccessTransactionType type)
-        navigateToTransactionSuccess,
+    required TResult Function(SuccessType type) navigateToTransactionSuccess,
     required TResult Function(ErrorResult<String, HyphaError> errorResult)
         navigateToTransactionFailed,
     required TResult Function() navigateAway,
@@ -171,8 +176,7 @@ class _$_NavigateToTransactionSuccess implements _NavigateToTransactionSuccess {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(SignSuccessTransactionType type)?
-        navigateToTransactionSuccess,
+    TResult? Function(SuccessType type)? navigateToTransactionSuccess,
     TResult? Function(ErrorResult<String, HyphaError> errorResult)?
         navigateToTransactionFailed,
     TResult? Function()? navigateAway,
@@ -183,8 +187,7 @@ class _$_NavigateToTransactionSuccess implements _NavigateToTransactionSuccess {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(SignSuccessTransactionType type)?
-        navigateToTransactionSuccess,
+    TResult Function(SuccessType type)? navigateToTransactionSuccess,
     TResult Function(ErrorResult<String, HyphaError> errorResult)?
         navigateToTransactionFailed,
     TResult Function()? navigateAway,
@@ -238,40 +241,46 @@ class _$_NavigateToTransactionSuccess implements _NavigateToTransactionSuccess {
 }
 
 abstract class _NavigateToTransactionSuccess implements PageCommand {
-  const factory _NavigateToTransactionSuccess(
-      final SignSuccessTransactionType type) = _$_NavigateToTransactionSuccess;
+  const factory _NavigateToTransactionSuccess(final SuccessType type) =
+      _$NavigateToTransactionSuccessImpl;
 
-  SignSuccessTransactionType get type;
-  @JsonKey(ignore: true)
-  _$$_NavigateToTransactionSuccessCopyWith<_$_NavigateToTransactionSuccess>
+  SuccessType get type;
+
+  /// Create a copy of PageCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$NavigateToTransactionSuccessImplCopyWith<
+          _$NavigateToTransactionSuccessImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_NavigateToTransactionFailedCopyWith<$Res> {
-  factory _$$_NavigateToTransactionFailedCopyWith(
-          _$_NavigateToTransactionFailed value,
-          $Res Function(_$_NavigateToTransactionFailed) then) =
-      __$$_NavigateToTransactionFailedCopyWithImpl<$Res>;
+abstract class _$$NavigateToTransactionFailedImplCopyWith<$Res> {
+  factory _$$NavigateToTransactionFailedImplCopyWith(
+          _$NavigateToTransactionFailedImpl value,
+          $Res Function(_$NavigateToTransactionFailedImpl) then) =
+      __$$NavigateToTransactionFailedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({ErrorResult<String, HyphaError> errorResult});
 }
 
 /// @nodoc
-class __$$_NavigateToTransactionFailedCopyWithImpl<$Res>
-    extends _$PageCommandCopyWithImpl<$Res, _$_NavigateToTransactionFailed>
-    implements _$$_NavigateToTransactionFailedCopyWith<$Res> {
-  __$$_NavigateToTransactionFailedCopyWithImpl(
-      _$_NavigateToTransactionFailed _value,
-      $Res Function(_$_NavigateToTransactionFailed) _then)
+class __$$NavigateToTransactionFailedImplCopyWithImpl<$Res>
+    extends _$PageCommandCopyWithImpl<$Res, _$NavigateToTransactionFailedImpl>
+    implements _$$NavigateToTransactionFailedImplCopyWith<$Res> {
+  __$$NavigateToTransactionFailedImplCopyWithImpl(
+      _$NavigateToTransactionFailedImpl _value,
+      $Res Function(_$NavigateToTransactionFailedImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PageCommand
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? errorResult = null,
   }) {
-    return _then(_$_NavigateToTransactionFailed(
+    return _then(_$NavigateToTransactionFailedImpl(
       null == errorResult
           ? _value.errorResult
           : errorResult // ignore: cast_nullable_to_non_nullable
@@ -282,8 +291,9 @@ class __$$_NavigateToTransactionFailedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_NavigateToTransactionFailed implements _NavigateToTransactionFailed {
-  const _$_NavigateToTransactionFailed(this.errorResult);
+class _$NavigateToTransactionFailedImpl
+    implements _NavigateToTransactionFailed {
+  const _$NavigateToTransactionFailedImpl(this.errorResult);
 
   @override
   final ErrorResult<String, HyphaError> errorResult;
@@ -294,10 +304,10 @@ class _$_NavigateToTransactionFailed implements _NavigateToTransactionFailed {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_NavigateToTransactionFailed &&
+            other is _$NavigateToTransactionFailedImpl &&
             (identical(other.errorResult, errorResult) ||
                 other.errorResult == errorResult));
   }
@@ -305,18 +315,19 @@ class _$_NavigateToTransactionFailed implements _NavigateToTransactionFailed {
   @override
   int get hashCode => Object.hash(runtimeType, errorResult);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PageCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$_NavigateToTransactionFailedCopyWith<_$_NavigateToTransactionFailed>
-      get copyWith => __$$_NavigateToTransactionFailedCopyWithImpl<
-          _$_NavigateToTransactionFailed>(this, _$identity);
+  _$$NavigateToTransactionFailedImplCopyWith<_$NavigateToTransactionFailedImpl>
+      get copyWith => __$$NavigateToTransactionFailedImplCopyWithImpl<
+          _$NavigateToTransactionFailedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(SignSuccessTransactionType type)
-        navigateToTransactionSuccess,
+    required TResult Function(SuccessType type) navigateToTransactionSuccess,
     required TResult Function(ErrorResult<String, HyphaError> errorResult)
         navigateToTransactionFailed,
     required TResult Function() navigateAway,
@@ -327,8 +338,7 @@ class _$_NavigateToTransactionFailed implements _NavigateToTransactionFailed {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(SignSuccessTransactionType type)?
-        navigateToTransactionSuccess,
+    TResult? Function(SuccessType type)? navigateToTransactionSuccess,
     TResult? Function(ErrorResult<String, HyphaError> errorResult)?
         navigateToTransactionFailed,
     TResult? Function()? navigateAway,
@@ -339,8 +349,7 @@ class _$_NavigateToTransactionFailed implements _NavigateToTransactionFailed {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(SignSuccessTransactionType type)?
-        navigateToTransactionSuccess,
+    TResult Function(SuccessType type)? navigateToTransactionSuccess,
     TResult Function(ErrorResult<String, HyphaError> errorResult)?
         navigateToTransactionFailed,
     TResult Function()? navigateAway,
@@ -396,34 +405,40 @@ class _$_NavigateToTransactionFailed implements _NavigateToTransactionFailed {
 abstract class _NavigateToTransactionFailed implements PageCommand {
   const factory _NavigateToTransactionFailed(
           final ErrorResult<String, HyphaError> errorResult) =
-      _$_NavigateToTransactionFailed;
+      _$NavigateToTransactionFailedImpl;
 
   ErrorResult<String, HyphaError> get errorResult;
-  @JsonKey(ignore: true)
-  _$$_NavigateToTransactionFailedCopyWith<_$_NavigateToTransactionFailed>
+
+  /// Create a copy of PageCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$NavigateToTransactionFailedImplCopyWith<_$NavigateToTransactionFailedImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_NavigateAwayCopyWith<$Res> {
-  factory _$$_NavigateAwayCopyWith(
-          _$_NavigateAway value, $Res Function(_$_NavigateAway) then) =
-      __$$_NavigateAwayCopyWithImpl<$Res>;
+abstract class _$$NavigateAwayImplCopyWith<$Res> {
+  factory _$$NavigateAwayImplCopyWith(
+          _$NavigateAwayImpl value, $Res Function(_$NavigateAwayImpl) then) =
+      __$$NavigateAwayImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_NavigateAwayCopyWithImpl<$Res>
-    extends _$PageCommandCopyWithImpl<$Res, _$_NavigateAway>
-    implements _$$_NavigateAwayCopyWith<$Res> {
-  __$$_NavigateAwayCopyWithImpl(
-      _$_NavigateAway _value, $Res Function(_$_NavigateAway) _then)
+class __$$NavigateAwayImplCopyWithImpl<$Res>
+    extends _$PageCommandCopyWithImpl<$Res, _$NavigateAwayImpl>
+    implements _$$NavigateAwayImplCopyWith<$Res> {
+  __$$NavigateAwayImplCopyWithImpl(
+      _$NavigateAwayImpl _value, $Res Function(_$NavigateAwayImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of PageCommand
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$_NavigateAway implements _NavigateAway {
-  const _$_NavigateAway();
+class _$NavigateAwayImpl implements _NavigateAway {
+  const _$NavigateAwayImpl();
 
   @override
   String toString() {
@@ -431,9 +446,9 @@ class _$_NavigateAway implements _NavigateAway {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_NavigateAway);
+        (other.runtimeType == runtimeType && other is _$NavigateAwayImpl);
   }
 
   @override
@@ -442,8 +457,7 @@ class _$_NavigateAway implements _NavigateAway {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(SignSuccessTransactionType type)
-        navigateToTransactionSuccess,
+    required TResult Function(SuccessType type) navigateToTransactionSuccess,
     required TResult Function(ErrorResult<String, HyphaError> errorResult)
         navigateToTransactionFailed,
     required TResult Function() navigateAway,
@@ -454,8 +468,7 @@ class _$_NavigateAway implements _NavigateAway {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(SignSuccessTransactionType type)?
-        navigateToTransactionSuccess,
+    TResult? Function(SuccessType type)? navigateToTransactionSuccess,
     TResult? Function(ErrorResult<String, HyphaError> errorResult)?
         navigateToTransactionFailed,
     TResult? Function()? navigateAway,
@@ -466,8 +479,7 @@ class _$_NavigateAway implements _NavigateAway {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(SignSuccessTransactionType type)?
-        navigateToTransactionSuccess,
+    TResult Function(SuccessType type)? navigateToTransactionSuccess,
     TResult Function(ErrorResult<String, HyphaError> errorResult)?
         navigateToTransactionFailed,
     TResult Function()? navigateAway,
@@ -521,7 +533,7 @@ class _$_NavigateAway implements _NavigateAway {
 }
 
 abstract class _NavigateAway implements PageCommand {
-  const factory _NavigateAway() = _$_NavigateAway;
+  const factory _NavigateAway() = _$NavigateAwayImpl;
 }
 
 /// @nodoc
@@ -595,27 +607,34 @@ class _$SignTransactionEventCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of SignTransactionEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
-abstract class _$$_InitialCopyWith<$Res> {
-  factory _$$_InitialCopyWith(
-          _$_Initial value, $Res Function(_$_Initial) then) =
-      __$$_InitialCopyWithImpl<$Res>;
+abstract class _$$InitialImplCopyWith<$Res> {
+  factory _$$InitialImplCopyWith(
+          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
+      __$$InitialImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_InitialCopyWithImpl<$Res>
-    extends _$SignTransactionEventCopyWithImpl<$Res, _$_Initial>
-    implements _$$_InitialCopyWith<$Res> {
-  __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
+class __$$InitialImplCopyWithImpl<$Res>
+    extends _$SignTransactionEventCopyWithImpl<$Res, _$InitialImpl>
+    implements _$$InitialImplCopyWith<$Res> {
+  __$$InitialImplCopyWithImpl(
+      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of SignTransactionEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$_Initial implements _Initial {
-  const _$_Initial();
+class _$InitialImpl implements _Initial {
+  const _$InitialImpl();
 
   @override
   String toString() {
@@ -623,9 +642,9 @@ class _$_Initial implements _Initial {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Initial);
+        (other.runtimeType == runtimeType && other is _$InitialImpl);
   }
 
   @override
@@ -707,29 +726,32 @@ class _$_Initial implements _Initial {
 }
 
 abstract class _Initial implements SignTransactionEvent {
-  const factory _Initial() = _$_Initial;
+  const factory _Initial() = _$InitialImpl;
 }
 
 /// @nodoc
-abstract class _$$_OnUserSlideCompletedCopyWith<$Res> {
-  factory _$$_OnUserSlideCompletedCopyWith(_$_OnUserSlideCompleted value,
-          $Res Function(_$_OnUserSlideCompleted) then) =
-      __$$_OnUserSlideCompletedCopyWithImpl<$Res>;
+abstract class _$$OnUserSlideCompletedImplCopyWith<$Res> {
+  factory _$$OnUserSlideCompletedImplCopyWith(_$OnUserSlideCompletedImpl value,
+          $Res Function(_$OnUserSlideCompletedImpl) then) =
+      __$$OnUserSlideCompletedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_OnUserSlideCompletedCopyWithImpl<$Res>
-    extends _$SignTransactionEventCopyWithImpl<$Res, _$_OnUserSlideCompleted>
-    implements _$$_OnUserSlideCompletedCopyWith<$Res> {
-  __$$_OnUserSlideCompletedCopyWithImpl(_$_OnUserSlideCompleted _value,
-      $Res Function(_$_OnUserSlideCompleted) _then)
+class __$$OnUserSlideCompletedImplCopyWithImpl<$Res>
+    extends _$SignTransactionEventCopyWithImpl<$Res, _$OnUserSlideCompletedImpl>
+    implements _$$OnUserSlideCompletedImplCopyWith<$Res> {
+  __$$OnUserSlideCompletedImplCopyWithImpl(_$OnUserSlideCompletedImpl _value,
+      $Res Function(_$OnUserSlideCompletedImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of SignTransactionEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$_OnUserSlideCompleted implements _OnUserSlideCompleted {
-  const _$_OnUserSlideCompleted();
+class _$OnUserSlideCompletedImpl implements _OnUserSlideCompleted {
+  const _$OnUserSlideCompletedImpl();
 
   @override
   String toString() {
@@ -737,9 +759,10 @@ class _$_OnUserSlideCompleted implements _OnUserSlideCompleted {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_OnUserSlideCompleted);
+        (other.runtimeType == runtimeType &&
+            other is _$OnUserSlideCompletedImpl);
   }
 
   @override
@@ -821,29 +844,32 @@ class _$_OnUserSlideCompleted implements _OnUserSlideCompleted {
 }
 
 abstract class _OnUserSlideCompleted implements SignTransactionEvent {
-  const factory _OnUserSlideCompleted() = _$_OnUserSlideCompleted;
+  const factory _OnUserSlideCompleted() = _$OnUserSlideCompletedImpl;
 }
 
 /// @nodoc
-abstract class _$$_OnUserSlideCanceledCopyWith<$Res> {
-  factory _$$_OnUserSlideCanceledCopyWith(_$_OnUserSlideCanceled value,
-          $Res Function(_$_OnUserSlideCanceled) then) =
-      __$$_OnUserSlideCanceledCopyWithImpl<$Res>;
+abstract class _$$OnUserSlideCanceledImplCopyWith<$Res> {
+  factory _$$OnUserSlideCanceledImplCopyWith(_$OnUserSlideCanceledImpl value,
+          $Res Function(_$OnUserSlideCanceledImpl) then) =
+      __$$OnUserSlideCanceledImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_OnUserSlideCanceledCopyWithImpl<$Res>
-    extends _$SignTransactionEventCopyWithImpl<$Res, _$_OnUserSlideCanceled>
-    implements _$$_OnUserSlideCanceledCopyWith<$Res> {
-  __$$_OnUserSlideCanceledCopyWithImpl(_$_OnUserSlideCanceled _value,
-      $Res Function(_$_OnUserSlideCanceled) _then)
+class __$$OnUserSlideCanceledImplCopyWithImpl<$Res>
+    extends _$SignTransactionEventCopyWithImpl<$Res, _$OnUserSlideCanceledImpl>
+    implements _$$OnUserSlideCanceledImplCopyWith<$Res> {
+  __$$OnUserSlideCanceledImplCopyWithImpl(_$OnUserSlideCanceledImpl _value,
+      $Res Function(_$OnUserSlideCanceledImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of SignTransactionEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$_OnUserSlideCanceled implements _OnUserSlideCanceled {
-  const _$_OnUserSlideCanceled();
+class _$OnUserSlideCanceledImpl implements _OnUserSlideCanceled {
+  const _$OnUserSlideCanceledImpl();
 
   @override
   String toString() {
@@ -851,9 +877,10 @@ class _$_OnUserSlideCanceled implements _OnUserSlideCanceled {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_OnUserSlideCanceled);
+        (other.runtimeType == runtimeType &&
+            other is _$OnUserSlideCanceledImpl);
   }
 
   @override
@@ -935,29 +962,32 @@ class _$_OnUserSlideCanceled implements _OnUserSlideCanceled {
 }
 
 abstract class _OnUserSlideCanceled implements SignTransactionEvent {
-  const factory _OnUserSlideCanceled() = _$_OnUserSlideCanceled;
+  const factory _OnUserSlideCanceled() = _$OnUserSlideCanceledImpl;
 }
 
 /// @nodoc
-abstract class _$$_ClearPageCommandCopyWith<$Res> {
-  factory _$$_ClearPageCommandCopyWith(
-          _$_ClearPageCommand value, $Res Function(_$_ClearPageCommand) then) =
-      __$$_ClearPageCommandCopyWithImpl<$Res>;
+abstract class _$$ClearPageCommandImplCopyWith<$Res> {
+  factory _$$ClearPageCommandImplCopyWith(_$ClearPageCommandImpl value,
+          $Res Function(_$ClearPageCommandImpl) then) =
+      __$$ClearPageCommandImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_ClearPageCommandCopyWithImpl<$Res>
-    extends _$SignTransactionEventCopyWithImpl<$Res, _$_ClearPageCommand>
-    implements _$$_ClearPageCommandCopyWith<$Res> {
-  __$$_ClearPageCommandCopyWithImpl(
-      _$_ClearPageCommand _value, $Res Function(_$_ClearPageCommand) _then)
+class __$$ClearPageCommandImplCopyWithImpl<$Res>
+    extends _$SignTransactionEventCopyWithImpl<$Res, _$ClearPageCommandImpl>
+    implements _$$ClearPageCommandImplCopyWith<$Res> {
+  __$$ClearPageCommandImplCopyWithImpl(_$ClearPageCommandImpl _value,
+      $Res Function(_$ClearPageCommandImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of SignTransactionEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$_ClearPageCommand implements _ClearPageCommand {
-  const _$_ClearPageCommand();
+class _$ClearPageCommandImpl implements _ClearPageCommand {
+  const _$ClearPageCommandImpl();
 
   @override
   String toString() {
@@ -965,9 +995,9 @@ class _$_ClearPageCommand implements _ClearPageCommand {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_ClearPageCommand);
+        (other.runtimeType == runtimeType && other is _$ClearPageCommandImpl);
   }
 
   @override
@@ -1049,7 +1079,7 @@ class _$_ClearPageCommand implements _ClearPageCommand {
 }
 
 abstract class _ClearPageCommand implements SignTransactionEvent {
-  const factory _ClearPageCommand() = _$_ClearPageCommand;
+  const factory _ClearPageCommand() = _$ClearPageCommandImpl;
 }
 
 /// @nodoc
@@ -1061,7 +1091,9 @@ mixin _$SignTransactionState {
   String? get callback => throw _privateConstructorUsedError;
   PageCommand? get command => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SignTransactionState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SignTransactionStateCopyWith<SignTransactionState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1093,6 +1125,8 @@ class _$SignTransactionStateCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SignTransactionState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1126,6 +1160,8 @@ class _$SignTransactionStateCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of SignTransactionState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PageCommandCopyWith<$Res>? get command {
@@ -1140,11 +1176,11 @@ class _$SignTransactionStateCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_SignTransactionStateCopyWith<$Res>
+abstract class _$$SignTransactionStateImplCopyWith<$Res>
     implements $SignTransactionStateCopyWith<$Res> {
-  factory _$$_SignTransactionStateCopyWith(_$_SignTransactionState value,
-          $Res Function(_$_SignTransactionState) then) =
-      __$$_SignTransactionStateCopyWithImpl<$Res>;
+  factory _$$SignTransactionStateImplCopyWith(_$SignTransactionStateImpl value,
+          $Res Function(_$SignTransactionStateImpl) then) =
+      __$$SignTransactionStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -1159,13 +1195,15 @@ abstract class _$$_SignTransactionStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_SignTransactionStateCopyWithImpl<$Res>
-    extends _$SignTransactionStateCopyWithImpl<$Res, _$_SignTransactionState>
-    implements _$$_SignTransactionStateCopyWith<$Res> {
-  __$$_SignTransactionStateCopyWithImpl(_$_SignTransactionState _value,
-      $Res Function(_$_SignTransactionState) _then)
+class __$$SignTransactionStateImplCopyWithImpl<$Res>
+    extends _$SignTransactionStateCopyWithImpl<$Res, _$SignTransactionStateImpl>
+    implements _$$SignTransactionStateImplCopyWith<$Res> {
+  __$$SignTransactionStateImplCopyWithImpl(_$SignTransactionStateImpl _value,
+      $Res Function(_$SignTransactionStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SignTransactionState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1175,7 +1213,7 @@ class __$$_SignTransactionStateCopyWithImpl<$Res>
     Object? callback = freezed,
     Object? command = freezed,
   }) {
-    return _then(_$_SignTransactionState(
+    return _then(_$SignTransactionStateImpl(
       pageState: null == pageState
           ? _value.pageState
           : pageState // ignore: cast_nullable_to_non_nullable
@@ -1202,8 +1240,8 @@ class __$$_SignTransactionStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_SignTransactionState implements _SignTransactionState {
-  const _$_SignTransactionState(
+class _$SignTransactionStateImpl implements _SignTransactionState {
+  const _$SignTransactionStateImpl(
       {this.pageState = PageState.initial,
       required this.transactionDetailsData,
       required this.qrCodeData,
@@ -1228,10 +1266,10 @@ class _$_SignTransactionState implements _SignTransactionState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_SignTransactionState &&
+            other is _$SignTransactionStateImpl &&
             (identical(other.pageState, pageState) ||
                 other.pageState == pageState) &&
             (identical(other.transactionDetailsData, transactionDetailsData) ||
@@ -1247,12 +1285,15 @@ class _$_SignTransactionState implements _SignTransactionState {
   int get hashCode => Object.hash(runtimeType, pageState,
       transactionDetailsData, qrCodeData, callback, command);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SignTransactionState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$_SignTransactionStateCopyWith<_$_SignTransactionState> get copyWith =>
-      __$$_SignTransactionStateCopyWithImpl<_$_SignTransactionState>(
-          this, _$identity);
+  _$$SignTransactionStateImplCopyWith<_$SignTransactionStateImpl>
+      get copyWith =>
+          __$$SignTransactionStateImplCopyWithImpl<_$SignTransactionStateImpl>(
+              this, _$identity);
 }
 
 abstract class _SignTransactionState implements SignTransactionState {
@@ -1261,7 +1302,7 @@ abstract class _SignTransactionState implements SignTransactionState {
       required final TransactionDetailsData transactionDetailsData,
       required final ScanQrCodeResultData qrCodeData,
       final String? callback,
-      final PageCommand? command}) = _$_SignTransactionState;
+      final PageCommand? command}) = _$SignTransactionStateImpl;
 
   @override
   PageState get pageState;
@@ -1273,8 +1314,11 @@ abstract class _SignTransactionState implements SignTransactionState {
   String? get callback;
   @override
   PageCommand? get command;
+
+  /// Create a copy of SignTransactionState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
-  _$$_SignTransactionStateCopyWith<_$_SignTransactionState> get copyWith =>
-      throw _privateConstructorUsedError;
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$SignTransactionStateImplCopyWith<_$SignTransactionStateImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

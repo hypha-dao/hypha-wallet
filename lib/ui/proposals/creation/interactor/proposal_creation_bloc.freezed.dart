@@ -19,16 +19,22 @@ mixin _$PageCommand {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() navigateBackToProposals,
+    required TResult Function() navigateToSuccessPage,
+    required TResult Function(HyphaError hyphaError) navigateToFailurePage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? navigateBackToProposals,
+    TResult? Function()? navigateToSuccessPage,
+    TResult? Function(HyphaError hyphaError)? navigateToFailurePage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? navigateBackToProposals,
+    TResult Function()? navigateToSuccessPage,
+    TResult Function(HyphaError hyphaError)? navigateToFailurePage,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -36,16 +42,24 @@ mixin _$PageCommand {
   TResult map<TResult extends Object?>({
     required TResult Function(_NavigateBackToProposals value)
         navigateBackToProposals,
+    required TResult Function(_NavigateToSuccessPage value)
+        navigateToSuccessPage,
+    required TResult Function(_NavigateToFailurePage value)
+        navigateToFailurePage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_NavigateBackToProposals value)? navigateBackToProposals,
+    TResult? Function(_NavigateToSuccessPage value)? navigateToSuccessPage,
+    TResult? Function(_NavigateToFailurePage value)? navigateToFailurePage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_NavigateBackToProposals value)? navigateBackToProposals,
+    TResult Function(_NavigateToSuccessPage value)? navigateToSuccessPage,
+    TResult Function(_NavigateToFailurePage value)? navigateToFailurePage,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -117,6 +131,8 @@ class _$NavigateBackToProposalsImpl implements _NavigateBackToProposals {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() navigateBackToProposals,
+    required TResult Function() navigateToSuccessPage,
+    required TResult Function(HyphaError hyphaError) navigateToFailurePage,
   }) {
     return navigateBackToProposals();
   }
@@ -125,6 +141,8 @@ class _$NavigateBackToProposalsImpl implements _NavigateBackToProposals {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? navigateBackToProposals,
+    TResult? Function()? navigateToSuccessPage,
+    TResult? Function(HyphaError hyphaError)? navigateToFailurePage,
   }) {
     return navigateBackToProposals?.call();
   }
@@ -133,6 +151,8 @@ class _$NavigateBackToProposalsImpl implements _NavigateBackToProposals {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? navigateBackToProposals,
+    TResult Function()? navigateToSuccessPage,
+    TResult Function(HyphaError hyphaError)? navigateToFailurePage,
     required TResult orElse(),
   }) {
     if (navigateBackToProposals != null) {
@@ -146,6 +166,10 @@ class _$NavigateBackToProposalsImpl implements _NavigateBackToProposals {
   TResult map<TResult extends Object?>({
     required TResult Function(_NavigateBackToProposals value)
         navigateBackToProposals,
+    required TResult Function(_NavigateToSuccessPage value)
+        navigateToSuccessPage,
+    required TResult Function(_NavigateToFailurePage value)
+        navigateToFailurePage,
   }) {
     return navigateBackToProposals(this);
   }
@@ -154,6 +178,8 @@ class _$NavigateBackToProposalsImpl implements _NavigateBackToProposals {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_NavigateBackToProposals value)? navigateBackToProposals,
+    TResult? Function(_NavigateToSuccessPage value)? navigateToSuccessPage,
+    TResult? Function(_NavigateToFailurePage value)? navigateToFailurePage,
   }) {
     return navigateBackToProposals?.call(this);
   }
@@ -162,6 +188,8 @@ class _$NavigateBackToProposalsImpl implements _NavigateBackToProposals {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_NavigateBackToProposals value)? navigateBackToProposals,
+    TResult Function(_NavigateToSuccessPage value)? navigateToSuccessPage,
+    TResult Function(_NavigateToFailurePage value)? navigateToFailurePage,
     required TResult orElse(),
   }) {
     if (navigateBackToProposals != null) {
@@ -176,11 +204,281 @@ abstract class _NavigateBackToProposals implements PageCommand {
 }
 
 /// @nodoc
+abstract class _$$NavigateToSuccessPageImplCopyWith<$Res> {
+  factory _$$NavigateToSuccessPageImplCopyWith(
+          _$NavigateToSuccessPageImpl value,
+          $Res Function(_$NavigateToSuccessPageImpl) then) =
+      __$$NavigateToSuccessPageImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$NavigateToSuccessPageImplCopyWithImpl<$Res>
+    extends _$PageCommandCopyWithImpl<$Res, _$NavigateToSuccessPageImpl>
+    implements _$$NavigateToSuccessPageImplCopyWith<$Res> {
+  __$$NavigateToSuccessPageImplCopyWithImpl(_$NavigateToSuccessPageImpl _value,
+      $Res Function(_$NavigateToSuccessPageImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of PageCommand
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$NavigateToSuccessPageImpl implements _NavigateToSuccessPage {
+  const _$NavigateToSuccessPageImpl();
+
+  @override
+  String toString() {
+    return 'PageCommand.navigateToSuccessPage()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$NavigateToSuccessPageImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() navigateBackToProposals,
+    required TResult Function() navigateToSuccessPage,
+    required TResult Function(HyphaError hyphaError) navigateToFailurePage,
+  }) {
+    return navigateToSuccessPage();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? navigateBackToProposals,
+    TResult? Function()? navigateToSuccessPage,
+    TResult? Function(HyphaError hyphaError)? navigateToFailurePage,
+  }) {
+    return navigateToSuccessPage?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? navigateBackToProposals,
+    TResult Function()? navigateToSuccessPage,
+    TResult Function(HyphaError hyphaError)? navigateToFailurePage,
+    required TResult orElse(),
+  }) {
+    if (navigateToSuccessPage != null) {
+      return navigateToSuccessPage();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_NavigateBackToProposals value)
+        navigateBackToProposals,
+    required TResult Function(_NavigateToSuccessPage value)
+        navigateToSuccessPage,
+    required TResult Function(_NavigateToFailurePage value)
+        navigateToFailurePage,
+  }) {
+    return navigateToSuccessPage(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_NavigateBackToProposals value)? navigateBackToProposals,
+    TResult? Function(_NavigateToSuccessPage value)? navigateToSuccessPage,
+    TResult? Function(_NavigateToFailurePage value)? navigateToFailurePage,
+  }) {
+    return navigateToSuccessPage?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_NavigateBackToProposals value)? navigateBackToProposals,
+    TResult Function(_NavigateToSuccessPage value)? navigateToSuccessPage,
+    TResult Function(_NavigateToFailurePage value)? navigateToFailurePage,
+    required TResult orElse(),
+  }) {
+    if (navigateToSuccessPage != null) {
+      return navigateToSuccessPage(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _NavigateToSuccessPage implements PageCommand {
+  const factory _NavigateToSuccessPage() = _$NavigateToSuccessPageImpl;
+}
+
+/// @nodoc
+abstract class _$$NavigateToFailurePageImplCopyWith<$Res> {
+  factory _$$NavigateToFailurePageImplCopyWith(
+          _$NavigateToFailurePageImpl value,
+          $Res Function(_$NavigateToFailurePageImpl) then) =
+      __$$NavigateToFailurePageImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({HyphaError hyphaError});
+}
+
+/// @nodoc
+class __$$NavigateToFailurePageImplCopyWithImpl<$Res>
+    extends _$PageCommandCopyWithImpl<$Res, _$NavigateToFailurePageImpl>
+    implements _$$NavigateToFailurePageImplCopyWith<$Res> {
+  __$$NavigateToFailurePageImplCopyWithImpl(_$NavigateToFailurePageImpl _value,
+      $Res Function(_$NavigateToFailurePageImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of PageCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? hyphaError = null,
+  }) {
+    return _then(_$NavigateToFailurePageImpl(
+      null == hyphaError
+          ? _value.hyphaError
+          : hyphaError // ignore: cast_nullable_to_non_nullable
+              as HyphaError,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$NavigateToFailurePageImpl implements _NavigateToFailurePage {
+  const _$NavigateToFailurePageImpl(this.hyphaError);
+
+  @override
+  final HyphaError hyphaError;
+
+  @override
+  String toString() {
+    return 'PageCommand.navigateToFailurePage(hyphaError: $hyphaError)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$NavigateToFailurePageImpl &&
+            (identical(other.hyphaError, hyphaError) ||
+                other.hyphaError == hyphaError));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, hyphaError);
+
+  /// Create a copy of PageCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$NavigateToFailurePageImplCopyWith<_$NavigateToFailurePageImpl>
+      get copyWith => __$$NavigateToFailurePageImplCopyWithImpl<
+          _$NavigateToFailurePageImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() navigateBackToProposals,
+    required TResult Function() navigateToSuccessPage,
+    required TResult Function(HyphaError hyphaError) navigateToFailurePage,
+  }) {
+    return navigateToFailurePage(hyphaError);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? navigateBackToProposals,
+    TResult? Function()? navigateToSuccessPage,
+    TResult? Function(HyphaError hyphaError)? navigateToFailurePage,
+  }) {
+    return navigateToFailurePage?.call(hyphaError);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? navigateBackToProposals,
+    TResult Function()? navigateToSuccessPage,
+    TResult Function(HyphaError hyphaError)? navigateToFailurePage,
+    required TResult orElse(),
+  }) {
+    if (navigateToFailurePage != null) {
+      return navigateToFailurePage(hyphaError);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_NavigateBackToProposals value)
+        navigateBackToProposals,
+    required TResult Function(_NavigateToSuccessPage value)
+        navigateToSuccessPage,
+    required TResult Function(_NavigateToFailurePage value)
+        navigateToFailurePage,
+  }) {
+    return navigateToFailurePage(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_NavigateBackToProposals value)? navigateBackToProposals,
+    TResult? Function(_NavigateToSuccessPage value)? navigateToSuccessPage,
+    TResult? Function(_NavigateToFailurePage value)? navigateToFailurePage,
+  }) {
+    return navigateToFailurePage?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_NavigateBackToProposals value)? navigateBackToProposals,
+    TResult Function(_NavigateToSuccessPage value)? navigateToSuccessPage,
+    TResult Function(_NavigateToFailurePage value)? navigateToFailurePage,
+    required TResult orElse(),
+  }) {
+    if (navigateToFailurePage != null) {
+      return navigateToFailurePage(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _NavigateToFailurePage implements PageCommand {
+  const factory _NavigateToFailurePage(final HyphaError hyphaError) =
+      _$NavigateToFailurePageImpl;
+
+  HyphaError get hyphaError;
+
+  /// Create a copy of PageCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$NavigateToFailurePageImplCopyWith<_$NavigateToFailurePageImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$ProposalCreationEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(int nextViewIndex) updateCurrentView,
     required TResult Function(Map<String, dynamic> updates) updateProposal,
+    required TResult Function() publishProposal,
     required TResult Function() clearPageCommand,
   }) =>
       throw _privateConstructorUsedError;
@@ -188,6 +486,7 @@ mixin _$ProposalCreationEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int nextViewIndex)? updateCurrentView,
     TResult? Function(Map<String, dynamic> updates)? updateProposal,
+    TResult? Function()? publishProposal,
     TResult? Function()? clearPageCommand,
   }) =>
       throw _privateConstructorUsedError;
@@ -195,6 +494,7 @@ mixin _$ProposalCreationEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int nextViewIndex)? updateCurrentView,
     TResult Function(Map<String, dynamic> updates)? updateProposal,
+    TResult Function()? publishProposal,
     TResult Function()? clearPageCommand,
     required TResult orElse(),
   }) =>
@@ -203,6 +503,7 @@ mixin _$ProposalCreationEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_UpdateCurrentView value) updateCurrentView,
     required TResult Function(_UpdateProposal value) updateProposal,
+    required TResult Function(_PublishProposal value) publishProposal,
     required TResult Function(_ClearPageCommand value) clearPageCommand,
   }) =>
       throw _privateConstructorUsedError;
@@ -210,6 +511,7 @@ mixin _$ProposalCreationEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_UpdateCurrentView value)? updateCurrentView,
     TResult? Function(_UpdateProposal value)? updateProposal,
+    TResult? Function(_PublishProposal value)? publishProposal,
     TResult? Function(_ClearPageCommand value)? clearPageCommand,
   }) =>
       throw _privateConstructorUsedError;
@@ -217,6 +519,7 @@ mixin _$ProposalCreationEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateCurrentView value)? updateCurrentView,
     TResult Function(_UpdateProposal value)? updateProposal,
+    TResult Function(_PublishProposal value)? publishProposal,
     TResult Function(_ClearPageCommand value)? clearPageCommand,
     required TResult orElse(),
   }) =>
@@ -317,6 +620,7 @@ class _$UpdateCurrentViewImpl implements _UpdateCurrentView {
   TResult when<TResult extends Object?>({
     required TResult Function(int nextViewIndex) updateCurrentView,
     required TResult Function(Map<String, dynamic> updates) updateProposal,
+    required TResult Function() publishProposal,
     required TResult Function() clearPageCommand,
   }) {
     return updateCurrentView(nextViewIndex);
@@ -327,6 +631,7 @@ class _$UpdateCurrentViewImpl implements _UpdateCurrentView {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int nextViewIndex)? updateCurrentView,
     TResult? Function(Map<String, dynamic> updates)? updateProposal,
+    TResult? Function()? publishProposal,
     TResult? Function()? clearPageCommand,
   }) {
     return updateCurrentView?.call(nextViewIndex);
@@ -337,6 +642,7 @@ class _$UpdateCurrentViewImpl implements _UpdateCurrentView {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int nextViewIndex)? updateCurrentView,
     TResult Function(Map<String, dynamic> updates)? updateProposal,
+    TResult Function()? publishProposal,
     TResult Function()? clearPageCommand,
     required TResult orElse(),
   }) {
@@ -351,6 +657,7 @@ class _$UpdateCurrentViewImpl implements _UpdateCurrentView {
   TResult map<TResult extends Object?>({
     required TResult Function(_UpdateCurrentView value) updateCurrentView,
     required TResult Function(_UpdateProposal value) updateProposal,
+    required TResult Function(_PublishProposal value) publishProposal,
     required TResult Function(_ClearPageCommand value) clearPageCommand,
   }) {
     return updateCurrentView(this);
@@ -361,6 +668,7 @@ class _$UpdateCurrentViewImpl implements _UpdateCurrentView {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_UpdateCurrentView value)? updateCurrentView,
     TResult? Function(_UpdateProposal value)? updateProposal,
+    TResult? Function(_PublishProposal value)? publishProposal,
     TResult? Function(_ClearPageCommand value)? clearPageCommand,
   }) {
     return updateCurrentView?.call(this);
@@ -371,6 +679,7 @@ class _$UpdateCurrentViewImpl implements _UpdateCurrentView {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateCurrentView value)? updateCurrentView,
     TResult Function(_UpdateProposal value)? updateProposal,
+    TResult Function(_PublishProposal value)? publishProposal,
     TResult Function(_ClearPageCommand value)? clearPageCommand,
     required TResult orElse(),
   }) {
@@ -472,6 +781,7 @@ class _$UpdateProposalImpl implements _UpdateProposal {
   TResult when<TResult extends Object?>({
     required TResult Function(int nextViewIndex) updateCurrentView,
     required TResult Function(Map<String, dynamic> updates) updateProposal,
+    required TResult Function() publishProposal,
     required TResult Function() clearPageCommand,
   }) {
     return updateProposal(updates);
@@ -482,6 +792,7 @@ class _$UpdateProposalImpl implements _UpdateProposal {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int nextViewIndex)? updateCurrentView,
     TResult? Function(Map<String, dynamic> updates)? updateProposal,
+    TResult? Function()? publishProposal,
     TResult? Function()? clearPageCommand,
   }) {
     return updateProposal?.call(updates);
@@ -492,6 +803,7 @@ class _$UpdateProposalImpl implements _UpdateProposal {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int nextViewIndex)? updateCurrentView,
     TResult Function(Map<String, dynamic> updates)? updateProposal,
+    TResult Function()? publishProposal,
     TResult Function()? clearPageCommand,
     required TResult orElse(),
   }) {
@@ -506,6 +818,7 @@ class _$UpdateProposalImpl implements _UpdateProposal {
   TResult map<TResult extends Object?>({
     required TResult Function(_UpdateCurrentView value) updateCurrentView,
     required TResult Function(_UpdateProposal value) updateProposal,
+    required TResult Function(_PublishProposal value) publishProposal,
     required TResult Function(_ClearPageCommand value) clearPageCommand,
   }) {
     return updateProposal(this);
@@ -516,6 +829,7 @@ class _$UpdateProposalImpl implements _UpdateProposal {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_UpdateCurrentView value)? updateCurrentView,
     TResult? Function(_UpdateProposal value)? updateProposal,
+    TResult? Function(_PublishProposal value)? publishProposal,
     TResult? Function(_ClearPageCommand value)? clearPageCommand,
   }) {
     return updateProposal?.call(this);
@@ -526,6 +840,7 @@ class _$UpdateProposalImpl implements _UpdateProposal {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateCurrentView value)? updateCurrentView,
     TResult Function(_UpdateProposal value)? updateProposal,
+    TResult Function(_PublishProposal value)? publishProposal,
     TResult Function(_ClearPageCommand value)? clearPageCommand,
     required TResult orElse(),
   }) {
@@ -547,6 +862,123 @@ abstract class _UpdateProposal implements ProposalCreationEvent {
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UpdateProposalImplCopyWith<_$UpdateProposalImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$PublishProposalImplCopyWith<$Res> {
+  factory _$$PublishProposalImplCopyWith(_$PublishProposalImpl value,
+          $Res Function(_$PublishProposalImpl) then) =
+      __$$PublishProposalImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$PublishProposalImplCopyWithImpl<$Res>
+    extends _$ProposalCreationEventCopyWithImpl<$Res, _$PublishProposalImpl>
+    implements _$$PublishProposalImplCopyWith<$Res> {
+  __$$PublishProposalImplCopyWithImpl(
+      _$PublishProposalImpl _value, $Res Function(_$PublishProposalImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ProposalCreationEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$PublishProposalImpl implements _PublishProposal {
+  const _$PublishProposalImpl();
+
+  @override
+  String toString() {
+    return 'ProposalCreationEvent.publishProposal()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$PublishProposalImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int nextViewIndex) updateCurrentView,
+    required TResult Function(Map<String, dynamic> updates) updateProposal,
+    required TResult Function() publishProposal,
+    required TResult Function() clearPageCommand,
+  }) {
+    return publishProposal();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int nextViewIndex)? updateCurrentView,
+    TResult? Function(Map<String, dynamic> updates)? updateProposal,
+    TResult? Function()? publishProposal,
+    TResult? Function()? clearPageCommand,
+  }) {
+    return publishProposal?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int nextViewIndex)? updateCurrentView,
+    TResult Function(Map<String, dynamic> updates)? updateProposal,
+    TResult Function()? publishProposal,
+    TResult Function()? clearPageCommand,
+    required TResult orElse(),
+  }) {
+    if (publishProposal != null) {
+      return publishProposal();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UpdateCurrentView value) updateCurrentView,
+    required TResult Function(_UpdateProposal value) updateProposal,
+    required TResult Function(_PublishProposal value) publishProposal,
+    required TResult Function(_ClearPageCommand value) clearPageCommand,
+  }) {
+    return publishProposal(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_UpdateCurrentView value)? updateCurrentView,
+    TResult? Function(_UpdateProposal value)? updateProposal,
+    TResult? Function(_PublishProposal value)? publishProposal,
+    TResult? Function(_ClearPageCommand value)? clearPageCommand,
+  }) {
+    return publishProposal?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UpdateCurrentView value)? updateCurrentView,
+    TResult Function(_UpdateProposal value)? updateProposal,
+    TResult Function(_PublishProposal value)? publishProposal,
+    TResult Function(_ClearPageCommand value)? clearPageCommand,
+    required TResult orElse(),
+  }) {
+    if (publishProposal != null) {
+      return publishProposal(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _PublishProposal implements ProposalCreationEvent {
+  const factory _PublishProposal() = _$PublishProposalImpl;
 }
 
 /// @nodoc
@@ -592,6 +1024,7 @@ class _$ClearPageCommandImpl implements _ClearPageCommand {
   TResult when<TResult extends Object?>({
     required TResult Function(int nextViewIndex) updateCurrentView,
     required TResult Function(Map<String, dynamic> updates) updateProposal,
+    required TResult Function() publishProposal,
     required TResult Function() clearPageCommand,
   }) {
     return clearPageCommand();
@@ -602,6 +1035,7 @@ class _$ClearPageCommandImpl implements _ClearPageCommand {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int nextViewIndex)? updateCurrentView,
     TResult? Function(Map<String, dynamic> updates)? updateProposal,
+    TResult? Function()? publishProposal,
     TResult? Function()? clearPageCommand,
   }) {
     return clearPageCommand?.call();
@@ -612,6 +1046,7 @@ class _$ClearPageCommandImpl implements _ClearPageCommand {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int nextViewIndex)? updateCurrentView,
     TResult Function(Map<String, dynamic> updates)? updateProposal,
+    TResult Function()? publishProposal,
     TResult Function()? clearPageCommand,
     required TResult orElse(),
   }) {
@@ -626,6 +1061,7 @@ class _$ClearPageCommandImpl implements _ClearPageCommand {
   TResult map<TResult extends Object?>({
     required TResult Function(_UpdateCurrentView value) updateCurrentView,
     required TResult Function(_UpdateProposal value) updateProposal,
+    required TResult Function(_PublishProposal value) publishProposal,
     required TResult Function(_ClearPageCommand value) clearPageCommand,
   }) {
     return clearPageCommand(this);
@@ -636,6 +1072,7 @@ class _$ClearPageCommandImpl implements _ClearPageCommand {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_UpdateCurrentView value)? updateCurrentView,
     TResult? Function(_UpdateProposal value)? updateProposal,
+    TResult? Function(_PublishProposal value)? publishProposal,
     TResult? Function(_ClearPageCommand value)? clearPageCommand,
   }) {
     return clearPageCommand?.call(this);
@@ -646,6 +1083,7 @@ class _$ClearPageCommandImpl implements _ClearPageCommand {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateCurrentView value)? updateCurrentView,
     TResult Function(_UpdateProposal value)? updateProposal,
+    TResult Function(_PublishProposal value)? publishProposal,
     TResult Function(_ClearPageCommand value)? clearPageCommand,
     required TResult orElse(),
   }) {
@@ -662,9 +1100,8 @@ abstract class _ClearPageCommand implements ProposalCreationEvent {
 
 /// @nodoc
 mixin _$ProposalCreationState {
-  PageState get pageState => throw _privateConstructorUsedError;
-  ProposalCreationModel? get proposal => throw _privateConstructorUsedError;
   int get currentViewIndex => throw _privateConstructorUsedError;
+  ProposalCreationModel? get proposal => throw _privateConstructorUsedError;
   PageCommand? get command => throw _privateConstructorUsedError;
 
   /// Create a copy of ProposalCreationState
@@ -681,9 +1118,8 @@ abstract class $ProposalCreationStateCopyWith<$Res> {
       _$ProposalCreationStateCopyWithImpl<$Res, ProposalCreationState>;
   @useResult
   $Res call(
-      {PageState pageState,
+      {int currentViewIndex,
       ProposalCreationModel? proposal,
-      int currentViewIndex,
       PageCommand? command});
 
   $PageCommandCopyWith<$Res>? get command;
@@ -705,24 +1141,19 @@ class _$ProposalCreationStateCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? pageState = null,
-    Object? proposal = freezed,
     Object? currentViewIndex = null,
+    Object? proposal = freezed,
     Object? command = freezed,
   }) {
     return _then(_value.copyWith(
-      pageState: null == pageState
-          ? _value.pageState
-          : pageState // ignore: cast_nullable_to_non_nullable
-              as PageState,
-      proposal: freezed == proposal
-          ? _value.proposal
-          : proposal // ignore: cast_nullable_to_non_nullable
-              as ProposalCreationModel?,
       currentViewIndex: null == currentViewIndex
           ? _value.currentViewIndex
           : currentViewIndex // ignore: cast_nullable_to_non_nullable
               as int,
+      proposal: freezed == proposal
+          ? _value.proposal
+          : proposal // ignore: cast_nullable_to_non_nullable
+              as ProposalCreationModel?,
       command: freezed == command
           ? _value.command
           : command // ignore: cast_nullable_to_non_nullable
@@ -755,9 +1186,8 @@ abstract class _$$ProposalCreationStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {PageState pageState,
+      {int currentViewIndex,
       ProposalCreationModel? proposal,
-      int currentViewIndex,
       PageCommand? command});
 
   @override
@@ -778,24 +1208,19 @@ class __$$ProposalCreationStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? pageState = null,
-    Object? proposal = freezed,
     Object? currentViewIndex = null,
+    Object? proposal = freezed,
     Object? command = freezed,
   }) {
     return _then(_$ProposalCreationStateImpl(
-      pageState: null == pageState
-          ? _value.pageState
-          : pageState // ignore: cast_nullable_to_non_nullable
-              as PageState,
-      proposal: freezed == proposal
-          ? _value.proposal
-          : proposal // ignore: cast_nullable_to_non_nullable
-              as ProposalCreationModel?,
       currentViewIndex: null == currentViewIndex
           ? _value.currentViewIndex
           : currentViewIndex // ignore: cast_nullable_to_non_nullable
               as int,
+      proposal: freezed == proposal
+          ? _value.proposal
+          : proposal // ignore: cast_nullable_to_non_nullable
+              as ProposalCreationModel?,
       command: freezed == command
           ? _value.command
           : command // ignore: cast_nullable_to_non_nullable
@@ -808,25 +1233,19 @@ class __$$ProposalCreationStateImplCopyWithImpl<$Res>
 
 class _$ProposalCreationStateImpl implements _ProposalCreationState {
   const _$ProposalCreationStateImpl(
-      {this.pageState = PageState.initial,
-      this.proposal,
-      this.currentViewIndex = 0,
-      this.command});
+      {this.currentViewIndex = 0, this.proposal, this.command});
 
   @override
   @JsonKey()
-  final PageState pageState;
+  final int currentViewIndex;
   @override
   final ProposalCreationModel? proposal;
-  @override
-  @JsonKey()
-  final int currentViewIndex;
   @override
   final PageCommand? command;
 
   @override
   String toString() {
-    return 'ProposalCreationState(pageState: $pageState, proposal: $proposal, currentViewIndex: $currentViewIndex, command: $command)';
+    return 'ProposalCreationState(currentViewIndex: $currentViewIndex, proposal: $proposal, command: $command)';
   }
 
   @override
@@ -834,18 +1253,16 @@ class _$ProposalCreationStateImpl implements _ProposalCreationState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProposalCreationStateImpl &&
-            (identical(other.pageState, pageState) ||
-                other.pageState == pageState) &&
-            (identical(other.proposal, proposal) ||
-                other.proposal == proposal) &&
             (identical(other.currentViewIndex, currentViewIndex) ||
                 other.currentViewIndex == currentViewIndex) &&
+            (identical(other.proposal, proposal) ||
+                other.proposal == proposal) &&
             (identical(other.command, command) || other.command == command));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, pageState, proposal, currentViewIndex, command);
+      Object.hash(runtimeType, currentViewIndex, proposal, command);
 
   /// Create a copy of ProposalCreationState
   /// with the given fields replaced by the non-null parameter values.
@@ -859,17 +1276,14 @@ class _$ProposalCreationStateImpl implements _ProposalCreationState {
 
 abstract class _ProposalCreationState implements ProposalCreationState {
   const factory _ProposalCreationState(
-      {final PageState pageState,
+      {final int currentViewIndex,
       final ProposalCreationModel? proposal,
-      final int currentViewIndex,
       final PageCommand? command}) = _$ProposalCreationStateImpl;
 
   @override
-  PageState get pageState;
+  int get currentViewIndex;
   @override
   ProposalCreationModel? get proposal;
-  @override
-  int get currentViewIndex;
   @override
   PageCommand? get command;
 
