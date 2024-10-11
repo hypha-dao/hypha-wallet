@@ -19,32 +19,38 @@ mixin _$ProposalDetailEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function(VoteStatus vote) castVote,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
+    TResult? Function(VoteStatus vote)? castVote,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function(VoteStatus vote)? castVote,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_CastVote value) castVote,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
+    TResult? Function(_CastVote value)? castVote,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_CastVote value)? castVote,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -113,6 +119,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function(VoteStatus vote) castVote,
   }) {
     return initial();
   }
@@ -121,6 +128,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
+    TResult? Function(VoteStatus vote)? castVote,
   }) {
     return initial?.call();
   }
@@ -129,6 +137,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function(VoteStatus vote)? castVote,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -141,6 +150,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_CastVote value) castVote,
   }) {
     return initial(this);
   }
@@ -149,6 +159,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
+    TResult? Function(_CastVote value)? castVote,
   }) {
     return initial?.call(this);
   }
@@ -157,6 +168,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_CastVote value)? castVote,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -168,6 +180,146 @@ class _$InitialImpl implements _Initial {
 
 abstract class _Initial implements ProposalDetailEvent {
   const factory _Initial() = _$InitialImpl;
+}
+
+/// @nodoc
+abstract class _$$CastVoteImplCopyWith<$Res> {
+  factory _$$CastVoteImplCopyWith(
+          _$CastVoteImpl value, $Res Function(_$CastVoteImpl) then) =
+      __$$CastVoteImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({VoteStatus vote});
+}
+
+/// @nodoc
+class __$$CastVoteImplCopyWithImpl<$Res>
+    extends _$ProposalDetailEventCopyWithImpl<$Res, _$CastVoteImpl>
+    implements _$$CastVoteImplCopyWith<$Res> {
+  __$$CastVoteImplCopyWithImpl(
+      _$CastVoteImpl _value, $Res Function(_$CastVoteImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ProposalDetailEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? vote = null,
+  }) {
+    return _then(_$CastVoteImpl(
+      null == vote
+          ? _value.vote
+          : vote // ignore: cast_nullable_to_non_nullable
+              as VoteStatus,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$CastVoteImpl implements _CastVote {
+  const _$CastVoteImpl(this.vote);
+
+  @override
+  final VoteStatus vote;
+
+  @override
+  String toString() {
+    return 'ProposalDetailEvent.castVote(vote: $vote)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CastVoteImpl &&
+            (identical(other.vote, vote) || other.vote == vote));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, vote);
+
+  /// Create a copy of ProposalDetailEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CastVoteImplCopyWith<_$CastVoteImpl> get copyWith =>
+      __$$CastVoteImplCopyWithImpl<_$CastVoteImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function(VoteStatus vote) castVote,
+  }) {
+    return castVote(vote);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function(VoteStatus vote)? castVote,
+  }) {
+    return castVote?.call(vote);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(VoteStatus vote)? castVote,
+    required TResult orElse(),
+  }) {
+    if (castVote != null) {
+      return castVote(vote);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_CastVote value) castVote,
+  }) {
+    return castVote(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_CastVote value)? castVote,
+  }) {
+    return castVote?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_CastVote value)? castVote,
+    required TResult orElse(),
+  }) {
+    if (castVote != null) {
+      return castVote(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CastVote implements ProposalDetailEvent {
+  const factory _CastVote(final VoteStatus vote) = _$CastVoteImpl;
+
+  VoteStatus get vote;
+
+  /// Create a copy of ProposalDetailEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$CastVoteImplCopyWith<_$CastVoteImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

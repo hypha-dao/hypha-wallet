@@ -1,28 +1,38 @@
 import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
 import 'package:hypha_wallet/core/extension/base_proposal_model_extension.dart';
 import 'package:hypha_wallet/core/logging/log_helper.dart';
+import 'package:hypha_wallet/core/network/api/actions/vote_action_factory.dart';
 import 'package:hypha_wallet/core/network/api/services/dao_service.dart';
 import 'package:hypha_wallet/core/network/api/services/proposal_service.dart';
+import 'package:hypha_wallet/core/network/api/services/remote_config_service.dart';
 import 'package:hypha_wallet/core/network/models/dao_data_model.dart';
 import 'package:hypha_wallet/core/network/models/dao_proposals_model.dart';
 import 'package:hypha_wallet/core/network/models/network.dart';
 import 'package:hypha_wallet/core/network/models/proposal_details_model.dart';
 import 'package:hypha_wallet/core/network/models/proposal_model.dart';
 import 'package:hypha_wallet/core/network/models/user_profile_data.dart';
+import 'package:hypha_wallet/core/network/models/vote_model.dart';
 import 'package:hypha_wallet/core/network/repository/profile_repository.dart';
 import 'package:hypha_wallet/ui/architecture/result/result.dart';
 import 'package:hypha_wallet/ui/profile/interactor/profile_data.dart';
 import 'package:hypha_wallet/ui/proposals/filter/interactor/filter_status.dart';
 import 'package:hypha_wallet/ui/proposals/list/interactor/get_proposals_use_case_input.dart';
 
+import '../../crypto/seeds_esr/eos_action.dart';
+import '../api/eos_service.dart';
+
 class ProposalRepository {
   final ProposalService _proposalService;
   final ProfileService _profileService;
   final DaoService _daoService;
+  final EOSService _eosService;
+  final RemoteConfigService _remoteConfigService;
 
 
 
   ProposalRepository(
+      this._remoteConfigService,
+      this._eosService,
       this._daoService,
       this._proposalService, this._profileService);
 
@@ -211,6 +221,26 @@ class ProposalRepository {
     } else {
       LogHelper.e('GraphQL query failed', error: result.asError!.error);
       return Result.error(result.asError!.error);
+    }
+  }
+
+  Future<Result<String, HyphaError>> castVote(
+      String proposalId,
+      VoteStatus vote,
+      UserProfileData user
+      ) async {
+    // Get the DAO contract for the user's network
+    final String daoContract = _remoteConfigService.daoContract(network: user.network);
+    // Create the EOS action for casting the vote
+    final EOSAction eosAction = VoteActionFactory.voteAction(daoContract, user.accountName, proposalId, vote);
+
+    try {
+      // Execute the action using EOS service and get the result
+      final castVoteResult = await _eosService.runAction(signer: user, action: eosAction);
+      return Result.value(castVoteResult.asValue!.value);
+    } catch (e, stackTrace) {
+      LogHelper.e('Error casting vote', error: e, stacktrace: stackTrace);
+      return Result.error(HyphaError.generic('Failed to cast vote'));
     }
   }
 }

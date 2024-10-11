@@ -9,6 +9,7 @@ import 'package:hypha_wallet/ui/proposals/creation/components/proposal_review_vi
 import 'package:hypha_wallet/ui/proposals/creation/interactor/proposal_creation_bloc.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:tuple/tuple.dart';
+import 'components/outcome_selection_view.dart';
 
 class ProposalCreationPage extends StatelessWidget {
   const ProposalCreationPage({super.key});

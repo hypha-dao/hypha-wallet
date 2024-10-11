@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:hypha_wallet/design/buttons/hypha_app_button.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
-import 'package:hypha_wallet/ui/proposals/filter/components/hypha_filter_card.dart';
+import 'package:hypha_wallet/design/cards/hypha_option_card.dart';
 import 'package:hypha_wallet/ui/proposals/filter/interactor/filter_proposals_bloc.dart';
 import 'package:hypha_wallet/ui/proposals/filter/interactor/filter_status.dart';
 import 'package:hypha_wallet/ui/shared/hypha_body_widget.dart';
@@ -43,7 +43,7 @@ class FilterProposalsView extends StatelessWidget {
                     (index) {
                       return Container(
                           margin: const EdgeInsets.symmetric(vertical: 10),
-                          child: HyphaFilterCard(
+                          child: HyphaOptionCard(
                             dao: state.daoProposalCounts[index].dao,
                             subTitle: '${state.daoProposalCounts[index].proposalCount} ${filterProposalsBloc.selectedStatusIndexNotifier.value == 0 ? 'Active' : 'Past'} Proposal${state.daoProposalCounts[index].proposalCount == 1 ? '' : 's'}',
                             filterProposalsBloc.selectedDaoIndexNotifier,
@@ -63,7 +63,7 @@ class FilterProposalsView extends StatelessWidget {
                     (index) {
                       return Container(
                           margin: const EdgeInsets.symmetric(vertical: 10),
-                          child: HyphaFilterCard(
+                          child: HyphaOptionCard(
                             title: _statusFilters[index],
                             filterProposalsBloc.selectedStatusIndexNotifier,
                             index,

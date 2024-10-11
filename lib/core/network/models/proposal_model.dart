@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:hypha_wallet/core/extension/vote_tally_extension.dart';
 import 'package:hypha_wallet/core/network/models/base_proposal_model.dart';
 import 'package:hypha_wallet/core/network/models/dao_data_model.dart';
 import 'package:hypha_wallet/core/network/models/vote_model.dart';
@@ -15,6 +16,8 @@ class ProposalModel extends BaseProposalModel{
     super.title,
     super.unity,
     super.quorum,
+    super.pastUnity,
+    super.pastQuorum,
     super.expiration,
     super.creator,
     super.votes,
@@ -24,6 +27,9 @@ class ProposalModel extends BaseProposalModel{
     if (json.containsKey('original')) {
       json['details_title_s'] = json['original'][0]['details_title_s'];
     }
+
+    json.calculateUnityAndQuorum();
+
     return _$ProposalModelFromJson(json);
   }
 }
