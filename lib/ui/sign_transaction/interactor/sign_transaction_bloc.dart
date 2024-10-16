@@ -7,7 +7,7 @@ import 'package:hypha_wallet/core/logging/log_helper.dart';
 import 'package:hypha_wallet/ui/architecture/interactor/page_states.dart';
 import 'package:hypha_wallet/ui/architecture/result/result.dart';
 import 'package:hypha_wallet/ui/sign_transaction/interactor/data/transaction_action_data.dart';
-import 'package:hypha_wallet/design/status/success_page.dart';
+import 'package:hypha_wallet/ui/sign_transaction/success/sign_transaction_success_page.dart';
 import 'package:hypha_wallet/ui/sign_transaction/usecases/sign_transaction_use_case.dart';
 
 part 'page_command.dart';
@@ -45,7 +45,7 @@ class SignTransactionBloc extends Bloc<SignTransactionEvent, SignTransactionStat
     ));
     if (result.isValue) {
       emit(
-        state.copyWith(command: const PageCommand.navigateToTransactionSuccess(SuccessType.approved)),
+        state.copyWith(command: const PageCommand.navigateToTransactionSuccess(SignSuccessTransactionType.approved)),
       );
     } else {
       LogHelper.e('Transaction error: ${result.asError?.error.message}');

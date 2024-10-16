@@ -35,7 +35,7 @@ class ProposalCreationBloc
           navigate(emit, event.nextViewIndex);
           break;
         case 2:
-          if(state.proposal!.details != null) {
+          if(state.proposal!.title != null && state.proposal!.details != null) {
             navigate(emit, event.nextViewIndex);
           }
           break;

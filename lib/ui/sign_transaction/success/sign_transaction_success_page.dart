@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get.dart' as Get;
 import 'package:hypha_wallet/design/background/hypha_half_background.dart';
 import 'package:hypha_wallet/design/background/hypha_page_background.dart';
 import 'package:hypha_wallet/design/bottom_component/hypha_safe_bottom_navigation_bar.dart';
@@ -11,11 +10,11 @@ import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.d
 import 'package:hypha_wallet/ui/bottom_navigation/hypha_bottom_navigation.dart';
 import 'package:hypha_wallet/ui/proposals/details/proposal_details_page.dart';
 
-enum SuccessType {
+enum SignSuccessTransactionType {
   approved('Approved'),
   published('published');
 
-  const SuccessType(this.value);
+  const SignSuccessTransactionType(this.value);
 
   final String value;
 
@@ -25,11 +24,11 @@ enum SuccessType {
 }
 
 
-class SuccessPage extends StatelessWidget {
-  final SuccessType successType;
+class SignTransactionSuccessPage extends StatelessWidget {
+  final SignSuccessTransactionType transactionType;
   final String? proposalId;
 
-  const SuccessPage({super.key, required this.successType, this.proposalId});
+  const SignTransactionSuccessPage({super.key, required this.transactionType, this.proposalId});
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +44,7 @@ class SuccessPage extends StatelessWidget {
             style: context.hyphaTextTheme.regular.copyWith(color: HyphaColors.primaryBlu),
           ),
           const TextSpan(text: ' '),
-          TextSpan(text: successType.value),
+          TextSpan(text: transactionType.value),
         ],
       ),
     );
@@ -57,7 +56,7 @@ class SuccessPage extends StatelessWidget {
         bottomNavigationBar: HyphaSafeBottomNavigationBar(
           child: HyphaAppButton(
             onPressed: () {
-              Get.Get.offAll(() => const HyphaBottomNavigation());
+              Get.offAll(() => const HyphaBottomNavigation());
             },
             title: 'Close',
           ),
@@ -82,11 +81,11 @@ class SuccessPage extends StatelessWidget {
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       border: Border.all(
-                        color: successType.iconBorderColor,
+                        color: transactionType.iconBorderColor,
                         width: 2,
                       ),
                     ),
-                    child: Icon(successType.icon, size: 24, color: successType.iconBorderColor),
+                    child: Icon(transactionType.icon, size: 24, color: transactionType.iconBorderColor),
                   ),
                   const SizedBox(height: 16),
                   if(proposalId != null) ... [
@@ -97,9 +96,9 @@ class SuccessPage extends StatelessWidget {
                         buttonType: ButtonType.secondary,
                         buttonColor: HyphaColors.gradientBlackLight,
                         onPressed: () {
-                          Get.Get.to(
+                          Get.to(
                             ProposalDetailsPage(proposalId: proposalId!),
-                            transition: Get.Transition.rightToLeft,
+                            transition: Transition.rightToLeft,
                           );
                         },
                         title: 'See Proposal Details',

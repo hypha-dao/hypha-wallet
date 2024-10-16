@@ -18,7 +18,8 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$PageCommand {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(SuccessType type) navigateToTransactionSuccess,
+    required TResult Function(SignSuccessTransactionType type)
+        navigateToTransactionSuccess,
     required TResult Function(ErrorResult<String, HyphaError> errorResult)
         navigateToTransactionFailed,
     required TResult Function() navigateAway,
@@ -26,7 +27,8 @@ mixin _$PageCommand {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(SuccessType type)? navigateToTransactionSuccess,
+    TResult? Function(SignSuccessTransactionType type)?
+        navigateToTransactionSuccess,
     TResult? Function(ErrorResult<String, HyphaError> errorResult)?
         navigateToTransactionFailed,
     TResult? Function()? navigateAway,
@@ -34,7 +36,8 @@ mixin _$PageCommand {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(SuccessType type)? navigateToTransactionSuccess,
+    TResult Function(SignSuccessTransactionType type)?
+        navigateToTransactionSuccess,
     TResult Function(ErrorResult<String, HyphaError> errorResult)?
         navigateToTransactionFailed,
     TResult Function()? navigateAway,
@@ -99,7 +102,7 @@ abstract class _$$NavigateToTransactionSuccessImplCopyWith<$Res> {
           $Res Function(_$NavigateToTransactionSuccessImpl) then) =
       __$$NavigateToTransactionSuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({SuccessType type});
+  $Res call({SignSuccessTransactionType type});
 }
 
 /// @nodoc
@@ -122,7 +125,7 @@ class __$$NavigateToTransactionSuccessImplCopyWithImpl<$Res>
       null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as SuccessType,
+              as SignSuccessTransactionType,
     ));
   }
 }
@@ -134,7 +137,7 @@ class _$NavigateToTransactionSuccessImpl
   const _$NavigateToTransactionSuccessImpl(this.type);
 
   @override
-  final SuccessType type;
+  final SignSuccessTransactionType type;
 
   @override
   String toString() {
@@ -165,7 +168,8 @@ class _$NavigateToTransactionSuccessImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(SuccessType type) navigateToTransactionSuccess,
+    required TResult Function(SignSuccessTransactionType type)
+        navigateToTransactionSuccess,
     required TResult Function(ErrorResult<String, HyphaError> errorResult)
         navigateToTransactionFailed,
     required TResult Function() navigateAway,
@@ -176,7 +180,8 @@ class _$NavigateToTransactionSuccessImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(SuccessType type)? navigateToTransactionSuccess,
+    TResult? Function(SignSuccessTransactionType type)?
+        navigateToTransactionSuccess,
     TResult? Function(ErrorResult<String, HyphaError> errorResult)?
         navigateToTransactionFailed,
     TResult? Function()? navigateAway,
@@ -187,7 +192,8 @@ class _$NavigateToTransactionSuccessImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(SuccessType type)? navigateToTransactionSuccess,
+    TResult Function(SignSuccessTransactionType type)?
+        navigateToTransactionSuccess,
     TResult Function(ErrorResult<String, HyphaError> errorResult)?
         navigateToTransactionFailed,
     TResult Function()? navigateAway,
@@ -241,10 +247,11 @@ class _$NavigateToTransactionSuccessImpl
 }
 
 abstract class _NavigateToTransactionSuccess implements PageCommand {
-  const factory _NavigateToTransactionSuccess(final SuccessType type) =
+  const factory _NavigateToTransactionSuccess(
+          final SignSuccessTransactionType type) =
       _$NavigateToTransactionSuccessImpl;
 
-  SuccessType get type;
+  SignSuccessTransactionType get type;
 
   /// Create a copy of PageCommand
   /// with the given fields replaced by the non-null parameter values.
@@ -327,7 +334,8 @@ class _$NavigateToTransactionFailedImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(SuccessType type) navigateToTransactionSuccess,
+    required TResult Function(SignSuccessTransactionType type)
+        navigateToTransactionSuccess,
     required TResult Function(ErrorResult<String, HyphaError> errorResult)
         navigateToTransactionFailed,
     required TResult Function() navigateAway,
@@ -338,7 +346,8 @@ class _$NavigateToTransactionFailedImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(SuccessType type)? navigateToTransactionSuccess,
+    TResult? Function(SignSuccessTransactionType type)?
+        navigateToTransactionSuccess,
     TResult? Function(ErrorResult<String, HyphaError> errorResult)?
         navigateToTransactionFailed,
     TResult? Function()? navigateAway,
@@ -349,7 +358,8 @@ class _$NavigateToTransactionFailedImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(SuccessType type)? navigateToTransactionSuccess,
+    TResult Function(SignSuccessTransactionType type)?
+        navigateToTransactionSuccess,
     TResult Function(ErrorResult<String, HyphaError> errorResult)?
         navigateToTransactionFailed,
     TResult Function()? navigateAway,
@@ -457,7 +467,8 @@ class _$NavigateAwayImpl implements _NavigateAway {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(SuccessType type) navigateToTransactionSuccess,
+    required TResult Function(SignSuccessTransactionType type)
+        navigateToTransactionSuccess,
     required TResult Function(ErrorResult<String, HyphaError> errorResult)
         navigateToTransactionFailed,
     required TResult Function() navigateAway,
@@ -468,7 +479,8 @@ class _$NavigateAwayImpl implements _NavigateAway {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(SuccessType type)? navigateToTransactionSuccess,
+    TResult? Function(SignSuccessTransactionType type)?
+        navigateToTransactionSuccess,
     TResult? Function(ErrorResult<String, HyphaError> errorResult)?
         navigateToTransactionFailed,
     TResult? Function()? navigateAway,
@@ -479,7 +491,8 @@ class _$NavigateAwayImpl implements _NavigateAway {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(SuccessType type)? navigateToTransactionSuccess,
+    TResult Function(SignSuccessTransactionType type)?
+        navigateToTransactionSuccess,
     TResult Function(ErrorResult<String, HyphaError> errorResult)?
         navigateToTransactionFailed,
     TResult Function()? navigateAway,

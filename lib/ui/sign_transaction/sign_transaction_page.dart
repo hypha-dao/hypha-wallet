@@ -3,10 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart' as GetX;
 import 'package:get_it/get_it.dart';
 import 'package:hypha_wallet/core/crypto/seeds_esr/scan_qr_code_result_data.dart';
-import 'package:hypha_wallet/design/status/failure_page.dart';
-import 'package:hypha_wallet/design/status/success_page.dart';
 import 'package:hypha_wallet/ui/sign_transaction/components/sign_transaction_view.dart';
+import 'package:hypha_wallet/ui/sign_transaction/failed/sign_transaction_failed_page.dart';
 import 'package:hypha_wallet/ui/sign_transaction/interactor/sign_transaction_bloc.dart';
+import 'package:hypha_wallet/ui/sign_transaction/success/sign_transaction_success_page.dart';
 
 class SignTransactionPage extends StatelessWidget {
   final ScanQrCodeResultData qrCodeData;
@@ -23,11 +23,11 @@ class SignTransactionPage extends StatelessWidget {
         listener: (context, state) {
           state.command?.when(navigateToTransactionSuccess: (type) {
             GetX.Get.off(
-              () => SuccessPage(successType: type),
+              () => SignTransactionSuccessPage(transactionType: type),
               transition: GetX.Transition.downToUp,
             );
           }, navigateToTransactionFailed: (error) {
-            GetX.Get.off(() => FailurePage(error.error), transition: GetX.Transition.downToUp);
+            GetX.Get.off(() => SignTransactionFailedPage(error.error), transition: GetX.Transition.downToUp);
           }, navigateAway: () {
             GetX.Get.back();
           });
