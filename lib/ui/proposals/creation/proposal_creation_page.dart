@@ -2,14 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
+import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
+import 'package:hypha_wallet/ui/sign_transaction/failed/sign_transaction_failed_page.dart';
+import 'package:hypha_wallet/ui/sign_transaction/success/sign_transaction_success_page.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 import 'package:hypha_wallet/ui/proposals/creation/components/proposal_content_view.dart';
 import 'package:hypha_wallet/ui/proposals/creation/components/proposal_review_view.dart';
 import 'package:hypha_wallet/ui/proposals/creation/interactor/proposal_creation_bloc.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:tuple/tuple.dart';
-import 'components/outcome_selection_view.dart';
 
 class ProposalCreationPage extends StatelessWidget {
   const ProposalCreationPage({super.key});
@@ -43,6 +45,13 @@ class ProposalCreationPage extends StatelessWidget {
           state.command?.when(
             navigateBackToProposals: () {
               Get.back();
+            },
+            navigateToSuccessPage: () {
+              Get.to(SignTransactionSuccessPage(transactionType: SignSuccessTransactionType.published, proposalId: state.proposal!.id));
+            },
+            navigateToFailurePage: (HyphaError hyphaError) {
+              // TODO(Zied): pass text1 and text2
+              Get.to(SignTransactionFailedPage(hyphaError));
             },
           );
 

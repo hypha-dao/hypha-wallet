@@ -3,37 +3,32 @@ import 'package:get/get.dart';
 import 'package:hypha_wallet/design/background/hypha_half_background.dart';
 import 'package:hypha_wallet/design/background/hypha_page_background.dart';
 import 'package:hypha_wallet/design/bottom_component/hypha_safe_bottom_navigation_bar.dart';
+import 'package:hypha_wallet/design/buttons/button_type.dart';
 import 'package:hypha_wallet/design/buttons/hypha_app_button.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 import 'package:hypha_wallet/ui/bottom_navigation/hypha_bottom_navigation.dart';
+import 'package:hypha_wallet/ui/proposals/details/proposal_details_page.dart';
 
 enum SignSuccessTransactionType {
-  approved('Approved');
+  approved('Approved'),
+  published('published');
 
   const SignSuccessTransactionType(this.value);
 
   final String value;
 
-  Color get iconBackgroundColor {
-    switch (this) {
-      case SignSuccessTransactionType.approved:
-        return HyphaColors.success;
-    }
-  }
+  Color get iconBorderColor => HyphaColors.offWhite;
 
-  IconData get icon {
-    switch (this) {
-      case SignSuccessTransactionType.approved:
-        return Icons.check;
-    }
-  }
+  IconData get icon => Icons.check;
 }
+
 
 class SignTransactionSuccessPage extends StatelessWidget {
   final SignSuccessTransactionType transactionType;
+  final String? proposalId;
 
-  const SignTransactionSuccessPage({super.key, required this.transactionType});
+  const SignTransactionSuccessPage({super.key, required this.transactionType, this.proposalId});
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +40,7 @@ class SignTransactionSuccessPage extends StatelessWidget {
         ),
         children: <TextSpan>[
           TextSpan(
-            text: 'Transaction ',
+            text: proposalId == null ? 'Transaction' : 'Your Proposal has been\nsuccessfully',
             style: context.hyphaTextTheme.regular.copyWith(color: HyphaColors.primaryBlu),
           ),
           const TextSpan(text: ' '),
@@ -82,14 +77,34 @@ class SignTransactionSuccessPage extends StatelessWidget {
                   Padding(padding: const EdgeInsets.only(left: 45, right: 45), child: successText),
                   const SizedBox(height: 46),
                   Container(
-                    padding: const EdgeInsets.all(16),
+                    padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: transactionType.iconBackgroundColor,
+                      border: Border.all(
+                        color: transactionType.iconBorderColor,
+                        width: 2,
+                      ),
                     ),
-                    child: Icon(transactionType.icon, size: 24),
+                    child: Icon(transactionType.icon, size: 24, color: transactionType.iconBorderColor),
                   ),
                   const SizedBox(height: 16),
+                  if(proposalId != null) ... [
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 45.0, vertical: 20.0),
+                      child: HyphaAppButton(
+                        buttonType: ButtonType.secondary,
+                        buttonColor: HyphaColors.gradientBlackLight,
+                        onPressed: () {
+                          Get.to(
+                            ProposalDetailsPage(proposalId: proposalId!),
+                            transition: Transition.rightToLeft,
+                          );
+                        },
+                        title: 'See Proposal Details',
+                      ),
+                    ),
+                  ]
                 ],
               ),
             ),

@@ -90,6 +90,7 @@ class ProposalReviewView extends StatelessWidget {
                             HyphaAppButton(
                               title: 'Publish',
                               onPressed: () async {
+                                context.read<ProposalCreationBloc>().add(const ProposalCreationEvent.publishProposal());
                               },
                             ),
                           ],
