@@ -46,7 +46,8 @@ void _registerBlocsModule() {
         _getIt<RemoveAvatarUseCase>(),
       ));
   _registerFactoryWithParams<SignTransactionBloc, ScanQrCodeResultData, void>(
-    (qrCodeData, _) => SignTransactionBloc(_getIt<SignTransactionUseCase>(), qrCodeData),
+    (qrCodeData, _) =>
+        SignTransactionBloc(_getIt<SignTransactionUseCase>(), qrCodeData),
   );
   _registerFactory(() => TransactionsBloc(
         _getIt<GetTransactionHistoryUseCase>(),
@@ -135,25 +136,24 @@ void _registerBlocsModule() {
       ));
 
   _registerLazySingleton(() => ProposalsBloc(
-    _getIt<GetProposalsUseCase>(),
-    _getIt<FetchProfileUseCase>(),
-    _getIt<ErrorHandlerManager>(),
-  ));
+        _getIt<GetProposalsUseCase>(),
+        _getIt<FetchProfileUseCase>(),
+        _getIt<ErrorHandlerManager>(),
+      ));
 
   _registerLazySingleton(() => FilterProposalsBloc(
-    _getIt<ProposalsBloc>(),
-    _getIt<FetchProfileUseCase>(),
-    _getIt<AggregateDaoProposalCountsUseCase>(),
-    _getIt<ErrorHandlerManager>(),
-  ));
+        _getIt<ProposalsBloc>(),
+        _getIt<FetchProfileUseCase>(),
+        _getIt<AggregateDaoProposalCountsUseCase>(),
+        _getIt<ErrorHandlerManager>(),
+      ));
 
   _registerFactoryWithParams<ProposalsHistoryBloc, DaoData, void>(
-        (dao, _) => ProposalsHistoryBloc(
-      _getIt<GetProposalsUseCase>(),
-      _getIt<ErrorHandlerManager>(),
-            dao
-    ),
+    (dao, _) => ProposalsHistoryBloc(
+        _getIt<GetProposalsUseCase>(), _getIt<ErrorHandlerManager>(), dao),
   );
 
-  _registerFactory(() => ProposalCreationBloc());
+  _registerFactoryWithParams<ProposalCreationBloc, List<DaoData>, void>(
+    (daos, _) => ProposalCreationBloc(daos),
+  );
 }

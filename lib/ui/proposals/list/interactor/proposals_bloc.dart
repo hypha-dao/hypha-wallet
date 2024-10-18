@@ -49,7 +49,6 @@ class ProposalsBloc extends Bloc<ProposalsEvent, ProposalsState> {
 
     if (profileResult.isValue && profileResult.asValue!.value.daos.isNotEmpty) {
       daos = profileResult.asValue!.value.daos;
-
       // Fetch Proposals using the fetched DAOs
       final Result<List<ProposalModel>, HyphaError> proposalsResult =
           await _getProposalsUseCase

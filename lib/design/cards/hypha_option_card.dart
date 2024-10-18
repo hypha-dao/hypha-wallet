@@ -11,19 +11,25 @@ class HyphaOptionCard extends StatelessWidget {
   final String? subTitle;
   final dynamic valueNotifier;
   final int index;
+  final Function()? onTap;
 
   const HyphaOptionCard(this.valueNotifier, this.index,
-      {this.dao, this.title, this.subTitle, super.key});
+      {this.dao, this.title, this.subTitle, super.key, this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
+
+
         if (valueNotifier.value != index) {
           valueNotifier.value = index;
+
         } else if (subTitle != null) {
           valueNotifier.value = null;
         }
+
+        onTap?.call();
       },
       child: HyphaCard(
           child: Container(
