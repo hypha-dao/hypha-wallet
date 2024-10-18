@@ -26,6 +26,7 @@ class ProposalsView extends StatelessWidget {
   Widget build(BuildContext context) {
     final FilterStatus filterStatus =
         context.watch<ProposalsBloc>().filterStatus;
+    final ProposalsBloc proposalBloc=context.read<ProposalsBloc>();
     return BlocBuilder<ProposalsBloc, ProposalsState>(
         builder: (context, state) {
       return HyphaPageBackground(
@@ -173,10 +174,11 @@ class ProposalsView extends StatelessWidget {
                     },
                   ),
                 )),
-            floatingActionButton:context
-                .read<ProposalsBloc>().daos.isEmpty?null: IconButton(
+            floatingActionButton:proposalBloc.daos.isEmpty?null: IconButton(
                 onPressed: () {
-                  GetX.Get.to(() => const ProposalCreationPage(), transition: GetX.Transition.leftToRight);
+
+                    GetX.Get.to(() =>  ProposalCreationPage(proposalBloc.daos), transition: GetX.Transition.leftToRight);
+
                 },
                 icon: const CircleAvatar(
                     radius: 30,
