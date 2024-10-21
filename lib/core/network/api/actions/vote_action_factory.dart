@@ -14,4 +14,11 @@ class VoteActionFactory {
         'notes': ''
       };
   }
+
+  static EOSAction publishProposalAction(String daoContract, dynamic data) {
+    return EOSAction()
+      ..account = daoContract
+      ..name = 'propose'
+      ..data = data;
+  }
 }

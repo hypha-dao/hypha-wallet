@@ -2,8 +2,9 @@ class ProposalCreationModel {
   final String? id;
   final String? title;
   final String? details;
+  final String? type;
 
-  ProposalCreationModel({this.id, this.title, this.details});
+  ProposalCreationModel({this.id, this.title, this.details, this.type = 'Payout'});
 
   ProposalCreationModel copyWith(Map<String, dynamic> updates) {
     return ProposalCreationModel(

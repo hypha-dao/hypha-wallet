@@ -18,8 +18,10 @@ class _ProposalContentViewState extends State<ProposalContentView> {
   final TextEditingController _titleController = TextEditingController();
   final QuillController _quillController = QuillController.basic();
   final ScrollController _scrollController = ScrollController();
-  final FocusNode _focusNode = FocusNode();
-  final ValueNotifier<bool> _isEditingNotifier = ValueNotifier<bool>(false);
+  final FocusNode _titleFocusNode = FocusNode();
+  final FocusNode _detailsFocusNode = FocusNode();
+  final ValueNotifier<bool> _isEditingTitleNotifier = ValueNotifier<bool>(false);
+  final ValueNotifier<bool> _isEditingDetailsNotifier = ValueNotifier<bool>(false);
 
   @override
   void initState() {
@@ -29,9 +31,13 @@ class _ProposalContentViewState extends State<ProposalContentView> {
       context.read<ProposalCreationBloc>().add(ProposalCreationEvent.updateProposal({'title': _titleController.text.isEmpty ? null : _titleController.text}));
     });
 
-    _focusNode.addListener(() {
-      _isEditingNotifier.value = _focusNode.hasFocus;
-      if (_focusNode.hasFocus) {
+    _titleFocusNode.addListener(() {
+      _isEditingTitleNotifier.value = _titleFocusNode.hasFocus;
+    });
+
+    _detailsFocusNode.addListener(() {
+      _isEditingDetailsNotifier.value = _detailsFocusNode.hasFocus;
+      if (_detailsFocusNode.hasFocus) {
         _scrollToBottom();
       }
     });
@@ -60,7 +66,8 @@ class _ProposalContentViewState extends State<ProposalContentView> {
 
   @override
   void dispose() {
-    _focusNode.dispose();
+    _titleFocusNode.dispose();
+    _detailsFocusNode.dispose();
     _scrollController.dispose();
     super.dispose();
   }
@@ -92,40 +99,46 @@ class _ProposalContentViewState extends State<ProposalContentView> {
                   style: context.hyphaTextTheme.ralMediumBody.copyWith(color: HyphaColors.midGrey),
                 ),
               ),
-              TextField(
-                controller: _titleController,
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: context.isDarkMode ? HyphaColors.lightBlack : HyphaColors.white,
-                  hintText: 'Your Proposal Title',
-                  hintStyle: context.hyphaTextTheme.ralMediumBody.copyWith(color: HyphaColors.midGrey),
-                  labelText: 'Title',
-                  labelStyle: TextStyle(
-                    color: _titleController.text.isEmpty
-                        ? (context.isDarkMode ? HyphaColors.offWhite : HyphaColors.black)
-                        : HyphaColors.primaryBlu,
-                  ),
-                  floatingLabelBehavior: FloatingLabelBehavior.always,
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
-                    borderSide: BorderSide(
-                      color: context.isDarkMode ? HyphaColors.lightBlack : HyphaColors.white,
+              ValueListenableBuilder<bool>(
+                  valueListenable: _isEditingTitleNotifier,
+                  builder: (BuildContext context, bool isEditingTitle, Widget? child) {
+                  return TextField(
+                    focusNode: _titleFocusNode,
+                    controller: _titleController,
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: context.isDarkMode ? HyphaColors.lightBlack : HyphaColors.white,
+                      hintText: 'Your Proposal Title',
+                      hintStyle: context.hyphaTextTheme.ralMediumBody.copyWith(color: HyphaColors.midGrey),
+                      labelText: 'Title',
+                      labelStyle: TextStyle(
+                        color: isEditingTitle || _titleController.text.isEmpty
+                            ? (context.isDarkMode ? HyphaColors.offWhite : HyphaColors.black)
+                            : HyphaColors.primaryBlu,
+                      ),
+                      floatingLabelBehavior: FloatingLabelBehavior.always,
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide: BorderSide(
+                          color: context.isDarkMode ? HyphaColors.lightBlack : HyphaColors.white,
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide: BorderSide(
+                          color: context.isDarkMode ? HyphaColors.lightBlack : HyphaColors.white,
+                        ),
+                      ),
                     ),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
-                    borderSide: BorderSide(
-                      color: context.isDarkMode ? HyphaColors.lightBlack : HyphaColors.white,
-                    ),
-                  ),
-                ),
+                  );
+                }
               ),
               const SizedBox(height: 20),
               ValueListenableBuilder<bool>(
-                  valueListenable: _isEditingNotifier,
-                  builder: (BuildContext context, bool isEditing, Widget? child) {
+                  valueListenable: _isEditingDetailsNotifier,
+                  builder: (BuildContext context, bool isEditingDetails, Widget? child) {
                     return Visibility(
-                      visible: isEditing,
+                      visible: isEditingDetails,
                       child: QuillSimpleToolbar(
                         controller: _quillController,
                         configurations: const QuillSimpleToolbarConfigurations(),
@@ -149,7 +162,7 @@ class _ProposalContentViewState extends State<ProposalContentView> {
                       child: IntrinsicHeight(
                         child: QuillEditor.basic(
                           controller: _quillController,
-                          focusNode: _focusNode,
+                          focusNode: _detailsFocusNode,
                           configurations: QuillEditorConfigurations(
                             keyboardAppearance: context.isDarkMode
                                 ? Brightness.dark
@@ -162,7 +175,7 @@ class _ProposalContentViewState extends State<ProposalContentView> {
                   Positioned.fill(
                     child: GestureDetector(
                       onTap: () {
-                        _focusNode.requestFocus();
+                        _detailsFocusNode.requestFocus();
                       },
                       child: StreamBuilder(
                         stream: _quillController.document.changes,
@@ -183,15 +196,20 @@ class _ProposalContentViewState extends State<ProposalContentView> {
                   Positioned(
                     left: 12,
                     top: -6,
-                    child: Text(
-                      'Details',
-                      style: context.hyphaTextTheme.ralMediumLabel.copyWith(
-                        color: _quillController.document.isEmpty()
-                            ? (context.isDarkMode
-                            ? HyphaColors.offWhite
-                            : HyphaColors.black)
-                            : HyphaColors.primaryBlu,
-                      ),
+                    child: ValueListenableBuilder<bool>(
+                        valueListenable: _isEditingDetailsNotifier,
+                        builder: (BuildContext context, bool isEditingDetails, Widget? child) {
+                        return Text(
+                          'Details',
+                          style: context.hyphaTextTheme.ralMediumLabel.copyWith(
+                            color: isEditingDetails || _quillController.document.isEmpty()
+                                ? (context.isDarkMode
+                                ? HyphaColors.offWhite
+                                : HyphaColors.black)
+                                : HyphaColors.primaryBlu,
+                          ),
+                        );
+                      }
                     ),
                   ),
                 ],

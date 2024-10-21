@@ -28,8 +28,6 @@ class ProposalRepository {
   final EOSService _eosService;
   final RemoteConfigService _remoteConfigService;
 
-
-
   ProposalRepository(
       this._remoteConfigService,
       this._eosService,

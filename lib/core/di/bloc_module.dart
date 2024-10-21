@@ -155,5 +155,8 @@ void _registerBlocsModule() {
     ),
   );
 
-  _registerFactory(() => ProposalCreationBloc());
+  _registerFactory(() => ProposalCreationBloc(
+      _getIt<EOSService>(),
+      _getIt<AuthRepository>(),
+  ));
 }
