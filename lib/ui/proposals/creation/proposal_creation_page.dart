@@ -150,8 +150,6 @@ class ProposalCreationPage extends StatelessWidget {
               children: [
                 const DaoSelectionView(),
                 const ProposalContentView(),
-                //const OutcomeSelectionView(),
-                //Container(),
                 const ProposalReviewView(),
               ],
             ),
