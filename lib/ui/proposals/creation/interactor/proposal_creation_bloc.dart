@@ -14,7 +14,8 @@ part 'proposal_creation_event.dart';
 part 'proposal_creation_state.dart';
 
 class ProposalCreationBloc extends Bloc<ProposalCreationEvent, ProposalCreationState> {
-  ProposalCreationBloc(this._eosService, this._authRepository) : super(ProposalCreationState(proposal: ProposalCreationModel())) {
+  ProposalCreationBloc(this._eosService, this._authRepository)
+      : super(ProposalCreationState(proposal: ProposalCreationModel())) {
     on<_UpdateCurrentView>(_updateCurrentView);
     on<_UpdateProposal>(_updateProposal);
     on<_PublishProposal>(_publishProposal);
@@ -40,7 +41,7 @@ class ProposalCreationBloc extends Bloc<ProposalCreationEvent, ProposalCreationS
           navigate(emit, event.nextViewIndex);
           break;
         case 2:
-          if(state.proposal!.title != null && state.proposal!.details != null) {
+          if (state.proposal!.title != null && state.proposal!.details != null) {
             navigate(emit, event.nextViewIndex);
           }
           break;
@@ -74,16 +75,41 @@ class ProposalCreationBloc extends Bloc<ProposalCreationEvent, ProposalCreationS
       final String proposalType = 'payout';
       final bool publishToStaging = true;
 
+      // Comments Nik
+      // ProposalCreationModel should contain all the hard-coded values here
+      // User ID is authenticated user
+      // recepient also same
+      // dao id should be in ProposalCreationModel - since we know which dao we're making this proposal for
+      // if a user is member of multiple DAOs, they will have to be able to choose this somewhere in the UI flow.
+      // proposer is authenticated user
+      // proposalType = 'payout' us redundant/wrong, just use draft.type....
+      // dao_id might need to be an "int" type see below
+
       switch (draft.type) {
         case 'Payout':
           content = [
-            {'label': 'content_group_label', 'value': ['string', 'details']},
-            {'label': 'recipient', 'value': ['name', 'zied111111111111']},
-            {'label': 'title', 'value': ['string', draft.title]},
-            {'label': 'description', 'value': ['string', draft.details]},
+            {
+              'label': 'content_group_label',
+              'value': ['string', 'details']
+            },
+            {
+              'label': 'recipient',
+              'value': ['name', 'zied11111111']
+            },
+            {
+              'label': 'title',
+              'value': ['string', draft.title]
+            },
+            {
+              'label': 'description',
+              'value': ['string', draft.details]
+            },
           ];
 
-          content.add({'label': 'usd_amount', 'value': ['asset', '${123.toStringAsFixed(2)} USD']});
+          content.add({
+            'label': 'usd_amount',
+            'value': ['asset', '${123.toStringAsFixed(2)} USD']
+          });
           break;
 
         default:
@@ -96,8 +122,8 @@ class ProposalCreationBloc extends Bloc<ProposalCreationEvent, ProposalCreationS
             'account': 'dao.hypha',
             'name': 'propose',
             'data': {
-              'dao_id': '67518',
-              'proposer': 'zied111111111111',
+              'dao_id': 67518,
+              'proposer': 'zied11111111',
               'proposal_type': proposalType,
               'content_groups': [content],
               'publish': !publishToStaging,
@@ -107,8 +133,8 @@ class ProposalCreationBloc extends Bloc<ProposalCreationEvent, ProposalCreationS
 
         final EOSAction eosAction = VoteActionFactory.publishProposalAction('dao.hypha', actions.first);
 
-
-        final castVoteResult = await _eosService.runAction(signer: _authRepository.authDataOrCrash.userProfileData, action: eosAction);
+        final castVoteResult =
+            await _eosService.runAction(signer: _authRepository.authDataOrCrash.userProfileData, action: eosAction);
       }
     } catch (e) {
       throw Exception(e.toString());
