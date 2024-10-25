@@ -28,9 +28,7 @@ class ProposalCreationPage extends StatelessWidget {
     Color? color;
 
     if (iconIndex == 1) {
-      // TODO(Zied-Saif): add other conditions
-      if (state.currentViewIndex == 1 &&
-          (state.proposal?.details == null || state.proposal?.title == null)) {
+      if (state.currentViewIndex == 1 && (state.proposal?.details == null || state.proposal?.title == null)) {
         // TODO(Saif): add a new gradient (not clickable)
         gradient = HyphaColors.gradientBlack;
       } else {
@@ -83,12 +81,12 @@ class ProposalCreationPage extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      if (state.currentViewIndex != 4)
+                      if (state.currentViewIndex != 2)
                         SmoothPageIndicator(
                           controller: context
                               .read<ProposalCreationBloc>()
                               .pageController,
-                          count: 4,
+                          count: 2,
                           effect: SlideEffect(
                             dotHeight: 10.0,
                             dotWidth: 10.0,
@@ -98,7 +96,7 @@ class ProposalCreationPage extends StatelessWidget {
                         ),
                       const SizedBox(height: 10),
                       Text(
-                        state.currentViewIndex == 4
+                        state.currentViewIndex == 2
                             ? 'Review & Publish'
                             : 'Create Proposal',
                         style: context.hyphaTextTheme.mediumTitles,
@@ -106,25 +104,20 @@ class ProposalCreationPage extends StatelessWidget {
                     ],
                   ),
                   const Spacer(),
-                  ...List.generate(state.currentViewIndex == 4 ? 1 : 2,
+                  ...List.generate(state.currentViewIndex == 2 ? 1 : 2,
                       (index) {
                     final Tuple2<LinearGradient?, Color?> tuple2 =
                         getGradientAndColor(context, index, state);
                     return GestureDetector(
                       onTap: () {
-                        print('hello');
-                        int nextIndex =
-                            state.currentViewIndex + (index == 0 ? -1 : 1);
-                        print(state.currentViewIndex);
-                        print(nextIndex);
+                        int nextIndex = state.currentViewIndex + (index == 0 ? -1 : 1);
                         if (nextIndex == 3 &&
                             state.currentViewIndex == 4 &&
                             state.proposal?.type ==
                                 OutcomeType.agreement.label) {
                           nextIndex--;
                         }
-                        context.read<ProposalCreationBloc>().add(
-                            ProposalCreationEvent.updateCurrentView(nextIndex));
+                        context.read<ProposalCreationBloc>().add(ProposalCreationEvent.updateCurrentView(nextIndex));
                       },
                       child: Container(
                         margin: const EdgeInsets.only(left: 10),
@@ -157,8 +150,6 @@ class ProposalCreationPage extends StatelessWidget {
               children: [
                 const DaoSelectionView(),
                 const ProposalContentView(),
-                const OutcomeSelectionView(),
-                Container(),
                 const ProposalReviewView(),
               ],
             ),
