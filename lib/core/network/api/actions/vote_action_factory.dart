@@ -7,18 +7,6 @@ class VoteActionFactory {
     return EOSAction()
       ..account = daoContract
       ..name = 'vote'
-      ..data = {
-        'voter': voter,
-        'proposal_id': proposalId,
-        'vote': vote.name,
-        'notes': ''
-      };
-  }
-
-  static EOSAction publishProposalAction(String daoContract, dynamic data) {
-    return EOSAction()
-      ..account = daoContract
-      ..name = 'propose'
-      ..data = data;
+      ..data = {'voter': voter, 'proposal_id': proposalId, 'vote': vote.name, 'notes': ''};
   }
 }

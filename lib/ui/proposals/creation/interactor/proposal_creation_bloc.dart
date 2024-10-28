@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hypha_wallet/core/crypto/seeds_esr/eos_action.dart';
 import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
-import 'package:hypha_wallet/core/network/api/actions/vote_action_factory.dart';
 import 'package:hypha_wallet/core/network/api/eos_service.dart';
 import 'package:hypha_wallet/core/network/models/proposal_creation_model.dart';
 import 'package:hypha_wallet/core/network/repository/auth_repository.dart';
@@ -70,23 +69,16 @@ class ProposalCreationBloc extends Bloc<ProposalCreationEvent, ProposalCreationS
 
   Future<void> _publishProposal(_PublishProposal event, Emitter<ProposalCreationState> emit) async {
     try {
+      // All this code should be in a use case - follow the same structure as other code.
+
+      final daoContract = 'dao.hypha'; // fetch contract from network! See other code.
+
       final draft = state.proposal!;
       List<Map<String, dynamic>> content = [];
-      final String proposalType = 'payout';
       final bool publishToStaging = true;
 
-      // Comments Nik
-      // ProposalCreationModel should contain all the hard-coded values here
-      // User ID is authenticated user
-      // recepient also same
-      // dao id should be in ProposalCreationModel - since we know which dao we're making this proposal for
-      // if a user is member of multiple DAOs, they will have to be able to choose this somewhere in the UI flow.
-      // proposer is authenticated user
-      // proposalType = 'payout' us redundant/wrong, just use draft.type....
-      // dao_id might need to be an "int" type see below
-
       switch (draft.type) {
-        case 'Payout':
+        case 'payout':
           content = [
             {
               'label': 'content_group_label',
@@ -94,7 +86,7 @@ class ProposalCreationBloc extends Bloc<ProposalCreationEvent, ProposalCreationS
             },
             {
               'label': 'recipient',
-              'value': ['name', 'zied11111111']
+              'value': ['name', 'illumination']
             },
             {
               'label': 'title',
@@ -117,22 +109,17 @@ class ProposalCreationBloc extends Bloc<ProposalCreationEvent, ProposalCreationS
       }
 
       if (content.isNotEmpty) {
-        final actions = [
-          {
-            'account': 'dao.hypha',
-            'name': 'propose',
-            'data': {
-              'dao_id': 67518,
-              'proposer': 'zied11111111',
-              'proposal_type': proposalType,
-              'content_groups': [content],
-              'publish': !publishToStaging,
-            },
-          },
-        ];
-
-        final EOSAction eosAction = VoteActionFactory.publishProposalAction('dao.hypha', actions.first);
-
+        final EOSAction eosAction = EOSAction()
+          ..account = daoContract
+          ..name = 'propose'
+          ..data = {
+            'dao_id': 67518,
+            'proposer': 'illumination', // Change name back to your name for testing..
+            'proposal_type': draft.type,
+            'content_groups': [content],
+            'publish': !publishToStaging,
+          };
+        // ignore: unused_local_variable
         final castVoteResult =
             await _eosService.runAction(signer: _authRepository.authDataOrCrash.userProfileData, action: eosAction);
       }
