@@ -52,17 +52,12 @@ class ProposalsBloc extends Bloc<ProposalsEvent, ProposalsState> {
       // Fetch Proposals using the fetched DAOs
       final Result<List<ProposalModel>, HyphaError> proposalsResult =
           await _getProposalsUseCase
-              .run(GetProposalsUseCaseInput(daos, filterStatus));
+              .run(GetProposalsUseCaseInput(daos, filterStatus));;
 
-      final Result<List<DaoProposalsModel>, HyphaError>
-          historyProposalsPerDaoResult = await _getProposalsUseCase
-              .run1(GetProposalsUseCaseInput(daos, FilterStatus.past));
-
-      if (proposalsResult.isValue && historyProposalsPerDaoResult.isValue) {
+      if (proposalsResult.isValue) {
         // Emit both daos and proposals in one state
         emit(state.copyWith(
           pageState: PageState.success,
-          historyProposalsPerDao: historyProposalsPerDaoResult.asValue!.value,
           proposals: proposalsResult.asValue!.value,
         ));
       } else {

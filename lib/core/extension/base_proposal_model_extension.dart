@@ -25,7 +25,7 @@ extension BaseProposalModelExtension on BaseProposalModel {
       parts.add('$minutes minute${minutes > 1 ? 's' : ''}');
     }
 
-    return parts.isNotEmpty ? 'Expiring in ${parts.join(', ')}' : 'Expired';
+    return parts.isNotEmpty ? 'Vote closes in ${parts.join(', ')}' : 'Expired';
   }
   double quorumToPercent() => quorum==null?0:quorum!*.01;
   double unityToPercent() => unity==null?0:unity!*.01;

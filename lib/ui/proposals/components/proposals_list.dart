@@ -11,7 +11,7 @@ class ProposalsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
-      physics: isScrollable?const BouncingScrollPhysics():const NeverScrollableScrollPhysics(),
+      physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         padding: const EdgeInsets.only(bottom: 22),
         itemBuilder: (BuildContext context, int index) =>

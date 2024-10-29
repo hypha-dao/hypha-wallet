@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hypha_wallet/core/network/models/dao_data_model.dart';
 import 'package:hypha_wallet/design/dao_image.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
@@ -15,12 +16,14 @@ class ProposalHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        DaoImage(_dao),
+        DaoImage(_dao,height: 30,width: 30,),
         const SizedBox(width: 10),
         Flexible(
           child: Text(
             _dao?.settingsDaoTitle ?? '',
-            style: context.hyphaTextTheme.ralMediumSmallNote.copyWith(fontWeight: FontWeight.bold, color: HyphaColors.offWhite),
+            style: context.hyphaTextTheme.ralMediumSmallNote.copyWith(fontWeight: FontWeight.bold, color:!context.isDarkMode
+                ? HyphaColors.darkBlack
+                : HyphaColors.offWhite),
             overflow: TextOverflow.ellipsis,
           ),
         ),
