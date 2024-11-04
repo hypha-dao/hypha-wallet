@@ -26,7 +26,7 @@ class ProposalsView extends StatelessWidget {
   Widget build(BuildContext context) {
     final FilterStatus filterStatus =
         context.watch<ProposalsBloc>().filterStatus;
-    final ProposalsBloc proposalBloc=context.read<ProposalsBloc>();
+    final ProposalsBloc proposalBloc = context.read<ProposalsBloc>();
     return BlocBuilder<ProposalsBloc, ProposalsState>(
         builder: (context, state) {
       return HyphaPageBackground(
@@ -75,7 +75,6 @@ class ProposalsView extends StatelessWidget {
                   context
                       .read<ProposalsBloc>()
                       .add(const ProposalsEvent.initial(refresh: true));
-
                 },
                 child: Container(
                   margin: const EdgeInsets.only(top: 20),
@@ -100,7 +99,7 @@ class ProposalsView extends StatelessWidget {
                           ? state.proposals.filterByDao(daoIds)
                           : state.proposals;
                       return Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 22),
+                        padding: const EdgeInsets.symmetric(horizontal: 26),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -125,45 +124,9 @@ class ProposalsView extends StatelessWidget {
                                       proposals,
                                       isScrollable: false,
                                     ),
-                                    SizedBox(
-                                      height:
-                                          filterStatus == FilterStatus.active
-                                              ? 30
-                                              : 90,
+                                    const SizedBox(
+                                      height:90
                                     ),
-                                    if (filterStatus == FilterStatus.active)
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            'See Proposals History',
-                                            style: context
-                                                .hyphaTextTheme.ralMediumBody
-                                                .copyWith(
-                                                    color: HyphaColors.midGrey),
-                                          ),
-                                          ...List.generate(
-                                              state.historyProposalsPerDao
-                                                  .length, (index) {
-                                            return Container(
-                                                margin:
-                                                    const EdgeInsets.symmetric(
-                                                        vertical: 10),
-                                                child: HyphaProposalHistoryCard(
-                                                  dao: state
-                                                      .historyProposalsPerDao[
-                                                          index]
-                                                      .dao,
-                                                  subTitle:
-                                                      '${state.historyProposalsPerDao[index].proposals.length} Past Proposals',
-                                                ));
-                                          }),
-                                          const SizedBox(
-                                            height: 100,
-                                          )
-                                        ],
-                                      ),
                                   ],
                                 ),
                               ),
@@ -174,17 +137,18 @@ class ProposalsView extends StatelessWidget {
                     },
                   ),
                 )),
-            floatingActionButton:proposalBloc.daos.isEmpty?null: IconButton(
-                onPressed: () {
-
-                    GetX.Get.to(() =>  ProposalCreationPage(proposalBloc.daos), transition: GetX.Transition.leftToRight);
-
-                },
-                icon: const CircleAvatar(
-                    radius: 30,
-                    backgroundImage: AssetImage(
-                        'assets/images/graphics/wallet_background.png'),
-                    child: Icon(Icons.add, color: HyphaColors.white))),
+            floatingActionButton: proposalBloc.daos.isEmpty
+                ? null
+                : IconButton(
+                    onPressed: () {
+                      GetX.Get.to(() => ProposalCreationPage(proposalBloc.daos),
+                          transition: GetX.Transition.leftToRight);
+                    },
+                    icon: const CircleAvatar(
+                        radius: 30,
+                        backgroundImage: AssetImage(
+                            'assets/images/graphics/wallet_background.png'),
+                        child: Icon(Icons.add, color: HyphaColors.white))),
           ));
     });
   }
@@ -219,8 +183,11 @@ class _NewProposalButton extends StatelessWidget {
                 ),
                 Text(
                   'Filter',
-                  style: context.hyphaTextTheme.regular
-                      .copyWith(color: Colors.white, fontSize: 13),
+                  style: context.hyphaTextTheme.regular.copyWith(
+                      color: context.isDarkMode
+                          ? Colors.white
+                          : HyphaColors.darkBlack,
+                      fontSize: 13),
                 ),
                 const SizedBox(
                   width: 4,

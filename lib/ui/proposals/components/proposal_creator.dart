@@ -19,9 +19,17 @@ class ProposalCreator extends StatelessWidget {
         ),
         const SizedBox(width: 10),
         Expanded(
-          child: Text(
-            creator?.name ?? '',
-            style: context.hyphaTextTheme.ralMediumSmallNote.copyWith(color: HyphaColors.midGrey),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                creator?.name ?? '',
+                style: context.hyphaTextTheme.reducedTitles,
+              ),
+              Text(
+                creator?.account ?? '',
+                style: context.hyphaTextTheme.ralMediumSmallNote.copyWith(color: HyphaColors.midGrey),              ),
+            ],
           ),
         ),
       ],
