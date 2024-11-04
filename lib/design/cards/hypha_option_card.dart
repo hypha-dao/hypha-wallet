@@ -76,11 +76,15 @@ class HyphaOptionCard extends StatelessWidget {
                         child: Checkbox(
                             value: value.contains(index),
                             onChanged: (bool? newValue) {
+                              final List<int> updatedList = List<int>.from(valueNotifier.value);
+
                               if (newValue!) {
-                                value.add(index);
-                              } else {
-                                value.remove(index);
+                                updatedList.add(index);
+                              } else if (updatedList.length != 1) {
+                                updatedList.remove(index);
                               }
+
+                              valueNotifier.value = updatedList;
                             },
                           ),
                       ),
