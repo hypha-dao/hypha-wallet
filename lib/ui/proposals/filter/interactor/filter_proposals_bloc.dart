@@ -37,11 +37,11 @@ class FilterProposalsBloc extends Bloc<FilterProposalsEvent, FilterProposalsStat
     add(const FilterProposalsEvent.initial());
   }
 
-  final ValueNotifier<int?> _selectedDaoIndexNotifier = ValueNotifier<int?>(0);
+  ValueNotifier<List<int>>? _selectedDaoIndexesNotifier;
   final ValueNotifier<int> _selectedStatusIndexNotifier = ValueNotifier<int>(0);
   List<int>? _daoIds;
 
-  ValueNotifier<int?> get selectedDaoIndexNotifier => _selectedDaoIndexNotifier;
+  ValueNotifier<List<int>> get selectedDaoIndexesNotifier => _selectedDaoIndexesNotifier!;
   ValueNotifier<int> get selectedStatusIndexNotifier => _selectedStatusIndexNotifier;
   List<int>? get daoIds => _daoIds;
 
@@ -53,6 +53,11 @@ class FilterProposalsBloc extends Bloc<FilterProposalsEvent, FilterProposalsStat
     if (profileResult.isValue) {
       if (_proposalsBloc.state.pageState == PageState.success) {
         final List<DaoProposalCountEntity> daoProposalCounts = _aggregateDaoProposalCountsUseCase.run(_proposalsBloc.state.proposals, profileResult.asValue!.value.daos);
+
+        _selectedDaoIndexesNotifier = ValueNotifier<List<int>>(
+            List<int>.generate(daoProposalCounts.length, (index) => index)
+        );
+
         emit(state.copyWith(pageState: PageState.success, daoProposalCounts: daoProposalCounts));
       }
 
@@ -61,6 +66,11 @@ class FilterProposalsBloc extends Bloc<FilterProposalsEvent, FilterProposalsStat
           emit(state.copyWith(pageState: PageState.loading));
         } else if (proposalsState.pageState == PageState.success) {
           final List<DaoProposalCountEntity> daoProposalCounts = _aggregateDaoProposalCountsUseCase.run(proposalsState.proposals, profileResult.asValue!.value.daos);
+
+          _selectedDaoIndexesNotifier ??= ValueNotifier<List<int>>(
+              List<int>.generate(daoProposalCounts.length, (index) => index)
+          );
+
           return state.copyWith(pageState: PageState.success, daoProposalCounts: daoProposalCounts);
         }
         return state;
@@ -75,7 +85,11 @@ class FilterProposalsBloc extends Bloc<FilterProposalsEvent, FilterProposalsStat
   }
 
   Future<void> _saveFilters(_SaveFilters event, Emitter<FilterProposalsState> emit) async {
-    _daoIds = event.daoProposalCounts.map((DaoProposalCountEntity daoProposalCount) => daoProposalCount.dao.docId).toList();
+    final List<DaoProposalCountEntity> daoProposalCounts = _selectedDaoIndexesNotifier!.value
+        .map((index) => state.daoProposalCounts[index])
+        .toList();
+
+    _daoIds = daoProposalCounts.map((DaoProposalCountEntity daoProposalCount) => daoProposalCount.dao.docId).toList();
     _proposalsBloc.add(ProposalsEvent.initial(filterStatus: event.filterStatus));
     emit(state.copyWith(command: const PageCommand.navigateToProposals()));
   }
