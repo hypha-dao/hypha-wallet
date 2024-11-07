@@ -95,10 +95,10 @@ class HyphaOptionCard extends StatelessWidget {
                             ? HyphaColors.primaryBlu
                             : HyphaColors.midGrey.withOpacity(.3),
                         child: CircleAvatar(
-                          radius: value == index ? 4 : 10.5,
+                          radius: value == index ? 4 : 10.3,
                           backgroundColor: value == index
                               ? HyphaColors.white
-                              : context.isDarkTheme ? HyphaColors.lightBlack : HyphaColors.offWhite,
+                              : context.isDarkTheme ? HyphaColors.gradientBlackLight : HyphaColors.offWhite,
                         ),
                       );
               },

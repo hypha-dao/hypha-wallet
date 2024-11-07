@@ -29,9 +29,10 @@ class HyphaTheme {
           if (states.contains(WidgetState.selected)) {
             return HyphaColors.primaryBlu;
           }
-          return HyphaColors.lightBlack;
+          return HyphaColors.gradientBlackLight;
         }),
         side: BorderSide(
+          width: 1.5,
           color: HyphaColors.midGrey.withOpacity(.3),
         ),
         checkColor: WidgetStateProperty.all(HyphaColors.offWhite),
@@ -78,6 +79,7 @@ class HyphaTheme {
           return HyphaColors.offWhite;
         }),
         side: BorderSide(
+          width: 1.5,
           color: HyphaColors.midGrey.withOpacity(.3),
         ),
         checkColor: WidgetStateProperty.all(HyphaColors.offWhite),
