@@ -176,27 +176,21 @@ mixin _$FilterProposalsEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(List<DaoProposalCountEntity> daoProposalCounts,
-            FilterStatus filterStatus)
-        saveFilters,
+    required TResult Function(FilterStatus filterStatus) saveFilters,
     required TResult Function() clearPageCommand,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(List<DaoProposalCountEntity> daoProposalCounts,
-            FilterStatus filterStatus)?
-        saveFilters,
+    TResult? Function(FilterStatus filterStatus)? saveFilters,
     TResult? Function()? clearPageCommand,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(List<DaoProposalCountEntity> daoProposalCounts,
-            FilterStatus filterStatus)?
-        saveFilters,
+    TResult Function(FilterStatus filterStatus)? saveFilters,
     TResult Function()? clearPageCommand,
     required TResult orElse(),
   }) =>
@@ -289,9 +283,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(List<DaoProposalCountEntity> daoProposalCounts,
-            FilterStatus filterStatus)
-        saveFilters,
+    required TResult Function(FilterStatus filterStatus) saveFilters,
     required TResult Function() clearPageCommand,
   }) {
     return initial();
@@ -301,9 +293,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(List<DaoProposalCountEntity> daoProposalCounts,
-            FilterStatus filterStatus)?
-        saveFilters,
+    TResult? Function(FilterStatus filterStatus)? saveFilters,
     TResult? Function()? clearPageCommand,
   }) {
     return initial?.call();
@@ -313,9 +303,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(List<DaoProposalCountEntity> daoProposalCounts,
-            FilterStatus filterStatus)?
-        saveFilters,
+    TResult Function(FilterStatus filterStatus)? saveFilters,
     TResult Function()? clearPageCommand,
     required TResult orElse(),
   }) {
@@ -370,9 +358,7 @@ abstract class _$$SaveFiltersImplCopyWith<$Res> {
           _$SaveFiltersImpl value, $Res Function(_$SaveFiltersImpl) then) =
       __$$SaveFiltersImplCopyWithImpl<$Res>;
   @useResult
-  $Res call(
-      {List<DaoProposalCountEntity> daoProposalCounts,
-      FilterStatus filterStatus});
+  $Res call({FilterStatus filterStatus});
 }
 
 /// @nodoc
@@ -388,14 +374,9 @@ class __$$SaveFiltersImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? daoProposalCounts = null,
     Object? filterStatus = null,
   }) {
     return _then(_$SaveFiltersImpl(
-      null == daoProposalCounts
-          ? _value._daoProposalCounts
-          : daoProposalCounts // ignore: cast_nullable_to_non_nullable
-              as List<DaoProposalCountEntity>,
       null == filterStatus
           ? _value.filterStatus
           : filterStatus // ignore: cast_nullable_to_non_nullable
@@ -407,25 +388,14 @@ class __$$SaveFiltersImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SaveFiltersImpl implements _SaveFilters {
-  const _$SaveFiltersImpl(
-      final List<DaoProposalCountEntity> daoProposalCounts, this.filterStatus)
-      : _daoProposalCounts = daoProposalCounts;
-
-  final List<DaoProposalCountEntity> _daoProposalCounts;
-  @override
-  List<DaoProposalCountEntity> get daoProposalCounts {
-    if (_daoProposalCounts is EqualUnmodifiableListView)
-      return _daoProposalCounts;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_daoProposalCounts);
-  }
+  const _$SaveFiltersImpl(this.filterStatus);
 
   @override
   final FilterStatus filterStatus;
 
   @override
   String toString() {
-    return 'FilterProposalsEvent.saveFilters(daoProposalCounts: $daoProposalCounts, filterStatus: $filterStatus)';
+    return 'FilterProposalsEvent.saveFilters(filterStatus: $filterStatus)';
   }
 
   @override
@@ -433,15 +403,12 @@ class _$SaveFiltersImpl implements _SaveFilters {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SaveFiltersImpl &&
-            const DeepCollectionEquality()
-                .equals(other._daoProposalCounts, _daoProposalCounts) &&
             (identical(other.filterStatus, filterStatus) ||
                 other.filterStatus == filterStatus));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType,
-      const DeepCollectionEquality().hash(_daoProposalCounts), filterStatus);
+  int get hashCode => Object.hash(runtimeType, filterStatus);
 
   /// Create a copy of FilterProposalsEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -455,38 +422,32 @@ class _$SaveFiltersImpl implements _SaveFilters {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(List<DaoProposalCountEntity> daoProposalCounts,
-            FilterStatus filterStatus)
-        saveFilters,
+    required TResult Function(FilterStatus filterStatus) saveFilters,
     required TResult Function() clearPageCommand,
   }) {
-    return saveFilters(daoProposalCounts, filterStatus);
+    return saveFilters(filterStatus);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(List<DaoProposalCountEntity> daoProposalCounts,
-            FilterStatus filterStatus)?
-        saveFilters,
+    TResult? Function(FilterStatus filterStatus)? saveFilters,
     TResult? Function()? clearPageCommand,
   }) {
-    return saveFilters?.call(daoProposalCounts, filterStatus);
+    return saveFilters?.call(filterStatus);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(List<DaoProposalCountEntity> daoProposalCounts,
-            FilterStatus filterStatus)?
-        saveFilters,
+    TResult Function(FilterStatus filterStatus)? saveFilters,
     TResult Function()? clearPageCommand,
     required TResult orElse(),
   }) {
     if (saveFilters != null) {
-      return saveFilters(daoProposalCounts, filterStatus);
+      return saveFilters(filterStatus);
     }
     return orElse();
   }
@@ -527,11 +488,9 @@ class _$SaveFiltersImpl implements _SaveFilters {
 }
 
 abstract class _SaveFilters implements FilterProposalsEvent {
-  const factory _SaveFilters(
-      final List<DaoProposalCountEntity> daoProposalCounts,
-      final FilterStatus filterStatus) = _$SaveFiltersImpl;
+  const factory _SaveFilters(final FilterStatus filterStatus) =
+      _$SaveFiltersImpl;
 
-  List<DaoProposalCountEntity> get daoProposalCounts;
   FilterStatus get filterStatus;
 
   /// Create a copy of FilterProposalsEvent
@@ -583,9 +542,7 @@ class _$ClearPageCommandImpl implements _ClearPageCommand {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(List<DaoProposalCountEntity> daoProposalCounts,
-            FilterStatus filterStatus)
-        saveFilters,
+    required TResult Function(FilterStatus filterStatus) saveFilters,
     required TResult Function() clearPageCommand,
   }) {
     return clearPageCommand();
@@ -595,9 +552,7 @@ class _$ClearPageCommandImpl implements _ClearPageCommand {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(List<DaoProposalCountEntity> daoProposalCounts,
-            FilterStatus filterStatus)?
-        saveFilters,
+    TResult? Function(FilterStatus filterStatus)? saveFilters,
     TResult? Function()? clearPageCommand,
   }) {
     return clearPageCommand?.call();
@@ -607,9 +562,7 @@ class _$ClearPageCommandImpl implements _ClearPageCommand {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(List<DaoProposalCountEntity> daoProposalCounts,
-            FilterStatus filterStatus)?
-        saveFilters,
+    TResult Function(FilterStatus filterStatus)? saveFilters,
     TResult Function()? clearPageCommand,
     required TResult orElse(),
   }) {

@@ -13,20 +13,28 @@ class HyphaOptionCard extends StatelessWidget {
   final int index;
   final Function()? onTap;
 
-  const HyphaOptionCard(this.valueNotifier, this.index,
-      {this.dao, this.title, this.subTitle, super.key, this.onTap});
+  const HyphaOptionCard(this.valueNotifier, this.index, {this.dao, this.title, this.subTitle, super.key, this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
+        if (dao != null && subTitle != null) {
+          final List<int> updatedList = List<int>.from(valueNotifier.value);
 
+          if (updatedList.contains(index) && updatedList.length != 1) {
+            updatedList.remove(index);
+          } else if (!updatedList.contains(index)) {
+            updatedList.add(index);
+          }
 
-        if (valueNotifier.value != index) {
-          valueNotifier.value = index;
-
-        } else if (subTitle != null) {
-          valueNotifier.value = null;
+          valueNotifier.value = updatedList;
+        } else {
+          if (valueNotifier.value != index) {
+            valueNotifier.value = index;
+          } else if (subTitle != null) {
+            valueNotifier.value = null;
+          }
         }
 
         onTap?.call();
@@ -51,27 +59,48 @@ class HyphaOptionCard extends StatelessWidget {
                 if (subTitle != null)
                   Text(
                     subTitle!,
-                    style: context.hyphaTextTheme.ralMediumBody
-                        .copyWith(color: HyphaColors.midGrey),
+                    style: context.hyphaTextTheme.ralMediumBody.copyWith(color: HyphaColors.midGrey),
                   ),
               ],
             ),
             const Spacer(),
             ValueListenableBuilder<dynamic>(
               valueListenable: valueNotifier,
-              builder: (context, selectedIndex, child) {
-                return CircleAvatar(
-                  radius: 12,
-                  backgroundColor: selectedIndex == index
-                      ? HyphaColors.primaryBlu
-                      : HyphaColors.midGrey.withOpacity(.3),
-                  child: CircleAvatar(
-                    radius: selectedIndex == index ? 4 : 10.5,
-                    backgroundColor: selectedIndex == index
-                        ? HyphaColors.white
-                        : HyphaColors.lightBlack,
-                  ),
-                );
+              builder: (context, value, child) {
+                return dao != null && subTitle != null
+                    ? SizedBox(
+                      height: 24,
+                      width: 24,
+                      child: Transform.scale(
+                        scale: 1.35,
+                        child: Checkbox(
+                            value: value.contains(index),
+                            onChanged: (bool? newValue) {
+                              final List<int> updatedList = List<int>.from(valueNotifier.value);
+
+                              if (newValue!) {
+                                updatedList.add(index);
+                              } else if (updatedList.length != 1) {
+                                updatedList.remove(index);
+                              }
+
+                              valueNotifier.value = updatedList;
+                            },
+                          ),
+                      ),
+                    )
+                    : CircleAvatar(
+                        radius: 12,
+                        backgroundColor: value == index
+                            ? HyphaColors.primaryBlu
+                            : HyphaColors.midGrey.withOpacity(.3),
+                        child: CircleAvatar(
+                          radius: value == index ? 4 : 10.3,
+                          backgroundColor: value == index
+                              ? HyphaColors.white
+                              : context.isDarkTheme ? HyphaColors.gradientBlackLight : HyphaColors.offWhite,
+                        ),
+                      );
               },
             ),
           ],

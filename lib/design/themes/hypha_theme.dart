@@ -21,6 +21,22 @@ class HyphaTheme {
         ),
         thumbColor: const WidgetStatePropertyAll(HyphaColors.offWhite),
       ),
+      checkboxTheme: CheckboxThemeData(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(6),
+        ),
+        fillColor: WidgetStateProperty.resolveWith((states) {
+          if (states.contains(WidgetState.selected)) {
+            return HyphaColors.primaryBlu;
+          }
+          return HyphaColors.gradientBlackLight;
+        }),
+        side: BorderSide(
+          width: 1.5,
+          color: HyphaColors.midGrey.withOpacity(.3),
+        ),
+        checkColor: WidgetStateProperty.all(HyphaColors.offWhite),
+      ),
       iconTheme: const IconThemeData(color: HyphaColors.white),
       appBarTheme: AppBarTheme(
         backgroundColor: HyphaColors.transparent,
@@ -51,6 +67,22 @@ class HyphaTheme {
           (states) => states.contains(WidgetState.selected) ? HyphaColors.primaryBlu : HyphaColors.midGrey,
         ),
         thumbColor: const WidgetStatePropertyAll(HyphaColors.offWhite),
+      ),
+      checkboxTheme: CheckboxThemeData(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(6),
+        ),
+        fillColor: WidgetStateProperty.resolveWith((states) {
+          if (states.contains(WidgetState.selected)) {
+            return HyphaColors.primaryBlu;
+          }
+          return HyphaColors.offWhite;
+        }),
+        side: BorderSide(
+          width: 1.5,
+          color: HyphaColors.midGrey.withOpacity(.3),
+        ),
+        checkColor: WidgetStateProperty.all(HyphaColors.offWhite),
       ),
       iconTheme: const IconThemeData(color: HyphaColors.black),
       appBarTheme: AppBarTheme(
