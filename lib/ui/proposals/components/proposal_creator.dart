@@ -6,7 +6,9 @@ import 'package:hypha_wallet/ui/profile/interactor/profile_data.dart';
 
 class ProposalCreator extends StatelessWidget {
   final ProfileData? creator;
-  const ProposalCreator(this.creator, {super.key});
+  final bool isColumn;
+
+  const ProposalCreator(this.creator, {this.isColumn = true, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,20 +21,43 @@ class ProposalCreator extends StatelessWidget {
         ),
         const SizedBox(width: 10),
         Expanded(
-          child: Column(
+          child: isColumn
+              ? Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                creator?.name ?? '',
-                style: context.hyphaTextTheme.reducedTitles,
-              ),
-              Text(
-                creator?.account ?? '',
-                style: context.hyphaTextTheme.ralMediumSmallNote.copyWith(color: HyphaColors.midGrey),              ),
-            ],
+            children: children(context),
+          )
+              : Row(
+            children: children(context),
           ),
         ),
       ],
+    );
+  }
+
+  List<Widget> children(BuildContext context) {
+    return [
+      Text(
+        creator?.name ?? '',
+        style: context.hyphaTextTheme.reducedTitles,
+      ),
+      if (!isColumn) ... [
+        const SizedBox(width: 10),
+        Expanded(
+          child: text(context)
+        ),
+      ],
+      if(isColumn)
+        text(context)
+    ];
+  }
+
+  Widget text(BuildContext context){
+    return Text(
+      creator?.account ?? '',
+      style: context.hyphaTextTheme.ralMediumSmallNote.copyWith(
+        color: isColumn ? HyphaColors.midGrey : HyphaColors.primaryBlu,
+      ),
+      overflow: TextOverflow.ellipsis,
     );
   }
 }

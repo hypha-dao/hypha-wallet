@@ -6,8 +6,6 @@ import 'package:hypha_wallet/ui/architecture/interactor/base_usecase.dart';
 import 'package:hypha_wallet/ui/architecture/result/result.dart';
 import 'package:hypha_wallet/ui/proposals/list/interactor/get_proposals_use_case_input.dart';
 
-import '../../../../core/network/models/dao_proposals_model.dart';
-
 class GetProposalsUseCase extends InputUseCase<Result<List<ProposalModel>, HyphaError>, GetProposalsUseCaseInput> {
   final AuthRepository _authRepository;
   final ProposalRepository _proposalRepository;
@@ -16,5 +14,4 @@ class GetProposalsUseCase extends InputUseCase<Result<List<ProposalModel>, Hypha
 
   @override
   Future<Result<List<ProposalModel>, HyphaError>> run(GetProposalsUseCaseInput input) async => _proposalRepository.getProposals(_authRepository.authDataOrCrash.userProfileData, input);
-  Future<Result<List<DaoProposalsModel>, HyphaError>> run1(GetProposalsUseCaseInput input) async => _proposalRepository.getHistoryProposalsPerDao(_authRepository.authDataOrCrash.userProfileData, input);
 }

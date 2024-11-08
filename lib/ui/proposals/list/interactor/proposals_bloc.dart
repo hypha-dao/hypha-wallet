@@ -3,7 +3,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hypha_wallet/core/error_handler/error_handler_manager.dart';
 import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
 import 'package:hypha_wallet/core/network/models/dao_data_model.dart';
-import 'package:hypha_wallet/core/network/models/dao_proposals_model.dart';
 import 'package:hypha_wallet/core/network/models/proposal_model.dart';
 import 'package:hypha_wallet/ui/architecture/interactor/page_states.dart';
 import 'package:hypha_wallet/ui/architecture/result/result.dart';
