@@ -148,11 +148,6 @@ void _registerBlocsModule() {
         _getIt<ErrorHandlerManager>(),
       ));
 
-  _registerFactoryWithParams<ProposalsHistoryBloc, DaoData, void>(
-    (dao, _) => ProposalsHistoryBloc(
-        _getIt<GetProposalsUseCase>(), _getIt<ErrorHandlerManager>(), dao),
-  );
-
   _registerFactoryWithParams<ProposalCreationBloc, List<DaoData>, void>(
     (daos, _) => ProposalCreationBloc(daos),
   );

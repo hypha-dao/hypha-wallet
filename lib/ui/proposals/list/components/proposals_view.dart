@@ -15,7 +15,6 @@ import 'package:hypha_wallet/ui/proposals/creation/proposal_creation_page.dart';
 import 'package:hypha_wallet/ui/proposals/filter/filter_proposals_page.dart';
 import 'package:hypha_wallet/ui/proposals/filter/interactor/filter_proposals_bloc.dart';
 import 'package:hypha_wallet/ui/proposals/filter/interactor/filter_status.dart';
-import 'package:hypha_wallet/ui/proposals/list/components/hypha_proposal_history_card.dart';
 import 'package:hypha_wallet/ui/proposals/list/interactor/proposals_bloc.dart';
 import 'package:hypha_wallet/ui/shared/hypha_body_widget.dart';
 
