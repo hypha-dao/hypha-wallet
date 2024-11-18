@@ -9,7 +9,7 @@ part of 'proposal_details_model.dart';
 ProposalDetailsModel _$ProposalDetailsModelFromJson(
         Map<String, dynamic> json) =>
     ProposalDetailsModel(
-      id: json['docId'] as String,
+      id: json['docId'] as String?,
       dao: json['dao'] == null
           ? null
           : DaoData.fromJson(json['dao'] as Map<String, dynamic>),

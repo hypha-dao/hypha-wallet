@@ -1,5 +1,4 @@
 import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
-import 'package:hypha_wallet/core/network/models/dao_proposals_model.dart';
 import 'package:hypha_wallet/core/network/models/proposal_model.dart';
 import 'package:hypha_wallet/core/network/repository/auth_repository.dart';
 import 'package:hypha_wallet/core/network/repository/proposal_repository.dart';

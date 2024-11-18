@@ -25,7 +25,6 @@ class PublishProposalUseCase extends InputUseCase<Result<String, HyphaError>, Pr
       final String daoContract = _remoteConfigService.daoContract(network: user.network);
 
       List<Map<String, dynamic>> content = [];
-      print(input.details!.toMarkdown);
 
       switch (input.type) {
         case ProposalType.policy:
@@ -58,7 +57,6 @@ class PublishProposalUseCase extends InputUseCase<Result<String, HyphaError>, Pr
           ..account = daoContract
           ..name = 'propose'
           ..data = {
-            // TODO(Zied): test after merging
             'dao_id': input.dao!.docId,
             'proposer': user.accountName,
             'proposal_type': input.proposalTypeToString(),

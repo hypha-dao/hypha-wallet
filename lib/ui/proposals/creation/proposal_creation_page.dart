@@ -80,7 +80,7 @@ class ProposalCreationPage extends StatelessWidget {
                     ],
                   ),
                   const Spacer(),
-                  ...List.generate(state.currentViewIndex == 4 ? 1 : 2,
+                  ...List.generate(state.currentViewIndex == 2 ? 1 : 2,
                           (index) {
                         return GestureDetector(
                           onTap: () {
