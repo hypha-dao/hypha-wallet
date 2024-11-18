@@ -151,12 +151,12 @@ void _registerBlocsModule() {
         (dao, _) => ProposalsHistoryBloc(
       _getIt<GetProposalsUseCase>(),
       _getIt<ErrorHandlerManager>(),
-            dao
+            dao,
     ),
   );
 
   _registerFactory(() => ProposalCreationBloc(
-      _getIt<EOSService>(),
-      _getIt<AuthRepository>(),
+      _getIt<PublishProposalUseCase>(),
+      _getIt<ErrorHandlerManager>(),
   ));
 }

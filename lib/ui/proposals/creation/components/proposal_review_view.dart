@@ -9,6 +9,7 @@ import 'package:hypha_wallet/design/buttons/hypha_app_button.dart';
 import 'package:hypha_wallet/design/dividers/hypha_divider.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
+import 'package:hypha_wallet/ui/architecture/interactor/page_states.dart';
 import 'package:hypha_wallet/ui/proposals/components/proposal_header.dart';
 import 'package:hypha_wallet/ui/proposals/creation/interactor/proposal_creation_bloc.dart';
 
@@ -38,24 +39,16 @@ class ProposalReviewView extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             const SizedBox(height: 20),
-                            const Row(
-                              children: [
-                                Expanded(
-                                  child: ProposalHeader(
-                                    DaoData(
-                                      docId: 21345,
-                                      detailsDaoName: '',
-                                      settingsDaoTitle: 'HyphaDao',
-                                      logoIPFSHash: '',
-                                      logoType: '',
-                                      settingsDaoUrl: '',
-                                    ),
-                                    text: 'Builders',
-                                  ),
-                                ),
-                                SizedBox(width: 10),
-                                Icon(CupertinoIcons.hand_thumbsup, color: HyphaColors.primaryBlu),
-                              ],
+                            const ProposalHeader(
+                              DaoData(
+                                docId: 21345,
+                                detailsDaoName: '',
+                                settingsDaoTitle: 'HyphaDao',
+                                logoIPFSHash: '',
+                                logoType: '',
+                                settingsDaoUrl: '',
+                              ),
+                              text: 'Builders',
                             ),
                             const Padding(
                               padding: EdgeInsets.only(top: 10, bottom: 20),
@@ -89,6 +82,7 @@ class ProposalReviewView extends StatelessWidget {
                             const Spacer(),
                             HyphaAppButton(
                               title: 'Publish',
+                              isLoading: state.pageState == PageState.loading,
                               onPressed: () async {
                                 context.read<ProposalCreationBloc>().add(const ProposalCreationEvent.publishProposal());
                               },

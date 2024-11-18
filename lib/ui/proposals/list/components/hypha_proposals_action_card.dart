@@ -161,7 +161,7 @@ class HyphaProposalsActionCard extends StatelessWidget {
             Icons.arrow_forward_ios,
                 () {
                   Get.Get.to(
-                    ProposalDetailsPage(proposalId: _proposalModel.id,),
+                    ProposalDetailsPage(proposalId: _proposalModel.id!),
                     transition: Get.Transition.rightToLeft,
                   );
                 }

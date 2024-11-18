@@ -74,6 +74,7 @@ import 'package:hypha_wallet/ui/profile/usecases/set_bio_use_case.dart';
 import 'package:hypha_wallet/ui/profile/usecases/set_image_use_case.dart';
 import 'package:hypha_wallet/ui/profile/usecases/set_name_use_case.dart';
 import 'package:hypha_wallet/ui/proposals/creation/interactor/proposal_creation_bloc.dart';
+import 'package:hypha_wallet/ui/proposals/creation/usecases/publish_proposal_use_case.dart';
 import 'package:hypha_wallet/ui/proposals/details/usecases/get_proposal_details_use_case.dart';
 import 'package:hypha_wallet/ui/proposals/filter/interactor/filter_proposals_bloc.dart';
 import 'package:hypha_wallet/ui/proposals/filter/usecases/aggregate_dao_proposal_counts_use_case.dart';
