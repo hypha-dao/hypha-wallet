@@ -3,8 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
+import 'package:hypha_wallet/core/network/models/dao_data_model.dart';
+import 'package:hypha_wallet/core/network/models/outcome_model.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
+import 'package:hypha_wallet/ui/proposals/creation/components/dao_selection_view.dart';
 import 'package:hypha_wallet/ui/proposals/creation/components/proposal_content_view.dart';
 import 'package:hypha_wallet/ui/proposals/creation/components/proposal_review_view.dart';
 import 'package:hypha_wallet/ui/proposals/creation/interactor/proposal_creation_bloc.dart';
@@ -13,12 +16,14 @@ import 'package:hypha_wallet/ui/sign_transaction/success/sign_transaction_succes
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class ProposalCreationPage extends StatelessWidget {
-  const ProposalCreationPage({super.key});
+  const ProposalCreationPage(this.daos, {super.key});
+
+  final List<DaoData> daos;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => GetIt.I.get<ProposalCreationBloc>(),
+      create: (context) => GetIt.I.get<ProposalCreationBloc>(param1: daos),
       child: BlocConsumer<ProposalCreationBloc, ProposalCreationState>(
         listener: (context, state) {
           state.command?.when(
@@ -52,20 +57,22 @@ class ProposalCreationPage extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      if(state.currentViewIndex != 4)
-                      SmoothPageIndicator(
-                        controller: context.read<ProposalCreationBloc>().pageController,
-                        count: 4,
-                        effect: SlideEffect(
-                          dotHeight: 10.0,
-                          dotWidth: 10.0,
-                          activeDotColor: HyphaColors.primaryBlu,
-                          dotColor: HyphaColors.lightBlue.withOpacity(.2),
+                      if (state.currentViewIndex != 2)
+                        SmoothPageIndicator(
+                          controller: context
+                              .read<ProposalCreationBloc>()
+                              .pageController,
+                          count: 2,
+                          effect: SlideEffect(
+                            dotHeight: 10.0,
+                            dotWidth: 10.0,
+                            activeDotColor: HyphaColors.primaryBlu,
+                            dotColor: HyphaColors.lightBlue.withOpacity(.2),
+                          ),
                         ),
-                      ),
                       const SizedBox(height: 10),
                       Text(
-                        state.currentViewIndex == 4
+                        state.currentViewIndex == 2
                             ? 'Review & Publish'
                             : 'Create Proposal',
                         style: context.hyphaTextTheme.mediumTitles,
@@ -114,10 +121,8 @@ class ProposalCreationPage extends StatelessWidget {
               controller: context.read<ProposalCreationBloc>().pageController,
               physics: const NeverScrollableScrollPhysics(),
               children: [
-                Container(),
+                const DaoSelectionView(),
                 const ProposalContentView(),
-                Container(),
-                Container(),
                 const ProposalReviewView(),
               ],
             ),

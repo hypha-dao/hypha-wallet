@@ -39,15 +39,8 @@ class ProposalReviewView extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             const SizedBox(height: 20),
-                            const ProposalHeader(
-                              DaoData(
-                                docId: 21345,
-                                detailsDaoName: '',
-                                settingsDaoTitle: 'HyphaDao',
-                                logoIPFSHash: '',
-                                logoType: '',
-                                settingsDaoUrl: '',
-                              ),
+                            ProposalHeader(
+                              state.proposal!.dao,
                               text: 'Builders',
                             ),
                             const Padding(

@@ -10,8 +10,6 @@ ProposalDetailsModel _$ProposalDetailsModelFromJson(
         Map<String, dynamic> json) =>
     ProposalDetailsModel(
       id: json['docId'] as String,
-      type: json['__typename'] as String,
-      creationDate: DateTime.parse(json['createdDate'] as String),
       dao: json['dao'] == null
           ? null
           : DaoData.fromJson(json['dao'] as Map<String, dynamic>),
@@ -30,21 +28,7 @@ ProposalDetailsModel _$ProposalDetailsModelFromJson(
       votes: (json['vote'] as List<dynamic>?)
           ?.map((e) => VoteModel.fromJson(e as Map<String, dynamic>))
           .toList(),
-      tokenMixPercentage: (json['details_deferredPercX100_i'] as num?)?.toInt(),
-      cycleCount: (json['details_periodCount_i'] as num?)?.toInt(),
-      cycleStartDate: json['start'] == null
-          ? null
-          : DateTime.parse(json['start'] as String),
-      utilityAmount: json['details_rewardAmount_a'] as String?,
-      voiceAmount: json['details_voiceAmount_a'] as String?,
-      cashAmount: json['details_pegAmount_a'] as String?,
-      utilityAmountPerPeriod:
-          json['details_rewardSalaryPerPeriod_a'] as String?,
-      voiceAmountPerPeriod: json['details_voiceSalaryPerPeriod_a'] as String?,
-      cashAmountPerPeriod: json['details_pegSalaryPerPeriod_a'] as String?,
       description: json['details_description_s'] as String?,
-      periodDurationSec:
-          (json['settings_periodDurationSec_i'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$ProposalDetailsModelToJson(
@@ -61,17 +45,5 @@ Map<String, dynamic> _$ProposalDetailsModelToJson(
       'ballot_expiration_t': instance.expiration?.toIso8601String(),
       'creator': instance.creator,
       'vote': instance.votes,
-      '__typename': instance.type,
-      'settings_periodDurationSec_i': instance.periodDurationSec,
-      'createdDate': instance.creationDate.toIso8601String(),
-      'details_deferredPercX100_i': instance.tokenMixPercentage,
-      'details_periodCount_i': instance.cycleCount,
-      'start': instance.cycleStartDate?.toIso8601String(),
-      'details_rewardAmount_a': instance.utilityAmount,
-      'details_voiceAmount_a': instance.voiceAmount,
-      'details_pegAmount_a': instance.cashAmount,
-      'details_rewardSalaryPerPeriod_a': instance.utilityAmountPerPeriod,
-      'details_voiceSalaryPerPeriod_a': instance.voiceAmountPerPeriod,
-      'details_pegSalaryPerPeriod_a': instance.cashAmountPerPeriod,
       'details_description_s': instance.description,
     };

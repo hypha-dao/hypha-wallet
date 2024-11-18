@@ -38,10 +38,15 @@ class HyphaProposalsActionCard extends StatelessWidget {
                   padding: EdgeInsets.symmetric(vertical: 18),
                   child: HyphaDivider(),
                 ),
-                _buildProposalRoleAssignment(
-                  context,
-                  _proposalModel.commitment ?? 0,
-                  _proposalModel.title ?? 'No title',
+
+                Container(
+                  alignment: Alignment.centerLeft,
+                  height: 55,
+                  child: Text(
+                    _proposalModel.title ?? 'No title',
+                    style: context.hyphaTextTheme.mediumTitles,
+                    maxLines: 2,
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 20),
@@ -103,7 +108,7 @@ class HyphaProposalsActionCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(16),
           ),
           width: double.infinity,
-          height: 475,
+          height: 435,
           child: Text(
             statusText,
             style: context.hyphaTextTheme.smallTitles
@@ -111,44 +116,6 @@ class HyphaProposalsActionCard extends StatelessWidget {
           ),
         );
       },
-    );
-  }
-
-  Widget _buildProposalRoleAssignment(
-      BuildContext context, int commitment, String title) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          children: [
-            // TODO(Zied-Saif): figure these out (B6 and Role)
-            _buildProposalInfoText(context, 'Role Assignment'),
-            _buildProposalInfoText(context, 'B6'),
-            _buildProposalInfoText(context, '$commitment%'),
-          ],
-        ),
-        const SizedBox(height: 5),
-        Container(
-          alignment: Alignment.centerLeft,
-          height: 55,
-          child: Text(
-            title,
-            style: context.hyphaTextTheme.mediumTitles,
-            maxLines: 2,
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildProposalInfoText(BuildContext context, String text) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 5),
-      child: Text(
-        text,
-        style: context.hyphaTextTheme.ralMediumSmallNote
-            .copyWith(color: HyphaColors.midGrey),
-      ),
     );
   }
 

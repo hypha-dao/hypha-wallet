@@ -78,7 +78,6 @@ import 'package:hypha_wallet/ui/proposals/creation/usecases/publish_proposal_use
 import 'package:hypha_wallet/ui/proposals/details/usecases/get_proposal_details_use_case.dart';
 import 'package:hypha_wallet/ui/proposals/filter/interactor/filter_proposals_bloc.dart';
 import 'package:hypha_wallet/ui/proposals/filter/usecases/aggregate_dao_proposal_counts_use_case.dart';
-import 'package:hypha_wallet/ui/proposals/history/interactor/proposals_history_bloc.dart';
 import 'package:hypha_wallet/ui/proposals/list/interactor/proposals_bloc.dart';
 import 'package:hypha_wallet/ui/proposals/list/usecases/get_proposals_use_case.dart';
 import 'package:hypha_wallet/ui/search_user/interactor/search_user_bloc.dart';
