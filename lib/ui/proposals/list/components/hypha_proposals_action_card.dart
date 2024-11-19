@@ -24,61 +24,69 @@ class HyphaProposalsActionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        _buildVoteStatusOverlay(context),
-        HyphaCard(
-          child: Padding(
-            padding: const EdgeInsets.all(22),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                ProposalHeader(_proposalModel.dao),
-                const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 18),
-                  child: HyphaDivider(),
-                ),
+    return GestureDetector(
+      onTap: () {
+        Get.Get.to(
+          ProposalDetailsPage(proposalId: _proposalModel.id,),
+          transition: Get.Transition.rightToLeft,
+        );
+      },
+      child: Stack(
+        children: [
+          _buildVoteStatusOverlay(context),
+          HyphaCard(
+            child: Padding(
+              padding: const EdgeInsets.all(22),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ProposalHeader(_proposalModel.dao),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 18),
+                    child: HyphaDivider(),
+                  ),
 
-                Container(
-                  alignment: Alignment.centerLeft,
-                  height: 55,
-                  child: Text(
-                    _proposalModel.title ?? 'No title',
-                    style: context.hyphaTextTheme.mediumTitles,
-                    maxLines: 2,
+                  Container(
+                    alignment: Alignment.centerLeft,
+                    height: 55,
+                    child: Text(
+                      _proposalModel.title ?? 'No title',
+                      style: context.hyphaTextTheme.mediumTitles,
+                      maxLines: 2,
+                    ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 20),
-                  child: ProposalPercentageIndicator(
-                    'Unity',
-                    _proposalModel.unityToPercent(),
-                    _proposalModel.isPassing()
-                        ? HyphaColors.success
-                        : HyphaColors.error,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 20),
+                    child: ProposalPercentageIndicator(
+                      'Unity',
+                      _proposalModel.unityToPercent(),
+                      _proposalModel.isPassing()
+                          ? HyphaColors.success
+                          : HyphaColors.error,
+                    ),
                   ),
-                ),
-                ProposalPercentageIndicator(
-                    'Quorum',
-                    _proposalModel.quorumToPercent(),
-                    _proposalModel.isPassing()
-                        ? HyphaColors.success
-                        : HyphaColors.error),
-                const SizedBox(height: 20),
-                ProposalExpirationTimer(_proposalModel.formatExpiration(),),
-                const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 16),
-                  child: HyphaDivider(),
-                ),
-                _buildProposalCardFooter(
-                  context,
-                  _proposalModel.creator
-                ),
-              ],
+                  ProposalPercentageIndicator(
+                      'Quorum',
+                      _proposalModel.quorumToPercent(),
+                      _proposalModel.isPassing()
+                          ? HyphaColors.success
+                          : HyphaColors.error),
+                  const SizedBox(height: 20),
+                  ProposalExpirationTimer(_proposalModel.formatExpiration(),),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 16),
+                    child: HyphaDivider(),
+                  ),
+                  _buildProposalCardFooter(
+                    context,
+                    _proposalModel.creator
+                  ),
+                ],
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
@@ -124,7 +132,7 @@ class HyphaProposalsActionCard extends StatelessWidget {
       children: [
         Expanded(child: ProposalCreator(creator)),
         ProposalButton(
-            'Details',
+            'Vote',
             Icons.arrow_forward_ios,
                 () {
                   Get.Get.to(
