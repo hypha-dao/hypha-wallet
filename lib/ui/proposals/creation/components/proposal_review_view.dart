@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_quill/flutter_quill.dart';
 import 'package:flutter_quill/quill_delta.dart';
 import 'package:get/get_utils/src/extensions/context_extensions.dart';
-import 'package:hypha_wallet/core/network/models/dao_data_model.dart';
 import 'package:hypha_wallet/design/buttons/hypha_app_button.dart';
 import 'package:hypha_wallet/design/dividers/hypha_divider.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';

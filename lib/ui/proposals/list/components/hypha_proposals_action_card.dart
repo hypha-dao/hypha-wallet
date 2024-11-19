@@ -27,7 +27,9 @@ class HyphaProposalsActionCard extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Get.Get.to(
-          ProposalDetailsPage(proposalId: _proposalModel.id,),
+          ProposalDetailsPage(
+            proposalId: _proposalModel.id ?? '',
+          ),
           transition: Get.Transition.rightToLeft,
         );
       },
@@ -45,7 +47,6 @@ class HyphaProposalsActionCard extends StatelessWidget {
                     padding: EdgeInsets.symmetric(vertical: 18),
                     child: HyphaDivider(),
                   ),
-
                   Container(
                     alignment: Alignment.centerLeft,
                     height: 55,
@@ -60,27 +61,20 @@ class HyphaProposalsActionCard extends StatelessWidget {
                     child: ProposalPercentageIndicator(
                       'Unity',
                       _proposalModel.unityToPercent(),
-                      _proposalModel.isPassing()
-                          ? HyphaColors.success
-                          : HyphaColors.error,
+                      _proposalModel.isPassing() ? HyphaColors.success : HyphaColors.error,
                     ),
                   ),
-                  ProposalPercentageIndicator(
-                      'Quorum',
-                      _proposalModel.quorumToPercent(),
-                      _proposalModel.isPassing()
-                          ? HyphaColors.success
-                          : HyphaColors.error),
+                  ProposalPercentageIndicator('Quorum', _proposalModel.quorumToPercent(),
+                      _proposalModel.isPassing() ? HyphaColors.success : HyphaColors.error),
                   const SizedBox(height: 20),
-                  ProposalExpirationTimer(_proposalModel.formatExpiration(),),
+                  ProposalExpirationTimer(
+                    _proposalModel.formatExpiration(),
+                  ),
                   const Padding(
                     padding: EdgeInsets.symmetric(vertical: 16),
                     child: HyphaDivider(),
                   ),
-                  _buildProposalCardFooter(
-                    context,
-                    _proposalModel.creator
-                  ),
+                  _buildProposalCardFooter(context, _proposalModel.creator),
                 ],
               ),
             ),
@@ -93,8 +87,8 @@ class HyphaProposalsActionCard extends StatelessWidget {
   Widget _buildVoteStatusOverlay(BuildContext context) {
     return BlocBuilder<AuthenticationBloc, AuthenticationState>(
       builder: (context, state) {
-        final myVoteIndex = _proposalModel.votes?.indexWhere((element) =>
-            element.voter == state.userProfileData?.accountName);
+        final myVoteIndex =
+            _proposalModel.votes?.indexWhere((element) => element.voter == state.userProfileData?.accountName);
         if (myVoteIndex == null || myVoteIndex == -1) return const SizedBox();
         final voteStatus = _proposalModel.votes![myVoteIndex].voteStatus;
         final color = voteStatus == VoteStatus.pass
@@ -119,8 +113,7 @@ class HyphaProposalsActionCard extends StatelessWidget {
           height: 435,
           child: Text(
             statusText,
-            style: context.hyphaTextTheme.smallTitles
-                .copyWith(color: HyphaColors.white),
+            style: context.hyphaTextTheme.smallTitles.copyWith(color: HyphaColors.white),
           ),
         );
       },
@@ -131,16 +124,12 @@ class HyphaProposalsActionCard extends StatelessWidget {
     return Row(
       children: [
         Expanded(child: ProposalCreator(creator)),
-        ProposalButton(
-            'Vote',
-            Icons.arrow_forward_ios,
-                () {
-                  Get.Get.to(
-                    ProposalDetailsPage(proposalId: _proposalModel.id!),
-                    transition: Get.Transition.rightToLeft,
-                  );
-                }
-        ),
+        ProposalButton('Vote', Icons.arrow_forward_ios, () {
+          Get.Get.to(
+            ProposalDetailsPage(proposalId: _proposalModel.id!),
+            transition: Get.Transition.rightToLeft,
+          );
+        }),
       ],
     );
   }

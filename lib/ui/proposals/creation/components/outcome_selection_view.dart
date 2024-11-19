@@ -20,8 +20,7 @@ class _OutcomeSelectionViewState extends State<OutcomeSelectionView> {
     OutcomeModel(
       icon: CupertinoIcons.hand_thumbsup,
       type: OutcomeType.agreement,
-      details:
-          'A Proposal where other DAO members are simply asked to vote Yes or No.',
+      details: 'A Proposal where other DAO members are simply asked to vote Yes or No.',
     ),
     OutcomeModel(
       icon: Icons.fiber_smart_record_outlined,
@@ -42,8 +41,7 @@ class _OutcomeSelectionViewState extends State<OutcomeSelectionView> {
   @override
   void initState() {
     super.initState();
-    final ProposalCreationBloc proposalCreationBloc =
-        context.read<ProposalCreationBloc>();
+    final ProposalCreationBloc proposalCreationBloc = context.read<ProposalCreationBloc>();
     if (proposalCreationBloc.state.proposal?.type == null) {
       selectedTypeIndexNotifier = ValueNotifier<int>(0);
       context.read<ProposalCreationBloc>().add(
@@ -52,9 +50,8 @@ class _OutcomeSelectionViewState extends State<OutcomeSelectionView> {
             ),
           );
     } else {
-      selectedTypeIndexNotifier = ValueNotifier<int>(outcomeTypes.indexWhere(
-          (outcome) =>
-              outcome.type.label == proposalCreationBloc.state.proposal?.type));
+      selectedTypeIndexNotifier = ValueNotifier<int>(
+          outcomeTypes.indexWhere((outcome) => outcome.type.label == proposalCreationBloc.state.proposal?.type.name));
     }
   }
 

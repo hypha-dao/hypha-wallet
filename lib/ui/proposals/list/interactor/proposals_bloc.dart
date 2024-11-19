@@ -22,9 +22,8 @@ class ProposalsBloc extends Bloc<ProposalsEvent, ProposalsState> {
   final GetProposalsUseCase _getProposalsUseCase;
   final FetchProfileUseCase _fetchProfileUseCase;
   final ErrorHandlerManager _errorHandlerManager;
-  List<DaoData> daos=[];
-  ProposalsBloc(this._getProposalsUseCase, this._fetchProfileUseCase,
-      this._errorHandlerManager)
+  List<DaoData> daos = [];
+  ProposalsBloc(this._getProposalsUseCase, this._fetchProfileUseCase, this._errorHandlerManager)
       : super(const ProposalsState()) {
     on<_Initial>(_initial);
   }
@@ -40,18 +39,15 @@ class ProposalsBloc extends Bloc<ProposalsEvent, ProposalsState> {
     await _fetchAndEmitProposals(emit, filterStatus);
   }
 
-  Future<void> _fetchAndEmitProposals(
-      Emitter<ProposalsState> emit, FilterStatus filterStatus) async {
+  Future<void> _fetchAndEmitProposals(Emitter<ProposalsState> emit, FilterStatus filterStatus) async {
     // Fetch DAOs
-    final Result<ProfileData, HyphaError> profileResult =
-        await _fetchProfileUseCase.run();
+    final Result<ProfileData, HyphaError> profileResult = await _fetchProfileUseCase.run();
 
     if (profileResult.isValue && profileResult.asValue!.value.daos.isNotEmpty) {
       daos = profileResult.asValue!.value.daos;
       // Fetch Proposals using the fetched DAOs
       final Result<List<ProposalModel>, HyphaError> proposalsResult =
-          await _getProposalsUseCase
-              .run(GetProposalsUseCaseInput(daos, filterStatus));;
+          await _getProposalsUseCase.run(GetProposalsUseCaseInput(daos, filterStatus));
 
       if (proposalsResult.isValue) {
         // Emit both daos and proposals in one state
@@ -64,9 +60,8 @@ class ProposalsBloc extends Bloc<ProposalsEvent, ProposalsState> {
         emit(state.copyWith(pageState: PageState.failure));
       }
     } else {
-      final HyphaError error = profileResult.isError
-          ? profileResult.asError!.error
-          : HyphaError.api('Failed to retrieve DAOs');
+      final HyphaError error =
+          profileResult.isError ? profileResult.asError!.error : HyphaError.api('Failed to retrieve DAOs');
       await _errorHandlerManager.handlerError(error);
       emit(state.copyWith(pageState: PageState.failure));
     }

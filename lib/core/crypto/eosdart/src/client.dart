@@ -13,8 +13,8 @@ import 'package:hypha_wallet/core/logging/log_helper.dart';
 import 'package:hypha_wallet/core/network/networking_manager.dart';
 
 class ContractCache {
-  Map<String, Contract> _contracts = {};
-  Map<String, DateTime> _timeStamps = {};
+  final Map<String, Contract> _contracts = {};
+  final Map<String, DateTime> _timeStamps = {};
   final int expirySeconds = 30;
 
   void put(String name, Contract contract) {
