@@ -21,7 +21,7 @@ class CreateAccountSuccessPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return PopScope(
       canPop: false,
-      onPopInvoked: (didPop) {
+      onPopInvokedWithResult: (didPop, result) {
         if (didPop) return;
         context.read<AuthenticationBloc>().add(
               const AuthenticationEvent.authenticationStatusChanged(UnAuthenticated()),
