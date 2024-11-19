@@ -22,7 +22,7 @@ class FirebaseAnalyticsService {
       'body': message.notification?.body,
     };
 
-    final Map<String, dynamic> params = {
+    final Map<String, Object> params = {
       ...data,
       ...message.data,
     };

@@ -8,8 +8,36 @@ import 'package:hypha_wallet/core/crypto/eosdart/eosdart.dart';
 import 'package:hypha_wallet/core/crypto/eosdart/src/jsons.dart';
 import 'package:hypha_wallet/core/crypto/eosdart/src/serialize.dart' as ser;
 import 'package:hypha_wallet/core/crypto/eosdart_ecc/eosdart_ecc.dart' as ecc;
+import 'package:hypha_wallet/core/error_handler/extensions/blockchain_error_extension.dart';
 import 'package:hypha_wallet/core/logging/log_helper.dart';
 import 'package:hypha_wallet/core/network/networking_manager.dart';
+
+class ContractCache {
+  Map<String, Contract> _contracts = {};
+  Map<String, DateTime> _timeStamps = {};
+  final int expirySeconds = 30;
+
+  void put(String name, Contract contract) {
+    _contracts[name] = contract;
+    _timeStamps[name] = DateTime.now();
+  }
+
+  Contract? get(String name) {
+    final contract = _contracts[name];
+    if (contract != null) {
+      final timeAdded = _timeStamps[name];
+      final expiryTime = timeAdded?.add(Duration(seconds: expirySeconds));
+      if (expiryTime != null && DateTime.now().isBefore(expiryTime)) {
+        return contract;
+      } else {
+        // expired
+        _contracts.remove(name);
+        _timeStamps.remove(name);
+      }
+    }
+    return null;
+  }
+}
 
 /// EOSClient calls APIs against given EOS nodes
 class EOSClient extends NetworkingManager {
@@ -174,9 +202,14 @@ class EOSClient extends NetworkingManager {
   }
 
   /// Get required key by transaction from EOS blockchain
-  Future<RequiredKeys> getRequiredKeys(Transaction transaction, List<String> availableKeys) async {
-    final NodeInfo info = await getInfo();
-    final Block refBlock = await getBlock(info.headBlockNum.toString());
+  Future<RequiredKeys> getRequiredKeys(
+    Transaction transaction,
+    List<String> availableKeys, {
+    NodeInfo? nodeInfo,
+    Block? headBlock,
+  }) async {
+    final NodeInfo info = nodeInfo ?? await getInfo();
+    final Block refBlock = headBlock ?? await getBlock(info.headBlockNum.toString());
     Transaction trx = await _fullFill(transaction, refBlock);
     trx = await _serializeActions(trx);
 
@@ -220,24 +253,54 @@ class EOSClient extends NetworkingManager {
   }
 
   /// Push transaction to EOS chain
-  Future<dio.Response> pushTransaction(Transaction transaction,
-      {bool sign = true, int blocksBehind = 3, int expireSecond = 180}) async {
+  Future<dio.Response> pushTransaction(
+    Transaction transaction, {
+    bool sign = true,
+    int blocksBehind = 3,
+    int expireSecond = 180,
+    int maxRetries = 2,
+    Duration retryDelay = const Duration(seconds: 1),
+  }) async {
+    var attempt = 0;
+    Object? timeoutException;
     final NodeInfo info = await getInfo();
     final Block refBlock = await getBlock((info.headBlockNum! - blocksBehind).toString());
-
     final Transaction trx = await _fullFill(transaction, refBlock);
-    final PushTransactionArgs pushTransactionArgs =
-        await _pushTransactionArgs(info.chainId, transactionTypes['transaction']!, trx, sign);
 
-    return _post('/chain/push_transaction', {
-      'signatures': pushTransactionArgs.signatures,
-      'compression': 0,
-      'packed_context_free_data': '',
-      'packed_trx': ser.arrayToHex(pushTransactionArgs.serializedTransaction),
-    }).then((processedTrx) {
-      print('processedTrx $processedTrx');
-      return processedTrx;
-    });
+    final PushTransactionArgs pushTransactionArgs = await _pushTransactionArgs(
+        info.chainId, transactionTypes['transaction']!, trx, sign,
+        nodeInfo: info, headBlock: refBlock);
+
+    while (attempt < maxRetries) {
+      try {
+        final processedTrx = await _post('/chain/push_transaction', {
+          'signatures': pushTransactionArgs.signatures,
+          'compression': 0,
+          'packed_context_free_data': '',
+          'packed_trx': ser.arrayToHex(pushTransactionArgs.serializedTransaction),
+        });
+
+        print('processedTrx $processedTrx');
+        return processedTrx;
+      } catch (e) {
+        final errorString = e.extendedBlockchainErrorMessage().toLowerCase();
+        final isTimeoutError = errorString.contains('exceeded the current cpu usage limit') ||
+            errorString.contains('executing for too long');
+        if (isTimeoutError) {
+          timeoutException = e;
+          attempt++;
+          print('Timeout error occurred. Retrying attempt $attempt/$maxRetries after $retryDelay...');
+          await Future.delayed(retryDelay);
+        } else {
+          rethrow;
+        }
+      }
+    }
+    if (timeoutException != null) {
+      throw timeoutException;
+    } else {
+      throw Exception('Unexpected state after timeout');
+    }
   }
 
   /// Push transaction to EOS chain
@@ -253,9 +316,14 @@ class EOSClient extends NetworkingManager {
     return pushTransactionArgs;
   }
 
+  final _contractCache = ContractCache();
+
   /// Get data needed to serialize actions in a contract */
   // ignore: unused_element
-  Future<Contract> _getContract(String? accountName, {bool reload = false}) async {
+  Future<Contract> _getContract(String accountName, {bool reload = false}) async {
+    final cachedContract = _contractCache.get(accountName);
+    if (cachedContract != null) return cachedContract;
+
     final abi = await getRawAbi(accountName);
     final types = ser.getTypesFromAbi(ser.createInitialTypes(), abi.abi!);
     // ignore: prefer_collection_literals
@@ -264,6 +332,7 @@ class EOSClient extends NetworkingManager {
       actions[act?.name] = ser.getType(types, act?.type);
     }
     final result = Contract(types, actions);
+    _contractCache.put(accountName, result);
     return result;
   }
 
@@ -281,7 +350,7 @@ class EOSClient extends NetworkingManager {
     for (final Action? action in transaction.actions!) {
       final String? account = action?.account;
 
-      final Contract contract = await _getContract(account);
+      final Contract contract = await _getContract(account!);
 
       action?.data = _serializeActionData(contract, account, action.name, action.data);
     }
@@ -313,10 +382,17 @@ class EOSClient extends NetworkingManager {
 //  }
 
   Future<PushTransactionArgs> _pushTransactionArgs(
-      String? chainId, Type transactionType, Transaction transaction, bool sign) async {
+    String? chainId,
+    Type transactionType,
+    Transaction transaction,
+    bool sign, {
+    NodeInfo? nodeInfo,
+    Block? headBlock,
+  }) async {
     final List<String> signatures = [];
 
-    final RequiredKeys requiredKeys = await getRequiredKeys(transaction, keys.keys.toList());
+    final RequiredKeys requiredKeys =
+        await getRequiredKeys(transaction, keys.keys.toList(), nodeInfo: nodeInfo, headBlock: headBlock);
 
     final Uint8List serializedTrx = transaction.toBinary(transactionType);
 
