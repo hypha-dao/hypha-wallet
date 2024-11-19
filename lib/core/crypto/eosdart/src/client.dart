@@ -313,6 +313,7 @@ class EOSClient extends NetworkingManager {
       }
     }
     if (timeoutException != null) {
+      LogHelper.e('Timeout exceeded max retries: $maxRetries ${timeoutException.toString()}');
       throw timeoutException;
     } else {
       throw Exception('Unexpected state after timeout');
