@@ -6,7 +6,7 @@ import 'package:json_annotation/json_annotation.dart';
 @JsonSerializable()
 abstract class BaseProposalModel {
   @JsonKey(name: 'docId')
-  final String id;
+  final String? id;
 
   DaoData? dao;
 

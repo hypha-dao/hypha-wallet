@@ -7,11 +7,6 @@ class VoteActionFactory {
     return EOSAction()
       ..account = daoContract
       ..name = 'vote'
-      ..data = {
-        'voter': voter,
-        'proposal_id': proposalId,
-        'vote': vote.name,
-        'notes': ''
-      };
+      ..data = {'voter': voter, 'proposal_id': proposalId, 'vote': vote.name, 'notes': ''};
   }
 }

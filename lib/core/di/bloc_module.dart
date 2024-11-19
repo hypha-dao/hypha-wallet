@@ -149,6 +149,10 @@ void _registerBlocsModule() {
       ));
 
   _registerFactoryWithParams<ProposalCreationBloc, List<DaoData>, void>(
-    (daos, _) => ProposalCreationBloc(daos),
+    (daos, _) => ProposalCreationBloc(
+      daos,
+      _getIt<PublishProposalUseCase>(),
+        _getIt<ErrorHandlerManager>(),
+    ),
   );
 }

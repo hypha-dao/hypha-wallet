@@ -476,6 +476,7 @@ abstract class _NavigateToFailurePage implements PageCommand {
 mixin _$ProposalCreationEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() initialize,
     required TResult Function(int nextViewIndex) updateCurrentView,
     required TResult Function(Map<String, dynamic> updates) updateProposal,
     required TResult Function() publishProposal,
@@ -484,6 +485,7 @@ mixin _$ProposalCreationEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initialize,
     TResult? Function(int nextViewIndex)? updateCurrentView,
     TResult? Function(Map<String, dynamic> updates)? updateProposal,
     TResult? Function()? publishProposal,
@@ -492,6 +494,7 @@ mixin _$ProposalCreationEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initialize,
     TResult Function(int nextViewIndex)? updateCurrentView,
     TResult Function(Map<String, dynamic> updates)? updateProposal,
     TResult Function()? publishProposal,
@@ -501,6 +504,7 @@ mixin _$ProposalCreationEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Initialize value) initialize,
     required TResult Function(_UpdateCurrentView value) updateCurrentView,
     required TResult Function(_UpdateProposal value) updateProposal,
     required TResult Function(_PublishProposal value) publishProposal,
@@ -509,6 +513,7 @@ mixin _$ProposalCreationEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initialize value)? initialize,
     TResult? Function(_UpdateCurrentView value)? updateCurrentView,
     TResult? Function(_UpdateProposal value)? updateProposal,
     TResult? Function(_PublishProposal value)? publishProposal,
@@ -517,6 +522,7 @@ mixin _$ProposalCreationEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initialize value)? initialize,
     TResult Function(_UpdateCurrentView value)? updateCurrentView,
     TResult Function(_UpdateProposal value)? updateProposal,
     TResult Function(_PublishProposal value)? publishProposal,
@@ -546,6 +552,129 @@ class _$ProposalCreationEventCopyWithImpl<$Res,
 
   /// Create a copy of ProposalCreationEvent
   /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+abstract class _$$InitializeImplCopyWith<$Res> {
+  factory _$$InitializeImplCopyWith(
+          _$InitializeImpl value, $Res Function(_$InitializeImpl) then) =
+      __$$InitializeImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$InitializeImplCopyWithImpl<$Res>
+    extends _$ProposalCreationEventCopyWithImpl<$Res, _$InitializeImpl>
+    implements _$$InitializeImplCopyWith<$Res> {
+  __$$InitializeImplCopyWithImpl(
+      _$InitializeImpl _value, $Res Function(_$InitializeImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ProposalCreationEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$InitializeImpl implements _Initialize {
+  const _$InitializeImpl();
+
+  @override
+  String toString() {
+    return 'ProposalCreationEvent.initialize()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$InitializeImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initialize,
+    required TResult Function(int nextViewIndex) updateCurrentView,
+    required TResult Function(Map<String, dynamic> updates) updateProposal,
+    required TResult Function() publishProposal,
+    required TResult Function() clearPageCommand,
+  }) {
+    return initialize();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initialize,
+    TResult? Function(int nextViewIndex)? updateCurrentView,
+    TResult? Function(Map<String, dynamic> updates)? updateProposal,
+    TResult? Function()? publishProposal,
+    TResult? Function()? clearPageCommand,
+  }) {
+    return initialize?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initialize,
+    TResult Function(int nextViewIndex)? updateCurrentView,
+    TResult Function(Map<String, dynamic> updates)? updateProposal,
+    TResult Function()? publishProposal,
+    TResult Function()? clearPageCommand,
+    required TResult orElse(),
+  }) {
+    if (initialize != null) {
+      return initialize();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initialize value) initialize,
+    required TResult Function(_UpdateCurrentView value) updateCurrentView,
+    required TResult Function(_UpdateProposal value) updateProposal,
+    required TResult Function(_PublishProposal value) publishProposal,
+    required TResult Function(_ClearPageCommand value) clearPageCommand,
+  }) {
+    return initialize(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initialize value)? initialize,
+    TResult? Function(_UpdateCurrentView value)? updateCurrentView,
+    TResult? Function(_UpdateProposal value)? updateProposal,
+    TResult? Function(_PublishProposal value)? publishProposal,
+    TResult? Function(_ClearPageCommand value)? clearPageCommand,
+  }) {
+    return initialize?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initialize value)? initialize,
+    TResult Function(_UpdateCurrentView value)? updateCurrentView,
+    TResult Function(_UpdateProposal value)? updateProposal,
+    TResult Function(_PublishProposal value)? publishProposal,
+    TResult Function(_ClearPageCommand value)? clearPageCommand,
+    required TResult orElse(),
+  }) {
+    if (initialize != null) {
+      return initialize(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Initialize implements ProposalCreationEvent {
+  const factory _Initialize() = _$InitializeImpl;
 }
 
 /// @nodoc
@@ -618,6 +747,7 @@ class _$UpdateCurrentViewImpl implements _UpdateCurrentView {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() initialize,
     required TResult Function(int nextViewIndex) updateCurrentView,
     required TResult Function(Map<String, dynamic> updates) updateProposal,
     required TResult Function() publishProposal,
@@ -629,6 +759,7 @@ class _$UpdateCurrentViewImpl implements _UpdateCurrentView {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initialize,
     TResult? Function(int nextViewIndex)? updateCurrentView,
     TResult? Function(Map<String, dynamic> updates)? updateProposal,
     TResult? Function()? publishProposal,
@@ -640,6 +771,7 @@ class _$UpdateCurrentViewImpl implements _UpdateCurrentView {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initialize,
     TResult Function(int nextViewIndex)? updateCurrentView,
     TResult Function(Map<String, dynamic> updates)? updateProposal,
     TResult Function()? publishProposal,
@@ -655,6 +787,7 @@ class _$UpdateCurrentViewImpl implements _UpdateCurrentView {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Initialize value) initialize,
     required TResult Function(_UpdateCurrentView value) updateCurrentView,
     required TResult Function(_UpdateProposal value) updateProposal,
     required TResult Function(_PublishProposal value) publishProposal,
@@ -666,6 +799,7 @@ class _$UpdateCurrentViewImpl implements _UpdateCurrentView {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initialize value)? initialize,
     TResult? Function(_UpdateCurrentView value)? updateCurrentView,
     TResult? Function(_UpdateProposal value)? updateProposal,
     TResult? Function(_PublishProposal value)? publishProposal,
@@ -677,6 +811,7 @@ class _$UpdateCurrentViewImpl implements _UpdateCurrentView {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initialize value)? initialize,
     TResult Function(_UpdateCurrentView value)? updateCurrentView,
     TResult Function(_UpdateProposal value)? updateProposal,
     TResult Function(_PublishProposal value)? publishProposal,
@@ -779,6 +914,7 @@ class _$UpdateProposalImpl implements _UpdateProposal {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() initialize,
     required TResult Function(int nextViewIndex) updateCurrentView,
     required TResult Function(Map<String, dynamic> updates) updateProposal,
     required TResult Function() publishProposal,
@@ -790,6 +926,7 @@ class _$UpdateProposalImpl implements _UpdateProposal {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initialize,
     TResult? Function(int nextViewIndex)? updateCurrentView,
     TResult? Function(Map<String, dynamic> updates)? updateProposal,
     TResult? Function()? publishProposal,
@@ -801,6 +938,7 @@ class _$UpdateProposalImpl implements _UpdateProposal {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initialize,
     TResult Function(int nextViewIndex)? updateCurrentView,
     TResult Function(Map<String, dynamic> updates)? updateProposal,
     TResult Function()? publishProposal,
@@ -816,6 +954,7 @@ class _$UpdateProposalImpl implements _UpdateProposal {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Initialize value) initialize,
     required TResult Function(_UpdateCurrentView value) updateCurrentView,
     required TResult Function(_UpdateProposal value) updateProposal,
     required TResult Function(_PublishProposal value) publishProposal,
@@ -827,6 +966,7 @@ class _$UpdateProposalImpl implements _UpdateProposal {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initialize value)? initialize,
     TResult? Function(_UpdateCurrentView value)? updateCurrentView,
     TResult? Function(_UpdateProposal value)? updateProposal,
     TResult? Function(_PublishProposal value)? publishProposal,
@@ -838,6 +978,7 @@ class _$UpdateProposalImpl implements _UpdateProposal {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initialize value)? initialize,
     TResult Function(_UpdateCurrentView value)? updateCurrentView,
     TResult Function(_UpdateProposal value)? updateProposal,
     TResult Function(_PublishProposal value)? publishProposal,
@@ -905,6 +1046,7 @@ class _$PublishProposalImpl implements _PublishProposal {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() initialize,
     required TResult Function(int nextViewIndex) updateCurrentView,
     required TResult Function(Map<String, dynamic> updates) updateProposal,
     required TResult Function() publishProposal,
@@ -916,6 +1058,7 @@ class _$PublishProposalImpl implements _PublishProposal {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initialize,
     TResult? Function(int nextViewIndex)? updateCurrentView,
     TResult? Function(Map<String, dynamic> updates)? updateProposal,
     TResult? Function()? publishProposal,
@@ -927,6 +1070,7 @@ class _$PublishProposalImpl implements _PublishProposal {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initialize,
     TResult Function(int nextViewIndex)? updateCurrentView,
     TResult Function(Map<String, dynamic> updates)? updateProposal,
     TResult Function()? publishProposal,
@@ -942,6 +1086,7 @@ class _$PublishProposalImpl implements _PublishProposal {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Initialize value) initialize,
     required TResult Function(_UpdateCurrentView value) updateCurrentView,
     required TResult Function(_UpdateProposal value) updateProposal,
     required TResult Function(_PublishProposal value) publishProposal,
@@ -953,6 +1098,7 @@ class _$PublishProposalImpl implements _PublishProposal {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initialize value)? initialize,
     TResult? Function(_UpdateCurrentView value)? updateCurrentView,
     TResult? Function(_UpdateProposal value)? updateProposal,
     TResult? Function(_PublishProposal value)? publishProposal,
@@ -964,6 +1110,7 @@ class _$PublishProposalImpl implements _PublishProposal {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initialize value)? initialize,
     TResult Function(_UpdateCurrentView value)? updateCurrentView,
     TResult Function(_UpdateProposal value)? updateProposal,
     TResult Function(_PublishProposal value)? publishProposal,
@@ -1022,6 +1169,7 @@ class _$ClearPageCommandImpl implements _ClearPageCommand {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() initialize,
     required TResult Function(int nextViewIndex) updateCurrentView,
     required TResult Function(Map<String, dynamic> updates) updateProposal,
     required TResult Function() publishProposal,
@@ -1033,6 +1181,7 @@ class _$ClearPageCommandImpl implements _ClearPageCommand {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initialize,
     TResult? Function(int nextViewIndex)? updateCurrentView,
     TResult? Function(Map<String, dynamic> updates)? updateProposal,
     TResult? Function()? publishProposal,
@@ -1044,6 +1193,7 @@ class _$ClearPageCommandImpl implements _ClearPageCommand {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initialize,
     TResult Function(int nextViewIndex)? updateCurrentView,
     TResult Function(Map<String, dynamic> updates)? updateProposal,
     TResult Function()? publishProposal,
@@ -1059,6 +1209,7 @@ class _$ClearPageCommandImpl implements _ClearPageCommand {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Initialize value) initialize,
     required TResult Function(_UpdateCurrentView value) updateCurrentView,
     required TResult Function(_UpdateProposal value) updateProposal,
     required TResult Function(_PublishProposal value) publishProposal,
@@ -1070,6 +1221,7 @@ class _$ClearPageCommandImpl implements _ClearPageCommand {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initialize value)? initialize,
     TResult? Function(_UpdateCurrentView value)? updateCurrentView,
     TResult? Function(_UpdateProposal value)? updateProposal,
     TResult? Function(_PublishProposal value)? publishProposal,
@@ -1081,6 +1233,7 @@ class _$ClearPageCommandImpl implements _ClearPageCommand {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initialize value)? initialize,
     TResult Function(_UpdateCurrentView value)? updateCurrentView,
     TResult Function(_UpdateProposal value)? updateProposal,
     TResult Function(_PublishProposal value)? publishProposal,
@@ -1100,6 +1253,7 @@ abstract class _ClearPageCommand implements ProposalCreationEvent {
 
 /// @nodoc
 mixin _$ProposalCreationState {
+  PageState get pageState => throw _privateConstructorUsedError;
   int get currentViewIndex => throw _privateConstructorUsedError;
   ProposalCreationModel? get proposal => throw _privateConstructorUsedError;
   PageCommand? get command => throw _privateConstructorUsedError;
@@ -1118,7 +1272,8 @@ abstract class $ProposalCreationStateCopyWith<$Res> {
       _$ProposalCreationStateCopyWithImpl<$Res, ProposalCreationState>;
   @useResult
   $Res call(
-      {int currentViewIndex,
+      {PageState pageState,
+      int currentViewIndex,
       ProposalCreationModel? proposal,
       PageCommand? command});
 
@@ -1141,11 +1296,16 @@ class _$ProposalCreationStateCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? pageState = null,
     Object? currentViewIndex = null,
     Object? proposal = freezed,
     Object? command = freezed,
   }) {
     return _then(_value.copyWith(
+      pageState: null == pageState
+          ? _value.pageState
+          : pageState // ignore: cast_nullable_to_non_nullable
+              as PageState,
       currentViewIndex: null == currentViewIndex
           ? _value.currentViewIndex
           : currentViewIndex // ignore: cast_nullable_to_non_nullable
@@ -1186,7 +1346,8 @@ abstract class _$$ProposalCreationStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int currentViewIndex,
+      {PageState pageState,
+      int currentViewIndex,
       ProposalCreationModel? proposal,
       PageCommand? command});
 
@@ -1208,11 +1369,16 @@ class __$$ProposalCreationStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? pageState = null,
     Object? currentViewIndex = null,
     Object? proposal = freezed,
     Object? command = freezed,
   }) {
     return _then(_$ProposalCreationStateImpl(
+      pageState: null == pageState
+          ? _value.pageState
+          : pageState // ignore: cast_nullable_to_non_nullable
+              as PageState,
       currentViewIndex: null == currentViewIndex
           ? _value.currentViewIndex
           : currentViewIndex // ignore: cast_nullable_to_non_nullable
@@ -1233,8 +1399,14 @@ class __$$ProposalCreationStateImplCopyWithImpl<$Res>
 
 class _$ProposalCreationStateImpl implements _ProposalCreationState {
   const _$ProposalCreationStateImpl(
-      {this.currentViewIndex = 0, this.proposal, this.command});
+      {this.pageState = PageState.initial,
+      this.currentViewIndex = 0,
+      this.proposal,
+      this.command});
 
+  @override
+  @JsonKey()
+  final PageState pageState;
   @override
   @JsonKey()
   final int currentViewIndex;
@@ -1245,7 +1417,7 @@ class _$ProposalCreationStateImpl implements _ProposalCreationState {
 
   @override
   String toString() {
-    return 'ProposalCreationState(currentViewIndex: $currentViewIndex, proposal: $proposal, command: $command)';
+    return 'ProposalCreationState(pageState: $pageState, currentViewIndex: $currentViewIndex, proposal: $proposal, command: $command)';
   }
 
   @override
@@ -1253,6 +1425,8 @@ class _$ProposalCreationStateImpl implements _ProposalCreationState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProposalCreationStateImpl &&
+            (identical(other.pageState, pageState) ||
+                other.pageState == pageState) &&
             (identical(other.currentViewIndex, currentViewIndex) ||
                 other.currentViewIndex == currentViewIndex) &&
             (identical(other.proposal, proposal) ||
@@ -1262,7 +1436,7 @@ class _$ProposalCreationStateImpl implements _ProposalCreationState {
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, currentViewIndex, proposal, command);
+      Object.hash(runtimeType, pageState, currentViewIndex, proposal, command);
 
   /// Create a copy of ProposalCreationState
   /// with the given fields replaced by the non-null parameter values.
@@ -1276,10 +1450,13 @@ class _$ProposalCreationStateImpl implements _ProposalCreationState {
 
 abstract class _ProposalCreationState implements ProposalCreationState {
   const factory _ProposalCreationState(
-      {final int currentViewIndex,
+      {final PageState pageState,
+      final int currentViewIndex,
       final ProposalCreationModel? proposal,
       final PageCommand? command}) = _$ProposalCreationStateImpl;
 
+  @override
+  PageState get pageState;
   @override
   int get currentViewIndex;
   @override

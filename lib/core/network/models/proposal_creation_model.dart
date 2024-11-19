@@ -1,21 +1,19 @@
-import 'package:hypha_wallet/core/network/models/dao_data_model.dart';
+import 'package:hypha_wallet/core/network/models/base_proposal_model.dart';
 
-class ProposalCreationModel {
-  final String? id;
-  final String? title;
+enum ProposalType { policy }
+
+class ProposalCreationModel extends BaseProposalModel {
   final String? details;
-  final DaoData? dao;
-  final String? type;
+  final ProposalType type;
 
-  ProposalCreationModel(
-      {this.type, this.dao, this.id, this.title, this.details});
+  ProposalCreationModel({super.id, super.title, this.details, super.dao, this.type = ProposalType.policy});
 
   ProposalCreationModel copyWith(Map<String, dynamic> updates) {
     return ProposalCreationModel(
       id: updates.containsKey('id') ? updates['id'] : id,
       title: updates.containsKey('title') ? updates['title'] : title,
-      details: updates.containsKey('details') ? updates['details'] : details,
       dao: updates.containsKey('dao') ? updates['dao'] : dao,
+      details: updates.containsKey('details') ? updates['details'] : details,
       type: updates.containsKey('type') ? updates['type'] : type,
     );
   }

@@ -88,4 +88,6 @@ void _registerUseCasesModule() {
   _registerFactory(() => GetProposalDetailsUseCase(_getIt<AuthRepository>(), _getIt<ProposalRepository>()));
 
   _registerFactory(() => AggregateDaoProposalCountsUseCase());
+
+  _registerFactory(() => PublishProposalUseCase(_getIt<AuthRepository>(), _getIt<EOSService>(), _getIt<RemoteConfigService>()));
 }

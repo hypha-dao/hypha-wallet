@@ -54,11 +54,31 @@ class SignTransactionSuccessPage extends StatelessWidget {
       child: Scaffold(
         backgroundColor: HyphaColors.transparent,
         bottomNavigationBar: HyphaSafeBottomNavigationBar(
-          child: HyphaAppButton(
-            onPressed: () {
-              Get.offAll(() => const HyphaBottomNavigation());
-            },
-            title: 'Close',
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              /// uncomment this (when you get the created proposal ID)
+              /*if(proposalId != null) ... [
+                HyphaAppButton(
+                  buttonType: ButtonType.secondary,
+                  buttonColor: HyphaColors.gradientBlackLight,
+                  onPressed: () {
+                    Get.to(
+                      ProposalDetailsPage(proposalId: proposalId!),
+                      transition: Transition.rightToLeft,
+                    );
+                  },
+                  title: 'See Proposal Details',
+                ),
+                const SizedBox(height: 20),
+              ],*/
+              HyphaAppButton(
+                onPressed: () {
+                  Get.offAll(() => const HyphaBottomNavigation());
+                },
+                title: 'Close',
+              ),
+            ],
           ),
         ),
         body: Stack(
@@ -87,24 +107,6 @@ class SignTransactionSuccessPage extends StatelessWidget {
                     ),
                     child: Icon(transactionType.icon, size: 24, color: transactionType.iconBorderColor),
                   ),
-                  const SizedBox(height: 16),
-                  if(proposalId != null) ... [
-                    const Spacer(),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 45.0, vertical: 20.0),
-                      child: HyphaAppButton(
-                        buttonType: ButtonType.secondary,
-                        buttonColor: HyphaColors.gradientBlackLight,
-                        onPressed: () {
-                          Get.to(
-                            ProposalDetailsPage(proposalId: proposalId!),
-                            transition: Transition.rightToLeft,
-                          );
-                        },
-                        title: 'See Proposal Details',
-                      ),
-                    ),
-                  ]
                 ],
               ),
             ),

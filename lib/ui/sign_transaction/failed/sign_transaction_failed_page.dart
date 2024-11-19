@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
 import 'package:hypha_wallet/design/background/hypha_half_background.dart';
@@ -9,6 +10,7 @@ import 'package:hypha_wallet/design/buttons/hypha_app_button.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 import 'package:hypha_wallet/ui/bottom_navigation/hypha_bottom_navigation.dart';
+import 'package:hypha_wallet/ui/proposals/creation/interactor/proposal_creation_bloc.dart';
 
 class SignTransactionFailedPage extends StatelessWidget {
   final HyphaError error;
@@ -41,12 +43,26 @@ class SignTransactionFailedPage extends StatelessWidget {
       child: Scaffold(
         backgroundColor: HyphaColors.transparent,
         bottomNavigationBar: HyphaSafeBottomNavigationBar(
-          child: HyphaAppButton(
-            buttonType: ButtonType.secondary,
-            onPressed: () {
-              Get.offAll(() => const HyphaBottomNavigation());
-            },
-            title: 'Close',
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              HyphaAppButton(
+                buttonType: ButtonType.secondary,
+                onPressed: () {
+                  Get.back();
+                  context.read<ProposalCreationBloc>().add(const ProposalCreationEvent.publishProposal());
+                },
+                title: 'Retry',
+              ),
+              const SizedBox(height: 20),
+              HyphaAppButton(
+                buttonType: ButtonType.secondary,
+                onPressed: () {
+                  Get.offAll(() => const HyphaBottomNavigation());
+                },
+                title: 'Close',
+              ),
+            ],
           ),
         ),
         body: Stack(
@@ -60,8 +76,6 @@ class SignTransactionFailedPage extends StatelessWidget {
                     const SizedBox(height: 80),
                     Image.asset('assets/images/warning.png', width: 240, height: 240),
                     const SizedBox(height: 24),
-                    Text('Sorry...', textAlign: TextAlign.center, style: context.hyphaTextTheme.mediumTitles),
-                    const SizedBox(height: 16),
                     failedText,
                     const SizedBox(height: 16),
                     Text(
