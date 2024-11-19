@@ -76,13 +76,11 @@ class ProfileEditMenuBottomSheet extends StatelessWidget {
                   maxWidth: 1500,
                 );
 
-                if(image == null) return;
+                if (image == null) return;
 
                 final CroppedFile? croppedFile = await ImageCropper().cropImage(
                   sourcePath: image.path,
-                  aspectRatioPresets: [
-                    CropAspectRatioPreset.square,
-                  ],
+                  aspectRatio: const CropAspectRatio(ratioX: 1, ratioY: 1),
                   uiSettings: [
                     AndroidUiSettings(
                       toolbarTitle: 'Crop Image',
@@ -101,8 +99,7 @@ class ProfileEditMenuBottomSheet extends StatelessWidget {
                 );
               },
             ),
-
-            if(profileBloc.state.profileData?.avatarUrl != null)...[
+            if (profileBloc.state.profileData?.avatarUrl != null) ...[
               ListTile(
                 title: const Text('Remove Picture'),
                 trailing: const Icon(Icons.chevron_right),
