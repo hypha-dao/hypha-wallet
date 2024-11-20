@@ -45,8 +45,8 @@ class _DaoSelectionViewState extends State<DaoSelectionView> {
       height: MediaQuery.sizeOf(context).height,
       color: context.isDarkMode ? HyphaColors.darkBlack : HyphaColors.offWhite,
       padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: ListView(
+        physics: const ClampingScrollPhysics(),
         children: [
           const SizedBox(height: 20),
           Text(
