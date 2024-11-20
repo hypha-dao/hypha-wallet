@@ -20,6 +20,7 @@ class FilterProposalsView extends StatelessWidget {
     return Scaffold(
       backgroundColor: context.isDarkMode ? HyphaColors.darkBlack : HyphaColors.offWhite,
       appBar: AppBar(
+        scrolledUnderElevation: 0,
         title: const Text('Filter Proposals'),
       ),
       body: BlocBuilder<FilterProposalsBloc, FilterProposalsState>(
@@ -27,8 +28,8 @@ class FilterProposalsView extends StatelessWidget {
           return HyphaBodyWidget(pageState: state.pageState, success: (context) {
             return Padding(
               padding: const EdgeInsets.symmetric(horizontal: 26.0, vertical: 20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              child: ListView(
+                physics: const ClampingScrollPhysics(),
                 children: [
                   Text(
                     'Select Proposal Status',
@@ -70,16 +71,13 @@ class FilterProposalsView extends StatelessWidget {
                           ));
                     },
                   ),
-                  const Spacer(),
+                  const SizedBox(height: 20),
                   HyphaAppButton(
                     title: 'SAVE FILTERS',
                     onPressed: () {
                       filterProposalsBloc.add(FilterProposalsEvent.saveFilters(filterProposalsBloc.selectedStatusIndexNotifier.value == 0 ? FilterStatus.active : FilterStatus.past));
                     },
                   ),
-                  const SizedBox(
-                    height: 20,
-                  )
                 ],
               ),
             );
