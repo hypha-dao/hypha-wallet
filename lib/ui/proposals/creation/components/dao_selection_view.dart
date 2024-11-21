@@ -26,7 +26,7 @@ class _DaoSelectionViewState extends State<DaoSelectionView> {
     daos = GetIt.I.get<ProposalsBloc>().daos;
     final ProposalCreationBloc proposalCreationBloc =
         context.read<ProposalCreationBloc>();
-    if (proposalCreationBloc.state.proposal?.dao == null) {
+    if (proposalCreationBloc.state.proposal.dao == null) {
       selectedDaoIndexNotifier = ValueNotifier<int>(0);
       proposalCreationBloc.add(
         ProposalCreationEvent.updateProposal(
@@ -35,7 +35,7 @@ class _DaoSelectionViewState extends State<DaoSelectionView> {
       );
     } else {
       selectedDaoIndexNotifier = ValueNotifier<int>(
-          daos.indexOf(proposalCreationBloc.state.proposal!.dao!));
+          daos.indexOf(proposalCreationBloc.state.proposal.dao!));
     }
   }
 

@@ -1102,7 +1102,7 @@ abstract class _ClearPageCommand implements ProposalCreationEvent {
 mixin _$ProposalCreationState {
   PageState get pageState => throw _privateConstructorUsedError;
   int get currentViewIndex => throw _privateConstructorUsedError;
-  ProposalCreationModel? get proposal => throw _privateConstructorUsedError;
+  ProposalCreationModel get proposal => throw _privateConstructorUsedError;
   PageCommand? get command => throw _privateConstructorUsedError;
 
   /// Create a copy of ProposalCreationState
@@ -1121,7 +1121,7 @@ abstract class $ProposalCreationStateCopyWith<$Res> {
   $Res call(
       {PageState pageState,
       int currentViewIndex,
-      ProposalCreationModel? proposal,
+      ProposalCreationModel proposal,
       PageCommand? command});
 
   $PageCommandCopyWith<$Res>? get command;
@@ -1145,7 +1145,7 @@ class _$ProposalCreationStateCopyWithImpl<$Res,
   $Res call({
     Object? pageState = null,
     Object? currentViewIndex = null,
-    Object? proposal = freezed,
+    Object? proposal = null,
     Object? command = freezed,
   }) {
     return _then(_value.copyWith(
@@ -1157,10 +1157,10 @@ class _$ProposalCreationStateCopyWithImpl<$Res,
           ? _value.currentViewIndex
           : currentViewIndex // ignore: cast_nullable_to_non_nullable
               as int,
-      proposal: freezed == proposal
+      proposal: null == proposal
           ? _value.proposal
           : proposal // ignore: cast_nullable_to_non_nullable
-              as ProposalCreationModel?,
+              as ProposalCreationModel,
       command: freezed == command
           ? _value.command
           : command // ignore: cast_nullable_to_non_nullable
@@ -1195,7 +1195,7 @@ abstract class _$$ProposalCreationStateImplCopyWith<$Res>
   $Res call(
       {PageState pageState,
       int currentViewIndex,
-      ProposalCreationModel? proposal,
+      ProposalCreationModel proposal,
       PageCommand? command});
 
   @override
@@ -1218,7 +1218,7 @@ class __$$ProposalCreationStateImplCopyWithImpl<$Res>
   $Res call({
     Object? pageState = null,
     Object? currentViewIndex = null,
-    Object? proposal = freezed,
+    Object? proposal = null,
     Object? command = freezed,
   }) {
     return _then(_$ProposalCreationStateImpl(
@@ -1230,10 +1230,10 @@ class __$$ProposalCreationStateImplCopyWithImpl<$Res>
           ? _value.currentViewIndex
           : currentViewIndex // ignore: cast_nullable_to_non_nullable
               as int,
-      proposal: freezed == proposal
+      proposal: null == proposal
           ? _value.proposal
           : proposal // ignore: cast_nullable_to_non_nullable
-              as ProposalCreationModel?,
+              as ProposalCreationModel,
       command: freezed == command
           ? _value.command
           : command // ignore: cast_nullable_to_non_nullable
@@ -1246,19 +1246,17 @@ class __$$ProposalCreationStateImplCopyWithImpl<$Res>
 
 class _$ProposalCreationStateImpl implements _ProposalCreationState {
   const _$ProposalCreationStateImpl(
-      {this.pageState = PageState.initial,
-      this.currentViewIndex = 0,
-      this.proposal,
+      {required this.pageState,
+      required this.currentViewIndex,
+      required this.proposal,
       this.command});
 
   @override
-  @JsonKey()
   final PageState pageState;
   @override
-  @JsonKey()
   final int currentViewIndex;
   @override
-  final ProposalCreationModel? proposal;
+  final ProposalCreationModel proposal;
   @override
   final PageCommand? command;
 
@@ -1297,9 +1295,9 @@ class _$ProposalCreationStateImpl implements _ProposalCreationState {
 
 abstract class _ProposalCreationState implements ProposalCreationState {
   const factory _ProposalCreationState(
-      {final PageState pageState,
-      final int currentViewIndex,
-      final ProposalCreationModel? proposal,
+      {required final PageState pageState,
+      required final int currentViewIndex,
+      required final ProposalCreationModel proposal,
       final PageCommand? command}) = _$ProposalCreationStateImpl;
 
   @override
@@ -1307,7 +1305,7 @@ abstract class _ProposalCreationState implements ProposalCreationState {
   @override
   int get currentViewIndex;
   @override
-  ProposalCreationModel? get proposal;
+  ProposalCreationModel get proposal;
   @override
   PageCommand? get command;
 

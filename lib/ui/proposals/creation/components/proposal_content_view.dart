@@ -28,8 +28,8 @@ class _ProposalContentViewState extends State<ProposalContentView> {
   void initState() {
     super.initState();
 
-    _titleController.text = context.read<ProposalCreationBloc>().state.proposal!.title ?? '';
-    final String? details = context.read<ProposalCreationBloc>().state.proposal!.details;
+    _titleController.text = context.read<ProposalCreationBloc>().state.proposal.title ?? '';
+    final String? details = context.read<ProposalCreationBloc>().state.proposal.details;
     if (details!= null) {
       final List<dynamic> jsonData = jsonDecode(details);
       _quillController.document = Document.fromDelta(Delta.fromJson(jsonData));

@@ -29,7 +29,7 @@ class ProposalCreationPage extends StatelessWidget {
               Get.back();
             },
             navigateToSuccessPage: () {
-              Get.to(() => SignTransactionSuccessPage(transactionType: SignSuccessTransactionType.published, proposalId: state.proposal!.id));
+              Get.to(() => SignTransactionSuccessPage(transactionType: SignSuccessTransactionType.published, proposalId: state.proposal.id));
             },
             navigateToFailurePage: (HyphaError hyphaError) {
               Get.to(() => BlocProvider.value(
@@ -92,7 +92,7 @@ class ProposalCreationPage extends StatelessWidget {
                             }
                           },
                           child: Opacity(
-                            opacity: index == 1 && (state.currentViewIndex == 1 && (state.proposal?.details == null || state.proposal?.title == null)) ? .25 : 1,
+                            opacity: index == 1 && (state.currentViewIndex == 1 && (state.proposal.details == null || state.proposal.title == null)) ? .25 : 1,
                             child: Container(
                               margin: const EdgeInsets.only(left: 10),
                               height: 40,
