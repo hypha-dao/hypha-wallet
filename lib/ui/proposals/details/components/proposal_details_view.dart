@@ -106,12 +106,12 @@ class _ProposalDetailsViewState extends State<ProposalDetailsView> {
                         ),
                         const SizedBox(height: 30),
 
+                        // TODO(Zied): check this
                         /// Details Section
                         if (_proposalDetailsModel.description != null) ...[
                           Text(
                             'Proposal Details',
-                            style: context.hyphaTextTheme.ralMediumSmallNote
-                                .copyWith(color: HyphaColors.midGrey),
+                            style: context.hyphaTextTheme.ralMediumSmallNote.copyWith(color: HyphaColors.midGrey),
                           ),
                           ValueListenableBuilder<bool>(
                             valueListenable: _isExpandedNotifier,
@@ -123,8 +123,7 @@ class _ProposalDetailsViewState extends State<ProposalDetailsView> {
                                     padding: const EdgeInsets.only(top: 10),
                                     child: Text(
                                       _proposalDetailsModel.description ?? '',
-                                      style:
-                                          context.hyphaTextTheme.ralMediumBody,
+                                      style: context.hyphaTextTheme.ralMediumBody,
                                       maxLines: isExpanded ? null : 3,
                                       overflow: isExpanded
                                           ? TextOverflow.visible
@@ -132,8 +131,7 @@ class _ProposalDetailsViewState extends State<ProposalDetailsView> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 20),
+                                    padding: const EdgeInsets.symmetric(vertical: 20),
                                     child: Row(
                                       children: [
                                         const Expanded(child: HyphaDivider()),

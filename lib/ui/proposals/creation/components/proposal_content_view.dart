@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_quill/flutter_quill.dart';
+import 'package:flutter_quill/quill_delta.dart';
 import 'package:get/get_utils/src/extensions/context_extensions.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
@@ -26,6 +27,13 @@ class _ProposalContentViewState extends State<ProposalContentView> {
   @override
   void initState() {
     super.initState();
+
+    _titleController.text = context.read<ProposalCreationBloc>().state.proposal.title ?? '';
+    final String? details = context.read<ProposalCreationBloc>().state.proposal.details;
+    if (details!= null) {
+      final List<dynamic> jsonData = jsonDecode(details);
+      _quillController.document = Document.fromDelta(Delta.fromJson(jsonData));
+    }
 
     _titleController.addListener(() {
       context.read<ProposalCreationBloc>().add(ProposalCreationEvent.updateProposal({'title': _titleController.text.isEmpty ? null : _titleController.text}));

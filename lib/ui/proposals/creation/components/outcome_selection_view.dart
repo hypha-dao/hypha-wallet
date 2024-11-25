@@ -42,7 +42,7 @@ class _OutcomeSelectionViewState extends State<OutcomeSelectionView> {
   void initState() {
     super.initState();
     final ProposalCreationBloc proposalCreationBloc = context.read<ProposalCreationBloc>();
-    if (proposalCreationBloc.state.proposal?.type == null) {
+    if (proposalCreationBloc.state.proposal.type == null) {
       selectedTypeIndexNotifier = ValueNotifier<int>(0);
       context.read<ProposalCreationBloc>().add(
             ProposalCreationEvent.updateProposal(
@@ -51,7 +51,7 @@ class _OutcomeSelectionViewState extends State<OutcomeSelectionView> {
           );
     } else {
       selectedTypeIndexNotifier = ValueNotifier<int>(
-          outcomeTypes.indexWhere((outcome) => outcome.type.label == proposalCreationBloc.state.proposal?.type.name));
+          outcomeTypes.indexWhere((outcome) => outcome.type.label == proposalCreationBloc.state.proposal.type.name));
     }
   }
 

@@ -1,12 +1,9 @@
-// ignore_for_file: unused_import
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
 import 'package:hypha_wallet/core/network/models/dao_data_model.dart';
-import 'package:hypha_wallet/core/network/models/outcome_model.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
 import 'package:hypha_wallet/ui/proposals/creation/components/dao_selection_view.dart';
@@ -18,9 +15,8 @@ import 'package:hypha_wallet/ui/sign_transaction/success/sign_transaction_succes
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class ProposalCreationPage extends StatelessWidget {
-  const ProposalCreationPage(this.daos, {super.key});
-
   final List<DaoData> daos;
+  const ProposalCreationPage(this.daos, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +29,7 @@ class ProposalCreationPage extends StatelessWidget {
               Get.back();
             },
             navigateToSuccessPage: () {
-              Get.to(() => SignTransactionSuccessPage(transactionType: SignSuccessTransactionType.published, proposalId: state.proposal!.id));
+              Get.to(() => SignTransactionSuccessPage(transactionType: SignSuccessTransactionType.published, proposalId: state.proposal.id));
             },
             navigateToFailurePage: (HyphaError hyphaError) {
               Get.to(() => BlocProvider.value(
@@ -88,11 +84,15 @@ class ProposalCreationPage extends StatelessWidget {
                           onTap: () {
                             final nextIndex = state.currentViewIndex + (index == 0 ? -1 : 1);
                             if (nextIndex >= -1) {
+                              if(state.currentViewIndex == 1) {
+                                FocusManager.instance.primaryFocus?.unfocus();
+                              }
+
                               context.read<ProposalCreationBloc>().add(ProposalCreationEvent.updateCurrentView(nextIndex));
                             }
                           },
                           child: Opacity(
-                            opacity: index == 1 && (state.currentViewIndex == 1 && (state.proposal?.details == null || state.proposal?.title == null)) ? .25 : 1,
+                            opacity: index == 1 && (state.currentViewIndex == 1 && (state.proposal.details == null || state.proposal.title == null)) ? .25 : 1,
                             child: Container(
                               margin: const EdgeInsets.only(left: 10),
                               height: 40,
