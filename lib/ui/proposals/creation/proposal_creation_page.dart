@@ -29,12 +29,18 @@ class ProposalCreationPage extends StatelessWidget {
               Get.back();
             },
             navigateToSuccessPage: () {
-              Get.to(() => SignTransactionSuccessPage(transactionType: SignSuccessTransactionType.published, proposalId: state.proposal.id));
+              Get.to(() => const SignTransactionSuccessPage(transactionType: SignSuccessTransactionType.published));
             },
             navigateToFailurePage: (HyphaError hyphaError) {
-              Get.to(() => BlocProvider.value(
-                  value: context.read<ProposalCreationBloc>(),
-                  child: SignTransactionFailedPage(hyphaError, text1: 'Publishing Proposal', text2: 'An error occurred while publishing your proposal. Click the button below if you want to see the full error, or click the close button to go back to your proposal publishing step and try again'))
+              Get.to(() => SignTransactionFailedPage(
+                hyphaError,
+                text1: 'Publishing proposal',
+                text2: 'An error occurred while publishing your proposal. Click the button below if you want to see the full error, or click the close button to go back to your proposal publishing step and try again.',
+                callBack: () {
+                  Get.back();
+                  context.read<ProposalCreationBloc>().add(const ProposalCreationEvent.publishProposal());
+                }
+              )
               );
             },
           );
