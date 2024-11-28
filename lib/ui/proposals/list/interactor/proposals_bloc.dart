@@ -76,12 +76,10 @@ class ProposalsBloc extends Bloc<ProposalsEvent, ProposalsState> {
       final List<ProposalModel> proposals = event is _Initial ? proposalsResult.asValue!.value : state.proposals + proposalsResult.asValue!.value;
 
       final List<int> daoIds = GetIt.instance<FilterProposalsBloc>().selectedDaoIds ?? daos.map((DaoData dao) => dao.docId).toList();
-      if (proposalsResult.asValue!.value.filterByDao(daoIds).isEmpty) {
-        if (nb < 3) {
-          offset += first;
-          nb ++;
-          await _fetchAndEmitProposals(event, emit, selectedDaos, nb);
-        }
+      if (nb < 3 && proposalsResult.asValue!.value.filterByDao(daoIds).isEmpty) {
+        offset += first;
+        nb ++;
+        await _fetchAndEmitProposals(event, emit, selectedDaos, nb);
       } else {
         emit(state.copyWith(pageState: PageState.success, proposals: proposals));
 

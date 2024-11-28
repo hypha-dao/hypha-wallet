@@ -1,7 +1,6 @@
 import 'package:hypha_wallet/core/extension/proposal_state_extension.dart';
 import 'package:hypha_wallet/core/extension/proposal_type_extension.dart';
 import 'package:hypha_wallet/core/extension/string_extension.dart';
-import 'package:hypha_wallet/ui/proposals/filter/interactor/filter_status.dart';
 
 extension MapExtension on Map<String, dynamic> {
   Map<String, dynamic> calculateUnityAndQuorum() {
