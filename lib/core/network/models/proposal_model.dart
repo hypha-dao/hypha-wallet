@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:hypha_wallet/core/extension/vote_tally_extension.dart';
+import 'package:hypha_wallet/core/extension/map_extension.dart';
 import 'package:hypha_wallet/core/network/models/base_proposal_model.dart';
 import 'package:hypha_wallet/core/network/models/dao_data_model.dart';
 import 'package:hypha_wallet/core/network/models/vote_model.dart';

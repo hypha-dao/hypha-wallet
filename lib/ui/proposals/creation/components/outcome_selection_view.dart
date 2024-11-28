@@ -51,7 +51,7 @@ class _OutcomeSelectionViewState extends State<OutcomeSelectionView> {
           );
     } else {
       selectedTypeIndexNotifier = ValueNotifier<int>(
-          outcomeTypes.indexWhere((outcome) => outcome.type.label == proposalCreationBloc.state.proposal?.type.name));
+          outcomeTypes.indexWhere((outcome) => outcome.type == proposalCreationBloc.state.proposal?.type));
     }
   }
 

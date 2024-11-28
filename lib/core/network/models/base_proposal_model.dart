@@ -1,3 +1,5 @@
+import 'package:hypha_wallet/core/extension/proposal_state_extension.dart';
+import 'package:hypha_wallet/core/extension/proposal_type_extension.dart';
 import 'package:hypha_wallet/core/network/models/dao_data_model.dart';
 import 'package:hypha_wallet/core/network/models/vote_model.dart';
 import 'package:hypha_wallet/ui/profile/interactor/profile_data.dart';
@@ -7,6 +9,11 @@ import 'package:json_annotation/json_annotation.dart';
 abstract class BaseProposalModel {
   @JsonKey(name: 'docId')
   final String? id;
+
+  final ProposalType? type;
+
+  @JsonKey(name: 'details_state_s')
+  final ProposalState? state;
 
   DaoData? dao;
 
@@ -39,6 +46,8 @@ abstract class BaseProposalModel {
 
   BaseProposalModel({
     required this.id,
+    this.type,
+    this.state,
     this.dao,
     this.commitment,
     this.title,
