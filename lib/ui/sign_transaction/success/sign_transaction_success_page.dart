@@ -10,7 +10,8 @@ import 'package:hypha_wallet/ui/bottom_navigation/hypha_bottom_navigation.dart';
 
 enum SignSuccessTransactionType {
   approved('Approved'),
-  published('published');
+  published('published'),
+  cast('cast');
 
   const SignSuccessTransactionType(this.value);
 
@@ -24,13 +25,16 @@ enum SignSuccessTransactionType {
 
 class SignTransactionSuccessPage extends StatelessWidget {
   final SignSuccessTransactionType transactionType;
-  final String? proposalId;
 
-  const SignTransactionSuccessPage({super.key, required this.transactionType, this.proposalId});
+  const SignTransactionSuccessPage({super.key, required this.transactionType});
 
   @override
   Widget build(BuildContext context) {
-    final successText = RichText(
+    final String textPrefix = transactionType == SignSuccessTransactionType.approved
+        ? 'Transaction'
+        : 'Your ${transactionType == SignSuccessTransactionType.published ? 'proposal' : 'vote'} has been\nsuccessfully';
+
+    final RichText successText = RichText(
       textAlign: TextAlign.center,
       text: TextSpan(
         style: context.hyphaTextTheme.regular.copyWith(
@@ -38,7 +42,7 @@ class SignTransactionSuccessPage extends StatelessWidget {
         ),
         children: <TextSpan>[
           TextSpan(
-            text: proposalId == null ? 'Transaction' : 'Your Proposal has been\nsuccessfully',
+            text: textPrefix,
             style: context.hyphaTextTheme.regular.copyWith(color: HyphaColors.primaryBlu),
           ),
           const TextSpan(text: ' '),
@@ -52,31 +56,11 @@ class SignTransactionSuccessPage extends StatelessWidget {
       child: Scaffold(
         backgroundColor: HyphaColors.transparent,
         bottomNavigationBar: HyphaSafeBottomNavigationBar(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              /// uncomment this (when you get the created proposal ID)
-              /*if(proposalId != null) ... [
-                HyphaAppButton(
-                  buttonType: ButtonType.secondary,
-                  buttonColor: HyphaColors.gradientBlackLight,
-                  onPressed: () {
-                    Get.to(
-                      ProposalDetailsPage(proposalId: proposalId!),
-                      transition: Transition.rightToLeft,
-                    );
-                  },
-                  title: 'See Proposal Details',
-                ),
-                const SizedBox(height: 20),
-              ],*/
-              HyphaAppButton(
-                onPressed: () {
-                  Get.offAll(() => const HyphaBottomNavigation());
-                },
-                title: 'Close',
-              ),
-            ],
+          child: HyphaAppButton(
+            onPressed: () {
+              Get.offAll(() => const HyphaBottomNavigation());
+            },
+            title: 'Close',
           ),
         ),
         body: Stack(

@@ -152,7 +152,16 @@ void _registerBlocsModule() {
     (daos, _) => ProposalCreationBloc(
       daos,
       _getIt<PublishProposalUseCase>(),
+      _getIt<ErrorHandlerManager>(),
+    ),
+  );
+
+  _registerFactoryWithParams<ProposalDetailsBloc, String, void>(
+    (proposalId, _) => ProposalDetailsBloc(
+        _getIt<GetProposalDetailsUseCase>(),
+        _getIt<CastVoteUseCase>(),
         _getIt<ErrorHandlerManager>(),
+        proposalId
     ),
   );
 }
