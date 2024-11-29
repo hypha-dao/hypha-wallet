@@ -59,7 +59,7 @@ class ProposalsBloc extends Bloc<ProposalsEvent, ProposalsState> {
     }
   }
 
-  Future<void> _loadProposalsForEvent(dynamic event, Emitter<ProposalsState> emit) async {
+  Future<void> _loadProposalsForEvent(ProposalsEvent event, Emitter<ProposalsState> emit) async {
     offset = event is _Initial ? 0 : offset + first;
 
     final List<DaoData> selectedDaos = (GetIt.instance<FilterProposalsBloc>().selectedDaoIds != null && event is _Load)
