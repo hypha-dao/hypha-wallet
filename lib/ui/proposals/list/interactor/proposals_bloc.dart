@@ -69,17 +69,17 @@ class ProposalsBloc extends Bloc<ProposalsEvent, ProposalsState> {
     await _fetchAndEmitProposals(event, emit, selectedDaos, 0);
   }
 
-  Future<void> _fetchAndEmitProposals(dynamic event, Emitter<ProposalsState> emit, List<DaoData> selectedDaos, int nb) async {
+  Future<void> _fetchAndEmitProposals(dynamic event, Emitter<ProposalsState> emit, List<DaoData> selectedDaos, int retryCounter) async {
     final Result<List<ProposalModel>, HyphaError> proposalsResult = await _getProposalsUseCase.run(GetProposalsUseCaseInput(selectedDaos, filterStatus, first, offset));
 
     if (proposalsResult.isValue) {
       final List<ProposalModel> proposals = event is _Initial ? proposalsResult.asValue!.value : state.proposals + proposalsResult.asValue!.value;
 
       final List<int> daoIds = GetIt.instance<FilterProposalsBloc>().selectedDaoIds ?? daos.map((DaoData dao) => dao.docId).toList();
-      if (nb < 3 && proposalsResult.asValue!.value.filterByDao(daoIds).isEmpty) {
+      if (retryCounter < 3 && proposalsResult.asValue!.value.filterByDao(daoIds).isEmpty) {
         offset += first;
-        nb ++;
-        await _fetchAndEmitProposals(event, emit, selectedDaos, nb);
+        retryCounter ++;
+        await _fetchAndEmitProposals(event, emit, selectedDaos, retryCounter);
       } else {
         emit(state.copyWith(pageState: PageState.success, proposals: proposals));
 
