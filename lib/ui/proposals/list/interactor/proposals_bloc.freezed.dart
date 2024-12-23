@@ -16,45 +16,43 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ProposalsEvent {
-  bool get refresh => throw _privateConstructorUsedError;
-  FilterStatus get filterStatus => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool refresh, FilterStatus filterStatus) initial,
+    required TResult Function(Function callBack) load,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(bool refresh, FilterStatus filterStatus)? initial,
+    TResult? Function(Function callBack)? load,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool refresh, FilterStatus filterStatus)? initial,
+    TResult Function(Function callBack)? load,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_Load value) load,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
+    TResult? Function(_Load value)? load,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_Load value)? load,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  /// Create a copy of ProposalsEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $ProposalsEventCopyWith<ProposalsEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -63,8 +61,6 @@ abstract class $ProposalsEventCopyWith<$Res> {
   factory $ProposalsEventCopyWith(
           ProposalsEvent value, $Res Function(ProposalsEvent) then) =
       _$ProposalsEventCopyWithImpl<$Res, ProposalsEvent>;
-  @useResult
-  $Res call({bool refresh, FilterStatus filterStatus});
 }
 
 /// @nodoc
@@ -79,32 +75,13 @@ class _$ProposalsEventCopyWithImpl<$Res, $Val extends ProposalsEvent>
 
   /// Create a copy of ProposalsEvent
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? refresh = null,
-    Object? filterStatus = null,
-  }) {
-    return _then(_value.copyWith(
-      refresh: null == refresh
-          ? _value.refresh
-          : refresh // ignore: cast_nullable_to_non_nullable
-              as bool,
-      filterStatus: null == filterStatus
-          ? _value.filterStatus
-          : filterStatus // ignore: cast_nullable_to_non_nullable
-              as FilterStatus,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$InitialImplCopyWith<$Res>
-    implements $ProposalsEventCopyWith<$Res> {
+abstract class _$$InitialImplCopyWith<$Res> {
   factory _$$InitialImplCopyWith(
           _$InitialImpl value, $Res Function(_$InitialImpl) then) =
       __$$InitialImplCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({bool refresh, FilterStatus filterStatus});
 }
@@ -181,6 +158,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool refresh, FilterStatus filterStatus) initial,
+    required TResult Function(Function callBack) load,
   }) {
     return initial(refresh, filterStatus);
   }
@@ -189,6 +167,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(bool refresh, FilterStatus filterStatus)? initial,
+    TResult? Function(Function callBack)? load,
   }) {
     return initial?.call(refresh, filterStatus);
   }
@@ -197,6 +176,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool refresh, FilterStatus filterStatus)? initial,
+    TResult Function(Function callBack)? load,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -209,6 +189,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_Load value) load,
   }) {
     return initial(this);
   }
@@ -217,6 +198,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
+    TResult? Function(_Load value)? load,
   }) {
     return initial?.call(this);
   }
@@ -225,6 +207,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_Load value)? load,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -238,16 +221,153 @@ abstract class _Initial implements ProposalsEvent {
   const factory _Initial(
       {final bool refresh, final FilterStatus filterStatus}) = _$InitialImpl;
 
-  @override
   bool get refresh;
-  @override
   FilterStatus get filterStatus;
 
   /// Create a copy of ProposalsEvent
   /// with the given fields replaced by the non-null parameter values.
-  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$InitialImplCopyWith<_$InitialImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$LoadImplCopyWith<$Res> {
+  factory _$$LoadImplCopyWith(
+          _$LoadImpl value, $Res Function(_$LoadImpl) then) =
+      __$$LoadImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Function callBack});
+}
+
+/// @nodoc
+class __$$LoadImplCopyWithImpl<$Res>
+    extends _$ProposalsEventCopyWithImpl<$Res, _$LoadImpl>
+    implements _$$LoadImplCopyWith<$Res> {
+  __$$LoadImplCopyWithImpl(_$LoadImpl _value, $Res Function(_$LoadImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ProposalsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? callBack = null,
+  }) {
+    return _then(_$LoadImpl(
+      null == callBack
+          ? _value.callBack
+          : callBack // ignore: cast_nullable_to_non_nullable
+              as Function,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$LoadImpl implements _Load {
+  const _$LoadImpl(this.callBack);
+
+  @override
+  final Function callBack;
+
+  @override
+  String toString() {
+    return 'ProposalsEvent.load(callBack: $callBack)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LoadImpl &&
+            (identical(other.callBack, callBack) ||
+                other.callBack == callBack));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, callBack);
+
+  /// Create a copy of ProposalsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LoadImplCopyWith<_$LoadImpl> get copyWith =>
+      __$$LoadImplCopyWithImpl<_$LoadImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(bool refresh, FilterStatus filterStatus) initial,
+    required TResult Function(Function callBack) load,
+  }) {
+    return load(callBack);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool refresh, FilterStatus filterStatus)? initial,
+    TResult? Function(Function callBack)? load,
+  }) {
+    return load?.call(callBack);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool refresh, FilterStatus filterStatus)? initial,
+    TResult Function(Function callBack)? load,
+    required TResult orElse(),
+  }) {
+    if (load != null) {
+      return load(callBack);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Load value) load,
+  }) {
+    return load(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Load value)? load,
+  }) {
+    return load?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Load value)? load,
+    required TResult orElse(),
+  }) {
+    if (load != null) {
+      return load(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Load implements ProposalsEvent {
+  const factory _Load(final Function callBack) = _$LoadImpl;
+
+  Function get callBack;
+
+  /// Create a copy of ProposalsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$LoadImplCopyWith<_$LoadImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

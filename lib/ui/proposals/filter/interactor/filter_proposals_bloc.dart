@@ -39,11 +39,11 @@ class FilterProposalsBloc extends Bloc<FilterProposalsEvent, FilterProposalsStat
 
   ValueNotifier<List<int>>? _selectedDaoIndexesNotifier;
   final ValueNotifier<int> _selectedStatusIndexNotifier = ValueNotifier<int>(0);
-  List<int>? _daoIds;
+  List<int>? _selectedDaoIds;
 
   ValueNotifier<List<int>> get selectedDaoIndexesNotifier => _selectedDaoIndexesNotifier!;
   ValueNotifier<int> get selectedStatusIndexNotifier => _selectedStatusIndexNotifier;
-  List<int>? get daoIds => _daoIds;
+  List<int>? get selectedDaoIds => _selectedDaoIds;
 
   Future<void> _initial(_Initial event, Emitter<FilterProposalsState> emit) async {
     emit(state.copyWith(pageState: PageState.loading));
@@ -85,11 +85,8 @@ class FilterProposalsBloc extends Bloc<FilterProposalsEvent, FilterProposalsStat
   }
 
   Future<void> _saveFilters(_SaveFilters event, Emitter<FilterProposalsState> emit) async {
-    final List<DaoProposalCountEntity> daoProposalCounts = _selectedDaoIndexesNotifier!.value
-        .map((index) => state.daoProposalCounts[index])
-        .toList();
+    _selectedDaoIds = _selectedDaoIndexesNotifier!.value.map((index) => state.daoProposalCounts[index].dao.docId).toList();
 
-    _daoIds = daoProposalCounts.map((DaoProposalCountEntity daoProposalCount) => daoProposalCount.dao.docId).toList();
     _proposalsBloc.add(ProposalsEvent.initial(filterStatus: event.filterStatus));
     emit(state.copyWith(command: const PageCommand.navigateToProposals()));
   }

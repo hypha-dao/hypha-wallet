@@ -92,8 +92,7 @@ class ProposalsView extends StatelessWidget {
                   child: HyphaBodyWidget(
                     pageState: state.pageState,
                     success: (context) {
-                      final List<int>? daoIds =
-                          GetIt.I.get<FilterProposalsBloc>().daoIds;
+                      final List<int>? daoIds = GetIt.I.get<FilterProposalsBloc>().selectedDaoIds;
                       final List<ProposalModel> proposals = daoIds != null
                           ? state.proposals.filterByDao(daoIds)
                           : state.proposals;
@@ -102,32 +101,16 @@ class ProposalsView extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const SizedBox(
-                              height: 22,
-                            ),
-                            Text(
-                              '${proposals.length} ${filterStatus.string} Proposal${proposals.length == 1 ? '' : 's'}',
-                              style: context.hyphaTextTheme.ralMediumBody
-                                  .copyWith(color: HyphaColors.midGrey),
-                            ),
-                            const SizedBox(
-                              height: 20,
+                            Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 20),
+                              child: Text(
+                                '${proposals.length} ${filterStatus.string} Proposal${proposals.length == 1 ? '' : 's'}',
+                                style: context.hyphaTextTheme.ralMediumBody.copyWith(color: HyphaColors.midGrey),
+                              ),
                             ),
                             Expanded(
-                              child: SingleChildScrollView(
-                                physics: const BouncingScrollPhysics(),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    ProposalsList(
-                                      proposals,
-                                      isScrollable: false,
-                                    ),
-                                    const SizedBox(
-                                      height:90
-                                    ),
-                                  ],
-                                ),
+                              child: ProposalsList(
+                                proposals,
                               ),
                             ),
                           ],

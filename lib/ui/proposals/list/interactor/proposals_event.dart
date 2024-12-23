@@ -6,4 +6,5 @@ class ProposalsEvent with _$ProposalsEvent {
     @Default(false) bool refresh,
     @Default(FilterStatus.active) FilterStatus filterStatus,
   }) = _Initial;
+  const factory ProposalsEvent.load(Function callBack) = _Load;
 }

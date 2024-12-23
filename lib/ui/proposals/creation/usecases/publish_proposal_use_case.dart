@@ -1,6 +1,6 @@
 import 'package:hypha_wallet/core/crypto/seeds_esr/eos_action.dart';
 import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
-import 'package:hypha_wallet/core/extension/proposal_creation_model_extension.dart';
+import 'package:hypha_wallet/core/extension/proposal_type_extension.dart';
 import 'package:hypha_wallet/core/extension/string_extension.dart';
 import 'package:hypha_wallet/core/logging/log_helper.dart';
 import 'package:hypha_wallet/core/network/api/eos_service.dart';
@@ -27,7 +27,7 @@ class PublishProposalUseCase extends InputUseCase<Result<String, HyphaError>, Pr
       List<Map<String, dynamic>> content = [];
 
       switch (input.type) {
-        case ProposalType.policy:
+        case ProposalType.Policy:
           content = [
             {
               'label': 'content_group_label',
@@ -59,7 +59,7 @@ class PublishProposalUseCase extends InputUseCase<Result<String, HyphaError>, Pr
           ..data = {
             'dao_id': input.dao!.docId,
             'proposer': user.accountName,
-            'proposal_type': input.proposalTypeToString(),
+            'proposal_type': input.type!.string,
             'content_groups': [content],
             'publish': true,
           };

@@ -1,5 +1,6 @@
+import 'dart:async';
 import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
-import 'package:hypha_wallet/core/extension/base_proposal_model_extension.dart';
+import 'package:hypha_wallet/core/extension/map_extension.dart';
 import 'package:hypha_wallet/core/logging/log_helper.dart';
 import 'package:hypha_wallet/core/network/api/services/dao_service.dart';
 import 'package:hypha_wallet/core/network/api/services/proposal_service.dart';
@@ -24,8 +25,8 @@ class ProposalRepository {
   Future<Result<List<ProposalModel>, HyphaError>> getProposals(UserProfileData user, GetProposalsUseCaseInput input) async {
     final List<Future<Result<Map<String, dynamic>, HyphaError>>> futures = input.daos.map((DaoData dao) {
       return input.filterStatus == FilterStatus.active
-          ? _proposalService.getActiveProposals(user, dao.docId)
-          : _proposalService.getPastProposals(user, dao.docId);
+          ? _proposalService.getActiveProposals(user, dao.docId, input.first, input.offset)
+          : _proposalService.getPastProposals(user, dao.docId, input.first,  input.offset);
     }).toList();
 
     final List<Result<Map<String, dynamic>, HyphaError>> futureResults = await Future.wait(futures);
@@ -56,19 +57,23 @@ class ProposalRepository {
       }
     }
 
-    sortProposals(allProposals);
     return Result.value(allProposals);
   }
 
-  Future<List<ProposalModel>> _parseProposalsFromResponse(
-      Map<String, dynamic> response,
-      DaoData daoData,
-      FilterStatus filterStatus) async {
+  Future<List<ProposalModel>> _parseProposalsFromResponse(Map<String, dynamic> response, DaoData daoData, FilterStatus filterStatus) async {
     final List<dynamic> proposalsData = response['data']['queryDao'];
 
     final List<Future<ProposalModel>> proposalFutures = proposalsData.expand((dao) {
       final List<dynamic> proposals = dao[filterStatus == FilterStatus.active ? 'proposal' : 'votable'] as List<dynamic>;
-      return proposals.map((dynamic proposal) async {
+
+      return proposals.where((dynamic proposal) {
+        if (filterStatus == FilterStatus.past) {
+          final Map<String, dynamic> proposalMap = Map<String, dynamic>.from(proposal);
+          return proposalMap.isValidProposal();
+        }
+
+        return true;
+      }).map((dynamic proposal) async {
         final Result<ProfileData, HyphaError> creator = await _profileService.getProfile(proposal['creator']);
         proposal['creator'] = null;
 
@@ -83,27 +88,6 @@ class ProposalRepository {
     }).toList();
 
     return Future.wait(proposalFutures);
-  }
-
-  void sortProposals(List<ProposalModel> proposals,) {
-    proposals.sort((a, b) {
-      final int daoNameComparison = (a.dao?.settingsDaoTitle ?? '')
-          .compareTo(b.dao?.settingsDaoTitle ?? '');
-      if (daoNameComparison != 0) {
-        return daoNameComparison;
-      }
-
-      final bool isAExpired = a.expiration != null && a.isExpired();
-      final bool isBExpired = b.expiration != null && b.isExpired();
-
-      if (isAExpired && !isBExpired) {
-        return 1;
-      } else if (!isAExpired && isBExpired) {
-        return -1;
-      }
-
-      return a.expiration?.compareTo(b.expiration ?? DateTime.now()) ?? 0;
-    });
   }
 
   Future<Result<ProposalDetailsModel, HyphaError>> getProposalDetails(String proposalId, UserProfileData user) async {
