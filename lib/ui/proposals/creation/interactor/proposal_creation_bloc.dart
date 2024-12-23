@@ -20,26 +20,21 @@ class ProposalCreationBloc extends Bloc<ProposalCreationEvent, ProposalCreationS
   final PublishProposalUseCase _publishProposalUseCase;
   final ErrorHandlerManager _errorHandlerManager;
 
-  ProposalCreationBloc(this.daos, this._publishProposalUseCase, this._errorHandlerManager) : super(ProposalCreationState(proposal: ProposalCreationModel())) {
-    on<_Initialize>(_initialize);
+  ProposalCreationBloc(this.daos, this._publishProposalUseCase, this._errorHandlerManager) : super(ProposalCreationState.initial()) {
     on<_UpdateCurrentView>(_updateCurrentView);
     on<_UpdateProposal>(_updateProposal);
     on<_PublishProposal>(_publishProposal);
     on<_ClearPageCommand>((_, emit) => emit(state.copyWith(command: null)));
 
     _pageController = PageController(initialPage: daos.length > 1 ? 0 : 1);
+    if (daos.length == 1) {
+      add(ProposalCreationEvent.updateProposal({'dao': daos.first}));
+    }
   }
 
   late final PageController _pageController;
 
   PageController get pageController => _pageController;
-
-  void _initialize(_Initialize event, Emitter<ProposalCreationState> emit) {
-
-    if (daos.length == 1) {
-      emit(state.copyWith(proposal: state.proposal!.copyWith({'dao': daos.first})));
-    }
-  }
 
   void _updateCurrentView(_UpdateCurrentView event, Emitter<ProposalCreationState> emit) {
     if (event.nextViewIndex == -1) {
@@ -50,7 +45,7 @@ class ProposalCreationBloc extends Bloc<ProposalCreationEvent, ProposalCreationS
           navigate(emit, event.nextViewIndex);
           break;
         case 2:
-          if (state.proposal!.title != null && state.proposal!.details != null) {
+          if (state.proposal.title != null && state.proposal.details != null) {
             navigate(emit, event.nextViewIndex);
           }
           break;
@@ -58,7 +53,7 @@ class ProposalCreationBloc extends Bloc<ProposalCreationEvent, ProposalCreationS
       /* case 3:
          navigate(
               emit,
-              state.proposal!.type == OutcomeType.agreement.label
+              state.proposal.type == OutcomeType.agreement.label
                   ? event.nextViewIndex + 1
                   : event.nextViewIndex);
           break; */
@@ -77,19 +72,15 @@ class ProposalCreationBloc extends Bloc<ProposalCreationEvent, ProposalCreationS
     );
   }
 
-  void _updateProposalFields(updates, emit) {
-    final ProposalCreationModel proposal = state.proposal!.copyWith(updates);
-    emit(state.copyWith(proposal: proposal));
-  }
-
   void _updateProposal(_UpdateProposal event, Emitter<ProposalCreationState> emit) {
-    _updateProposalFields(event.updates, emit);
+    final ProposalCreationModel proposal = state.proposal.copyWith(event.updates);
+    emit(state.copyWith(proposal: proposal));
   }
 
   Future<void> _publishProposal(_PublishProposal event, Emitter<ProposalCreationState> emit) async {
     emit(state.copyWith(pageState: PageState.loading));
 
-    final Result<String, HyphaError> result = await _publishProposalUseCase.run(state.proposal!);
+    final Result<String, HyphaError> result = await _publishProposalUseCase.run(state.proposal);
 
     if (result.isValue) {
       emit(state.copyWith(pageState: PageState.success, command: const PageCommand.navigateToSuccessPage()));

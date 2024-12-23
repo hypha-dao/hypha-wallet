@@ -1,6 +1,5 @@
 import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
 import 'package:hypha_wallet/core/network/models/proposal_details_model.dart';
-import 'package:hypha_wallet/core/network/models/vote_model.dart';
 import 'package:hypha_wallet/core/network/repository/auth_repository.dart';
 import 'package:hypha_wallet/core/network/repository/proposal_repository.dart';
 import 'package:hypha_wallet/ui/architecture/result/result.dart';
@@ -11,6 +10,4 @@ class GetProposalDetailsUseCase {
   GetProposalDetailsUseCase(this._authRepository, this._proposalRepository);
 
   Future<Result<ProposalDetailsModel, HyphaError>> run(String proposalId) async => _proposalRepository.getProposalDetails(proposalId,_authRepository.authDataOrCrash.userProfileData);
-  Future<Result<String,HyphaError>> castVote(String proposalId,VoteStatus vote) async => _proposalRepository.castVote(proposalId,vote,_authRepository.authDataOrCrash.userProfileData);
-
 }

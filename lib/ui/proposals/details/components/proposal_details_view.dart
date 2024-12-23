@@ -9,6 +9,7 @@ import 'package:hypha_wallet/design/buttons/hypha_app_button.dart';
 import 'package:hypha_wallet/design/dividers/hypha_divider.dart';
 import 'package:hypha_wallet/design/hypha_colors.dart';
 import 'package:hypha_wallet/design/themes/extensions/theme_extension_provider.dart';
+import 'package:hypha_wallet/ui/architecture/interactor/page_states.dart';
 import 'package:hypha_wallet/ui/blocs/authentication/authentication_bloc.dart';
 import 'package:hypha_wallet/ui/proposals/components/proposal_button.dart';
 import 'package:hypha_wallet/ui/proposals/components/proposal_creator.dart';
@@ -16,7 +17,7 @@ import 'package:hypha_wallet/ui/proposals/components/proposal_expiration_timer.d
 import 'package:hypha_wallet/ui/proposals/components/proposal_header.dart';
 import 'package:hypha_wallet/ui/proposals/components/proposal_percentage_indicator.dart';
 import 'package:hypha_wallet/ui/proposals/details/components/proposal_voters.dart';
-import 'package:hypha_wallet/ui/proposals/details/interactor/proposal_detail_bloc.dart';
+import 'package:hypha_wallet/ui/proposals/details/interactor/proposal_details_bloc.dart';
 import 'package:hypha_wallet/ui/shared/hypha_body_widget.dart';
 
 class ProposalDetailsView extends StatefulWidget {
@@ -63,7 +64,7 @@ class _ProposalDetailsViewState extends State<ProposalDetailsView> {
           scrolledUnderElevation: 0,
           title: const Text('Proposal Details'),
         ),
-        body: BlocBuilder<ProposalDetailBloc, ProposalDetailState>(
+        body: BlocBuilder<ProposalDetailsBloc, ProposalDetailsState>(
           builder: (context, state) {
             return HyphaBodyWidget(
                 pageState: state.pageState,
@@ -106,12 +107,12 @@ class _ProposalDetailsViewState extends State<ProposalDetailsView> {
                         ),
                         const SizedBox(height: 30),
 
+                        // TODO(Zied): check this
                         /// Details Section
                         if (_proposalDetailsModel.description != null) ...[
                           Text(
                             'Proposal Details',
-                            style: context.hyphaTextTheme.ralMediumSmallNote
-                                .copyWith(color: HyphaColors.midGrey),
+                            style: context.hyphaTextTheme.ralMediumSmallNote.copyWith(color: HyphaColors.midGrey),
                           ),
                           ValueListenableBuilder<bool>(
                             valueListenable: _isExpandedNotifier,
@@ -123,8 +124,7 @@ class _ProposalDetailsViewState extends State<ProposalDetailsView> {
                                     padding: const EdgeInsets.only(top: 10),
                                     child: Text(
                                       _proposalDetailsModel.description ?? '',
-                                      style:
-                                          context.hyphaTextTheme.ralMediumBody,
+                                      style: context.hyphaTextTheme.ralMediumBody,
                                       maxLines: isExpanded ? null : 3,
                                       overflow: isExpanded
                                           ? TextOverflow.visible
@@ -132,8 +132,7 @@ class _ProposalDetailsViewState extends State<ProposalDetailsView> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 20),
+                                    padding: const EdgeInsets.symmetric(vertical: 20),
                                     child: Row(
                                       children: [
                                         const Expanded(child: HyphaDivider()),
@@ -257,7 +256,14 @@ class _ProposalDetailsViewState extends State<ProposalDetailsView> {
                                                 }[userVote.voteStatus] ??
                                                 'You chose to abstain',
                                           )
-                                        : _buildVoteWidget(context),
+                                        : BlocBuilder<ProposalDetailsBloc, ProposalDetailsState>(
+                                            builder: (context, state) {
+                                              return state.votingState == PageState.loading ? const Padding(
+                                                padding: EdgeInsets.only(top: 20),
+                                                child: Center(child: CircularProgressIndicator.adaptive()),
+                                              ) : _buildVoteWidget(context);
+                                            },
+                                          ),
                               ),
                             ],
                           ),
@@ -301,9 +307,9 @@ Widget _buildVoteWidget(BuildContext context) => Column(
               }
 
               // Get the bloc instances
-              final proposalDetailBloc = context.read<ProposalDetailBloc>();
+              final proposalDetailBloc = context.read<ProposalDetailsBloc>();
               // Dispatch the castVote event
-              proposalDetailBloc.add(ProposalDetailEvent.castVote(voteStatus));
+              proposalDetailBloc.add(ProposalDetailsEvent.castVote(voteStatus));
             },
             buttonType: ButtonType.danger,
             buttonColor: index == 0

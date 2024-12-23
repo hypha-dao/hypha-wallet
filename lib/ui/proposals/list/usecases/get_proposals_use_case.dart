@@ -4,7 +4,7 @@ import 'package:hypha_wallet/core/network/repository/auth_repository.dart';
 import 'package:hypha_wallet/core/network/repository/proposal_repository.dart';
 import 'package:hypha_wallet/ui/architecture/interactor/base_usecase.dart';
 import 'package:hypha_wallet/ui/architecture/result/result.dart';
-import 'package:hypha_wallet/ui/proposals/list/interactor/get_proposals_use_case_input.dart';
+import 'package:hypha_wallet/ui/proposals/list/usecases/get_proposals_use_case_input.dart';
 
 class GetProposalsUseCase extends InputUseCase<Result<List<ProposalModel>, HyphaError>, GetProposalsUseCaseInput> {
   final AuthRepository _authRepository;

@@ -9,8 +9,8 @@ class ProposalsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => GetIt.I.get<ProposalsBloc>()..add(const ProposalsEvent.initial()),
+    return BlocProvider.value(
+      value: GetIt.I.get<ProposalsBloc>()..add(const ProposalsEvent.initial()),
       child: const ProposalsView(),
     );
   }

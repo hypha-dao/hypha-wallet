@@ -31,7 +31,7 @@ class ProposalReviewView extends StatelessWidget {
                   child: IntrinsicHeight(
                     child: BlocBuilder<ProposalCreationBloc, ProposalCreationState>(
                       builder: (context, state) {
-                        final List<dynamic> jsonData = jsonDecode(state.proposal!.details!);
+                        final List<dynamic> jsonData = jsonDecode(state.proposal.details!);
                         final Document document = Document.fromDelta(Delta.fromJson(jsonData));
 
                         return Column(
@@ -39,7 +39,7 @@ class ProposalReviewView extends StatelessWidget {
                           children: [
                             const SizedBox(height: 20),
                             ProposalHeader(
-                              state.proposal!.dao,
+                              state.proposal.dao,
                               text: 'Builders',
                             ),
                             const Padding(
@@ -53,7 +53,7 @@ class ProposalReviewView extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.only(top: 10, bottom: 20),
                               child: Text(
-                                state.proposal!.title!,
+                                state.proposal.title!,
                                 style: context.hyphaTextTheme.mediumTitles,
                               ),
                             ),

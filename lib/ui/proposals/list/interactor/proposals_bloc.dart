@@ -13,7 +13,7 @@ import 'package:hypha_wallet/ui/profile/interactor/profile_data.dart';
 import 'package:hypha_wallet/ui/profile/usecases/fetch_profile_use_case.dart';
 import 'package:hypha_wallet/ui/proposals/filter/interactor/filter_proposals_bloc.dart';
 import 'package:hypha_wallet/ui/proposals/filter/interactor/filter_status.dart';
-import 'package:hypha_wallet/ui/proposals/list/interactor/get_proposals_use_case_input.dart';
+import 'package:hypha_wallet/ui/proposals/list/usecases/get_proposals_use_case_input.dart';
 import 'package:hypha_wallet/ui/proposals/list/usecases/get_proposals_use_case.dart';
 
 part 'proposals_bloc.freezed.dart';

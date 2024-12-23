@@ -26,7 +26,7 @@ class _DaoSelectionViewState extends State<DaoSelectionView> {
     daos = GetIt.I.get<ProposalsBloc>().daos;
     final ProposalCreationBloc proposalCreationBloc =
         context.read<ProposalCreationBloc>();
-    if (proposalCreationBloc.state.proposal?.dao == null) {
+    if (proposalCreationBloc.state.proposal.dao == null) {
       selectedDaoIndexNotifier = ValueNotifier<int>(0);
       proposalCreationBloc.add(
         ProposalCreationEvent.updateProposal(
@@ -35,7 +35,7 @@ class _DaoSelectionViewState extends State<DaoSelectionView> {
       );
     } else {
       selectedDaoIndexNotifier = ValueNotifier<int>(
-          daos.indexOf(proposalCreationBloc.state.proposal!.dao!));
+          daos.indexOf(proposalCreationBloc.state.proposal.dao!));
     }
   }
 
@@ -45,8 +45,8 @@ class _DaoSelectionViewState extends State<DaoSelectionView> {
       height: MediaQuery.sizeOf(context).height,
       color: context.isDarkMode ? HyphaColors.darkBlack : HyphaColors.offWhite,
       padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: ListView(
+        physics: const ClampingScrollPhysics(),
         children: [
           const SizedBox(height: 20),
           Text(

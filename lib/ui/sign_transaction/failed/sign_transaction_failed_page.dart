@@ -16,8 +16,9 @@ class SignTransactionFailedPage extends StatelessWidget {
   final HyphaError error;
   final String text1;
   final String text2;
+  final VoidCallback? callBack;
 
-  const SignTransactionFailedPage(this.error, {super.key, this.text1 = 'This transaction ', this.text2 = 'Please try again by triggering the transaction from the website or app. Sorry for the inconvenience.'});
+  const SignTransactionFailedPage(this.error, {this.text1 = 'Transaction', this.text2 = 'Please try again by triggering the transaction from the website or app. Sorry for the inconvenience.', this.callBack, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -46,15 +47,14 @@ class SignTransactionFailedPage extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              HyphaAppButton(
-                buttonType: ButtonType.secondary,
-                onPressed: () {
-                  Get.back();
-                  context.read<ProposalCreationBloc>().add(const ProposalCreationEvent.publishProposal());
-                },
-                title: 'Retry',
-              ),
-              const SizedBox(height: 20),
+              if(callBack != null) ... [
+                HyphaAppButton(
+                  buttonType: ButtonType.secondary,
+                  onPressed: callBack,
+                  title: 'Retry',
+                ),
+                const SizedBox(height: 20)
+              ],
               HyphaAppButton(
                 buttonType: ButtonType.secondary,
                 onPressed: () {

@@ -28,7 +28,7 @@ class HyphaProposalsActionCard extends StatelessWidget {
       onTap: () {
         Get.Get.to(
           ProposalDetailsPage(
-            proposalId: _proposalModel.id ?? '',
+            _proposalModel.id ?? '',
           ),
           transition: Get.Transition.rightToLeft,
         );
@@ -126,7 +126,7 @@ class HyphaProposalsActionCard extends StatelessWidget {
         Expanded(child: ProposalCreator(creator)),
         ProposalButton('Vote', Icons.arrow_forward_ios, () {
           Get.Get.to(
-            ProposalDetailsPage(proposalId: _proposalModel.id!),
+            ProposalDetailsPage(_proposalModel.id!),
             transition: Get.Transition.rightToLeft,
           );
         }),
