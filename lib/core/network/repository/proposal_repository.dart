@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:hypha_wallet/core/crypto/seeds_esr/eos_action.dart';
 import 'package:hypha_wallet/core/error_handler/model/hypha_error.dart';
 import 'package:hypha_wallet/core/extension/map_extension.dart';
 import 'package:hypha_wallet/core/logging/log_helper.dart';
@@ -20,14 +19,8 @@ class ProposalRepository {
   final ProposalService _proposalService;
   final ProfileService _profileService;
   final DaoService _daoService;
-  final EOSService _eosService;
-  final RemoteConfigService _remoteConfigService;
 
-  ProposalRepository(
-      this._remoteConfigService,
-      this._eosService,
-      this._daoService,
-      this._proposalService, this._profileService);
+  ProposalRepository(this._daoService, this._proposalService, this._profileService);
 
   Future<Result<List<ProposalModel>, HyphaError>> getProposals(UserProfileData user, GetProposalsUseCaseInput input) async {
     final List<Future<Result<Map<String, dynamic>, HyphaError>>> futures = input.daos.map((DaoData dao) {
